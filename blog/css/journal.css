@@ -507,3 +507,16 @@ footer.site {
 }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
 :focus-visible { outline: 1px solid var(--gold); outline-offset: 3px; }
+
+
+.related-essays h2 {
+  font-family: var(--display);
+  font-style: italic;
+  font-weight: 500;
+  font-size: 28px;
+  margin: 0 0 14px;
+}
+.related-essays ul { list-style: none; padding: 0; margin: 0; }
+.related-essays li { margin: 0 0 10px; }
+.related-essays a { color: var(--gold); text-decoration: none; border-bottom: 1px solid var(--hair); }
+.related-essays a:hover { color: var(--magenta); }

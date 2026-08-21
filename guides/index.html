@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta charset="utf-8"/><meta content="width=device-width,initial-scale=1.0" name="viewport"/><meta content="https://myaiplug.github.io/coproducer-web/assets/og-default.jpg" name="twitter:image"/><meta content="Practical CoProducer guides to LUFS, true peak, dynamic range, stereo phase, noisy audio cleanup, and a meter-matched release checklist." name="twitter:description"/><meta content="Audio Engineering Guides | CoProducer" name="twitter:title"/><meta content="summary_large_image" name="twitter:card"/><meta content="1440" property="og:image:height"/><meta content="2560" property="og:image:width"/><meta content="https://myaiplug.github.io/coproducer-web/assets/og-default.jpg" property="og:image"/><meta content="https://myaiplug.github.io/coproducer-web/guides/index.html" property="og:url"/><meta content="Practical CoProducer guides to LUFS, true peak, dynamic range, stereo phase, noisy audio cleanup, and a meter-matched release checklist." property="og:description"/><meta content="Audio Engineering Guides | CoProducer" property="og:title"/><meta content="en_US" property="og:locale"/><meta content="CoProducer" property="og:site_name"/><meta content="website" property="og:type"/><link href="https://myaiplug.github.io/coproducer-web/llms.txt" rel="alternate" title="llms.txt" type="text/plain"/><meta content="NoDAW Labs" name="author"/><meta content="#050308" name="theme-color"/><meta content="index,follow,max-image-preview:large" name="robots"/>
 <title>Audio Engineering Guides | CoProducer</title>
-<meta name="description" content="Practical guides to LUFS, true peak, dynamic range, stereo phase, clipping, and release checklists — measured the way CoProducer scores a mix.">
-<link rel="canonical" href="https://myaiplug.github.io/coproducer-web/guides/">
-<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../css/report.css">
+<meta content="Practical CoProducer guides to LUFS, true peak, dynamic range, stereo phase, noisy audio cleanup, and a meter-matched release checklist." name="description"/>
+<link href="https://myaiplug.github.io/coproducer-web/guides/index.html" rel="canonical"/>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&amp;family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;700&amp;display=swap" rel="stylesheet"/>
+<link href="../css/report.css" rel="stylesheet"/>
 <style>
 body {
   background: #050308;
@@ -70,60 +70,55 @@ footer {
   border-top: 1px solid rgba(194, 111, 255, 0.2); font-family: 'JetBrains Mono', monospace; font-size: 11px; color: #a79daf; box-sizing: border-box;
 }
 </style>
-</head>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"CoProducer","item":"https://myaiplug.github.io/coproducer-web/"},{"@type":"ListItem","position":2,"name":"Guides","item":"https://myaiplug.github.io/coproducer-web/guides/index.html"}]}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"CollectionPage","name":"Audio Engineering Guides","description":"Practical CoProducer guides to LUFS, true peak, dynamic range, stereo phase, noisy audio cleanup, and a meter-matched release checklist.","url":"https://myaiplug.github.io/coproducer-web/guides/index.html","publisher":{"@type":"Organization","name":"NoDAW Labs","url":"https://myaiplug.github.io/coproducer-web/","logo":"https://myaiplug.github.io/coproducer-web/assets/og-default.jpg"}}</script></head>
 <body>
-
 <nav>
-  <div class="brand"><i>Co</i>Producer</div>
-  <div class="nav-links">
-    <a href="../index.html">Overview</a>
-    <a href="../analyze.html">Analyze</a>
-    <a href="./" class="active" style="color:#e84cff">Guides</a>
-    <a href="../comparisons/vs-landr.html">VS Landr</a>
-  </div>
-</nav>
-
-<div class="page-container">
-  <div style="text-align:center; margin-bottom:40px;">
-    <span style="font-family:'JetBrains Mono', monospace; font-size:10px; text-transform:uppercase; color:#e84cff; letter-spacing:0.15em;">Engineering Library</span>
-    <h1 style="font-family:'Barlow Condensed', sans-serif; font-size:clamp(48px, 6vw, 76px); font-weight:900; line-height:0.9; text-transform:uppercase; margin:16px 0 12px;">Engineering<br><span style="color:#e84cff">Guides</span></h1>
-    <p style="color:#a79daf; font-size:14px; max-width:650px; margin:0 auto; line-height:1.6;">The same metrics CoProducer prints in a report, explained in release language. Use them before you smash a limiter or upload a master.</p>
-  </div>
-
-  <div style="margin-top:20px;">
-    <a href="what-is-lufs.html" class="guide-card">
-      <h3>What is LUFS?</h3>
-      <p>Streaming loudness targets (−14 LUFS) and how platform normalization affects your masters.</p>
-    </a>
-    <a href="true-peak-ceiling.html" class="guide-card">
-      <h3>True Peak Ceiling</h3>
-      <p>Why −1.0 dBTP exists, inter-sample clipping, and preventing lossy codec distortion.</p>
-    </a>
-    <a href="stereo-phase-correlation.html" class="guide-card">
-      <h3>Stereo &amp; Phase Correlation</h3>
-      <p>Mono compatibility, spatial width, and phase cancellation risks in low frequencies.</p>
-    </a>
-    <a href="dynamic-range-crest.html" class="guide-card">
-      <h3>Dynamic Range &amp; Crest Factor</h3>
-      <p>Knowing when a mix is loud versus actually punchy and transient-preserved.</p>
-    </a>
-    <a href="how-to-clean-noisy-audio.html" class="guide-card">
-      <h3>Clean Noisy Audio</h3>
-      <p>Rumble, hiss, DC offset, and what automated repair workflows can and cannot fix.</p>
-    </a>
-    <a href="audio-quality-checklist.html" class="guide-card">
-      <h3>Release Checklist</h3>
-      <p>The definitive pass/fail verification list matching the CoProducer analysis telemetry.</p>
-    </a>
-  </div>
-
-  <div style="margin-top:40px; text-align:center;">
-    <a class="cp-cta" href="../analyze.html" style="background:linear-gradient(#9632d6,#58148a); border:1px solid #9d3cdb; color:#fff; padding:14px 28px; border-radius:8px; font-family:'JetBrains Mono', monospace; font-size:11px; font-weight:800; text-transform:uppercase; text-decoration:none; letter-spacing:0.1em; box-shadow:0 0 24px rgba(174,54,255,0.3);">Analyze your track</a>
-  </div>
+<div class="brand"><i>Co</i>Producer</div>
+<div class="nav-links">
+<a href="../index.html">Overview</a>
+<a href="../analyze.html">Analyze</a>
+<a class="active" href="./" style="color:#e84cff">Guides</a>
+<a href="../comparisons/vs-landr.html">VS Landr</a>
 </div>
-
+</nav>
+<div class="page-container">
+<div style="text-align:center; margin-bottom:40px;">
+<span style="font-family:'JetBrains Mono', monospace; font-size:10px; text-transform:uppercase; color:#e84cff; letter-spacing:0.15em;">Engineering Library</span>
+<h1 style="font-family:'Barlow Condensed', sans-serif; font-size:clamp(48px, 6vw, 76px); font-weight:900; line-height:0.9; text-transform:uppercase; margin:16px 0 12px;">Engineering<br/><span style="color:#e84cff">Guides</span></h1>
+<p style="color:#a79daf; font-size:14px; max-width:650px; margin:0 auto; line-height:1.6;">The same metrics CoProducer prints in a report, explained in release language. Use them before you smash a limiter or upload a master.</p>
+</div>
+<div style="margin-top:20px;">
+<a class="guide-card" href="what-is-lufs.html">
+<h3>What is LUFS?</h3>
+<p>Streaming loudness targets (−14 LUFS) and how platform normalization affects your masters.</p>
+</a>
+<a class="guide-card" href="true-peak-ceiling.html">
+<h3>True Peak Ceiling</h3>
+<p>Why −1.0 dBTP exists, inter-sample clipping, and preventing lossy codec distortion.</p>
+</a>
+<a class="guide-card" href="stereo-phase-correlation.html">
+<h3>Stereo &amp; Phase Correlation</h3>
+<p>Mono compatibility, spatial width, and phase cancellation risks in low frequencies.</p>
+</a>
+<a class="guide-card" href="dynamic-range-crest.html">
+<h3>Dynamic Range &amp; Crest Factor</h3>
+<p>Knowing when a mix is loud versus actually punchy and transient-preserved.</p>
+</a>
+<a class="guide-card" href="how-to-clean-noisy-audio.html">
+<h3>Clean Noisy Audio</h3>
+<p>Rumble, hiss, DC offset, and what automated repair workflows can and cannot fix.</p>
+</a>
+<a class="guide-card" href="audio-quality-checklist.html">
+<h3>Release Checklist</h3>
+<p>The definitive pass/fail verification list matching the CoProducer analysis telemetry.</p>
+</a>
+</div>
+<div style="margin-top:40px; text-align:center;">
+<a class="cp-cta" href="../analyze.html" style="background:linear-gradient(#9632d6,#58148a); border:1px solid #9d3cdb; color:#fff; padding:14px 28px; border-radius:8px; font-family:'JetBrains Mono', monospace; font-size:11px; font-weight:800; text-transform:uppercase; text-decoration:none; letter-spacing:0.1em; box-shadow:0 0 24px rgba(174,54,255,0.3);">Analyze your track</a>
+</div>
+</div>
 <footer>
-  <div class="wrap">&copy; 2026 NoDAW Labs &middot; CoProducer &middot; Local-first audio engineering workflow</div>
+<div class="wrap">© 2026 NoDAW Labs · CoProducer · Local-first audio engineering workflow</div>
 </footer>
 </body>
 </html>

@@ -1,63 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>True Peak & Inter-Sample Clipping Guide | CoProducer</title>
-<meta name="description" content="Complete guide to True Peak, sample peaks, and inter-sample clipping in audio mastering. Learn why -1.0 dBTP is the streaming safety standard and how CoProducer measures peak clipping.">
-<link rel="canonical" href="https://myaiplug.github.io/coproducer-web/guides/true-peak-ceiling.html">
-<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../css/report.css">
-</head>
+<meta charset="utf-8"/><meta content="width=device-width,initial-scale=1.0" name="viewport"/><meta content="https://myaiplug.github.io/coproducer-web/assets/og-default.jpg" name="twitter:image"/><meta content="True peak and inter-sample clipping explained. Why ≤ −1.0 dBTP (Amazon often −2.0) matters after codecs — and how CoProducer flags overshoots." name="twitter:description"/><meta content="True Peak Ceiling Guide | CoProducer" name="twitter:title"/><meta content="summary_large_image" name="twitter:card"/><meta content="1440" property="og:image:height"/><meta content="2560" property="og:image:width"/><meta content="https://myaiplug.github.io/coproducer-web/assets/og-default.jpg" property="og:image"/><meta content="https://myaiplug.github.io/coproducer-web/guides/true-peak-ceiling.html" property="og:url"/><meta content="True peak and inter-sample clipping explained. Why ≤ −1.0 dBTP (Amazon often −2.0) matters after codecs — and how CoProducer flags overshoots." property="og:description"/><meta content="True Peak Ceiling Guide | CoProducer" property="og:title"/><meta content="en_US" property="og:locale"/><meta content="CoProducer" property="og:site_name"/><meta content="website" property="og:type"/><link href="https://myaiplug.github.io/coproducer-web/llms.txt" rel="alternate" title="llms.txt" type="text/plain"/><meta content="NoDAW Labs" name="author"/><meta content="#050308" name="theme-color"/><meta content="index,follow,max-image-preview:large" name="robots"/>
+<title>True Peak Ceiling Guide | CoProducer</title>
+<meta content="True peak and inter-sample clipping explained. Why ≤ −1.0 dBTP (Amazon often −2.0) matters after codecs — and how CoProducer flags overshoots." name="description"/>
+<link href="https://myaiplug.github.io/coproducer-web/guides/true-peak-ceiling.html" rel="canonical"/>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&amp;family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;700&amp;display=swap" rel="stylesheet"/>
+<link href="../css/report.css" rel="stylesheet"/>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"CoProducer","item":"https://myaiplug.github.io/coproducer-web/"},{"@type":"ListItem","position":2,"name":"Guides","item":"https://myaiplug.github.io/coproducer-web/guides/index.html"},{"@type":"ListItem","position":3,"name":"True Peak Ceiling Guide","item":"https://myaiplug.github.io/coproducer-web/guides/true-peak-ceiling.html"}]}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"TechArticle","headline":"True Peak Ceiling Guide","description":"True peak and inter-sample clipping explained. Why ≤ −1.0 dBTP (Amazon often −2.0) matters after codecs — and how CoProducer flags overshoots.","dateModified":"2026-08-21","author":{"@type":"Organization","name":"NoDAW Labs","url":"https://myaiplug.github.io/coproducer-web/","logo":"https://myaiplug.github.io/coproducer-web/assets/og-default.jpg"},"publisher":{"@type":"Organization","name":"NoDAW Labs","url":"https://myaiplug.github.io/coproducer-web/","logo":"https://myaiplug.github.io/coproducer-web/assets/og-default.jpg"},"mainEntityOfPage":"https://myaiplug.github.io/coproducer-web/guides/true-peak-ceiling.html"}</script></head>
 <body>
 <nav>
-  <div class="brand"><i>Co</i>Producer</div>
-  <div class="nav-links">
-    <a href="../index.html">Overview</a>
-    <a href="../analyze.html">Analyze</a>
-    <a href="what-is-lufs.html">LUFS Guide</a>
-    <a href="../comparisons/vs-landr.html">VS LANDR</a>
-  </div>
+<div class="brand"><i>Co</i>Producer</div>
+<div class="nav-links">
+<a href="../index.html">Overview</a>
+<a href="../analyze.html">Analyze</a>
+<a href="what-is-lufs.html">LUFS Guide</a>
+<a href="../comparisons/vs-landr.html">VS LANDR</a>
+</div>
 </nav>
-
 <main style="max-width:800px; margin:0 auto;">
-  <span style="font-family:var(--mono); font-size:11px; text-transform:uppercase; color:var(--m); letter-spacing:0.1em;">Engineering Guide</span>
-  <h1>True Peak & <span>Inter-Sample Clipping</span></h1>
-  <p style="color:var(--muted); font-family:var(--mono); font-size:12px; margin-bottom:32px;">Published June 2026 &middot; 6 min read</p>
-
-  <p>When digital audio is converted back to analog signals by digital-to-analog converters (DACs) or compressed into lossy codecs like AAC, MP3, or Opus, inter-sample peaks can exceed 0 dBFS even if sample-level peaks report no digital clipping.</p>
-
-  <div class="highlight-box">
-    <strong>Key Principle:</strong> Sample peak measures individual PCM sample values. <strong>True Peak (dBTP)</strong> reconstructs the continuous analog waveform between samples using oversampling, catching hidden distortion before it hits streaming codecs.
+<span style="font-family:var(--mono); font-size:11px; text-transform:uppercase; color:var(--m); letter-spacing:0.1em;">Engineering Guide</span>
+<h1>True Peak &amp; <span>Inter-Sample Clipping</span></h1>
+<p style="color:var(--muted); font-family:var(--mono); font-size:12px; margin-bottom:32px;">Published June 2026 · 6 min read</p>
+<p>When digital audio is converted back to analog signals by digital-to-analog converters (DACs) or compressed into lossy codecs like AAC, MP3, or Opus, inter-sample peaks can exceed 0 dBFS even if sample-level peaks report no digital clipping.</p>
+<div class="highlight-box">
+<strong>Key Principle:</strong> Sample peak measures individual PCM sample values. <strong>True Peak (dBTP)</strong> reconstructs the continuous analog waveform between samples using oversampling, catching hidden distortion before it hits streaming codecs.
   </div>
-
-  <h2>Why True Peak Matters for Streaming</h2>
-  <p>Major streaming services compress your audio into lossy distribution formats. If your true peak exceeds their recommended ceiling (typically <strong>-1.0 dBTP</strong>), the lossy encoder will clip the reconstruction waveform, introducing harsh digital distortion (clicks, fuzz, and pumping).</p>
-
-  <table>
-    <thead>
-      <tr><th>Platform</th><th>Target LUFS</th><th>True Peak Ceiling</th><th>Safety Margin</th></tr>
-    </thead>
-    <tbody>
-      <tr><td>Spotify</td><td>-14.0</td><td>-1.0 dBTP</td><td class="pass">Safe</td></tr>
-      <tr><td>Apple Music</td><td>-16.0</td><td>-1.0 dBTP</td><td class="pass">Safe</td></tr>
-      <tr><td>YouTube</td><td>-14.0</td><td>-1.0 dBTP</td><td class="pass">Safe</td></tr>
-      <tr><td>Amazon Music</td><td>-14.0</td><td>-2.0 dBTP</td><td class="pass">Strict</td></tr>
-      <tr><td>TIDAL</td><td>-14.0</td><td>-1.0 dBTP</td><td class="pass">Safe</td></tr>
-    </tbody>
-  </table>
-
-  <h2>How CoProducer Detects True Peak</h2>
-  <p>CoProducer calculates True Peak and estimates clipped samples during its core analysis pass. If your track exhibits unsafe true peaks or inter-sample clipping, CoProducer flags it in the findings report and recommends a precise limiter or loudnorm ceiling adjustment.</p>
-
-  <div class="promo-banner" style="margin-top:40px;">
-    <h3>Inspect your track's true peak instantly</h3>
-    <p>Upload your audio file to CoProducer's local analyzer to check true peaks, sample clipping, and loudness compliance.</p>
-    <a class="cp-cta" href="../analyze.html">Analyze Audio Free</a>
-  </div>
-</main>
-
+<h2>Why True Peak Matters for Streaming</h2>
+<p>Major streaming services compress your audio into lossy distribution formats. If your true peak exceeds their recommended ceiling (typically <strong>-1.0 dBTP</strong>), the lossy encoder will clip the reconstruction waveform, introducing harsh digital distortion (clicks, fuzz, and pumping).</p>
+<table>
+<thead>
+<tr><th>Platform</th><th>Target LUFS</th><th>True Peak Ceiling</th><th>Safety Margin</th></tr>
+</thead>
+<tbody>
+<tr><td>Spotify</td><td>-14.0</td><td>-1.0 dBTP</td><td class="pass">Safe</td></tr>
+<tr><td>Apple Music</td><td>-16.0</td><td>-1.0 dBTP</td><td class="pass">Safe</td></tr>
+<tr><td>YouTube</td><td>-14.0</td><td>-1.0 dBTP</td><td class="pass">Safe</td></tr>
+<tr><td>Amazon Music</td><td>-14.0</td><td>-2.0 dBTP</td><td class="pass">Strict</td></tr>
+<tr><td>TIDAL</td><td>-14.0</td><td>-1.0 dBTP</td><td class="pass">Safe</td></tr>
+</tbody>
+</table>
+<h2>How CoProducer Detects True Peak</h2>
+<p>CoProducer calculates True Peak and estimates clipped samples during its core analysis pass. If your track exhibits unsafe true peaks or inter-sample clipping, CoProducer flags it in the findings report and recommends a precise limiter or loudnorm ceiling adjustment.</p>
+<div class="promo-banner" style="margin-top:40px;">
+<h3>Inspect your track's true peak instantly</h3>
+<p>Upload your audio file to CoProducer's local analyzer to check true peaks, sample clipping, and loudness compliance.</p>
+<a class="cp-cta" href="../analyze.html">Analyze Audio Free</a>
+</div>
+<p class="aeo-related-essay">Related Lacquer essay: <a href="../blog/true-peak-is-what-codecs-clip.html">True peak is what codecs clip</a></p></main>
 <footer>
-  <div class="wrap">&copy; 2026 NoDAW Labs &middot; CoProducer &middot; Local-first audio engineering workflow</div>
+<div class="wrap">© 2026 NoDAW Labs · CoProducer · Local-first audio engineering workflow</div>
 </footer>
 </body>
 </html>

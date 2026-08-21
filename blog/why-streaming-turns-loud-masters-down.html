@@ -1,77 +1,64 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1" name="viewport"/><meta content="https://myaiplug.github.io/coproducer-web/blog/img/essays/why-streaming-turns-loud-masters-down.jpg?v=shd" name="twitter:image"/><meta content="Streaming services normalize toward −14 LUFS (Apple closer to −16). A hotter master is turned down, not played louder. Measure integrated LUFS before you limit again." name="twitter:description"/><meta content="Why streaming platforms turn loud masters down" name="twitter:title"/><meta content="summary_large_image" name="twitter:card"/><meta content="2026-08-21T00:00:00Z" property="article:modified_time"/><meta content="2026-08-20T00:00:00Z" property="article:published_time"/><meta content="1440" property="og:image:height"/><meta content="2560" property="og:image:width"/><meta content="https://myaiplug.github.io/coproducer-web/blog/why-streaming-turns-loud-masters-down.html" property="og:url"/><meta content="Streaming services normalize toward −14 LUFS (Apple closer to −16). A hotter master is turned down, not played louder. Measure integrated LUFS before you limit again." property="og:description"/><meta content="Why streaming platforms turn loud masters down" property="og:title"/><meta content="en_US" property="og:locale"/><meta content="CoProducer" property="og:site_name"/><meta content="article" property="og:type"/><link href="https://myaiplug.github.io/coproducer-web/llms.txt" rel="alternate" title="llms.txt" type="text/plain"/><meta content="NoDAW Labs" name="author"/><meta content="#050308" name="theme-color"/><meta content="index,follow,max-image-preview:large" name="robots"/>
 <title>Why streaming platforms turn loud masters down | Lacquer</title>
-<meta name="description" content="Streaming services normalize toward −14 LUFS (Apple closer to −16). A hotter master is turned down, not played louder. Measure integrated LUFS before you limit again.">
-<link rel="canonical" href="https://myaiplug.github.io/coproducer-web/blog/why-streaming-turns-loud-masters-down.html">
-<meta property="og:image" content="https://myaiplug.github.io/coproducer-web/blog/img/essays/why-streaming-turns-loud-masters-down.jpg?v=shd">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;1,500;1,600&family=Figtree:wght@400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/journal.css">
-<script type="application/ld+json">
-{"@context":"https://schema.org","@type":"Article","headline":"Why streaming platforms turn loud masters down","datePublished":"2026-08-20","image":"https://myaiplug.github.io/coproducer-web/blog/img/essays/why-streaming-turns-loud-masters-down.jpg?v=shd","author":{"@type":"Organization","name":"NoDAW Labs"}}
-</script>
-<script type="application/ld+json">
-{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
-{"@type":"Question","name":"Why does Spotify turn my master down?","acceptedAnswer":{"@type":"Answer","text":"Spotify applies loudness normalization toward about −14 LUFS. If your integrated loudness is hotter, playback gain is reduced so it matches other titles."}},
-{"@type":"Question","name":"What LUFS should I master to for streaming?","acceptedAnswer":{"@type":"Answer","text":"A practical target is −14 LUFS integrated, with true peak at or below −1.0 dBTP. Apple Sound Check is often treated as closer to −16 LUFS."}}
-]}
-</script>
-</head>
+<meta content="Streaming services normalize toward −14 LUFS (Apple closer to −16). A hotter master is turned down, not played louder. Measure integrated LUFS before you limit again." name="description"/>
+<link href="https://myaiplug.github.io/coproducer-web/blog/why-streaming-turns-loud-masters-down.html" rel="canonical"/>
+<meta content="https://myaiplug.github.io/coproducer-web/blog/img/essays/why-streaming-turns-loud-masters-down.jpg?v=shd" property="og:image"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;1,500;1,600&amp;family=Figtree:wght@400;500&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<link href="css/journal.css" rel="stylesheet"/>
+
+
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Why streaming platforms turn loud masters down","description":"Streaming services normalize toward −14 LUFS (Apple closer to −16). A hotter master is turned down, not played louder. Measure integrated LUFS before you limit again.","datePublished":"2026-08-20","dateModified":"2026-08-21","mainEntityOfPage":{"@type":"WebPage","@id":"https://myaiplug.github.io/coproducer-web/blog/why-streaming-turns-loud-masters-down.html"},"image":{"@type":"ImageObject","url":"https://myaiplug.github.io/coproducer-web/blog/img/essays/why-streaming-turns-loud-masters-down.jpg?v=shd","width":2560,"height":1440},"author":{"@type":"Organization","name":"NoDAW Labs","url":"https://myaiplug.github.io/coproducer-web/","logo":"https://myaiplug.github.io/coproducer-web/assets/og-default.jpg"},"publisher":{"@type":"Organization","name":"NoDAW Labs","url":"https://myaiplug.github.io/coproducer-web/","logo":"https://myaiplug.github.io/coproducer-web/assets/og-default.jpg"},"isPartOf":{"@type":"Blog","name":"Lacquer — CoProducer Journal","url":"https://myaiplug.github.io/coproducer-web/blog/index.html"},"keywords":["LUFS","streaming loudness","Spotify normalization","mastering","CoProducer"],"speakable":{"@type":"SpeakableSpecification","cssSelector":[".answer","h1"]}}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Will a louder file beat the algorithm?","acceptedAnswer":{"@type":"Answer","text":"Not on loudness. Platforms already equalize integrated loudness. What remains is punch, tone, and whether the limiter ate the transients."}},{"@type":"Question","name":"Is −14 mandatory?","acceptedAnswer":{"@type":"Answer","text":"No. It is the playback lane. Hotter files are turned down. Quieter files may be turned up, which can reveal noise and clip in the codec."}}]}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"CoProducer","item":"https://myaiplug.github.io/coproducer-web/"},{"@type":"ListItem","position":2,"name":"Lacquer Journal","item":"https://myaiplug.github.io/coproducer-web/blog/index.html"},{"@type":"ListItem","position":3,"name":"Why streaming platforms turn loud masters down","item":"https://myaiplug.github.io/coproducer-web/blog/why-streaming-turns-loud-masters-down.html"}]}</script></head>
 <body>
 <header class="top">
-  <a class="mark" href="../index.html"><em>Co</em>Producer</a>
-  <nav class="nav"><a href="index.html" aria-current="page">Journal</a><a href="../index.html#ab">A/B</a><a href="../analyze.html">Analyze</a><a href="../pricing.html">Pricing</a></nav>
-  <a class="cta" href="../analyze.html">Measure LUFS</a>
+<a class="mark" href="../index.html"><em>Co</em>Producer</a>
+<nav class="nav"><a aria-current="page" href="index.html">Journal</a><a href="../index.html#ab">A/B</a><a href="../analyze.html">Analyze</a><a href="../pricing.html">Pricing</a></nav>
+<a class="cta" href="../analyze.html">Measure LUFS</a>
 </header>
 <article class="post" id="main">
-  <div class="post-hero"><img src="img/essays/why-streaming-turns-loud-masters-down.jpg?v=shd" alt="Private studio console and reference headphones in low tungsten light"></div>
-  <header>
-    <p class="kicker">Cover · 20 August 2026 · 8 min</p>
-    <h1>Why streaming platforms turn loud masters down</h1>
-    <p class="meta">NoDAW Labs · Lacquer Vol. 01</p>
-  </header>
-  <p class="answer">Because they normalize loudness. Most major stores aim near <strong>−14 LUFS</strong> integrated (Apple Sound Check is often treated as closer to <strong>−16</strong>). A master at −8 LUFS is not played 6 dB louder than a −14 LUFS master. It is turned down until it matches.</p>
-
-  <p>The last decade of “make it competitive” advice assumed the listener’s volume knob was the only governor. That was true for CD. It is not true for a queue that has to survive a ballad, a podcast, and a club record without someone reaching for the phone. The store measures how loud the file <em>feels</em> over its duration, then applies a playback gain. That measurement is integrated LUFS, not the tallest sample on your clip lights.</p>
-
-  <p>If you spend the last 4 dB of the mix on a limiter, you have not bought volume on Spotify. You have bought less dynamic range at the <em>same</em> playback loudness, plus a worse chance of surviving the codec. The time you save is the time you stop arguing with a false loudness war and bounce at the lane the store already chose.</p>
-
-  <h2>What “normalization” actually does</h2>
-  <p>Integrated LUFS is a gated, K-weighted average. Short-term and momentary meters are useful while you work. The store mostly cares about the whole title. Two files at −14 LUFS can still feel different because crest, arrangement, and spectrum are not the same as loudness. That is the remaining art. The contract is the number.</p>
-  <p>Turn-up is real as well. A file at −20 LUFS may be gained up. That can make a noisy floor or a true-peak overshoot obvious. Quiet is not a free pass. Measure both directions.</p>
-
-  <h2>Targets that show up in a delivery report</h2>
-  <table>
-    <thead><tr><th>Platform</th><th>Typical target</th><th>True-peak ceiling</th></tr></thead>
-    <tbody>
-      <tr><td>Spotify</td><td>−14 LUFS</td><td>−1.0 dBTP</td></tr>
-      <tr><td>Apple Music / Sound Check</td><td>≈ −16 LUFS</td><td>−1.0 dBTP</td></tr>
-      <tr><td>YouTube</td><td>−14 LUFS</td><td>−1.0 dBTP</td></tr>
-      <tr><td>Amazon Music</td><td>−14 LUFS</td><td>often −2.0 dBTP</td></tr>
-      <tr><td>TIDAL</td><td>−14 LUFS</td><td>−1.0 dBTP</td></tr>
-    </tbody>
-  </table>
-  <p>CoProducer’s analyze table treats −14 LUFS as the release target, with a 1.5 LU pass window. That is the same column you see next to “If repaired in CoProducer.” It is not a taste score. It is a distance.</p>
-
-  <h2>A faster session</h2>
-  <p>Do not print a new limiter preset until you have a number. Bounce. Measure integrated LUFS and true peak. If you are already inside the window, stop. If you are hot, take gain out of the chain before you add more compression. If you are quiet, ask whether the noise floor can survive a turn-up. That sequence is shorter than another hour of “one more dB.”</p>
-  <p>On the public A/B, Drippin starts at −11.92 LUFS and a +1.06 dBTP overshoot. After a conservative repair it sits at −14.12 LUFS. The arrangement did not change. The lane did.</p>
-  <div data-ab="drippin"></div>
-
-  <aside class="aside">If you only remember one pair of numbers: <strong>−14 LUFS integrated, −1.0 dBTP</strong>. Then listen. The <a href="../guides/what-is-lufs.html">LUFS guide</a> is the longer handbook. The journal is the short one.</aside>
-  <dl class="faq">
-    <dt>Will a louder file beat the algorithm?</dt>
-    <dd>Not on loudness. Platforms already equalize integrated loudness. What remains is punch, tone, and whether the limiter ate the transients.</dd>
-    <dt>Is −14 mandatory?</dt>
-    <dd>No. It is the playback lane. Hotter files are turned down. Quieter files may be turned up, which can reveal noise and clip in the codec.</dd>
-  </dl>
-</article>
-<section class="comments" data-comments data-thread="lufs"></section>
-<script type="module" src="js/studio.js"></script>
-<script type="module" src="js/comments.js"></script>
+<div class="post-hero"><img alt="Private studio console and reference headphones in low tungsten light" src="img/essays/why-streaming-turns-loud-masters-down.jpg?v=shd"/></div>
+<header>
+<p class="kicker">Cover · 20 August 2026 · 8 min</p>
+<h1>Why streaming platforms turn loud masters down</h1>
+<p class="meta">NoDAW Labs · Lacquer Vol. 01</p>
+</header>
+<p class="answer">Because they normalize loudness. Most major stores aim near <strong>−14 LUFS</strong> integrated (Apple Sound Check is often treated as closer to <strong>−16</strong>). A master at −8 LUFS is not played 6 dB louder than a −14 LUFS master. It is turned down until it matches.</p>
+<p>The last decade of “make it competitive” advice assumed the listener’s volume knob was the only governor. That was true for CD. It is not true for a queue that has to survive a ballad, a podcast, and a club record without someone reaching for the phone. The store measures how loud the file <em>feels</em> over its duration, then applies a playback gain. That measurement is integrated LUFS, not the tallest sample on your clip lights.</p>
+<p>If you spend the last 4 dB of the mix on a limiter, you have not bought volume on Spotify. You have bought less dynamic range at the <em>same</em> playback loudness, plus a worse chance of surviving the codec. The time you save is the time you stop arguing with a false loudness war and bounce at the lane the store already chose.</p>
+<h2>What “normalization” actually does</h2>
+<p>Integrated LUFS is a gated, K-weighted average. Short-term and momentary meters are useful while you work. The store mostly cares about the whole title. Two files at −14 LUFS can still feel different because crest, arrangement, and spectrum are not the same as loudness. That is the remaining art. The contract is the number.</p>
+<p>Turn-up is real as well. A file at −20 LUFS may be gained up. That can make a noisy floor or a true-peak overshoot obvious. Quiet is not a free pass. Measure both directions.</p>
+<h2>Targets that show up in a delivery report</h2>
+<table>
+<thead><tr><th>Platform</th><th>Typical target</th><th>True-peak ceiling</th></tr></thead>
+<tbody>
+<tr><td>Spotify</td><td>−14 LUFS</td><td>−1.0 dBTP</td></tr>
+<tr><td>Apple Music / Sound Check</td><td>≈ −16 LUFS</td><td>−1.0 dBTP</td></tr>
+<tr><td>YouTube</td><td>−14 LUFS</td><td>−1.0 dBTP</td></tr>
+<tr><td>Amazon Music</td><td>−14 LUFS</td><td>often −2.0 dBTP</td></tr>
+<tr><td>TIDAL</td><td>−14 LUFS</td><td>−1.0 dBTP</td></tr>
+</tbody>
+</table>
+<p>CoProducer’s analyze table treats −14 LUFS as the release target, with a 1.5 LU pass window. That is the same column you see next to “If repaired in CoProducer.” It is not a taste score. It is a distance.</p>
+<h2>A faster session</h2>
+<p>Do not print a new limiter preset until you have a number. Bounce. Measure integrated LUFS and true peak. If you are already inside the window, stop. If you are hot, take gain out of the chain before you add more compression. If you are quiet, ask whether the noise floor can survive a turn-up. That sequence is shorter than another hour of “one more dB.”</p>
+<p>On the public A/B, Drippin starts at −11.92 LUFS and a +1.06 dBTP overshoot. After a conservative repair it sits at −14.12 LUFS. The arrangement did not change. The lane did.</p>
+<div data-ab="drippin"></div>
+<aside class="aside">If you only remember one pair of numbers: <strong>−14 LUFS integrated, −1.0 dBTP</strong>. Then listen. The <a href="../guides/what-is-lufs.html">LUFS guide</a> is the longer handbook. The journal is the short one.</aside>
+<dl class="faq">
+<dt>Will a louder file beat the algorithm?</dt>
+<dd>Not on loudness. Platforms already equalize integrated loudness. What remains is punch, tone, and whether the limiter ate the transients.</dd>
+<dt>Is −14 mandatory?</dt>
+<dd>No. It is the playback lane. Hotter files are turned down. Quieter files may be turned up, which can reveal noise and clip in the codec.</dd>
+</dl>
+<nav aria-label="Related essays" class="related-essays" style="margin:48px 0 24px;padding-top:24px;border-top:1px solid rgba(196,165,116,.32)"><h2>Related in Lacquer</h2><ul><li><a href="true-peak-is-what-codecs-clip.html">True peak is what codecs clip</a></li><li><a href="quiet-masters-and-noise-floor.html">Quiet masters get turned up — and so does the noise</a></li><li><a href="when-not-to-reach-for-the-limiter.html">When not to reach for the limiter</a></li></ul></nav></article>
+<section class="comments" data-comments="" data-thread="lufs"></section>
+<script src="js/studio.js" type="module"></script>
+<script src="js/comments.js" type="module"></script>
 <footer class="site"><span>Lacquer · CoProducer Journal</span><span><a href="index.html">All essays</a></span></footer>
 </body>
 </html>

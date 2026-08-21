@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>CoProducer | Audio Analysis, Reference Matching &amp; Repair</title>
-<meta name="description" content="CoProducer is a local-first audio analysis and engineering assistant for loudness, dynamics, spectral balance, reference matching, repair guidance and reports.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Grotesk:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500;700&family=Barlow+Condensed:wght@600;700;800;900&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&family=Rajdhani:wght@500;700&display=swap" rel="stylesheet">
+<meta charset="utf-8"/><meta content="width=device-width,initial-scale=1" name="viewport"/><meta content="https://myaiplug.github.io/coproducer-web/assets/og-default.jpg" name="twitter:image"/><meta content="CoProducer is local-first audio analysis for LUFS, true peak, clips, phase, reference matching, and conservative repair. Free demo; Pro $49 one-time — not cloud mastering." name="twitter:description"/><meta content="CoProducer | Local Audio Analysis, LUFS &amp; Repair" name="twitter:title"/><meta content="summary_large_image" name="twitter:card"/><meta content="1440" property="og:image:height"/><meta content="2560" property="og:image:width"/><meta content="https://myaiplug.github.io/coproducer-web/assets/og-default.jpg" property="og:image"/><meta content="https://myaiplug.github.io/coproducer-web/" property="og:url"/><meta content="CoProducer is local-first audio analysis for LUFS, true peak, clips, phase, reference matching, and conservative repair. Free demo; Pro $49 one-time — not cloud mastering." property="og:description"/><meta content="CoProducer | Local Audio Analysis, LUFS &amp; Repair" property="og:title"/><meta content="en_US" property="og:locale"/><meta content="CoProducer" property="og:site_name"/><meta content="website" property="og:type"/><link href="https://myaiplug.github.io/coproducer-web/llms.txt" rel="alternate" title="llms.txt" type="text/plain"/><link href="https://myaiplug.github.io/coproducer-web/" rel="canonical"/><meta content="NoDAW Labs" name="author"/><meta content="#050308" name="theme-color"/><meta content="index,follow,max-image-preview:large" name="robots"/>
+<title>CoProducer | Local Audio Analysis, LUFS &amp; Repair</title>
+<meta content="CoProducer is local-first audio analysis for LUFS, true peak, clips, phase, reference matching, and conservative repair. Free demo; Pro $49 one-time — not cloud mastering." name="description"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&amp;family=Space+Grotesk:wght@400;500;700&amp;family=IBM+Plex+Mono:wght@400;500;700&amp;family=Barlow+Condensed:wght@600;700;800;900&amp;family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@500;700&amp;family=Rajdhani:wght@500;700&amp;display=swap" rel="stylesheet"/>
 <style>
 :root{--bg:#050308;--p:#a839ff;--m:#e84cff;--line:rgba(194,111,255,.2);--muted:#a79daf;--green:#c9ff4d}
 *{box-sizing:border-box}
@@ -380,532 +380,525 @@ footer { width: 100%; display: flex; justify-content: center; border-top: 1px so
 @media (max-width:900px){ .product-grid{ grid-template-columns:1fr; } }
 
 </style>
-  <link rel="stylesheet" href="css/screwai.css">
-</head>
+<link href="css/screwai.css" rel="stylesheet"/>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"CoProducer","item":"https://myaiplug.github.io/coproducer-web/"}]}</script><script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","name":"NoDAW Labs","url":"https://myaiplug.github.io/coproducer-web/","logo":"https://myaiplug.github.io/coproducer-web/assets/og-default.jpg","@id":"https://myaiplug.github.io/coproducer-web/#organization"},{"@type":"WebSite","@id":"https://myaiplug.github.io/coproducer-web/#website","url":"https://myaiplug.github.io/coproducer-web/","name":"CoProducer","description":"CoProducer is local-first audio analysis for LUFS, true peak, clips, phase, reference matching, and conservative repair. Free demo; Pro $49 one-time — not cloud mastering.","publisher":{"@id":"https://myaiplug.github.io/coproducer-web/#organization"},"inLanguage":"en-US"},{"@type":"SoftwareApplication","@id":"https://myaiplug.github.io/coproducer-web/#coproducer","name":"CoProducer","applicationCategory":"MultimediaApplication","operatingSystem":"Windows","url":"https://myaiplug.github.io/coproducer-web/","description":"Local-first audio analysis and conservative repair for loudness, true peak, clips, phase, and reference matching.","offers":[{"@type":"Offer","name":"Free demo","price":"0","priceCurrency":"USD"},{"@type":"Offer","name":"CoProducer Pro","price":"49","priceCurrency":"USD","description":"One-time license. Code WEB30 is 30% off ($34)."}],"publisher":{"@id":"https://myaiplug.github.io/coproducer-web/#organization"}}]}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Is CoProducer a cloud mastering service?","acceptedAnswer":{"@type":"Answer","text":"No. It is local-first analysis and conservative repair. The website projects repair stats; desktop CoProducer writes the WAV."}},{"@type":"Question","name":"What loudness target does CoProducer use?","acceptedAnswer":{"@type":"Answer","text":"−14 LUFS integrated (pass within 1.5 LU), true peak ≤ −1.0 dBTP. Apple Sound Check is often treated as ≈ −16 LUFS."}},{"@type":"Question","name":"What does a score of 90 mean?","acceptedAnswer":{"@type":"Answer","text":"Release-ready against CoProducer’s gates: clipped samples = 0, sample rate ≥ 44.1 kHz, phase ≥ 0.2, loudness and true peak in window."}},{"@type":"Question","name":"How much is CoProducer Pro?","acceptedAnswer":{"@type":"Answer","text":"Free demo; Pro $49 one-time. Reader code WEB30 is 30% off ($34). Not a subscription."}}]}</script></head>
 <body>
 <div class="motion"></div>
 <nav>
-  <div class="nav-inner">
-    <div class="brand"><i>Co</i>Producer</div>
-    <div class="links">
-      <a href="index.html">Overview</a>
-      <a href="index.html#ab">A/B</a>
-      <a href="#nodawBats">.bats</a>
-      <a href="#screwDemo">ScrewAI</a>
-      <a href="index.html#stemDemo">Stems</a>
-      <a href="#analyzeHome">Analyze</a>
-      <a href="guides/index.html">Guides</a>
-      <a href="blog/index.html">Journal</a>
-      <a href="comparisons/vs-landr.html">Compare</a>
-      <a href="pricing.html">Pricing</a>
-    </div>
-    <a class="cta" href="analyze.html">Analyze Audio</a>
-  </div>
+<div class="nav-inner">
+<div class="brand"><i>Co</i>Producer</div>
+<div class="links">
+<a href="index.html">Overview</a>
+<a href="index.html#ab">A/B</a>
+<a href="#nodawBats">.bats</a>
+<a href="#screwDemo">ScrewAI</a>
+<a href="index.html#stemDemo">Stems</a>
+<a href="#analyzeHome">Analyze</a>
+<a href="guides/index.html">Guides</a>
+<a href="blog/index.html">Journal</a>
+<a href="comparisons/vs-landr.html">Compare</a>
+<a href="pricing.html">Pricing</a>
+</div>
+<a class="cta" href="analyze.html">Analyze Audio</a>
+</div>
 </nav>
-
 <main id="overview" style="width:100%; display:flex; flex-direction:column; align-items:center;">
-  <div class="hero">
-    <div class="hero-inner">
-      <div class="hero-grid">
-        <div>
-          <span class="eyebrow">Built for engineers. Designed for results.</span>
-          <h1>Analyze.<br>Refine.<span>Elevate.</span></h1>
-          <p>CoProducer turns a mix into engineering intelligence: loudness, dynamics, stereo information, spectral clues, repair guidance, reference matching and exportable reports in one local-first workflow.</p>
-          <div class="points">
-            <div>Deep technical audio analysis</div>
-            <div>Reference matching &amp; suggestions</div>
-            <div>Auto-repair workflows &amp; reports</div>
-            <div>Local Windows &amp; Mac processing</div>
-          </div>
-          <div class="buttons">
-            <a class="btn" href="#analyzeHome">Analyze your track</a>
-            <a class="btn alt" href="#stemDemo">Hear StemSplit</a>
-          </div>
-        </div>
-        <div class="hero-art">
-          <img src="assets/screens/screen-02.png" alt="CoProducer dashboard with circular mix score and analysis modules">
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="rail-wrap">
-    <div class="rail-inner">
-      <div class="rail">
-        <div><b>Deep Audio Analysis</b><small>Loudness, dynamics, spectrum and more.</small></div>
-        <div><b>Reference Matching</b><small>Compare tracks and identify differences.</small></div>
-        <div><b>Smart Suggestions</b><small>Engineering guidance from measured results.</small></div>
-        <div><b>Auto Repair</b><small>Actionable repair workflows.</small></div>
-        <div><b>Export Reports</b><small>Professional HTML reports and data.</small></div>
-      </div>
-    </div>
-  </div>
-
-  <!-- A/B Demonstration Section -->
-  <section id="ab" style="padding:80px 0; border-bottom:1px solid var(--line); width:100%; display:flex; justify-content:center;">
-    <div class="ab-inner" style="width:100%; max-width:820px; margin:0 auto; padding:0 20px;">
-      <div class="head" style="text-align:center; margin:0 auto 28px;">
-        <small style="font:700 11px 'JetBrains Mono'; text-transform:uppercase; color:var(--m); letter-spacing:0.1em;">Real engine output</small>
-        <h2 style="font:800 36px 'Barlow Condensed'; text-transform:uppercase; margin:8px 0;">Before and <span style="color:var(--m)">After Repair.</span></h2>
-        <p style="color:var(--muted); font-size:15px;">Three mixes analysed and repaired in CoProducer. Pick a track, then A/B at the same sample.</p>
-      </div>
-
-      <div class="cp-card" style="background:linear-gradient(145deg,#100817,#08060b); border:1px solid #57256e; border-radius:14px; padding:28px 24px;">
-        <div class="cp-track-picker" id="abTracks" style="display:flex; flex-wrap:wrap; gap:8px; justify-content:center; margin-bottom:12px;">
-          <button type="button" data-id="crazy-stacy" class="is-live">Crazy Stacy  70→90</button>
-          <button type="button" data-id="beatgohard">BeatGoHard  77→95</button>
-          <button type="button" data-id="drippin">Drippin  66→93</button>
-        </div>
-        <p class="cp-ab-story" id="abStory" style="text-align:center; color:#9e94a3; font-family:'JetBrains Mono',monospace; font-size:12px; margin:0 0 14px;">831 clipped samples and an unsafe true peak on a vocal mix.</p>
-        <div id="abPlayer" class="cp-player" data-mode="ab">
-          <canvas class="cp-wave" width="960" height="110" style="width:100%; height:110px; background:transparent; border:0; cursor:pointer; display:block;"></canvas>
-          <div class="cp-transport" style="display:flex; flex-wrap:wrap; align-items:center; gap:12px; margin-top:12px; font-family:'JetBrains Mono',monospace; font-size:11px; color:#aaa0b0;">
-            <button type="button" class="cp-play">Play</button>
-            <span class="cp-time">0:00</span>
-            <div class="cp-ab" style="display:flex; gap:6px; margin-left:auto;">
-              <button type="button" data-side="a" class="is-live">A Before</button>
-              <button type="button" data-side="b">B Repaired</button>
-            </div>
-          </div>
-        </div>
-        <div class="table-scroll" style="margin-top:18px; overflow:auto;">
-          <table class="cp-table" id="abTable" style="width:100%; border-collapse:collapse; font-family:'JetBrains Mono',monospace; font-size:11px;">
-            <thead>
-              <tr><th>Metric</th><th>Before</th><th>After</th><th>Delta</th></tr>
-            </thead>
-            <tbody>
-              <tr><td>Score</td><td class="bad">70</td><td class="good">90</td><td class="good">20</td></tr>
-              <tr><td>Rating</td><td class="bad">Usable after technical corrections</td><td class="good">Release ready</td><td></td></tr>
-              <tr><td>Integrated LUFS</td><td class="bad">-12.61</td><td class="good">-13.63</td><td class="good">-1.02</td></tr>
-              <tr><td>True peak dBTP</td><td class="bad">0.33</td><td class="bad">0.04</td><td class="good">-0.29</td></tr>
-              <tr><td>Clipped samples</td><td class="bad">831</td><td class="good">0</td><td class="good">-831</td></tr>
-            </tbody>
-          </table>
-        </div>
-        <p style="margin-top:18px; text-align:center;">
-          <a class="btn" href="analyze.html">Analyze your track</a>
-        </p>
-        <p style="margin-top:10px; text-align:center; font-family:'JetBrains Mono',monospace; font-size:11px; color:#827989;">WEB30 — 30% off Pro ($49 → $34)</p>
-      </div>
-    </div>
-  </section>
-
-
-  <section id="analyzeHome" style="padding:80px 0; border-bottom:1px solid var(--line); width:100%; display:flex; justify-content:center;">
-    <div style="width:100%; max-width:820px; margin:0 auto; padding:0 20px;">
-      <div style="text-align:center; margin-bottom:28px;">
-        <small style="font:700 11px 'JetBrains Mono'; text-transform:uppercase; color:var(--m); letter-spacing:0.1em;">Engine Analysis</small>
-        <h2 style="font:800 36px 'Barlow Condensed'; text-transform:uppercase; margin:8px 0;">Upload &amp; <span style="color:var(--m)">Analyze Mix</span></h2>
-        <p style="color:var(--muted); font-size:15px; max-width:620px; margin:0 auto;">Run your track through the same CoProducer engine as the desktop app. Get score, LUFS, true peak, projected repair, and WEB30.</p>
-      </div>
-      <div id="engineStatus" style="font-family:'JetBrains Mono',monospace; font-size:11px; padding:14px 18px; border-radius:10px; background:rgba(18,10,28,0.92); border:1px solid rgba(194,111,255,0.22); margin-bottom:16px;">Checking engine…</div>
-      <div id="error" hidden style="color:#ff6b6b; font-family:'JetBrains Mono',monospace; font-size:12px; margin-bottom:12px;"></div>
-      <label class="home-dropzone" id="dropzone">
-        <input type="file" id="fileInput" accept=".wav,.mp3,.flac,.m4a,.aac,.ogg,.opus,.aiff,.aif,audio/*">
-        <b>Drop your audio track here</b>
-        <span>WAV, MP3, FLAC, M4A · Max 40 MB · Local API at 127.0.0.1:8788</span>
-      </label>
-      <div id="offline" hidden class="home-offline">
-        <h3>Engine offline</h3>
-        <p>Start <code>py -3.11 web/server.py</code> from the CoProducer engine folder, or use the desktop app.</p>
-        <a class="btn" href="https://github.com/myaiplug/coproducer/releases/download/v1.0.0-beta/CoProducer-Setup-1.0.0-beta.exe">Download free demo</a>
-        <button type="button" class="btn alt copy-code" style="margin-left:8px;">Copy WEB30</button>
-      </div>
-      <div id="report" hidden style="margin-top:28px;">
-        <div style="background:linear-gradient(145deg,#100817,#08060b); border:1px solid #57256e; border-radius:14px; padding:24px; margin-bottom:16px;">
-          <div style="display:flex; flex-wrap:wrap; gap:18px; align-items:flex-end;">
-            <div>
-              <div style="font:700 10px 'JetBrains Mono'; color:#8e8494; text-transform:uppercase;">Mix score</div>
-              <div id="scoreNumber" style="font:900 48px 'Barlow Condensed'; color:var(--m); line-height:1;">—</div>
-            </div>
-            <div id="ratingText" style="font:700 12px 'JetBrains Mono'; color:var(--muted); max-width:220px;"></div>
-          </div>
-          <p id="summary" style="color:#c0b6c5; margin:14px 0 0; font-size:14px;"></p>
-        </div>
-        <div style="background:linear-gradient(145deg,#100817,#08060b); border:1px solid #57256e; border-radius:14px; padding:24px; margin-bottom:16px;">
-          <h3 style="font:800 20px 'Barlow Condensed'; text-transform:uppercase; margin:0 0 12px;">Uploaded preview</h3>
-          <div id="uploadPlayer" class="cp-player" data-mode="single">
-            <canvas class="cp-wave" width="900" height="80" style="width:100%; height:80px; cursor:pointer; display:block;"></canvas>
-            <div style="display:flex; gap:12px; align-items:center; margin-top:10px; font:700 11px 'JetBrains Mono'; color:#aaa0b0;">
-              <button type="button" class="cp-play btn">Play</button>
-              <span class="cp-time">0:00</span>
-            </div>
-          </div>
-        </div>
-        <div style="background:linear-gradient(145deg,#100817,#08060b); border:1px solid #57256e; border-radius:14px; padding:24px; margin-bottom:16px; overflow:auto;">
-          <h3 style="font:800 20px 'Barlow Condensed'; text-transform:uppercase; margin:0 0 8px;">Your mix vs target</h3>
-          <table class="cp-table" id="vsTarget" style="width:100%; border-collapse:collapse; font:12px 'JetBrains Mono';">
-            <thead><tr><th>Metric</th><th>Yours</th><th>If repaired</th><th>Target</th></tr></thead>
-            <tbody></tbody>
-          </table>
-        </div>
-        <div style="background:linear-gradient(145deg,#100817,#08060b); border:1px solid #57256e; border-radius:14px; padding:24px; margin-bottom:16px;">
-          <h3 style="font:800 20px 'Barlow Condensed'; text-transform:uppercase; margin:0 0 8px;">Findings</h3>
-          <ul id="findings" style="padding-left:18px; color:#c0b6c5;"></ul>
-        </div>
-        <div id="streamingWrap" hidden style="background:linear-gradient(145deg,#100817,#08060b); border:1px solid #57256e; border-radius:14px; padding:24px; margin-bottom:16px; overflow:auto;">
-          <h3 style="font:800 20px 'Barlow Condensed'; text-transform:uppercase; margin:0 0 8px;">Streaming</h3>
-          <table id="streamingTable" class="cp-table" style="width:100%; border-collapse:collapse; font:12px 'JetBrains Mono';"><thead><tr><th>Platform</th><th>Target</th><th>TP</th><th>Gain</th><th>Proj TP</th><th>Status</th></tr></thead><tbody></tbody></table>
-        </div>
-        <div style="background:linear-gradient(145deg,#100817,#08060b); border:1px solid #57256e; border-radius:14px; padding:24px; margin-bottom:16px;">
-          <h3 style="font:800 20px 'Barlow Condensed'; text-transform:uppercase; margin:0 0 8px;">Repair plan</h3>
-          <div id="planList" style="color:#c0b6c5; font-size:14px;"></div>
-        </div>
-        <div style="text-align:center; padding:24px; border:1px solid #e84cff; border-radius:14px; background:linear-gradient(135deg,rgba(168,57,255,.18),rgba(232,76,255,.08));">
-          <div style="font:800 22px 'Barlow Condensed'; color:#c9ff4d; text-transform:uppercase;">WEB30</div>
-          <p style="font:700 12px 'JetBrains Mono'; color:#f7f2fa;">30% off CoProducer Pro ($49 → $34)</p>
-          <button type="button" class="btn copy-code">Copy promo code</button>
-          <a class="btn alt" href="pricing.html" style="margin-left:8px;">Pricing</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="tour" id="screens">
-    <div class="tour-inner">
-      <div class="head" style="text-align:center; max-width:700px; margin:0 auto 50px;">
-        <small style="font:700 11px 'JetBrains Mono'; text-transform:uppercase; color:var(--m); letter-spacing:0.1em;">The real desktop app</small>
-        <h2 style="font:800 36px 'Barlow Condensed'; text-transform:uppercase; margin:8px 0;">Built for <span style="color:var(--m)">actual sessions.</span></h2>
-        <p style="color:var(--muted)">Real CoProducer screens showing analysis, repair guidance, metadata, waveform playback, spectral visualization and delivery tools.</p>
-      </div>
-      <div class="shots">
-        <article class="shot wide">
-          <img src="assets/screens/screen-01.png" alt="CoProducer analysis overview with loudness meters, stereo field, and spectral charts">
-          <div class="copy">
-            <h3>Analysis, repair and release workflow</h3>
-            <p>Mix scoring, loudness meters, stereo imaging, spectral balance, and repair guidance in the real desktop app.</p>
-          </div>
-        </article>
-        <article class="shot wide" id="seeTheMix">
-          <div class="copy">
-            <h3>See what the mix is doing.</h3>
-            <p>Live A/B repair proof and stem solo in the browser. Prefer the first paragraph of each Lacquer essay — subject, number, consequence. Assistants: <a href="llms.txt" style="color:var(--m);">llms.txt</a>. Humans who want the meter: <a href="#analyzeHome" style="color:var(--m);">analyze a bounce</a>.</p>
-          </div>
-          <div class="home-live-mix">
-            <div data-ab="drippin"></div>
-            <div data-stems></div>
-          </div>
-        </article>
-        <article class="shot">
-          <img src="assets/screens/screen-04.png" alt="CoProducer spectral balance chart with AI suggestions and severity">
-          <div class="copy">
-            <h3>Studio intelligence, not another meter.</h3>
-            <p>Spectral clues and actionable suggestions move you from measurement to a fix.</p>
-          </div>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <section id="features" style="padding:80px 0; border-bottom:1px solid var(--line);">
-    <div class="features-inner">
-      <div class="head" style="text-align:center; max-width:700px; margin:0 auto 50px;">
-        <small style="font:700 11px 'JetBrains Mono'; text-transform:uppercase; color:var(--m); letter-spacing:0.1em;">Powerful tools for every engineer</small>
-        <h2 style="font:800 36px 'Barlow Condensed'; text-transform:uppercase; margin:8px 0;">One workflow. <span style="color:var(--m)">More certainty.</span></h2>
-      </div>
-      <div class="tools" style="display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:20px; width:100%;">
-        <div class="card" style="background:#0b0712; border:1px solid var(--line); border-radius:10px; padding:24px;">
-          <strong style="font-size:24px; color:var(--m)">◫</strong>
-          <h3 style="font:700 18px 'Barlow Condensed'; text-transform:uppercase; margin:10px 0 6px;">Dashboard</h3>
-          <p style="color:var(--muted); font-size:13px; margin:0;">Complete technical overview of a mix at a glance.</p>
-        </div>
-        <div class="card" style="background:#0b0712; border:1px solid var(--line); border-radius:10px; padding:24px;">
-          <strong style="font-size:24px; color:var(--m)">◎</strong>
-          <h3 style="font:700 18px 'Barlow Condensed'; text-transform:uppercase; margin:10px 0 6px;">Reference Match</h3>
-          <p style="color:var(--muted); font-size:13px; margin:0;">Compare your track against a reference and see where it diverges.</p>
-        </div>
-        <div class="card" style="background:#0b0712; border:1px solid var(--line); border-radius:10px; padding:24px;">
-          <strong style="font-size:24px; color:var(--m)">✦</strong>
-          <h3 style="font:700 18px 'Barlow Condensed'; text-transform:uppercase; margin:10px 0 6px;">Auto Repair</h3>
-          <p style="color:var(--muted); font-size:13px; margin:0;">Translate technical findings into practical corrective workflows.</p>
-        </div>
-        <div class="card" style="background:#0b0712; border:1px solid var(--line); border-radius:10px; padding:24px;">
-          <strong style="font-size:24px; color:var(--m)">≋</strong>
-          <h3 style="font:700 18px 'Barlow Condensed'; text-transform:uppercase; margin:10px 0 6px;">Waveform + Spectrum</h3>
-          <p style="color:var(--muted); font-size:13px; margin:0;">Inspect audio in time and frequency domains without leaving the session.</p>
-        </div>
-        <div class="card" style="background:#0b0712; border:1px solid var(--line); border-radius:10px; padding:24px;">
-          <strong style="font-size:24px; color:var(--m)">▤</strong>
-          <h3 style="font:700 18px 'Barlow Condensed'; text-transform:uppercase; margin:10px 0 6px;">Reports</h3>
-          <p style="color:var(--muted); font-size:13px; margin:0;">Export technical data and professional HTML reports.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  
-  <!-- NoDAW StemSplit Interactive Demo -->
-  
-  
-
-  <section class="nodaw-bats" id="nodawBats">
-    <div class="nodaw-bats-inner">
-      <div style="text-align:center; margin-bottom:36px;">
-        <small style="font:700 11px 'JetBrains Mono'; text-transform:uppercase; color:var(--m); letter-spacing:0.1em;">NoDAW Labs · .bat suite</small>
-        <h2 style="font:800 36px 'Barlow Condensed'; text-transform:uppercase; margin:8px 0;">Drag. Drop. <span style="color:var(--m)">Done.</span></h2>
-        <p style="color:var(--muted); font-size:15px; max-width:720px; margin:0 auto;">Every NoDAW tool is a dead-simple <strong>.bat</strong>: drop files on it, get results. Cheap one-time payment. Use forever. No cloud required.</p>
-      </div>
-      <div class="product-grid">
-        <article class="product-card" id="product-analyzer">
-          <img src="assets/screens/screen-02.png" alt="CoProducer analyzer dashboard with mix score">
-          <div class="product-body">
-            <h3>CoProducer Analyzer .bat</h3>
-            <p>Drop audio. Auto-generate engineering reports.</p>
-            <ul>
-              <li>HTML + JSON + TXT beside each bounce</li>
-              <li>Score, LUFS, true peak, clips, streaming table</li>
-              <li>Same Core Analyzer as the desktop app</li>
-            </ul>
-            <div class="product-price">ONE-TIME · CHEAP · FOREVER</div>
-            <div class="product-actions">
-              <a class="btn" href="#analyzeHome">Try on this page</a>
-              <a class="btn alt" href="pricing.html">WEB30 pricing</a>
-            </div>
-          </div>
-        </article>
-        <article class="product-card" id="product-mixmaster">
-          <img src="assets/products/mastering-fx.png" alt="NoDAW Mastering FX Studio bat product art">
-          <div class="product-body">
-            <h3>Audio Mix &amp; Mastering .bat</h3>
-            <p>Mastering FX Studio — drag unfinished bounces onto the bat. Get mix/master-ready renders without opening a DAW.</p>
-            <ul>
-              <li>Drag-and-drop audio in, processed audio out</li>
-              <li>Before / after demos welcome anytime</li>
-              <li>Unlimited local renders after purchase</li>
-            </ul>
-            <div class="product-price">ONE-TIME · CHEAP · FOREVER</div>
-            <div class="product-actions">
-              <a class="btn alt" href="#seeTheMix">Hear A/B proof</a>
-            </div>
-          </div>
-        </article>
-        <article class="product-card" id="product-videofx">
-          <img src="assets/products/video-fx.png" alt="NoDAW cinematic video effects suite product art">
-          <div class="product-body">
-            <h3>Bulk Video Effects Suite</h3>
-            <p>Cinematic grading and effects packs — drop clips, batch-render looks.</p>
-            <ul>
-              <li>Drag-and-drop folders / clips onto the .bat</li>
-              <li>Preset looks · bulk processing</li>
-              <li>Unlimited local use</li>
-            </ul>
-            <div class="product-price">ONE-TIME · CHEAP · FOREVER</div>
-            <div class="product-actions">
-              <a class="btn alt" href="#nodawBats">NoDAW .bat suite</a>
-            </div>
-          </div>
-        </article>
-        <article class="product-card" id="product-social">
-          <img src="assets/products/social-resize.png" alt="NoDAW Social Resize Suite for TikTok Reels Shorts">
-          <div class="product-body">
-            <h3>Social Resize Suite</h3>
-            <p>Resize for TikTok, Reels, Shorts, and Stories in one drop.</p>
-            <ul>
-              <li>Batch social aspect ratios</li>
-              <li>Built for volume posting</li>
-              <li>Local · unlimited after license</li>
-            </ul>
-            <div class="product-price">ONE-TIME · CHEAP · FOREVER</div>
-            <div class="product-actions">
-              <a class="btn alt" href="#nodawBats">NoDAW .bat suite</a>
-            </div>
-          </div>
-        </article>
-        <article class="product-card" id="product-youtube">
-          <img src="assets/products/youtube-tools.png" alt="NoDAW YouTube Thumbnail Factory product art">
-          <div class="product-body">
-            <h3>YouTube Thumbnail Factory</h3>
-            <p>Batch thumbnail generation for channels that post nonstop.</p>
-            <ul>
-              <li>Drag assets onto the .bat</li>
-              <li>Consistent thumbnail output</li>
-              <li>Unlimited local renders</li>
-            </ul>
-            <div class="product-price">ONE-TIME · CHEAP · FOREVER</div>
-            <div class="product-actions">
-              <a class="btn alt" href="#nodawBats">NoDAW .bat suite</a>
-            </div>
-          </div>
-        </article>
-        <article class="product-card" id="product-batch">
-          <img src="assets/products/batch-convert.png" alt="NoDAW Audio Batch Converter product art">
-          <div class="product-body">
-            <h3>Audio Batch Converter</h3>
-            <p>Drop a folder. Convert everything. Keep moving.</p>
-            <ul>
-              <li>Bulk format conversion</li>
-              <li>Folder-friendly drag-drop</li>
-              <li>Unlimited local use</li>
-            </ul>
-            <div class="product-price">ONE-TIME · CHEAP · FOREVER</div>
-            <div class="product-actions">
-              <a class="btn alt" href="#nodawBats">NoDAW .bat suite</a>
-            </div>
-          </div>
-        </article>
-        <article class="product-card" id="product-rescue">
-          <img src="assets/products/bulk-rescue.png" alt="NoDAW Audio Bulk Rescue product art">
-          <div class="product-body">
-            <h3>Audio Bulk Rescue</h3>
-            <p>Salvage rough recordings in bulk — clean, normalize, ship.</p>
-            <ul>
-              <li>Folder drop · batch rescue</li>
-              <li>Built for damaged or uneven takes</li>
-              <li>Unlimited local renders</li>
-            </ul>
-            <div class="product-price">ONE-TIME · CHEAP · FOREVER</div>
-            <div class="product-actions">
-              <a class="btn alt" href="#nodawBats">NoDAW .bat suite</a>
-            </div>
-          </div>
-        </article>
-        <article class="product-card" id="product-screw">
-          <img src="assets/products/screwai.png" alt="ScrewAI syrup bottle product art">
-          <div class="product-body">
-            <h3>ScrewAI Syrup .bat</h3>
-            <p>17 codeine flavors. Select multiple strains. Render unlimited screwed versions locally.</p>
-            <ul>
-              <li>Drag audio · multi-strain render</li>
-              <li>Live syrup-bottle demo on this site</li>
-              <li>No cloud · no per-track fees</li>
-            </ul>
-            <div class="product-price">ONE-TIME · UNLIMITED LOCAL</div>
-            <div class="product-actions">
-              <a class="btn" href="#screwDemo">Open syrup lab</a>
-              <a class="btn alt" href="https://myaiplug.github.io/ScrewAI-App/" target="_blank" rel="noopener">ScrewAI App</a>
-            </div>
-          </div>
-        </article>
-        <article class="product-card" id="product-stems" style="grid-column:1 / -1;">
-          <div class="product-body" style="display:grid; grid-template-columns:1.05fr 0.95fr; gap:18px; align-items:center;">
-            <div>
-              <h3>NoDAW Liminal StemSplit</h3>
-              <p>Isolate vocals, drums, bass, and more — 100% local. Hear stems on this page, split your own tracks in the desktop app.</p>
-              <ul>
-                <li>Drag-drop friendly local workflow</li>
-                <li>Solo / mute stem proof in the browser</li>
-                <li>No uploads · no subscription</li>
-              </ul>
-              <div class="product-price">LOCAL · UNLIMITED AFTER LICENSE</div>
-              <div class="product-actions">
-                <a class="btn" href="#stemDemo">Hear stems</a>
-                <a class="btn" href="#seeTheMix">See the mix</a>
-                <a class="btn alt" href="https://liminal-stemsplit.onrender.com/" target="_blank" rel="noopener">StemSplit site</a>
-              </div>
-            </div>
-            <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px;">
-              <img src="assets/products/liminal-stems.png" alt="NoDAW Liminal stem separation product art" style="width:100%; border-radius:10px; border:1px solid var(--line);">
-              <img src="assets/products/stemsplit-neon.png" alt="Neon Stem Splitting app poster" style="width:100%; border-radius:10px; border:1px solid var(--line);">
-              <img src="assets/products/stem-separated.jpg" alt="Stem Separated vinyl artwork" style="width:100%; border-radius:10px; border:1px solid var(--line); grid-column:1 / -1;">
-            </div>
-          </div>
-        </article>
-      </div>
-    </div>
-  </section>
+<div class="hero">
+<div class="hero-inner">
+<div class="hero-grid">
+<div>
+<span class="eyebrow">Built for engineers. Designed for results.</span>
+<h1>Analyze.<br/>Refine.<span>Elevate.</span></h1>
+<p>CoProducer turns a mix into engineering intelligence: loudness, dynamics, stereo information, spectral clues, repair guidance, reference matching and exportable reports in one local-first workflow.</p>
+<div class="points">
+<div>Deep technical audio analysis</div>
+<div>Reference matching &amp; suggestions</div>
+<div>Auto-repair workflows &amp; reports</div>
+<div>Local Windows &amp; Mac processing</div>
+</div>
+<div class="buttons">
+<a class="btn" href="#analyzeHome">Analyze your track</a>
+<a class="btn alt" href="#stemDemo">Hear StemSplit</a>
+</div>
+</div>
+<div class="hero-art">
+<img alt="CoProducer dashboard with circular mix score and analysis modules" src="assets/screens/screen-02.png"/>
+</div>
+</div>
+</div>
+</div>
+<div class="rail-wrap">
+<div class="rail-inner">
+<div class="rail">
+<div><b>Deep Audio Analysis</b><small>Loudness, dynamics, spectrum and more.</small></div>
+<div><b>Reference Matching</b><small>Compare tracks and identify differences.</small></div>
+<div><b>Smart Suggestions</b><small>Engineering guidance from measured results.</small></div>
+<div><b>Auto Repair</b><small>Actionable repair workflows.</small></div>
+<div><b>Export Reports</b><small>Professional HTML reports and data.</small></div>
+</div>
+</div>
+</div>
+<!-- A/B Demonstration Section -->
+<section id="ab" style="padding:80px 0; border-bottom:1px solid var(--line); width:100%; display:flex; justify-content:center;">
+<div class="ab-inner" style="width:100%; max-width:820px; margin:0 auto; padding:0 20px;">
+<div class="head" style="text-align:center; margin:0 auto 28px;">
+<small style="font:700 11px 'JetBrains Mono'; text-transform:uppercase; color:var(--m); letter-spacing:0.1em;">Real engine output</small>
+<h2 style="font:800 36px 'Barlow Condensed'; text-transform:uppercase; margin:8px 0;">Before and <span style="color:var(--m)">After Repair.</span></h2>
+<p style="color:var(--muted); font-size:15px;">Three mixes analysed and repaired in CoProducer. Pick a track, then A/B at the same sample.</p>
+</div>
+<div class="cp-card" style="background:linear-gradient(145deg,#100817,#08060b); border:1px solid #57256e; border-radius:14px; padding:28px 24px;">
+<div class="cp-track-picker" id="abTracks" style="display:flex; flex-wrap:wrap; gap:8px; justify-content:center; margin-bottom:12px;">
+<button class="is-live" data-id="crazy-stacy" type="button">Crazy Stacy  70→90</button>
+<button data-id="beatgohard" type="button">BeatGoHard  77→95</button>
+<button data-id="drippin" type="button">Drippin  66→93</button>
+</div>
+<p class="cp-ab-story" id="abStory" style="text-align:center; color:#9e94a3; font-family:'JetBrains Mono',monospace; font-size:12px; margin:0 0 14px;">831 clipped samples and an unsafe true peak on a vocal mix.</p>
+<div class="cp-player" data-mode="ab" id="abPlayer">
+<canvas class="cp-wave" height="110" style="width:100%; height:110px; background:transparent; border:0; cursor:pointer; display:block;" width="960"></canvas>
+<div class="cp-transport" style="display:flex; flex-wrap:wrap; align-items:center; gap:12px; margin-top:12px; font-family:'JetBrains Mono',monospace; font-size:11px; color:#aaa0b0;">
+<button class="cp-play" type="button">Play</button>
+<span class="cp-time">0:00</span>
+<div class="cp-ab" style="display:flex; gap:6px; margin-left:auto;">
+<button class="is-live" data-side="a" type="button">A Before</button>
+<button data-side="b" type="button">B Repaired</button>
+</div>
+</div>
+</div>
+<div class="table-scroll" style="margin-top:18px; overflow:auto;">
+<table class="cp-table" id="abTable" style="width:100%; border-collapse:collapse; font-family:'JetBrains Mono',monospace; font-size:11px;">
+<thead>
+<tr><th>Metric</th><th>Before</th><th>After</th><th>Delta</th></tr>
+</thead>
+<tbody>
+<tr><td>Score</td><td class="bad">70</td><td class="good">90</td><td class="good">20</td></tr>
+<tr><td>Rating</td><td class="bad">Usable after technical corrections</td><td class="good">Release ready</td><td></td></tr>
+<tr><td>Integrated LUFS</td><td class="bad">-12.61</td><td class="good">-13.63</td><td class="good">-1.02</td></tr>
+<tr><td>True peak dBTP</td><td class="bad">0.33</td><td class="bad">0.04</td><td class="good">-0.29</td></tr>
+<tr><td>Clipped samples</td><td class="bad">831</td><td class="good">0</td><td class="good">-831</td></tr>
+</tbody>
+</table>
+</div>
+<p style="margin-top:18px; text-align:center;">
+<a class="btn" href="analyze.html">Analyze your track</a>
+</p>
+<p style="margin-top:10px; text-align:center; font-family:'JetBrains Mono',monospace; font-size:11px; color:#827989;">WEB30 — 30% off Pro ($49 → $34)</p>
+</div>
+</div>
+</section>
+<section id="analyzeHome" style="padding:80px 0; border-bottom:1px solid var(--line); width:100%; display:flex; justify-content:center;">
+<div style="width:100%; max-width:820px; margin:0 auto; padding:0 20px;">
+<div style="text-align:center; margin-bottom:28px;">
+<small style="font:700 11px 'JetBrains Mono'; text-transform:uppercase; color:var(--m); letter-spacing:0.1em;">Engine Analysis</small>
+<h2 style="font:800 36px 'Barlow Condensed'; text-transform:uppercase; margin:8px 0;">Upload &amp; <span style="color:var(--m)">Analyze Mix</span></h2>
+<p style="color:var(--muted); font-size:15px; max-width:620px; margin:0 auto;">Run your track through the same CoProducer engine as the desktop app. Get score, LUFS, true peak, projected repair, and WEB30.</p>
+</div>
+<div id="engineStatus" style="font-family:'JetBrains Mono',monospace; font-size:11px; padding:14px 18px; border-radius:10px; background:rgba(18,10,28,0.92); border:1px solid rgba(194,111,255,0.22); margin-bottom:16px;">Checking engine…</div>
+<div hidden="" id="error" style="color:#ff6b6b; font-family:'JetBrains Mono',monospace; font-size:12px; margin-bottom:12px;"></div>
+<label class="home-dropzone" id="dropzone">
+<input accept=".wav,.mp3,.flac,.m4a,.aac,.ogg,.opus,.aiff,.aif,audio/*" id="fileInput" type="file"/>
+<b>Drop your audio track here</b>
+<span>WAV, MP3, FLAC, M4A · Max 40 MB · Local API at 127.0.0.1:8788</span>
+</label>
+<div class="home-offline" hidden="" id="offline">
+<h3>Engine offline</h3>
+<p>Start <code>py -3.11 web/server.py</code> from the CoProducer engine folder, or use the desktop app.</p>
+<a class="btn" href="https://github.com/myaiplug/coproducer/releases/download/v1.0.0-beta/CoProducer-Setup-1.0.0-beta.exe">Download free demo</a>
+<button class="btn alt copy-code" style="margin-left:8px;" type="button">Copy WEB30</button>
+</div>
+<div hidden="" id="report" style="margin-top:28px;">
+<div style="background:linear-gradient(145deg,#100817,#08060b); border:1px solid #57256e; border-radius:14px; padding:24px; margin-bottom:16px;">
+<div style="display:flex; flex-wrap:wrap; gap:18px; align-items:flex-end;">
+<div>
+<div style="font:700 10px 'JetBrains Mono'; color:#8e8494; text-transform:uppercase;">Mix score</div>
+<div id="scoreNumber" style="font:900 48px 'Barlow Condensed'; color:var(--m); line-height:1;">—</div>
+</div>
+<div id="ratingText" style="font:700 12px 'JetBrains Mono'; color:var(--muted); max-width:220px;"></div>
+</div>
+<p id="summary" style="color:#c0b6c5; margin:14px 0 0; font-size:14px;"></p>
+</div>
+<div style="background:linear-gradient(145deg,#100817,#08060b); border:1px solid #57256e; border-radius:14px; padding:24px; margin-bottom:16px;">
+<h3 style="font:800 20px 'Barlow Condensed'; text-transform:uppercase; margin:0 0 12px;">Uploaded preview</h3>
+<div class="cp-player" data-mode="single" id="uploadPlayer">
+<canvas class="cp-wave" height="80" style="width:100%; height:80px; cursor:pointer; display:block;" width="900"></canvas>
+<div style="display:flex; gap:12px; align-items:center; margin-top:10px; font:700 11px 'JetBrains Mono'; color:#aaa0b0;">
+<button class="cp-play btn" type="button">Play</button>
+<span class="cp-time">0:00</span>
+</div>
+</div>
+</div>
+<div style="background:linear-gradient(145deg,#100817,#08060b); border:1px solid #57256e; border-radius:14px; padding:24px; margin-bottom:16px; overflow:auto;">
+<h3 style="font:800 20px 'Barlow Condensed'; text-transform:uppercase; margin:0 0 8px;">Your mix vs target</h3>
+<table class="cp-table" id="vsTarget" style="width:100%; border-collapse:collapse; font:12px 'JetBrains Mono';">
+<thead><tr><th>Metric</th><th>Yours</th><th>If repaired</th><th>Target</th></tr></thead>
+<tbody></tbody>
+</table>
+</div>
+<div style="background:linear-gradient(145deg,#100817,#08060b); border:1px solid #57256e; border-radius:14px; padding:24px; margin-bottom:16px;">
+<h3 style="font:800 20px 'Barlow Condensed'; text-transform:uppercase; margin:0 0 8px;">Findings</h3>
+<ul id="findings" style="padding-left:18px; color:#c0b6c5;"></ul>
+</div>
+<div hidden="" id="streamingWrap" style="background:linear-gradient(145deg,#100817,#08060b); border:1px solid #57256e; border-radius:14px; padding:24px; margin-bottom:16px; overflow:auto;">
+<h3 style="font:800 20px 'Barlow Condensed'; text-transform:uppercase; margin:0 0 8px;">Streaming</h3>
+<table class="cp-table" id="streamingTable" style="width:100%; border-collapse:collapse; font:12px 'JetBrains Mono';"><thead><tr><th>Platform</th><th>Target</th><th>TP</th><th>Gain</th><th>Proj TP</th><th>Status</th></tr></thead><tbody></tbody></table>
+</div>
+<div style="background:linear-gradient(145deg,#100817,#08060b); border:1px solid #57256e; border-radius:14px; padding:24px; margin-bottom:16px;">
+<h3 style="font:800 20px 'Barlow Condensed'; text-transform:uppercase; margin:0 0 8px;">Repair plan</h3>
+<div id="planList" style="color:#c0b6c5; font-size:14px;"></div>
+</div>
+<div style="text-align:center; padding:24px; border:1px solid #e84cff; border-radius:14px; background:linear-gradient(135deg,rgba(168,57,255,.18),rgba(232,76,255,.08));">
+<div style="font:800 22px 'Barlow Condensed'; color:#c9ff4d; text-transform:uppercase;">WEB30</div>
+<p style="font:700 12px 'JetBrains Mono'; color:#f7f2fa;">30% off CoProducer Pro ($49 → $34)</p>
+<button class="btn copy-code" type="button">Copy promo code</button>
+<a class="btn alt" href="pricing.html" style="margin-left:8px;">Pricing</a>
+</div>
+</div>
+</div>
+</section>
+<section class="tour" id="screens">
+<div class="tour-inner">
+<div class="head" style="text-align:center; max-width:700px; margin:0 auto 50px;">
+<small style="font:700 11px 'JetBrains Mono'; text-transform:uppercase; color:var(--m); letter-spacing:0.1em;">The real desktop app</small>
+<h2 style="font:800 36px 'Barlow Condensed'; text-transform:uppercase; margin:8px 0;">Built for <span style="color:var(--m)">actual sessions.</span></h2>
+<p style="color:var(--muted)">Real CoProducer screens showing analysis, repair guidance, metadata, waveform playback, spectral visualization and delivery tools.</p>
+</div>
+<div class="shots">
+<article class="shot wide">
+<img alt="CoProducer analysis overview with loudness meters, stereo field, and spectral charts" src="assets/screens/screen-01.png"/>
+<div class="copy">
+<h3>Analysis, repair and release workflow</h3>
+<p>Mix scoring, loudness meters, stereo imaging, spectral balance, and repair guidance in the real desktop app.</p>
+</div>
+</article>
+<article class="shot wide" id="seeTheMix">
+<div class="copy">
+<h3>See what the mix is doing.</h3>
+<p>Live A/B repair proof and stem solo in the browser. Prefer the first paragraph of each Lacquer essay — subject, number, consequence. Assistants: <a href="llms.txt" style="color:var(--m);">llms.txt</a>. Humans who want the meter: <a href="#analyzeHome" style="color:var(--m);">analyze a bounce</a>.</p>
+</div>
+<div class="home-live-mix">
+<div data-ab="drippin"></div>
+<div data-stems=""></div>
+</div>
+</article>
+<article class="shot">
+<img alt="CoProducer spectral balance chart with AI suggestions and severity" src="assets/screens/screen-04.png"/>
+<div class="copy">
+<h3>Studio intelligence, not another meter.</h3>
+<p>Spectral clues and actionable suggestions move you from measurement to a fix.</p>
+</div>
+</article>
+</div>
+</div>
+</section>
+<section id="features" style="padding:80px 0; border-bottom:1px solid var(--line);">
+<div class="features-inner">
+<div class="head" style="text-align:center; max-width:700px; margin:0 auto 50px;">
+<small style="font:700 11px 'JetBrains Mono'; text-transform:uppercase; color:var(--m); letter-spacing:0.1em;">Powerful tools for every engineer</small>
+<h2 style="font:800 36px 'Barlow Condensed'; text-transform:uppercase; margin:8px 0;">One workflow. <span style="color:var(--m)">More certainty.</span></h2>
+</div>
+<div class="tools" style="display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:20px; width:100%;">
+<div class="card" style="background:#0b0712; border:1px solid var(--line); border-radius:10px; padding:24px;">
+<strong style="font-size:24px; color:var(--m)">◫</strong>
+<h3 style="font:700 18px 'Barlow Condensed'; text-transform:uppercase; margin:10px 0 6px;">Dashboard</h3>
+<p style="color:var(--muted); font-size:13px; margin:0;">Complete technical overview of a mix at a glance.</p>
+</div>
+<div class="card" style="background:#0b0712; border:1px solid var(--line); border-radius:10px; padding:24px;">
+<strong style="font-size:24px; color:var(--m)">◎</strong>
+<h3 style="font:700 18px 'Barlow Condensed'; text-transform:uppercase; margin:10px 0 6px;">Reference Match</h3>
+<p style="color:var(--muted); font-size:13px; margin:0;">Compare your track against a reference and see where it diverges.</p>
+</div>
+<div class="card" style="background:#0b0712; border:1px solid var(--line); border-radius:10px; padding:24px;">
+<strong style="font-size:24px; color:var(--m)">✦</strong>
+<h3 style="font:700 18px 'Barlow Condensed'; text-transform:uppercase; margin:10px 0 6px;">Auto Repair</h3>
+<p style="color:var(--muted); font-size:13px; margin:0;">Translate technical findings into practical corrective workflows.</p>
+</div>
+<div class="card" style="background:#0b0712; border:1px solid var(--line); border-radius:10px; padding:24px;">
+<strong style="font-size:24px; color:var(--m)">≋</strong>
+<h3 style="font:700 18px 'Barlow Condensed'; text-transform:uppercase; margin:10px 0 6px;">Waveform + Spectrum</h3>
+<p style="color:var(--muted); font-size:13px; margin:0;">Inspect audio in time and frequency domains without leaving the session.</p>
+</div>
+<div class="card" style="background:#0b0712; border:1px solid var(--line); border-radius:10px; padding:24px;">
+<strong style="font-size:24px; color:var(--m)">▤</strong>
+<h3 style="font:700 18px 'Barlow Condensed'; text-transform:uppercase; margin:10px 0 6px;">Reports</h3>
+<p style="color:var(--muted); font-size:13px; margin:0;">Export technical data and professional HTML reports.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- NoDAW StemSplit Interactive Demo -->
+<section class="nodaw-bats" id="nodawBats">
+<div class="nodaw-bats-inner">
+<div style="text-align:center; margin-bottom:36px;">
+<small style="font:700 11px 'JetBrains Mono'; text-transform:uppercase; color:var(--m); letter-spacing:0.1em;">NoDAW Labs · .bat suite</small>
+<h2 style="font:800 36px 'Barlow Condensed'; text-transform:uppercase; margin:8px 0;">Drag. Drop. <span style="color:var(--m)">Done.</span></h2>
+<p style="color:var(--muted); font-size:15px; max-width:720px; margin:0 auto;">Every NoDAW tool is a dead-simple <strong>.bat</strong>: drop files on it, get results. Cheap one-time payment. Use forever. No cloud required.</p>
+</div>
+<div class="product-grid">
+<article class="product-card" id="product-analyzer">
+<img alt="CoProducer analyzer dashboard with mix score" src="assets/screens/screen-02.png"/>
+<div class="product-body">
+<h3>CoProducer Analyzer .bat</h3>
+<p>Drop audio. Auto-generate engineering reports.</p>
+<ul>
+<li>HTML + JSON + TXT beside each bounce</li>
+<li>Score, LUFS, true peak, clips, streaming table</li>
+<li>Same Core Analyzer as the desktop app</li>
+</ul>
+<div class="product-price">ONE-TIME · CHEAP · FOREVER</div>
+<div class="product-actions">
+<a class="btn" href="#analyzeHome">Try on this page</a>
+<a class="btn alt" href="pricing.html">WEB30 pricing</a>
+</div>
+</div>
+</article>
+<article class="product-card" id="product-mixmaster">
+<img alt="NoDAW Mastering FX Studio bat product art" src="assets/products/mastering-fx.png"/>
+<div class="product-body">
+<h3>Audio Mix &amp; Mastering .bat</h3>
+<p>Mastering FX Studio — drag unfinished bounces onto the bat. Get mix/master-ready renders without opening a DAW.</p>
+<ul>
+<li>Drag-and-drop audio in, processed audio out</li>
+<li>Before / after demos welcome anytime</li>
+<li>Unlimited local renders after purchase</li>
+</ul>
+<div class="product-price">ONE-TIME · CHEAP · FOREVER</div>
+<div class="product-actions">
+<a class="btn alt" href="#seeTheMix">Hear A/B proof</a>
+</div>
+</div>
+</article>
+<article class="product-card" id="product-videofx">
+<img alt="NoDAW cinematic video effects suite product art" src="assets/products/video-fx.png"/>
+<div class="product-body">
+<h3>Bulk Video Effects Suite</h3>
+<p>Cinematic grading and effects packs — drop clips, batch-render looks.</p>
+<ul>
+<li>Drag-and-drop folders / clips onto the .bat</li>
+<li>Preset looks · bulk processing</li>
+<li>Unlimited local use</li>
+</ul>
+<div class="product-price">ONE-TIME · CHEAP · FOREVER</div>
+<div class="product-actions">
+<a class="btn alt" href="#nodawBats">NoDAW .bat suite</a>
+</div>
+</div>
+</article>
+<article class="product-card" id="product-social">
+<img alt="NoDAW Social Resize Suite for TikTok Reels Shorts" src="assets/products/social-resize.png"/>
+<div class="product-body">
+<h3>Social Resize Suite</h3>
+<p>Resize for TikTok, Reels, Shorts, and Stories in one drop.</p>
+<ul>
+<li>Batch social aspect ratios</li>
+<li>Built for volume posting</li>
+<li>Local · unlimited after license</li>
+</ul>
+<div class="product-price">ONE-TIME · CHEAP · FOREVER</div>
+<div class="product-actions">
+<a class="btn alt" href="#nodawBats">NoDAW .bat suite</a>
+</div>
+</div>
+</article>
+<article class="product-card" id="product-youtube">
+<img alt="NoDAW YouTube Thumbnail Factory product art" src="assets/products/youtube-tools.png"/>
+<div class="product-body">
+<h3>YouTube Thumbnail Factory</h3>
+<p>Batch thumbnail generation for channels that post nonstop.</p>
+<ul>
+<li>Drag assets onto the .bat</li>
+<li>Consistent thumbnail output</li>
+<li>Unlimited local renders</li>
+</ul>
+<div class="product-price">ONE-TIME · CHEAP · FOREVER</div>
+<div class="product-actions">
+<a class="btn alt" href="#nodawBats">NoDAW .bat suite</a>
+</div>
+</div>
+</article>
+<article class="product-card" id="product-batch">
+<img alt="NoDAW Audio Batch Converter product art" src="assets/products/batch-convert.png"/>
+<div class="product-body">
+<h3>Audio Batch Converter</h3>
+<p>Drop a folder. Convert everything. Keep moving.</p>
+<ul>
+<li>Bulk format conversion</li>
+<li>Folder-friendly drag-drop</li>
+<li>Unlimited local use</li>
+</ul>
+<div class="product-price">ONE-TIME · CHEAP · FOREVER</div>
+<div class="product-actions">
+<a class="btn alt" href="#nodawBats">NoDAW .bat suite</a>
+</div>
+</div>
+</article>
+<article class="product-card" id="product-rescue">
+<img alt="NoDAW Audio Bulk Rescue product art" src="assets/products/bulk-rescue.png"/>
+<div class="product-body">
+<h3>Audio Bulk Rescue</h3>
+<p>Salvage rough recordings in bulk — clean, normalize, ship.</p>
+<ul>
+<li>Folder drop · batch rescue</li>
+<li>Built for damaged or uneven takes</li>
+<li>Unlimited local renders</li>
+</ul>
+<div class="product-price">ONE-TIME · CHEAP · FOREVER</div>
+<div class="product-actions">
+<a class="btn alt" href="#nodawBats">NoDAW .bat suite</a>
+</div>
+</div>
+</article>
+<article class="product-card" id="product-screw">
+<img alt="ScrewAI syrup bottle product art" src="assets/products/screwai.png"/>
+<div class="product-body">
+<h3>ScrewAI Syrup .bat</h3>
+<p>17 codeine flavors. Select multiple strains. Render unlimited screwed versions locally.</p>
+<ul>
+<li>Drag audio · multi-strain render</li>
+<li>Live syrup-bottle demo on this site</li>
+<li>No cloud · no per-track fees</li>
+</ul>
+<div class="product-price">ONE-TIME · UNLIMITED LOCAL</div>
+<div class="product-actions">
+<a class="btn" href="#screwDemo">Open syrup lab</a>
+<a class="btn alt" href="https://myaiplug.github.io/ScrewAI-App/" rel="noopener" target="_blank">ScrewAI App</a>
+</div>
+</div>
+</article>
+<article class="product-card" id="product-stems" style="grid-column:1 / -1;">
+<div class="product-body" style="display:grid; grid-template-columns:1.05fr 0.95fr; gap:18px; align-items:center;">
+<div>
+<h3>NoDAW Liminal StemSplit</h3>
+<p>Isolate vocals, drums, bass, and more — 100% local. Hear stems on this page, split your own tracks in the desktop app.</p>
+<ul>
+<li>Drag-drop friendly local workflow</li>
+<li>Solo / mute stem proof in the browser</li>
+<li>No uploads · no subscription</li>
+</ul>
+<div class="product-price">LOCAL · UNLIMITED AFTER LICENSE</div>
+<div class="product-actions">
+<a class="btn" href="#stemDemo">Hear stems</a>
+<a class="btn" href="#seeTheMix">See the mix</a>
+<a class="btn alt" href="https://liminal-stemsplit.onrender.com/" rel="noopener" target="_blank">StemSplit site</a>
+</div>
+</div>
+<div style="display:grid; grid-template-columns:1fr 1fr; gap:10px;">
+<img alt="NoDAW Liminal stem separation product art" src="assets/products/liminal-stems.png" style="width:100%; border-radius:10px; border:1px solid var(--line);"/>
+<img alt="Neon Stem Splitting app poster" src="assets/products/stemsplit-neon.png" style="width:100%; border-radius:10px; border:1px solid var(--line);"/>
+<img alt="Stem Separated vinyl artwork" src="assets/products/stem-separated.jpg" style="width:100%; border-radius:10px; border:1px solid var(--line); grid-column:1 / -1;"/>
+</div>
+</div>
+</article>
+</div>
+</div>
+</section>
 <section id="screwDemo" style="padding:80px 0; border-bottom:1px solid var(--line); width:100%; display:flex; justify-content:center; background:rgba(12,6,18,0.65);">
-    <div style="width:100%; max-width:1100px; margin:0 auto; padding:0 20px;">
-      <div data-screw-demo></div>
-      <p style="text-align:center; margin-top:16px; font:700 11px 'JetBrains Mono',monospace; color:#9b8aad;">
+<div style="width:100%; max-width:1100px; margin:0 auto; padding:0 20px;">
+<div data-screw-demo=""></div>
+<p style="text-align:center; margin-top:16px; font:700 11px 'JetBrains Mono',monospace; color:#9b8aad;">
         Full interface: <a href="screwai.html" style="color:#e879f9;">screwai.html</a>
-        · App: <a href="https://myaiplug.github.io/ScrewAI-App/" style="color:#e879f9;" target="_blank" rel="noopener">ScrewAI-App</a>
+        · App: <a href="https://myaiplug.github.io/ScrewAI-App/" rel="noopener" style="color:#e879f9;" target="_blank">ScrewAI-App</a>
         · Drag-drop .bat · 17 syrup strains · unlimited local renders
       </p>
-    </div>
-  </section>
+</div>
+</section>
 <section class="stem-player" id="stemDemo">
-    <div class="stem-inner">
-      <div class="max-w-4xl mx-auto text-center mb-8 reveal visible" style="text-align:center; margin-bottom:30px;">
-        <span class="inline-block px-3 py-1 rounded-full" style="background:rgba(232,76,255,0.1); border:1px solid rgba(232,76,255,0.2); color:var(--m); font-family:'JetBrains Mono'; font-size:11px; text-transform:uppercase; padding:6px 12px; border-radius:99px;">Live Interactive Demo</span>
-        <h2 style="font:800 36px 'Barlow Condensed'; text-transform:uppercase; margin:12px 0 6px;">NoDAW <span style="color:var(--m)">StemSplit</span></h2>
-        <p style="color:var(--muted); font-size:15px; max-width:550px; margin:0 auto;">NoDAW StemSplit isolates vocals, drums, bass, and more — 100% local. Solo each stem below, then split your own tracks in the desktop app.</p>
-        <div style="margin-top:14px; display:flex; gap:10px; justify-content:center; flex-wrap:wrap;">
-          <button type="button" class="btn alt" onclick="loadStemTrack('tantric-breakdown', 'Acoustic session')" style="font-size:9px; padding:8px 14px;">Acoustic</button>
-          <button type="button" class="btn alt" onclick="loadStemTrack('gamma', 'Session B')" style="font-size:9px; padding:8px 14px;">Session B</button>
-        </div>
-      </div>
-
-      <div class="stem-container reveal visible">
-        <!-- Master Transport -->
-        <div class="master-bar">
-          <button class="master-play-btn" id="masterPlayBtn" onclick="toggleMasterPlay()">
-            <svg id="masterPlayIcon" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"></path></svg>
-          </button>
-          <div class="master-info">
-            <div class="song-name" id="stemSongTitle">Acoustic session</div>
-            <div class="song-artist">NoDAW StemSplit · demo split</div>
-            <div class="master-progress" id="masterProgress" onclick="seekMaster(event)">
-              <div class="master-progress-fill" id="masterProgressFill"></div>
-            </div>
-          </div>
-          <div class="master-time"><span id="currentTime">0:00</span> / <span id="totalTime">0:00</span></div>
-        </div>
-
-        <!-- Stem Tracks -->
-        <div id="stemTracks">
-          <div class="stem-track-item">
-            <div class="stem-label" style="color:#e84cff">Vocals</div>
-            <div class="stem-wave"><canvas id="waveVocals" width="600" height="40"></canvas></div>
-            <div class="stem-btns">
-              <button class="stem-btn" onclick="toggleMute('vocals')">Mute</button>
-              <button class="stem-btn" onclick="toggleSolo('vocals')">Solo</button>
-            </div>
-          </div>
-          <div class="stem-track-item">
-            <div class="stem-label" style="color:#c4a574">Drums</div>
-            <div class="stem-wave"><canvas id="waveDrums" width="600" height="40"></canvas></div>
-            <div class="stem-btns">
-              <button class="stem-btn" onclick="toggleMute('drums')">Mute</button>
-              <button class="stem-btn" onclick="toggleSolo('drums')">Solo</button>
-            </div>
-          </div>
-          <div class="stem-track-item">
-            <div class="stem-label" style="color:#c45cff">Bass</div>
-            <div class="stem-wave"><canvas id="waveBass" width="600" height="40"></canvas></div>
-            <div class="stem-btns">
-              <button class="stem-btn" onclick="toggleMute('bass')">Mute</button>
-              <button class="stem-btn" onclick="toggleSolo('bass')">Solo</button>
-            </div>
-          </div>
-          <div class="stem-track-item">
-            <div class="stem-label" style="color:#c9ff4d">Other</div>
-            <div class="stem-wave"><canvas id="waveOther" width="600" height="40"></canvas></div>
-            <div class="stem-btns">
-              <button class="stem-btn" onclick="toggleMute('other')">Mute</button>
-              <button class="stem-btn" onclick="toggleSolo('other')">Solo</button>
-            </div>
-          </div>
-        </div>
-
-        <!-- CTA -->
-        <div class="mt-6 pt-4 border-t border-white/5 text-center" style="margin-top:20px; padding-top:16px; border-top:1px solid rgba(255,255,255,0.05); text-align:center;">
-          <p style="font-size:12px; color:var(--muted); margin-bottom:12px;">NoDAW StemSplit — local AI stem separation. No cloud. No subscription.</p>
-          <a href="https://liminal-stemsplit.onrender.com/" class="btn" style="display:inline-block;" target="_blank" rel="noopener">Try NoDAW StemSplit &rarr;</a>
-          <a href="https://liminal-stemsplit.onrender.com/#download" class="btn alt" style="display:inline-block; margin-left:10px;" target="_blank" rel="noopener">Download free demo</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
+<div class="stem-inner">
+<div class="max-w-4xl mx-auto text-center mb-8 reveal visible" style="text-align:center; margin-bottom:30px;">
+<span class="inline-block px-3 py-1 rounded-full" style="background:rgba(232,76,255,0.1); border:1px solid rgba(232,76,255,0.2); color:var(--m); font-family:'JetBrains Mono'; font-size:11px; text-transform:uppercase; padding:6px 12px; border-radius:99px;">Live Interactive Demo</span>
+<h2 style="font:800 36px 'Barlow Condensed'; text-transform:uppercase; margin:12px 0 6px;">NoDAW <span style="color:var(--m)">StemSplit</span></h2>
+<p style="color:var(--muted); font-size:15px; max-width:550px; margin:0 auto;">NoDAW StemSplit isolates vocals, drums, bass, and more — 100% local. Solo each stem below, then split your own tracks in the desktop app.</p>
+<div style="margin-top:14px; display:flex; gap:10px; justify-content:center; flex-wrap:wrap;">
+<button class="btn alt" onclick="loadStemTrack('tantric-breakdown', 'Acoustic session')" style="font-size:9px; padding:8px 14px;" type="button">Acoustic</button>
+<button class="btn alt" onclick="loadStemTrack('gamma', 'Session B')" style="font-size:9px; padding:8px 14px;" type="button">Session B</button>
+</div>
+</div>
+<div class="stem-container reveal visible">
+<!-- Master Transport -->
+<div class="master-bar">
+<button class="master-play-btn" id="masterPlayBtn" onclick="toggleMasterPlay()">
+<svg id="masterPlayIcon" viewbox="0 0 24 24"><path d="M8 5v14l11-7z"></path></svg>
+</button>
+<div class="master-info">
+<div class="song-name" id="stemSongTitle">Acoustic session</div>
+<div class="song-artist">NoDAW StemSplit · demo split</div>
+<div class="master-progress" id="masterProgress" onclick="seekMaster(event)">
+<div class="master-progress-fill" id="masterProgressFill"></div>
+</div>
+</div>
+<div class="master-time"><span id="currentTime">0:00</span> / <span id="totalTime">0:00</span></div>
+</div>
+<!-- Stem Tracks -->
+<div id="stemTracks">
+<div class="stem-track-item">
+<div class="stem-label" style="color:#e84cff">Vocals</div>
+<div class="stem-wave"><canvas height="40" id="waveVocals" width="600"></canvas></div>
+<div class="stem-btns">
+<button class="stem-btn" onclick="toggleMute('vocals')">Mute</button>
+<button class="stem-btn" onclick="toggleSolo('vocals')">Solo</button>
+</div>
+</div>
+<div class="stem-track-item">
+<div class="stem-label" style="color:#c4a574">Drums</div>
+<div class="stem-wave"><canvas height="40" id="waveDrums" width="600"></canvas></div>
+<div class="stem-btns">
+<button class="stem-btn" onclick="toggleMute('drums')">Mute</button>
+<button class="stem-btn" onclick="toggleSolo('drums')">Solo</button>
+</div>
+</div>
+<div class="stem-track-item">
+<div class="stem-label" style="color:#c45cff">Bass</div>
+<div class="stem-wave"><canvas height="40" id="waveBass" width="600"></canvas></div>
+<div class="stem-btns">
+<button class="stem-btn" onclick="toggleMute('bass')">Mute</button>
+<button class="stem-btn" onclick="toggleSolo('bass')">Solo</button>
+</div>
+</div>
+<div class="stem-track-item">
+<div class="stem-label" style="color:#c9ff4d">Other</div>
+<div class="stem-wave"><canvas height="40" id="waveOther" width="600"></canvas></div>
+<div class="stem-btns">
+<button class="stem-btn" onclick="toggleMute('other')">Mute</button>
+<button class="stem-btn" onclick="toggleSolo('other')">Solo</button>
+</div>
+</div>
+</div>
+<!-- CTA -->
+<div class="mt-6 pt-4 border-t border-white/5 text-center" style="margin-top:20px; padding-top:16px; border-top:1px solid rgba(255,255,255,0.05); text-align:center;">
+<p style="font-size:12px; color:var(--muted); margin-bottom:12px;">NoDAW StemSplit — local AI stem separation. No cloud. No subscription.</p>
+<a class="btn" href="https://liminal-stemsplit.onrender.com/" rel="noopener" style="display:inline-block;" target="_blank">Try NoDAW StemSplit →</a>
+<a class="btn alt" href="https://liminal-stemsplit.onrender.com/#download" rel="noopener" style="display:inline-block; margin-left:10px;" target="_blank">Download free demo</a>
+</div>
+</div>
+</div>
+</section>
 <section class="final" style="padding:100px 0; text-align:center;">
-    <div class="final-inner">
-      <h2 style="font:900 48px 'Barlow Condensed'; text-transform:uppercase; margin-bottom:24px;">Stop guessing.<br><span style="color:var(--p)">Inspect the mix.</span></h2>
-      <div class="buttons" style="justify-content:center">
-        <a class="btn" href="analyze.html">Analyze a file</a>
-        <a class="btn alt" href="https://github.com/myaiplug/coproducer/releases/download/v1.0.0-beta/CoProducer-Setup-1.0.0-beta.exe">Download FREE Demo</a>
-      </div>
-    </div>
-  </section>
+<div class="final-inner">
+<h2 style="font:900 48px 'Barlow Condensed'; text-transform:uppercase; margin-bottom:24px;">Stop guessing.<br/><span style="color:var(--p)">Inspect the mix.</span></h2>
+<div class="buttons" style="justify-content:center">
+<a class="btn" href="analyze.html">Analyze a file</a>
+<a class="btn alt" href="https://github.com/myaiplug/coproducer/releases/download/v1.0.0-beta/CoProducer-Setup-1.0.0-beta.exe">Download FREE Demo</a>
+</div>
+</div>
+</section>
 </main>
-
-<footer>
-  <div class="footer-inner">&copy; 2026 NoDAW Labs &middot; CoProducer &middot; Local-first audio engineering workflow</div>
+<section class="aeo-faq" id="aeo-faq" style="max-width:900px;margin:0 auto 80px;padding:0 20px">
+<h2 style="font:700 28px 'Barlow Condensed',sans-serif;text-transform:uppercase;letter-spacing:.04em">Quick answers</h2>
+<dl>
+<dt>Is CoProducer a cloud mastering service?</dt>
+<dd>No. It is local-first analysis and conservative repair. The website projects repair stats; desktop CoProducer writes the WAV.</dd>
+<dt>What loudness target does CoProducer use?</dt>
+<dd>−14 LUFS integrated (pass within 1.5 LU), true peak ≤ −1.0 dBTP. Apple Sound Check is often treated as ≈ −16 LUFS.</dd>
+<dt>What does a score ≥ 90 mean?</dt>
+<dd>Release-ready against CoProducer’s gates: clips = 0, sample rate ≥ 44.1 kHz, phase ≥ 0.2, loudness/true-peak in window — not a taste award.</dd>
+<dt>How much is Pro?</dt>
+<dd>Free demo; Pro $49 one-time. Reader code WEB30 is 30% off ($34). Not a subscription.</dd>
+</dl>
+</section><footer>
+<div class="footer-inner">© 2026 NoDAW Labs · CoProducer · Local-first audio engineering workflow</div>
 </footer>
-
-<script type="module" src="js/home-ab.js"></script>
-<script type="module" src="js/screw-demo.js"></script>
-<script type="module" src="js/report.js"></script>
-<script type="module" src="blog/js/studio.js"></script>
+<script src="js/home-ab.js" type="module"></script>
+<script src="js/screw-demo.js" type="module"></script>
+<script src="js/report.js" type="module"></script>
+<script src="blog/js/studio.js" type="module"></script>
 <script>
 class StemPlayerDemo {
   constructor() {

@@ -1,43 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta charset="utf-8"/><meta content="width=device-width,initial-scale=1.0" name="viewport"/><meta content="https://myaiplug.github.io/coproducer-web/assets/og-default.jpg" name="twitter:image"/><meta content="Pass/fail release checklist for LUFS, true peak, clipping, sample rate, phase, and score ≥ 90 — the same gates CoProducer uses." name="twitter:description"/><meta content="Audio Quality Release Checklist | CoProducer" name="twitter:title"/><meta content="summary_large_image" name="twitter:card"/><meta content="1440" property="og:image:height"/><meta content="2560" property="og:image:width"/><meta content="https://myaiplug.github.io/coproducer-web/assets/og-default.jpg" property="og:image"/><meta content="https://myaiplug.github.io/coproducer-web/guides/audio-quality-checklist.html" property="og:url"/><meta content="Pass/fail release checklist for LUFS, true peak, clipping, sample rate, phase, and score ≥ 90 — the same gates CoProducer uses." property="og:description"/><meta content="Audio Quality Release Checklist | CoProducer" property="og:title"/><meta content="en_US" property="og:locale"/><meta content="CoProducer" property="og:site_name"/><meta content="website" property="og:type"/><link href="https://myaiplug.github.io/coproducer-web/llms.txt" rel="alternate" title="llms.txt" type="text/plain"/><meta content="NoDAW Labs" name="author"/><meta content="#050308" name="theme-color"/><meta content="index,follow,max-image-preview:large" name="robots"/>
 <title>Audio Quality Release Checklist | CoProducer</title>
-<meta name="description" content="A pass/fail release checklist for LUFS, true peak, clipping, sample rate, phase, and score — the same gates CoProducer uses on analyze.html.">
-<link rel="canonical" href="https://myaiplug.github.io/coproducer-web/guides/audio-quality-checklist.html">
-<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Rajdhani:wght@500;700&family=Manrope:wght@400;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../css/report.css">
-</head>
+<meta content="Pass/fail release checklist for LUFS, true peak, clipping, sample rate, phase, and score ≥ 90 — the same gates CoProducer uses." name="description"/>
+<link href="https://myaiplug.github.io/coproducer-web/guides/audio-quality-checklist.html" rel="canonical"/>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&amp;family=Rajdhani:wght@500;700&amp;family=Manrope:wght@400;700&amp;display=swap" rel="stylesheet"/>
+<link href="../css/report.css" rel="stylesheet"/>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"CoProducer","item":"https://myaiplug.github.io/coproducer-web/"},{"@type":"ListItem","position":2,"name":"Guides","item":"https://myaiplug.github.io/coproducer-web/guides/index.html"},{"@type":"ListItem","position":3,"name":"Audio Quality Release Checklist","item":"https://myaiplug.github.io/coproducer-web/guides/audio-quality-checklist.html"}]}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"TechArticle","headline":"Audio Quality Release Checklist","description":"Pass/fail release checklist for LUFS, true peak, clipping, sample rate, phase, and score ≥ 90 — the same gates CoProducer uses.","dateModified":"2026-08-21","author":{"@type":"Organization","name":"NoDAW Labs","url":"https://myaiplug.github.io/coproducer-web/","logo":"https://myaiplug.github.io/coproducer-web/assets/og-default.jpg"},"publisher":{"@type":"Organization","name":"NoDAW Labs","url":"https://myaiplug.github.io/coproducer-web/","logo":"https://myaiplug.github.io/coproducer-web/assets/og-default.jpg"},"mainEntityOfPage":"https://myaiplug.github.io/coproducer-web/guides/audio-quality-checklist.html"}</script></head>
 <body>
 <nav>
-  <div class="brand"><i>Co</i>Producer</div>
-  <div class="nav-links">
-    <a href="../index.html">Overview</a>
-    <a href="../analyze.html">Analyze</a>
-    <a href="./">Guides</a>
-    <a href="../comparisons/">Compare</a>
-  </div>
+<div class="brand"><i>Co</i>Producer</div>
+<div class="nav-links">
+<a href="../index.html">Overview</a>
+<a href="../analyze.html">Analyze</a>
+<a href="./">Guides</a>
+<a href="../comparisons/">Compare</a>
+</div>
 </nav>
 <main style="max-width:800px;margin:0 auto">
-  <span style="font-family:var(--mono);font-size:11px;text-transform:uppercase;color:var(--cyan,#22d3ee);letter-spacing:0.1em">Engineering Guide</span>
-  <h1>Release checklist</h1>
-  <p class="meta" style="font-family:var(--mono);font-size:12px;color:var(--muted)">Updated August 2026 · The same gates as Analyze</p>
-  <p>Before you call a mix done, measure it. CoProducer’s analyze table uses these targets. They are engineering floors, not a taste test.</p>
-  <table>
-    <thead><tr><th>Check</th><th>Pass when</th><th>If it fails</th></tr></thead>
-    <tbody>
-      <tr><td>Integrated LUFS</td><td>within 1.5 LU of −14.0</td><td>Loudnorm / gain staging, not more limiting for its own sake</td></tr>
-      <tr><td>True peak</td><td>≤ −1.0 dBTP (0.15 dB epsilon)</td><td>True-peak limiter after loudness, then re-measure</td></tr>
-      <tr><td>Clipped samples</td><td>0</td><td>Go back to the unclipped mix. Limiting cannot restore flats</td></tr>
-      <tr><td>Sample rate</td><td>≥ 44.1 kHz</td><td>Use the session rate, not a bounced 32 kHz MP3</td></tr>
-      <tr><td>Phase correlation</td><td>≥ 0.2</td><td>Fix in the mix. Auto-repair will not flip polarity for you</td></tr>
-      <tr><td>Score</td><td>≥ 90</td><td>Read the findings, apply the plan, listen</td></tr>
-    </tbody>
-  </table>
-  <p>On the homepage A/B, Crazy Stacy moves 70 → 90 by clearing 831 clips. BeatGoHard moves 77 → 95 by parking true peak at −1.0 dBTP. Drippin moves 66 → 93 after 231k clipped samples drop to zero. Those are the same columns this checklist describes.</p>
-  <p>Upload a file on <a href="../analyze.html">Analyze</a> to see <strong>Your upload</strong> next to <strong>If repaired in CoProducer</strong> next to this target column. Code <strong>WEB30</strong> is 30% off Pro ($49 → $34).</p>
-  <p><a class="cp-cta" href="../analyze.html">Run the checklist on a file</a></p>
-</main>
-<footer><div class="wrap">&copy; 2026 NoDAW Labs · CoProducer</div></footer>
+<span style="font-family:var(--mono);font-size:11px;text-transform:uppercase;color:var(--cyan,#22d3ee);letter-spacing:0.1em">Engineering Guide</span>
+<h1>Release checklist</h1>
+<p class="meta" style="font-family:var(--mono);font-size:12px;color:var(--muted)">Updated August 2026 · The same gates as Analyze</p>
+<p>Before you call a mix done, measure it. CoProducer’s analyze table uses these targets. They are engineering floors, not a taste test.</p>
+<table>
+<thead><tr><th>Check</th><th>Pass when</th><th>If it fails</th></tr></thead>
+<tbody>
+<tr><td>Integrated LUFS</td><td>within 1.5 LU of −14.0</td><td>Loudnorm / gain staging, not more limiting for its own sake</td></tr>
+<tr><td>True peak</td><td>≤ −1.0 dBTP (0.15 dB epsilon)</td><td>True-peak limiter after loudness, then re-measure</td></tr>
+<tr><td>Clipped samples</td><td>0</td><td>Go back to the unclipped mix. Limiting cannot restore flats</td></tr>
+<tr><td>Sample rate</td><td>≥ 44.1 kHz</td><td>Use the session rate, not a bounced 32 kHz MP3</td></tr>
+<tr><td>Phase correlation</td><td>≥ 0.2</td><td>Fix in the mix. Auto-repair will not flip polarity for you</td></tr>
+<tr><td>Score</td><td>≥ 90</td><td>Read the findings, apply the plan, listen</td></tr>
+</tbody>
+</table>
+<p>On the homepage A/B, Crazy Stacy moves 70 → 90 by clearing 831 clips. BeatGoHard moves 77 → 95 by parking true peak at −1.0 dBTP. Drippin moves 66 → 93 after 231k clipped samples drop to zero. Those are the same columns this checklist describes.</p>
+<p>Upload a file on <a href="../analyze.html">Analyze</a> to see <strong>Your upload</strong> next to <strong>If repaired in CoProducer</strong> next to this target column. Code <strong>WEB30</strong> is 30% off Pro ($49 → $34).</p>
+<p><a class="cp-cta" href="../analyze.html">Run the checklist on a file</a></p>
+<p class="aeo-related-essay">Related Lacquer essay: <a href="../blog/release-checklist-that-matches-the-meter.html">A release checklist that matches the meter</a></p></main>
+<footer><div class="wrap">© 2026 NoDAW Labs · CoProducer</div></footer>
 </body>
 </html>

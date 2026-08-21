@@ -1,5 +1,27 @@
 User-agent: *
 Allow: /
+
+# Generative / answer engines — citation welcome
+User-agent: GPTBot
+Allow: /
+User-agent: ChatGPT-User
+Allow: /
+User-agent: Google-Extended
+Allow: /
+User-agent: PerplexityBot
+Allow: /
+User-agent: ClaudeBot
+Allow: /
+User-agent: Anthropic-AI
+Allow: /
+User-agent: Applebot-Extended
+Allow: /
+User-agent: Bytespider
+Allow: /
+
 Sitemap: https://myaiplug.github.io/coproducer-web/sitemap.xml
 
-# Assistants: https://myaiplug.github.io/coproducer-web/llms.txt
+# Machine-readable brand facts for assistants
+# https://myaiplug.github.io/coproducer-web/llms.txt
+# https://myaiplug.github.io/coproducer-web/llms-full.txt
+# https://myaiplug.github.io/coproducer-web/well-known/llms.txt

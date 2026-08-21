@@ -1,67 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1" name="viewport"/><meta content="https://myaiplug.github.io/coproducer-web/blog/img/essays/true-peak-is-what-codecs-clip.jpg?v=shd" name="twitter:image"/><meta content="True peak (dBTP) estimates inter-sample peaks. Streaming wants about −1.0 dBTP. A legal sample peak can still clip after AAC or Opus reconstruction." name="twitter:description"/><meta content="True peak is what codecs clip" name="twitter:title"/><meta content="summary_large_image" name="twitter:card"/><meta content="2026-08-21T00:00:00Z" property="article:modified_time"/><meta content="2026-08-20T00:00:00Z" property="article:published_time"/><meta content="1440" property="og:image:height"/><meta content="2560" property="og:image:width"/><meta content="https://myaiplug.github.io/coproducer-web/blog/true-peak-is-what-codecs-clip.html" property="og:url"/><meta content="True peak (dBTP) estimates inter-sample peaks. Streaming wants about −1.0 dBTP. A legal sample peak can still clip after AAC or Opus reconstruction." property="og:description"/><meta content="True peak is what codecs clip" property="og:title"/><meta content="en_US" property="og:locale"/><meta content="CoProducer" property="og:site_name"/><meta content="article" property="og:type"/><link href="https://myaiplug.github.io/coproducer-web/llms.txt" rel="alternate" title="llms.txt" type="text/plain"/><meta content="NoDAW Labs" name="author"/><meta content="#050308" name="theme-color"/><meta content="index,follow,max-image-preview:large" name="robots"/>
 <title>True peak is what codecs clip | Lacquer</title>
-<meta name="description" content="True peak (dBTP) estimates inter-sample peaks. Streaming wants about −1.0 dBTP. A legal sample peak can still clip after AAC or MP3 reconstruction.">
-<link rel="canonical" href="https://myaiplug.github.io/coproducer-web/blog/true-peak-is-what-codecs-clip.html">
-<meta property="og:image" content="https://myaiplug.github.io/coproducer-web/blog/img/essays/true-peak-is-what-codecs-clip.jpg?v=shd">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;1,500;1,600&family=Figtree:wght@400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/journal.css">
-<script type="application/ld+json">
-{"@context":"https://schema.org","@type":"Article","headline":"True peak is what codecs clip","datePublished":"2026-08-20","image":"https://myaiplug.github.io/coproducer-web/blog/img/essays/true-peak-is-what-codecs-clip.jpg?v=shd","author":{"@type":"Organization","name":"NoDAW Labs"}}
-</script>
-<script type="application/ld+json">
-{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
-{"@type":"Question","name":"What is true peak in audio?","acceptedAnswer":{"@type":"Answer","text":"True peak estimates the highest point of the reconstructed analog waveform between digital samples, usually reported in dBTP. It can be higher than the tallest PCM sample."}},
-{"@type":"Question","name":"What true peak should I use for Spotify?","acceptedAnswer":{"@type":"Answer","text":"Keep true peak at or below −1.0 dBTP. That leaves headroom for lossy encoding."}}
-]}
-</script>
-</head>
+<meta content="True peak (dBTP) estimates inter-sample peaks. Streaming wants about −1.0 dBTP. A legal sample peak can still clip after AAC or Opus reconstruction." name="description"/>
+<link href="https://myaiplug.github.io/coproducer-web/blog/true-peak-is-what-codecs-clip.html" rel="canonical"/>
+<meta content="https://myaiplug.github.io/coproducer-web/blog/img/essays/true-peak-is-what-codecs-clip.jpg?v=shd" property="og:image"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;1,500;1,600&amp;family=Figtree:wght@400;500&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<link href="css/journal.css" rel="stylesheet"/>
+
+
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"True peak is what codecs clip","description":"True peak (dBTP) estimates inter-sample peaks. Streaming wants about −1.0 dBTP. A legal sample peak can still clip after AAC or Opus reconstruction.","datePublished":"2026-08-20","dateModified":"2026-08-21","mainEntityOfPage":{"@type":"WebPage","@id":"https://myaiplug.github.io/coproducer-web/blog/true-peak-is-what-codecs-clip.html"},"image":{"@type":"ImageObject","url":"https://myaiplug.github.io/coproducer-web/blog/img/essays/true-peak-is-what-codecs-clip.jpg?v=shd","width":2560,"height":1440},"author":{"@type":"Organization","name":"NoDAW Labs","url":"https://myaiplug.github.io/coproducer-web/","logo":"https://myaiplug.github.io/coproducer-web/assets/og-default.jpg"},"publisher":{"@type":"Organization","name":"NoDAW Labs","url":"https://myaiplug.github.io/coproducer-web/","logo":"https://myaiplug.github.io/coproducer-web/assets/og-default.jpg"},"isPartOf":{"@type":"Blog","name":"Lacquer — CoProducer Journal","url":"https://myaiplug.github.io/coproducer-web/blog/index.html"},"keywords":["true peak","dBTP","inter-sample peaks","AAC","codecs"],"speakable":{"@type":"SpeakableSpecification","cssSelector":[".answer","h1"]}}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Is 0 dBFS sample peak safe?","acceptedAnswer":{"@type":"Answer","text":"Not for streaming. Inter-sample peaks can still overshoot. Measure dBTP."}},{"@type":"Question","name":"Can a limiter restore clipped transients?","acceptedAnswer":{"@type":"Answer","text":"No. It can stop new overs. Flattened peaks stay flattened. CoProducer’s report says so on purpose."}}]}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"CoProducer","item":"https://myaiplug.github.io/coproducer-web/"},{"@type":"ListItem","position":2,"name":"Lacquer Journal","item":"https://myaiplug.github.io/coproducer-web/blog/index.html"},{"@type":"ListItem","position":3,"name":"True peak is what codecs clip","item":"https://myaiplug.github.io/coproducer-web/blog/true-peak-is-what-codecs-clip.html"}]}</script></head>
 <body>
 <header class="top">
-  <a class="mark" href="../index.html"><em>Co</em>Producer</a>
-  <nav class="nav"><a href="index.html">Journal</a><a href="../index.html#ab">A/B</a><a href="../analyze.html">Analyze</a></nav>
-  <a class="cta" href="../analyze.html">Check true peak</a>
+<a class="mark" href="../index.html"><em>Co</em>Producer</a>
+<nav class="nav"><a href="index.html">Journal</a><a href="../index.html#ab">A/B</a><a href="../analyze.html">Analyze</a></nav>
+<a class="cta" href="../analyze.html">Check true peak</a>
 </header>
 <article class="post" id="main">
-  <div class="post-hero"><img src="img/essays/true-peak-is-what-codecs-clip.jpg?v=shd" alt="Precision oscilloscope and converter on black marble"></div>
-  <header>
-    <p class="kicker">Meters · 20 August 2026 · 7 min</p>
-    <h1>True peak is what codecs clip</h1>
-    <p class="meta">NoDAW Labs · Lacquer Vol. 01</p>
-  </header>
-  <p class="answer">Sample peak reads individual PCM values. <strong>True peak (dBTP)</strong> estimates the continuous waveform between those samples. Streaming codecs reconstruct that waveform. If true peak sits above about <strong>−1.0 dBTP</strong>, the encode can clip even when the WAV never touches 0 dBFS.</p>
-
-  <p>A bounce that “doesn’t clip in the DAW” can still crackle on a phone. The DAW is showing you samples. The store is showing the listener a reconstructed analog-like signal after AAC, MP3, or Opus. Between two legal samples there can be a peak the PCM grid never stored. True-peak meters oversample to estimate that peak. That estimate is the number that belongs on a release sheet.</p>
-
-  <h2>Why −1.0 and not 0.0</h2>
-  <p>Lossy codecs are not a bit-perfect pipe. They approximate. A −1.0 dBTP ceiling is the common streaming safety margin so the encoder’s reconstruction does not poke through 0 dBFS. Amazon is often stricter (−2.0 dBTP). If you only have time for one ceiling, use −1.0 and re-measure after the limiter, not before.</p>
-  <p>Place the true-peak limiter last in the delivery chain, after loudness. Loudnorm without a peak cap can still overshoot. CoProducer’s repair plan appends a limiter for that reason. It is boring. Boring is cheap compared with a recall.</p>
-
-  <figure>
-    <img src="img/peak.jpg?v=2" alt="">
-    <figcaption>The waveform between samples is the one the codec will try to rebuild.</figcaption>
-  </figure>
-
-  <h2>A file can pass the sample meter and still fail delivery</h2>
-  <p>BeatGoHard, on the public A/B, starts at <strong>−0.3 dBTP</strong> with zero clipped samples. After repair it sits at <strong>−1.0 dBTP</strong> and the score moves 77 → 95. Nothing about the arrangement changed. The ceiling did. That is the fastest win in this issue: if clips are already zero and you are only 0.7 dB over the ceiling, you do not need a new mix. You need a cap.</p>
-  <div data-ab="beatgohard" data-report></div>
-  <p>Crazy Stacy is harsher: +0.33 dBTP and 831 clipped samples before repair. After repair the clip count is zero; true peak is still +0.04, which CoProducer still paints red. Honest meters do not turn a leftover overshoot green because the story would look nicer.</p>
-
-  <aside class="aside">Listen to BeatGoHard on the <a href="../index.html#ab">A/B player</a>. If you want the handbook: <a href="../guides/true-peak-ceiling.html">true-peak ceiling</a>. If you want a file of your own measured, <a href="../analyze.html">analyze</a> — the web form does not write a master; it tells you the distance.</aside>
-  <dl class="faq">
-    <dt>Is 0 dBFS sample peak safe?</dt>
-    <dd>Not for streaming. Inter-sample peaks can still overshoot. Measure dBTP.</dd>
-    <dt>Can a limiter restore clipped transients?</dt>
-    <dd>No. It can stop new overs. Flattened peaks stay flattened. CoProducer’s report says so on purpose.</dd>
-  </dl>
-</article>
-<section class="comments" data-comments data-thread="peak"></section>
-<script type="module" src="js/studio.js"></script>
-<script type="module" src="js/comments.js"></script>
+<div class="post-hero"><img alt="Precision oscilloscope and converter on black marble" src="img/essays/true-peak-is-what-codecs-clip.jpg?v=shd"/></div>
+<header>
+<p class="kicker">Meters · 20 August 2026 · 7 min</p>
+<h1>True peak is what codecs clip</h1>
+<p class="meta">NoDAW Labs · Lacquer Vol. 01</p>
+</header>
+<p class="answer">Sample peak reads individual PCM values. <strong>True peak (dBTP)</strong> estimates the continuous waveform between those samples. Streaming codecs reconstruct that waveform. If true peak sits above about <strong>−1.0 dBTP</strong>, the encode can clip even when the WAV never touches 0 dBFS.</p>
+<p>A bounce that “doesn’t clip in the DAW” can still crackle on a phone. The DAW is showing you samples. The store is showing the listener a reconstructed analog-like signal after AAC, MP3, or Opus. Between two legal samples there can be a peak the PCM grid never stored. True-peak meters oversample to estimate that peak. That estimate is the number that belongs on a release sheet.</p>
+<h2>Why −1.0 and not 0.0</h2>
+<p>Lossy codecs are not a bit-perfect pipe. They approximate. A −1.0 dBTP ceiling is the common streaming safety margin so the encoder’s reconstruction does not poke through 0 dBFS. Amazon is often stricter (−2.0 dBTP). If you only have time for one ceiling, use −1.0 and re-measure after the limiter, not before.</p>
+<p>Place the true-peak limiter last in the delivery chain, after loudness. Loudnorm without a peak cap can still overshoot. CoProducer’s repair plan appends a limiter for that reason. It is boring. Boring is cheap compared with a recall.</p>
+<figure>
+<img alt="" src="img/peak.jpg?v=2"/>
+<figcaption>The waveform between samples is the one the codec will try to rebuild.</figcaption>
+</figure>
+<h2>A file can pass the sample meter and still fail delivery</h2>
+<p>BeatGoHard, on the public A/B, starts at <strong>−0.3 dBTP</strong> with zero clipped samples. After repair it sits at <strong>−1.0 dBTP</strong> and the score moves 77 → 95. Nothing about the arrangement changed. The ceiling did. That is the fastest win in this issue: if clips are already zero and you are only 0.7 dB over the ceiling, you do not need a new mix. You need a cap.</p>
+<div data-ab="beatgohard" data-report=""></div>
+<p>Crazy Stacy is harsher: +0.33 dBTP and 831 clipped samples before repair. After repair the clip count is zero; true peak is still +0.04, which CoProducer still paints red. Honest meters do not turn a leftover overshoot green because the story would look nicer.</p>
+<aside class="aside">Listen to BeatGoHard on the <a href="../index.html#ab">A/B player</a>. If you want the handbook: <a href="../guides/true-peak-ceiling.html">true-peak ceiling</a>. If you want a file of your own measured, <a href="../analyze.html">analyze</a> — the web form does not write a master; it tells you the distance.</aside>
+<dl class="faq">
+<dt>Is 0 dBFS sample peak safe?</dt>
+<dd>Not for streaming. Inter-sample peaks can still overshoot. Measure dBTP.</dd>
+<dt>Can a limiter restore clipped transients?</dt>
+<dd>No. It can stop new overs. Flattened peaks stay flattened. CoProducer’s report says so on purpose.</dd>
+</dl>
+<nav aria-label="Related essays" class="related-essays" style="margin:48px 0 24px;padding-top:24px;border-top:1px solid rgba(196,165,116,.32)"><h2>Related in Lacquer</h2><ul><li><a href="reencoding-eats-true-peak-headroom.html">Re-encoding eats true-peak headroom</a></li><li><a href="why-streaming-turns-loud-masters-down.html">Why streaming platforms turn loud masters down</a></li><li><a href="release-checklist-that-matches-the-meter.html">A release checklist that matches the meter</a></li></ul></nav></article>
+<section class="comments" data-comments="" data-thread="peak"></section>
+<script src="js/studio.js" type="module"></script>
+<script src="js/comments.js" type="module"></script>
 <footer class="site"><span>Lacquer</span><span><a href="index.html">Journal</a></span></footer>
 </body>
 </html>

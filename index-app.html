@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>CoProducer | App Theme Edition &mdash; Audio Analysis &amp; Reference Matching</title>
-<meta name="description" content="CoProducer app theme variant matching the desktop application screenshot colorway (deep obsidian, teal accent, blue highlights, and emerald pass indicators).">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
-<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800;900&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&family=Rajdhani:wght@500;700&display=swap" rel="stylesheet">
+<meta charset="utf-8"/><meta content="width=device-width,initial-scale=1" name="viewport"/><link href="https://myaiplug.github.io/coproducer-web/" rel="canonical"/><meta content="noindex,follow" name="robots"/>
+<title>CoProducer | Local Audio Analysis, LUFS &amp; Repair</title>
+<meta content="CoProducer app theme variant matching the desktop application screenshot colorway (deep obsidian, teal accent, blue highlights, and emerald pass indicators)." name="description"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800;900&amp;family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@500;700&amp;family=Rajdhani:wght@500;700&amp;display=swap" rel="stylesheet"/>
 <style>
 :root{
   --bg: #090d14;
@@ -78,183 +78,172 @@ footer { width: 100%; text-align: center; padding: 40px 0; border-top: 1px solid
 </head>
 <body>
 <nav>
-  <div class="nav">
-    <div class="brand"><i>Co</i>Producer</div>
-    <div class="links">
-      <a href="#overview">Overview</a>
-      <a href="#ab">A/B Demo</a>
-      <a href="analyze.html">Analyze</a>
-      <a href="#screens">Screenshots</a>
-      <a href="#features">Features</a>
-    </div>
-    <a class="cta" href="analyze.html">Analyze Audio</a>
-  </div>
+<div class="nav">
+<div class="brand"><i>Co</i>Producer</div>
+<div class="links">
+<a href="#overview">Overview</a>
+<a href="#ab">A/B Demo</a>
+<a href="analyze.html">Analyze</a>
+<a href="#screens">Screenshots</a>
+<a href="#features">Features</a>
+</div>
+<a class="cta" href="analyze.html">Analyze Audio</a>
+</div>
 </nav>
-
 <main id="overview">
-  <div class="hero">
-    <div class="hero-grid">
-      <div>
-        <span class="eyebrow">Desktop App Screenshot Edition</span>
-        <h1>Analyze.<br>Refine.<span>Elevate.</span></h1>
-        <p>CoProducer turns a mix into engineering intelligence: loudness, dynamics, stereo information, spectral clues, repair guidance, reference matching and exportable reports in one local-first workflow.</p>
-        <div class="points">
-          <div>Deep technical audio analysis</div>
-          <div>Reference matching &amp; suggestions</div>
-          <div>Auto-repair workflows &amp; reports</div>
-          <div>Local Windows &amp; Mac processing</div>
-        </div>
-        <div class="buttons">
-          <a class="btn" href="analyze.html">Analyze your track</a>
-          <a class="btn alt" href="#ab">Hear A/B Demo</a>
-        </div>
-      </div>
-      <div class="hero-art">
-        <img src="https://raw.githubusercontent.com/myaiplug/coproducer/main/assets/coproducer-screenshot.png" alt="CoProducer product and desktop application">
-      </div>
-    </div>
-  </div>
-
-  <div class="rail-wrap">
-    <div class="rail">
-      <div><b>Deep Audio Analysis</b><small>Loudness, dynamics, spectrum and more.</small></div>
-      <div><b>Reference Matching</b><small>Compare tracks and identify differences.</small></div>
-      <div><b>Smart Suggestions</b><small>Engineering guidance from measured results.</small></div>
-      <div><b>Auto Repair</b><small>Actionable repair workflows.</small></div>
-      <div><b>Export Reports</b><small>Professional HTML reports and data.</small></div>
-    </div>
-  </div>
-
-  <!-- A/B Demonstration Section -->
-  <section id="ab" style="padding:80px 0; border-bottom:1px solid var(--border);">
-    <div class="wrap">
-      <div class="head" style="text-align:center; max-width:700px; margin:0 auto 40px;">
-        <small style="font:700 11px 'JetBrains Mono'; text-transform:uppercase; color:var(--p); letter-spacing:0.1em;">Real engine output</small>
-        <h2 style="font:800 36px 'Barlow Condensed'; text-transform:uppercase; margin:8px 0;">Before and <span style="color:var(--p)">After Repair.</span></h2>
-        <p style="color:var(--muted); font-size:15px;">This pair was analysed and repaired in CoProducer. A and B share one master playhead — switch instantly at the exact sample with zero artifacts, clicks, or skips.</p>
-      </div>
-
-      <div class="card" style="background:var(--surface); border:1px solid var(--border); border-radius:14px; padding:32px; max-width:1000px; margin:0 auto;">
-        <div id="abPlayer" class="cp-player" data-mode="ab">
-          <canvas class="cp-wave" width="1200" height="220" style="width:100%; height:220px; background:#070b11; border:1px solid var(--border); border-radius:8px; cursor:pointer;"></canvas>
-          <div class="cp-transport" style="display:flex; align-items:center; gap:20px; margin-top:16px; font-family:'JetBrains Mono'; font-size:12px;">
-            <button type="button" class="cp-play" style="padding:10px 20px; background:#153835; border:1px solid var(--p); color:var(--p); border-radius:6px; font-weight:800; cursor:pointer; text-transform:uppercase; font-size:10px; letter-spacing:0.1em;">Play</button>
-            <span class="cp-time">0:00</span>
-            <div class="cp-ab" style="display:flex; gap:8px;">
-              <button type="button" data-side="a" class="is-live" style="padding:8px 16px; background:rgba(85,214,190,0.2); border:1px solid var(--p); color:var(--text); border-radius:6px; font-family:'JetBrains Mono'; font-weight:700; cursor:pointer; font-size:10px; text-transform:uppercase;">A Before</button>
-              <button type="button" data-side="b" style="padding:8px 16px; background:var(--surface); border:1px solid var(--border); color:var(--muted); border-radius:6px; font-family:'JetBrains Mono'; font-weight:700; cursor:pointer; font-size:10px; text-transform:uppercase;">B Repaired</button>
-            </div>
-          </div>
-        </div>
-
-        <div class="table-scroll" style="margin-top:32px; overflow:auto;">
-          <table class="cp-table" id="abTable">
-            <thead>
-              <tr><th>Metric</th><th>Before (analysed)</th><th>After (repaired)</th><th>Delta</th></tr>
-            </thead>
-            <tbody>
-              <tr><td>Score</td><td class="live">70</td><td>90</td><td>+20</td></tr>
-              <tr><td>Rating</td><td class="live">Usable after technical corrections</td><td>Release ready</td><td>&mdash;</td></tr>
-              <tr><td>Integrated LUFS</td><td class="live">-12.61 LUFS</td><td>-13.63 LUFS</td><td>-1.02 LU</td></tr>
-              <tr><td>True peak</td><td class="live">+0.33 dBTP</td><td>+0.04 dBTP</td><td>-0.29 dB</td></tr>
-              <tr><td>Clipped samples</td><td class="live" style="color:var(--bad)">831</td><td style="color:var(--green)">0</td><td>-831</td></tr>
-              <tr><td>Dynamic range</td><td class="live">10.40 dB</td><td>10.78 dB</td><td>+0.38 dB</td></tr>
-            </tbody>
-          </table>
-        </div>
-
-        <div style="margin-top:24px; text-align:center;">
-          <a class="cp-cta" href="analyze.html">Analyze your track</a>
-          <p style="margin-top:10px; font-family:'JetBrains Mono'; font-size:12px; color:var(--muted);">Use promo code <strong>WEB30</strong> at checkout for 30% off CoProducer Pro ($49 &rarr; $34)</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="tour" id="screens">
-    <div class="wrap">
-      <div class="head" style="text-align:center; max-width:700px; margin:0 auto 50px;">
-        <small style="font:700 11px 'JetBrains Mono'; text-transform:uppercase; color:var(--p); letter-spacing:0.1em;">The real desktop app</small>
-        <h2 style="font:800 36px 'Barlow Condensed'; text-transform:uppercase; margin:8px 0;">Built for <span style="color:var(--p)">actual sessions.</span></h2>
-        <p style="color:var(--muted)">Real CoProducer screens showing analysis, repair guidance, metadata, waveform playback, spectral visualization and delivery tools.</p>
-      </div>
-      <div class="shots">
-        <article class="shot wide">
-          <img src="https://raw.githubusercontent.com/myaiplug/coproducer/main/assets/coproducer-reference.png" alt="CoProducer real application screenshots">
-          <div class="copy">
-            <h3>Analysis, repair and release workflow</h3>
-            <p>Mix scoring, metadata, repair guidance, waveform playback, spectral balance, spectrograms and conversion tools in the real application.</p>
-          </div>
-        </article>
-        <article class="shot">
-          <img src="https://raw.githubusercontent.com/myaiplug/coproducer/main/assets/coproducer-screenshot.png" alt="CoProducer product image">
-          <div class="copy">
-            <h3>Studio intelligence, not another meter.</h3>
-            <p>CoProducer is built to move from measurement to decision to action.</p>
-          </div>
-        </article>
-        <article class="shot">
-          <img src="https://raw.githubusercontent.com/myaiplug/coproducer/main/assets/coproducer-reference.png" alt="CoProducer waveform and spectrogram">
-          <div class="copy">
-            <h3>See what the mix is doing.</h3>
-            <p>Waveform and spectral views add visual context to engineering decisions.</p>
-          </div>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <section id="features" style="padding:80px 0; border-bottom:1px solid var(--border);">
-    <div class="wrap">
-      <div class="head" style="text-align:center; max-width:700px; margin:0 auto 50px;">
-        <small style="font:700 11px 'JetBrains Mono'; text-transform:uppercase; color:var(--p); letter-spacing:0.1em;">Powerful tools for every engineer</small>
-        <h2 style="font:800 36px 'Barlow Condensed'; text-transform:uppercase; margin:8px 0;">One workflow. <span style="color:var(--p)">More certainty.</span></h2>
-      </div>
-      <div class="tools" style="display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:20px; width:100%;">
-        <div class="card" style="background:var(--surface); border:1px solid var(--border); border-radius:10px; padding:24px;">
-          <strong style="font-size:24px; color:var(--p)">◫</strong>
-          <h3 style="font:700 18px 'Barlow Condensed'; text-transform:uppercase; margin:10px 0 6px;">Dashboard</h3>
-          <p style="color:var(--muted); font-size:13px; margin:0;">Complete technical overview of a mix at a glance.</p>
-        </div>
-        <div class="card" style="background:var(--surface); border:1px solid var(--border); border-radius:10px; padding:24px;">
-          <strong style="font-size:24px; color:var(--p)">◎</strong>
-          <h3 style="font:700 18px 'Barlow Condensed'; text-transform:uppercase; margin:10px 0 6px;">Reference Match</h3>
-          <p style="color:var(--muted); font-size:13px; margin:0;">Compare your track against a reference and see where it diverges.</p>
-        </div>
-        <div class="card" style="background:var(--surface); border:1px solid var(--border); border-radius:10px; padding:24px;">
-          <strong style="font-size:24px; color:var(--p)">✦</strong>
-          <h3 style="font:700 18px 'Barlow Condensed'; text-transform:uppercase; margin:10px 0 6px;">Auto Repair</h3>
-          <p style="color:var(--muted); font-size:13px; margin:0;">Translate technical findings into practical corrective workflows.</p>
-        </div>
-        <div class="card" style="background:var(--surface); border:1px solid var(--border); border-radius:10px; padding:24px;">
-          <strong style="font-size:24px; color:var(--p)">≋</strong>
-          <h3 style="font:700 18px 'Barlow Condensed'; text-transform:uppercase; margin:10px 0 6px;">Waveform + Spectrum</h3>
-          <p style="color:var(--muted); font-size:13px; margin:0;">Inspect audio in time and frequency domains without leaving the session.</p>
-        </div>
-        <div class="card" style="background:var(--surface); border:1px solid var(--border); border-radius:10px; padding:24px;">
-          <strong style="font-size:24px; color:var(--p)">▤</strong>
-          <h3 style="font:700 18px 'Barlow Condensed'; text-transform:uppercase; margin:10px 0 6px;">Reports</h3>
-          <p style="color:var(--muted); font-size:13px; margin:0;">Export technical data and professional HTML reports.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="final" style="padding:100px 0; text-align:center;">
-    <div class="wrap">
-      <h2 style="font:900 48px 'Barlow Condensed'; text-transform:uppercase; margin-bottom:24px;">Stop guessing.<br><span style="color:var(--p)">Inspect the mix.</span></h2>
-      <div class="buttons" style="justify-content:center">
-        <a class="btn" href="analyze.html">Analyze a file</a>
-        <a class="btn alt" href="https://github.com/myaiplug/coproducer/releases/download/v1.0.0-beta/CoProducer-Setup-1.0.0-beta.exe">Download FREE Demo</a>
-      </div>
-    </div>
-  </section>
+<div class="hero">
+<div class="hero-grid">
+<div>
+<span class="eyebrow">Desktop App Screenshot Edition</span>
+<h1>Analyze.<br/>Refine.<span>Elevate.</span></h1>
+<p>CoProducer turns a mix into engineering intelligence: loudness, dynamics, stereo information, spectral clues, repair guidance, reference matching and exportable reports in one local-first workflow.</p>
+<div class="points">
+<div>Deep technical audio analysis</div>
+<div>Reference matching &amp; suggestions</div>
+<div>Auto-repair workflows &amp; reports</div>
+<div>Local Windows &amp; Mac processing</div>
+</div>
+<div class="buttons">
+<a class="btn" href="analyze.html">Analyze your track</a>
+<a class="btn alt" href="#ab">Hear A/B Demo</a>
+</div>
+</div>
+<div class="hero-art">
+<img alt="CoProducer product and desktop application" src="https://raw.githubusercontent.com/myaiplug/coproducer/main/assets/coproducer-screenshot.png"/>
+</div>
+</div>
+</div>
+<div class="rail-wrap">
+<div class="rail">
+<div><b>Deep Audio Analysis</b><small>Loudness, dynamics, spectrum and more.</small></div>
+<div><b>Reference Matching</b><small>Compare tracks and identify differences.</small></div>
+<div><b>Smart Suggestions</b><small>Engineering guidance from measured results.</small></div>
+<div><b>Auto Repair</b><small>Actionable repair workflows.</small></div>
+<div><b>Export Reports</b><small>Professional HTML reports and data.</small></div>
+</div>
+</div>
+<!-- A/B Demonstration Section -->
+<section id="ab" style="padding:80px 0; border-bottom:1px solid var(--border);">
+<div class="wrap">
+<div class="head" style="text-align:center; max-width:700px; margin:0 auto 40px;">
+<small style="font:700 11px 'JetBrains Mono'; text-transform:uppercase; color:var(--p); letter-spacing:0.1em;">Real engine output</small>
+<h2 style="font:800 36px 'Barlow Condensed'; text-transform:uppercase; margin:8px 0;">Before and <span style="color:var(--p)">After Repair.</span></h2>
+<p style="color:var(--muted); font-size:15px;">This pair was analysed and repaired in CoProducer. A and B share one master playhead — switch instantly at the exact sample with zero artifacts, clicks, or skips.</p>
+</div>
+<div class="card" style="background:var(--surface); border:1px solid var(--border); border-radius:14px; padding:32px; max-width:1000px; margin:0 auto;">
+<div class="cp-player" data-mode="ab" id="abPlayer">
+<canvas class="cp-wave" height="220" style="width:100%; height:220px; background:#070b11; border:1px solid var(--border); border-radius:8px; cursor:pointer;" width="1200"></canvas>
+<div class="cp-transport" style="display:flex; align-items:center; gap:20px; margin-top:16px; font-family:'JetBrains Mono'; font-size:12px;">
+<button class="cp-play" style="padding:10px 20px; background:#153835; border:1px solid var(--p); color:var(--p); border-radius:6px; font-weight:800; cursor:pointer; text-transform:uppercase; font-size:10px; letter-spacing:0.1em;" type="button">Play</button>
+<span class="cp-time">0:00</span>
+<div class="cp-ab" style="display:flex; gap:8px;">
+<button class="is-live" data-side="a" style="padding:8px 16px; background:rgba(85,214,190,0.2); border:1px solid var(--p); color:var(--text); border-radius:6px; font-family:'JetBrains Mono'; font-weight:700; cursor:pointer; font-size:10px; text-transform:uppercase;" type="button">A Before</button>
+<button data-side="b" style="padding:8px 16px; background:var(--surface); border:1px solid var(--border); color:var(--muted); border-radius:6px; font-family:'JetBrains Mono'; font-weight:700; cursor:pointer; font-size:10px; text-transform:uppercase;" type="button">B Repaired</button>
+</div>
+</div>
+</div>
+<div class="table-scroll" style="margin-top:32px; overflow:auto;">
+<table class="cp-table" id="abTable">
+<thead>
+<tr><th>Metric</th><th>Before (analysed)</th><th>After (repaired)</th><th>Delta</th></tr>
+</thead>
+<tbody>
+<tr><td>Score</td><td class="live">70</td><td>90</td><td>+20</td></tr>
+<tr><td>Rating</td><td class="live">Usable after technical corrections</td><td>Release ready</td><td>—</td></tr>
+<tr><td>Integrated LUFS</td><td class="live">-12.61 LUFS</td><td>-13.63 LUFS</td><td>-1.02 LU</td></tr>
+<tr><td>True peak</td><td class="live">+0.33 dBTP</td><td>+0.04 dBTP</td><td>-0.29 dB</td></tr>
+<tr><td>Clipped samples</td><td class="live" style="color:var(--bad)">831</td><td style="color:var(--green)">0</td><td>-831</td></tr>
+<tr><td>Dynamic range</td><td class="live">10.40 dB</td><td>10.78 dB</td><td>+0.38 dB</td></tr>
+</tbody>
+</table>
+</div>
+<div style="margin-top:24px; text-align:center;">
+<a class="cp-cta" href="analyze.html">Analyze your track</a>
+<p style="margin-top:10px; font-family:'JetBrains Mono'; font-size:12px; color:var(--muted);">Use promo code <strong>WEB30</strong> at checkout for 30% off CoProducer Pro ($49 → $34)</p>
+</div>
+</div>
+</div>
+</section>
+<section class="tour" id="screens">
+<div class="wrap">
+<div class="head" style="text-align:center; max-width:700px; margin:0 auto 50px;">
+<small style="font:700 11px 'JetBrains Mono'; text-transform:uppercase; color:var(--p); letter-spacing:0.1em;">The real desktop app</small>
+<h2 style="font:800 36px 'Barlow Condensed'; text-transform:uppercase; margin:8px 0;">Built for <span style="color:var(--p)">actual sessions.</span></h2>
+<p style="color:var(--muted)">Real CoProducer screens showing analysis, repair guidance, metadata, waveform playback, spectral visualization and delivery tools.</p>
+</div>
+<div class="shots">
+<article class="shot wide">
+<img alt="CoProducer real application screenshots" src="https://raw.githubusercontent.com/myaiplug/coproducer/main/assets/coproducer-reference.png"/>
+<div class="copy">
+<h3>Analysis, repair and release workflow</h3>
+<p>Mix scoring, metadata, repair guidance, waveform playback, spectral balance, spectrograms and conversion tools in the real application.</p>
+</div>
+</article>
+<article class="shot">
+<img alt="CoProducer product image" src="https://raw.githubusercontent.com/myaiplug/coproducer/main/assets/coproducer-screenshot.png"/>
+<div class="copy">
+<h3>Studio intelligence, not another meter.</h3>
+<p>CoProducer is built to move from measurement to decision to action.</p>
+</div>
+</article>
+<article class="shot">
+<img alt="CoProducer waveform and spectrogram" src="https://raw.githubusercontent.com/myaiplug/coproducer/main/assets/coproducer-reference.png"/>
+<div class="copy">
+<h3>See what the mix is doing.</h3>
+<p>Waveform and spectral views add visual context to engineering decisions.</p>
+</div>
+</article>
+</div>
+</div>
+</section>
+<section id="features" style="padding:80px 0; border-bottom:1px solid var(--border);">
+<div class="wrap">
+<div class="head" style="text-align:center; max-width:700px; margin:0 auto 50px;">
+<small style="font:700 11px 'JetBrains Mono'; text-transform:uppercase; color:var(--p); letter-spacing:0.1em;">Powerful tools for every engineer</small>
+<h2 style="font:800 36px 'Barlow Condensed'; text-transform:uppercase; margin:8px 0;">One workflow. <span style="color:var(--p)">More certainty.</span></h2>
+</div>
+<div class="tools" style="display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:20px; width:100%;">
+<div class="card" style="background:var(--surface); border:1px solid var(--border); border-radius:10px; padding:24px;">
+<strong style="font-size:24px; color:var(--p)">◫</strong>
+<h3 style="font:700 18px 'Barlow Condensed'; text-transform:uppercase; margin:10px 0 6px;">Dashboard</h3>
+<p style="color:var(--muted); font-size:13px; margin:0;">Complete technical overview of a mix at a glance.</p>
+</div>
+<div class="card" style="background:var(--surface); border:1px solid var(--border); border-radius:10px; padding:24px;">
+<strong style="font-size:24px; color:var(--p)">◎</strong>
+<h3 style="font:700 18px 'Barlow Condensed'; text-transform:uppercase; margin:10px 0 6px;">Reference Match</h3>
+<p style="color:var(--muted); font-size:13px; margin:0;">Compare your track against a reference and see where it diverges.</p>
+</div>
+<div class="card" style="background:var(--surface); border:1px solid var(--border); border-radius:10px; padding:24px;">
+<strong style="font-size:24px; color:var(--p)">✦</strong>
+<h3 style="font:700 18px 'Barlow Condensed'; text-transform:uppercase; margin:10px 0 6px;">Auto Repair</h3>
+<p style="color:var(--muted); font-size:13px; margin:0;">Translate technical findings into practical corrective workflows.</p>
+</div>
+<div class="card" style="background:var(--surface); border:1px solid var(--border); border-radius:10px; padding:24px;">
+<strong style="font-size:24px; color:var(--p)">≋</strong>
+<h3 style="font:700 18px 'Barlow Condensed'; text-transform:uppercase; margin:10px 0 6px;">Waveform + Spectrum</h3>
+<p style="color:var(--muted); font-size:13px; margin:0;">Inspect audio in time and frequency domains without leaving the session.</p>
+</div>
+<div class="card" style="background:var(--surface); border:1px solid var(--border); border-radius:10px; padding:24px;">
+<strong style="font-size:24px; color:var(--p)">▤</strong>
+<h3 style="font:700 18px 'Barlow Condensed'; text-transform:uppercase; margin:10px 0 6px;">Reports</h3>
+<p style="color:var(--muted); font-size:13px; margin:0;">Export technical data and professional HTML reports.</p>
+</div>
+</div>
+</div>
+</section>
+<section class="final" style="padding:100px 0; text-align:center;">
+<div class="wrap">
+<h2 style="font:900 48px 'Barlow Condensed'; text-transform:uppercase; margin-bottom:24px;">Stop guessing.<br/><span style="color:var(--p)">Inspect the mix.</span></h2>
+<div class="buttons" style="justify-content:center">
+<a class="btn" href="analyze.html">Analyze a file</a>
+<a class="btn alt" href="https://github.com/myaiplug/coproducer/releases/download/v1.0.0-beta/CoProducer-Setup-1.0.0-beta.exe">Download FREE Demo</a>
+</div>
+</div>
+</section>
 </main>
-
 <footer>
-  <div class="wrap">&copy; 2026 NoDAW Labs &middot; CoProducer &middot; Local-first audio engineering workflow</div>
+<div class="wrap">© 2026 NoDAW Labs · CoProducer · Local-first audio engineering workflow</div>
 </footer>
-
 <script>
 class ABPlayer {
   constructor(root) {

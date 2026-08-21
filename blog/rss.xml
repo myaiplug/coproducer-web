@@ -1,150 +1,171 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<rss version="2.0">
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Lacquer — CoProducer Journal</title>
-    <link>https://myaiplug.github.io/coproducer-web/blog/</link>
-    <description>Twenty essays on loudness, true peak, repair, stems, ScrewAI, and local .bat workflows.</description>
+    <link>https://myaiplug.github.io/coproducer-web/blog/index.html</link>
+    <atom:link href="https://myaiplug.github.io/coproducer-web/blog/rss.xml" rel="self" type="application/rss+xml"/>
+    <description>Answer-first essays on loudness, true peak, repair, stems, ScrewAI, and local .bat workflows.</description>
     <language>en-us</language>
     <lastBuildDate>Thu, 21 Aug 2026 00:00:00 GMT</lastBuildDate>
-    <item>
+        <item>
       <title>Why streaming platforms turn loud masters down</title>
       <link>https://myaiplug.github.io/coproducer-web/blog/why-streaming-turns-loud-masters-down.html</link>
-      <guid>https://myaiplug.github.io/coproducer-web/blog/why-streaming-turns-loud-masters-down.html</guid>
+      <guid isPermaLink="true">https://myaiplug.github.io/coproducer-web/blog/why-streaming-turns-loud-masters-down.html</guid>
       <pubDate>Thu, 21 Aug 2026 00:00:00 GMT</pubDate>
-      <description>They normalize toward −14 LUFS. A hotter bounce is turned down, not rewarded.</description>
+      <description>Streaming services normalize toward −14 LUFS (Apple closer to −16). A hotter master is turned down, not played louder. Measure integrated LUFS before you limit again.</description>
+      <enclosure url="https://myaiplug.github.io/coproducer-web/blog/img/essays/why-streaming-turns-loud-masters-down.jpg?v=shd" type="image/jpeg" length="0"/>
     </item>
     <item>
       <title>True peak is what codecs clip</title>
       <link>https://myaiplug.github.io/coproducer-web/blog/true-peak-is-what-codecs-clip.html</link>
-      <guid>https://myaiplug.github.io/coproducer-web/blog/true-peak-is-what-codecs-clip.html</guid>
+      <guid isPermaLink="true">https://myaiplug.github.io/coproducer-web/blog/true-peak-is-what-codecs-clip.html</guid>
       <pubDate>Thu, 21 Aug 2026 00:00:00 GMT</pubDate>
-      <description>Sample peak can look legal while AAC reconstructs an overshoot. Aim ≤ −1.0 dBTP.</description>
+      <description>True peak (dBTP) estimates inter-sample peaks. Streaming wants about −1.0 dBTP. A legal sample peak can still clip after AAC or Opus reconstruction.</description>
+      <enclosure url="https://myaiplug.github.io/coproducer-web/blog/img/essays/true-peak-is-what-codecs-clip.jpg?v=shd" type="image/jpeg" length="0"/>
     </item>
     <item>
-      <title>What a 70-to-90 repair actually changes</title>
+      <title>What a 70-to-90 CoProducer repair actually changes</title>
       <link>https://myaiplug.github.io/coproducer-web/blog/what-a-70-to-90-repair-changes.html</link>
-      <guid>https://myaiplug.github.io/coproducer-web/blog/what-a-70-to-90-repair-changes.html</guid>
+      <guid isPermaLink="true">https://myaiplug.github.io/coproducer-web/blog/what-a-70-to-90-repair-changes.html</guid>
       <pubDate>Thu, 21 Aug 2026 00:00:00 GMT</pubDate>
-      <description>Crazy Stacy 70→90, BeatGoHard 77→95, Drippin 66→93. Delivery pass, not a remix.</description>
+      <description>Public A/B proofs: Crazy Stacy 70→90 (831 clips→0), BeatGoHard 77→95, Drippin 66→93. A delivery pass — not a remix or taste rewrite.</description>
+      <enclosure url="https://myaiplug.github.io/coproducer-web/blog/img/essays/what-a-70-to-90-repair-changes.jpg?v=shd" type="image/jpeg" length="0"/>
     </item>
     <item>
-      <title>Should you upload an unreleased master?</title>
+      <title>Should you upload an unreleased master to the cloud?</title>
       <link>https://myaiplug.github.io/coproducer-web/blog/should-you-upload-an-unreleased-master.html</link>
-      <guid>https://myaiplug.github.io/coproducer-web/blog/should-you-upload-an-unreleased-master.html</guid>
+      <guid isPermaLink="true">https://myaiplug.github.io/coproducer-web/blog/should-you-upload-an-unreleased-master.html</guid>
       <pubDate>Thu, 21 Aug 2026 00:00:00 GMT</pubDate>
-      <description>Only if you accept a vendor holding the file. Metering can stay local.</description>
+      <description>Upload an unreleased master only if you accept a vendor holding the file. Loudness, true peak, and clip checks can stay fully local with CoProducer.</description>
+      <enclosure url="https://myaiplug.github.io/coproducer-web/blog/img/essays/should-you-upload-an-unreleased-master.jpg?v=shd" type="image/jpeg" length="0"/>
     </item>
     <item>
       <title>A release checklist that matches the meter</title>
       <link>https://myaiplug.github.io/coproducer-web/blog/release-checklist-that-matches-the-meter.html</link>
-      <guid>https://myaiplug.github.io/coproducer-web/blog/release-checklist-that-matches-the-meter.html</guid>
+      <guid isPermaLink="true">https://myaiplug.github.io/coproducer-web/blog/release-checklist-that-matches-the-meter.html</guid>
       <pubDate>Thu, 21 Aug 2026 00:00:00 GMT</pubDate>
-      <description>Six gates: LUFS, true peak, clips, sample rate, phase, score ≥ 90.</description>
+      <description>Release checklist: −14 LUFS ±1.5, true peak ≤ −1.0 dBTP, 0 clipped samples, ≥44.1 kHz, phase ≥ 0.2, score ≥ 90. Same gates CoProducer scores.</description>
+      <enclosure url="https://myaiplug.github.io/coproducer-web/blog/img/essays/release-checklist-that-matches-the-meter.jpg?v=shd" type="image/jpeg" length="0"/>
     </item>
     <item>
       <title>Crest factor is not loudness</title>
       <link>https://myaiplug.github.io/coproducer-web/blog/crest-factor-is-not-loudness.html</link>
-      <guid>https://myaiplug.github.io/coproducer-web/blog/crest-factor-is-not-loudness.html</guid>
+      <guid isPermaLink="true">https://myaiplug.github.io/coproducer-web/blog/crest-factor-is-not-loudness.html</guid>
       <pubDate>Thu, 21 Aug 2026 00:00:00 GMT</pubDate>
-      <description>Crest factor describes peak-to-RMS height. LUFS describes perceived loudness over time. You can raise crest and still miss −14 LUFS, or hit…</description>
+      <description>Crest factor is peak-to-RMS height. LUFS is perceived loudness over time. You can raise crest and still miss −14 LUFS — or hit −14 with a crushed crest.</description>
+      <enclosure url="https://myaiplug.github.io/coproducer-web/blog/img/essays/crest-factor-is-not-loudness.jpg?v=shd" type="image/jpeg" length="0"/>
     </item>
     <item>
       <title>Phase correlation is a mono audition</title>
       <link>https://myaiplug.github.io/coproducer-web/blog/phase-correlation-and-mono.html</link>
-      <guid>https://myaiplug.github.io/coproducer-web/blog/phase-correlation-and-mono.html</guid>
+      <guid isPermaLink="true">https://myaiplug.github.io/coproducer-web/blog/phase-correlation-and-mono.html</guid>
       <pubDate>Thu, 21 Aug 2026 00:00:00 GMT</pubDate>
-      <description>Phase correlation near 0 or negative means the mix will thin or cancel in mono. CoProducer treats values under about 0.2 as a fail.…</description>
+      <description>Phase near 0 or negative means the mix thins or cancels in mono. CoProducer fails values under about 0.2. Auto-repair will not flip polarity for you.</description>
+      <enclosure url="https://myaiplug.github.io/coproducer-web/blog/img/essays/phase-correlation-and-mono.jpg?v=shd" type="image/jpeg" length="0"/>
     </item>
     <item>
       <title>Quiet masters get turned up — and so does the noise</title>
       <link>https://myaiplug.github.io/coproducer-web/blog/quiet-masters-and-noise-floor.html</link>
-      <guid>https://myaiplug.github.io/coproducer-web/blog/quiet-masters-and-noise-floor.html</guid>
+      <guid isPermaLink="true">https://myaiplug.github.io/coproducer-web/blog/quiet-masters-and-noise-floor.html</guid>
       <pubDate>Thu, 21 Aug 2026 00:00:00 GMT</pubDate>
-      <description>Streaming turn-up applies to quiet files as well as turn-down to hot ones. A −20 LUFS master may be gained up, which lifts hiss, rumble,…</description>
+      <description>Streaming turn-up lifts quiet files. A −20 LUFS master may be gained up, which also lifts hiss, rumble, and room tone. Quiet is not a free pass.</description>
+      <enclosure url="https://myaiplug.github.io/coproducer-web/blog/img/essays/quiet-masters-and-noise-floor.jpg?v=shd" type="image/jpeg" length="0"/>
     </item>
     <item>
       <title>When not to reach for the limiter</title>
       <link>https://myaiplug.github.io/coproducer-web/blog/when-not-to-reach-for-the-limiter.html</link>
-      <guid>https://myaiplug.github.io/coproducer-web/blog/when-not-to-reach-for-the-limiter.html</guid>
+      <guid isPermaLink="true">https://myaiplug.github.io/coproducer-web/blog/when-not-to-reach-for-the-limiter.html</guid>
       <pubDate>Thu, 21 Aug 2026 00:00:00 GMT</pubDate>
-      <description>Do not reach for another limiter when clipped samples are already non-zero, when LUFS is only slightly hot, or when the mix problem is…</description>
+      <description>Skip another limiter when clips are already non-zero, LUFS is only slightly hot, or the real problem is arrangement, noise, or a bad edit — not peak height.</description>
+      <enclosure url="https://myaiplug.github.io/coproducer-web/blog/img/essays/when-not-to-reach-for-the-limiter.jpg?v=shd" type="image/jpeg" length="0"/>
     </item>
     <item>
       <title>Sample rate and bit depth are delivery hygiene</title>
       <link>https://myaiplug.github.io/coproducer-web/blog/sample-rate-and-bit-depth-for-delivery.html</link>
-      <guid>https://myaiplug.github.io/coproducer-web/blog/sample-rate-and-bit-depth-for-delivery.html</guid>
+      <guid isPermaLink="true">https://myaiplug.github.io/coproducer-web/blog/sample-rate-and-bit-depth-for-delivery.html</guid>
       <pubDate>Thu, 21 Aug 2026 00:00:00 GMT</pubDate>
-      <description>CoProducer fails sample rates under 44.1 kHz. A 32 kHz MP3 labeled MASTER is not a master. Bit depth and rate mistakes are cheap to prevent…</description>
+      <description>CoProducer fails sample rates under 44.1 kHz. A 32 kHz MP3 labeled MASTER is not a master. Bit depth and rate are hygiene, not vibe.</description>
+      <enclosure url="https://myaiplug.github.io/coproducer-web/blog/img/essays/sample-rate-and-bit-depth-for-delivery.jpg?v=shd" type="image/jpeg" length="0"/>
     </item>
     <item>
       <title>Reference matching without guesswork</title>
       <link>https://myaiplug.github.io/coproducer-web/blog/reference-matching-without-guesswork.html</link>
-      <guid>https://myaiplug.github.io/coproducer-web/blog/reference-matching-without-guesswork.html</guid>
+      <guid isPermaLink="true">https://myaiplug.github.io/coproducer-web/blog/reference-matching-without-guesswork.html</guid>
       <pubDate>Thu, 21 Aug 2026 00:00:00 GMT</pubDate>
-      <description>Reference matching means comparing meters, not vibes. CoProducer’s divergence table shows where your bounce sits against a reference on…</description>
+      <description>Reference matching means comparing meters, not vibes. CoProducer’s divergence table shows where your bounce sits versus a reference on real gates.</description>
+      <enclosure url="https://myaiplug.github.io/coproducer-web/blog/img/essays/reference-matching-without-guesswork.jpg?v=shd" type="image/jpeg" length="0"/>
     </item>
     <item>
       <title>Album consistency is a batch problem</title>
       <link>https://myaiplug.github.io/coproducer-web/blog/album-consistency-in-one-meter.html</link>
-      <guid>https://myaiplug.github.io/coproducer-web/blog/album-consistency-in-one-meter.html</guid>
+      <guid isPermaLink="true">https://myaiplug.github.io/coproducer-web/blog/album-consistency-in-one-meter.html</guid>
       <pubDate>Thu, 21 Aug 2026 00:00:00 GMT</pubDate>
-      <description>Album consistency means every track clears the same delivery gates and sits in a similar loudness lane. That is a batch measurement…</description>
+      <description>Album consistency means every track clears the same delivery gates and sits in a similar loudness lane — a batch measurement problem, not one “final” bounce.</description>
+      <enclosure url="https://myaiplug.github.io/coproducer-web/blog/img/essays/album-consistency-in-one-meter.jpg?v=shd" type="image/jpeg" length="0"/>
     </item>
     <item>
       <title>Why HTML, JSON, and TXT all matter</title>
       <link>https://myaiplug.github.io/coproducer-web/blog/why-three-report-formats.html</link>
-      <guid>https://myaiplug.github.io/coproducer-web/blog/why-three-report-formats.html</guid>
+      <guid isPermaLink="true">https://myaiplug.github.io/coproducer-web/blog/why-three-report-formats.html</guid>
       <pubDate>Thu, 21 Aug 2026 00:00:00 GMT</pubDate>
-      <description>HTML is for humans and clients. JSON is for pipelines. TXT is for quick notes and tickets. CoProducer’s analyzer .bat writes all three…</description>
+      <description>HTML is for humans and clients. JSON is for pipelines. TXT is for quick notes and tickets. CoProducer writes all three so the same facts travel cleanly.</description>
+      <enclosure url="https://myaiplug.github.io/coproducer-web/blog/img/essays/why-three-report-formats.jpg?v=shd" type="image/jpeg" length="0"/>
     </item>
     <item>
       <title>Local tools beat upload queues</title>
       <link>https://myaiplug.github.io/coproducer-web/blog/local-tools-beat-upload-queues.html</link>
-      <guid>https://myaiplug.github.io/coproducer-web/blog/local-tools-beat-upload-queues.html</guid>
+      <guid isPermaLink="true">https://myaiplug.github.io/coproducer-web/blog/local-tools-beat-upload-queues.html</guid>
       <pubDate>Thu, 21 Aug 2026 00:00:00 GMT</pubDate>
-      <description>Local .bat and desktop tools skip upload queues, retention policies, and per-track metering fees. If the job is measurement, stems, or…</description>
+      <description>Local .bat and desktop tools skip upload queues, retention policies, and per-track metering fees. Keep measurement, stems, and syrup renders on your machine.</description>
+      <enclosure url="https://myaiplug.github.io/coproducer-web/blog/img/essays/local-tools-beat-upload-queues.jpg?v=shd" type="image/jpeg" length="0"/>
     </item>
     <item>
       <title>Stems diagnose mixes — they do not replace them</title>
       <link>https://myaiplug.github.io/coproducer-web/blog/stems-diagnose-mixes-do-not-replace-them.html</link>
-      <guid>https://myaiplug.github.io/coproducer-web/blog/stems-diagnose-mixes-do-not-replace-them.html</guid>
+      <guid isPermaLink="true">https://myaiplug.github.io/coproducer-web/blog/stems-diagnose-mixes-do-not-replace-them.html</guid>
       <pubDate>Thu, 21 Aug 2026 00:00:00 GMT</pubDate>
-      <description>Stem separation isolates parts so you can hear collisions. It does not invent a better arrangement. Use StemSplit to diagnose; use the mix…</description>
+      <description>Stem separation isolates parts so you can hear collisions. It does not invent a better arrangement. Use stems to diagnose, then fix the mix.</description>
+      <enclosure url="https://myaiplug.github.io/coproducer-web/blog/img/essays/stems-diagnose-mixes-do-not-replace-them.jpg?v=shd" type="image/jpeg" length="0"/>
     </item>
     <item>
       <title>Screw tempo still needs a legal peak</title>
       <link>https://myaiplug.github.io/coproducer-web/blog/screw-tempo-still-needs-a-legal-peak.html</link>
-      <guid>https://myaiplug.github.io/coproducer-web/blog/screw-tempo-still-needs-a-legal-peak.html</guid>
+      <guid isPermaLink="true">https://myaiplug.github.io/coproducer-web/blog/screw-tempo-still-needs-a-legal-peak.html</guid>
       <pubDate>Thu, 21 Aug 2026 00:00:00 GMT</pubDate>
-      <description>Slowing a track for syrup aesthetics changes duration and crest, not the laws of true peak. A screwed render can still fail −1.0 dBTP.…</description>
+      <description>Slowing a track for syrup aesthetics changes duration and crest, not true-peak law. A screwed render still needs ≤ −1.0 dBTP before upload.</description>
+      <enclosure url="https://myaiplug.github.io/coproducer-web/blog/img/essays/screw-tempo-still-needs-a-legal-peak.jpg?v=shd" type="image/jpeg" length="0"/>
     </item>
     <item>
       <title>Vertical video is a loudness trap</title>
       <link>https://myaiplug.github.io/coproducer-web/blog/vertical-video-is-a-loudness-trap.html</link>
-      <guid>https://myaiplug.github.io/coproducer-web/blog/vertical-video-is-a-loudness-trap.html</guid>
+      <guid isPermaLink="true">https://myaiplug.github.io/coproducer-web/blog/vertical-video-is-a-loudness-trap.html</guid>
       <pubDate>Thu, 21 Aug 2026 00:00:00 GMT</pubDate>
-      <description>Shorts, Reels, and Stories normalize differently from music stores, but crushed dialog and clipped music still fail ears. Resize bats do…</description>
+      <description>Shorts, Reels, and Stories normalize differently from music stores, but crushed dialog and clipped music still fail. Measure before you post vertical.</description>
+      <enclosure url="https://myaiplug.github.io/coproducer-web/blog/img/essays/vertical-video-is-a-loudness-trap.jpg?v=shd" type="image/jpeg" length="0"/>
     </item>
     <item>
       <title>Mastering .bat versus opening the session</title>
       <link>https://myaiplug.github.io/coproducer-web/blog/mastering-bat-vs-opening-the-session.html</link>
-      <guid>https://myaiplug.github.io/coproducer-web/blog/mastering-bat-vs-opening-the-session.html</guid>
+      <guid isPermaLink="true">https://myaiplug.github.io/coproducer-web/blog/mastering-bat-vs-opening-the-session.html</guid>
       <pubDate>Thu, 21 Aug 2026 00:00:00 GMT</pubDate>
-      <description>A mastering .bat is for trusted delivery passes on finished mixes. Opening the session is for problems the bat cannot see: arrangement, bad…</description>
+      <description>A mastering .bat is for trusted delivery passes on finished mixes. Open the session when arrangement, bad edits, or clipped vocals need real surgery.</description>
+      <enclosure url="https://myaiplug.github.io/coproducer-web/blog/img/essays/mastering-bat-vs-opening-the-session.jpg?v=shd" type="image/jpeg" length="0"/>
     </item>
     <item>
       <title>How to read a CoProducer score</title>
       <link>https://myaiplug.github.io/coproducer-web/blog/how-to-read-a-coproducer-score.html</link>
-      <guid>https://myaiplug.github.io/coproducer-web/blog/how-to-read-a-coproducer-score.html</guid>
+      <guid isPermaLink="true">https://myaiplug.github.io/coproducer-web/blog/how-to-read-a-coproducer-score.html</guid>
       <pubDate>Thu, 21 Aug 2026 00:00:00 GMT</pubDate>
-      <description>A CoProducer score ≥ 90 means release-ready against the tool’s gates — not a Grammy. Read the findings. A 70 with 831 clips is a different…</description>
+      <description>A CoProducer score ≥ 90 means release-ready against the tool’s gates — not a Grammy. Read the findings: a 70 with 831 clips is a different emergency than a 77.</description>
+      <enclosure url="https://myaiplug.github.io/coproducer-web/blog/img/essays/how-to-read-a-coproducer-score.jpg?v=shd" type="image/jpeg" length="0"/>
     </item>
     <item>
       <title>Re-encoding eats true-peak headroom</title>
       <link>https://myaiplug.github.io/coproducer-web/blog/reencoding-eats-true-peak-headroom.html</link>
-      <guid>https://myaiplug.github.io/coproducer-web/blog/reencoding-eats-true-peak-headroom.html</guid>
+      <guid isPermaLink="true">https://myaiplug.github.io/coproducer-web/blog/reencoding-eats-true-peak-headroom.html</guid>
       <pubDate>Thu, 21 Aug 2026 00:00:00 GMT</pubDate>
-      <description>Every lossy encode can invent new inter-sample peaks. Leaving only 0.1 dB of true-peak margin is how a “clean” WAV becomes a clipped AAC.…</description>
+      <description>Every lossy encode can invent new inter-sample peaks. Leaving only 0.1 dB of true-peak margin is how a ‘clean’ WAV becomes a clipped stream.</description>
+      <enclosure url="https://myaiplug.github.io/coproducer-web/blog/img/essays/reencoding-eats-true-peak-headroom.jpg?v=shd" type="image/jpeg" length="0"/>
     </item>
   </channel>
 </rss>
