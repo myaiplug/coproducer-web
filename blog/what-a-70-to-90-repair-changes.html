@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>What a 70-to-90 CoProducer repair actually changes | Lacquer</title>
+<meta name="description" content="Crazy Stacy scored 70 then 90 in CoProducer: 831 clips to 0. BeatGoHard 77→95. Drippin 66→93. Delivery repair is not a new mix. Hear the A/B.">
+<link rel="canonical" href="https://myaiplug.github.io/coproducer-web/blog/what-a-70-to-90-repair-changes.html">
+<meta property="og:image" content="https://myaiplug.github.io/coproducer-web/blog/img/essays/what-a-70-to-90-repair-changes.jpg?v=shd">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;1,500;1,600&family=Figtree:wght@400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/journal.css">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Article","headline":"What a 70-to-90 repair actually changes","datePublished":"2026-08-20","image":"https://myaiplug.github.io/coproducer-web/blog/img/essays/what-a-70-to-90-repair-changes.jpg?v=shd","author":{"@type":"Organization","name":"NoDAW Labs"}}
+</script>
+</head>
+<body>
+<header class="top">
+  <a class="mark" href="../index.html"><em>Co</em>Producer</a>
+  <nav class="nav"><a href="index.html">Journal</a><a href="../index.html#ab">A/B</a><a href="../analyze.html">Analyze</a></nav>
+  <a class="cta" href="../index.html#ab">Hear the pair</a>
+</header>
+<article class="post" id="main">
+  <div class="post-hero"><img src="img/essays/what-a-70-to-90-repair-changes.jpg?v=shd" alt="Two analog tape reels on a dark bench, one worn, one taut"></div>
+  <header>
+    <p class="kicker">Proof · 20 August 2026 · 9 min</p>
+    <h1>What a 70-to-90 repair actually changes</h1>
+    <p class="meta">NoDAW Labs · measured pairs</p>
+  </header>
+  <p class="answer">On Crazy Stacy, CoProducer’s score moved <strong>70 → 90</strong>. Clipped samples went <strong>831 → 0</strong>. Integrated LUFS moved −12.61 → −13.63. True peak improved from +0.33 dBTP. That is a delivery pass, not a remix, not a new 808, not a vocal tune.</p>
+
+  <p>People hear “AI repair” and imagine a different record. These three public pairs are the opposite. Same song. Same start time. Forty-five seconds. Switch A/B on one playhead. The change is ceiling, clip count, and loudness lane. If the chorus still bothers you after that, the mix is the job — not another limiter.</p>
+  <div data-ab="crazy-stacy" data-report></div>
+
+  <h2>Three public pairs</h2>
+  <table>
+    <thead><tr><th>Title</th><th>Before</th><th>After</th><th>What moved</th></tr></thead>
+    <tbody>
+      <tr><td>Crazy Stacy</td><td>70</td><td>90</td><td>831 clips → 0</td></tr>
+      <tr><td>BeatGoHard</td><td>77</td><td>95</td><td>True peak −0.3 → −1.0 dBTP</td></tr>
+      <tr><td>Drippin</td><td>66</td><td>93</td><td>231,310 clips → 0; LUFS −11.92 → −14.12</td></tr>
+    </tbody>
+  </table>
+  <p>The table under the player colors a fail red and a pass green against the same gates as Analyze: score ≥ 90, LUFS near −14, true peak ≤ −1.0 dBTP, clips = 0. Crazy Stacy’s after true peak is still +0.04. It stays red. That leftover is more useful than a fake 100.</p>
+
+  <figure>
+    <img src="img/repair.jpg?v=2" alt="">
+    <figcaption>Repair is tension restored to a delivery, not a new performance.</figcaption>
+  </figure>
+
+  <h2>What the engine will not claim</h2>
+  <p>Phase and stereo width are mix work. Auto-repair does not “fix” a negative correlation. Clipped transients cannot be reconstructed; the caution stays even when output peaks are limited. The web analyzer therefore <em>projects</em> post-repair stats instead of handing you a downloaded master. If you want the WAV, that is the desktop app — one instrument, one license, no monthly upload club.</p>
+  <p>Time saved: you stop rendering five “final_final” limiters to chase loudness the store will undo. You measure, you cap, you listen for whether the clip count was the actual problem. On Drippin it was. On BeatGoHard it was only the ceiling. Different medicine. Same meter.</p>
+
+  <aside class="aside">Hear the three chips on the <a href="../index.html#ab">homepage A/B</a>. The desktop app is where Pedalboard/FFmpeg write a file. <a href="../pricing.html">Pro is $49, or $34 with WEB30</a> — mentioned once, because the numbers above are the advert.</aside>
+  <dl class="faq">
+    <dt>Did the score floor cheat the after number?</dt>
+    <dd>CoProducer will not let a repair print a worse score than the pre-repair file. These jumps are still earned by clips and peak, not by a floor alone.</dd>
+    <dt>Can I A/B my own bounce on the website?</dt>
+    <dd>You can upload for measurement and a projected repair column. You cannot download a repaired mix from the web form. That is intentional.</dd>
+  </dl>
+</article>
+  <div data-stems></div>
+<section class="comments" data-comments data-thread="repair"></section>
+<script type="module" src="js/studio.js"></script>
+<script type="module" src="js/comments.js"></script>
+<footer class="site"><span>Lacquer</span><span><a href="index.html">Journal</a></span></footer>
+</body>
+</html>

@@ -1,0 +1,29 @@
+{
+  "note": "Drop more examples as {id}/vocals.m4a (and drums, bass, other, …) then add a track object here. base may be a folder under this file or an https origin with CORS. A random track loads each visit.",
+  "tracks": [
+    {
+      "id": "tantric-breakdown",
+      "title": "Acoustic session",
+      "artist": "Demo split",
+      "base": "./tantric-breakdown/",
+      "stems": [
+        { "id": "vocals", "label": "Vocals", "file": "vocals.m4a", "color": "#e84cff" },
+        { "id": "drums", "label": "Drums", "file": "drums.m4a", "color": "#c4a574" },
+        { "id": "bass", "label": "Bass", "file": "bass.m4a", "color": "#c45cff" },
+        { "id": "other", "label": "Other", "file": "other.m4a", "color": "#c9ff4d" }
+      ]
+    },
+    {
+      "id": "bz_onit",
+      "title": "Electronic session",
+      "artist": "Demo split",
+      "base": "https://liminal-stemsplit.onrender.com/stems/",
+      "stems": [
+        { "id": "vocals", "label": "Vocals", "file": "vocals.wav", "color": "#e84cff" },
+        { "id": "drums", "label": "Drums", "file": "drums.wav", "color": "#c4a574" },
+        { "id": "bass", "label": "Bass", "file": "bass.wav", "color": "#c45cff" },
+        { "id": "other", "label": "Other", "file": "other.wav", "color": "#c9ff4d" }
+      ]
+    }
+  ]
+}

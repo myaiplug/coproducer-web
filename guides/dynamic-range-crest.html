@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Dynamic Range and Crest Factor | CoProducer</title>
+<meta name="description" content="How CoProducer reads crest-based dynamic range, why streaming loudness is not the same as punch, and when a low DR number is a warning.">
+<link rel="canonical" href="https://myaiplug.github.io/coproducer-web/guides/dynamic-range-crest.html">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Rajdhani:wght@500;700&family=Manrope:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/report.css">
+</head>
+<body>
+<nav>
+  <div class="brand"><i>Co</i>Producer</div>
+  <div class="nav-links">
+    <a href="../index.html">Overview</a>
+    <a href="../analyze.html">Analyze</a>
+    <a href="./">Guides</a>
+    <a href="../comparisons/">Compare</a>
+  </div>
+</nav>
+<main style="max-width:800px;margin:0 auto">
+  <span style="font-family:var(--mono);font-size:11px;text-transform:uppercase;color:var(--cyan,#22d3ee);letter-spacing:0.1em">Engineering Guide</span>
+  <h1>Dynamic range &amp; crest</h1>
+  <p style="font-family:var(--mono);font-size:12px;color:var(--muted)">Updated August 2026 · Punch vs loudness</p>
+  <p>Loudness (LUFS) answers “how loud does this feel over the whole song?” Crest-based dynamic range answers “how much headroom is left between RMS and peak?” You can hit −14 LUFS with either a punchy mix or a squashed one. The DR number tells you which you have.</p>
+  <h2>What CoProducer reports</h2>
+  <p>On a single-file report you will see <strong>Dynamic range (dB)</strong> and <strong>Crest factor</strong>. A crest around 3× with DR under ~5 dB is the restricted-dynamics warning: the limiter is doing too much of the arrangement. That is a mix problem, not something loudnorm is meant to “fix.”</p>
+  <table>
+    <thead><tr><th>You see</th><th>Usually means</th></tr></thead>
+    <tbody>
+      <tr><td>DR &gt; 10 dB, LUFS near −14</td><td>Streaming-safe with room to breathe</td></tr>
+      <tr><td>LUFS hot, DR still healthy</td><td>Turn it down. Do not add another limiter first</td></tr>
+      <tr><td>DR collapsed, true peak still over</td><td>Brickwalled and still clipping codecs — worst of both</td></tr>
+    </tbody>
+  </table>
+  <p>On the A/B demo, Drippin starts at 7.98 dB DR and +1.06 dBTP. After repair, clips are gone and LUFS sits near −14. The crest comes back a little because the overs are no longer glued to 0 dBFS. Listen to transients, not just the score.</p>
+  <p><a class="cp-cta" href="../index.html#ab">A/B the dynamics change</a></p>
+</main>
+<footer><div class="wrap">&copy; 2026 NoDAW Labs · CoProducer</div></footer>
+</body>
+</html>

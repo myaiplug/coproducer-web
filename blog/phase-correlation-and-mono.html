@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Phase correlation is a mono audition | Lacquer</title>
+<meta name="description" content="Phase correlation near 0 or negative means the mix will thin or cancel in mono. CoProducer treats values under about 0.2 as a fail. Auto-repair will not flip ">
+<link rel="canonical" href="https://myaiplug.github.io/coproducer-web/blog/phase-correlation-and-mono.html">
+<meta property="og:title" content="Phase correlation is a mono audition">
+<meta property="og:description" content="Phase correlation near 0 or negative means the mix will thin or cancel in mono. CoProducer treats values under about 0.2 as a fail. Auto-repair will not flip ">
+<meta property="og:image" content="https://myaiplug.github.io/coproducer-web/blog/img/essays/phase-correlation-and-mono.jpg?v=shd">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;1,500;1,600&family=Figtree:wght@400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/journal.css">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Article","headline":"Phase correlation is a mono audition","datePublished":"2026-08-21","dateModified":"2026-08-21","image":"https://myaiplug.github.io/coproducer-web/blog/img/essays/phase-correlation-and-mono.jpg?v=shd","author":{"@type":"Organization","name":"NoDAW Labs"},"publisher":{"@type":"Organization","name":"NoDAW Labs"}}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type": "Question", "name": "Can a stereo widener pass correlation?", "acceptedAnswer": {"@type": "Answer", "text": "Sometimes on the meter, rarely in a real mono fold. Audition mono after every width move."}}, {"@type": "Question", "name": "Is 1.0 required?", "acceptedAnswer": {"@type": "Answer", "text": "No. Fully correlated mono sits near 1.0. Most finished stereo records sit comfortably above 0.2 without being mono."}}]}
+</script>
+</head>
+<body>
+<header class="top">
+  <a class="mark" href="../index.html"><em>Co</em>Producer</a>
+  <nav class="nav" aria-label="Primary">
+    <a href="index.html">Journal</a>
+    <a href="../index.html#ab">A/B</a>
+    <a href="../index.html#analyzeHome">Analyze</a>
+    <a href="../index.html#screwDemo">ScrewAI</a>
+    <a href="../guides/index.html">Guides</a>
+    <a href="../pricing.html">Pricing</a>
+  </nav>
+  <a class="cta" href="../index.html#analyzeHome">Measure a mix</a>
+</header>
+<article class="post" id="main">
+  <div class="post-hero"><img src="img/essays/phase-correlation-and-mono.jpg?v=shd" alt="Stereo speakers and correlation meter on walnut"></div>
+  <header>
+    <p class="kicker">Stereo · 21 August 2026 · 7 min</p>
+    <h1>Phase correlation is a mono audition</h1>
+    <p class="meta">NoDAW Labs · Lacquer Vol. 02</p>
+  </header>
+  <p class="answer">Phase correlation near 0 or negative means the mix will thin or cancel in mono. CoProducer treats values under about 0.2 as a fail. Auto-repair will not flip polarity for you — that is mix work.</p>
+  <h2>Why stores still care</h2>
+  <p>Phones, clubs, and some smart speakers collapse channels. A wide chorus that disappears in mono is not “creative stereo.” It is a delivery risk. Correlation is a cheap proxy for that audition.</p>
+  <p>If correlation fails, check doubled vocals, misaligned layers, and mid/side tricks that emptied the mid. Do not buy a loudness tool to fix a polarity problem.</p>
+  <h2>Order of operations</h2>
+  <p>Fix phase in the session. Then print. Then measure LUFS and true peak. Reversing that order wastes renders.</p>
+  <p>CoProducer will caution on phase and leave it alone in the automatic plan. That restraint is intentional.</p>
+
+  
+  <aside class="aside">The release checklist keeps phase ≥ 0.2 next to the loudness gates. Read it beside <a href="release-checklist-that-matches-the-meter.html">the meter checklist</a>.</aside>
+  <dl class="faq">
+    <dt>Can a stereo widener pass correlation?</dt>
+    <dd>Sometimes on the meter, rarely in a real mono fold. Audition mono after every width move.</dd>
+    <dt>Is 1.0 required?</dt>
+    <dd>No. Fully correlated mono sits near 1.0. Most finished stereo records sit comfortably above 0.2 without being mono.</dd>
+  </dl>
+</article>
+<section class="comments" data-comments data-thread="phase"></section>
+<script type="module" src="js/comments.js"></script>
+<footer class="site"><span>Lacquer · CoProducer Journal</span><span><a href="index.html">All essays</a></span></footer>
+</body>
+</html>

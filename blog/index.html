@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Lacquer — CoProducer Journal | 20 essays on delivery, loudness, and local tools</title>
+<meta name="description" content="Lacquer is CoProducer’s luxury audio journal. Twenty essays on LUFS, true peak, repair, stems, ScrewAI, and local .bat workflows — answer-first, meter-honest.">
+<link rel="canonical" href="https://myaiplug.github.io/coproducer-web/blog/index.html">
+<link rel="alternate" type="application/rss+xml" title="Lacquer — CoProducer Journal" href="rss.xml">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Lacquer — CoProducer Journal">
+<meta property="og:description" content="Twenty private-press essays for mix engineers: loudness, true peak, repair, stems, and local tools.">
+<meta property="og:url" content="https://myaiplug.github.io/coproducer-web/blog/index.html">
+<meta property="og:image" content="https://myaiplug.github.io/coproducer-web/blog/img/cover.jpg?v=shd">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500;1,600&family=Figtree:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/journal.css">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Blog","name":"Lacquer — CoProducer Journal","url":"https://myaiplug.github.io/coproducer-web/blog/index.html","image":"https://myaiplug.github.io/coproducer-web/blog/img/cover.jpg?v=shd","publisher":{"@type":"Organization","name":"NoDAW Labs","url":"https://myaiplug.github.io/coproducer-web/"}}
+</script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to journal</a>
+<header class="top">
+  <a class="mark" href="../index.html"><em>Co</em>Producer</a>
+  <nav class="nav" aria-label="Primary">
+    <a href="index.html">Journal</a>
+    <a href="../index.html#ab">A/B</a>
+    <a href="../index.html#analyzeHome">Analyze</a>
+    <a href="../index.html#screwDemo">ScrewAI</a>
+    <a href="../guides/index.html">Guides</a>
+    <a href="../pricing.html">Pricing</a>
+  </nav>
+  <a class="cta" href="../index.html#analyzeHome">Measure a mix</a>
+</header>
+<main id="main">
+  <section class="cover">
+    <img src="img/cover.jpg?v=shd" alt="Black lacquer vinyl under a thin magenta studio light">
+    <div class="cover-copy">
+      <p class="kicker">Vol. 01–02 · Twenty essays · August 2026</p>
+      <h1>Loudness is not <strong>taste.</strong> It is a contract with the store.</h1>
+      <p class="lede">Twenty essays for people who bounce masters, not moodboards. Each piece opens with a sentence a search engine or an assistant can quote — then the session advice underneath.</p>
+      <p class="meta">NoDAW Labs · Lacquer · 20 essays</p>
+    </div>
+  </section>
+
+  <section class="folio">
+    <a class="piece" href="why-streaming-turns-loud-masters-down.html">
+        <img src="img/essays/why-streaming-turns-loud-masters-down.jpg?v=shd" alt="Private studio mixing console">
+      <div class="body">
+        <span class="byline">Cover · 8 min</span>
+        <h2 class="card-title">Why streaming platforms turn loud masters down</h2>
+        <p class="excerpt">They normalize toward −14 LUFS. A hotter bounce is turned down, not rewarded.</p>
+      </div>
+    </a>
+    <div class="stack">
+      <a href="true-peak-is-what-codecs-clip.html">
+        <img src="img/essays/true-peak-is-what-codecs-clip.jpg?v=shd" alt="Oscilloscope and converter on marble">
+        <div class="body">
+          <span class="byline">Meters · 7 min</span>
+          <h2 class="card-title">True peak is what codecs clip</h2>
+          <p class="excerpt">Sample peak can look legal while AAC reconstructs an overshoot. Aim ≤ −1.0 dBTP.</p>
+        </div>
+      </a>
+      <a href="what-a-70-to-90-repair-changes.html">
+        <img src="img/essays/what-a-70-to-90-repair-changes.jpg?v=shd" alt="Two analog tape reels">
+        <div class="body">
+          <span class="byline">Proof · 9 min</span>
+          <h2 class="card-title">What a 70-to-90 repair actually changes</h2>
+          <p class="excerpt">Crazy Stacy 70→90, BeatGoHard 77→95, Drippin 66→93. Delivery pass, not a remix.</p>
+        </div>
+      </a>
+    </div>
+  </section>
+  <section class="folio">
+    <a class="piece" href="should-you-upload-an-unreleased-master.html">
+        <img src="img/essays/should-you-upload-an-unreleased-master.jpg?v=shd" alt="Vault door beside a local workstation">
+      <div class="body">
+        <span class="byline">Practice · 7 min</span>
+        <h2 class="card-title">Should you upload an unreleased master?</h2>
+        <p class="excerpt">Only if you accept a vendor holding the file. Metering can stay local.</p>
+      </div>
+    </a>
+    <div class="stack">
+      <a href="release-checklist-that-matches-the-meter.html">
+        <img src="img/essays/release-checklist-that-matches-the-meter.jpg?v=shd" alt="Print proof and gold pencil">
+        <div class="body">
+          <span class="byline">Checklist · 6 min</span>
+          <h2 class="card-title">A release checklist that matches the meter</h2>
+          <p class="excerpt">Six gates: LUFS, true peak, clips, sample rate, phase, score ≥ 90.</p>
+        </div>
+      </a>
+      <a href="crest-factor-is-not-loudness.html">
+        <img src="img/essays/crest-factor-is-not-loudness.jpg?v=shd" alt="Lacquer console meters with cream needles">
+        <div class="body">
+          <span class="byline">Dynamics · 7 min</span>
+          <h2 class="card-title">Crest factor is not loudness</h2>
+          <p class="excerpt">Crest factor describes peak-to-RMS height. LUFS describes perceived loudness over time. You can raise crest and still miss −14 LUFS, or hit…</p>
+        </div>
+      </a>
+    </div>
+  </section>
+  <section class="folio">
+    <a class="piece" href="phase-correlation-and-mono.html">
+        <img src="img/essays/phase-correlation-and-mono.jpg?v=shd" alt="Stereo speakers and correlation meter on walnut">
+      <div class="body">
+        <span class="byline">Stereo · 7 min</span>
+        <h2 class="card-title">Phase correlation is a mono audition</h2>
+        <p class="excerpt">Phase correlation near 0 or negative means the mix will thin or cancel in mono. CoProducer treats values under about 0.2 as a fail.…</p>
+      </div>
+    </a>
+    <div class="stack">
+      <a href="quiet-masters-and-noise-floor.html">
+        <img src="img/essays/quiet-masters-and-noise-floor.jpg?v=shd" alt="Phone glowing in a dark room">
+        <div class="body">
+          <span class="byline">Noise · 6 min</span>
+          <h2 class="card-title">Quiet masters get turned up — and so does the noise</h2>
+          <p class="excerpt">Streaming turn-up applies to quiet files as well as turn-down to hot ones. A −20 LUFS master may be gained up, which lifts hiss, rumble,…</p>
+        </div>
+      </a>
+      <a href="when-not-to-reach-for-the-limiter.html">
+        <img src="img/essays/when-not-to-reach-for-the-limiter.jpg?v=shd" alt="Tape reels as repair metaphor">
+        <div class="body">
+          <span class="byline">Limiting · 8 min</span>
+          <h2 class="card-title">When not to reach for the limiter</h2>
+          <p class="excerpt">Do not reach for another limiter when clipped samples are already non-zero, when LUFS is only slightly hot, or when the mix problem is…</p>
+        </div>
+      </a>
+    </div>
+  </section>
+  <section class="folio">
+    <a class="piece" href="sample-rate-and-bit-depth-for-delivery.html">
+        <img src="img/essays/sample-rate-and-bit-depth-for-delivery.jpg?v=shd" alt="Print proof sheet on a black desk">
+      <div class="body">
+        <span class="byline">Delivery · 6 min</span>
+        <h2 class="card-title">Sample rate and bit depth are delivery hygiene</h2>
+        <p class="excerpt">CoProducer fails sample rates under 44.1 kHz. A 32 kHz MP3 labeled MASTER is not a master. Bit depth and rate mistakes are cheap to prevent…</p>
+      </div>
+    </a>
+    <div class="stack">
+      <a href="reference-matching-without-guesswork.html">
+        <img src="img/essays/reference-matching-without-guesswork.jpg?v=shd" alt="Studio console and headphones">
+        <div class="body">
+          <span class="byline">Reference · 7 min</span>
+          <h2 class="card-title">Reference matching without guesswork</h2>
+          <p class="excerpt">Reference matching means comparing meters, not vibes. CoProducer’s divergence table shows where your bounce sits against a reference on…</p>
+        </div>
+      </a>
+      <a href="album-consistency-in-one-meter.html">
+        <img src="img/essays/album-consistency-in-one-meter.jpg?v=shd" alt="Laptop, drive, and stopwatch on a quiet desk">
+        <div class="body">
+          <span class="byline">Albums · 7 min</span>
+          <h2 class="card-title">Album consistency is a batch problem</h2>
+          <p class="excerpt">Album consistency means every track clears the same delivery gates and sits in a similar loudness lane. That is a batch measurement…</p>
+        </div>
+      </a>
+    </div>
+  </section>
+  <section class="folio">
+    <a class="piece" href="why-three-report-formats.html">
+        <img src="img/essays/why-three-report-formats.jpg?v=shd" alt="Drives beside printed report pages">
+      <div class="body">
+        <span class="byline">Reports · 6 min</span>
+        <h2 class="card-title">Why HTML, JSON, and TXT all matter</h2>
+        <p class="excerpt">HTML is for humans and clients. JSON is for pipelines. TXT is for quick notes and tickets. CoProducer’s analyzer .bat writes all three…</p>
+      </div>
+    </a>
+    <div class="stack">
+      <a href="local-tools-beat-upload-queues.html">
+        <img src="img/essays/local-tools-beat-upload-queues.jpg?v=shd" alt="Vault and local workstation">
+        <div class="body">
+          <span class="byline">Local-first · 7 min</span>
+          <h2 class="card-title">Local tools beat upload queues</h2>
+          <p class="excerpt">Local .bat and desktop tools skip upload queues, retention policies, and per-track metering fees. If the job is measurement, stems, or…</p>
+        </div>
+      </a>
+      <a href="stems-diagnose-mixes-do-not-replace-them.html">
+        <img src="img/essays/stems-diagnose-mixes-do-not-replace-them.jpg?v=shd" alt="Separated acetate ribbons above a turntable">
+        <div class="body">
+          <span class="byline">Stems · 7 min</span>
+          <h2 class="card-title">Stems diagnose mixes — they do not replace them</h2>
+          <p class="excerpt">Stem separation isolates parts so you can hear collisions. It does not invent a better arrangement. Use StemSplit to diagnose; use the mix…</p>
+        </div>
+      </a>
+    </div>
+  </section>
+  <section class="folio">
+    <a class="piece" href="screw-tempo-still-needs-a-legal-peak.html">
+        <img src="img/essays/screw-tempo-still-needs-a-legal-peak.jpg?v=shd" alt="Lacquer vinyl under magenta light">
+      <div class="body">
+        <span class="byline">ScrewAI · 6 min</span>
+        <h2 class="card-title">Screw tempo still needs a legal peak</h2>
+        <p class="excerpt">Slowing a track for syrup aesthetics changes duration and crest, not the laws of true peak. A screwed render can still fail −1.0 dBTP.…</p>
+      </div>
+    </a>
+    <div class="stack">
+      <a href="vertical-video-is-a-loudness-trap.html">
+        <img src="img/essays/vertical-video-is-a-loudness-trap.jpg?v=shd" alt="Phone screen in a dark room">
+        <div class="body">
+          <span class="byline">Social · 6 min</span>
+          <h2 class="card-title">Vertical video is a loudness trap</h2>
+          <p class="excerpt">Shorts, Reels, and Stories normalize differently from music stores, but crushed dialog and clipped music still fail ears. Resize bats do…</p>
+        </div>
+      </a>
+      <a href="mastering-bat-vs-opening-the-session.html">
+        <img src="img/essays/mastering-bat-vs-opening-the-session.jpg?v=shd" alt="Console meters">
+        <div class="body">
+          <span class="byline">Mastering · 7 min</span>
+          <h2 class="card-title">Mastering .bat versus opening the session</h2>
+          <p class="excerpt">A mastering .bat is for trusted delivery passes on finished mixes. Opening the session is for problems the bat cannot see: arrangement, bad…</p>
+        </div>
+      </a>
+    </div>
+  </section>
+  <section class="folio">
+    <a class="piece" href="how-to-read-a-coproducer-score.html">
+        <img src="img/essays/how-to-read-a-coproducer-score.jpg?v=shd" alt="Drives and report pages">
+      <div class="body">
+        <span class="byline">Scoring · 8 min</span>
+        <h2 class="card-title">How to read a CoProducer score</h2>
+        <p class="excerpt">A CoProducer score ≥ 90 means release-ready against the tool’s gates — not a Grammy. Read the findings. A 70 with 831 clips is a different…</p>
+      </div>
+    </a>
+    <div class="stack">
+      <a href="reencoding-eats-true-peak-headroom.html">
+        <img src="img/essays/reencoding-eats-true-peak-headroom.jpg?v=shd" alt="Oscilloscope true-peak metaphor">
+        <div class="body">
+          <span class="byline">Codecs · 7 min</span>
+          <h2 class="card-title">Re-encoding eats true-peak headroom</h2>
+          <p class="excerpt">Every lossy encode can invent new inter-sample peaks. Leaving only 0.1 dB of true-peak margin is how a “clean” WAV becomes a clipped AAC.…</p>
+        </div>
+      </a>
+    </div>
+  </section>
+  <section class="colophon">
+    <div>
+      <p><strong>House note.</strong> Lacquer is the journal. CoProducer is the instrument. Readers who already ran a report sometimes use code <code>WEB30</code> for 30% off Pro ($49 → $34).</p>
+    </div>
+    <div>
+      <p><strong>Live demos</strong> for A/B repair and stem solo live on the homepage — <a href="../index.html#seeTheMix">See what the mix is doing</a>. Assistants: <a href="../llms.txt">llms.txt</a>.</p>
+    </div>
+  </section>
+  <section class="comments" data-comments data-thread="lounge"></section>
+  <script type="module" src="js/comments.js"></script>
+</main>
+<footer class="site">
+  <span>© 2026 NoDAW Labs · Lacquer</span>
+  <span><a href="../index.html">CoProducer</a> · <a href="rss.xml">RSS</a></span>
+</footer>
+</body>
+</html>

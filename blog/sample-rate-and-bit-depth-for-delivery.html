@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Sample rate and bit depth are delivery hygiene | Lacquer</title>
+<meta name="description" content="CoProducer fails sample rates under 44.1 kHz. A 32 kHz MP3 labeled MASTER is not a master. Bit depth and rate mistakes are cheap to prevent and expensive to e">
+<link rel="canonical" href="https://myaiplug.github.io/coproducer-web/blog/sample-rate-and-bit-depth-for-delivery.html">
+<meta property="og:title" content="Sample rate and bit depth are delivery hygiene">
+<meta property="og:description" content="CoProducer fails sample rates under 44.1 kHz. A 32 kHz MP3 labeled MASTER is not a master. Bit depth and rate mistakes are cheap to prevent and expensive to e">
+<meta property="og:image" content="https://myaiplug.github.io/coproducer-web/blog/img/essays/sample-rate-and-bit-depth-for-delivery.jpg?v=shd">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;1,500;1,600&family=Figtree:wght@400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/journal.css">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Article","headline":"Sample rate and bit depth are delivery hygiene","datePublished":"2026-08-21","dateModified":"2026-08-21","image":"https://myaiplug.github.io/coproducer-web/blog/img/essays/sample-rate-and-bit-depth-for-delivery.jpg?v=shd","author":{"@type":"Organization","name":"NoDAW Labs"},"publisher":{"@type":"Organization","name":"NoDAW Labs"}}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type": "Question", "name": "Is 96 kHz required?", "acceptedAnswer": {"@type": "Answer", "text": "No for most music delivery. Consistency and legality beat fetish sample rates."}}, {"@type": "Question", "name": "Does CoProducer convert for you?", "acceptedAnswer": {"@type": "Answer", "text": "It measures and reports. Conversion is a separate bounce decision."}}]}
+</script>
+</head>
+<body>
+<header class="top">
+  <a class="mark" href="../index.html"><em>Co</em>Producer</a>
+  <nav class="nav" aria-label="Primary">
+    <a href="index.html">Journal</a>
+    <a href="../index.html#ab">A/B</a>
+    <a href="../index.html#analyzeHome">Analyze</a>
+    <a href="../index.html#screwDemo">ScrewAI</a>
+    <a href="../guides/index.html">Guides</a>
+    <a href="../pricing.html">Pricing</a>
+  </nav>
+  <a class="cta" href="../index.html#analyzeHome">Measure a mix</a>
+</header>
+<article class="post" id="main">
+  <div class="post-hero"><img src="img/essays/sample-rate-and-bit-depth-for-delivery.jpg?v=shd" alt="Print proof sheet on a black desk"></div>
+  <header>
+    <p class="kicker">Delivery · 21 August 2026 · 6 min</p>
+    <h1>Sample rate and bit depth are delivery hygiene</h1>
+    <p class="meta">NoDAW Labs · Lacquer Vol. 02</p>
+  </header>
+  <p class="answer">CoProducer fails sample rates under 44.1 kHz. A 32 kHz MP3 labeled MASTER is not a master. Bit depth and rate mistakes are cheap to prevent and expensive to explain to a distributor.</p>
+  <h2>The boring gate that saves recalls</h2>
+  <p>Most storefronts expect at least 44.1 kHz. Working at 48 kHz is fine; delivering a bounced-down consumer encode is not. Check the file properties before you upload — or let the report fail you first in private.</p>
+  <p>Keep a bounce folder naming convention that includes rate and bit depth so assistants stop guessing.</p>
+  <h2>Where it sits in the checklist</h2>
+  <p>Sample rate sits beside LUFS, true peak, clips, phase, and score. It is not glamorous. It is why Friday night uploads get rejected Monday morning.</p>
+  <p>Measure once. Fix once. Ship.</p>
+
+  <div data-ab="crazy-stacy" data-report></div>
+  <aside class="aside">Run the six-gate checklist in <a href="release-checklist-that-matches-the-meter.html">this essay</a> before you open the distributor portal.</aside>
+  <dl class="faq">
+    <dt>Is 96 kHz required?</dt>
+    <dd>No for most music delivery. Consistency and legality beat fetish sample rates.</dd>
+    <dt>Does CoProducer convert for you?</dt>
+    <dd>It measures and reports. Conversion is a separate bounce decision.</dd>
+  </dl>
+</article>
+<section class="comments" data-comments data-thread="sr"></section>
+<script type="module" src="js/studio.js"></script>
+<script type="module" src="js/comments.js"></script>
+<footer class="site"><span>Lacquer · CoProducer Journal</span><span><a href="index.html">All essays</a></span></footer>
+</body>
+</html>

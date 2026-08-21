@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>How to Clean Noisy Audio | CoProducer</title>
+<meta name="description" content="How CoProducer treats rumble, hiss, DC offset, and clipping. What auto-repair will do, and what still belongs in the mix.">
+<link rel="canonical" href="https://myaiplug.github.io/coproducer-web/guides/how-to-clean-noisy-audio.html">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Rajdhani:wght@500;700&family=Manrope:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/report.css">
+</head>
+<body>
+<nav>
+  <div class="brand"><i>Co</i>Producer</div>
+  <div class="nav-links">
+    <a href="../index.html">Overview</a>
+    <a href="../analyze.html">Analyze</a>
+    <a href="./">Guides</a>
+    <a href="../comparisons/">Compare</a>
+  </div>
+</nav>
+<main style="max-width:800px;margin:0 auto">
+  <span style="font-family:var(--mono);font-size:11px;text-transform:uppercase;color:var(--cyan,#22d3ee);letter-spacing:0.1em">Engineering Guide</span>
+  <h1>How to clean noisy audio</h1>
+  <p style="font-family:var(--mono);font-size:12px;color:var(--muted)">Updated August 2026 · Conservative gates only</p>
+  <p>Noise in a mix is not one problem. Hiss in a quiet verse, sub rumble under an 808, DC offset, and clipped transients each need a different tool. CoProducer’s auto-repair only fires when the meter evidence is strong enough that the fix is unlikely to thin the record.</p>
+  <h2>What the engine will try</h2>
+  <table>
+    <thead><tr><th>Evidence</th><th>Action</th><th>What it will not do</th></tr></thead>
+    <tbody>
+      <tr><td>Noise floor in the rumble window (~−70 to −42 dBFS), DC offset, or sub-bass dominating bass</td><td>25 Hz high-pass</td><td>Broadband denoise / “AI vocal print”</td></tr>
+      <tr><td>LUFS far from −14 or true peak over −1.0 dBTP</td><td>loudnorm, then a hard true-peak cap</td><td>Multiband glue, clipper, or “make it radio”</td></tr>
+      <tr><td>Clipped samples</td><td>Limit the output; caution stays</td><td>Reconstruct flattened transients</td></tr>
+      <tr><td>Phase &lt; 0.1</td><td>Caution only</td><td>Auto stereo repair</td></tr>
+    </tbody>
+  </table>
+  <p>That is why the web analyzer <strong>projects</strong> the post-repair numbers instead of rendering a “cleaned” file in the browser. The desktop app is where Pedalboard/FFmpeg actually write a WAV you can audition.</p>
+  <h2>Order of operations</h2>
+  <ol style="padding-left:20px;color:var(--muted);margin-bottom:16px">
+    <li>Measure first. Guessing at EQ before LUFS/true peak is how mixes get smaller.</li>
+    <li>Fix clips at the source if you still have the session.</li>
+    <li>Then delivery: loudness + true-peak ceiling.</li>
+    <li>Listen in mono after any width or phase warning.</li>
+  </ol>
+  <p>Hear Drippin drop 231k clips to zero on the <a href="../index.html#ab">A/B demo</a>, then run your own file.</p>
+  <p><a class="cp-cta" href="../analyze.html">Measure the noise floor</a></p>
+</main>
+<footer><div class="wrap">&copy; 2026 NoDAW Labs · CoProducer</div></footer>
+</body>
+</html>

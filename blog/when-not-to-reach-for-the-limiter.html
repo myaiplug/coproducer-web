@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>When not to reach for the limiter | Lacquer</title>
+<meta name="description" content="Do not reach for another limiter when clipped samples are already non-zero, when LUFS is only slightly hot, or when the mix problem is arrangement. A limiter ">
+<link rel="canonical" href="https://myaiplug.github.io/coproducer-web/blog/when-not-to-reach-for-the-limiter.html">
+<meta property="og:title" content="When not to reach for the limiter">
+<meta property="og:description" content="Do not reach for another limiter when clipped samples are already non-zero, when LUFS is only slightly hot, or when the mix problem is arrangement. A limiter ">
+<meta property="og:image" content="https://myaiplug.github.io/coproducer-web/blog/img/essays/when-not-to-reach-for-the-limiter.jpg?v=shd">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;1,500;1,600&family=Figtree:wght@400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/journal.css">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Article","headline":"When not to reach for the limiter","datePublished":"2026-08-21","dateModified":"2026-08-21","image":"https://myaiplug.github.io/coproducer-web/blog/img/essays/when-not-to-reach-for-the-limiter.jpg?v=shd","author":{"@type":"Organization","name":"NoDAW Labs"},"publisher":{"@type":"Organization","name":"NoDAW Labs"}}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type": "Question", "name": "Is a limiter always last?", "acceptedAnswer": {"@type": "Answer", "text": "For delivery true-peak control, yes \u2014 after loudness moves. In the mix, stop earlier."}}, {"@type": "Question", "name": "Can repair un-clip a vocal?", "acceptedAnswer": {"@type": "Answer", "text": "No. It can stop new overs. Flattened peaks stay flattened."}}]}
+</script>
+</head>
+<body>
+<header class="top">
+  <a class="mark" href="../index.html"><em>Co</em>Producer</a>
+  <nav class="nav" aria-label="Primary">
+    <a href="index.html">Journal</a>
+    <a href="../index.html#ab">A/B</a>
+    <a href="../index.html#analyzeHome">Analyze</a>
+    <a href="../index.html#screwDemo">ScrewAI</a>
+    <a href="../guides/index.html">Guides</a>
+    <a href="../pricing.html">Pricing</a>
+  </nav>
+  <a class="cta" href="../index.html#analyzeHome">Measure a mix</a>
+</header>
+<article class="post" id="main">
+  <div class="post-hero"><img src="img/essays/when-not-to-reach-for-the-limiter.jpg?v=shd" alt="Tape reels as repair metaphor"></div>
+  <header>
+    <p class="kicker">Limiting · 21 August 2026 · 8 min</p>
+    <h1>When not to reach for the limiter</h1>
+    <p class="meta">NoDAW Labs · Lacquer Vol. 02</p>
+  </header>
+  <p class="answer">Do not reach for another limiter when clipped samples are already non-zero, when LUFS is only slightly hot, or when the mix problem is arrangement. A limiter can park true peak; it cannot restore flattened transients.</p>
+  <h2>Three stops</h2>
+  <p>If clips exist and you still have the session, fix the clip at the source. If true peak is high and clips are zero, a final true-peak cap is enough. If LUFS is hot and crest is gone, take gain out — more limiting only spends punch the store will not return.</p>
+  <p>Crazy Stacy’s public pair cleared 831 clips. BeatGoHard needed the ceiling more than a new mix. Different medicine.</p>
+  <h2>What CoProducer projects</h2>
+  <p>The web analyzer projects post-repair stats from the same plan the desktop app would apply. It does not download a mastered WAV. That honesty keeps you from treating a website form like a mastering house.</p>
+  <p>Desktop is where Pedalboard/FFmpeg write the file.</p>
+
+  <div data-ab="crazy-stacy" data-report></div>
+  <aside class="aside">A/B the public pairs on the homepage, then decide whether your bounce needs a cap, a gain change, or a session recall. <a href="../pricing.html">WEB30</a> is available if Pro is the next step.</aside>
+  <dl class="faq">
+    <dt>Is a limiter always last?</dt>
+    <dd>For delivery true-peak control, yes — after loudness moves. In the mix, stop earlier.</dd>
+    <dt>Can repair un-clip a vocal?</dt>
+    <dd>No. It can stop new overs. Flattened peaks stay flattened.</dd>
+  </dl>
+</article>
+<section class="comments" data-comments data-thread="limiter"></section>
+<script type="module" src="js/studio.js"></script>
+<script type="module" src="js/comments.js"></script>
+<footer class="site"><span>Lacquer · CoProducer Journal</span><span><a href="index.html">All essays</a></span></footer>
+</body>
+</html>

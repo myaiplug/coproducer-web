@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Stereo Width & Phase Correlation Guide | CoProducer</title>
+<meta name="description" content="Master stereo width and phase correlation in audio mixes. Understand mono compatibility, phase cancellation, and how CoProducer measures stereo spatial balance.">
+<link rel="canonical" href="https://myaiplug.github.io/coproducer-web/guides/stereo-phase-correlation.html">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/report.css">
+</head>
+<body>
+<nav>
+  <div class="brand"><i>Co</i>Producer</div>
+  <div class="nav-links">
+    <a href="../index.html">Overview</a>
+    <a href="../analyze.html">Analyze</a>
+    <a href="what-is-lufs.html">LUFS Guide</a>
+    <a href="../comparisons/vs-landr.html">VS LANDR</a>
+  </div>
+</nav>
+
+<main style="max-width:800px; margin:0 auto;">
+  <span style="font-family:var(--mono); font-size:11px; text-transform:uppercase; color:var(--m); letter-spacing:0.1em;">Engineering Guide</span>
+  <h1>Stereo Width & <span>Phase Correlation</span></h1>
+  <p style="color:var(--muted); font-family:var(--mono); font-size:12px; margin-bottom:32px;">Published June 2026 &middot; 7 min read</p>
+
+  <p>A professional mix balances expansive stereo width with rock-solid mono compatibility. If your left and right channels are out of phase, folding the mix to mono will cause instruments and vocals to disappear entirely due to destructive interference.</p>
+
+  <div class="highlight-box">
+    <strong>Phase Correlation Meter:</strong> Ranges from <code>+1.0</code> (perfect mono/phase alignment) to <code>-1.0</code> (complete phase inversion). Professional commercial masters generally stay between <strong>+0.3 and +1.0</strong>.
+  </div>
+
+  <h2>Interpreting Phase Correlation Values</h2>
+  <table>
+    <thead>
+      <tr><th>Correlation Value</th><th>Spatial Characteristic</th><th>Mono Compatibility</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>+1.0</td><td>Identical left and right (Pure Mono)</td><td class="pass">Perfect</td></tr>
+      <tr><td>+0.5 to +0.9</td><td>Balanced stereo image</td><td class="pass">Excellent</td></tr>
+      <tr><td>+0.1 to +0.4</td><td>Very wide stereo, immersive</td><td class="notice">Check bass</td></tr>
+      <tr><td>0.0 to -1.0</td><td>Phase cancellation risk</td><td class="fail">Unsafe / Cancels in mono</td></tr>
+    </tbody>
+  </table>
+
+  <h2>How CoProducer Evaluates Stereo Space</h2>
+  <p>CoProducer analyzes channel difference (Side signal) relative to sum (Mid signal) to quantify stereo width percentage and phase correlation across the frequency spectrum. If phase correlation drops below safe thresholds, CoProducer flags it so you can correct stereo wideners or low-frequency phase alignment before release.</p>
+
+  <div class="promo-banner" style="margin-top:40px;">
+    <h3>Analyze your stereo mix integrity</h3>
+    <p>Run your track through CoProducer's local analyzer to check phase correlation, stereo width, and frequency balance.</p>
+    <a class="cp-cta" href="../analyze.html">Analyze Audio Free</a>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">&copy; 2026 NoDAW Labs &middot; CoProducer &middot; Local-first audio engineering workflow</div>
+</footer>
+</body>
+</html>

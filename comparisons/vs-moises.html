@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>CoProducer vs Moises | Stem Splitter vs Mix Analysis</title>
+<meta name="description" content="Moises splits stems. CoProducer scores loudness, true peak, clips, and phase locally. Different jobs — when to use each.">
+<link rel="canonical" href="https://myaiplug.github.io/coproducer-web/comparisons/vs-moises.html">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Rajdhani:wght@500;700&family=Manrope:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/report.css">
+</head>
+<body>
+<nav>
+  <div class="brand"><i>Co</i>Producer</div>
+  <div class="nav-links">
+    <a href="../index.html">Overview</a>
+    <a href="../analyze.html">Analyze</a>
+    <a href="../guides/">Guides</a>
+    <a href="./">Compare</a>
+  </div>
+</nav>
+<main style="max-width:900px;margin:0 auto">
+  <span style="font-family:var(--mono);font-size:11px;text-transform:uppercase;color:var(--cyan,#22d3ee);letter-spacing:0.1em">Platform Comparison</span>
+  <h1>CoProducer vs <span>Moises</span></h1>
+  <p style="font-family:var(--mono);font-size:12px;color:var(--muted)">Updated August 2026 · Stems vs diagnostics</p>
+  <p>Moises is built to pull vocals, drums, and bass out of a stereo mix for practice and remixing. CoProducer is built to tell you whether that mix is release-legal: LUFS, true peak, clipping, phase, and a scored report. Using one as a substitute for the other is a category error.</p>
+  <table>
+    <thead><tr><th>Feature</th><th>CoProducer</th><th>Moises</th></tr></thead>
+    <tbody>
+      <tr><td>Primary job</td><td>Technical analysis + repair plan</td><td>Stem separation + practice tools</td></tr>
+      <tr><td>LUFS / true peak / clips</td><td>Measured, scored, projected</td><td>Not the product</td></tr>
+      <tr><td>Reference matching</td><td>Metric-by-metric</td><td>No</td></tr>
+      <tr><td>Stem split</td><td>No</td><td>Yes</td></tr>
+      <tr><td>Where audio goes</td><td>Desktop is local; web analyze is optional API</td><td>Cloud processing</td></tr>
+      <tr><td>Price shape</td><td>Free + $49 Pro</td><td>Subscription</td></tr>
+    </tbody>
+  </table>
+  <p>If you need isolated vocals for a cover, use a splitter. If you need to know why Spotify will turn you down 4 LU and still clip the AAC encode, use CoProducer. The homepage A/B (70 → 90, 77 → 95, 66 → 93) is that second job, proven on real files.</p>
+  <p><a class="cp-cta" href="../analyze.html">Analyze a mix, not a stem</a></p>
+</main>
+<footer><div class="wrap">&copy; 2026 NoDAW Labs · CoProducer</div></footer>
+</body>
+</html>

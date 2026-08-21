@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>A release checklist that matches the meter | Lacquer</title>
+<meta name="description" content="Release checklist: −14 LUFS ±1.5, true peak ≤ −1.0 dBTP, 0 clipped samples, ≥44.1 kHz, phase ≥ 0.2, score ≥ 90. The same gates as CoProducer Analyze.">
+<link rel="canonical" href="https://myaiplug.github.io/coproducer-web/blog/release-checklist-that-matches-the-meter.html">
+<meta property="og:image" content="https://myaiplug.github.io/coproducer-web/blog/img/essays/release-checklist-that-matches-the-meter.jpg?v=shd">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;1,500;1,600&family=Figtree:wght@400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/journal.css">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"HowTo","name":"Check a mix against streaming release gates","image":"https://myaiplug.github.io/coproducer-web/blog/img/essays/release-checklist-that-matches-the-meter.jpg?v=shd","step":[
+{"@type":"HowToStep","name":"Measure integrated LUFS","text":"Pass when within 1.5 LU of −14.0."},
+{"@type":"HowToStep","name":"Measure true peak","text":"Pass when true peak is at or below −1.0 dBTP."},
+{"@type":"HowToStep","name":"Count clipped samples","text":"Pass when the count is 0."},
+{"@type":"HowToStep","name":"Confirm sample rate","text":"Pass at 44.1 kHz or higher."},
+{"@type":"HowToStep","name":"Read phase correlation","text":"Pass at 0.2 or higher."},
+{"@type":"HowToStep","name":"Read the score","text":"CoProducer treats 90 or above as release-ready."}
+]}
+</script>
+</head>
+<body>
+<header class="top">
+  <a class="mark" href="../index.html"><em>Co</em>Producer</a>
+  <nav class="nav"><a href="index.html">Journal</a><a href="../guides/audio-quality-checklist.html">Guide</a><a href="../analyze.html">Analyze</a></nav>
+  <a class="cta" href="../analyze.html">Run the gates</a>
+</header>
+<article class="post" id="main">
+  <div class="post-hero"><img src="img/essays/release-checklist-that-matches-the-meter.jpg?v=shd" alt="Print proof, gold pencil, and wax seal on a black desk"></div>
+  <header>
+    <p class="kicker">Checklist · 20 August 2026 · 6 min</p>
+    <h1>A release checklist that matches the meter</h1>
+    <p class="meta">NoDAW Labs · Lacquer Vol. 01</p>
+  </header>
+  <p class="answer">Pass a bounce when integrated LUFS is within <strong>1.5 LU of −14</strong>, true peak is <strong>≤ −1.0 dBTP</strong>, clipped samples are <strong>0</strong>, sample rate is <strong>≥ 44.1 kHz</strong>, phase correlation is <strong>≥ 0.2</strong>, and the CoProducer score is <strong>≥ 90</strong>.</p>
+
+  <p>Print this once. Tape it above the bounce folder. The point is to stop using mood as a release criterion. “It feels loud” is not a store. The store has a lane. These six gates are that lane, written as a checklist so you do not re-litigate them on Friday night.</p>
+
+  <h2>The six gates</h2>
+  <table>
+    <thead><tr><th>Gate</th><th>Pass</th><th>If it fails</th></tr></thead>
+    <tbody>
+      <tr><td>Integrated LUFS</td><td>−14 ± 1.5</td><td>Gain / loudnorm, not another decorative limiter</td></tr>
+      <tr><td>True peak</td><td>≤ −1.0 dBTP</td><td>True-peak limiter last, then re-measure</td></tr>
+      <tr><td>Clipped samples</td><td>0</td><td>Go back to the unclipped mix if you still can</td></tr>
+      <tr><td>Sample rate</td><td>≥ 44.1 kHz</td><td>Do not bounce a 32 kHz MP3 and call it a master</td></tr>
+      <tr><td>Phase</td><td>≥ 0.2</td><td>Mix work. Auto-repair will not flip polarity</td></tr>
+      <tr><td>Score</td><td>≥ 90</td><td>Read the findings; listen</td></tr>
+    </tbody>
+  </table>
+
+  <p>Order of operations that saves a recall: measure first. If clips are non-zero and you still have the session, fix the clip at the source. If clips are zero and true peak is high, cap last. If LUFS is hot and the mix still has punch, turn it down before you squash. If phase is the fail, do not buy a loudness tool. Buy time in the arrangement.</p>
+  <p>These are the same colors on the homepage A/B table. A leftover +0.04 dBTP after Crazy Stacy’s repair stays red on purpose. Green is not a mood. It is a gate.</p>
+  <div data-ab="crazy-stacy" data-report></div>
+
+  <aside class="aside">Handbook version: <a href="../guides/audio-quality-checklist.html">audio quality checklist</a>. Same gates, less prose. Run them on a file: <a href="../analyze.html">Analyze</a>. Hear what a pass sounds like: <a href="../index.html#ab">A/B</a>.</aside>
+</article>
+<section class="comments" data-comments data-thread="list"></section>
+<script type="module" src="js/studio.js"></script>
+<script type="module" src="js/comments.js"></script>
+<footer class="site"><span>Lacquer</span><span><a href="index.html">Journal</a></span></footer>
+</body>
+</html>

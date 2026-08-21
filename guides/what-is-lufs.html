@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>What is LUFS? Complete Guide to Loudness Units | CoProducer</title>
+<meta name="description" content="Complete guide to LUFS: what it means, how streaming platforms use it, how to measure your mix, and target loudness levels for Spotify, Apple Music, YouTube.">
+<link rel="canonical" href="https://myaiplug.github.io/coproducer-web/guides/what-is-lufs.html">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800;900&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/site-chrome.css">
+</head>
+<body>
+<header class="site-nav">
+  <div class="site-nav-inner">
+    <a class="site-brand" href="../index.html"><i>Co</i>Producer</a>
+    <nav class="site-links" aria-label="Primary">
+      <a href="../index.html">Overview</a>
+      <a href="../index.html#ab">A/B</a>
+      <a href="../screwai.html">ScrewAI</a>
+      <a href="../index.html#stemDemo">Stems</a>
+      <a href="../analyze.html">Analyze</a>
+      <a href="index.html" class="is-on">Guides</a>
+      <a href="../blog/index.html">Journal</a>
+      <a href="../comparisons/vs-landr.html">Compare</a>
+      <a href="../pricing.html">Pricing</a>
+    </nav>
+    <a class="site-cta" href="../analyze.html">Analyze</a>
+  </div>
+</header>
+
+<main class="site-page">
+  <p class="site-kicker">Engineering guide</p>
+  <h1>What is LUFS?<br><span>The complete guide</span></h1>
+  <p class="site-meta">Updated August 2026 · 8 min read</p>
+
+  <p>If you've ever uploaded a song to Spotify and thought "why is it quieter than everything else?" — you've experienced LUFS in action.</p>
+  <p><strong>LUFS</strong> stands for <strong>Loudness Units relative to Full Scale</strong>. It is the international standard (ITU-R BS.1770) for measuring how loud audio sounds to the human ear. Unlike peak level (dBFS), LUFS accounts for how our ears perceive loudness across different frequencies.</p>
+
+  <h2>Hear a real before / after</h2>
+  <p>Crazy Stacy was analysed and repaired in CoProducer: score 70 → 90, LUFS −12.61 → −13.63, clipped samples 831 → 0. Switch A/B at the same sample.</p>
+
+  <div class="site-card" style="max-width:420px;margin:24px auto;">
+    <div id="guidePlayer" class="cp-player" data-mode="ab">
+      <canvas class="cp-wave" width="720" height="56" style="width:100%;height:56px;cursor:pointer;display:block;"></canvas>
+      <div style="display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-top:12px;font:700 11px 'JetBrains Mono',monospace;color:#aaa0b0;">
+        <button type="button" class="cp-play btn">Play</button>
+        <span class="cp-time">0:00</span>
+        <div class="cp-ab" style="display:flex;gap:6px;margin-left:auto;">
+          <button type="button" class="btn alt" data-side="a">A Before</button>
+          <button type="button" class="btn alt" data-side="b">B Repaired</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <h2>Why LUFS matters</h2>
+  <p>Every major streaming platform uses LUFS to normalize playback:</p>
+  <ul style="padding-left:20px;color:#a79daf;line-height:1.8;">
+    <li><strong>Spotify</strong> targets −14 LUFS</li>
+    <li><strong>Apple Music</strong> targets −16 LUFS (Sound Check)</li>
+    <li><strong>YouTube</strong> targets −14 LUFS</li>
+    <li><strong>Amazon Music</strong> targets −14 LUFS (−2 dBTP peak)</li>
+    <li><strong>TIDAL</strong> targets −14 LUFS</li>
+  </ul>
+  <p>A hotter master is not played louder. It is turned down until it matches the lane. That is why chasing −8 LUFS usually wastes dynamics without winning volume on the store.</p>
+
+  <h2>Target LUFS by platform</h2>
+  <table class="site-table">
+    <thead>
+      <tr><th>Platform</th><th>Target LUFS</th><th>True Peak</th><th>Notes</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Spotify</td><td>−14</td><td>−1 dBTP</td><td>Does not reward hotter masters</td></tr>
+      <tr><td>Apple Music</td><td>−16</td><td>−1 dBTP</td><td>Sound Check on by default</td></tr>
+      <tr><td>YouTube</td><td>−14</td><td>−1 dBTP</td><td>Accepts a wide range</td></tr>
+      <tr><td>Amazon Music</td><td>−14</td><td>−2 dBTP</td><td>Stricter peak limit</td></tr>
+      <tr><td>TIDAL</td><td>−14</td><td>−1 dBTP</td><td>Master quality authenticates</td></tr>
+    </tbody>
+  </table>
+
+  <h2>What CoProducer checks</h2>
+  <p>CoProducer’s analyze table treats −14 LUFS as the release target (pass within 1.5 LU), with true peak ≤ −1.0 dBTP and clipped samples = 0. Those are the same red/green gates on the homepage A/B.</p>
+
+  <p style="text-align:center;margin-top:40px;">
+    <a class="site-cta" href="../analyze.html">Analyze your track</a>
+  </p>
+</main>
+
+<footer class="site-footer">© 2026 NoDAW Labs · CoProducer</footer>
+<script type="module">
+import { CoproducerPlayer } from '../js/player.js';
+const root = document.getElementById('guidePlayer');
+const player = new CoproducerPlayer(root, { mode: 'ab', theme: 'home' });
+root.querySelectorAll('[data-side]').forEach((btn) => {
+  btn.addEventListener('click', () => {
+    player.setSide(btn.dataset.side);
+    root.querySelectorAll('[data-side]').forEach((b) => b.classList.toggle('is-live', b === btn));
+  });
+});
+await player.load({ a: '../demo/before.m4a', b: '../demo/after.m4a' });
+</script>
+</body>
+</html>

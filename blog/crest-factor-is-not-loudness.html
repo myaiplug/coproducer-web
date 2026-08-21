@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Crest factor is not loudness | Lacquer</title>
+<meta name="description" content="Crest factor describes peak-to-RMS height. LUFS describes perceived loudness over time. You can raise crest and still miss −14 LUFS, or hit −14 LUFS with a cr">
+<link rel="canonical" href="https://myaiplug.github.io/coproducer-web/blog/crest-factor-is-not-loudness.html">
+<meta property="og:title" content="Crest factor is not loudness">
+<meta property="og:description" content="Crest factor describes peak-to-RMS height. LUFS describes perceived loudness over time. You can raise crest and still miss −14 LUFS, or hit −14 LUFS with a cr">
+<meta property="og:image" content="https://myaiplug.github.io/coproducer-web/blog/img/essays/crest-factor-is-not-loudness.jpg?v=shd">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;1,500;1,600&family=Figtree:wght@400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/journal.css">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Article","headline":"Crest factor is not loudness","datePublished":"2026-08-21","dateModified":"2026-08-21","image":"https://myaiplug.github.io/coproducer-web/blog/img/essays/crest-factor-is-not-loudness.jpg?v=shd","author":{"@type":"Organization","name":"NoDAW Labs"},"publisher":{"@type":"Organization","name":"NoDAW Labs"}}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type": "Question", "name": "Is higher crest always better?", "acceptedAnswer": {"@type": "Answer", "text": "No. Extreme crest can mean unused headroom or a mix that will jump when normalized. Aim for intentional dynamics inside a legal loudness lane."}}, {"@type": "Question", "name": "Where does CoProducer show this?", "acceptedAnswer": {"@type": "Answer", "text": "Dynamic range and related crest-style readouts sit beside LUFS and true peak in the report. Use them together."}}]}
+</script>
+</head>
+<body>
+<header class="top">
+  <a class="mark" href="../index.html"><em>Co</em>Producer</a>
+  <nav class="nav" aria-label="Primary">
+    <a href="index.html">Journal</a>
+    <a href="../index.html#ab">A/B</a>
+    <a href="../index.html#analyzeHome">Analyze</a>
+    <a href="../index.html#screwDemo">ScrewAI</a>
+    <a href="../guides/index.html">Guides</a>
+    <a href="../pricing.html">Pricing</a>
+  </nav>
+  <a class="cta" href="../index.html#analyzeHome">Measure a mix</a>
+</header>
+<article class="post" id="main">
+  <div class="post-hero"><img src="img/essays/crest-factor-is-not-loudness.jpg?v=shd" alt="Lacquer console meters with cream needles"></div>
+  <header>
+    <p class="kicker">Dynamics · 21 August 2026 · 7 min</p>
+    <h1>Crest factor is not loudness</h1>
+    <p class="meta">NoDAW Labs · Lacquer Vol. 02</p>
+  </header>
+  <p class="answer">Crest factor describes peak-to-RMS height. LUFS describes perceived loudness over time. You can raise crest and still miss −14 LUFS, or hit −14 LUFS with a crushed crest. They answer different questions.</p>
+  <h2>Two numbers, two jobs</h2>
+  <p>Integrated LUFS is what stores use to decide playback gain. Crest (and the related dynamic-range readouts in CoProducer) tell you whether the mix still has punch after you chase that lane. Treating them as synonyms is how people print a flat −14 and call it musical.</p>
+  <p>On Drippin, the repair moved LUFS from −11.92 toward −14.12 while clip count fell from 231,310 to 0. The crest story changed because overs were no longer glued to full scale — not because the arrangement grew taller.</p>
+  <h2>A faster diagnostic</h2>
+  <p>If LUFS is hot and crest is already low, do not add another bus limiter. Take gain out. If LUFS is quiet and crest is huge, you may still be fine for streaming — quiet files can be turned up, which then reveals noise floor problems.</p>
+  <p>Measure both before you open a new plugin. That order saves the hour you would spend “making it slap” into a turn-down.</p>
+
+  <div data-ab="drippin"></div>
+  <aside class="aside">Hear the public A/B on the homepage, then run your bounce through <a href="../index.html#analyzeHome">Analyze</a>. WEB30 is 30% off Pro if you already like the meter.</aside>
+  <dl class="faq">
+    <dt>Is higher crest always better?</dt>
+    <dd>No. Extreme crest can mean unused headroom or a mix that will jump when normalized. Aim for intentional dynamics inside a legal loudness lane.</dd>
+    <dt>Where does CoProducer show this?</dt>
+    <dd>Dynamic range and related crest-style readouts sit beside LUFS and true peak in the report. Use them together.</dd>
+  </dl>
+</article>
+<section class="comments" data-comments data-thread="crest"></section>
+<script type="module" src="js/studio.js"></script>
+<script type="module" src="js/comments.js"></script>
+<footer class="site"><span>Lacquer · CoProducer Journal</span><span><a href="index.html">All essays</a></span></footer>
+</body>
+</html>

@@ -1,0 +1,24 @@
+import { strict as assert } from 'node:assert';
+import { equalPowerGains, clamp01, formatTime, offsetFromClick, lookaheadWindow, colorForCentroidHz } from './player-math.js';
+
+const g0 = equalPowerGains(0);
+assert.equal(g0.a, 1);
+assert.ok(Math.abs(g0.b) < 1e-10);
+const g1 = equalPowerGains(1);
+assert.ok(Math.abs(g1.a) < 1e-10);
+assert.equal(g1.b, 1);
+const mid = equalPowerGains(0.5);
+assert.ok(Math.abs(mid.a - Math.SQRT1_2) < 1e-10);
+assert.ok(Math.abs(mid.b - Math.SQRT1_2) < 1e-10);
+assert.equal(formatTime(65), '1:05');
+assert.equal(formatTime(0), '0:00');
+assert.equal(offsetFromClick(50, 100, 10), 5);
+assert.equal(offsetFromClick(-10, 100, 10), 0);
+const w = lookaheadWindow(8, 10, 3);
+assert.equal(w.start, 8);
+assert.equal(w.end, 10);
+assert.equal(colorForCentroidHz(100), '#22d3ee');
+assert.equal(colorForCentroidHz(1000), '#10b981');
+assert.equal(colorForCentroidHz(8000), '#facc15');
+assert.equal(clamp01(1.2), 1);
+console.log('player-math ok');

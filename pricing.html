@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Pricing | CoProducer — Free Demo and $49 Pro</title>
+<meta name="description" content="CoProducer pricing: free local demo, Pro at $49 lifetime. Use WEB30 for 30% off ($34). Analysis, repair, reference matching, and reports — no subscription.">
+<link rel="canonical" href="https://myaiplug.github.io/coproducer-web/pricing.html">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800;900&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #050308;
+  --p: #a839ff;
+  --m: #e84cff;
+  --line: rgba(194,111,255,.2);
+  --muted: #a79daf;
+  --green: #c9ff4d;
+  --red: #ff6b6b;
+  --text: #f7f2fa;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: Inter, sans-serif;
+  overflow-x: hidden;
+}
+a { color: inherit; text-decoration: none; }
+.motion {
+  position: fixed; inset: 0; z-index: -3;
+  background:
+    radial-gradient(circle at 70% 12%, rgba(129,36,255,.18), transparent 28%),
+    radial-gradient(circle at 20% 60%, rgba(224,52,255,.08), transparent 25%),
+    #050308;
+}
+.motion:before {
+  content: "";
+  position: absolute; inset: -30%;
+  background-image:
+    linear-gradient(rgba(165,89,255,.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(165,89,255,.035) 1px, transparent 1px);
+  background-size: 55px 55px;
+  transform: perspective(600px) rotateX(62deg);
+  animation: grid 18s linear infinite;
+}
+@keyframes grid { to { background-position: 55px 55px; } }
+.wrap { width: min(1440px, calc(100% - 40px)); margin: auto; }
+nav {
+  position: sticky; top: 0; z-index: 20;
+  background: rgba(5,3,8,.82);
+  backdrop-filter: blur(18px);
+  border-bottom: 1px solid var(--line);
+}
+.nav { height: 72px; display: flex; align-items: center; justify-content: space-between; }
+.brand { font: italic 800 30px 'Barlow Condensed'; }
+.brand i { color: var(--m); }
+.links {
+  display: flex; gap: 25px;
+  font: 700 10px 'JetBrains Mono';
+  text-transform: uppercase;
+  color: #aaa0b0;
+}
+.links a:hover, .links a.is-on { color: var(--m); }
+.cta, .btn {
+  display: inline-block;
+  padding: 13px 20px;
+  border: 1px solid #9d3cdb;
+  border-radius: 6px;
+  background: linear-gradient(#9632d6, #58148a);
+  font: 800 10px 'JetBrains Mono';
+  text-transform: uppercase;
+  color: #f7f2fa;
+  box-shadow: 0 0 28px rgba(174,54,255,.22);
+  cursor: pointer;
+}
+.btn.alt {
+  background: rgba(255,255,255,.02);
+  border-color: rgba(255,255,255,.15);
+  box-shadow: none;
+}
+.hero {
+  padding: 90px 0 70px;
+  border-bottom: 1px solid var(--line);
+  text-align: center;
+}
+.eyebrow {
+  font: 700 9px 'JetBrains Mono';
+  text-transform: uppercase;
+  letter-spacing: .12em;
+  padding: 7px 9px;
+  border: 1px solid var(--line);
+  display: inline-block;
+}
+h1 {
+  font: 900 clamp(52px, 8vw, 110px)/.78 'Barlow Condensed';
+  letter-spacing: -.045em;
+  text-transform: uppercase;
+  margin: 22px 0 18px;
+}
+h1 span { color: var(--p); }
+.hero p { max-width: 640px; margin: 0 auto; color: #c0b6c5; line-height: 1.65; }
+.promo {
+  margin: 28px auto 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 14px 18px;
+  border: 1px solid #57256e;
+  border-radius: 10px;
+  background: linear-gradient(145deg, rgba(23,10,31,.9), rgba(8,6,12,.97));
+  font: 700 11px 'JetBrains Mono';
+  color: #c0b6c5;
+}
+.promo code {
+  color: var(--green);
+  font-size: 16px;
+  letter-spacing: .08em;
+}
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+  padding: 70px 0 40px;
+}
+.card {
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: linear-gradient(145deg, #100817, #08060b);
+  padding: 28px 24px;
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+}
+.card.featured {
+  border-color: #a343dd;
+  box-shadow: 0 0 48px rgba(168,57,255,.18);
+  position: relative;
+}
+.card.featured:before {
+  content: "BEST VALUE";
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: linear-gradient(#9632d6, #58148a);
+  border: 1px solid #9d3cdb;
+  color: #fff;
+  font: 800 9px 'JetBrains Mono';
+  padding: 4px 12px;
+  border-radius: 999px;
+  letter-spacing: .12em;
+}
+.tier {
+  font: 800 12px 'JetBrains Mono';
+  letter-spacing: .14em;
+  color: #8e8494;
+  text-transform: uppercase;
+}
+.card.featured .tier { color: var(--m); }
+.amount {
+  font: 900 56px/1 'Barlow Condensed';
+  margin: 12px 0 4px;
+}
+.amount span { font-size: 22px; color: #8e8494; }
+.strike { color: #675e6e; text-decoration: line-through; margin-right: 8px; font-size: 28px; }
+.period { font: 700 11px 'JetBrains Mono'; color: #8e8494; margin-bottom: 18px; }
+.card ul { list-style: none; padding: 0; margin: 0 0 24px; flex: 1; }
+.card li {
+  padding: 8px 0;
+  font-size: 14px;
+  color: #c0b6c5;
+  border-bottom: 1px solid rgba(194,111,255,.08);
+}
+.card li:before { content: "✓ "; color: var(--m); font-weight: 700; }
+.card .btn { width: 100%; text-align: center; }
+.head {
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto 40px;
+}
+.head small {
+  font: 800 10px 'JetBrains Mono';
+  color: #c34cff;
+  text-transform: uppercase;
+  letter-spacing: .14em;
+}
+.head h2 {
+  font: 800 clamp(36px, 5vw, 64px)/.9 'Barlow Condensed';
+  text-transform: uppercase;
+  margin: 10px 0;
+}
+.head h2 span { color: var(--p); }
+.head p { color: #9e94a3; line-height: 1.7; }
+section { padding: 80px 0; border-top: 1px solid var(--line); }
+.table-scroll { overflow: auto; }
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+}
+th, td {
+  padding: 12px 16px;
+  text-align: left;
+  border-bottom: 1px solid var(--line);
+}
+th {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: .5px;
+  color: #8e8494;
+}
+td.y { color: var(--green); font-weight: 700; }
+td.n { color: #675e6e; }
+.faq {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+.faq article {
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: linear-gradient(145deg, #100817, #08060b);
+  padding: 22px;
+}
+.faq h3 {
+  font: 700 20px 'Barlow Condensed';
+  text-transform: uppercase;
+  margin: 0 0 8px;
+}
+.faq p { margin: 0; color: #9e94a3; font-size: 14px; line-height: 1.6; }
+.note {
+  max-width: 720px;
+  margin: 0 auto;
+  color: #9e94a3;
+  font-size: 14px;
+  line-height: 1.7;
+  text-align: center;
+}
+footer {
+  border-top: 1px solid var(--line);
+  padding: 28px 0;
+  color: #756c7c;
+  font-size: 10px;
+}
+@media (max-width: 1000px) {
+  .grid, .faq { grid-template-columns: 1fr; }
+}
+@media (max-width: 700px) {
+  .links { display: none; }
+  h1 { font-size: 18vw; }
+}
+</style>
+</head>
+<body>
+<div class="motion"></div>
+<nav>
+  <div class="wrap nav">
+    <a class="brand" href="index.html"><i>Co</i>Producer</a>
+    <div class="links">
+      <a href="index.html">Overview</a>
+      <a href="index.html#ab">A/B</a>
+      <a href="analyze.html">Analyze</a>
+      <a href="guides/">Guides</a>
+      <a href="screwai.html">ScrewAI</a>
+      <a href="blog/index.html">Journal</a>
+      <a href="comparisons/">Compare</a>
+      <a href="pricing.html" class="is-on">Pricing</a>
+    </div>
+    <a class="cta" href="analyze.html">Analyze your track</a>
+  </div>
+</nav>
+
+<main>
+  <div class="hero">
+    <div class="wrap">
+      <span class="eyebrow">Local-first. No subscription required.</span>
+      <h1>Pay once.<br><span>Own the engine.</span></h1>
+      <p>CoProducer is a local analysis and repair tool, not a cloud mastering club. The demo is free. Pro is a one-time $49 license. WEB30 takes it to $34.</p>
+      <div class="promo">
+        Code <code id="promoCode">WEB30</code> — 30% off Pro ($49 → $34)
+        <button type="button" class="btn alt" id="copyCode">Copy code</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="wrap">
+    <div class="grid">
+      <article class="card">
+        <div class="tier">Demo</div>
+        <div class="amount">$0</div>
+        <div class="period">forever · browser + installer demo</div>
+        <ul>
+          <li>Homepage A/B of real engine repairs</li>
+          <li>Upload analyze in the browser when the API is running</li>
+          <li>Projected “if repaired in CoProducer” stats</li>
+          <li>Guides, comparisons, WEB30 on the report</li>
+          <li>Free Windows demo download</li>
+        </ul>
+        <a class="btn alt" href="analyze.html">Try analyze</a>
+      </article>
+      <article class="card featured">
+        <div class="tier">Pro</div>
+        <div class="amount"><span class="strike">$49</span>$34</div>
+        <div class="period">one-time with WEB30 · not monthly</div>
+        <ul>
+          <li>Unlimited local analysis (nothing uploaded unless you choose the web demo)</li>
+          <li>Auto-repair: loudness, true-peak ceiling, conservative high-pass</li>
+          <li>Reference matching, metric by metric</li>
+          <li>Batch / album passes</li>
+          <li>HTML + JSON engineering reports</li>
+          <li>TXT summaries auto-written beside each bounce</li>
+          <li>Drag-drop <code>.bat</code> analyzer — one-time, forever</li>
+          <li>Same scoring engine as the A/B demos (70→90, 77→95, 66→93)</li>
+        </ul>
+        <a class="btn" href="https://github.com/myaiplug/coproducer/releases/download/v1.0.0-beta/CoProducer-Setup-1.0.0-beta.exe">Download Pro demo</a>
+      </article>
+      <article class="card">
+        <div class="tier">Studio</div>
+        <div class="amount">Talk</div>
+        <div class="period">rooms, labels, extra seats</div>
+        <ul>
+          <li>Everything in Pro</li>
+          <li>Multiple seats on one purchase conversation</li>
+          <li>Album-consistency and delivery checklists at scale</li>
+          <li>Help wiring reports into your existing bounce folder</li>
+          <li>No mandatory cloud, no per-track mastering fee</li>
+        </ul>
+        <a class="btn alt" href="https://github.com/myaiplug/coproducer/issues">Contact via GitHub</a>
+      </article>
+    </div>
+  </div>
+
+  <section>
+    <div class="wrap">
+      <div class="head">
+        <small>What you actually get</small>
+        <h2>Demo vs <span>Pro.</span></h2>
+        <p>The website proves the meters. The desktop app is where repair writes a file you can bounce.</p>
+      </div>
+      <div class="table-scroll">
+        <table>
+          <thead>
+            <tr><th>Capability</th><th>Demo / web</th><th>Pro desktop</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Hear before / after A/B</td><td class="y">Yes — three real pairs</td><td class="y">Yes — your sessions</td></tr>
+            <tr><td>Score, LUFS, true peak, clips, phase</td><td class="y">Yes (engine API)</td><td class="y">Yes</td></tr>
+            <tr><td>Projected repair column</td><td class="y">Yes</td><td class="y">Yes, then you can apply it</td></tr>
+            <tr><td>Write a repaired WAV</td><td class="n">No (by design)</td><td class="y">Pedalboard / FFmpeg</td></tr>
+            <tr><td>Reference match</td><td class="n">Not on the web form</td><td class="y">Full divergence table</td></tr>
+            <tr><td>Batch / album</td><td class="n">One file at a time</td><td class="y">Yes</td></tr>
+            <tr><td>HTML + JSON reports</td><td class="n">On-screen report</td><td class="y">Exportable</td></tr>
+            <tr><td>Audio leaves your machine</td><td class="n">Only if you use the optional local API</td><td class="y">Never required</td></tr>
+            <tr><td>Price</td><td class="y">$0</td><td class="y">$49, or $34 with WEB30</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="head">
+        <small>Not a cloud master</small>
+        <h2>Why it is <span>not $15/mo.</span></h2>
+        <p>LANDR-style services charge rent to upload an unreleased master. CoProducer is a local instrument. You buy the engine once.</p>
+      </div>
+      <p class="note">Pro is a lifetime license at $49. WEB30 is 30% off at checkout ($34). There is no Starter subscription and no per-track cloud fee on this page — those would fight the rest of the product. Studio is a conversation when you need extra seats, not a third monthly SKU.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="head">
+        <small>Questions</small>
+        <h2>Before you <span>pay.</span></h2>
+      </div>
+      <div class="faq">
+        <article>
+          <h3>Is Pro monthly?</h3>
+          <p>No. $49 once, $34 with WEB30. The old three-tier monthly mock on this URL was a placeholder and did not match the product.</p>
+        </article>
+        <article>
+          <h3>Do I need the web API?</h3>
+          <p>Only to try Analyze in the browser. The desktop app is the real engine: same scoring, plus repair that writes a file.</p>
+        </article>
+        <article>
+          <h3>Will repair restore clipped transients?</h3>
+          <p>No. The report will say so. Limiting can zero the clip count; it cannot un-flatten a peak. Go back to the session when you still can.</p>
+        </article>
+        <article>
+          <h3>What does WEB30 apply to?</h3>
+          <p>CoProducer Pro. Copy it from this page or from a finished Analyze report. It is 30% off $49.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+</main>
+
+
+  <section style="padding:60px 0; border-top:1px solid var(--line);">
+    <div class="wrap">
+      <div class="head"><small>Also from NoDAW</small><h2>More <span>.bat</span> tools.</h2>
+      <p>Same idea across the suite: drag, drop, done. One-time. Forever.</p></div>
+      <div class="grid" style="grid-template-columns:repeat(3,1fr);">
+        <article class="card"><div class="tier">Mix &amp; Master</div><div class="amount">.bat</div><div class="period">drag unfinished audio · get mastered renders</div></article>
+        <article class="card"><div class="tier">Video + Social</div><div class="amount">.bat</div><div class="period">bulk effects · resize for every platform</div></article>
+        <article class="card"><div class="tier">ScrewAI</div><div class="amount">.bat</div><div class="period">17 syrup strains · unlimited local renders</div></article>
+      </div>
+      <p style="text-align:center;margin-top:20px;"><a class="btn" href="index.html#nodawBats">See the full .bat suite</a></p>
+    </div>
+  </section>
+
+<footer>
+  <div class="wrap">© 2026 NoDAW Labs · CoProducer · Local-first audio engineering workflow</div>
+</footer>
+<script>
+const btn = document.getElementById('copyCode');
+btn?.addEventListener('click', async () => {
+  try {
+    await navigator.clipboard.writeText('WEB30');
+    btn.textContent = 'Copied';
+  } catch {
+    btn.textContent = 'WEB30';
+  }
+});
+</script>
+</body>
+</html>

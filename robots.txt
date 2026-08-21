@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Sitemap: https://myaiplug.github.io/coproducer-web/sitemap.xml
+
+# Assistants: https://myaiplug.github.io/coproducer-web/llms.txt

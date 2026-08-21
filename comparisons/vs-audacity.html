@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>CoProducer vs Audacity | Editor vs Release Analyzer</title>
+<meta name="description" content="Audacity edits audio. CoProducer scores it against streaming targets and projects a repair plan. Complementary, not competitors.">
+<link rel="canonical" href="https://myaiplug.github.io/coproducer-web/comparisons/vs-audacity.html">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Rajdhani:wght@500;700&family=Manrope:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/report.css">
+</head>
+<body>
+<nav>
+  <div class="brand"><i>Co</i>Producer</div>
+  <div class="nav-links">
+    <a href="../index.html">Overview</a>
+    <a href="../analyze.html">Analyze</a>
+    <a href="../guides/">Guides</a>
+    <a href="./">Compare</a>
+  </div>
+</nav>
+<main style="max-width:900px;margin:0 auto">
+  <span style="font-family:var(--mono);font-size:11px;text-transform:uppercase;color:var(--cyan,#22d3ee);letter-spacing:0.1em">Platform Comparison</span>
+  <h1>CoProducer vs <span>Audacity</span></h1>
+  <p style="font-family:var(--mono);font-size:12px;color:var(--muted)">Updated August 2026 · Editor vs score</p>
+  <p>Audacity is a free DAW-adjacent editor: cut, fade, amplify, export. It will not tell you that Apple Sound Check wants −16 LUFS or that your true peak will clip an AAC encode. CoProducer will not replace a timeline editor. Together they cover “change the file” and “prove the file.”</p>
+  <table>
+    <thead><tr><th>Feature</th><th>CoProducer</th><th>Audacity</th></tr></thead>
+    <tbody>
+      <tr><td>Edit waveform / multi-track</td><td>No</td><td>Yes</td></tr>
+      <tr><td>ITU loudness + true peak</td><td>pyloudnorm / engine meters</td><td>Plugins if you install them</td></tr>
+      <tr><td>Scored findings + HTML report</td><td>Yes</td><td>No</td></tr>
+      <tr><td>Streaming platform table</td><td>Yes</td><td>No</td></tr>
+      <tr><td>One-click delivery repair</td><td>Pedalboard / FFmpeg plan</td><td>You build the chain</td></tr>
+      <tr><td>Price</td><td>Free + $49 Pro</td><td>Free</td></tr>
+    </tbody>
+  </table>
+  <p>Typical path: bounce from your DAW or Audacity, drop the bounce on <a href="../analyze.html">Analyze</a>, read the distance to target, then either open the desktop repair or go back to the session. Promo <strong>WEB30</strong> is 30% off Pro.</p>
+  <p><a class="cp-cta" href="../guides/audio-quality-checklist.html">Use the release checklist</a></p>
+</main>
+<footer><div class="wrap">&copy; 2026 NoDAW Labs · CoProducer</div></footer>
+</body>
+</html>

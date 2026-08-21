@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Should you upload an unreleased master to the cloud? | Lacquer</title>
+<meta name="description" content="Upload an unreleased master only if you accept a vendor holding the file. Loudness, true peak, and clip counts can be measured locally. CoProducer is local-first.">
+<link rel="canonical" href="https://myaiplug.github.io/coproducer-web/blog/should-you-upload-an-unreleased-master.html">
+<meta property="og:image" content="https://myaiplug.github.io/coproducer-web/blog/img/essays/should-you-upload-an-unreleased-master.jpg?v=shd">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;1,500;1,600&family=Figtree:wght@400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/journal.css">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Article","headline":"Should you upload an unreleased master to the cloud?","datePublished":"2026-08-20","image":"https://myaiplug.github.io/coproducer-web/blog/img/essays/should-you-upload-an-unreleased-master.jpg?v=shd","author":{"@type":"Organization","name":"NoDAW Labs"}}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"Is it safe to upload an unreleased mix for AI mastering?","acceptedAnswer":{"@type":"Answer","text":"It is a rights and privacy decision. The file leaves your machine. Local analysis can report LUFS, true peak, and clipping without a cloud master."}}
+]}
+</script>
+</head>
+<body>
+<header class="top">
+  <a class="mark" href="../index.html"><em>Co</em>Producer</a>
+  <nav class="nav"><a href="index.html">Journal</a><a href="../comparisons/">Compare</a><a href="../pricing.html">Pricing</a></nav>
+  <a class="cta" href="../analyze.html">Stay local</a>
+</header>
+<article class="post" id="main">
+  <div class="post-hero"><img src="img/essays/should-you-upload-an-unreleased-master.jpg?v=shd" alt="Closed steel vault beside a quiet local workstation"></div>
+  <header>
+    <p class="kicker">Practice · 20 August 2026 · 7 min</p>
+    <h1>Should you upload an unreleased master to the cloud?</h1>
+    <p class="meta">NoDAW Labs · Lacquer Vol. 01</p>
+  </header>
+  <p class="answer">Only if you accept a vendor storing that file. Loudness, true peak, clip count, and phase can be measured on your machine. A cloud master is a product choice, not a requirement of the physics.</p>
+
+  <p>An unreleased bounce is often the most valuable object in the room: not yet registered, not yet public, still the only copy with unclipped stems behind it. Sending it to a $15/month club to “see what AI does” is a rights decision dressed as a workflow. You can ask for LUFS without asking a stranger to keep the WAV.</p>
+
+  <h2>What actually has to leave the room</h2>
+  <p>Nothing, for a delivery check. Integrated LUFS and true peak are computed from samples you already have. CoProducer’s desktop path is local. The optional web Analyze talks to an API you run at 127.0.0.1 — it is not “upload to get a master back.” The GitHub Pages site is static. If Analyze works, it is because an engine is running where you can see it.</p>
+  <p>Time saved: you skip the account, the queue, the “which genre preset,” and the second-guessing of a file you cannot fully unsay. You bounce, you measure, you decide whether the mix or the ceiling is the problem. That is a shorter afternoon than waiting on a cloud render you will A/B against the original anyway.</p>
+
+  <h2>When upload is honest</h2>
+  <p>If you want a third party to render a new master, the file must go somewhere. Read the terms. Assume training and retention unless the contract forbids both. Compare that to the field notes: <a href="../comparisons/vs-landr.html">vs LANDR</a> and <a href="../comparisons/vs-cloud-mastering.html">vs cloud mastering</a>.</p>
+  <p>CoProducer is not claiming to be a better mastering engineer than a human with taste. It claims to be a meter and a conservative delivery pass you keep. Those are different jobs. Mixing them is how people upload a record to solve a true-peak overshoot.</p>
+  <div data-stems></div>
+
+  <aside class="aside">Pro is a one-time $49 license, $34 with <a href="../pricing.html">WEB30</a>. The pitch is ownership of the meter, not a cheaper upload. Hear the local repairs on the <a href="../index.html#ab">A/B</a> first; then decide whether a cloud needs the file at all.</aside>
+  <dl class="faq">
+    <dt>Does the website upload my song to NoDAW?</dt>
+    <dd>The GitHub Pages site is static. Analyze only works when you (or a host you control) run the local API. The form does not ship a repaired file back.</dd>
+    <dt>Is local always better sounding?</dt>
+    <dd>Not automatically. It is better defined: you keep the WAV, you see the plan, you can refuse the high-pass.</dd>
+  </dl>
+</article>
+<section class="comments" data-comments data-thread="vault"></section>
+<script type="module" src="js/studio.js"></script>
+<script type="module" src="js/comments.js"></script>
+<footer class="site"><span>Lacquer</span><span><a href="index.html">Journal</a></span></footer>
+</body>
+</html>
