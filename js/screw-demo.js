@@ -24,6 +24,12 @@ class ScrewDemo {
   }
 
   async init() {
+    const unlock = () => {
+      if (!this.ctx) this.ctx = new (window.AudioContext || window.webkitAudioContext)();
+      if (this.ctx.state !== 'running') this.ctx.resume().catch(() => {});
+    };
+    document.addEventListener('pointerdown', unlock);
+    document.addEventListener('touchend', unlock);
     const res = await fetch(CATALOG_URL);
     this.catalog = await res.json();
     this.track = this.catalog.tracks[0];
@@ -199,7 +205,15 @@ class ScrewDemo {
 
   async play() {
     if (!this.buf) return;
-    if (this.ctx.state === 'suspended') await this.ctx.resume();
+    if (!this.ctx) this.ctx = new (window.AudioContext || window.webkitAudioContext)();
+    if (this.ctx.state !== 'running') {
+      try { await this.ctx.resume(); } catch { /* ignored */ }
+      if (this.ctx.state !== 'running') {
+        try { await this.ctx.close(); } catch { /* ignored */ }
+        this.ctx = new (window.AudioContext || window.webkitAudioContext)();
+        this.gain = null;
+      }
+    }
     this.stopSource();
     if (!this.gain) {
       this.gain = this.ctx.createGain();

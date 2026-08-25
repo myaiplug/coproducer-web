@@ -914,6 +914,13 @@ class StemPlayerDemo {
     this.soloed = { vocals: false, drums: false, bass: false, other: false };
 
     this.loadTrack('tantric-breakdown', 'Acoustic session');
+
+    const unlock = () => {
+      if (!this.audioCtx) this.audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      if (this.audioCtx.state !== 'running') this.audioCtx.resume().catch(() => {});
+    };
+    document.addEventListener('pointerdown', unlock);
+    document.addEventListener('touchend', unlock);
   }
 
   async loadTrack(trackKey, titleName) {
@@ -955,8 +962,14 @@ class StemPlayerDemo {
     }
   }
 
-  play() {
-    if (this.audioCtx.state === 'suspended') this.audioCtx.resume();
+  async play() {
+    if (this.audioCtx.state !== 'running') {
+      try { await this.audioCtx.resume(); } catch (e) {}
+      if (this.audioCtx.state !== 'running') {
+        try { await this.audioCtx.close(); } catch (e) {}
+        this.audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      }
+    }
     const offset = this.pauseOffset % this.duration;
     const now = this.audioCtx.currentTime;
 

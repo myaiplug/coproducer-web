@@ -65,6 +65,14 @@ export class CoproducerPlayer {
     });
     this._bindSeek();
     this._syncUi();
+    this._unlock = () => {
+      this._ensureCtx();
+      if (this.ctx && this.ctx.state !== 'running') this.ctx.resume().catch(() => {});
+    };
+    if (WIN) {
+      WIN.addEventListener('pointerdown', this._unlock);
+      WIN.addEventListener('touchend', this._unlock);
+    }
   }
 
   async load({ a, b, peaksA, peaksB } = {}) {
@@ -94,7 +102,6 @@ export class CoproducerPlayer {
 
   play() {
     if (!this.bufA || this.playing) return;
-    this._ensureCtx();
     this.wantPlay = true;
     const start = () => {
       if (!this.wantPlay || this.playing || !this.bufA) return;
@@ -103,8 +110,24 @@ export class CoproducerPlayer {
       this._armRaf();
       this._syncUi();
     };
-    if (this.ctx.state === 'suspended') this.ctx.resume().then(start);
-    else start();
+    const ensureRunning = async () => {
+      this._ensureCtx();
+      if (this.ctx.state !== 'running') {
+        try { await this.ctx.resume(); } catch { /* ignored */ }
+      }
+      if (this.ctx.state !== 'running' && WIN) {
+        try { await this.ctx.close(); } catch { /* ignored */ }
+        const AC = WIN.AudioContext || WIN.webkitAudioContext;
+        this.ctx = new AC();
+        this.gainA = this.ctx.createGain();
+        this.gainB = this.ctx.createGain();
+        this.gainA.connect(this.ctx.destination);
+        this.gainB.connect(this.ctx.destination);
+        this._applyGains();
+      }
+      start();
+    };
+    ensureRunning();
   }
 
   pause() {

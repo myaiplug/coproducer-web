@@ -203,6 +203,14 @@ class StemDeck {
 
   async play() {
     document.dispatchEvent(new CustomEvent('lacquer-audio-play', { detail: { src: 'stems' } }));
+    const ctx = this._ctx();
+    if (ctx.state !== 'running') {
+      try { await ctx.resume(); } catch { /* ignored */ }
+      if (ctx.state !== 'running') {
+        try { await ctx.close(); } catch { /* ignored */ }
+        this.ctx = new (window.AudioContext || window.webkitAudioContext)();
+      }
+    }
     await this.ensure();
     if (this.ctx.state === 'suspended') await this.ctx.resume();
     if (this.offset >= this.duration()) this.offset = 0;
