@@ -43,6 +43,7 @@ class ScrewDemo {
     const product = this.catalog.product;
     this.root.innerHTML = `
       <div class="sx-shell">
+        <img class="sx-logo" src="assets/products/screwai-logo.png" alt="ScrewAI — The Codeine Processor, chopped and screwed" loading="lazy"/>
         <p class="sx-kicker">NoDAW · ScrewAI</p>
         <h2 class="sx-title">ScrewAI <span>Syrup Lab</span></h2>
         <p class="sx-lede">${product.tagline} Pick a demo cut, flip the syrup bottles, A/B original vs screwed. Real product: drag audio onto the <strong>.bat</strong>, select multiple strains, render unlimited local files.</p>

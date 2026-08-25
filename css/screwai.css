@@ -34,6 +34,13 @@
   font-family: var(--sx-body);
   box-shadow: 0 30px 80px rgba(0,0,0,.45);
 }
+.sx-logo {
+  display: block;
+  width: min(420px, 86%);
+  height: auto;
+  margin: 0 0 14px;
+  filter: drop-shadow(0 10px 30px rgba(140, 60, 255, 0.45));
+}
 .sx-kicker {
   font-family: var(--sx-mono);
   font-size: 10px;
