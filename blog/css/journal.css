@@ -13,7 +13,7 @@
   --mono: "JetBrains Mono", ui-monospace, monospace;
 }
 * { box-sizing: border-box; }
-html { scroll-behavior: smooth; background: var(--lacquer); }
+html { scroll-behavior: smooth; background: var(--lacquer); overflow-x: hidden; }
 body {
   margin: 0;
   background: var(--lacquer);
@@ -21,6 +21,8 @@ body {
   font-family: var(--body);
   line-height: 1.7;
   min-height: 100vh;
+  overflow-x: hidden;
+  max-width: 100%;
 }
 a { color: inherit; }
 img { max-width: 100%; display: block; }
@@ -183,14 +185,14 @@ img { max-width: 100%; display: block; }
 
 article.post { max-width: 740px; margin: 0 auto; padding: 0 24px 110px; }
 .post-hero {
-  margin: 0 -24px 40px;
+  margin: 0 -24px 32px;
   max-width: none;
-  width: 100vw;
+  width: calc(100% + 48px);
   position: relative;
-  left: 50%;
-  transform: translateX(-50%);
-  height: min(72vh, 820px);
-  min-height: min(72vh, 820px);
+  left: auto;
+  transform: none;
+  height: min(56vh, 620px);
+  min-height: 240px;
   overflow: hidden;
   background: #0a080c;
 }
@@ -498,16 +500,95 @@ footer.site {
   flex-wrap: wrap;
 }
 @media (max-width: 900px) {
-  .folio { grid-template-columns: 1fr; }
-  .piece { border-right: 0; border-bottom: 1px solid var(--hair); }
-  .stack a { grid-template-columns: 1fr; }
-  .stack a img { height: 200px; }
+  .top {
+    padding: 12px 16px;
+    gap: 10px;
+  }
+  .mark { font-size: 22px; flex: 0 0 auto; }
   .nav { display: none; }
-  .colophon { grid-template-columns: 1fr; }
+  .cta {
+    padding: 8px 11px;
+    font-size: 9px;
+    letter-spacing: 0.1em;
+    white-space: nowrap;
+    flex: 0 0 auto;
+  }
+  .cover { min-height: 78vh; }
+  .cover-copy { padding: 7vh 20px 6vh; max-width: 100%; }
+  .cover h1 {
+    font-size: clamp(34px, 11.2vw, 64px);
+    line-height: 0.96;
+    letter-spacing: -0.03em;
+    margin-bottom: 16px;
+  }
+  .kicker {
+    font-size: 9px;
+    letter-spacing: 0.14em;
+    line-height: 1.55;
+    max-width: 100%;
+  }
+  .lede { font-size: 16px; line-height: 1.55; }
+  .folio { grid-template-columns: 1fr; }
+  .piece {
+    border-right: 0;
+    border-bottom: 1px solid var(--hair);
+    grid-template-rows: minmax(180px, 42vw) auto;
+  }
+  .piece img { height: 100%; max-height: 260px; }
+  .stack a { grid-template-columns: 1fr; min-height: 0; }
+  .stack a img { height: 180px; width: 100%; }
+  .piece .body, .stack a .body { padding: 18px 20px 24px; }
+  .card-title { font-size: clamp(24px, 7vw, 32px); }
+  .excerpt { font-size: 15px; }
+  .colophon {
+    grid-template-columns: 1fr;
+    padding: 36px 20px 56px;
+    gap: 22px;
+  }
+  article.post { padding: 0 16px 80px; max-width: 100%; }
+  .post-hero {
+    margin: 0 -16px 22px;
+    width: calc(100% + 32px);
+    height: min(42vh, 340px);
+    min-height: 200px;
+    max-height: 360px;
+  }
+  .post header { padding-top: 12px; }
+  .post h1 {
+    font-size: clamp(28px, 8.6vw, 44px);
+    line-height: 1.04;
+  }
+  .answer { font-size: 17px; padding: 16px 0; }
+  .post p { font-size: 16px; }
+  .post h2 { font-size: 24px; margin: 28px 0 10px; }
+  .post table {
+    display: block;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    font-size: 11px;
+  }
+  .post th, .post td { padding: 8px 10px; white-space: nowrap; }
+  .comments { padding: 0 16px; margin-bottom: 48px; }
+  .cmt-row { flex-direction: column; }
+  .cmt-form input { max-width: none; }
+  .cmt-reply { margin-left: 10px; }
+  .jx-card { margin-left: 0; margin-right: 0; }
+  footer.site { padding: 16px 16px 28px; }
+}
+
+@media (max-width: 480px) {
+  .top { padding: 10px 12px; }
+  .mark { font-size: 20px; }
+  .cta { padding: 7px 9px; letter-spacing: 0.06em; }
+  .cover-copy { padding: 6vh 16px 5vh; }
+  .cover h1 { font-size: clamp(30px, 12vw, 46px); }
+  .lede { font-size: 15px; }
+  .piece { grid-template-rows: 180px auto; }
+  .stack a img { height: 160px; }
+  .piece .body, .stack a .body { padding: 16px 16px 22px; }
 }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
 :focus-visible { outline: 1px solid var(--gold); outline-offset: 3px; }
-
 
 .related-essays h2 {
   font-family: var(--display);
