@@ -23,8 +23,8 @@ function grade(m) {
   }
   const off = Math.abs(m.lufs + 14);
   if (off > 1.5) {
-    score -= Math.min(16, (off - 1.5) * 3.2);
-    notes.push("Integrated loudness " + m.lufs.toFixed(2) + " LUFS is " + off.toFixed(2) + " LU from -14.");
+    score -= Math.min(28, (off - 1.5) * 4);
+    notes.push("Integrated loudness " + m.lufs.toFixed(2) + " LUFS is " + off.toFixed(2) + " LU from -14. Release-ready needs to be inside 1.5 LU.");
   }
   if (m.phase < 0.2) {
     score -= 12;
@@ -38,10 +38,11 @@ function grade(m) {
     score -= 6;
     notes.push("Crest " + m.crest.toFixed(1) + " dB is already crushed. Limiting will not open it back up.");
   }
-  score = Math.round(Math.max(38, Math.min(99, score)));
   const gates = m.clips === 0 && m.truePeak <= -1 && off <= 1.5 && m.phase >= 0.2 && m.sampleRate >= 44100;
+  score = Math.round(Math.max(38, Math.min(99, score)));
   if (gates) score = Math.max(score, 90);
-  const rating = score >= 90 ? "Release ready" : score >= 75 ? "Usable after technical corrections" : "Needs a pass";
+  else score = Math.min(score, 89);
+  const rating = gates && score >= 90 ? "Release ready" : score >= 75 ? "Usable after technical corrections" : "Needs a pass";
   return { score, rating, notes, gates };
 }
 
@@ -143,10 +144,11 @@ function repair(buffer, before) {
     gainDb = 0;
     actions.push("Loudness already inside the window. No loudnorm gain.");
   }
-  if (afterHp.truePeak + gainDb > -1 || afterHp.clips > 0) {
-    actions.push("True-peak ceiling at -1.0 dBTP. Samples that were already clipped stay flat. This only stops new overs.");
+  const projectedTp = afterHp.truePeak + gainDb;
+  if (projectedTp > -1 || afterHp.clips > 0) {
+    actions.push("True-peak ceiling at -1.0 dBTP. Already-flat clipped samples are not rebuilt. This only stops new overs.");
   } else {
-    actions.push("True peak already under -1.0 dBTP. Limiter is armed but barely working.");
+    actions.push("After the trim, true peak sits under -1.0 dBTP. The ceiling did not have to grab.");
   }
   if (before.phase < 0.2) actions.push("Phase left alone. Correlation under 0.2 is a mix problem, not a limiter problem.");
   buf = gainAndLimit(buf, gainDb);
@@ -173,7 +175,7 @@ function paint(report, label) {
 
 function row(metric, a, b) {
   const d = (typeof b === "number" && typeof a === "number") ? (b - a) : "";
-  const good = metric === "Clips" ? b < a : metric === "Score" ? b > a : true;
+  const good = metric === "Clips" || metric === "True peak" || metric === "Peak" ? b < a : metric === "Score" ? b > a : Math.abs(b - a) < 0.05 || metric === "Phase";
   return `<tr><td>${metric}</td><td>${a}</td><td>${b}</td><td class="${good ? "up" : ""}">${typeof d === "number" ? (d > 0 ? "+" : "") + d.toFixed(2) : ""}</td></tr>`;
 }
 
@@ -191,14 +193,41 @@ function showDelta(before, after, actions) {
   $("#fixedList").innerHTML = actions.map((a) => `<li>${a}</li>`).join("");
 }
 
+function drawWave(buffer) {
+  const c = $("#wave");
+  if (!c) return;
+  const x = c.getContext("2d");
+  const w = c.width = Math.max(300, c.clientWidth * 2);
+  const h = c.height = 120;
+  const data = buffer.getChannelData(0);
+  const cols = 180;
+  const per = Math.floor(data.length / cols) || 1;
+  x.clearRect(0, 0, w, h);
+  x.strokeStyle = "#e84cff";
+  x.beginPath();
+  for (let i = 0; i < cols; i++) {
+    let m = 0;
+    const s = i * per;
+    for (let j = 0; j < per; j += Math.max(1, per >> 5)) m = Math.max(m, Math.abs(data[s + j] || 0));
+    const px = (i / cols) * w;
+    const amp = m * (h * 0.46);
+    x.moveTo(px, h / 2 - amp);
+    x.lineTo(px, h / 2 + amp);
+  }
+  x.stroke();
+}
 function bindAudio(buffer) {
-  const url = URL.createObjectURL(encodeWav(buffer));
+  if (state.url) URL.revokeObjectURL(state.url);
+  state.url = URL.createObjectURL(encodeWav(buffer));
   const audio = $("#preview");
   const t = audio.currentTime || 0;
   const playing = !audio.paused;
-  audio.src = url;
-  audio.currentTime = Math.min(t, buffer.duration - 0.05);
-  if (playing) audio.play();
+  audio.src = state.url;
+  audio.onloadedmetadata = () => {
+    audio.currentTime = Math.min(t, Math.max(0, audio.duration - 0.05));
+    if (playing) audio.play().catch(() => {});
+  };
+  drawWave(buffer);
 }
 
 async function tryServer(file) {
@@ -232,10 +261,9 @@ async function onFile(file) {
   const server = await tryServer(file);
   state.before = local;
   if (server && server.data && server.data.score != null) {
-    state.before.score = server.data.score;
-    state.before.rating = server.data.rating || state.before.rating;
+    state.before.serverScore = server.data.score;
     state.before.engine = "server";
-    $("#engineStatus").textContent = "Server grade from " + server.source + ". Specs below are the Lacquer meter on the same file.";
+    $("#engineStatus").textContent = "Server answered at " + server.source + " with score " + server.data.score + ". The grade on this page is the Lacquer meter, so the number matches the specs.";
   } else {
     state.before.engine = "lacquer-browser";
     $("#engineStatus").textContent = "Server dark. Grade is the Lacquer meter against CoProducer gates. Nothing uploaded.";
@@ -252,8 +280,12 @@ $("#dropzone").addEventListener("drop", (e) => { e.preventDefault(); if (e.dataT
 
 $("#playBtn").addEventListener("click", () => {
   const a = $("#preview");
+  if (!a.src) return;
   if (a.paused) a.play(); else a.pause();
+  $("#playBtn").textContent = a.paused ? "Play" : "Pause";
 });
+$("#preview").addEventListener("pause", () => { $("#playBtn").textContent = "Play"; });
+$("#preview").addEventListener("play", () => { $("#playBtn").textContent = "Pause"; });
 
 function setSide(side) {
   if (!state.beforeBuf) return;
