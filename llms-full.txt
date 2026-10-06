@@ -2,6 +2,16 @@
 Base: https://myaiplug.github.io/coproducer-web/
 Updated: 2026-08-21
 
+## How loud should the vocal sit? Measure it against the beat
+URL: https://myaiplug.github.io/coproducer-web/blog/how-loud-should-the-vocal-sit.html
+There’s no single right vocal level, but the vocal-to-beat loudness gap in LU is measurable. Match it to a reference, then fix only the buried bars.
+Keywords: how loud should vocals be, vocal level in mix, vocal too quiet in chorus, LU, StemSplit, NoDAW
+
+## Harsh S’s get louder after mastering. De-ess before the limiter
+URL: https://myaiplug.github.io/coproducer-web/blog/harsh-esses-get-louder-after-mastering.html
+Vocals harsh after mastering? The master lifts level and top end, so borderline sibilance pops and eats true-peak headroom. Find the worst S’s and fix them in the mix.
+Keywords: harsh vocals after mastering, sibilance, de-essing, de-ess before limiter, true peak, ScrewAI, NoDAW
+
 ## Why streaming platforms turn loud masters down
 URL: https://myaiplug.github.io/coproducer-web/blog/why-streaming-turns-loud-masters-down.html
 Streaming services normalize toward −14 LUFS (Apple closer to −16). A hotter master is turned down, not played louder. Measure integrated LUFS before you limit again.

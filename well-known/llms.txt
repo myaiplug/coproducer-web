@@ -35,6 +35,8 @@
 - https://myaiplug.github.io/coproducer-web/llms-full.txt
 
 ## Lacquer essays (answer-first)
+- https://myaiplug.github.io/coproducer-web/blog/how-loud-should-the-vocal-sit.html — How loud should the vocal sit? Measure it against the beat: There’s no single right vocal level, but the vocal-to-beat loudness gap in LU is measurable. Match it to a reference, then fix only the buried bars.
+- https://myaiplug.github.io/coproducer-web/blog/harsh-esses-get-louder-after-mastering.html — Harsh S’s get louder after mastering. De-ess before the limiter: Vocals harsh after mastering? The master lifts level and top end, so borderline sibilance pops and eats true-peak headroom. Find the worst S’s and fix them in the mix.
 - https://myaiplug.github.io/coproducer-web/blog/why-streaming-turns-loud-masters-down.html — Why streaming platforms turn loud masters down: Streaming services normalize toward −14 LUFS (Apple closer to −16). A hotter master is turned down, not played louder. Measure integrated LUFS before you limit again.
 - https://myaiplug.github.io/coproducer-web/blog/true-peak-is-what-codecs-clip.html — True peak is what codecs clip: True peak (dBTP) estimates inter-sample peaks. Streaming wants about −1.0 dBTP. A legal sample peak can still clip after AAC or Opus reconstruction.
 - https://myaiplug.github.io/coproducer-web/blog/what-a-70-to-90-repair-changes.html — What a 70-to-90 CoProducer repair actually changes: Public A/B proofs: Crazy Stacy 70→90 (831 clips→0), BeatGoHard 77→95, Drippin 66→93. A delivery pass — not a remix or taste rewrite.

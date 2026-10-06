@@ -6,7 +6,23 @@
     <atom:link href="https://myaiplug.github.io/coproducer-web/blog/rss.xml" rel="self" type="application/rss+xml"/>
     <description>Answer-first essays on loudness, true peak, repair, stems, ScrewAI, and local .bat workflows.</description>
     <language>en-us</language>
-    <lastBuildDate>Thu, 21 Aug 2026 00:00:00 GMT</lastBuildDate>
+    <lastBuildDate>Tue, 06 Oct 2026 00:00:00 GMT</lastBuildDate>
+    <item>
+      <title>How loud should the vocal sit? Measure it against the beat</title>
+      <link>https://myaiplug.github.io/coproducer-web/blog/how-loud-should-the-vocal-sit.html</link>
+      <guid isPermaLink="true">https://myaiplug.github.io/coproducer-web/blog/how-loud-should-the-vocal-sit.html</guid>
+      <pubDate>Tue, 06 Oct 2026 00:00:00 GMT</pubDate>
+      <description>There’s no single right vocal level, but the vocal-to-beat loudness gap in LU is measurable. Match it to a reference, then fix only the buried bars.</description>
+      <enclosure url="https://myaiplug.github.io/coproducer-web/blog/img/essays/how-loud-should-the-vocal-sit.jpg?v=shd" type="image/jpeg" length="365432"/>
+    </item>
+    <item>
+      <title>Harsh S’s get louder after mastering. De-ess before the limiter</title>
+      <link>https://myaiplug.github.io/coproducer-web/blog/harsh-esses-get-louder-after-mastering.html</link>
+      <guid isPermaLink="true">https://myaiplug.github.io/coproducer-web/blog/harsh-esses-get-louder-after-mastering.html</guid>
+      <pubDate>Tue, 06 Oct 2026 00:00:00 GMT</pubDate>
+      <description>Vocals harsh after mastering? The master lifts level and top end, so borderline sibilance pops and eats true-peak headroom. Find the worst S’s and fix them in the mix.</description>
+      <enclosure url="https://myaiplug.github.io/coproducer-web/blog/img/essays/harsh-esses-get-louder-after-mastering.jpg?v=shd" type="image/jpeg" length="355656"/>
+    </item>
         <item>
       <title>Why streaming platforms turn loud masters down</title>
       <link>https://myaiplug.github.io/coproducer-web/blog/why-streaming-turns-loud-masters-down.html</link>

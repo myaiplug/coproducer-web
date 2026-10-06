@@ -120,6 +120,26 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://myaiplug.github.io/coproducer-web/blog/how-loud-should-the-vocal-sit.html</loc>
+    <lastmod>2026-10-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+    <image:image>
+      <image:loc>https://myaiplug.github.io/coproducer-web/blog/img/essays/how-loud-should-the-vocal-sit.jpg?v=shd</image:loc>
+      <image:title>How loud should the vocal sit? Measure it against the beat</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://myaiplug.github.io/coproducer-web/blog/harsh-esses-get-louder-after-mastering.html</loc>
+    <lastmod>2026-10-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+    <image:image>
+      <image:loc>https://myaiplug.github.io/coproducer-web/blog/img/essays/harsh-esses-get-louder-after-mastering.jpg?v=shd</image:loc>
+      <image:title>Harsh S’s get louder after mastering. De-ess before the limiter</image:title>
+    </image:image>
+  </url>
+  <url>
     <loc>https://myaiplug.github.io/coproducer-web/blog/why-streaming-turns-loud-masters-down.html</loc>
     <lastmod>2026-08-21</lastmod>
     <changefreq>monthly</changefreq>
