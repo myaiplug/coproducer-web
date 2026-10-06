@@ -100,8 +100,8 @@
       <link>https://myaiplug.github.io/coproducer-web/blog/sample-rate-and-bit-depth-for-delivery.html</link>
       <guid isPermaLink="true">https://myaiplug.github.io/coproducer-web/blog/sample-rate-and-bit-depth-for-delivery.html</guid>
       <pubDate>Thu, 21 Aug 2026 00:00:00 GMT</pubDate>
-      <description>CoProducer fails sample rates under 44.1 kHz. A 32 kHz MP3 labeled MASTER is not a master. Bit depth and rate are hygiene, not vibe.</description>
-      <enclosure url="https://myaiplug.github.io/coproducer-web/blog/img/essays/sample-rate-and-bit-depth-for-delivery.jpg?v=shd" type="image/jpeg" length="0"/>
+      <description>CoProducer fails sample rates under 44.1 kHz. Why 32 kHz fails delivery, when 44.1/48/96 are fine, what bit depth distributors want, and how to verify the bounce.</description>
+      <enclosure url="https://myaiplug.github.io/coproducer-web/blog/img/essays/sample-rate-and-bit-depth-for-delivery.jpg?v=sr2" type="image/jpeg" length="0"/>
     </item>
     <item>
       <title>Reference matching without guesswork</title>

@@ -59,7 +59,7 @@ Keywords: limiter, mastering, clipping, dynamics, repair
 
 ## Sample rate and bit depth are delivery hygiene
 URL: https://myaiplug.github.io/coproducer-web/blog/sample-rate-and-bit-depth-for-delivery.html
-CoProducer fails sample rates under 44.1 kHz. A 32 kHz MP3 labeled MASTER is not a master. Bit depth and rate are hygiene, not vibe.
+CoProducer fails sample rates under 44.1 kHz. Why 32 kHz fails delivery, when 44.1/48/96 are fine, what bit depth distributors want, and how to verify the bounce.
 Keywords: sample rate, bit depth, 44.1 kHz, delivery, masters
 
 ## Reference matching without guesswork
