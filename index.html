@@ -724,7 +724,7 @@ footer { width: 100%; display: flex; justify-content: center; border-top: 1px so
 
 <section id="halfscrewDemo" style="padding:48px 0 28px; border-bottom:1px solid var(--line); width:100%; display:flex; justify-content:center; background:#040405;">
 <div style="width:100%; max-width:1120px; margin:0 auto; padding:0 12px;">
-<iframe title="HalfScrew" src="halfscrew/index.html" style="width:100%; height:860px; border:0; background:#040405; display:block;"></iframe>
+<iframe title="HalfScrew" src="halfscrew/index.html" id="halfscrewFrame" style="width:100%; height:640px; border:0; background:#040405; display:block;"></iframe>
 <p style="text-align:center; margin:8px 0 0; font:700 11px 'JetBrains Mono',monospace; color:#9b8aad;">
 Same desk: <a href="https://myaiplug.github.io/halfscrew/" rel="noopener" style="color:#e879f9;" target="_blank">myaiplug.github.io/halfscrew</a>
 · <a href="blog/halftime-still-needs-a-legal-peak.html" style="color:#e879f9;">Halftime still needs a legal peak</a>
@@ -1015,6 +1015,13 @@ function toggleMute(part) {
 function toggleSolo(part) {
   if (stemDemoPlayer) stemDemoPlayer.toggleSolo(part, typeof event !== 'undefined' ? event.currentTarget : null);
 }
+</script>
+<script>
+window.addEventListener("message", (e) => {
+  if (!e.data || e.data.type !== "halfscrew-h") return;
+  const f = document.getElementById("halfscrewFrame");
+  if (f) f.style.height = Math.max(520, e.data.h) + "px";
+});
 </script>
 </body>
 </html>
