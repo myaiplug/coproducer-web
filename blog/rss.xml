@@ -6,7 +6,23 @@
     <atom:link href="https://myaiplug.github.io/coproducer-web/blog/rss.xml" rel="self" type="application/rss+xml"/>
     <description>Answer-first essays on loudness, true peak, repair, stems, ScrewAI, and local .bat workflows.</description>
     <language>en-us</language>
-    <lastBuildDate>Tue, 06 Oct 2026 00:00:00 GMT</lastBuildDate>
+    <lastBuildDate>Tue, 06 Oct 2026 16:00:00 GMT</lastBuildDate>
+    <item>
+      <title>Wide mixes fail in mono. Check mid/side before you bounce</title>
+      <link>https://myaiplug.github.io/coproducer-web/blog/wide-mixes-fail-in-mono.html</link>
+      <guid isPermaLink="true">https://myaiplug.github.io/coproducer-web/blog/wide-mixes-fail-in-mono.html</guid>
+      <pubDate>Tue, 06 Oct 2026 16:00:00 GMT</pubDate>
+      <description>Stereo width that sounds huge on headphones can cancel on a phone. Measure mid/side balance, L/R correlation, and mono fold-down before you bounce.</description>
+      <enclosure url="https://myaiplug.github.io/coproducer-web/blog/img/essays/wide-mixes-fail-in-mono.jpg?v=shd" type="image/jpeg" length="482142"/>
+    </item>
+    <item>
+      <title>Clipper vs limiter for hip-hop delivery — loudness isn’t the only score</title>
+      <link>https://myaiplug.github.io/coproducer-web/blog/clipper-vs-limiter-hip-hop-delivery.html</link>
+      <guid isPermaLink="true">https://myaiplug.github.io/coproducer-web/blog/clipper-vs-limiter-hip-hop-delivery.html</guid>
+      <pubDate>Tue, 06 Oct 2026 16:00:00 GMT</pubDate>
+      <description>Soft clipper vs brickwall limiter on the same drive: compare LUFS, true peak, and crest. Sample peak −1.0 dBFS is not true-peak safe.</description>
+      <enclosure url="https://myaiplug.github.io/coproducer-web/blog/img/essays/clipper-vs-limiter-hip-hop-delivery.jpg?v=shd" type="image/jpeg" length="441199"/>
+    </item>
     <item>
       <title>The silence at the top of your bounce steals LUFS</title>
       <link>https://myaiplug.github.io/coproducer-web/blog/leading-silence-steals-integrated-lufs.html</link>

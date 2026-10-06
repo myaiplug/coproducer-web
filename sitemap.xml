@@ -27,7 +27,7 @@
   </url>
   <url>
     <loc>https://myaiplug.github.io/coproducer-web/blog/index.html</loc>
-    <lastmod>2026-08-21</lastmod>
+    <lastmod>2026-10-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
     <image:image>
@@ -119,7 +119,27 @@
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
+    <url>
+    <loc>https://myaiplug.github.io/coproducer-web/blog/wide-mixes-fail-in-mono.html</loc>
+    <lastmod>2026-10-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://myaiplug.github.io/coproducer-web/blog/img/essays/wide-mixes-fail-in-mono.jpg?v=shd</image:loc>
+      <image:title>Wide mixes fail in mono. Check mid/side before you bounce</image:title>
+    </image:image>
+  </url>
   <url>
+    <loc>https://myaiplug.github.io/coproducer-web/blog/clipper-vs-limiter-hip-hop-delivery.html</loc>
+    <lastmod>2026-10-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://myaiplug.github.io/coproducer-web/blog/img/essays/clipper-vs-limiter-hip-hop-delivery.jpg?v=shd</image:loc>
+      <image:title>Clipper vs limiter for hip-hop delivery — loudness isn’t the only score</image:title>
+    </image:image>
+  </url>
+<url>
     <loc>https://myaiplug.github.io/coproducer-web/blog/leading-silence-steals-integrated-lufs.html</loc>
     <lastmod>2026-10-05</lastmod>
     <changefreq>monthly</changefreq>

@@ -2,6 +2,16 @@
 Base: https://myaiplug.github.io/coproducer-web/
 Updated: 2026-10-06
 
+## Wide mixes fail in mono. Check mid/side before you bounce
+URL: https://myaiplug.github.io/coproducer-web/blog/wide-mixes-fail-in-mono.html
+Stereo width that sounds huge on headphones can cancel on a phone. Measure mid/side balance, L/R correlation, and mono fold-down before you bounce.
+Keywords: mono compatible mix, mid side balance, stereo width, phase correlation, phone speaker thin mix, StemSplit, CoProducer, NoDAW
+
+## Clipper vs limiter for hip-hop delivery — loudness isn’t the only score
+URL: https://myaiplug.github.io/coproducer-web/blog/clipper-vs-limiter-hip-hop-delivery.html
+Soft clipper vs brickwall limiter on the same drive: compare LUFS, true peak, and crest. Sample peak −1.0 dBFS is not true-peak safe.
+Keywords: clipper vs limiter, hip-hop mastering, true peak, soft clip, alimiter, crest factor, ScrewAI, CoProducer, NoDAW
+
 ## The silence at the top of your bounce steals LUFS
 URL: https://myaiplug.github.io/coproducer-web/blog/leading-silence-steals-integrated-lufs.html
 Digital silence is gated out of integrated LUFS, but quiet intros, long fades and ungated meters still pull the number down. Trim the edges, then measure.
