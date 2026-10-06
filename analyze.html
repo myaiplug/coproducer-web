@@ -13,10 +13,15 @@
 [hidden]{display:none !important}
 body { margin:0; background:radial-gradient(900px 420px at 50% -10%, rgba(232,76,255,.16), transparent 60%), var(--bg); color:var(--ink); font-family:Inter,sans-serif; }
 .wrap { width:min(880px, calc(100% - 28px)); margin:0 auto; padding:28px 0 72px; }
-nav { display:flex; justify-content:space-between; align-items:center; border:1px solid var(--line); border-radius:16px; padding:14px 18px; background:rgba(8,5,12,.8); }
-.brand { font:italic 800 26px "Barlow Condensed",sans-serif; letter-spacing:.04em; text-decoration:none; color:var(--ink); }
+@media (max-width:900px){ .nav-inner{height:auto; padding:12px 0; align-items:flex-start; flex-wrap:wrap;} .cta{margin-left:auto;} }
+nav { position:sticky; top:0; z-index:20; background:rgba(5,3,8,.92); backdrop-filter:blur(18px); border-bottom:1px solid var(--line); }
+.nav-inner { height:72px; display:flex; align-items:center; justify-content:space-between; gap:16px; width:min(1320px, calc(100% - 28px)); margin:0 auto; }
+.brand { font:italic 800 30px "Barlow Condensed",sans-serif; color:var(--ink); text-decoration:none; white-space:nowrap; }
 .brand i { color:var(--m); font-style:italic; }
-nav a.quiet { color:var(--muted); font:600 10px "JetBrains Mono",monospace; letter-spacing:.14em; text-transform:uppercase; text-decoration:none; }
+.links { display:flex; gap:18px; flex-wrap:wrap; font:700 10px "JetBrains Mono",monospace; text-transform:uppercase; letter-spacing:.06em; }
+.links a { color:#aaa0b0; text-decoration:none; }
+.links a:hover, .links a.on { color:var(--m); }
+.cta { padding:13px 16px; border:1px solid #9d3cdb; border-radius:6px; background:linear-gradient(#9632d6,#58148a); font:800 10px "JetBrains Mono",monospace; text-transform:uppercase; color:#fff; text-decoration:none; box-shadow:0 0 28px rgba(174,54,255,.22); white-space:nowrap; }
 .kicker { margin:34px 0 8px; font:600 11px "JetBrains Mono",monospace; letter-spacing:.28em; color:var(--m); }
 h1 { font:800 58px "Barlow Condensed",sans-serif; text-transform:uppercase; line-height:.88; margin:0 0 12px; }
 h1 span { color:var(--m); }
@@ -56,8 +61,22 @@ input[type="email"] { flex:1; min-width:200px; background:#120a16; color:var(--i
 <body>
 <div class="wrap">
   <nav>
-    <a class="brand" href="index.html">Co<i>Producer</i></a>
-    <a class="quiet" href="blog/index.html">Lacquer journal</a>
+    <div class="nav-inner">
+      <a class="brand" href="index.html"><i>Co</i>Producer</a>
+      <div class="links">
+        <a href="index.html">Overview</a>
+        <a href="index.html#ab">A/B</a>
+        <a href="index.html#nodawBats">.bats</a>
+        <a href="index.html#screwDemo">ScrewAI</a>
+        <a href="index.html#stemDemo">Stems</a>
+        <a class="on" href="analyze.html">Analyze</a>
+        <a href="guides/index.html">Guides</a>
+        <a href="blog/index.html">Journal</a>
+        <a href="comparisons/vs-landr.html">Compare</a>
+        <a href="pricing.html">Pricing</a>
+      </div>
+      <a class="cta" href="analyze.html">Analyze Audio</a>
+    </div>
   </nav>
   <p class="kicker">LACQUER DESK</p>
   <h1>Analyze.<br><span>Then one pass.</span></h1>
