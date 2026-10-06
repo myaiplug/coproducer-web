@@ -1,530 +1,107 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8"/><meta content="width=device-width,initial-scale=1.0" name="viewport"/><meta content="https://myaiplug.github.io/coproducer-web/assets/og-default.jpg" name="twitter:image"/><meta content="Upload a song to CoProducer’s local analyze engine. See LUFS, true peak, clips, phase, score gates, and projected repair stats — no repaired WAV download on the web." name="twitter:description"/><meta content="Analyze Your Track | CoProducer Local Engine" name="twitter:title"/><meta content="summary_large_image" name="twitter:card"/><meta content="1440" property="og:image:height"/><meta content="2560" property="og:image:width"/><meta content="https://myaiplug.github.io/coproducer-web/assets/og-default.jpg" property="og:image"/><meta content="https://myaiplug.github.io/coproducer-web/analyze.html" property="og:url"/><meta content="Upload a song to CoProducer’s local analyze engine. See LUFS, true peak, clips, phase, score gates, and projected repair stats — no repaired WAV download on the web." property="og:description"/><meta content="Analyze Your Track | CoProducer Local Engine" property="og:title"/><meta content="en_US" property="og:locale"/><meta content="CoProducer" property="og:site_name"/><meta content="website" property="og:type"/><link href="https://myaiplug.github.io/coproducer-web/llms.txt" rel="alternate" title="llms.txt" type="text/plain"/><meta content="NoDAW Labs" name="author"/><meta content="#050308" name="theme-color"/><meta content="index,follow,max-image-preview:large" name="robots"/>
-<title>Analyze Your Track | CoProducer Local Engine</title>
-<meta content="Upload a song to CoProducer’s local analyze engine. See LUFS, true peak, clips, phase, score gates, and projected repair stats — no repaired WAV download on the web." name="description"/>
-<link href="https://myaiplug.github.io/coproducer-web/analyze.html" rel="canonical"/>
-<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&amp;family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;700&amp;display=swap" rel="stylesheet"/>
-<link href="css/report.css" rel="stylesheet"/>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Lacquer Analyze | CoProducer</title>
+<meta name="description" content="Lacquer analyze desk. Server analysis first, browser engine fallback, playable preview, one-click snippet fix. Email unlocks the full pass and HTML, JSON, or TXT documents."/>
+<link rel="canonical" href="https://myaiplug.github.io/coproducer-web/analyze.html"/>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet"/>
 <style>
-html, body {
-  background: #050308;
-  color: #f7f2fa;
-  font-family: Inter, sans-serif;
-  margin: 0;
-  padding: 0;
-  width: 100%;
-  overflow-x: hidden;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
-}
-.page-container {
-  width: 100%;
-  max-width: 900px;
-  margin: 0 auto;
-  padding: 0 20px 80px;
-  box-sizing: border-box;
-  display: flex;
-  flex-direction: column;
-  align-items: stretch;
-}
-nav {
-  width: 100%;
-  max-width: 900px;
-  background: rgba(5, 3, 8, 0.85);
-  border: 1px solid rgba(194, 111, 255, 0.2);
-  border-radius: 16px;
-  padding: 16px 28px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin: 30px auto 50px auto;
-  box-sizing: border-box;
-  backdrop-filter: blur(16px);
-}
-.brand {
-  font: italic 800 28px 'Barlow Condensed', sans-serif;
-  text-transform: uppercase;
-}
-.brand i { color: #e84cff; font-style: italic; }
-.nav-links {
-  display: flex;
-  gap: 25px;
-  font: 700 10px 'JetBrains Mono', monospace;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  color: #a79daf;
-}
-.nav-links a { color: #a79daf; text-decoration: none; transition: color 0.2s; }
-.nav-links a:hover, .nav-links a.active { color: #e84cff; }
-
-.status-banner {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 11px;
-  padding: 16px 24px;
-  border-radius: 12px;
-  background: rgba(18, 10, 28, 0.92);
-  border: 1px solid rgba(194, 111, 255, 0.22);
-  margin-bottom: 24px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.4);
-  width: 100%;
-  box-sizing: border-box;
-}
-
-.dropzone {
-  display: block;
-  border: 2px dashed rgba(194, 111, 255, 0.35);
-  background: rgba(18, 10, 28, 0.92);
-  border-radius: 16px;
-  padding: 60px 24px;
-  text-align: center;
-  cursor: pointer;
-  transition: all 0.2s;
-  margin: 0 0 32px 0;
-  width: 100%;
-  box-sizing: border-box;
-  box-shadow: 0 4px 30px rgba(0,0,0,0.4);
-}
-.dropzone:hover, .dropzone.drag {
-  border-color: #e84cff;
-  background: rgba(168, 57, 255, 0.06);
-}
-.dropzone input { display: none; }
-
-.offline-card, .card {
-  background: rgba(18, 10, 28, 0.92);
-  border: 1px solid rgba(194, 111, 255, 0.22);
-  border-radius: 16px;
-  padding: 40px;
-  text-align: center;
-  margin-top: 24px;
-  width: 100%;
-  box-sizing: border-box;
-  box-shadow: 0 4px 30px rgba(0,0,0,0.4);
-}
-.hidden { display: none !important; }
-
-footer {
-  width: 100%;
-  max-width: 900px;
-  margin: 0 auto;
-  text-align: center;
-  padding: 40px 20px;
-  border-top: 1px solid rgba(194, 111, 255, 0.2);
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 11px;
-  color: #a79daf;
-  box-sizing: border-box;
+:root { --ink:#f6efe8; --muted:#b7a8b4; --m:#e84cff; --line:rgba(232,76,255,.28); --bg:#07050a; }
+* { box-sizing:border-box; }
+body { margin:0; background:radial-gradient(900px 420px at 50% -10%, rgba(232,76,255,.16), transparent 60%), var(--bg); color:var(--ink); font-family:Inter,sans-serif; }
+.wrap { width:min(880px, calc(100% - 28px)); margin:0 auto; padding:28px 0 72px; }
+nav { display:flex; justify-content:space-between; align-items:center; border:1px solid var(--line); border-radius:16px; padding:14px 18px; background:rgba(8,5,12,.8); }
+.brand { font:italic 800 26px "Barlow Condensed",sans-serif; letter-spacing:.04em; text-decoration:none; color:var(--ink); }
+.brand i { color:var(--m); font-style:italic; }
+nav a.quiet { color:var(--muted); font:600 10px "JetBrains Mono",monospace; letter-spacing:.14em; text-transform:uppercase; text-decoration:none; }
+.kicker { margin:34px 0 8px; font:600 11px "JetBrains Mono",monospace; letter-spacing:.28em; color:var(--m); }
+h1 { font:800 58px "Barlow Condensed",sans-serif; text-transform:uppercase; line-height:.88; margin:0 0 12px; }
+h1 span { color:var(--m); }
+.lede { color:var(--muted); max-width:62ch; line-height:1.55; }
+.status { margin:22px 0; padding:12px 14px; border:1px solid var(--line); border-radius:10px; font:11px "JetBrains Mono",monospace; color:#f0d8ff; }
+.status[data-mode="fallback"] { color:#f0c27a; }
+.drop { display:grid; place-items:center; gap:6px; min-height:140px; border:1px dashed var(--line); border-radius:16px; background:rgba(18,10,24,.7); text-align:center; cursor:pointer; }
+.drop b { font:700 22px "Barlow Condensed",sans-serif; letter-spacing:.08em; }
+.drop span, .note { color:var(--muted); font-size:12px; }
+.drop input { display:none; }
+.meters { display:grid; grid-template-columns:repeat(4,1fr); gap:10px; margin-top:18px; }
+.meter { border:1px solid var(--line); border-radius:12px; padding:12px; background:#100910; }
+.meter small { display:block; color:var(--muted); font:600 9px "JetBrains Mono",monospace; letter-spacing:.16em; }
+.meter strong { font:700 20px "Barlow Condensed",sans-serif; letter-spacing:.04em; }
+.dock { margin-top:16px; border:1px solid var(--line); border-radius:14px; padding:12px; }
+canvas { width:100%; height:60px; display:block; border-radius:8px; }
+.row { display:flex; gap:10px; flex-wrap:wrap; align-items:center; margin-top:10px; }
+button, .btn { font:700 12px "JetBrains Mono",monospace; letter-spacing:.12em; text-transform:uppercase; color:#1a0b16; background:linear-gradient(180deg,#f3c6ff,#e84cff); border:0; border-radius:999px; padding:10px 14px; cursor:pointer; }
+button[disabled] { opacity:.45; cursor:default; }
+.ghost { background:transparent; color:var(--ink); border:1px solid var(--line); }
+form { display:flex; gap:8px; flex-wrap:wrap; margin-top:8px; }
+input[type="email"] { flex:1; min-width:200px; background:#120a16; color:var(--ink); border:1px solid var(--line); border-radius:999px; padding:10px 14px; }
+.gate, .docs { margin-top:16px; border-top:1px solid var(--line); padding-top:14px; }
+@media (max-width:640px) {
+  h1 { font-size:40px; }
+  .meters { grid-template-columns:1fr 1fr; }
+  nav { gap:10px; }
 }
 </style>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"CoProducer","item":"https://myaiplug.github.io/coproducer-web/"},{"@type":"ListItem","position":2,"name":"Analyze Your Track","item":"https://myaiplug.github.io/coproducer-web/analyze.html"}]}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"HowTo","name":"Analyze a track with CoProducer on the web","description":"Project streaming-readiness metrics and repair stats locally. The web UI does not download a repaired master.","step":[{"@type":"HowToStep","name":"Upload","text":"Drop or choose an audio file in the analyze dropzone."},{"@type":"HowToStep","name":"Read the gates","text":"Review LUFS, true peak, clips, phase, sample rate, and score versus release targets."},{"@type":"HowToStep","name":"Read projected repair","text":"Compare current vs projected post-repair stats. Repair WAV output requires desktop CoProducer."}]}</script></head>
+</head>
 <body>
-<nav>
-<div class="brand"><i>Co</i>Producer</div>
-<div class="nav-links">
-<a href="index.html">Overview</a>
-<a class="active" href="analyze.html" style="color:#e84cff">Analyze</a>
-<a href="guides/what-is-lufs.html">Guides</a>
-<a href="comparisons/vs-landr.html">VS Landr</a>
+<div class="wrap">
+  <nav>
+    <a class="brand" href="index.html">Co<i>Producer</i></a>
+    <a class="quiet" href="blog/index.html">Lacquer journal</a>
+  </nav>
+  <p class="kicker">LACQUER DESK</p>
+  <h1>Analyze.<br><span>Then one pass.</span></h1>
+  <p class="lede">Server analysis runs first. If the local engine is dark, the same browser meter from the homepage takes the file and nothing leaves the machine. Preview is playable. Auto fix is one click and only a snippet. Email unlocks the full pass plus HTML, JSON, or TXT.</p>
+  <div class="status" id="engineStatus">Checking engine…</div>
+  <label class="drop" id="dropzone">
+    <input id="fileInput" type="file" accept="audio/*,.wav,.mp3,.flac,.m4a,.aiff"/>
+    <b>DROP THE BOUNCE</b>
+    <span>WAV, MP3, FLAC, M4A. Stays on this device unless the local server is up.</span>
+  </label>
+  <div class="meters" id="meters" hidden>
+    <div class="meter"><small>SCORE</small><strong data-m="score">–</strong></div>
+    <div class="meter"><small>RATING</small><strong data-m="rating">–</strong></div>
+    <div class="meter"><small>LUFS</small><strong data-m="lufs">–</strong></div>
+    <div class="meter"><small>PEAK</small><strong data-m="peak">–</strong></div>
+    <div class="meter"><small>RMS</small><strong data-m="rms">–</strong></div>
+    <div class="meter"><small>CREST</small><strong data-m="crest">–</strong></div>
+    <div class="meter"><small>WIDTH</small><strong data-m="width">–</strong></div>
+    <div class="meter"><small>BRIGHT</small><strong data-m="bright">–</strong></div>
+    <div class="meter"><small>DURATION</small><strong data-m="dur">–</strong></div>
+    <div class="meter"><small>RATE</small><strong data-m="sr">–</strong></div>
+    <div class="meter"><small>CHANNELS</small><strong data-m="ch">–</strong></div>
+    <div class="meter"><small>SILENCE</small><strong data-m="silence">–</strong></div>
+  </div>
+  <div class="dock" id="previewDock" hidden>
+    <canvas id="wave"></canvas>
+    <audio id="preview"></audio>
+    <div class="row">
+      <button id="playBtn" type="button">Play preview</button>
+      <button id="fixBtn" type="button">Auto fix snippet</button>
+      <span class="note">One pass. Twelve seconds. Full file stays locked.</span>
+    </div>
+  </div>
+  <div class="gate" id="gate">
+    <p class="kicker">FULL PASS</p>
+    <p class="lede">Sign in with email on this device to take the full auto fix and the analysis documents.</p>
+    <form id="emailForm">
+      <input id="email" type="email" required placeholder="you@studio.com" autocomplete="email"/>
+      <button type="submit">Unlock documents</button>
+    </form>
+  </div>
+  <div class="docs" id="docs" hidden>
+    <p class="kicker">SIGNED IN · <span id="who"></span></p>
+    <div class="row">
+      <button id="dlFull" type="button">Full auto fix</button>
+      <button class="ghost" id="dlHtml" type="button">HTML</button>
+      <button class="ghost" id="dlJson" type="button">JSON</button>
+      <button class="ghost" id="dlTxt" type="button">TXT</button>
+    </div>
+  </div>
 </div>
-</nav>
-<div class="page-container">
-<div style="text-align:center; margin-bottom:40px;">
-<span style="font-family:'JetBrains Mono', monospace; font-size:10px; text-transform:uppercase; color:#e84cff; letter-spacing:0.15em;">Engine Analysis</span>
-<h1 style="font-family:'Barlow Condensed', sans-serif; font-size:clamp(48px, 6vw, 76px); font-weight:900; line-height:0.9; text-transform:uppercase; margin:16px 0 12px;">Upload &amp;<br/><span style="color:#e84cff">Analyze Mix</span></h1>
-<p style="color:#a79daf; font-size:14px; max-width:650px; margin:0 auto; line-height:1.6;">Process your track through CoProducer's core engine. Get professional LUFS, true peak, dynamics, tempo, key detection, and projected repair stats.</p>
-</div>
-<div class="status-banner" id="engineStatus">
-<span id="statusText">Checking CoProducer Engine connection...</span>
-<span id="engineDot" style="width:8px; height:8px; border-radius:50%; background:#a79daf; display:inline-block; box-shadow:0 0 8px currentColor;"></span>
-</div>
-<label class="dropzone" id="dropzone">
-<input accept=".wav,.mp3,.flac,.m4a,.aac,.ogg,.opus,.aiff,.aif,audio/*" id="fileInput" type="file"/>
-<div>
-<div style="font-size:36px; color:#e84cff; margin-bottom:12px;">⇧</div>
-<b style="font-family:'Barlow Condensed', sans-serif; font-size:26px; text-transform:uppercase; letter-spacing:0.05em; color:#f7f2fa; display:block; margin-bottom:6px;">Drop your audio track here</b>
-<span style="font-family:'JetBrains Mono', monospace; font-size:11px; color:#a79daf; letter-spacing:0.02em;">WAV, MP3, FLAC, M4A, AIF (Max 40 MB). 100% local processing.</span>
-</div>
-</label>
-<div class="offline-card hidden" id="offlinePanel">
-<h3 style="color:#facc15; font-family:'Barlow Condensed', sans-serif; font-size:26px; text-transform:uppercase; letter-spacing:0.05em; margin-bottom:12px;">Engine API Offline</h3>
-<p style="color:#a79daf; font-size:14px; margin-bottom:24px; line-height:1.6;">The local Python analyzer API (<code>http://127.0.0.1:8788</code>) is not currently running. You can still download the desktop application or claim your discount code below.</p>
-<div>
-<a class="cp-cta" href="https://github.com/myaiplug/coproducer/releases/download/v1.0.0-beta/CoProducer-Setup-1.0.0-beta.exe" style="background:linear-gradient(#9632d6,#58148a); border:1px solid #9d3cdb; color:#fff; padding:14px 28px; border-radius:8px; font-family:'JetBrains Mono', monospace; font-size:11px; font-weight:800; text-transform:uppercase; text-decoration:none; letter-spacing:0.1em; box-shadow:0 0 24px rgba(174,54,255,0.3);">Download CoProducer Free</a>
-</div>
-</div>
-<div class="hidden" id="reportContainer" style="margin-top:40px;">
-<div class="meta-header" style="background:rgba(18,10,28,0.92); border:1px solid rgba(194,111,255,0.22); border-radius:16px; padding:28px; margin-bottom:32px; width:100%; box-sizing:border-box;">
-<div>
-<h2 id="reportTitle" style="font-family:'Barlow Condensed',sans-serif; font-size:28px; text-transform:uppercase; margin:0 0 6px;">Audio Quality Report</h2>
-<p id="reportSummary" style="color:#a79daf; font-size:14px; margin:0;">Analyzing file...</p>
-</div>
-<div style="display:flex; gap:12px; flex-wrap:wrap; margin-top:16px;">
-<div class="score-badge" style="background:#050308;">
-<div>
-<div class="label">Tempo (BPM)</div>
-<div class="number" id="bpmValue" style="color:#e84cff; font-family:'Barlow Condensed',sans-serif; font-size:32px; font-weight:800;">--</div>
-</div>
-</div>
-<div class="score-badge" style="background:#050308;">
-<div>
-<div class="label">Musical Key</div>
-<div class="number" id="keyValue" style="color:#22d3ee; font-family:'Barlow Condensed',sans-serif; font-size:32px; font-weight:800;">--</div>
-</div>
-</div>
-<div class="score-badge" style="background:#050308;">
-<div>
-<div class="label">Mix Score</div>
-<div class="number" id="scoreNumber" style="font-family:'Barlow Condensed',sans-serif; font-size:32px; font-weight:800;">--</div>
-</div>
-<div id="ratingText" style="font-family:'JetBrains Mono', monospace; font-size:11px; color:#a79daf; max-width:110px;">--</div>
-</div>
-</div>
-</div>
-<!-- Waveform Player -->
-<div class="card" style="margin-bottom:32px; background:rgba(18,10,28,0.92); border:1px solid rgba(194,111,255,0.22); border-radius:16px; padding:28px; text-align:left;">
-<h3 style="font-family:'Barlow Condensed',sans-serif; font-size:20px; text-transform:uppercase; margin-bottom:12px;">Uploaded Audio Preview</h3>
-<div class="cp-player" data-mode="single" id="uploadPlayer">
-<canvas class="cp-wave" height="220" style="width:100%; height:220px; background:#07050a; border:1px solid rgba(194,111,255,0.2); border-radius:8px; cursor:pointer;" width="1200"></canvas>
-<div class="cp-transport" style="display:flex; align-items:center; gap:20px; margin-top:16px; font-family:'JetBrains Mono', monospace; font-size:12px;">
-<button class="cp-play" style="padding:10px 20px; background:linear-gradient(#9632d6,#58148a); border:1px solid #9d3cdb; color:#fff; border-radius:6px; font-weight:800; cursor:pointer; text-transform:uppercase; font-size:10px; letter-spacing:0.1em;" type="button">Play</button>
-<span class="cp-time">0:00</span>
-</div>
-</div>
-</div>
-<!-- Target Comparison Table -->
-<div class="card" style="margin-bottom:32px; background:rgba(18,10,28,0.92); border:1px solid rgba(194,111,255,0.22); border-radius:16px; padding:28px; text-align:left;">
-<h3 style="font-family:'Barlow Condensed',sans-serif; font-size:20px; text-transform:uppercase; margin-bottom:8px;">Streaming Target Comparison</h3>
-<p style="color:#a79daf; font-size:13px; margin-bottom:16px;">Comparing your uploaded track against professional delivery standards and projected CoProducer app repair specs.</p>
-<div class="table-scroll">
-<table class="cp-table" id="comparisonTable">
-<thead>
-<tr>
-<th>Metric</th>
-<th>Your Upload</th>
-<th>If Repaired in CoProducer</th>
-<th>Release Target</th>
-</tr>
-</thead>
-<tbody></tbody>
-</table>
-</div>
-</div>
-<!-- Repair Plan -->
-<div class="card" style="margin-bottom:32px; background:rgba(18,10,28,0.92); border:1px solid rgba(194,111,255,0.22); border-radius:16px; padding:28px; text-align:left;">
-<h3 style="font-family:'Barlow Condensed',sans-serif; font-size:20px; text-transform:uppercase; margin-bottom:8px;">Repair &amp; Optimization Plan</h3>
-<p id="planSummary" style="color:#a79daf; font-size:13px;">Loading repair recommendations...</p>
-<div id="actionList" style="margin-top:16px;"></div>
-</div>
-<!-- Promo Banner -->
-<div class="promo-banner" style="background:linear-gradient(135deg,rgba(168,57,255,0.18),rgba(232,76,255,0.1)); border:1px solid #e84cff; border-radius:16px; padding:32px; text-align:center;">
-<h3 style="font-family:'Barlow Condensed',sans-serif; font-size:24px; text-transform:uppercase; color:#c9ff4d; margin-bottom:8px;">Unlock Full Desktop Automation</h3>
-<p style="color:#a79daf; font-size:14px; margin-bottom:12px;">Get unlimited batch processing, real-time reference matching, and one-click audio repair with CoProducer Pro.</p>
-<div><span class="promo-code" id="promoCodeDisplay">WEB30</span></div>
-<p id="promoDesc" style="margin:8px 0; font-family:'JetBrains Mono', monospace; font-size:13px; color:#f7f2fa;">30% off CoProducer Pro ($49 → $34)</p>
-<div style="margin-top:20px; display:flex; gap:16px; justify-content:center; flex-wrap:wrap;">
-<button class="btn" id="copyBtn" type="button">Copy Promo Code</button>
-<a class="cp-cta" href="pricing.html" style="background:linear-gradient(#9632d6,#58148a); border:1px solid #9d3cdb; color:#fff; padding:12px 24px; border-radius:6px; font-family:'JetBrains Mono',monospace; font-size:10px; font-weight:800; text-transform:uppercase; text-decoration:none; letter-spacing:0.1em;">Claim Discount on Pricing Page</a>
-</div>
-</div>
-</div>
-</div>
-<footer>
-<div class="wrap">© 2026 NoDAW Labs · CoProducer · Local-first audio engineering workflow</div>
-</footer>
-<script>
-const apiBase = () => new URLSearchParams(location.search).get('api') || 'http://127.0.0.1:8788';
-function fmt(v, digits = 2) {
-  if (v === null || v === undefined || v === '') return '—';
-  if (typeof v === 'number' && Number.isFinite(v)) return v.toFixed(digits);
-  return String(v);
-}
-async function copyPromo(code) {
-  await navigator.clipboard.writeText(code);
-}
-function cellClass(status) { return status === 'pass' ? 'pass' : status === 'off' ? 'off' : ''; }
-function renderVsTarget(tbody, rows) {
-  tbody.replaceChildren();
-  for (const row of rows) {
-    const tr = document.createElement('tr');
-    tr.innerHTML = `<td>${row.metric}</td>
-      <td class="${cellClass(row.status_yours)}">${fmt(row.yours)}</td>
-      <td class="${cellClass(row.status_projected)}">${fmt(row.projected)}</td>
-      <td>${fmt(row.target)}</td>`;
-    tbody.appendChild(tr);
-  }
-}
-
-class SimplePlayer {
-  constructor(root) {
-    this.root = root;
-    this.canvas = root.querySelector('canvas');
-    this.ctx = this.canvas.getContext('2d');
-    this.playBtn = root.querySelector('.cp-play');
-    this.timeEl = root.querySelector('.cp-time');
-    this.audioCtx = null;
-    this.buffer = null;
-    this.source = null;
-    this.isPlaying = false;
-    this.startTime = 0;
-    this.pauseOffset = 0;
-    this.duration = 0;
-    this.channelData = null;
-
-    this.playBtn.onclick = () => this.togglePlay();
-    this.canvas.onclick = (e) => {
-      const rect = this.canvas.getBoundingClientRect();
-      const pos = (e.clientX - rect.left) / rect.width;
-      this.seek(pos * this.duration);
-    };
-  }
-
-  async load(fileOrUrl) {
-    if (!this.audioCtx) this.audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-    let arrayBuf;
-    if (fileOrUrl instanceof File || fileOrUrl instanceof Blob) {
-      arrayBuf = await fileOrUrl.arrayBuffer();
-    } else {
-      const res = await fetch(fileOrUrl);
-      arrayBuf = await res.arrayBuffer();
-    }
-    this.buffer = await this.audioCtx.decodeAudioData(arrayBuf);
-    this.duration = this.buffer.duration;
-    this.channelData = this.buffer.getChannelData(0);
-    this.drawWaveform();
-  }
-
-  drawWaveform() {
-    const w = this.canvas.width;
-    const h = this.canvas.height;
-    const ctx = this.ctx;
-    ctx.fillStyle = '#07050a';
-    ctx.fillRect(0, 0, w, h);
-
-    const data = this.channelData;
-    const step = Math.ceil(data.length / w);
-    const mid = h / 2;
-
-    const grad = ctx.createLinearGradient(0, 0, 0, h);
-    grad.addColorStop(0, '#22d3ee');
-    grad.addColorStop(0.5, '#c9ff4d');
-    grad.addColorStop(1, '#a839ff');
-    ctx.strokeStyle = grad;
-    ctx.lineWidth = 2;
-
-    ctx.beginPath();
-    for (let i = 0; i < w; i++) {
-      let min = 1.0;
-      let max = -1.0;
-      for (let j = 0; j < step; j++) {
-        const idx = i * step + j;
-        if (idx < data.length) {
-          const val = data[idx];
-          if (val < min) min = val;
-          if (val > max) max = val;
-        }
-      }
-      ctx.moveTo(i, mid + min * mid * 0.85);
-      ctx.lineTo(i, mid + max * mid * 0.85);
-    }
-    ctx.stroke();
-  }
-
-  togglePlay() {
-    if (this.isPlaying) {
-      this.pause();
-    } else {
-      this.play();
-    }
-  }
-
-  play() {
-    if (!this.buffer) return;
-    if (this.audioCtx.state === 'suspended') this.audioCtx.resume();
-    this.source = this.audioCtx.createBufferSource();
-    this.source.buffer = this.buffer;
-    this.source.connect(this.audioCtx.destination);
-    const offset = this.pauseOffset % this.duration;
-    this.source.start(0, offset);
-    this.startTime = this.audioCtx.currentTime - offset;
-    this.isPlaying = true;
-    this.playBtn.textContent = 'Pause';
-    this.source.onended = () => {
-      if (this.isPlaying && this.audioCtx.currentTime - this.startTime >= this.duration) {
-        this.pause();
-        this.pauseOffset = 0;
-      }
-    };
-    this.animFrame = requestAnimationFrame(() => this.updateTime());
-  }
-
-  pause() {
-    if (!this.isPlaying) return;
-    if (this.source) {
-      try { this.source.stop(); } catch(e) {}
-      this.source.disconnect();
-      this.source = null;
-    }
-    if (this.audioCtx) {
-      this.pauseOffset = this.audioCtx.currentTime - this.startTime;
-    }
-    this.isPlaying = false;
-    this.playBtn.textContent = 'Play';
-    if (this.animFrame) cancelAnimationFrame(this.animFrame);
-  }
-
-  seek(time) {
-    const wasPlaying = this.isPlaying;
-    this.pause();
-    this.pauseOffset = Math.max(0, Math.min(time, this.duration));
-    this.updateTimeDisplay(this.pauseOffset);
-    if (wasPlaying) this.play();
-  }
-
-  updateTime() {
-    if (!this.isPlaying) return;
-    const cur = (this.audioCtx.currentTime - this.startTime) % this.duration;
-    this.updateTimeDisplay(cur);
-    this.animFrame = requestAnimationFrame(() => this.updateTime());
-  }
-
-  updateTimeDisplay(secs) {
-    const m = Math.floor(secs / 60);
-    const s = Math.floor(secs % 60);
-    this.timeEl.textContent = `${m}:${s < 10 ? '0' : ''}${s}`;
-  }
-}
-
-const healthEl = document.getElementById('engineStatus');
-const dotEl = document.getElementById('engineDot');
-const dropzone = document.getElementById('dropzone');
-const fileInput = document.getElementById('fileInput');
-const offlinePanel = document.getElementById('offlinePanel');
-const reportContainer = document.getElementById('reportContainer');
-
-let apiAvailable = false;
-
-async function checkHealth() {
-  try {
-    const res = await fetch(`${apiBase()}/health`, { signal: AbortSignal.timeout(3000) });
-    const data = await res.json();
-    if (data.ok) {
-      apiAvailable = true;
-      document.getElementById('statusText').textContent = `CoProducer Engine Connected (FFmpeg: ${data.ffmpeg ? 'Ready' : 'Missing'})`;
-      dotEl.style.background = '#c9ff4d';
-      dotEl.style.boxShadow = '0 0 10px #c9ff4d';
-      offlinePanel.classList.add('hidden');
-    } else {
-      throw new Error('Not ok');
-    }
-  } catch (e) {
-    apiAvailable = false;
-    document.getElementById('statusText').textContent = 'CoProducer Engine API offline (Start server via START_ANALYZER_PRO.bat)';
-    dotEl.style.background = '#ff6b6b';
-    dotEl.style.boxShadow = '0 0 10px #ff6b6b';
-    offlinePanel.classList.remove('hidden');
-  }
-}
-checkHealth();
-
-dropzone.onclick = () => fileInput.click();
-['dragenter', 'dragover'].forEach(e => dropzone.addEventListener(e, x => { x.preventDefault(); dropzone.classList.add('drag'); }));
-['dragleave', 'drop'].forEach(e => dropzone.addEventListener(e, x => { x.preventDefault(); dropzone.classList.remove('drag'); }));
-dropzone.addEventListener('drop', e => {
-  const f = e.dataTransfer.files[0];
-  if (f) analyzeFile(f);
-});
-fileInput.onchange = e => {
-  if (e.target.files[0]) analyzeFile(e.target.files[0]);
-};
-
-let activePlayer = null;
-
-async function analyzeFile(file) {
-  if (file.size > 40 * 1024 * 1024) {
-    alert('File is too large. Maximum size is 40 MB.');
-    return;
-  }
-  if (!apiAvailable) {
-    alert('Engine API is offline. Please start the Python backend server or download the desktop app.');
-    return;
-  }
-
-  dropzone.style.opacity = '0.5';
-  document.getElementById('statusText').textContent = `Analyzing ${file.name} with CoProducer engine...`;
-
-  const fd = new FormData();
-  fd.append('file', file);
-
-  try {
-    const res = await fetch(`${apiBase()}/api/analyze`, { method: 'POST', body: fd });
-    if (!res.ok) {
-      const err = await res.json();
-      throw new Error(err.error || 'Analysis failed');
-    }
-    const data = await res.json();
-    renderReport(data, file);
-  } catch (err) {
-    alert(`Analysis error: ${err.message}`);
-    document.getElementById('statusText').textContent = 'Analysis failed.';
-  } finally {
-    dropzone.style.opacity = '1';
-  }
-}
-
-function renderReport(data, file) {
-  reportContainer.classList.remove('hidden');
-  document.getElementById('reportTitle').textContent = `Report: ${file.name}`;
-  document.getElementById('reportSummary').textContent = data.summary || '';
-  document.getElementById('scoreNumber').textContent = data.score;
-  document.getElementById('ratingText').textContent = data.rating;
-  document.getElementById('bpmValue').textContent = data.tempo_bpm ? Math.round(data.tempo_bpm) : '—';
-  document.getElementById('keyValue').textContent = data.musical_key || '—';
-
-  renderVsTarget(document.querySelector('#comparisonTable tbody'), data.vs_target);
-
-  const plan = data.plan || {};
-  document.getElementById('planSummary').textContent = plan.summary || 'No repair needed.';
-  const actionList = document.getElementById('actionList');
-  actionList.replaceChildren();
-  if (plan.actions && plan.actions.length > 0) {
-    for (const act of plan.actions) {
-      const div = document.createElement('div');
-      div.className = 'card';
-      div.style.marginBottom = '10px';
-      div.style.background = '#050308';
-      div.innerHTML = `<strong>${act.label}</strong><p style="margin:4px 0 0; color:#a79daf;">${act.reason}</p>`;
-      actionList.appendChild(div);
-    }
-  } else {
-    actionList.innerHTML = '<p style="color:#c9ff4d">Your mix is already within professional release tolerances.</p>';
-  }
-
-  const promo = data.promo || { code: 'WEB30', label: '30% off CoProducer Pro', was: 49, now: 34 };
-  document.getElementById('promoCodeDisplay').textContent = promo.code;
-  document.getElementById('promoDesc').textContent = promo.label;
-
-  if (activePlayer) {
-    activePlayer.pause();
-  }
-  activePlayer = new SimplePlayer(document.getElementById('uploadPlayer'));
-  activePlayer.load(file);
-
-  reportContainer.scrollIntoView({ behavior: 'smooth' });
-}
-
-document.getElementById('copyBtn').onclick = async () => {
-  await copyPromo('WEB30');
-  const btn = document.getElementById('copyBtn');
-  btn.textContent = 'Copied Code!';
-  setTimeout(() => btn.textContent = 'Copy Promo Code', 2000);
-};
-</script>
+<script src="js/lacquer-analyze.js"></script>
 </body>
 </html>
