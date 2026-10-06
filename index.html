@@ -1026,7 +1026,7 @@ window.addEventListener("message", (e) => {
 </script>
 
 <script>
-window.nodawSolo = function (who) {
+window.nodawSolo = function (who, quiet) {
   document.querySelectorAll("audio, video").forEach((a) => { try { a.pause(); } catch (e) {} });
   if (who !== "stems" && window.stemDemoPlayer && window.stemDemoPlayer.isPlaying && window.stemDemoPlayer.pause) window.stemDemoPlayer.pause();
   if (who !== "screw" && window.screwDemo && window.screwDemo.playing && window.screwDemo.pause) window.screwDemo.pause();
@@ -1034,12 +1034,14 @@ window.nodawSolo = function (who) {
     const f = document.getElementById("halfscrewFrame");
     if (f && f.contentWindow) f.contentWindow.postMessage({ type: "halfscrew-stop" }, "*");
   }
-  try { new BroadcastChannel("nodaw-transport").postMessage({ type: "play", who: who }); } catch (e) {}
+  if (!quiet) {
+    try { new BroadcastChannel("nodaw-transport").postMessage({ type: "play", who: who }); } catch (e) {}
+  }
 };
 try {
   new BroadcastChannel("nodaw-transport").onmessage = (e) => {
     if (!e.data || e.data.type !== "play") return;
-    window.nodawSolo(e.data.who);
+    window.nodawSolo(e.data.who, true);
   };
 } catch (e) {}
 window.addEventListener("message", (e) => {
