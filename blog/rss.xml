@@ -8,6 +8,22 @@
     <language>en-us</language>
     <lastBuildDate>Tue, 06 Oct 2026 00:00:00 GMT</lastBuildDate>
     <item>
+      <title>The silence at the top of your bounce steals LUFS</title>
+      <link>https://myaiplug.github.io/coproducer-web/blog/leading-silence-steals-integrated-lufs.html</link>
+      <guid isPermaLink="true">https://myaiplug.github.io/coproducer-web/blog/leading-silence-steals-integrated-lufs.html</guid>
+      <pubDate>Mon, 05 Oct 2026 00:00:00 GMT</pubDate>
+      <description>Digital silence is gated out of integrated LUFS, but quiet intros, long fades and ungated meters still pull the number down. Trim the edges, then measure.</description>
+      <enclosure url="https://myaiplug.github.io/coproducer-web/blog/img/essays/leading-silence-steals-integrated-lufs.jpg?v=shd" type="image/jpeg" length="169979"/>
+    </item>
+    <item>
+      <title>Your kick and 808 are arguing in the same chair</title>
+      <link>https://myaiplug.github.io/coproducer-web/blog/kick-and-808-same-chair.html</link>
+      <guid isPermaLink="true">https://myaiplug.github.io/coproducer-web/blog/kick-and-808-same-chair.html</guid>
+      <pubDate>Mon, 05 Oct 2026 00:00:00 GMT</pubDate>
+      <description>Kick and 808 fighting for 40–80 Hz? Decide who owns each hit with arrangement, carving or sidechain, then measure loudness so repair isn't hiding mud.</description>
+      <enclosure url="https://myaiplug.github.io/coproducer-web/blog/img/essays/kick-and-808-same-chair.jpg?v=shd" type="image/jpeg" length="235825"/>
+    </item>
+    <item>
       <title>How loud should the vocal sit? Measure it against the beat</title>
       <link>https://myaiplug.github.io/coproducer-web/blog/how-loud-should-the-vocal-sit.html</link>
       <guid isPermaLink="true">https://myaiplug.github.io/coproducer-web/blog/how-loud-should-the-vocal-sit.html</guid>

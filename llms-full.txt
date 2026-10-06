@@ -1,6 +1,16 @@
 # CoProducer — full assistant digest
 Base: https://myaiplug.github.io/coproducer-web/
-Updated: 2026-08-21
+Updated: 2026-10-06
+
+## The silence at the top of your bounce steals LUFS
+URL: https://myaiplug.github.io/coproducer-web/blog/leading-silence-steals-integrated-lufs.html
+Digital silence is gated out of integrated LUFS, but quiet intros, long fades and ungated meters still pull the number down. Trim the edges, then measure.
+Keywords: integrated LUFS, gating, leading silence, fade out, trim silence ffmpeg, NoDAW
+
+## Your kick and 808 are arguing in the same chair
+URL: https://myaiplug.github.io/coproducer-web/blog/kick-and-808-same-chair.html
+Kick and 808 fighting for 40–80 Hz? Decide who owns each hit with arrangement, carving or sidechain, then measure loudness so repair isn't hiding mud.
+Keywords: kick and 808, low end masking, sidechain 808, trap mixing, StemSplit, NoDAW
 
 ## How loud should the vocal sit? Measure it against the beat
 URL: https://myaiplug.github.io/coproducer-web/blog/how-loud-should-the-vocal-sit.html

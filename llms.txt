@@ -35,6 +35,8 @@
 - https://myaiplug.github.io/coproducer-web/llms-full.txt
 
 ## Lacquer essays (answer-first)
+- https://myaiplug.github.io/coproducer-web/blog/leading-silence-steals-integrated-lufs.html — The silence at the top of your bounce steals LUFS: Digital silence is gated out of integrated LUFS, but quiet intros, long fades and ungated meters still pull the number down. Trim the edges, then measure.
+- https://myaiplug.github.io/coproducer-web/blog/kick-and-808-same-chair.html — Your kick and 808 are arguing in the same chair: Kick and 808 fighting for 40–80 Hz? Decide who owns each hit with arrangement, carving or sidechain, then measure loudness so repair isn't hiding mud.
 - https://myaiplug.github.io/coproducer-web/blog/how-loud-should-the-vocal-sit.html — How loud should the vocal sit? Measure it against the beat: There’s no single right vocal level, but the vocal-to-beat loudness gap in LU is measurable. Match it to a reference, then fix only the buried bars.
 - https://myaiplug.github.io/coproducer-web/blog/harsh-esses-get-louder-after-mastering.html — Harsh S’s get louder after mastering. De-ess before the limiter: Vocals harsh after mastering? The master lifts level and top end, so borderline sibilance pops and eats true-peak headroom. Find the worst S’s and fix them in the mix.
 - https://myaiplug.github.io/coproducer-web/blog/why-streaming-turns-loud-masters-down.html — Why streaming platforms turn loud masters down: Streaming services normalize toward −14 LUFS (Apple closer to −16). A hotter master is turned down, not played louder. Measure integrated LUFS before you limit again.

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1" name="viewport"/><meta content="https://myaiplug.github.io/coproducer-web/blog/img/essays/leading-silence-steals-integrated-lufs.jpg?v=shd" name="twitter:image"/><meta content="Digital silence is gated out of integrated LUFS, but quiet intros, long fades and ungated meters still pull the number down. Trim the edges, then measure." name="twitter:description"/><meta content="The silence at the top of your bounce steals LUFS" name="twitter:title"/><meta content="summary_large_image" name="twitter:card"/><meta content="2026-10-05T00:00:00Z" property="article:modified_time"/><meta content="2026-10-05T00:00:00Z" property="article:published_time"/><meta content="1440" property="og:image:height"/><meta content="2560" property="og:image:width"/><meta content="https://myaiplug.github.io/coproducer-web/blog/leading-silence-steals-integrated-lufs.html" property="og:url"/><meta content="en_US" property="og:locale"/><meta content="CoProducer" property="og:site_name"/><meta content="article" property="og:type"/><link href="https://myaiplug.github.io/coproducer-web/llms.txt" rel="alternate" title="llms.txt" type="text/plain"/><meta content="NoDAW Labs" name="author"/><meta content="#050308" name="theme-color"/><meta content="index,follow,max-image-preview:large" name="robots"/><meta content="integrated LUFS, gating, leading silence, fade out, trim silence ffmpeg, NoDAW" name="keywords"/>
+<title>The silence at the top of your bounce steals LUFS | Lacquer</title>
+<meta content="Digital silence is gated out of integrated LUFS, but quiet intros, long fades and ungated meters still pull the number down. Trim the edges, then measure." name="description"/>
+<link href="https://myaiplug.github.io/coproducer-web/blog/leading-silence-steals-integrated-lufs.html" rel="canonical"/>
+<meta content="The silence at the top of your bounce steals LUFS" property="og:title"/>
+<meta content="Digital silence is gated out of integrated LUFS, but quiet intros, long fades and ungated meters still pull the number down. Trim the edges, then measure." property="og:description"/>
+<meta content="https://myaiplug.github.io/coproducer-web/blog/img/essays/leading-silence-steals-integrated-lufs.jpg?v=shd" property="og:image"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;1,500;1,600&amp;family=Figtree:wght@400;500&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<link href="css/journal.css" rel="stylesheet"/>
+
+
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"The silence at the top of your bounce steals LUFS","description":"Digital silence is gated out of integrated LUFS, but quiet intros, long fades and ungated meters still pull the number down. Trim the edges, then measure.","datePublished":"2026-10-05","dateModified":"2026-10-05","mainEntityOfPage":{"@type":"WebPage","@id":"https://myaiplug.github.io/coproducer-web/blog/leading-silence-steals-integrated-lufs.html"},"image":{"@type":"ImageObject","url":"https://myaiplug.github.io/coproducer-web/blog/img/essays/leading-silence-steals-integrated-lufs.jpg?v=shd","width":2560,"height":1440},"author":{"@type":"Organization","name":"NoDAW Labs","url":"https://myaiplug.github.io/coproducer-web/","logo":"https://myaiplug.github.io/coproducer-web/assets/og-default.jpg"},"publisher":{"@type":"Organization","name":"NoDAW Labs","url":"https://myaiplug.github.io/coproducer-web/","logo":"https://myaiplug.github.io/coproducer-web/assets/og-default.jpg"},"isPartOf":{"@type":"Blog","name":"Lacquer — CoProducer Journal","url":"https://myaiplug.github.io/coproducer-web/blog/index.html"},"keywords":["integrated LUFS","gating","leading silence","fade out","trim silence ffmpeg","NoDAW"],"speakable":{"@type":"SpeakableSpecification","cssSelector":[".answer","h1"]}}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Does silence at the start of a song lower integrated LUFS?","acceptedAnswer":{"@type":"Answer","text":"Pure digital silence is mostly gated out. Quiet intros, long fades, and ungated meters like RMS are what pull the reading down. Trim the dead air anyway so every tool agrees."}},{"@type":"Question","name":"Should I cut my quiet intro to raise the number?","acceptedAnswer":{"@type":"Answer","text":"No. If the intro is part of the record, keep it and accept a slightly lower reading. Trim the bounce window, not the arrangement."}}]}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"CoProducer","item":"https://myaiplug.github.io/coproducer-web/"},{"@type":"ListItem","position":2,"name":"Lacquer Journal","item":"https://myaiplug.github.io/coproducer-web/blog/index.html"},{"@type":"ListItem","position":3,"name":"The silence at the top of your bounce steals LUFS","item":"https://myaiplug.github.io/coproducer-web/blog/leading-silence-steals-integrated-lufs.html"}]}</script></head>
+<body>
+<header class="top">
+<a class="mark" href="../index.html"><em>Co</em>Producer</a>
+<nav aria-label="Primary" class="nav">
+<a href="index.html">Journal</a>
+<a href="../index.html#ab">A/B</a>
+<a href="../index.html#analyzeHome">Analyze</a>
+<a href="../index.html#screwDemo">ScrewAI</a>
+<a href="../guides/index.html">Guides</a>
+<a href="../pricing.html">Pricing</a>
+</nav>
+<a class="cta" href="../index.html#analyzeHome">Measure a mix</a>
+</header>
+<article class="post" id="main">
+<div class="post-hero"><img alt="Lacquer blank with a wide unmodulated lead-in groove under low tungsten light" src="img/essays/leading-silence-steals-integrated-lufs.jpg?v=shd"/></div>
+<header>
+<p class="kicker">Meters · 5 October 2026 · 7 min</p>
+<h1>The silence at the top of your bounce steals LUFS</h1>
+<p class="meta">NoDAW Labs · Lacquer Vol. 03</p>
+</header>
+<p class="answer">A “quiet” integrated LUFS reading is often a measurement artifact: digital silence is gated out, but quiet intros, long fades, room tone, and ungated meters still drag the number down — so trim the edges and measure the song, not the bounce window.</p>
+<p>Here is the session that starts this. You bounce, drop the file on a meter, and it says −15.2. You were sure the chorus was sitting at −14. So you push the limiter another dB, bounce again, and now the chorus is crunchier and the meter barely moved. The mix was never the problem. The meter was reading the forty seconds of nothing, the pad intro, and the minute-long fade you left on the end, and averaging them into the song.</p>
+<p>Before you touch the chain, find out what the number is actually measuring.</p>
+<h2>What the gate catches and what it lets through</h2>
+<p>Integrated LUFS (BS.1770 / EBU R128) has two gates. An absolute gate throws out anything quieter than −70 LUFS, which is why pure digital zero at the top of a bounce usually does nothing to the number. Then a relative gate throws out blocks more than 10 LU below the running average. Anything louder than that stays in the math.</p>
+<p>That second gate is the trap. A filtered intro, a vocal-only verse, or the first half of a long fade often lands 6–9 LU under the drop. That is quiet to your ears and still loud enough to be counted. We ran a quick test-tone check: a two-minute signal at exactly −14.0 LUFS. Add 20 seconds of digital silence at each end and it still reads −14.0. Add a 40-second intro 12 dB down and it still reads −14.0, because the gate drops it. Bring that intro up to 7 dB down and the file reads <strong>−15.0</strong>. Fade the back minute out instead and it reads <strong>−15.2</strong>. Same loud section. A different number on the delivery sheet.</p>
+<table>
+<thead><tr><th>Edge material</th><th>Gated integrated LUFS</th><th>What it means</th></tr></thead>
+<tbody>
+<tr><td>Digital silence (true zero)</td><td>Usually unaffected</td><td>Absolute gate drops it. Trim it anyway, for players and for meters that don’t gate.</td></tr>
+<tr><td>Intro &gt; 10 LU under the song</td><td>Mostly unaffected</td><td>Relative gate drops most of it.</td></tr>
+<tr><td>Intro 5–9 LU under the song</td><td>Pulled down</td><td>Counted. Long ones cost real tenths of a dB.</td></tr>
+<tr><td>Long fade-out</td><td>Pulled down</td><td>The top of the fade is counted before the gate kicks in.</td></tr>
+</tbody>
+</table>
+<h2>The meters that don’t gate at all</h2>
+<p>Lots of what people call “loudness” isn’t gated. RMS readouts, “average level” in an editor, and a DAW plugin you left running through pre-roll all count silence as part of the song. In the same test, plain RMS dropped about 1.25 dB once the silent pad was added, while gated LUFS didn’t move. If two meters disagree by a dB on the same file, check the edges before you blame either one.</p>
+<p>It goes the other way too. A store that measures the whole file and sees a lower number may turn the track <em>up</em>. Then your loud section plays hotter than you meant, and turn-up is where true-peak headroom gets spent. A long intro doesn’t just look quiet. It changes the gain the listener actually gets.</p>
+<h2>A trim workflow that doesn’t hurt the record</h2>
+<p>Only trim what nobody hears. A pad that is part of the song stays in, even if it costs a tenth on the meter. The fix for a counted intro is accepting the number, not cutting the arrangement. What goes is the bounce window: the bar of nothing before the downbeat, the twelve seconds after the reverb has died, and the dither hiss that keeps going to the end of the region.</p>
+<ul>
+<li>Leading edge: cut to the first transient, keeping a few milliseconds of pre-roll and a 5 ms fade-in so there’s no click.</li>
+<li>Trailing edge: trim at a much lower threshold (−70 dB, not −50) so you keep the natural tail of the last reverb.</li>
+<li>Don’t use “normalize” to fix a reading. Fix the window, then measure again.</li>
+<li>If the album wants spacing between tracks, set it in the distributor or the DDP. Don’t bake it into the WAV.</li>
+</ul>
+<p>Here is a script you can run on any bounce. It prints integrated LUFS and true peak, lists the silent regions, trims both edges, and measures the trimmed file. You get a 24-bit WAV next to the original, so nothing gets overwritten.</p>
+<pre><code>#!/usr/bin/env bash
+# trimcheck.sh — measure, trim edge silence, re-measure. Usage: ./trimcheck.sh master.wav
+set -euo pipefail
+in="$1"; out="${in%.*}_trim.wav"
+meas(){ ffmpeg -nostats -hide_banner -i "$1" -af ebur128=peak=true -f null - 2&gt;&amp;1 \
+  | awk '/Integrated loudness/{f=1} f&amp;&amp;/ I:/{i=$2} f&amp;&amp;/Peak:/{p=$2} END{print "I " i " LUFS | TP " p " dBTP"}'; }
+echo "before: $(meas "$in")  ($(ffprobe -v error -show_entries format=duration -of csv=p=0 "$in") s)"
+ffmpeg -nostats -hide_banner -i "$in" -af silencedetect=noise=-60dB:d=0.5 -f null - 2&gt;&amp;1 | grep -E 'silence_(start|end)' || true
+ffmpeg -v error -y -i "$in" -af "silenceremove=start_periods=1:start_threshold=-60dB:start_silence=0.05,\
+areverse,silenceremove=start_periods=1:start_threshold=-70dB:start_silence=0.3,areverse,\
+afade=t=in:d=0.005" -c:a pcm_s24le "$out"
+echo "after:  $(meas "$out")  ($(ffprobe -v error -show_entries format=duration -of csv=p=0 "$out") s)"</code></pre>
+<p>If “before” and “after” match and only the duration changed, the gate was already doing its job, and any gap you were chasing is in the intro or the fade. That’s a call about the arrangement, not about loudness. If they differ, the window was lying to you. Either way you now have a number that describes the song.</p>
+<p>Then run the trimmed file through CoProducer’s analyze table and read the LUFS row against the −14 window. Usually the “quiet master” goes away without anyone touching the limiter.</p>
+<aside class="aside">The gate math lives in the <a href="../guides/what-is-lufs.html">LUFS guide</a>. If the turn-up worries you, read <a href="quiet-masters-and-noise-floor.html">Quiet masters get turned up</a>. Then <a href="../index.html#analyzeHome">measure the trimmed file</a>. The web form tells you the distance and doesn’t write a master.</aside>
+<dl class="faq">
+<dt>Does silence at the start of a song lower integrated LUFS?</dt>
+<dd>Pure digital silence is mostly gated out. Quiet intros, long fades, and ungated meters like RMS are what pull the reading down. Trim the dead air anyway so every tool agrees.</dd>
+<dt>Should I cut my quiet intro to raise the number?</dt>
+<dd>No. If the intro is part of the record, keep it and accept a slightly lower reading. Trim the bounce window, not the arrangement.</dd>
+</dl>
+<nav aria-label="Related essays" class="related-essays" style="margin:48px 0 24px;padding-top:24px;border-top:1px solid rgba(196,165,116,.32)"><h2>Related in Lacquer</h2><ul><li><a href="quiet-masters-and-noise-floor.html">Quiet masters get turned up — and so does the noise</a></li><li><a href="why-streaming-turns-loud-masters-down.html">Why streaming platforms turn loud masters down</a></li><li><a href="when-not-to-reach-for-the-limiter.html">When not to reach for the limiter</a></li></ul></nav></article>
+<section class="comments" data-comments="" data-thread="silence"></section>
+<script src="js/studio.js" type="module"></script>
+<script src="js/comments.js" type="module"></script>
+<footer class="site"><span>Lacquer · CoProducer Journal</span><span><a href="index.html">All essays</a></span></footer>
+</body>
+</html>
