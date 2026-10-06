@@ -205,6 +205,7 @@ class ScrewDemo {
   }
 
   async play() {
+    if (window.nodawSolo) window.nodawSolo('screw');
     if (!this.buf) return;
     if (!this.ctx) this.ctx = new (window.AudioContext || window.webkitAudioContext)();
     if (this.ctx.state !== 'running') {
@@ -287,6 +288,7 @@ async function mountAll() {
   const nodes = document.querySelectorAll('[data-screw-demo]');
   for (const el of nodes) {
     const demo = new ScrewDemo(el);
+    window.screwDemo = demo;
     try {
       await demo.init();
     } catch (err) {

@@ -819,7 +819,7 @@ Same desk: <a href="https://myaiplug.github.io/halfscrew/" rel="noopener" style=
 <div class="footer-inner">© 2026 NoDAW Labs · CoProducer · Local-first audio engineering workflow</div>
 </footer>
 <script src="js/home-ab.js" type="module"></script>
-<script src="js/screw-demo.js" type="module"></script>
+<script src="js/screw-demo.js?v=2" type="module"></script>
 <script src="js/report.js" type="module"></script>
 <script src="blog/js/studio.js" type="module"></script>
 <script>
@@ -878,6 +878,7 @@ class StemPlayerDemo {
   }
 
   togglePlay() {
+    if (!this.isPlaying && window.nodawSolo) window.nodawSolo('stems');
     if (this.isPlaying) {
       this.pause();
     } else {
@@ -1023,5 +1024,26 @@ window.addEventListener("message", (e) => {
   if (f) f.style.height = Math.max(520, e.data.h) + "px";
 });
 </script>
+
+<script>
+window.nodawSolo = function (who) {
+  document.querySelectorAll("audio").forEach((a) => { try { a.pause(); } catch (e) {} });
+  if (who !== "stems" && window.stemDemoPlayer && window.stemDemoPlayer.isPlaying && window.stemDemoPlayer.pause) window.stemDemoPlayer.pause();
+  if (who !== "screw" && window.screwDemo && window.screwDemo.playing && window.screwDemo.pause) window.screwDemo.pause();
+  if (who !== "halfscrew") {
+    const f = document.getElementById("halfscrewFrame");
+    if (f && f.contentWindow) f.contentWindow.postMessage({ type: "halfscrew-stop" }, "*");
+  }
+};
+window.addEventListener("message", (e) => {
+  if (!e.data) return;
+  if (e.data.type === "halfscrew-h") {
+    const f = document.getElementById("halfscrewFrame");
+    if (f) f.style.height = Math.max(520, e.data.h) + "px";
+  }
+  if (e.data.type === "halfscrew-play") window.nodawSolo("halfscrew");
+});
+</script>
+
 </body>
 </html>
