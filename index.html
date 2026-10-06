@@ -1027,14 +1027,21 @@ window.addEventListener("message", (e) => {
 
 <script>
 window.nodawSolo = function (who) {
-  document.querySelectorAll("audio").forEach((a) => { try { a.pause(); } catch (e) {} });
+  document.querySelectorAll("audio, video").forEach((a) => { try { a.pause(); } catch (e) {} });
   if (who !== "stems" && window.stemDemoPlayer && window.stemDemoPlayer.isPlaying && window.stemDemoPlayer.pause) window.stemDemoPlayer.pause();
   if (who !== "screw" && window.screwDemo && window.screwDemo.playing && window.screwDemo.pause) window.screwDemo.pause();
   if (who !== "halfscrew") {
     const f = document.getElementById("halfscrewFrame");
     if (f && f.contentWindow) f.contentWindow.postMessage({ type: "halfscrew-stop" }, "*");
   }
+  try { new BroadcastChannel("nodaw-transport").postMessage({ type: "play", who: who }); } catch (e) {}
 };
+try {
+  new BroadcastChannel("nodaw-transport").onmessage = (e) => {
+    if (!e.data || e.data.type !== "play") return;
+    window.nodawSolo(e.data.who);
+  };
+} catch (e) {}
 window.addEventListener("message", (e) => {
   if (!e.data) return;
   if (e.data.type === "halfscrew-h") {

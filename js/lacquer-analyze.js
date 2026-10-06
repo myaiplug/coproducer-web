@@ -279,6 +279,7 @@ $("#dropzone").addEventListener("dragover", (e) => e.preventDefault());
 $("#dropzone").addEventListener("drop", (e) => { e.preventDefault(); if (e.dataTransfer.files[0]) onFile(e.dataTransfer.files[0]); });
 
 $("#playBtn").addEventListener("click", () => {
+  try { new BroadcastChannel("nodaw-transport").postMessage({ type: "play", who: "analyze" }); } catch (_) {}
   const a = $("#preview");
   if (!a.src) return;
   if (a.paused) a.play(); else a.pause();
@@ -374,3 +375,11 @@ $("#emailForm").addEventListener("submit", (e) => {
 });
 if (state.email) unlock(state.email);
 $("#engineStatus").textContent = "Drop a bounce. Grade uses CoProducer gates. Server at 127.0.0.1:8788 wins if it answers.";
+
+try {
+  new BroadcastChannel("nodaw-transport").onmessage = (e) => {
+    if (!e.data || e.data.who === "analyze") return;
+    const a = document.getElementById("preview");
+    if (a && !a.paused) a.pause();
+  };
+} catch (_) {}
