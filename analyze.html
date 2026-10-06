@@ -36,6 +36,12 @@ canvas { width:100%; height:60px; display:block; border-radius:8px; }
 button, .btn { font:700 12px "JetBrains Mono",monospace; letter-spacing:.12em; text-transform:uppercase; color:#1a0b16; background:linear-gradient(180deg,#f3c6ff,#e84cff); border:0; border-radius:999px; padding:10px 14px; cursor:pointer; }
 button[disabled] { opacity:.45; cursor:default; }
 .ghost { background:transparent; color:var(--ink); border:1px solid var(--line); }
+.ghost.on { color:#1a0b16; background:#e84cff; }
+.grade h2 { font:800 84px "Barlow Condensed",sans-serif; margin:0; line-height:.8; }
+.delta table { width:100%; border-collapse:collapse; font:12px "JetBrains Mono",monospace; }
+.delta td, .delta th { text-align:left; padding:8px 6px; border-bottom:1px solid var(--line); }
+.up { color:#d7ffb8; }
+.delta ul { color:var(--muted); line-height:1.5; }
 form { display:flex; gap:8px; flex-wrap:wrap; margin-top:8px; }
 input[type="email"] { flex:1; min-width:200px; background:#120a16; color:var(--ink); border:1px solid var(--line); border-radius:999px; padding:10px 14px; }
 .gate, .docs { margin-top:16px; border-top:1px solid var(--line); padding-top:14px; }
@@ -61,28 +67,40 @@ input[type="email"] { flex:1; min-width:200px; background:#120a16; color:var(--i
     <b>DROP THE BOUNCE</b>
     <span>WAV, MP3, FLAC, M4A. Stays on this device unless the local server is up.</span>
   </label>
+  <div class="grade" id="grade" hidden>
+    <p class="kicker" id="sideLabel">A · ORIGINAL</p>
+    <h2 id="scoreNum">–</h2>
+    <p id="scoreWord"></p>
+    <p class="lede" id="scoreWhy"></p>
+  </div>
   <div class="meters" id="meters" hidden>
-    <div class="meter"><small>SCORE</small><strong data-m="score">–</strong></div>
-    <div class="meter"><small>RATING</small><strong data-m="rating">–</strong></div>
     <div class="meter"><small>LUFS</small><strong data-m="lufs">–</strong></div>
+    <div class="meter"><small>TRUE PEAK</small><strong data-m="tp">–</strong></div>
     <div class="meter"><small>PEAK</small><strong data-m="peak">–</strong></div>
-    <div class="meter"><small>RMS</small><strong data-m="rms">–</strong></div>
     <div class="meter"><small>CREST</small><strong data-m="crest">–</strong></div>
-    <div class="meter"><small>WIDTH</small><strong data-m="width">–</strong></div>
-    <div class="meter"><small>BRIGHT</small><strong data-m="bright">–</strong></div>
-    <div class="meter"><small>DURATION</small><strong data-m="dur">–</strong></div>
+    <div class="meter"><small>PHASE</small><strong data-m="phase">–</strong></div>
+    <div class="meter"><small>CLIPS</small><strong data-m="clips">–</strong></div>
     <div class="meter"><small>RATE</small><strong data-m="sr">–</strong></div>
     <div class="meter"><small>CHANNELS</small><strong data-m="ch">–</strong></div>
-    <div class="meter"><small>SILENCE</small><strong data-m="silence">–</strong></div>
+    <div class="meter"><small>DURATION</small><strong data-m="dur">–</strong></div>
   </div>
   <div class="dock" id="previewDock" hidden>
     <canvas id="wave"></canvas>
     <audio id="preview"></audio>
     <div class="row">
-      <button id="playBtn" type="button">Play preview</button>
-      <button id="fixBtn" type="button">Auto fix snippet</button>
-      <span class="note">One pass. Twelve seconds. Full file stays locked.</span>
+      <button id="playBtn" type="button">Play</button>
+      <button id="aBtn" class="ghost on" type="button">A original</button>
+      <button id="bBtn" class="ghost" type="button">B fixed</button>
+      <button id="fixBtn" type="button">Run the pass</button>
     </div>
+  </div>
+  <div class="delta" id="delta" hidden>
+    <p class="kicker">WHAT THE PASS ACTUALLY MOVED</p>
+    <table>
+      <thead><tr><th>Spec</th><th>Before</th><th>After</th><th>Delta</th></tr></thead>
+      <tbody id="deltaBody"></tbody>
+    </table>
+    <ul id="fixedList"></ul>
   </div>
   <div class="gate" id="gate">
     <p class="kicker">FULL PASS</p>

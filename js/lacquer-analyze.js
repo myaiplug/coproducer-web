@@ -1,223 +1,291 @@
-/* Lacquer analyze desk. Server first, browser engine as fallback. */
+/* Lacquer desk. CoProducer gates, honest grade, conservative repair, A/B. */
 const SERVERS = ["http://127.0.0.1:8788", "http://localhost:8788"];
-const SNIPPET_SEC = 12;
 const $ = (s) => document.querySelector(s);
-
 const state = {
-  file: null,
-  buffer: null,
-  report: null,
-  source: "idle",
-  url: null,
-  fixedUrl: null,
-  usedFix: false,
-  email: localStorage.getItem("lacquer-email") || "",
+  file: null, before: null, after: null, report: null, fixed: null,
+  side: "A", email: localStorage.getItem("lacquer-email") || "",
+  actions: [],
 };
 
-function db(v) {
-  return 20 * Math.log10(Math.max(v, 1e-8));
+const db = (v) => 20 * Math.log10(Math.max(Math.abs(v), 1e-9));
+
+function grade(m) {
+  const notes = [];
+  let score = 100;
+  if (m.clips > 0) {
+    const d = Math.min(22, 8 + Math.log10(m.clips + 1) * 4);
+    score -= d;
+    notes.push(m.clips + " samples at or above full scale. Transients already flattened are not rebuilt.");
+  }
+  if (m.truePeak > -1) {
+    score -= Math.min(16, (m.truePeak + 1) * 5);
+    notes.push("True peak " + m.truePeak.toFixed(2) + " dBTP is over the -1.0 ceiling.");
+  }
+  const off = Math.abs(m.lufs + 14);
+  if (off > 1.5) {
+    score -= Math.min(16, (off - 1.5) * 3.2);
+    notes.push("Integrated loudness " + m.lufs.toFixed(2) + " LUFS is " + off.toFixed(2) + " LU from -14.");
+  }
+  if (m.phase < 0.2) {
+    score -= 12;
+    notes.push("Phase correlation " + m.phase.toFixed(2) + " is under 0.2. This pass will not fix phase.");
+  }
+  if (m.sampleRate < 44100) {
+    score -= 10;
+    notes.push("Sample rate " + m.sampleRate + " Hz is under 44.1 kHz.");
+  }
+  if (m.crest < 5.5) {
+    score -= 6;
+    notes.push("Crest " + m.crest.toFixed(1) + " dB is already crushed. Limiting will not open it back up.");
+  }
+  score = Math.round(Math.max(38, Math.min(99, score)));
+  const gates = m.clips === 0 && m.truePeak <= -1 && off <= 1.5 && m.phase >= 0.2 && m.sampleRate >= 44100;
+  if (gates) score = Math.max(score, 90);
+  const rating = score >= 90 ? "Release ready" : score >= 75 ? "Usable after technical corrections" : "Needs a pass";
+  return { score, rating, notes, gates };
 }
 
 function measure(buffer, name) {
   const sr = buffer.sampleRate;
   const ch = buffer.numberOfChannels;
   const n = buffer.length;
-  const a = buffer.getChannelData(0);
-  const b = ch > 1 ? buffer.getChannelData(1) : a;
-  let peak = 0, sum = 0, silent = 0, zc = 0, prev = 0;
-  let side = 0, mid = 0, bright = 0;
-  const step = Math.max(1, Math.floor(n / 250000));
+  const L = buffer.getChannelData(0);
+  const R = ch > 1 ? buffer.getChannelData(1) : L;
+  let peak = 0, clips = 0, sum = 0, num = 0, eL = 0, eR = 0, tp = 0;
+  const block = Math.max(1, Math.floor(sr * 0.4));
+  const powers = [];
+  let acc = 0, accN = 0;
+  const step = n > 1500000 ? 2 : 1;
   for (let i = 0; i < n; i += step) {
-    const l = a[i] || 0, r = b[i] || 0;
-    const m = (l + r) * 0.5;
-    const s = (l - r) * 0.5;
-    const x = Math.max(Math.abs(l), Math.abs(r));
-    if (x > peak) peak = x;
-    sum += m * m;
-    mid += m * m;
-    side += s * s;
-    if (x < 0.001) silent++;
-    if ((m >= 0) !== (prev >= 0)) zc++;
-    prev = m;
-    bright += Math.abs(m - prev) ;
+    const l = L[i], r = R[i];
+    const al = Math.abs(l), ar = Math.abs(r);
+    const p = Math.max(al, ar);
+    if (p > peak) peak = p;
+    if (al >= 0.999 || ar >= 0.999) clips += step;
+    sum += l * l + r * r;
+    num += l * r; eL += l * l; eR += r * r;
+    acc += (l * l + r * r) * 0.5;
+    accN++;
+    if (accN * step >= block) {
+      powers.push(acc / accN);
+      acc = 0; accN = 0;
+    }
+    if (i + step < n) {
+      const t = 0.5;
+      tp = Math.max(tp, Math.abs(l + (L[i + step] - l) * t), Math.abs(r + (R[Math.min(i + step, n - 1)] - r) * t));
+    }
   }
-  const samples = Math.ceil(n / step);
-  const rms = Math.sqrt(sum / samples);
-  const width = mid > 0 ? Math.min(100, (side / mid) * 100) : 0;
-  const zcr = zc / samples;
-  const brightness = Math.round(80 + zcr * sr * 0.45);
-  const crest = db(peak) - db(rms);
-  const lufs = db(rms) - 0.691;
-  const clips = peak >= 0.999 ? Math.round(samples * 0.002) : 0;
-  let score = 100;
-  if (lufs > -10) score -= 18;
-  else if (lufs < -18) score -= 10;
-  if (db(peak) > -1) score -= 16;
-  if (clips) score -= 14;
-  if (width > 80) score -= 8;
-  if (crest < 6) score -= 8;
-  score = Math.max(42, Math.min(98, score));
-  return {
-    name,
-    engine: "lacquer-browser",
-    sampleRate: sr,
-    channels: ch,
-    duration: +(buffer.duration.toFixed(2)),
-    peakDb: +db(peak).toFixed(2),
+  tp = Math.max(tp, peak);
+  const live = powers.filter((p) => p > 1e-8);
+  const mean = live.reduce((s, p) => s + p, 0) / (live.length || 1);
+  const rel = mean * Math.pow(10, -1);
+  const gated = live.filter((p) => p >= rel);
+  const g = gated.reduce((s, p) => s + p, 0) / (gated.length || 1);
+  const lufs = -0.691 + 10 * Math.log10(g + 1e-12);
+  const rms = Math.sqrt(sum / (n / step) / ch);
+  const peakDb = db(peak);
+  const phase = eL > 0 && eR > 0 ? num / Math.sqrt(eL * eR) : 1;
+  const m = {
+    name, sampleRate: sr, channels: ch,
+    duration: +buffer.duration.toFixed(2),
+    peakDb: +peakDb.toFixed(2),
+    truePeak: +db(tp).toFixed(2),
     rmsDb: +db(rms).toFixed(2),
     lufs: +lufs.toFixed(2),
-    crest: +crest.toFixed(2),
-    width: +width.toFixed(1),
-    brightness,
-    silence: +((silent / samples) * 100).toFixed(1),
-    zcr: +zcr.toFixed(4),
-    clips,
-    score,
-    rating: score >= 88 ? "Release ready" : score >= 72 ? "Usable after a light fix" : "Needs a pass",
+    crest: +(peakDb - db(rms)).toFixed(2),
+    phase: +phase.toFixed(3),
+    clips, width: +((1 - Math.max(-1, Math.min(1, phase))) * 50).toFixed(1),
   };
+  return Object.assign(m, grade(m));
 }
 
-async function tryServer(file) {
-  for (const base of SERVERS) {
-    try {
-      const ping = await fetch(base + "/health", { method: "GET" });
-      if (!ping.ok) continue;
-      const body = new FormData();
-      body.append("file", file);
-      const res = await fetch(base + "/analyze", { method: "POST", body });
-      if (!res.ok) continue;
-      const data = await res.json();
-      return { ...data, engine: "server", source: base };
-    } catch (_) {}
-  }
-  return null;
-}
-
-function setStatus(text, mode) {
-  const el = $("#engineStatus");
-  el.textContent = text;
-  el.dataset.mode = mode || "idle";
-}
-
-function paint(report) {
-  $("#meters").hidden = false;
-  const map = {
-    peak: report.peakDb + " dBFS",
-    rms: report.rmsDb + " dBFS",
-    lufs: report.lufs + " LUFS",
-    crest: report.crest + " dB",
-    width: report.width + "%",
-    bright: report.brightness + " Hz",
-    dur: report.duration + " s",
-    sr: report.sampleRate + " Hz",
-    ch: String(report.channels),
-    silence: report.silence + "%",
-    score: String(report.score),
-    rating: report.rating,
-  };
-  Object.entries(map).forEach(([k, v]) => {
-    const n = document.querySelector(`[data-m="${k}"]`);
-    if (n) n.textContent = v;
-  });
-  $("#fixBtn").disabled = state.usedFix;
-}
-
-function bindPreview(buffer) {
-  if (state.url) URL.revokeObjectURL(state.url);
-  const wav = encodeWav(buffer);
-  state.url = URL.createObjectURL(wav);
-  const audio = $("#preview");
-  audio.src = state.url;
-  $("#previewDock").hidden = false;
-  drawWave(buffer);
-}
-
-function drawWave(buffer) {
-  const c = $("#wave");
-  const x = c.getContext("2d");
-  const w = c.width = c.clientWidth * 2;
-  const h = c.height = 120;
-  const data = buffer.getChannelData(0);
-  const cols = 240;
-  const per = Math.floor(data.length / cols) || 1;
-  x.clearRect(0, 0, w, h);
-  x.fillStyle = "#120a18";
-  x.fillRect(0, 0, w, h);
-  x.strokeStyle = "#e84cff";
-  x.lineWidth = 2;
-  x.beginPath();
-  for (let i = 0; i < cols; i++) {
-    let m = 0;
-    const s = i * per;
-    for (let j = 0; j < per; j += Math.max(1, per >> 6)) m = Math.max(m, Math.abs(data[s + j] || 0));
-    const y = (1 - m) * (h * 0.46);
-    const px = (i / cols) * w;
-    x.moveTo(px, h / 2 - (h / 2 - y));
-    x.lineTo(px, h / 2 + (h / 2 - y));
-  }
-  x.stroke();
-}
-
-async function onFile(file) {
-  state.file = file;
-  state.usedFix = false;
-  setStatus("Reading " + file.name + "…", "run");
-  const ctx = new AudioContext();
-  const raw = await file.arrayBuffer();
-  let buffer;
-  try {
-    buffer = await ctx.decodeAudioData(raw.slice(0));
-  } catch (err) {
-    setStatus("Could not decode that file. Try WAV, MP3, or M4A.", "bad");
-    return;
-  }
-  state.buffer = buffer;
-  setStatus("Server engine first…", "run");
-  const server = await tryServer(file);
-  if (server) {
-    state.report = { ...measure(buffer, file.name), ...server, engine: "server" };
-    setStatus("Server analysis · " + (server.source || "8788"), "ok");
-  } else {
-    state.report = measure(buffer, file.name);
-    state.report.engine = "lacquer-browser";
-    setStatus("Server offline. Lacquer browser engine is the fallback. Nothing uploaded.", "fallback");
-  }
-  paint(state.report);
-  bindPreview(buffer);
-  $("#docs").hidden = !state.email;
-  $("#gate").hidden = !!state.email;
-}
-
-function softFix(buffer) {
-  const out = new AudioContext().createBuffer(buffer.numberOfChannels, buffer.length, buffer.sampleRate);
-  let peak = 0;
-  for (let c = 0; c < buffer.numberOfChannels; c++) {
-    const src = buffer.getChannelData(c);
-    for (let i = 0; i < src.length; i++) peak = Math.max(peak, Math.abs(src[i]));
-  }
-  const target = Math.pow(10, -1 / 20);
-  const gain = peak > 0 ? Math.min(1.4, target / peak) : 1;
+function highpass(buffer) {
+  const sr = buffer.sampleRate;
+  const a = Math.exp(-2 * Math.PI * 25 / sr);
+  const out = new AudioBuffer({ length: buffer.length, numberOfChannels: buffer.numberOfChannels, sampleRate: sr });
   for (let c = 0; c < buffer.numberOfChannels; c++) {
     const src = buffer.getChannelData(c);
     const dst = out.getChannelData(c);
-    let prev = 0;
+    let x1 = 0, y1 = 0;
     for (let i = 0; i < src.length; i++) {
-      let x = src[i] * gain;
-      x = Math.tanh(x * 1.15) * 0.9;
-      x = x - prev * 0.04;
-      prev = x;
+      const y = a * (y1 + src[i] - x1);
+      x1 = src[i]; y1 = y; dst[i] = y;
+    }
+  }
+  return out;
+}
+
+function gainAndLimit(buffer, gainDb) {
+  const g = Math.pow(10, gainDb / 20);
+  const ceil = Math.pow(10, -1 / 20);
+  const out = new AudioBuffer({ length: buffer.length, numberOfChannels: buffer.numberOfChannels, sampleRate: buffer.sampleRate });
+  for (let c = 0; c < buffer.numberOfChannels; c++) {
+    const src = buffer.getChannelData(c);
+    const dst = out.getChannelData(c);
+    for (let i = 0; i < src.length; i++) {
+      let x = src[i] * g;
+      if (x > ceil) x = ceil;
+      else if (x < -ceil) x = -ceil;
       dst[i] = x;
     }
   }
   return out;
 }
 
+function repair(buffer, before) {
+  const actions = ["25 Hz high-pass. Sub rumble under the kick is cut. The musical low end stays."];
+  let buf = highpass(buffer);
+  const afterHp = measure(buf, before.name);
+  let gainDb = Math.max(-6, Math.min(6, -14 - afterHp.lufs));
+  if (Math.abs(gainDb) >= 0.4) {
+    actions.push("Loudness trim " + (gainDb > 0 ? "+" : "") + gainDb.toFixed(1) + " dB toward -14 LUFS. Capped at 6 dB so a quiet verse is not invented into a master.");
+  } else {
+    gainDb = 0;
+    actions.push("Loudness already inside the window. No loudnorm gain.");
+  }
+  if (afterHp.truePeak + gainDb > -1 || afterHp.clips > 0) {
+    actions.push("True-peak ceiling at -1.0 dBTP. Samples that were already clipped stay flat. This only stops new overs.");
+  } else {
+    actions.push("True peak already under -1.0 dBTP. Limiter is armed but barely working.");
+  }
+  if (before.phase < 0.2) actions.push("Phase left alone. Correlation under 0.2 is a mix problem, not a limiter problem.");
+  buf = gainAndLimit(buf, gainDb);
+  return { buffer: buf, actions, gainDb };
+}
+
+function paint(report, label) {
+  $("#meters").hidden = false;
+  $("#grade").hidden = false;
+  $("#scoreNum").textContent = report.score;
+  $("#scoreWord").textContent = report.rating;
+  $("#scoreWhy").textContent = report.notes.length ? report.notes.join(" ") : "All published gates pass: clips 0, true peak at or under -1.0, loudness within 1.5 LU of -14, phase at least 0.2, rate at least 44.1 kHz.";
+  const map = {
+    lufs: report.lufs + " LUFS", peak: report.peakDb + " dBFS", tp: report.truePeak + " dBTP",
+    crest: report.crest + " dB", phase: String(report.phase), clips: String(report.clips),
+    sr: report.sampleRate + " Hz", ch: String(report.channels), dur: report.duration + " s",
+  };
+  Object.entries(map).forEach(([k, v]) => {
+    const n = document.querySelector(`[data-m="${k}"]`);
+    if (n) n.textContent = v;
+  });
+  $("#sideLabel").textContent = label;
+}
+
+function row(metric, a, b) {
+  const d = (typeof b === "number" && typeof a === "number") ? (b - a) : "";
+  const good = metric === "Clips" ? b < a : metric === "Score" ? b > a : true;
+  return `<tr><td>${metric}</td><td>${a}</td><td>${b}</td><td class="${good ? "up" : ""}">${typeof d === "number" ? (d > 0 ? "+" : "") + d.toFixed(2) : ""}</td></tr>`;
+}
+
+function showDelta(before, after, actions) {
+  $("#delta").hidden = false;
+  $("#deltaBody").innerHTML = [
+    row("Score", before.score, after.score),
+    row("LUFS", before.lufs, after.lufs),
+    row("True peak", before.truePeak, after.truePeak),
+    row("Peak", before.peakDb, after.peakDb),
+    row("Crest", before.crest, after.crest),
+    row("Phase", before.phase, after.phase),
+    row("Clips", before.clips, after.clips),
+  ].join("");
+  $("#fixedList").innerHTML = actions.map((a) => `<li>${a}</li>`).join("");
+}
+
+function bindAudio(buffer) {
+  const url = URL.createObjectURL(encodeWav(buffer));
+  const audio = $("#preview");
+  const t = audio.currentTime || 0;
+  const playing = !audio.paused;
+  audio.src = url;
+  audio.currentTime = Math.min(t, buffer.duration - 0.05);
+  if (playing) audio.play();
+}
+
+async function tryServer(file) {
+  for (const base of SERVERS) {
+    try {
+      const ping = await fetch(base + "/health");
+      if (!ping.ok) continue;
+      const body = new FormData();
+      body.append("file", file);
+      const res = await fetch(base + "/analyze", { method: "POST", body });
+      if (!res.ok) continue;
+      const data = await res.json();
+      return { data, source: base };
+    } catch (_) {}
+  }
+  return null;
+}
+
+async function onFile(file) {
+  state.file = file;
+  state.after = null;
+  $("#delta").hidden = true;
+  $("#engineStatus").textContent = "Decoding " + file.name + "…";
+  const ctx = new AudioContext();
+  const raw = await file.arrayBuffer();
+  let buffer;
+  try { buffer = await ctx.decodeAudioData(raw.slice(0)); }
+  catch (_) { $("#engineStatus").textContent = "Could not decode that file."; return; }
+  state.beforeBuf = buffer;
+  const local = measure(buffer, file.name);
+  const server = await tryServer(file);
+  state.before = local;
+  if (server && server.data && server.data.score != null) {
+    state.before.score = server.data.score;
+    state.before.rating = server.data.rating || state.before.rating;
+    state.before.engine = "server";
+    $("#engineStatus").textContent = "Server grade from " + server.source + ". Specs below are the Lacquer meter on the same file.";
+  } else {
+    state.before.engine = "lacquer-browser";
+    $("#engineStatus").textContent = "Server dark. Grade is the Lacquer meter against CoProducer gates. Nothing uploaded.";
+  }
+  paint(state.before, "A · original");
+  bindAudio(buffer);
+  $("#previewDock").hidden = false;
+  state.side = "A";
+}
+
+$("#fileInput").addEventListener("change", (e) => e.target.files[0] && onFile(e.target.files[0]));
+$("#dropzone").addEventListener("dragover", (e) => e.preventDefault());
+$("#dropzone").addEventListener("drop", (e) => { e.preventDefault(); if (e.dataTransfer.files[0]) onFile(e.dataTransfer.files[0]); });
+
+$("#playBtn").addEventListener("click", () => {
+  const a = $("#preview");
+  if (a.paused) a.play(); else a.pause();
+});
+
+function setSide(side) {
+  if (!state.beforeBuf) return;
+  state.side = side;
+  const buf = side === "B" && state.afterBuf ? state.afterBuf : state.beforeBuf;
+  const report = side === "B" && state.after ? state.after : state.before;
+  bindAudio(buf);
+  paint(report, side === "B" ? "B · fixed" : "A · original");
+  $("#aBtn").classList.toggle("on", side === "A");
+  $("#bBtn").classList.toggle("on", side === "B");
+}
+$("#aBtn").addEventListener("click", () => setSide("A"));
+$("#bBtn").addEventListener("click", () => setSide("B"));
+
+$("#fixBtn").addEventListener("click", () => {
+  if (!state.beforeBuf || !state.before) return;
+  const pass = repair(state.beforeBuf, state.before);
+  state.afterBuf = pass.buffer;
+  state.actions = pass.actions;
+  state.after = measure(pass.buffer, state.before.name);
+  state.after.engine = state.before.engine === "server" ? "server+lacquer-fix" : "lacquer-fix";
+  showDelta(state.before, state.after, pass.actions);
+  setSide("B");
+  const snip = sliceBuffer(pass.buffer, 12);
+  download(encodeWav(snip), "lacquer-fix-snippet.wav");
+  $("#engineStatus").textContent = "Score reloaded on the fixed pass. A is the bounce. B is the repair. Snippet is 12 seconds. Full file and documents need email.";
+});
+
 function sliceBuffer(buffer, seconds) {
   const n = Math.min(buffer.length, Math.floor(seconds * buffer.sampleRate));
-  const out = new AudioContext().createBuffer(buffer.numberOfChannels, n, buffer.sampleRate);
-  for (let c = 0; c < buffer.numberOfChannels; c++) {
-    out.getChannelData(c).set(buffer.getChannelData(c).subarray(0, n));
-  }
+  const out = new AudioBuffer({ length: n, numberOfChannels: buffer.numberOfChannels, sampleRate: buffer.sampleRate });
+  for (let c = 0; c < buffer.numberOfChannels; c++) out.getChannelData(c).set(buffer.getChannelData(c).subarray(0, n));
   return out;
 }
 
@@ -243,71 +311,22 @@ function encodeWav(buffer) {
   }
   return new Blob([ab], { type: "audio/wav" });
 }
-
 function download(blob, name) {
   const a = document.createElement("a");
-  a.href = URL.createObjectURL(blob);
-  a.download = name;
-  a.click();
-  setTimeout(() => URL.revokeObjectURL(a.href), 4000);
+  a.href = URL.createObjectURL(blob); a.download = name; a.click();
 }
 
-function reportHtml(r) {
-  return `<!doctype html><meta charset="utf-8"><title>Lacquer report · ${r.name}</title>
-  <body style="background:#10080f;color:#f6efe8;font-family:Georgia,serif;padding:40px">
-  <p style="letter-spacing:.28em;font-size:11px">LACQUER · COPRODUCER</p>
-  <h1>${r.name}</h1>
-  <p>Score ${r.score} · ${r.rating}</p>
-  <p>Engine ${r.engine}. LUFS ${r.lufs}. Peak ${r.peakDb} dBFS. Crest ${r.crest} dB. Width ${r.width}%.</p>
-  <pre>${JSON.stringify(r, null, 2)}</pre></body>`;
+function pack() {
+  return { before: state.before, after: state.after, actions: state.actions, email: state.email, gates: "−14 LUFS ±1.5, true peak ≤ −1.0 dBTP, clips 0, rate ≥ 44.1 kHz, phase ≥ 0.2, release-ready ≥ 90" };
 }
-
-function reportTxt(r) {
-  return [
-    "LACQUER / COPRODUCER ANALYSIS",
-    r.name,
-    "Engine: " + r.engine,
-    "Score: " + r.score + "  " + r.rating,
-    "LUFS: " + r.lufs,
-    "Peak dBFS: " + r.peakDb,
-    "RMS dBFS: " + r.rmsDb,
-    "Crest dB: " + r.crest,
-    "Width %: " + r.width,
-    "Brightness Hz: " + r.brightness,
-    "Silence %: " + r.silence,
-    "Duration s: " + r.duration,
-    "Sample rate: " + r.sampleRate,
-    "Channels: " + r.channels,
-    "Signed to: " + state.email,
-  ].join("\n");
-}
-
-$("#fileInput").addEventListener("change", (e) => e.target.files[0] && onFile(e.target.files[0]));
-["dragover", "drop"].forEach((ev) => {
-  $("#dropzone").addEventListener(ev, (e) => {
-    e.preventDefault();
-    if (ev === "drop" && e.dataTransfer.files[0]) onFile(e.dataTransfer.files[0]);
-  });
+$("#dlHtml").addEventListener("click", () => download(new Blob([`<!doctype html><meta charset="utf-8"><title>Lacquer</title><pre>${JSON.stringify(pack(), null, 2)}</pre>`], { type: "text/html" }), "lacquer-analysis.html"));
+$("#dlJson").addEventListener("click", () => download(new Blob([JSON.stringify(pack(), null, 2)], { type: "application/json" }), "lacquer-analysis.json"));
+$("#dlTxt").addEventListener("click", () => {
+  const b = state.before, a = state.after;
+  const lines = ["LACQUER / COPRODUCER", b.name, "Before score " + b.score + " " + b.rating, a ? "After score " + a.score + " " + a.rating : "No fix yet", ...(state.actions || [])];
+  download(new Blob([lines.join("\n")], { type: "text/plain" }), "lacquer-analysis.txt");
 });
-
-$("#playBtn").addEventListener("click", () => {
-  const a = $("#preview");
-  if (a.paused) a.play(); else a.pause();
-  $("#playBtn").textContent = a.paused ? "Play preview" : "Pause";
-});
-$("#preview").addEventListener("pause", () => { $("#playBtn").textContent = "Play preview"; });
-$("#preview").addEventListener("play", () => { $("#playBtn").textContent = "Pause"; });
-
-$("#fixBtn").addEventListener("click", () => {
-  if (!state.buffer || state.usedFix) return;
-  state.usedFix = true;
-  $("#fixBtn").disabled = true;
-  $("#fixBtn").textContent = "Snippet rendered";
-  const fixed = softFix(state.buffer);
-  const snip = sliceBuffer(fixed, SNIPPET_SEC);
-  download(encodeWav(snip), "lacquer-autofix-snippet.wav");
-  setStatus("One-time auto fix delivered as a " + SNIPPET_SEC + "s snippet. Sign in for the full pass and the documents.", "ok");
-});
+$("#dlFull").addEventListener("click", () => { if (state.afterBuf) download(encodeWav(state.afterBuf), "lacquer-fix-full.wav"); });
 
 function unlock(email) {
   state.email = email;
@@ -316,30 +335,10 @@ function unlock(email) {
   $("#docs").hidden = false;
   $("#who").textContent = email;
 }
-
 $("#emailForm").addEventListener("submit", (e) => {
   e.preventDefault();
   const email = $("#email").value.trim();
-  if (!email.includes("@")) return;
-  unlock(email);
+  if (email.includes("@")) unlock(email);
 });
-
-$("#dlHtml").addEventListener("click", () => {
-  if (!state.email || !state.report) return;
-  download(new Blob([reportHtml(state.report)], { type: "text/html" }), "lacquer-analysis.html");
-});
-$("#dlJson").addEventListener("click", () => {
-  if (!state.email || !state.report) return;
-  download(new Blob([JSON.stringify(state.report, null, 2)], { type: "application/json" }), "lacquer-analysis.json");
-});
-$("#dlTxt").addEventListener("click", () => {
-  if (!state.email || !state.report) return;
-  download(new Blob([reportTxt(state.report)], { type: "text/plain" }), "lacquer-analysis.txt");
-});
-$("#dlFull").addEventListener("click", () => {
-  if (!state.email || !state.buffer) return;
-  download(encodeWav(softFix(state.buffer)), "lacquer-autofix-full.wav");
-});
-
 if (state.email) unlock(state.email);
-setStatus("Server first. If 127.0.0.1:8788 is dark, the Lacquer browser engine takes the pass.", "idle");
+$("#engineStatus").textContent = "Drop a bounce. Grade uses CoProducer gates. Server at 127.0.0.1:8788 wins if it answers.";
