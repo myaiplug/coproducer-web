@@ -6,7 +6,23 @@
     <atom:link href="https://myaiplug.github.io/coproducer-web/blog/rss.xml" rel="self" type="application/rss+xml"/>
     <description>Answer-first essays on loudness, true peak, repair, stems, ScrewAI, and local .bat workflows.</description>
     <language>en-us</language>
-    <lastBuildDate>Tue, 06 Oct 2026 16:00:00 GMT</lastBuildDate>
+    <lastBuildDate>Wed, 07 Oct 2026 16:00:00 GMT</lastBuildDate>
+    <item>
+      <title>Rumble you can’t hear is eating your limiter</title>
+      <link>https://myaiplug.github.io/coproducer-web/blog/subsonic-rumble-steals-limiter-headroom.html</link>
+      <guid isPermaLink="true">https://myaiplug.github.io/coproducer-web/blog/subsonic-rumble-steals-limiter-headroom.html</guid>
+      <pubDate>Wed, 07 Oct 2026 16:00:00 GMT</pubDate>
+      <description>Subsonic rumble and DC offset barely move LUFS but still count toward peaks. Check under 20–30 Hz and filter gently before the limiter to win headroom back.</description>
+      <enclosure url="https://myaiplug.github.io/coproducer-web/blog/img/essays/subsonic-rumble-steals-limiter-headroom.jpg?v=shd" type="image/jpeg" length="305758"/>
+    </item>
+    <item>
+      <title>Your bus compressor is pumping on the 808. High-pass the sidechain</title>
+      <link>https://myaiplug.github.io/coproducer-web/blog/bus-compressor-pumps-on-the-808.html</link>
+      <guid isPermaLink="true">https://myaiplug.github.io/coproducer-web/blog/bus-compressor-pumps-on-the-808.html</guid>
+      <pubDate>Wed, 07 Oct 2026 16:00:00 GMT</pubDate>
+      <description>Hats and vocal air ducking on every 808 note means the low end is driving your bus compressor. A 60–150 Hz sidechain high-pass keeps the glue and stops the pump.</description>
+      <enclosure url="https://myaiplug.github.io/coproducer-web/blog/img/essays/bus-compressor-pumps-on-the-808.jpg?v=shd" type="image/jpeg" length="347357"/>
+    </item>
     <item>
       <title>Wide mixes fail in mono. Check mid/side before you bounce</title>
       <link>https://myaiplug.github.io/coproducer-web/blog/wide-mixes-fail-in-mono.html</link>

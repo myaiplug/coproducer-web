@@ -1,6 +1,16 @@
 # CoProducer — full assistant digest
 Base: https://myaiplug.github.io/coproducer-web/
-Updated: 2026-10-06
+Updated: 2026-10-07
+
+## Rumble you can’t hear is eating your limiter
+URL: https://myaiplug.github.io/coproducer-web/blog/subsonic-rumble-steals-limiter-headroom.html
+Subsonic rumble and DC offset barely move LUFS but still count toward peaks. Check under 20–30 Hz and filter gently before the limiter to win headroom back.
+Keywords: subsonic rumble, DC offset, high pass master, limiter headroom, true peak, low end, CoProducer, NoDAW
+
+## Your bus compressor is pumping on the 808. High-pass the sidechain
+URL: https://myaiplug.github.io/coproducer-web/blog/bus-compressor-pumps-on-the-808.html
+Hats and vocal air ducking on every 808 note means the low end is driving your bus compressor. A 60–150 Hz sidechain high-pass keeps the glue and stops the pump.
+Keywords: bus compressor pumping, sidechain high pass filter, 808 mixing, mix bus compression, glue compressor, StemSplit, CoProducer, NoDAW
 
 ## Wide mixes fail in mono. Check mid/side before you bounce
 URL: https://myaiplug.github.io/coproducer-web/blog/wide-mixes-fail-in-mono.html

@@ -35,6 +35,8 @@
 - https://myaiplug.github.io/coproducer-web/llms-full.txt
 
 ## Lacquer essays (answer-first)
+- https://myaiplug.github.io/coproducer-web/blog/subsonic-rumble-steals-limiter-headroom.html — Rumble you can’t hear is eating your limiter: Subsonic rumble and DC offset barely move LUFS but still count toward peaks. Check under 20–30 Hz and filter gently before the limiter to win headroom back.
+- https://myaiplug.github.io/coproducer-web/blog/bus-compressor-pumps-on-the-808.html — Your bus compressor is pumping on the 808. High-pass the sidechain: Hats and vocal air ducking on every 808 note means the low end is driving your bus compressor. A 60–150 Hz sidechain high-pass keeps the glue and stops the pump.
 - https://myaiplug.github.io/coproducer-web/blog/wide-mixes-fail-in-mono.html — Wide mixes fail in mono. Check mid/side before you bounce: Stereo width that sounds huge on headphones can cancel on a phone. Measure mid/side balance, L/R correlation, and mono fold-down before you bounce.
 - https://myaiplug.github.io/coproducer-web/blog/clipper-vs-limiter-hip-hop-delivery.html — Clipper vs limiter for hip-hop delivery — loudness isn’t the only score: Soft clipper vs brickwall limiter on the same drive: compare LUFS, true peak, and crest. Sample peak −1.0 dBFS is not true-peak safe.
 - https://myaiplug.github.io/coproducer-web/blog/leading-silence-steals-integrated-lufs.html — The silence at the top of your bounce steals LUFS: Digital silence is gated out of integrated LUFS, but quiet intros, long fades and ungated meters still pull the number down. Trim the edges, then measure.

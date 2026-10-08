@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1" name="viewport"/><meta content="https://myaiplug.github.io/coproducer-web/blog/img/essays/subsonic-rumble-steals-limiter-headroom.jpg?v=shd" name="twitter:image"/><meta content="Subsonic rumble and DC offset barely move LUFS but still count toward peaks. Check under 20–30 Hz and filter gently before the limiter to win headroom back." name="twitter:description"/><meta content="Rumble you can’t hear is eating your limiter" name="twitter:title"/><meta content="summary_large_image" name="twitter:card"/><meta content="2026-10-07T00:00:00Z" property="article:modified_time"/><meta content="2026-10-07T00:00:00Z" property="article:published_time"/><meta content="1440" property="og:image:height"/><meta content="2560" property="og:image:width"/><meta content="https://myaiplug.github.io/coproducer-web/blog/subsonic-rumble-steals-limiter-headroom.html" property="og:url"/><meta content="en_US" property="og:locale"/><meta content="CoProducer" property="og:site_name"/><meta content="article" property="og:type"/><link href="https://myaiplug.github.io/coproducer-web/llms.txt" rel="alternate" title="llms.txt" type="text/plain"/><meta content="NoDAW Labs" name="author"/><meta content="#050308" name="theme-color"/><meta content="index,follow,max-image-preview:large" name="robots"/><meta content="subsonic rumble, DC offset, high pass master, limiter headroom, true peak, low end, CoProducer, NoDAW" name="keywords"/>
+<title>Rumble you can’t hear is eating your limiter | Lacquer</title>
+<meta content="Subsonic rumble and DC offset barely move LUFS but still count toward peaks. Check under 20–30 Hz and filter gently before the limiter to win headroom back." name="description"/>
+<link href="https://myaiplug.github.io/coproducer-web/blog/subsonic-rumble-steals-limiter-headroom.html" rel="canonical"/>
+<meta content="Rumble you can’t hear is eating your limiter" property="og:title"/>
+<meta content="Subsonic rumble and DC offset barely move LUFS but still count toward peaks. Check under 20–30 Hz and filter gently before the limiter to win headroom back." property="og:description"/>
+<meta content="https://myaiplug.github.io/coproducer-web/blog/img/essays/subsonic-rumble-steals-limiter-headroom.jpg?v=shd" property="og:image"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;1,500;1,600&amp;family=Figtree:wght@400;500&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<link href="css/journal.css" rel="stylesheet"/>
+
+
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Rumble you can’t hear is eating your limiter","description":"Subsonic rumble and DC offset barely move LUFS but still count toward peaks. Check under 20–30 Hz and filter gently before the limiter to win headroom back.","datePublished":"2026-10-07","dateModified":"2026-10-07","mainEntityOfPage":{"@type":"WebPage","@id":"https://myaiplug.github.io/coproducer-web/blog/subsonic-rumble-steals-limiter-headroom.html"},"image":{"@type":"ImageObject","url":"https://myaiplug.github.io/coproducer-web/blog/img/essays/subsonic-rumble-steals-limiter-headroom.jpg?v=shd","width":2560,"height":1440},"author":{"@type":"Organization","name":"NoDAW Labs","url":"https://myaiplug.github.io/coproducer-web/","logo":"https://myaiplug.github.io/coproducer-web/assets/og-default.jpg"},"publisher":{"@type":"Organization","name":"NoDAW Labs","url":"https://myaiplug.github.io/coproducer-web/","logo":"https://myaiplug.github.io/coproducer-web/assets/og-default.jpg"},"isPartOf":{"@type":"Blog","name":"Lacquer — CoProducer Journal","url":"https://myaiplug.github.io/coproducer-web/blog/index.html"},"keywords":["subsonic rumble","DC offset","high pass master","limiter headroom","true peak","low end","CoProducer","NoDAW"],"speakable":{"@type":"SpeakableSpecification","cssSelector":[".answer","h1"]}}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Should I always high-pass my master at 30 Hz?","acceptedAnswer":{"@type":"Answer","text":"No. Filter when there’s measurable DC or sub-audio energy. On a clean mix a high-pass can shift low-end phase and even raise peaks slightly. Measure first."}},{"@type":"Question","name":"Will a high-pass make my 808 weaker?","acceptedAnswer":{"@type":"Answer","text":"Not if the cutoff sits well below the 808’s lowest note. Around 18–25 Hz with a gentle slope leaves a tuned 808 alone and removes rumble under it."}},{"@type":"Question","name":"Does DC offset really matter?","acceptedAnswer":{"@type":"Answer","text":"It shifts the whole waveform off center, so one side of it reaches the ceiling sooner. It’s small, but it’s headroom you get back for free."}}]}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"CoProducer","item":"https://myaiplug.github.io/coproducer-web/"},{"@type":"ListItem","position":2,"name":"Lacquer Journal","item":"https://myaiplug.github.io/coproducer-web/blog/index.html"},{"@type":"ListItem","position":3,"name":"Rumble you can’t hear is eating your limiter","item":"https://myaiplug.github.io/coproducer-web/blog/subsonic-rumble-steals-limiter-headroom.html"}]}</script></head>
+<body>
+<header class="top">
+<a class="mark" href="../index.html"><em>Co</em>Producer</a>
+<nav aria-label="Primary" class="nav">
+<a href="index.html">Journal</a>
+<a href="../index.html#ab">A/B</a>
+<a href="../index.html#analyzeHome">Analyze</a>
+<a href="../guides/index.html">Guides</a>
+<a href="../pricing.html">Pricing</a>
+</nav>
+<a class="cta" href="../index.html#analyzeHome">Measure a mix</a>
+</header>
+<article class="post" id="main">
+<div class="post-hero"><img alt="A slow magenta sub-bass swell rolling across black marble under a cyan waveform pressed against a limiter ceiling" src="img/essays/subsonic-rumble-steals-limiter-headroom.jpg?v=shd"/></div>
+<header>
+<p class="kicker">Low end · 7 October 2026 · 8 min</p>
+<h1>Rumble you can’t hear is eating your limiter</h1>
+<p class="meta">NoDAW Labs · Lacquer Vol. 04</p>
+</header>
+<p class="answer">Subsonic rumble and DC offset barely register on a LUFS meter, but they still count toward your peaks, so the limiter works harder for loudness you can’t hear. Check what lives under 20–30 Hz, filter it gently before the limiter, and you get headroom back without changing the song.</p>
+<p>Here’s the session. The mix sounds clean. The meter says the master is sitting where you want it. But the limiter is pumping more than it should for how loud the record actually feels, and every time you push for another dB the kick gets smaller. You solo things, you check the vocal, you blame the 808. Nothing sounds wrong.</p>
+<p>That’s the tell. When the limiter is busy and your ears can’t find the reason, the reason is often below where your ears and most speakers go. A mic stand getting bumped. HVAC in the vocal booth. A sample pulled off vinyl with the turntable wobble still in it. A plugin that leaves a little DC offset behind. You can’t hear 9 Hz, and the loudness meter mostly ignores it too, because K-weighting rolls off the deep lows. Your peak meter counts every bit of it.</p>
+<h2>Why the meter and the limiter disagree</h2>
+<p>Integrated LUFS is built to track how loud something feels, so it rolls off the low end on purpose. A peak limiter doesn’t care how anything feels. It sees a sample value and turns the whole mix down when that value crosses the ceiling. So a slow swell riding under the beat lifts every transient on top of it closer to the ceiling. The limiter hits harder on the hits that ride that swell, and you pay for it in punch.</p>
+<p>DC offset is the same problem in its simplest form. If the whole waveform sits a little above zero, the positive peaks reach the ceiling early. It’s a few tenths of a dB on a mild case and more on a bad one, and you get nothing musical in return.</p>
+<h2>A quick check before you blame the mix</h2>
+<p>This script reads a bounce and tells you the DC offset, how much of the file’s energy sits under 20 Hz and under your cutoff, and what a gentle 25 Hz high-pass would do to peaks and loudness. It only reports. It doesn’t change your file.</p>
+<pre><code>#!/usr/bin/env python3
+&quot;&quot;&quot;rumble_check.py: find the low end you can&#x27;t hear but your limiter can.
+Usage: python3 rumble_check.py mix.wav [cutoff_hz]
+Needs: numpy + ffmpeg on PATH.
+
+Prints DC offset, how much of the file&#x27;s energy sits under 20 Hz and
+under the cutoff, and how much peak headroom a gentle high-pass gives
+back while integrated loudness barely moves.&quot;&quot;&quot;
+import re, subprocess, sys
+import numpy as np
+
+SR = 48000
+path = sys.argv[1]
+cut = float(sys.argv[2]) if len(sys.argv) &gt; 2 else 25.0
+HPF = f&quot;highpass=f={cut}:poles=2,highpass=f={cut}:poles=2&quot;  # ~24 dB/oct, removes DC too
+
+def decode(af=None):
+    cmd = [&quot;ffmpeg&quot;, &quot;-v&quot;, &quot;error&quot;, &quot;-i&quot;, path, &quot;-ac&quot;, &quot;2&quot;, &quot;-ar&quot;, str(SR)]
+    if af:
+        cmd += [&quot;-af&quot;, af]
+    raw = subprocess.run(cmd + [&quot;-f&quot;, &quot;f32le&quot;, &quot;-&quot;], capture_output=True, check=True).stdout
+    return np.frombuffer(raw, dtype=np.float32).reshape(-1, 2)
+
+def lufs(af=None):
+    chain = (af + &quot;,&quot; if af else &quot;&quot;) + &quot;ebur128=peak=true:framelog=quiet&quot;
+    err = subprocess.run([&quot;ffmpeg&quot;, &quot;-nostats&quot;, &quot;-hide_banner&quot;, &quot;-i&quot;, path, &quot;-af&quot;, chain,
+                          &quot;-f&quot;, &quot;null&quot;, &quot;-&quot;], capture_output=True, text=True).stderr
+    summ = err[err.rfind(&quot;Summary:&quot;):]
+    i = float(re.search(r&quot;I:\s+(-?[\d.]+) LUFS&quot;, summ).group(1))
+    tp = float(re.search(r&quot;Peak:\s+(-?[\d.]+) dBFS&quot;, summ).group(1))
+    return i, tp
+
+db = lambda v: 20 * np.log10(max(v, 1e-12))
+x = decode()
+dc = x.mean(axis=0)
+mono = x.mean(axis=1) - x.mean()
+spec = np.abs(np.fft.rfft(mono)) ** 2
+freqs = np.fft.rfftfreq(len(mono), 1 / SR)
+total = spec[1:].sum() + 1e-20
+share20 = spec[(freqs &gt; 0) &amp; (freqs &lt; 20)].sum() / total
+sharecut = spec[(freqs &gt; 0) &amp; (freqs &lt; cut)].sum() / total
+
+y = decode(HPF)
+pk_in, pk_out = np.abs(x).max(), np.abs(y).max()
+i_in, tp_in = lufs()
+i_out, tp_out = lufs(HPF)
+
+print(f&quot;file              : {path}&quot;)
+print(f&quot;DC offset L/R     : {dc[0]:+.4f} / {dc[1]:+.4f}  ({db(abs(dc).max()):.1f} dBFS)&quot;)
+print(f&quot;energy &lt; 20 Hz    : {100 * share20:.1f}% of the file&quot;)
+print(f&quot;energy &lt; {cut:g} Hz    : {100 * sharecut:.1f}%&quot;)
+print(f&quot;sample peak       : {db(pk_in):+.2f} dBFS -&gt; {db(pk_out):+.2f} dBFS after {cut:g} Hz HPF&quot;)
+print(f&quot;true peak         : {tp_in:+.1f} dBTP -&gt; {tp_out:+.1f} dBTP&quot;)
+print(f&quot;integrated        : {i_in:.1f} LUFS -&gt; {i_out:.1f} LUFS&quot;)
+print(f&quot;headroom returned : {db(pk_in) - db(pk_out):+.2f} dB of peak for {i_in - i_out:+.1f} LU of loudness&quot;)
+if abs(dc).max() &gt; 0.001 or sharecut &gt; 0.02:
+    print(&quot;verdict           : low end you can&#x27;t hear is spending headroom. Filter before the limiter.&quot;)
+else:
+    print(&quot;verdict           : sub-audio looks clean. Leave the low end alone.&quot;)
+</code></pre>
+<h2>What it found on test signals</h2>
+<p>These are synthetic WAVs built on the box, labeled that way on purpose so nobody mistakes them for a real record. The base is a 140 BPM trap-style loop with a kick, a 49 Hz 808, a snare, and hats. The second version is the same loop with a 9 Hz swell, a few 18 Hz mic-stand bumps, and a small DC offset added.</p>
+<table>
+<thead><tr><th>Measurement</th><th>Clean loop</th><th>Loop + rumble</th></tr></thead><tbody>
+<tr><td>Integrated loudness</td><td>−23.3 LUFS</td><td>−23.2 LUFS</td></tr>
+<tr><td>Sample peak</td><td>−6.9 dBFS</td><td>−4.1 dBFS</td></tr>
+<tr><td>True peak</td><td>−6.9 dBTP</td><td>−3.4 dBTP</td></tr>
+<tr><td>DC offset</td><td>−66 dBFS</td><td>−30 dBFS</td></tr>
+<tr><td>Energy under 20 Hz</td><td>0.2%</td><td>76%</td></tr>
+</tbody></table>
+<p>Read that again. The loudness meter says the two files are the same, within a tenth of a LU. The peak meter says the rumble version has <strong>3.5 dB less true-peak headroom</strong>. Three quarters of the file’s energy is something nobody will ever hear.</p>
+<p>Then we pushed both into the same limiter: +12 dB of drive into a −2.0 dBFS sample-peak ceiling. The rumble version came out at <strong>−14.1 LUFS</strong> with about <strong>1.7 dB</strong> of average gain reduction. The same file with a 20 Hz high-pass first came out at <strong>−13.1 LUFS</strong> with about <strong>0.7 dB</strong> of average gain reduction. Same drive and same ceiling, but a full LU louder, and the limiter worked less than half as hard. The clean loop, for reference, landed at −12.9.</p>
+<p>One honest footnote. The limiter in that test held a sample-peak ceiling, and the synthetic hats still pushed true peak over it. That’s a separate fight, and it’s covered in <a href="true-peak-is-what-codecs-clip.html">True peak is what codecs clip</a>. Rumble doesn’t cause it, but it does eat the margin you’d otherwise have for it.</p>
+<h2>The catch: filtering isn’t free</h2>
+<p>On the <em>clean</em> loop, the same 25 Hz filter <em>raised</em> the peak by about 1 dB. Nothing was wrong down there to remove. All the filter did was shift the phase of the 49 Hz 808 and kick, and the waveform stacked a little differently. That’s why the script gives a verdict instead of telling you to always filter.</p>
+<ul>
+<li><strong>If there’s real sub-audio junk</strong> (DC, energy under 20 Hz above a couple of percent, a peak that drops when you filter), filter it.</li>
+<li><strong>If the low end is already clean,</strong> leave it alone. A reflexive 30 Hz cut on every master can cost a little weight and a little headroom for nothing.</li>
+<li><strong>Mind your fundamentals.</strong> A tuned 808 can go down to E1 (41 Hz) or lower. Keep the cutoff well below the lowest note. Around 18–25 Hz is a safe start for most hip-hop and electronic records. Acoustic and orchestral sessions can usually sit a bit higher, around 25–30 Hz.</li>
+</ul>
+<h2>Where to fix it, in order</h2>
+<ol>
+<li><strong>At the source.</strong> Put a high-pass on the vocal, the acoustic guitar, the room mics, and any sample you lifted from vinyl. They have no business under 40–80 Hz anyway. That’s where most rumble comes from.</li>
+<li><strong>On the mix bus, gently.</strong> A 12–24 dB/oct high-pass around 20 Hz cleans up whatever is left without touching the 808. Linear-phase is an option if you hear the low end shift, but listen for pre-ringing on the kick.</li>
+<li><strong>Then the limiter.</strong> Re-check peak headroom and gain reduction. If the limiter suddenly relaxes, you just found free loudness.</li>
+<li><strong>Re-measure after any slow or screwed version.</strong> Slowing a track down moves everything lower, including rumble that used to sit at 25 Hz and is now down at 17. Check the ScrewAI render separately instead of trusting the full-speed numbers.</li>
+</ol>
+<p>When the master is printed, dropping it into CoProducer is a good last look. It looks for DC and rumble evidence next to the true-peak and loudness readings, and only suggests a cautious high-pass when that evidence is strong, so you can see whether the limiter was fighting the song or the floor.</p>
+<aside class="aside"><a href="../index.html#analyzeHome">Measure the bounce</a>, split out the stem that’s carrying the rumble with <a href="../index.html#stemDemo">StemSplit</a> when you don’t have the session, and re-check the low end on the <a href="../index.html#screwDemo">ScrewAI</a> render before you ship the slowed version.</aside>
+<dl class="faq">
+<dt>Should I always high-pass my master at 30 Hz?</dt><dd>No. Filter when there’s measurable DC or sub-audio energy. On a clean mix a high-pass can shift low-end phase and even raise peaks slightly. Measure first.</dd>
+<dt>Will a high-pass make my 808 weaker?</dt><dd>Not if the cutoff sits well below the 808’s lowest note. Around 18–25 Hz with a gentle slope leaves a tuned 808 alone and removes rumble under it.</dd>
+<dt>Does DC offset really matter?</dt><dd>It shifts the whole waveform off center, so one side of it reaches the ceiling sooner. It’s small, but it’s headroom you get back for free.</dd>
+</dl>
+<nav aria-label="Related essays" class="related-essays" style="margin:48px 0 24px;padding-top:24px;border-top:1px solid rgba(196,165,116,.32)"><h2>Related in Lacquer</h2><ul>
+<li><a href="when-not-to-reach-for-the-limiter.html">When not to reach for the limiter</a></li>
+<li><a href="quiet-masters-and-noise-floor.html">Quiet masters get turned up — and so does the noise</a></li>
+<li><a href="true-peak-is-what-codecs-clip.html">True peak is what codecs clip</a></li>
+</ul></nav>
+</article>
+<section class="comments" data-comments="" data-thread="rumble"></section>
+<script src="js/studio.js" type="module"></script>
+<script src="js/comments.js" type="module"></script>
+<footer class="site"><span>Lacquer · CoProducer Journal</span><span><a href="index.html">All essays</a></span></footer>
+</body>
+</html>

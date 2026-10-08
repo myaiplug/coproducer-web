@@ -27,7 +27,7 @@
   </url>
   <url>
     <loc>https://myaiplug.github.io/coproducer-web/blog/index.html</loc>
-    <lastmod>2026-10-06</lastmod>
+    <lastmod>2026-10-07</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
     <image:image>
@@ -120,6 +120,26 @@
     <priority>0.7</priority>
   </url>
     <url>
+    <loc>https://myaiplug.github.io/coproducer-web/blog/subsonic-rumble-steals-limiter-headroom.html</loc>
+    <lastmod>2026-10-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://myaiplug.github.io/coproducer-web/blog/img/essays/subsonic-rumble-steals-limiter-headroom.jpg?v=shd</image:loc>
+      <image:title>Rumble you can’t hear is eating your limiter</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://myaiplug.github.io/coproducer-web/blog/bus-compressor-pumps-on-the-808.html</loc>
+    <lastmod>2026-10-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://myaiplug.github.io/coproducer-web/blog/img/essays/bus-compressor-pumps-on-the-808.jpg?v=shd</image:loc>
+      <image:title>Your bus compressor is pumping on the 808. High-pass the sidechain</image:title>
+    </image:image>
+  </url>
+  <url>
     <loc>https://myaiplug.github.io/coproducer-web/blog/wide-mixes-fail-in-mono.html</loc>
     <lastmod>2026-10-06</lastmod>
     <changefreq>monthly</changefreq>
