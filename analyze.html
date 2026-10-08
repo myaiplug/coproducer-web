@@ -51,6 +51,14 @@ button[disabled] { opacity:.45; cursor:default; }
 form { display:flex; gap:8px; flex-wrap:wrap; margin-top:8px; }
 input[type="email"] { flex:1; min-width:200px; background:#120a16; color:var(--ink); border:1px solid var(--line); border-radius:999px; padding:10px 14px; }
 .gate, .docs { margin-top:16px; border-top:1px solid var(--line); padding-top:14px; }
+.spectral .kicker { margin-top:4px; }
+.melwrap { position:relative; }
+#melMap { height:120px; background:#07050a; }
+.vadlane { position:absolute; left:0; right:0; bottom:0; height:8px; border-radius:0 0 8px 8px; background:rgba(255,255,255,.04); overflow:hidden; }
+.vadlane i { position:absolute; top:0; bottom:0; background:#d7ffb8; box-shadow:0 0 8px rgba(215,255,184,.6); }
+.sections button.sec { padding:7px 10px; font-size:10px; letter-spacing:.08em; text-transform:none; }
+.note.credit { font-size:10px; opacity:.75; }
+.note.credit a { color:inherit; }
 @media (max-width:640px) {
   h1 { font-size:40px; }
   .meters { grid-template-columns:1fr 1fr; }
@@ -80,9 +88,9 @@ input[type="email"] { flex:1; min-width:200px; background:#120a16; color:var(--i
   <p class="lede">Server analysis runs first. If the local engine is dark, the same browser meter from the homepage takes the file and nothing leaves the machine. Preview is playable. Auto fix is one click and only a snippet. Email unlocks the full pass plus HTML, JSON, or TXT.</p>
   <div class="status" id="engineStatus">Checking engine…</div>
   <label class="drop" id="dropzone">
-    <input id="fileInput" type="file" accept="audio/*,.wav,.mp3,.flac,.m4a,.aiff"/>
+    <input id="fileInput" type="file" accept="audio/*,video/mp4,video/quicktime,.wav,.mp3,.flac,.m4a,.aiff,.aif,.ogg,.opus,.webm,.mp4,.mov,.caf"/>
     <b>DROP THE BOUNCE</b>
-    <span>WAV, MP3, FLAC, M4A. Stays on this device unless the local server is up.</span>
+    <span>WAV (incl. RF64), MP3, FLAC, M4A/ALAC, AIFF, OGG/Opus, MP4/MOV audio. Stays on this device unless the local server is up.</span>
   </label>
   <div class="grade" id="grade" hidden>
     <p class="kicker" id="sideLabel">A · ORIGINAL</p>
@@ -111,6 +119,13 @@ input[type="email"] { flex:1; min-width:200px; background:#120a16; color:var(--i
       <button id="fixBtn" type="button">Run the pass</button>
     </div>
   </div>
+  <div class="dock spectral" id="spectralDock" hidden>
+    <p class="kicker">SPECTRAL MAP · VOCAL ACTIVITY</p>
+    <div class="melwrap"><canvas id="melMap" width="1200" height="150"></canvas><div class="vadlane" id="vadLane"></div></div>
+    <div class="row sections" id="vadSections"></div>
+    <p class="note" id="spectralNote"></p>
+    <p class="note credit">Local log-mel spectrogram and model-free VAD. Uses <a href="https://github.com/wavey-ai/soundkit">soundkit</a> / <a href="https://github.com/wavey-ai/mel-spec">mel-spec</a> by wavey-ai (MIT).</p>
+  </div>
   <div class="delta" id="delta" hidden>
     <p class="kicker">WHAT THE PASS ACTUALLY MOVED</p>
     <table>
@@ -137,6 +152,7 @@ input[type="email"] { flex:1; min-width:200px; background:#120a16; color:var(--i
     </div>
   </div>
 </div>
+<script src="js/lacquer-spectral.js"></script>
 <script src="js/lacquer-analyze.js"></script>
 </body>
 </html>

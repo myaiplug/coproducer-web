@@ -254,8 +254,17 @@ async function onFile(file) {
   const ctx = new AudioContext();
   const raw = await file.arrayBuffer();
   let buffer;
+  let decodedBy = "browser";
   try { buffer = await ctx.decodeAudioData(raw.slice(0)); }
-  catch (_) { $("#engineStatus").textContent = "Could not decode that file."; return; }
+  catch (_) {
+    // Browser decoder declined: try soundkit-wasm locally (wavey-ai, MIT) before giving up.
+    try {
+      if (!window.LacquerSpectral) throw new Error("soundkit add-on not loaded");
+      $("#engineStatus").textContent = "Browser declined " + file.name + ". Decoding locally with soundkit…";
+      buffer = (await window.LacquerSpectral.decodeFallback(file, ctx)).buffer;
+      decodedBy = "soundkit";
+    } catch (err) { console.warn(err); $("#engineStatus").textContent = "Could not decode that file."; return; }
+  }
   state.beforeBuf = buffer;
   const local = measure(buffer, file.name);
   const server = await tryServer(file);
@@ -268,10 +277,12 @@ async function onFile(file) {
     state.before.engine = "lacquer-browser";
     $("#engineStatus").textContent = "Server dark. Grade is the Lacquer meter against CoProducer gates. Nothing uploaded.";
   }
+  if (decodedBy === "soundkit") $("#engineStatus").textContent += " Decoded locally by soundkit.";
   paint(state.before, "A · original");
   bindAudio(buffer);
   $("#previewDock").hidden = false;
   state.side = "A";
+  if (window.LacquerSpectral) window.LacquerSpectral.analyze(buffer);
 }
 
 $("#fileInput").addEventListener("change", (e) => e.target.files[0] && onFile(e.target.files[0]));
