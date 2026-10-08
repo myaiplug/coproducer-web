@@ -1,0 +1,54 @@
+diff --git a/speechsauce/src/feature.rs b/speechsauce/src/feature.rs
+index 138df21..603dca2 100644
+--- a/speechsauce/src/feature.rs
++++ b/speechsauce/src/feature.rs
+@@ -123,7 +123,9 @@ pub fn mfcc(signal: ArrayView1<f32>, speech_config: &SpeechConfig) -> Array2<f32
+     nddct2(&feature, &mut transformed_feature, &mut dct_handler, 1);
+     //NOTE: may be able to remove the if/else by processing first element separately
+     //https://docs.scipy.org/doc/scipy/reference/generated/scipy.fftpack.dct.html#:~:text=2N)-,If%20norm%3D%27ortho%27%2C%20y%5Bk%5D%20is%20multiplied%20by%20a%20scaling%20factor%20f,-f%3D%7B
+-    let n = transformed_feature.len() as f32;
++    // NoDAW patch: orthonormal DCT-II scaling uses the transform length (num_filters),
++    // not the total element count (which made MFCC scale depend on track length).
++    let n = feature_axis_len as f32;
+     //orthonormalized the transformed axis
+     transformed_feature[[0, 0]] *= 1. / (4. * n).sqrt();
+     transformed_feature
+diff --git a/speechsauce/src/processing.rs b/speechsauce/src/processing.rs
+index f0aef0a..a580172 100644
+--- a/speechsauce/src/processing.rs
++++ b/speechsauce/src/processing.rs
+@@ -109,15 +109,15 @@ pub fn stack_frames(
+ 
+     let mut frames = Array2::zeros((numframes, frame_sample_length));
+ 
+-    let doubled_sig = stack![Axis(0), signal, signal];
+-    let sig_chunks = doubled_sig.exact_chunks((numframes, 2));
+-    frames
+-        .exact_chunks_mut((numframes, 2))
+-        .into_iter()
+-        .zip(sig_chunks)
+-        .for_each(|(mut frame_chunk, sig_chunk)| {
+-            frame_chunk.assign(&sig_chunk);
+-        });
++    // NoDAW patch: the upstream chunk-zip copy produced all-zero frames; copy each
++    // overlapping frame explicitly (frame i starts at i * frame_step_size).
++    for (i, mut row) in frames.outer_iter_mut().enumerate() {
++        let start = i * frame_step_size;
++        let end = (start + frame_sample_length).min(signal.len());
++        if start < end {
++            row.slice_mut(s![0..end - start]).assign(&signal.slice(s![start..end]));
++        }
++    }
+ 
+     if let Some(f) = filter {
+         let filt = f(frame_sample_length);
+@@ -177,7 +177,8 @@ fn fft_spectrum(frames: Array2<f32>, fft_points: usize /*=512*/) -> Array2<f32>
+ /// If frames is an num_frames x sample_per_frame matrix, output
+ /// will be num_frames x fft_length.
+ pub fn power_spectrum(frames: Array2<f32>, fft_points: usize /*=512*/) -> Array2<f32> {
+-    fft_spectrum(frames, fft_points).map(|x| (1. / fft_points as f32) * *x)
++    // NoDAW patch: square the magnitude (speechpy: 1/N * |X|^2); upstream returned |X|/N.
++    fft_spectrum(frames, fft_points).map(|x| (1. / fft_points as f32) * *x * *x)
+ }
+ 
+ /// Log power spectrum of each frame in frames.

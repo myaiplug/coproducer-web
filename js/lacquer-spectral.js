@@ -28,6 +28,7 @@
   }
 
   async function analyze(buffer) {
+    if (window.LacquerReference) window.LacquerReference.setMix(buffer); // reference match add-on (mfcc-rust)
     const mine = ++token;
     const dock = q("#spectralDock"); if (!dock) return;
     const canvas = q("#melMap"); const lane = q("#vadLane"); const list = q("#vadSections"); const note = q("#spectralNote");

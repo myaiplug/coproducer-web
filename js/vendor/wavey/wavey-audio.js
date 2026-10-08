@@ -1,5 +1,7 @@
-// wavey-audio.js — NoDAW Labs glue around wavey-ai's soundkit-wasm and mel-spec (both MIT).
+// wavey-audio.js — NoDAW Labs glue around wavey-ai's soundkit-wasm and mel-spec (both MIT),
+// flac (Apache-2.0) and mfcc-rust (Apache-2.0).
 // Uses soundkit / mel-spec by wavey-ai (MIT) — https://github.com/wavey-ai
+// Uses flac / mfcc-rust by wavey-ai (Apache-2.0) — https://github.com/wavey-ai/flac, https://github.com/wavey-ai/mfcc-rust
 // All processing is local to the browser tab. Nothing is uploaded.
 //
 //   decodeAudioFile(file, audioContext)  -> { buffer, via: "browser" | "soundkit", format }
@@ -8,6 +10,9 @@
 //   drawMel(canvas, mel, opts)
 //   detectVoiceActivity(samples, sampleRate, opts) -> { segments: [{ start, end }], ... }
 //   toMono(audioBuffer)
+//   encodeFlac(audioBuffer, { bits: 16|24, level: 0|1|2, quantize }) -> Blob(audio/flac)  [wavey-ai/flac, lossless]
+//   timbreProfile(audioBuffer) / compareTimbre(mine, ref)                          [wavey-ai/mfcc-rust]
+//   Every WASM module loads only when its function is first called.
 
 const BASE = new URL("./", import.meta.url);
 let soundkitPromise = null;
@@ -34,6 +39,31 @@ export function loadMelSpec() {
     })().catch((error) => { melPromise = null; throw error; });
   }
   return melPromise;
+}
+
+let flacPromise = null;
+let mfccPromise = null;
+
+export function loadFlac() {
+  if (!flacPromise) {
+    flacPromise = (async () => {
+      const mod = await import(new URL("flac/nodaw_flac_wasm.js", BASE).href);
+      await mod.default({ module_or_path: new URL("flac/nodaw_flac_wasm_bg.wasm", BASE) });
+      return mod;
+    })().catch((error) => { flacPromise = null; throw error; });
+  }
+  return flacPromise;
+}
+
+export function loadMfcc() {
+  if (!mfccPromise) {
+    mfccPromise = (async () => {
+      const mod = await import(new URL("mfcc/nodaw_mfcc_wasm.js", BASE).href);
+      await mod.default({ module_or_path: new URL("mfcc/nodaw_mfcc_wasm_bg.wasm", BASE) });
+      return mod;
+    })().catch((error) => { mfccPromise = null; throw error; });
+  }
+  return mfccPromise;
 }
 
 const yieldToUi = () => new Promise((resolve) => setTimeout(resolve, 0));
@@ -393,4 +423,110 @@ export async function detectVoiceActivity(samples, sampleRate, { minEnergy = 1.0
   return { segments, frameSec, activity, duration: input.length / rate, activeRatio: input.length ? active / (input.length / rate) : 0 };
 }
 
-export const CREDITS = "Uses soundkit / mel-spec by wavey-ai (MIT)";
+// ---------- FLAC export (wavey-ai/flac, Apache-2.0) ----------
+// Quantisation is done here so a tool can match its own WAV writer exactly:
+//   "round" -> Math.round(v < 0 ? v * 2^(b-1) : v * (2^(b-1) - 1))   (reTUNE 24-bit WAV writer)
+//   "trunc" -> truncate (v < 0 ? v * 2^(b-1) : v * (2^(b-1) - 1))      (DataView.setInt16 WAV writers)
+function quantizePlanar(buffer, bits, mode) {
+  const channels = buffer.numberOfChannels, length = buffer.length;
+  const neg = 2 ** (bits - 1), pos = neg - 1;
+  const planar = new Int32Array(channels * length);
+  for (let c = 0; c < channels; c += 1) {
+    const data = buffer.getChannelData(c), base = c * length;
+    for (let i = 0; i < length; i += 1) {
+      const v = data[i] > 1 ? 1 : data[i] < -1 ? -1 : data[i] || 0;
+      const x = v < 0 ? v * neg : v * pos;
+      planar[base + i] = mode === "trunc" ? Math.trunc(x) : Math.round(x);
+    }
+  }
+  return { planar, channels, sampleRate: buffer.sampleRate, length };
+}
+
+function encodeFlacInWorker(job) {
+  return new Promise((resolve, reject) => {
+    let worker;
+    try { worker = new Worker(new URL("flac/flac-worker.js", BASE), { type: "module" }); } catch (error) { reject(error); return; }
+    const done = (fn, value) => { worker.terminate(); fn(value); };
+    worker.onmessage = (event) => (event.data && event.data.ok ? done(resolve, event.data.bytes) : done(reject, new Error(event.data?.error || "FLAC worker failed")));
+    worker.onerror = (event) => { event.preventDefault?.(); done(reject, new Error(event.message || "FLAC worker failed to start")); };
+    worker.postMessage({ ...job, base: BASE.href }, [job.planar.buffer]);
+  });
+}
+
+/**
+ * Lossless FLAC of an AudioBuffer. Runs in a module Worker when possible, else on the main thread.
+ * bits: 16 or 24 (default 24); level: 0 realtime, 1 balanced (default), 2 maximum; quantize: "round" | "trunc".
+ * If the final FLAC block would be shorter than 32 samples it is padded with < 32 samples of silence (< 1 ms).
+ */
+export async function encodeFlac(buffer, { bits = 24, level = 1, quantize = "round", worker = true } = {}) {
+  let bytes = null;
+  if (worker && typeof Worker === "function") {
+    try { bytes = await encodeFlacInWorker({ ...quantizePlanar(buffer, bits, quantize), bits, level }); } catch (error) { console.warn("[wavey-audio] FLAC worker unavailable, encoding on main thread", error); }
+  }
+  if (!bytes) {
+    const flac = await loadFlac();
+    const job = quantizePlanar(buffer, bits, quantize);
+    bytes = flac.encode_planar_i32(job.planar, job.channels, job.sampleRate, bits, level);
+  }
+  return new Blob([bytes], { type: "audio/flac" });
+}
+
+// ---------- timbre / tonal balance (wavey-ai/mfcc-rust "speechsauce", Apache-2.0) ----------
+export const TIMBRE_OPTS = { rate: 22050, fft: 2048, chunkSeconds: 4, lowHz: 30, highHz: 11025, maxSeconds: 600 };
+const MFCC_N = 13, BANDS_N = 40;
+const hzToMel = (f) => 1127 * Math.log(1 + f / 700), melToHz = (m) => 700 * (Math.exp(m / 1127) - 1);
+export function timbreBandCenters({ lowHz, highHz } = TIMBRE_OPTS) {
+  const a = hzToMel(lowHz), b = hzToMel(highHz), step = (b - a) / (BANDS_N + 1);
+  return Array.from({ length: BANDS_N }, (_, i) => melToHz(a + step * (i + 1)));
+}
+export const TIMBRE_ZONES = [["Low", 30, 120], ["Low-mid", 120, 500], ["Mid", 500, 2000], ["Presence", 2000, 6000], ["Air", 6000, 11025]];
+
+/** MFCC + 40-band log mel energy summary of a track (frames within 50 dB of the loudest frame). */
+export async function timbreProfile(buffer, opts = {}) {
+  const o = { ...TIMBRE_OPTS, ...opts };
+  const mod = await loadMfcc();
+  const mono = await resampleMono(toMono(buffer, o.maxSeconds), buffer.sampleRate, o.rate);
+  const frames = mod.analyze(mono, o.rate, o.fft, o.chunkSeconds, o.lowHz, o.highHz);
+  const stride = MFCC_N + BANDS_N, n = Math.floor(frames.length / stride);
+  let maxE = -Infinity;
+  for (let f = 0; f < n; f += 1) if (Number.isFinite(frames[f * stride])) maxE = Math.max(maxE, frames[f * stride]);
+  const gate = maxE - Math.log(1e5);
+  const keep = [];
+  for (let f = 0; f < n; f += 1) if (Number.isFinite(frames[f * stride]) && frames[f * stride] > gate) keep.push(f);
+  if (keep.length < 8) throw new Error("Not enough audible audio for a timbre profile (need at least ~5 seconds)");
+  const mean = new Float64Array(stride), sq = new Float64Array(stride), power = new Float64Array(BANDS_N);
+  for (const f of keep) {
+    for (let j = 0; j < stride; j += 1) { const v = frames[f * stride + j]; mean[j] += v; sq[j] += v * v; }
+    for (let b = 0; b < BANDS_N; b += 1) power[b] += Math.exp(frames[f * stride + MFCC_N + b]);
+  }
+  for (let j = 0; j < stride; j += 1) { mean[j] /= keep.length; sq[j] = Math.sqrt(Math.max(0, sq[j] / keep.length - mean[j] * mean[j])); }
+  return {
+    seconds: mono.length / o.rate, frames: n, audibleFrames: keep.length,
+    mfccMean: Array.from(mean.slice(1, MFCC_N)), mfccStd: Array.from(sq.slice(1, MFCC_N)),
+    // Long-term average spectrum: mean energy per band (power domain), in dB. Robust to near-silent passages.
+    bandsDb: Array.from(power, (e) => 10 * Math.log10(e / keep.length + 1e-30)), opts: o,
+  };
+}
+
+/**
+ * Compare two timbre profiles. Level-independent: band differences are re-centred on their median.
+ * match: 0-100 (MFCC distance mapped through exp(-(d/8)^1.5)); zones: mean dB difference per zone (mine - ref).
+ */
+export function compareTimbre(mine, ref) {
+  let d2 = 0;
+  for (let i = 0; i < mine.mfccMean.length; i += 1) d2 += (mine.mfccMean[i] - ref.mfccMean[i]) ** 2 + 0.5 * (mine.mfccStd[i] - ref.mfccStd[i]) ** 2;
+  const distance = Math.sqrt(d2);
+  const raw = mine.bandsDb.map((v, i) => v - ref.bandsDb[i]);
+  const sorted = [...raw].sort((a, b) => a - b), median = sorted[Math.floor(sorted.length / 2)];
+  const diff = raw.map((v) => v - median);
+  const centers = timbreBandCenters(mine.opts);
+  const zones = TIMBRE_ZONES.map(([name, lo, hi]) => {
+    const idx = centers.map((c, i) => (c >= lo && c < hi ? i : -1)).filter((i) => i >= 0);
+    return { name, lo, hi, db: idx.reduce((s, i) => s + diff[i], 0) / Math.max(1, idx.length) };
+  });
+  const match = Math.round(100 * Math.exp(-((distance / 8) ** 1.5)));
+  const label = match >= 85 ? "very close" : match >= 65 ? "close" : match >= 40 ? "different" : "very different";
+  return { match, label, distance, diff, centers, zones, levelOffsetDb: median };
+}
+
+export const CREDITS = "Uses soundkit / mel-spec by wavey-ai (MIT) · flac / mfcc-rust by wavey-ai (Apache-2.0)";

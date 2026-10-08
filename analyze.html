@@ -58,6 +58,16 @@ input[type="email"] { flex:1; min-width:200px; background:#120a16; color:var(--i
 .vadlane i { position:absolute; top:0; bottom:0; background:#d7ffb8; box-shadow:0 0 8px rgba(215,255,184,.6); }
 .sections button.sec { padding:7px 10px; font-size:10px; letter-spacing:.08em; text-transform:none; }
 .note.credit { font-size:10px; opacity:.75; }
+.drop.mini { min-height:84px; border-radius:12px; }
+.drop.mini b { font-size:17px; }
+.refscore { display:flex; align-items:baseline; gap:12px; margin:12px 0 8px; }
+.refscore strong { font:800 46px "Barlow Condensed",sans-serif; line-height:1; color:var(--m); }
+.refscore small { color:var(--muted); font:600 11px "JetBrains Mono",monospace; letter-spacing:.08em; text-transform:uppercase; }
+#refCurve { height:150px; background:#07050a; }
+.zones .zone { font:600 10px "JetBrains Mono",monospace; letter-spacing:.06em; padding:6px 10px; border-radius:999px; border:1px solid var(--line); }
+.zones .zone.ok { color:#d7ffb8; border-color:rgba(215,255,184,.35); }
+.zones .zone.hot { color:#ffb37a; border-color:rgba(255,179,122,.4); }
+.zones .zone.cold { color:#9ecbff; border-color:rgba(158,203,255,.4); }
 .note.credit a { color:inherit; }
 @media (max-width:640px) {
   h1 { font-size:40px; }
@@ -126,6 +136,21 @@ input[type="email"] { flex:1; min-width:200px; background:#120a16; color:var(--i
     <p class="note" id="spectralNote"></p>
     <p class="note credit">Local log-mel spectrogram and model-free VAD. Uses <a href="https://github.com/wavey-ai/soundkit">soundkit</a> / <a href="https://github.com/wavey-ai/mel-spec">mel-spec</a> by wavey-ai (MIT).</p>
   </div>
+  <div class="dock reference" id="referenceDock" hidden>
+    <p class="kicker">REFERENCE MATCH · TIMBRE + TONAL BALANCE</p>
+    <label class="drop mini" id="refDrop">
+      <input id="refInput" type="file" accept="audio/*,video/mp4,video/quicktime,.wav,.mp3,.flac,.m4a,.aiff,.aif,.ogg,.opus,.webm,.mp4,.mov,.caf"/>
+      <b id="refDropLabel">DROP A REFERENCE TRACK</b>
+      <span>A finished track you want your mix to sit next to. Compared in this tab; nothing is uploaded.</span>
+    </label>
+    <div id="refResult" hidden>
+      <div class="refscore"><strong id="refMatch">–</strong><small id="refLabel"></small></div>
+      <canvas id="refCurve" width="1200" height="150"></canvas>
+      <div class="row zones" id="refZones"></div>
+      <p class="note" id="refNote"></p>
+    </div>
+    <p class="note credit">MFCC timbre profile and 40-band mel energy, computed locally. Uses <a href="https://github.com/wavey-ai/mfcc-rust">mfcc-rust</a> by wavey-ai (Apache-2.0).</p>
+  </div>
   <div class="delta" id="delta" hidden>
     <p class="kicker">WHAT THE PASS ACTUALLY MOVED</p>
     <table>
@@ -153,6 +178,7 @@ input[type="email"] { flex:1; min-width:200px; background:#120a16; color:var(--i
   </div>
 </div>
 <script src="js/lacquer-spectral.js"></script>
+<script src="js/lacquer-reference.js"></script>
 <script src="js/lacquer-analyze.js"></script>
 </body>
 </html>
