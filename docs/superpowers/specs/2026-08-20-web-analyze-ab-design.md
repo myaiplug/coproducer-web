@@ -10,7 +10,7 @@ Engine: `D:\nodaw\coproducer audio analysis` (`WorkflowRunner`, `detect_repair_p
 Two public surfaces:
 
 1. **Homepage** (`index.html`) proves the product with a real analysed vs repaired track, A/B audio, and a stats table.
-2. **Analyze** (`analyze.html`) lets a user upload a song. The same engine as the desktop app measures it. The report shows measured stats next to **projected** stats if that file were repaired in the CoProducer app, next to the streaming release target. A WEB30 promo follows the table.
+2. **Analyze** (`analyze.html`) lets a user upload a song. The same engine as the desktop app measures it. The report shows measured stats next to **projected** stats if that file were repaired in the CoProducer app, next to the streaming release target. A $49 one-time pricing note follows the table.
 
 The analyze path **does not repair, render, or return a second audio file**. Projection is numeric only.
 
@@ -26,7 +26,7 @@ The analyze path **does not repair, render, or return a second audio file**. Pro
 
 **Split pages (option B).** Homepage is the A/B proof. Upload and report live on `/analyze.html`.
 
-**Hybrid hosting.** Demo audio and `demo.json` are static (GitHub Pages always works). Uploads `POST` to a local/hosted Python API wrapping `WorkflowRunner.single()`. If the API is down, the dropzone says so and still offers download + WEB30.
+**Hybrid hosting.** Demo audio and `demo.json` are static (GitHub Pages always works). Uploads `POST` to a local/hosted Python API wrapping `WorkflowRunner.single()`. If the API is down, the dropzone says so and still offers download + pricing.
 
 ## Visual system
 
@@ -53,7 +53,7 @@ Index hero/nav may keep the existing CoProducer wordmark. New A/B block and all 
 
 ```
 index.html          marketing + A/B demo (no upload)
-analyze.html        upload + engine report + WEB30
+analyze.html        upload + engine report + pricing
 guides/*            unchanged
 comparisons/*       unchanged
 demo/before.m4a     pre-baked original excerpt
@@ -95,7 +95,7 @@ Highlight the live A/B column. CTA: “Analyze your track” → `analyze.html`.
 
 1. Dropzone: WAV / MP3 / FLAC / M4A / AAC / OGG / OPUS / AIFF, 40 MB.
 2. Status: *Uploading → Analyzing with CoProducer engine → Building report*.
-3. Report: score ring (upload), summary, waveform of **the upload only**, findings, streaming table, then the three-column comparison, then the repair-plan list, then WEB30.
+3. Report: score ring (upload), summary, waveform of **the upload only**, findings, streaming table, then the three-column comparison, then the repair-plan list, then $49 pricing.
 
 **Table columns:** Metric | Your upload | If repaired in CoProducer | Release target
 
@@ -103,7 +103,7 @@ Cell color: emerald if within spec, orange if notice, red if fail. Middle column
 
 If `detect_repair_plan` is empty: middle equals left; copy: **No automatic repair needed**.
 
-Offline API: dropzone disabled, message that the engine is not connected, download + WEB30 still visible.
+Offline API: dropzone disabled, message that the engine is not connected, download + pricing still visible.
 
 ## Projection model (no render)
 
@@ -190,7 +190,7 @@ Frontend: `const API = new URLSearchParams(location.search).get('api') || 'http:
       "status_projected": "pass"
     }
   ],
-  "promo": { "code": "WEB30", "label": "30% off CoProducer Pro", "was": 49, "now": 34 }
+  "promo": null
 }
 ```
 
@@ -198,13 +198,13 @@ Strip local filesystem paths from `track.audio.path` before JSON leaves the serv
 
 ## Promo
 
-Code **WEB30**. Copy: 30% off CoProducer Pro ($49 → $34). One-click copy. Shown on `analyze.html` after a successful report, in the offline empty state, and as a quiet line under the homepage A/B CTA. Link the existing download CTA (`CoProducer-Setup` GitHub release) and `pricing.html`.
+Price: CoProducer Pro **$49 one-time**. Shown on `analyze.html` after a successful report, in the offline empty state, and as a quiet line under the homepage A/B CTA. Link the existing download CTA (`CoProducer-Setup` GitHub release) and `pricing.html`.
 
 ## Error handling
 
 | Case | UI |
 | Unsupported type / over 40 MB | Inline error, no request |
-| API unreachable | Offline panel, download + WEB30 |
+| API unreachable | Offline panel, download + pricing |
 | Engine/FFmpeg failure | Server 500 `{ error }`, show message, keep dropzone |
 | Busy | “Engine is analyzing another file”, retry |
 | Decode failure in player | Disable transport, keep the table |

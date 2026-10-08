@@ -2,7 +2,7 @@
 
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 
-**Goal:** Split-page CoProducer site: homepage plays a real engine before/after A/B; `analyze.html` measures an upload with the desktop engine and shows projected post-repair stats (no server-side repair) plus WEB30.
+**Goal:** Split-page CoProducer site: homepage plays a real engine before/after A/B; `analyze.html` measures an upload with the desktop engine and shows projected post-repair stats (no server-side repair) plus $49 one-time Pro pricing.
 
 **Architecture:** Static pages in `D:\Projects\coproducer\nodaw-web` (GitHub Pages). Python API in the engine repo wraps `WorkflowRunner.analyze` + `detect_repair_plan` + a projection helper. Demo audio/JSON are pre-baked static files. Analyze never calls `run_auto_repair`.
 
@@ -13,7 +13,7 @@
 - Engine root: `D:\nodaw\coproducer audio analysis`. Web root: `D:\Projects\coproducer\nodaw-web`.
 - Web git repo is `D:\Projects\coproducer` (commit nodaw-web files there). Engine API files commit in the engine root if that repo is usable; otherwise copy the same files into `D:\Projects\coproducer` under `web/` + `app/nodaw/features/web_projection.py`.
 - Visual system for A/B + analyze: `#020617` bg, `rgba(15,23,42,0.92)` surface, cyan `#22d3ee`, emerald `#10b981`, orange `#f97316`, red `#ef4444`, gold `#facc15`, Rajdhani / Manrope / JetBrains Mono — match `guides/what-is-lufs.html` and `comparisons/vs-landr.html`.
-- Promo: code `WEB30`, label `30% off CoProducer Pro`, was `49`, now `34`.
+- Price: CoProducer Pro `$49` one-time (no discount code).
 - API default `http://127.0.0.1:8788`, override `?api=`.
 - Analyze does **not** repair, render, or return audio. Player on analyze decodes the local `File`.
 - Upload cap 40 MB. Extensions: `.wav .mp3 .flac .m4a .aac .ogg .opus .aiff .aif`.
@@ -51,7 +51,7 @@
 **Interfaces:**
 - Consumes: `detect_repair_plan(source, settings=settings)`, `evaluate_track(track, settings)`, `rating(score)`, `floor_score_after_repair(pre, post, findings=..., applied_filters=...)`, `RepairPlan`, `TrackAnalysis`
 - Produces:
-  - `PROMO = {"code": "WEB30", "label": "30% off CoProducer Pro", "was": 49, "now": 34}`
+  - `PROMO = None  # retired; Pro is $49 one-time`
   - `track_from_report(report: dict) -> TrackAnalysis`
   - `project_from_report(report: dict, settings: dict) -> dict` with keys `score`, `rating`, `metrics`, `needed`, `plan` (`needed`, `summary`, `actions` as `{id,label,reason,confidence,severity}`, `cautions`)
   - `vs_target_rows(yours_metrics: dict, projected_metrics: dict, yours_score: int, projected_score: int, audio: dict, settings: dict) -> list[dict]`
@@ -207,7 +207,7 @@ from ..core.models import AudioInfo, AudioMetrics, LoudnessMetrics, TrackAnalysi
 from ..core.scoring import evaluate_track, floor_score_after_repair, rating
 from .repairs import detect_repair_plan
 
-PROMO = {"code": "WEB30", "label": "30% off CoProducer Pro", "was": 49, "now": 34}
+PROMO = None  # retired; Pro is $49 one-time
 
 LUFS_PASS_LU = 1.5
 TP_EPSILON_DB = 0.15
@@ -507,7 +507,7 @@ class ServerTests(unittest.TestCase):
             r = c.getresponse(); body = json.loads(r.read())
         self.assertEqual(r.status, 200)
         self.assertNotIn("path", body["track"]["audio"])
-        self.assertEqual(body["promo"]["code"], "WEB30")
+        self.assertIsNone(body.get("promo"))
         self.assertIn("vs_target", body)
         self.assertTrue(body["plan"]["needed"])
 
@@ -849,7 +849,7 @@ End of body: `<script type="module" src="js/home-ab.js"></script>` (create this 
       </div>
       <p class="cp-promo" style="margin-top:20px">
         <a class="cp-cta" href="analyze.html">Analyze your track</a>
-        <span style="color:var(--cp-muted);font-family:var(--cp-mono);font-size:12px">Report code WEB30 — 30% off Pro ($49 → $34)</span>
+        <span style="color:var(--cp-muted);font-family:var(--cp-mono);font-size:12px">Pro is $49 one-time</span>
       </p>
     </div>
   </div>
@@ -942,8 +942,8 @@ Structure:
    - streaming table if `streaming.length`
    - comparison table columns: Metric | Your upload | If repaired in CoProducer | Release target
    - `#planList` actions + cautions; if `!plan.needed` text `No automatic repair needed`
-   - promo card: `WEB30`, `$49 → $34`, button `#copyCode`, download + pricing links
-4. Offline panel `#offline` with download + WEB30 (shown when health fails)
+   - pricing card: `$49 one-time`, download + pricing links
+4. Offline panel `#offline` with download + pricing (shown when health fails)
 
 - [ ] **Step 2: Write `js/report.js`**
 
@@ -984,7 +984,7 @@ Wire `analyze.html` module script:
 - `FormData` field name **`file`**. `POST /api/analyze`.
 - On 200: `renderVsTarget`, findings, plan, promo, `new CoproducerPlayer(uploadPlayer,{mode:'single'}).load({ a: file })` via `file.arrayBuffer()` + `decodeAudioData` inside player `load` when given a `File`.
 - Extend `CoproducerPlayer.load` in this task if needed: if `a instanceof File` or `Blob`, `decodeAudioData(await a.arrayBuffer())`.
-- Copy button calls `copyPromo('WEB30')` and sets button text to `Copied`.
+- Pricing CTA links to pricing.html ($49 one-time).
 
 Add a tiny node test in `js/report.test.mjs` asserting `fmt(null)==='—'` and `fmt(-14,1)==='-14.0'`.
 
@@ -1007,7 +1007,7 @@ git -C "D:\Projects\coproducer" commit -m "feat: add engine-backed analyze repor
 
 **Files:**
 - Modify: `D:\Projects\coproducer\nodaw-web\sitemap.xml`
-- Modify: `D:\Projects\coproducer\nodaw-web\pricing.html` — add a one-line note under Pro: `Use code WEB30 at checkout for 30% off ($34).` Do not restyle the page.
+- Modify: `D:\Projects\coproducer\nodaw-web\pricing.html` — under Pro: `Pro is $49 one-time.` Do not restyle the page.
 
 **Interfaces:**
 - Consumes: finished pages
@@ -1026,7 +1026,7 @@ Homepage:
 
 Analyze:
 
-- [ ] API down → offline + WEB30 + copy works
+- [ ] API down → offline + pricing CTA works
 - [ ] API up, upload known file → score matches engine; middle column LUFS −14 / TP −1 when plan has loudnorm; score ≥ upload
 - [ ] Empty-plan file → “No automatic repair needed”, middle equals left
 - [ ] Upload player plays the **local** file only
@@ -1036,7 +1036,7 @@ Analyze:
 
 ```bash
 git -C "D:\Projects\coproducer" add nodaw-web/sitemap.xml nodaw-web/pricing.html
-git -C "D:\Projects\coproducer" commit -m "docs: list analyze page and WEB30 on pricing"
+git -C "D:\Projects\coproducer" commit -m "docs: list analyze page and $49 pricing"
 ```
 
 ---
@@ -1054,7 +1054,7 @@ git -C "D:\Projects\coproducer" commit -m "docs: list analyze page and WEB30 on 
 | Score floor | 1 |
 | Player 8 ms / 5 ms / lookahead / color match | 3, 4 |
 | Analyze local File decode | 7 |
-| WEB30 | 1 payload, 6, 7, 8 |
+| Pricing ($49) | 1 payload, 6, 7, 8 |
 | Offline / 40 MB / busy | 2, 7, 8 |
 | Path strip | 1, 2 |
 | Sitemap | 8 |

@@ -235,12 +235,6 @@ function wire() {
     if (file && !input.disabled && drop.dataset.disabled !== 'true') analyzeFile(file);
   });
 
-  document.querySelectorAll('.copy-code').forEach((btn) => {
-    btn.addEventListener('click', async () => {
-      await copyPromo('WEB30');
-      btn.textContent = 'Copied';
-    });
-  });
 }
 
 if (typeof document !== 'undefined') {
