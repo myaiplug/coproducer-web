@@ -142,6 +142,14 @@ URL: https://myaiplug.github.io/coproducer-web/blog/clipper-vs-limiter-hip-hop-d
 Soft clipper vs brickwall limiter on the same drive: compare LUFS, true peak, and crest. Sample peak −1.0 dBFS is not true-peak safe.
 Keywords: clipper vs limiter, hip-hop mastering, true peak, soft clip, alimiter, crest factor, ScrewAI, CoProducer, NoDAW
 
+## Halftime still needs a legal peak
+URL: https://myaiplug.github.io/coproducer-web/blog/halftime-still-needs-a-legal-peak.html
+A half-time slowdown changes length and weight, not the true-peak ceiling. Meter the screwed file before it goes anywhere public.
+
+## When to slow the bounce
+URL: https://myaiplug.github.io/coproducer-web/blog/when-to-slow-the-bounce.html
+Slow the print when the record wants weight, not when the mix is unfinished. A halftime desk is for the bounce, then the meter.
+
 ## The silence at the top of your bounce steals LUFS
 URL: https://myaiplug.github.io/coproducer-web/blog/leading-silence-steals-integrated-lufs.html
 Digital silence is gated out of integrated LUFS, but quiet intros, long fades and ungated meters still pull the number down. Trim the edges, then measure.

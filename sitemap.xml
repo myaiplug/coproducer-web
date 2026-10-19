@@ -399,6 +399,26 @@
       <image:title>Clipper vs limiter for hip-hop delivery — loudness isn’t the only score</image:title>
     </image:image>
   </url>
+  <url>
+    <loc>https://myaiplug.github.io/coproducer-web/blog/halftime-still-needs-a-legal-peak.html</loc>
+    <lastmod>2026-10-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://myaiplug.github.io/coproducer-web/blog/img/essays/screw-tempo-still-needs-a-legal-peak.jpg?v=shd</image:loc>
+      <image:title>Halftime still needs a legal peak</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://myaiplug.github.io/coproducer-web/blog/when-to-slow-the-bounce.html</loc>
+    <lastmod>2026-10-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://myaiplug.github.io/coproducer-web/blog/img/essays/screw-tempo-still-needs-a-legal-peak.jpg?v=shd</image:loc>
+      <image:title>When to slow the bounce</image:title>
+    </image:image>
+  </url>
 <url>
     <loc>https://myaiplug.github.io/coproducer-web/blog/leading-silence-steals-integrated-lufs.html</loc>
     <lastmod>2026-10-05</lastmod>
