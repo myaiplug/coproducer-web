@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<title>Methodology: tests, sources and corrections | Lacquer</title>
+<meta content="How Lacquer essays measure audio with synthetic test signals and FFmpeg, how outside sources are cited, how corrections work, and how reader notes are moderated." name="description"/>
+<link href="https://myaiplug.github.io/coproducer-web/blog/methodology.html" rel="canonical"/>
+<link rel="alternate" type="application/rss+xml" title="Lacquer — CoProducer Journal" href="https://myaiplug.github.io/coproducer-web/blog/rss.xml"/>
+<link rel="icon" href="../favicon.ico" sizes="48x48"/>
+<link rel="icon" type="image/svg+xml" href="../assets/favicon.svg"/>
+<link rel="apple-touch-icon" href="../assets/apple-touch-icon.png"/>
+<link rel="manifest" href="../site.webmanifest"/>
+<meta content="website" property="og:type"/>
+<meta content="How Lacquer tests, cites and corrects" property="og:title"/>
+<meta content="How Lacquer essays measure audio with synthetic test signals and FFmpeg, how outside sources are cited, how corrections work, and how reader notes are moderated." property="og:description"/>
+<meta content="https://myaiplug.github.io/coproducer-web/blog/methodology.html" property="og:url"/>
+<meta content="https://myaiplug.github.io/coproducer-web/blog/img/brand/lacquer-og.jpg" property="og:image"/>
+<meta content="summary_large_image" name="twitter:card"/>
+<meta content="How Lacquer tests, cites and corrects" name="twitter:title"/>
+<meta content="How Lacquer essays measure audio with synthetic test signals and FFmpeg, how outside sources are cited, how corrections work, and how reader notes are moderated." name="twitter:description"/>
+<meta content="https://myaiplug.github.io/coproducer-web/blog/img/brand/lacquer-og.jpg" name="twitter:image"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;1,500;1,600&amp;family=Figtree:wght@400;500&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<link href="css/journal.css" rel="stylesheet"/>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://myaiplug.github.io/coproducer-web/#organization","name":"NoDAW Labs","alternateName":"NoDAW™ Labs","url":"https://nodawlabs.com/","logo":{"@type":"ImageObject","url":"https://myaiplug.github.io/coproducer-web/assets/icon-512.png","width":512,"height":512},"sameAs":["https://nodawlabs.com/","https://x.com/NoDAW_Studio","https://github.com/myaiplug","https://myaiplug.github.io/coproducer-web/"]},{"@type":"WebPage","@id":"https://myaiplug.github.io/coproducer-web/blog/methodology.html#webpage","url":"https://myaiplug.github.io/coproducer-web/blog/methodology.html","name":"Methodology: tests, sources and corrections | Lacquer","description":"How Lacquer essays measure audio with synthetic test signals and FFmpeg, how outside sources are cited, how corrections work, and how reader notes are moderated.","inLanguage":"en-US","isPartOf":{"@type":"Blog","name":"Lacquer — CoProducer Journal","url":"https://myaiplug.github.io/coproducer-web/blog/index.html"},"publisher":{"@id":"https://myaiplug.github.io/coproducer-web/#organization"},"about":{"@id":"https://myaiplug.github.io/coproducer-web/#organization"},"dateModified":"2026-10-19"}]}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"CoProducer","item":"https://myaiplug.github.io/coproducer-web/"},{"@type":"ListItem","position":2,"name":"Lacquer Journal","item":"https://myaiplug.github.io/coproducer-web/blog/index.html"},{"@type":"ListItem","position":3,"name":"How Lacquer tests, cites and corrects","item":"https://myaiplug.github.io/coproducer-web/blog/methodology.html"}]}</script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="top">
+<a class="mark" href="../index.html"><em>Co</em>Producer</a>
+<nav aria-label="Primary" class="nav">
+<a href="index.html">Journal</a>
+<a href="../index.html#ab">A/B</a>
+<a href="../index.html#analyzeHome">Analyze</a>
+<a href="../guides/index.html">Guides</a>
+<a href="../pricing.html">Pricing</a>
+</nav>
+<a class="cta" href="../index.html#analyzeHome">Measure a mix</a>
+</header>
+<article class="post" id="main">
+<header>
+<p class="kicker">Methodology · Lacquer · CoProducer Journal</p>
+<h1>How Lacquer tests, cites and corrects</h1>
+<p class="meta">NoDAW Labs · Lacquer · Updated 19 October 2026</p>
+</header>
+<p class="answer">Lacquer's measurements come from test signals we generate in code, rendered and measured with FFmpeg, so anyone can run the same script and get the same numbers. Outside facts are linked to their source. When we get something wrong, we fix the essay, update its date and say what changed.</p>
+<h2 id="synthetic">Synthetic test signals</h2>
+<p>Many essays include a "proof" script. These scripts build their own audio from scratch: sine tones, filtered noise, pads, an 808-style bass, bright hats, or a deliberately over-hot master. They are usually written in Python with NumPy. FFmpeg renders and converts them, and FFmpeg's <code>ebur128</code> filter measures integrated and short-term loudness and true peak. Scripts that work this way say so in their header, for example "SYNTHETIC AUDIO ONLY".</p>
+<p>We use synthetic signals for three reasons:</p>
+<ul>
+<li><strong>They are clean.</strong> A known tone or noise burst makes the effect being measured easy to see, without a full mix hiding it.</li>
+<li><strong>They are repeatable.</strong> You can copy the script, run it on your own machine and check our numbers.</li>
+<li><strong>They are not anyone's record.</strong> No artist's audio is uploaded, altered or published to make a point.</li>
+</ul>
+<p>Synthetic results show how a process behaves. They do not promise the same numbers on your song, so measure your own bounce before you decide.</p>
+<h2 id="ab-demos">The A/B demos and CoProducer numbers</h2>
+<p>The A/B player on the <a href="../index.html#ab">CoProducer home page</a> plays aligned 45-second excerpts of three tracks, Crazy Stacy, BeatGoHard and Drippin, before and after a CoProducer repair. The numbers quoted for them (for example 70 → 90, with 831 clipped samples down to 0) come from CoProducer's own engine reports for those files.</p>
+<p>The CoProducer pass/fail gates are CoProducer's own release bar: −14 LUFS integrated within 1.5 LU, true peak at or below −1.0 dBTP, zero clipped samples, at least 44.1 kHz and phase correlation of at least 0.2.</p>
+<h2 id="sources">How sources are cited</h2>
+<ul>
+<li>When an essay relies on an outside fact, such as a standard, a paper, a platform's published loudness target or a historical date, it links to the source in the text.</li>
+<li>Research-heavy essays, such as the <a href="432-hz-conspiracy-theories-fact-check.html">432 Hz fact check</a>, end with a sources list of papers, standards documents and primary records.</li>
+<li>We prefer primary sources (standards bodies, original papers, official platform documentation) over summaries. When a claim cannot be traced to a dated record, we say so.</li>
+<li>When we measured something ourselves, the essay usually includes the script that produced the numbers, so you can see where they came from.</li>
+</ul>
+<h2 id="corrections">How essays are corrected</h2>
+<ul>
+<li>Every essay shows its publication date, and its structured data carries both the published and the last-modified date.</li>
+<li>When we fix a factual error, a wrong number or a broken script, we correct the essay, update the modified date and add a short dated note at the end saying what changed. Typos and wording changes that do not change the meaning are fixed without a note.</li>
+<li>We do not quietly reverse a recommendation. If our advice changes, the essay says so.</li>
+<li>To report a mistake, leave a note on the essay, or contact NoDAW Labs through <a href="https://nodawlabs.com/" rel="noopener">nodawlabs.com</a> or <a href="https://x.com/NoDAW_Studio" rel="noopener">@NoDAW_Studio</a> on X.</li>
+</ul>
+<h2 id="comments">Reader notes and moderation</h2>
+<ul>
+<li>"The booth" under each essay shows real reader notes only. There are no seeded, sample or staff-written comments.</li>
+<li>To post you need a name or handle and your note. Email is optional, is never shown, and is only used if we need to reach you about your note.</li>
+<li>Notes appear straight away unless they contain a link or look like spam. Those wait until we have reviewed them.</li>
+<li>We remove spam, abuse and personal attacks. We do not edit what readers write. Disagreeing with an essay is fine and welcome.</li>
+<li>To limit abuse, the comment service keeps a one-way hash of each poster's IP address for rate limiting. It does not store the raw address.</li>
+</ul>
+<h2 id="authorship">Authorship</h2>
+<p>Essays are credited to <a href="about.html">NoDAW Labs</a> as an organization. When individual writers are credited in future, their names and backgrounds will be real and shown on the essays they wrote.</p>
+</article>
+<footer class="site"><span>© 2026 NoDAW Labs · Lacquer</span><span><a href="index.html">All essays</a> · <a href="about.html">About</a> · <a href="methodology.html">Methodology</a></span></footer>
+</body>
+</html>
