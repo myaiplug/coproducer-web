@@ -2,7 +2,7 @@
 """Publish check for the Lacquer journal.
 
 Fails (exit 1) if any blog essay is missing from sitemap.xml, blog/rss.xml,
-the blog index cards or ItemList JSON-LD, llms.txt or llms-full.txt, or if it
+the blog index cards or ItemList JSON-LD, llms.txt or llms-full.txt (full body text), or if it
 lacks a canonical, Open Graph / Twitter tags, or valid Article + BreadcrumbList
 JSON-LD (plus FAQPage when the page shows a FAQ).
 
@@ -143,6 +143,11 @@ def main() -> int:
             err(f"{name}: not in llms.txt")
         if url not in llms_full:
             err(f"{name}: not in llms-full.txt")
+        ans = s.find(class_="answer")
+        if ans:
+            snippet = " ".join(ans.get_text().split())[:80]
+            if snippet and snippet not in " ".join(llms_full.split()):
+                err(f"{name}: llms-full.txt lacks the essay body (answer paragraph not found)")
 
     if errors:
         print(f"check_publish: {len(errors)} problem(s) across {len(posts)} essays")
