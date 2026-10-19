@@ -75,17 +75,35 @@ export class CoproducerPlayer {
     }
   }
 
-  async load({ a, b, peaksA, peaksB } = {}) {
+  // lazy: true defers fetching/decoding URL sources until the first play or
+  // seek, so demo audio never weighs down the initial page load.
+  async load({ a, b, peaksA, peaksB, lazy = false } = {}) {
     this.pause();
+    this.loadGen = (this.loadGen || 0) + 1;
     this.bufA = this.bufB = null;
     this.peaksA = this.peaksB = this.hfA = this.hfB = null;
     this.offset = 0;
+    this.pending = null;
+    this._loading = null;
+    if (lazy && typeof a === 'string') {
+      this.pending = { a, b, peaksA, peaksB };
+      this._draw();
+      this._syncUi();
+      return;
+    }
     if (this.playBtn) this.playBtn.disabled = true;
     this._draw();
     this._syncUi();
+    await this._loadNow({ a, b, peaksA, peaksB }, this.loadGen);
+  }
+
+  async _loadNow({ a, b, peaksA, peaksB }, gen) {
     this._ensureCtx();
-    this.bufA = await this._decode(a);
-    this.bufB = b != null ? await this._decode(b) : null;
+    const bufA = await this._decode(a);
+    const bufB = b != null ? await this._decode(b) : null;
+    if (gen !== this.loadGen) return;
+    this.bufA = bufA;
+    this.bufB = bufB;
     const envA = peaksA ? { peaks: peaksA, hf: null } : this._envelope(this.bufA);
     this.peaksA = envA.peaks;
     this.hfA = envA.hf;
@@ -100,8 +118,41 @@ export class CoproducerPlayer {
     this._syncUi();
   }
 
+  ensureLoaded() {
+    if (this._loading) return this._loading;
+    if (!this.pending) return Promise.resolve();
+    const job = this.pending;
+    const gen = this.loadGen;
+    this.pending = null;
+    this._loading = this._loadNow(job, gen)
+      .catch((err) => {
+        if (gen === this.loadGen) this.pending = job;
+        throw err;
+      })
+      .finally(() => {
+        if (gen === this.loadGen) this._loading = null;
+        this._syncUi();
+      });
+    this._syncUi();
+    return this._loading;
+  }
+
   play() {
-    if (!this.bufA || this.playing) return;
+    if (this.playing) return;
+    if (!this.bufA && (this.pending || this._loading)) {
+      this.wantPlay = true;
+      this.ensureLoaded().then(() => {
+        if (this.wantPlay) this.play();
+      }).catch((err) => {
+        this.wantPlay = false;
+        if (this.playBtn) {
+          this.playBtn.textContent = 'Audio unavailable';
+          this.playBtn.title = err && err.message ? err.message : 'decode failed';
+        }
+      });
+      return;
+    }
+    if (!this.bufA) return;
     this.wantPlay = true;
     const start = () => {
       if (!this.wantPlay || this.playing || !this.bufA) return;
@@ -140,6 +191,10 @@ export class CoproducerPlayer {
   }
 
   seek(seconds) {
+    if (!this.bufA && this.pending) {
+      this.ensureLoaded().then(() => this._draw()).catch(() => {});
+      return;
+    }
     const dur = this._duration();
     this.offset = Math.max(0, Math.min(seconds || 0, dur));
     const keep = this.playing && this.offset < dur;
@@ -321,8 +376,8 @@ export class CoproducerPlayer {
   _syncUi() {
     if (this.timeEl) this.timeEl.textContent = formatTime(this.getTime());
     if (this.playBtn) {
-      this.playBtn.textContent = this.playing ? 'Pause' : 'Play';
-      this.playBtn.disabled = !this.bufA;
+      this.playBtn.textContent = this._loading ? 'Loading…' : this.playing ? 'Pause' : 'Play';
+      this.playBtn.disabled = !this.bufA && !this.pending && !this._loading;
     }
     this.abEl?.querySelectorAll('[data-side]').forEach((btn) => {
       btn.classList.toggle('is-live', btn.dataset.side === this.side);

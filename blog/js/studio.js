@@ -93,6 +93,7 @@ async function mountAb(el, tracks) {
     await player.load({
       a: new URL(track.beforeFile, DEMO).href,
       b: new URL(track.afterFile, DEMO).href,
+      lazy: true,
     });
   } catch (err) {
     const story = el.querySelector('.jx-story');

@@ -35,8 +35,9 @@ class ScrewDemo {
     this.track = this.catalog.tracks[0];
     this.strain = this.catalog.strains[0];
     this.render();
-    await this.loadTrack(this.track);
+    // Audio is fetched on first play, not on page load.
     this.selectStrain(this.strain.id);
+    this.tick(false);
   }
 
   render() {
@@ -206,6 +207,11 @@ class ScrewDemo {
 
   async play() {
     if (window.nodawSolo) window.nodawSolo('screw');
+    if (!this.buf && this.track) {
+      const btn = this.root.querySelector('[data-play]');
+      if (btn) btn.textContent = 'Loading…';
+      try { await this.loadTrack(this.track); } catch { if (btn) btn.textContent = 'Audio unavailable'; return; }
+    }
     if (!this.buf) return;
     if (!this.ctx) this.ctx = new (window.AudioContext || window.webkitAudioContext)();
     if (this.ctx.state !== 'running') {

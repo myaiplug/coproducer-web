@@ -91,7 +91,7 @@ root.querySelectorAll('[data-side]').forEach((btn) => {
     root.querySelectorAll('[data-side]').forEach((b) => b.classList.toggle('is-live', b === btn));
   });
 });
-await player.load({ a: '../demo/before.m4a', b: '../demo/after.m4a' });
+await player.load({ a: '../demo/before.m4a', b: '../demo/after.m4a', lazy: true });
 </script>
 </body>
 </html>

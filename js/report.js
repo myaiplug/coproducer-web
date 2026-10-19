@@ -152,6 +152,11 @@ function renderReport(data, file) {
 
 async function analyzeFile(file) {
   setError('');
+  if (healthState !== 'online') {
+    await checkHealthOnce();
+    if (healthJob) await healthJob;
+    if (healthState !== 'online') return;
+  }
   if (file.size > MAX_BYTES) {
     setError('File exceeds 40 MB');
     return;
@@ -181,6 +186,20 @@ async function analyzeFile(file) {
   }
 }
 
+// The analyze engine is a local desktop/dev server (127.0.0.1:8788). Probing it
+// on page load costs every visitor a failed private-network request, so the
+// first health check waits for intent: hovering, focusing or using the drop zone
+// (or an explicit ?api= override).
+let healthState = 'unchecked';
+let healthJob = null;
+
+function checkHealthOnce() {
+  if (healthState !== 'unchecked') return healthJob || Promise.resolve();
+  healthState = 'checking';
+  healthJob = checkHealth().finally(() => { healthJob = null; });
+  return healthJob;
+}
+
 async function checkHealth() {
   const status = $('engineStatus');
   const offline = $('offline');
@@ -192,7 +211,9 @@ async function checkHealth() {
     status.textContent = data.engine || 'Engine connected';
     offline.hidden = true;
     setDropEnabled(true);
+    healthState = 'online';
   } catch {
+    healthState = 'offline';
     status.textContent = 'Engine offline';
     offline.hidden = false;
     setDropEnabled(false);
@@ -204,7 +225,13 @@ function wire() {
   const drop = $('dropzone');
   if (!input || !drop) return;
 
-  checkHealth();
+  if (new URLSearchParams(location.search).get('api')) checkHealthOnce();
+  else {
+    const status = $('engineStatus');
+    if (status) status.textContent = 'Local engine (127.0.0.1:8788) connects when you use the drop zone';
+    const warm = () => { checkHealthOnce(); };
+    ['pointerenter', 'focusin', 'dragenter', 'touchstart'].forEach((ev) => drop.addEventListener(ev, warm, { once: true, passive: true }));
+  }
 
   input.addEventListener('change', () => {
     const file = input.files && input.files[0];

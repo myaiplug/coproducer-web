@@ -724,7 +724,7 @@ footer { width: 100%; display: flex; justify-content: center; border-top: 1px so
 
 <section id="halfscrewDemo" style="padding:48px 0 28px; border-bottom:1px solid var(--line); width:100%; display:flex; justify-content:center; background:#040405;">
 <div style="width:100%; max-width:1120px; margin:0 auto; padding:0 12px;">
-<iframe title="HalfScrew" src="halfscrew/index.html" id="halfscrewFrame" style="width:100%; height:640px; border:0; background:#040405; display:block;"></iframe>
+<iframe title="HalfScrew" src="halfscrew/index.html" id="halfscrewFrame" loading="lazy" style="width:100%; height:640px; border:0; background:#040405; display:block;"></iframe>
 <p style="text-align:center; margin:8px 0 0; font:700 11px 'JetBrains Mono',monospace; color:#9b8aad;">
 Same desk: <a href="https://myaiplug.github.io/halfscrew/" rel="noopener" style="color:#e879f9;" target="_blank">myaiplug.github.io/halfscrew</a>
 · <a href="blog/halftime-still-needs-a-legal-peak.html" style="color:#e879f9;">Halftime still needs a legal peak</a>
@@ -846,7 +846,7 @@ Same desk: <a href="https://myaiplug.github.io/halfscrew/" rel="noopener" style=
 <div class="footer-inner">© 2026 NoDAW Labs · CoProducer · Local-first audio engineering workflow · <a href="blog/index.html" style="color:inherit;text-decoration:underline;text-decoration-color:rgba(232,76,255,.5);text-underline-offset:3px">Read the Lacquer journal</a></div>
 </footer>
 <script src="js/home-ab.js" type="module"></script>
-<script src="js/screw-demo.js?v=2" type="module"></script>
+<script src="js/screw-demo.js?v=3" type="module"></script>
 <script src="js/report.js" type="module"></script>
 <script src="blog/js/studio.js" type="module"></script>
 <script>
@@ -863,7 +863,13 @@ class StemPlayerDemo {
     this.muted = { vocals: false, drums: false, bass: false, other: false };
     this.soloed = { vocals: false, drums: false, bass: false, other: false };
 
-    this.loadTrack('tantric-breakdown', 'Acoustic session');
+    // Stems are fetched on first play (not on page load) to keep the home page light.
+    this.trackKey = 'tantric-breakdown';
+    this.loadedKey = null;
+    this.loading = null;
+    this.loadingKey = null;
+    const t = document.getElementById('stemSongTitle');
+    if (t) t.textContent = 'Acoustic session';
 
     const unlock = () => {
       if (!this.audioCtx) this.audioCtx = new (window.AudioContext || window.webkitAudioContext)();
@@ -875,33 +881,45 @@ class StemPlayerDemo {
 
   async loadTrack(trackKey, titleName) {
     document.getElementById('stemSongTitle').textContent = titleName;
-    if (!this.audioCtx) this.audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-    const parts = ['vocals', 'drums', 'bass', 'other'];
-
+    this.trackKey = trackKey;
     const wasPlaying = this.isPlaying;
     if (wasPlaying) this.pause();
-
-    await Promise.all(parts.map(async part => {
-      try {
-        let res = await fetch(`blog/stems/${trackKey}/${part}.m4a`);
-        if (!res.ok) res = await fetch(`blog/stems/${trackKey}/${part}.wav`);
-        if (!res.ok) throw new Error('missing stem');
-        const raw = await res.arrayBuffer();
-        this.buffers[part] = await this.audioCtx.decodeAudioData(raw);
-      } catch (e) {
-        console.warn(`Failed loading stem ${trackKey}/${part}`, e);
-        const sr = this.audioCtx.sampleRate;
-        const buf = this.audioCtx.createBuffer(2, sr * 5.0, sr);
-        const ch = buf.getChannelData(0);
-        for (let i = 0; i < ch.length; i++) ch[i] = Math.sin(i * 0.05) * 0.2;
-        this.buffers[part] = buf;
-      }
-    }));
-
-    const firstBuf = Object.values(this.buffers)[0];
-    if (firstBuf) this.duration = firstBuf.duration;
-
+    await this.fetchStems(trackKey);
     if (wasPlaying) this.play();
+  }
+
+  fetchStems(trackKey) {
+    if (this.loadedKey === trackKey) return Promise.resolve();
+    if (this.loading && this.loadingKey === trackKey) return this.loading;
+    if (!this.audioCtx) this.audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    const parts = ['vocals', 'drums', 'bass', 'other'];
+    this.loadingKey = trackKey;
+    this.loading = (async () => {
+      const buffers = {};
+      await Promise.all(parts.map(async part => {
+        try {
+          let res = await fetch(`blog/stems/${trackKey}/${part}.m4a`);
+          if (!res.ok) res = await fetch(`blog/stems/${trackKey}/${part}.wav`);
+          if (!res.ok) throw new Error('missing stem');
+          const raw = await res.arrayBuffer();
+          buffers[part] = await this.audioCtx.decodeAudioData(raw);
+        } catch (e) {
+          console.warn(`Failed loading stem ${trackKey}/${part}`, e);
+          const sr = this.audioCtx.sampleRate;
+          const buf = this.audioCtx.createBuffer(2, sr * 5.0, sr);
+          const ch = buf.getChannelData(0);
+          for (let i = 0; i < ch.length; i++) ch[i] = Math.sin(i * 0.05) * 0.2;
+          buffers[part] = buf;
+        }
+      }));
+      if (this.loadingKey !== trackKey) return;
+      this.buffers = buffers;
+      const firstBuf = Object.values(this.buffers)[0];
+      if (firstBuf) this.duration = firstBuf.duration;
+      this.loadedKey = trackKey;
+      this.loading = null;
+    })();
+    return this.loading;
   }
 
   togglePlay() {
@@ -914,12 +932,17 @@ class StemPlayerDemo {
   }
 
   async play() {
+    if (!this.audioCtx) this.audioCtx = new (window.AudioContext || window.webkitAudioContext)();
     if (this.audioCtx.state !== 'running') {
       try { await this.audioCtx.resume(); } catch (e) {}
       if (this.audioCtx.state !== 'running') {
         try { await this.audioCtx.close(); } catch (e) {}
         this.audioCtx = new (window.AudioContext || window.webkitAudioContext)();
       }
+    }
+    if (this.loadedKey !== this.trackKey) {
+      await this.fetchStems(this.trackKey);
+      if (this.isPlaying) return;
     }
     const offset = this.pauseOffset % this.duration;
     const now = this.audioCtx.currentTime;

@@ -196,6 +196,7 @@ async function boot() {
       await player.load({
         a: demoFile(track.beforeFile),
         b: demoFile(track.afterFile),
+        lazy: true,
       });
       player.setSide(side);
       syncLive();
