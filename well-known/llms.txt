@@ -33,6 +33,13 @@
 - https://myaiplug.github.io/coproducer-web/screwai.html
 - https://myaiplug.github.io/coproducer-web/llms-full.txt
 
+## Lacquer topic hubs
+- https://myaiplug.github.io/coproducer-web/blog/topics/loudness-and-lufs.html — Loudness & LUFS
+- https://myaiplug.github.io/coproducer-web/blog/topics/true-peak-limiting-and-delivery.html — True peak, limiting & delivery
+- https://myaiplug.github.io/coproducer-web/blog/topics/low-end-and-mix-dynamics.html — Low end, 808s & mix dynamics
+- https://myaiplug.github.io/coproducer-web/blog/topics/432-hz-pitch-and-tempo.html — 432 Hz, pitch & tempo
+- https://myaiplug.github.io/coproducer-web/blog/topics/stems-sampling-and-privacy.html — Stem separation, sampling & privacy
+
 ## Lacquer essays (answer-first)
 - https://myaiplug.github.io/coproducer-web/blog/parallel-compression-sounds-thin-check-latency.html — Parallel compression sounds thin? Check the latency first: Parallel compression making drums or vocals thinner? The parallel bus is probably arriving late. Find the offset, fix the timing, then dial it in.
 - https://myaiplug.github.io/coproducer-web/blog/gapless-album-gaps-after-mp3-or-aac.html — Why your gapless album gets gaps after MP3 or AAC: MP3 and AAC encoders add silence at the start and padding at the end of every file. Why segues break, what we measured, and how to stay seamless.

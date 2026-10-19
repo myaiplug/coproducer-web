@@ -44,7 +44,7 @@
 </header>
 <p class="answer">If the mix already kisses 0 dBFS into the limiter, every dB of “loudness” is distortion and gain reduction you can’t take back. Pull the mix bus down 3–6 dB, then limit into clean headroom.</p>
 <p>Here’s the chain that quietly ruins bounce after bounce. The mix bus is already kissing the red. A soft clipper is “warming” what’s left. Then a limiter, maybe two, trying to invent loudness from a signal that has nowhere to go. The meters look busy. The file comes back with clipped samples, a true-peak overshoot, and a chorus that feels smaller than the rough mix did at half the level.</p>
-<p>The limiter didn’t fail. It never had headroom to work with.</p>
+<p>The limiter didn’t fail. It never had <a href="how-much-headroom-to-leave-for-mastering.html">headroom</a> to work with.</p>
 <h2>What “into the limiter” actually means</h2>
 <p>A limiter needs clean peaks below its ceiling so it can catch overs without living in constant gain reduction. If the mix bounce already hits 0 dBFS sample peak—or worse, already has flat-topped clips—every “extra dB of loudness” is either distortion you already printed or GR that ducks the punch you wanted to keep.</p>
 <p>Check the level <em>before</em> the limiter, not after. Solo-safe ways:</p>
@@ -154,11 +154,7 @@ if sp &gt; -0.5:
 <dt>How much should I pull the mix down before limiting?</dt><dd>Often 3–6 dB on a mix that was already near full scale. Aim for roughly −6 to −3 dBFS sample peak into the first limiter, then set your true-peak ceiling (commonly −1.0 dBTP). Measure the pre-limiter bounce instead of guessing from the post-limiter meter.</dd>
 <dt>Can a limiter fix clipped samples in the mix?</dt><dd>No. It can stop new overs past its ceiling. Flattened peaks stay flattened. Pull the bus down, repair or rebalance the clipped sources in the session, then limit into clean headroom.</dd>
 </dl>
-<nav aria-label="Related essays" class="related-essays" style="margin:48px 0 24px;padding-top:24px;border-top:1px solid rgba(196,165,116,.32)"><h2>Related in Lacquer</h2><ul>
-<li><a href="when-not-to-reach-for-the-limiter.html">When not to reach for the limiter</a></li>
-<li><a href="clipper-vs-limiter-hip-hop-delivery.html">Clipper vs limiter for hip-hop delivery — loudness isn’t the only score</a></li>
-<li><a href="true-peak-is-what-codecs-clip.html">True peak is what codecs clip</a></li>
-</ul></nav>
+<nav aria-label="Keep reading" class="related-essays keep-reading" style="margin:48px 0 24px;padding-top:24px;border-top:1px solid rgba(196,165,116,.32)"><h2>Keep reading</h2><ul><li><a href="when-not-to-reach-for-the-limiter.html">When not to reach for the limiter</a></li><li><a href="clipper-vs-limiter-hip-hop-delivery.html">Clipper vs limiter for hip-hop delivery — loudness isn’t the only score</a></li><li><a href="true-peak-is-what-codecs-clip.html">True peak is what codecs clip</a></li><li><a href="sample-rate-and-bit-depth-for-delivery.html">Sample rate and bit depth are delivery hygiene</a></li></ul><p class="hub-link">More in <a href="topics/true-peak-limiting-and-delivery.html">True peak, limiting &amp; delivery</a> · <a href="index.html">All essays</a></p></nav>
 </article>
 <aside aria-label="About the publisher" class="author-box"><p class="author-k">Written and published by</p><p class="author-name"><a href="about.html">NoDAW Labs</a></p><p class="author-bio">NoDAW Labs makes local-first audio tools: CoProducer, reTUNE[432] and DeepSplit. Essays are credited to the studio, not to individual writers. <a href="methodology.html">How we test, cite and correct</a>.</p></aside>
 <section class="comments" data-comments="" data-thread="mixdown"></section>

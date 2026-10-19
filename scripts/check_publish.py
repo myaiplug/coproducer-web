@@ -149,6 +149,30 @@ def main() -> int:
             if snippet and snippet not in " ".join(llms_full.split()):
                 err(f"{name}: llms-full.txt lacks the essay body (answer paragraph not found)")
 
+    for hub in sorted((BLOG / "topics").glob("*.html")):
+        hub_url = f"{BASE}/blog/topics/{hub.name}"
+        if hub_url not in sitemap:
+            err(f"blog/topics/{hub.name}: topic hub not in sitemap.xml")
+        hs = soup_of(hub)
+        canon = hs.find("link", rel="canonical")
+        if not canon or canon.get("href") != hub_url:
+            err(f"blog/topics/{hub.name}: canonical missing or wrong")
+        htypes = set().union(*[types(o) for o in jsonld(hs, hub.name)] or [set()])
+        if not {"CollectionPage", "BreadcrumbList"} <= htypes:
+            err(f"blog/topics/{hub.name}: needs CollectionPage + BreadcrumbList JSON-LD")
+
+    # Advisory only: essays with fewer than 3 inbound links from other essays.
+    inbound: dict[str, set[str]] = {p.name: set() for p in posts}
+    for p in posts:
+        art = soup_of(p).find("article", class_="post")
+        for a in art.find_all("a", href=True):
+            h = a["href"].split("#")[0]
+            if h in inbound and h != p.name:
+                inbound[h].add(p.name)
+    weak = sorted(n for n, src in inbound.items() if len(src) < 3)
+    if weak:
+        print(f"check_publish: note — {len(weak)} essay(s) have < 3 inbound essay links: {', '.join(weak)}")
+
     for mirror in (".well-known/llms.txt", "well-known/llms.txt"):
         mp = ROOT / mirror
         if not mp.exists() or mp.read_text(encoding="utf-8") != llms:

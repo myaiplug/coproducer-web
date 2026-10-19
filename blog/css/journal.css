@@ -680,3 +680,9 @@ footer.site {
 .author-bio { color: var(--mute); font-size: 14px; line-height: 1.55; }
 .author-bio a { color: var(--gold); }
 @media (max-width: 720px) { .author-box { margin: -70px 16px 40px; padding: 20px 0 0; } }
+.related-essays .hub-link { margin: 16px 0 0; font: 500 12px "JetBrains Mono", monospace; letter-spacing: .04em; color: var(--mute); }
+/* Topic chips (blog index) */
+.lq-topics { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 12px; padding: 22px 28px; border-bottom: 1px solid var(--hair); font: 500 11px "JetBrains Mono", monospace; letter-spacing: .08em; text-transform: uppercase; }
+.lq-topics-label { color: var(--mute); margin-right: 6px; }
+.lq-topics a { color: var(--ivory); text-decoration: none; padding: 7px 12px; border: 1px solid var(--hair); border-radius: 999px; transition: border-color .2s, color .2s; }
+.lq-topics a:hover, .lq-topics a:focus-visible { color: var(--magenta); border-color: var(--magenta); }

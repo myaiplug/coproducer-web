@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Loudness &amp; LUFS: how streaming measures your master | Lacquer</title>
+<meta name="description" content="Lacquer essays on LUFS and loudness normalization: integrated vs short-term, crest factor, streamed references, quiet masters and album loudness."/>
+<link rel="canonical" href="https://myaiplug.github.io/coproducer-web/blog/topics/loudness-and-lufs.html"/>
+<meta name="robots" content="index,follow,max-image-preview:large"/>
+<meta name="author" content="NoDAW Labs"/>
+<meta name="theme-color" content="#050308"/>
+<meta property="og:type" content="website"/>
+<meta property="og:site_name" content="CoProducer"/>
+<meta property="og:locale" content="en_US"/>
+<meta property="og:title" content="Loudness &amp; LUFS: how streaming measures your master"/>
+<meta property="og:description" content="Lacquer essays on LUFS and loudness normalization: integrated vs short-term, crest factor, streamed references, quiet masters and album loudness."/>
+<meta property="og:url" content="https://myaiplug.github.io/coproducer-web/blog/topics/loudness-and-lufs.html"/>
+<meta property="og:image" content="https://myaiplug.github.io/coproducer-web/blog/img/brand/lacquer-og.jpg"/>
+<meta property="og:image:width" content="1200"/>
+<meta property="og:image:height" content="630"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:title" content="Loudness &amp; LUFS: how streaming measures your master"/>
+<meta name="twitter:description" content="Lacquer essays on LUFS and loudness normalization: integrated vs short-term, crest factor, streamed references, quiet masters and album loudness."/>
+<meta name="twitter:image" content="https://myaiplug.github.io/coproducer-web/blog/img/brand/lacquer-og.jpg"/>
+<link rel="alternate" type="application/rss+xml" title="Lacquer — CoProducer Journal" href="https://myaiplug.github.io/coproducer-web/blog/rss.xml"/>
+<link rel="icon" href="../../favicon.ico" sizes="48x48"/>
+<link rel="icon" type="image/svg+xml" href="../../assets/favicon.svg"/>
+<link rel="apple-touch-icon" href="../../assets/apple-touch-icon.png"/>
+<link rel="manifest" href="../../site.webmanifest"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;1,500;1,600&amp;family=Figtree:wght@400;500&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet" media="print" onload="this.media='all'"/><noscript><link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;1,500;1,600&amp;family=Figtree:wght@400;500&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/></noscript>
+<link href="../css/journal.css" rel="stylesheet"/>
+<style>
+.hub { width: min(1100px, calc(100% - 40px)); margin: 0 auto; padding: 56px 0 72px; }
+.hub .kicker { margin: 0 0 14px; }
+.hub h1 { font-family: "Cormorant Garamond", Georgia, serif; font-weight: 500; font-size: clamp(36px, 6vw, 64px); line-height: 1.02; margin: 0 0 18px; color: var(--ivory); }
+.hub .lede { font-size: 19px; max-width: 760px; color: var(--ivory); }
+.hub .intro p { max-width: 760px; color: var(--ink); line-height: 1.7; }
+.hub-path { list-style: none; padding: 0; margin: 40px 0 0; display: grid; gap: 1px; background: var(--hair, rgba(196,165,116,.18)); border: 1px solid var(--hair, rgba(196,165,116,.18)); counter-reset: hub; }
+.hub-path li { background: var(--lacquer); counter-increment: hub; }
+.hub-path a { display: grid; grid-template-columns: 180px 1fr; gap: 22px; padding: 18px; text-decoration: none; color: inherit; align-items: center; }
+.hub-path a:hover h2 { color: var(--magenta); }
+.hub-path img { width: 180px; height: 101px; object-fit: cover; }
+.hub-path .n::before { content: counter(hub, decimal-leading-zero) " · "; color: var(--magenta); }
+.hub-path .n { font: 500 11px "JetBrains Mono", monospace; letter-spacing: .08em; text-transform: uppercase; color: var(--mute); }
+.hub-path h2 { font-family: "Cormorant Garamond", Georgia, serif; font-weight: 500; font-size: 24px; line-height: 1.15; margin: 6px 0 6px; color: var(--ivory); }
+.hub-path p { margin: 0; color: var(--ink); font-size: 15px; }
+.hub-others { margin-top: 44px; font: 500 12px "JetBrains Mono", monospace; letter-spacing: .06em; }
+.hub-others a { color: var(--ivory); margin-right: 14px; }
+@media (max-width: 640px) { .hub-path a { grid-template-columns: 1fr; } .hub-path img { width: 100%; height: auto; aspect-ratio: 16/9; } }
+</style>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"CollectionPage","@id":"https://myaiplug.github.io/coproducer-web/blog/topics/loudness-and-lufs.html#collection","url":"https://myaiplug.github.io/coproducer-web/blog/topics/loudness-and-lufs.html","name":"Loudness & LUFS: how streaming measures your master","description":"Lacquer essays on LUFS and loudness normalization: integrated vs short-term, crest factor, streamed references, quiet masters and album loudness.","inLanguage":"en-US","isPartOf":{"@id":"https://myaiplug.github.io/coproducer-web/#website"},"publisher":{"@id":"https://myaiplug.github.io/coproducer-web/#organization"},"about":"Loudness & LUFS","mainEntity":{"@type":"ItemList","numberOfItems":10,"itemListOrder":"https://schema.org/ItemListOrderAscending","itemListElement":[{"@type":"ListItem","position":1,"url":"https://myaiplug.github.io/coproducer-web/blog/why-streaming-turns-loud-masters-down.html","name":"Why streaming platforms turn loud masters down"},{"@type":"ListItem","position":2,"url":"https://myaiplug.github.io/coproducer-web/blog/short-term-lufs-is-not-your-target.html","name":"Short-term LUFS is not your target"},{"@type":"ListItem","position":3,"url":"https://myaiplug.github.io/coproducer-web/blog/integrated-lufs-hides-the-chorus.html","name":"Integrated LUFS hides how loud the chorus actually is"},{"@type":"ListItem","position":4,"url":"https://myaiplug.github.io/coproducer-web/blog/leading-silence-steals-integrated-lufs.html","name":"The silence at the top of your bounce steals LUFS"},{"@type":"ListItem","position":5,"url":"https://myaiplug.github.io/coproducer-web/blog/dont-match-a-streamed-reference.html","name":"Don’t match a streamed reference"},{"@type":"ListItem","position":6,"url":"https://myaiplug.github.io/coproducer-web/blog/reference-matching-without-guesswork.html","name":"Reference matching without guesswork"},{"@type":"ListItem","position":7,"url":"https://myaiplug.github.io/coproducer-web/blog/crest-factor-is-not-loudness.html","name":"Crest factor is not loudness"},{"@type":"ListItem","position":8,"url":"https://myaiplug.github.io/coproducer-web/blog/quiet-masters-and-noise-floor.html","name":"Quiet masters get turned up — and so does the noise"},{"@type":"ListItem","position":9,"url":"https://myaiplug.github.io/coproducer-web/blog/album-consistency-in-one-meter.html","name":"Album consistency is a batch problem"},{"@type":"ListItem","position":10,"url":"https://myaiplug.github.io/coproducer-web/blog/vertical-video-is-a-loudness-trap.html","name":"Vertical video is a loudness trap"}]}}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"CoProducer","item":"https://myaiplug.github.io/coproducer-web/"},{"@type":"ListItem","position":2,"name":"Lacquer Journal","item":"https://myaiplug.github.io/coproducer-web/blog/index.html"},{"@type":"ListItem","position":3,"name":"Loudness & LUFS","item":"https://myaiplug.github.io/coproducer-web/blog/topics/loudness-and-lufs.html"}]}</script>
+</head>
+<body>
+<header class="top">
+<a class="mark" href="../../index.html"><em>Co</em>Producer</a>
+<nav aria-label="Primary" class="nav">
+<a href="../index.html">Journal</a>
+<a href="../../index.html#ab">A/B</a>
+<a href="../../index.html#analyzeHome">Analyze</a>
+<a href="../../guides/index.html">Guides</a>
+<a href="../../pricing.html">Pricing</a>
+</nav>
+<a class="cta" href="../../index.html#analyzeHome">Measure a mix</a>
+</header>
+<main class="hub" id="main">
+<p class="kicker"><a href="../index.html">Lacquer</a> · Topic · 10 essays</p>
+<h1>Loudness &amp; LUFS</h1>
+<p class="lede">Loudness is a contract with the store, not a contest. These essays explain what the meter is actually reading before you reach for another limiter.</p>
+<div class="intro">
+<p>Loudness is the number a store reads before anyone hears your record. Streaming services measure integrated loudness over the whole file with the ITU-R BS.1770 method and turn each track up or down toward a playback reference: Spotify documents −14 LUFS, and Apple’s Sound Check is commonly reported near −16. A −8 LUFS master is not played louder than a −14 one. It is turned down until it matches, and whatever you crushed to get there stays crushed.</p>
+<p>The essays here separate the meters people confuse: integrated versus short-term and momentary loudness, loudness versus crest factor, and the quiet intros and fades that drag the whole-song number down. They also cover the traps that come from comparing against platforms instead of files: streamed references that were already normalized, quiet masters whose noise floor gets lifted, album sequences that need one loudness lane, and vertical video that plays by different rules. Start with why streaming turns loud masters down, then read the meter pieces in order.</p>
+</div>
+<ol class="hub-path" aria-label="Reading path">
+<li><a href="../why-streaming-turns-loud-masters-down.html"><img src="../img/essays/w/why-streaming-turns-loud-masters-down-480.webp" alt="Private studio console and reference headphones in low tungsten light" width="480" height="270" loading="lazy" decoding="async"/><div><span class="n">Cover · 20 August 2026 · 8 min</span><h2>Why streaming platforms turn loud masters down</h2><p>Streaming services normalize toward −14 LUFS (Apple closer to −16). A hotter master is turned down, not played louder. Measure integrated LUFS before you limit again.</p></div></a></li>
+<li><a href="../short-term-lufs-is-not-your-target.html"><img src="../img/essays/w/short-term-lufs-is-not-your-target-480.webp" alt="A lacquer-black mastering desk with three glowing LUFS needles—momentary, short-term, and integrated—in cyan and warm amber, on black marble" width="480" height="270" loading="lazy" decoding="async"/><div><span class="n">Loudness · 12 October 2026 · 8 min</span><h2>Short-term LUFS is not your target</h2><p>Stores use integrated LUFS over the whole file. A hook at −9 short-term can still miss −14 integrated. Read both meters, then decide.</p></div></a></li>
+<li><a href="../integrated-lufs-hides-the-chorus.html"><img src="../img/essays/w/integrated-lufs-hides-the-chorus-480.webp" alt="A loudness-history LED meter on a lacquer desk, one run of columns burning magenta above a thin reference line" width="480" height="270" loading="lazy" decoding="async"/><div><span class="n">Meters · 14 October 2026 · 7 min</span><h2>Integrated LUFS hides how loud the chorus actually is</h2><p>A master can read −14 LUFS integrated while its chorus runs 3–4 LU hotter. Measure integrated, short-term and momentary on one bounce first.</p></div></a></li>
+<li><a href="../leading-silence-steals-integrated-lufs.html"><img src="../img/essays/w/leading-silence-steals-integrated-lufs-480.webp" alt="Lacquer blank with a wide unmodulated lead-in groove under low tungsten light" width="480" height="270" loading="lazy" decoding="async"/><div><span class="n">Meters · 5 October 2026 · 7 min</span><h2>The silence at the top of your bounce steals LUFS</h2><p>Digital silence is gated out of integrated LUFS, but quiet intros, long fades and ungated meters still pull the number down. Trim the edges, then measure.</p></div></a></li>
+<li><a href="../dont-match-a-streamed-reference.html"><img src="../img/essays/w/dont-match-a-streamed-reference-480.webp" alt="A phone showing a small turned-down waveform beside a gold studio interface throwing a full-scale waveform, on dark marble" width="480" height="270" loading="lazy" decoding="async"/><div><span class="n">Workflow · 14 October 2026 · 7 min</span><h2>Don’t match a streamed reference</h2><p>A streamed reference was already turned down or up by the platform. Match it and you inherit an offset you never measured. Compare lossless files.</p></div></a></li>
+<li><a href="../reference-matching-without-guesswork.html"><img src="../img/essays/w/reference-matching-without-guesswork-480.webp" alt="Studio console and headphones" width="480" height="270" loading="lazy" decoding="async"/><div><span class="n">Reference · 21 August 2026 · 7 min</span><h2>Reference matching without guesswork</h2><p>Reference matching means comparing meters, not vibes. CoProducer’s divergence table shows where your bounce sits versus a reference on real gates.</p></div></a></li>
+<li><a href="../crest-factor-is-not-loudness.html"><img src="../img/essays/w/crest-factor-is-not-loudness-480.webp" alt="Lacquer console meters with cream needles" width="480" height="270" loading="lazy" decoding="async"/><div><span class="n">Dynamics · 21 August 2026 · 7 min</span><h2>Crest factor is not loudness</h2><p>Crest factor is peak-to-RMS height. LUFS is perceived loudness over time. You can raise crest and still miss −14 LUFS — or hit −14 with a crushed crest.</p></div></a></li>
+<li><a href="../quiet-masters-and-noise-floor.html"><img src="../img/essays/w/quiet-masters-and-noise-floor-480.webp" alt="Phone glowing in a dark room" width="480" height="270" loading="lazy" decoding="async"/><div><span class="n">Noise · 21 August 2026 · 6 min</span><h2>Quiet masters get turned up — and so does the noise</h2><p>Streaming turn-up lifts quiet files. A −20 LUFS master may be gained up, which also lifts hiss, rumble, and room tone. Quiet is not a free pass.</p></div></a></li>
+<li><a href="../album-consistency-in-one-meter.html"><img src="../img/essays/w/album-consistency-in-one-meter-480.webp" alt="Laptop, drive, and stopwatch on a quiet desk" width="480" height="270" loading="lazy" decoding="async"/><div><span class="n">Albums · 21 August 2026 · 7 min</span><h2>Album consistency is a batch problem</h2><p>Album consistency means every track clears the same delivery gates and sits in a similar loudness lane — a batch measurement problem, not one “final” bounce.</p></div></a></li>
+<li><a href="../vertical-video-is-a-loudness-trap.html"><img src="../img/essays/w/vertical-video-is-a-loudness-trap-480.webp" alt="Phone screen in a dark room" width="480" height="270" loading="lazy" decoding="async"/><div><span class="n">Social · 21 August 2026 · 6 min</span><h2>Vertical video is a loudness trap</h2><p>Shorts, Reels, and Stories normalize differently from music stores, but crushed dialog and clipped music still fail. Measure before you post vertical.</p></div></a></li>
+</ol>
+<p class="hub-others">More topics: <a href="true-peak-limiting-and-delivery.html">True peak, limiting &amp; delivery</a> <a href="low-end-and-mix-dynamics.html">Low end, 808s &amp; mix dynamics</a> <a href="432-hz-pitch-and-tempo.html">432 Hz, pitch &amp; tempo</a> <a href="stems-sampling-and-privacy.html">Stem separation, sampling &amp; privacy</a> <a href="../index.html">All essays</a></p>
+</main>
+<footer class="site"><span>Lacquer · CoProducer Journal</span><span><a href="../index.html">All essays</a> · <a href="../rss.xml">RSS</a></span></footer>
+</body>
+</html>

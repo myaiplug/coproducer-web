@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Stem separation, sampling &amp; privacy for unreleased music | Lacquer</title>
+<meta name="description" content="Lacquer essays on stem separation: Demucs vs MDX-Net, splitting from the cleanest copy, sampling around bleed, cloud splitter terms and local processing."/>
+<link rel="canonical" href="https://myaiplug.github.io/coproducer-web/blog/topics/stems-sampling-and-privacy.html"/>
+<meta name="robots" content="index,follow,max-image-preview:large"/>
+<meta name="author" content="NoDAW Labs"/>
+<meta name="theme-color" content="#050308"/>
+<meta property="og:type" content="website"/>
+<meta property="og:site_name" content="CoProducer"/>
+<meta property="og:locale" content="en_US"/>
+<meta property="og:title" content="Stem separation, sampling &amp; privacy for unreleased music"/>
+<meta property="og:description" content="Lacquer essays on stem separation: Demucs vs MDX-Net, splitting from the cleanest copy, sampling around bleed, cloud splitter terms and local processing."/>
+<meta property="og:url" content="https://myaiplug.github.io/coproducer-web/blog/topics/stems-sampling-and-privacy.html"/>
+<meta property="og:image" content="https://myaiplug.github.io/coproducer-web/blog/img/brand/lacquer-og.jpg"/>
+<meta property="og:image:width" content="1200"/>
+<meta property="og:image:height" content="630"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:title" content="Stem separation, sampling &amp; privacy for unreleased music"/>
+<meta name="twitter:description" content="Lacquer essays on stem separation: Demucs vs MDX-Net, splitting from the cleanest copy, sampling around bleed, cloud splitter terms and local processing."/>
+<meta name="twitter:image" content="https://myaiplug.github.io/coproducer-web/blog/img/brand/lacquer-og.jpg"/>
+<link rel="alternate" type="application/rss+xml" title="Lacquer — CoProducer Journal" href="https://myaiplug.github.io/coproducer-web/blog/rss.xml"/>
+<link rel="icon" href="../../favicon.ico" sizes="48x48"/>
+<link rel="icon" type="image/svg+xml" href="../../assets/favicon.svg"/>
+<link rel="apple-touch-icon" href="../../assets/apple-touch-icon.png"/>
+<link rel="manifest" href="../../site.webmanifest"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;1,500;1,600&amp;family=Figtree:wght@400;500&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet" media="print" onload="this.media='all'"/><noscript><link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;1,500;1,600&amp;family=Figtree:wght@400;500&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/></noscript>
+<link href="../css/journal.css" rel="stylesheet"/>
+<style>
+.hub { width: min(1100px, calc(100% - 40px)); margin: 0 auto; padding: 56px 0 72px; }
+.hub .kicker { margin: 0 0 14px; }
+.hub h1 { font-family: "Cormorant Garamond", Georgia, serif; font-weight: 500; font-size: clamp(36px, 6vw, 64px); line-height: 1.02; margin: 0 0 18px; color: var(--ivory); }
+.hub .lede { font-size: 19px; max-width: 760px; color: var(--ivory); }
+.hub .intro p { max-width: 760px; color: var(--ink); line-height: 1.7; }
+.hub-path { list-style: none; padding: 0; margin: 40px 0 0; display: grid; gap: 1px; background: var(--hair, rgba(196,165,116,.18)); border: 1px solid var(--hair, rgba(196,165,116,.18)); counter-reset: hub; }
+.hub-path li { background: var(--lacquer); counter-increment: hub; }
+.hub-path a { display: grid; grid-template-columns: 180px 1fr; gap: 22px; padding: 18px; text-decoration: none; color: inherit; align-items: center; }
+.hub-path a:hover h2 { color: var(--magenta); }
+.hub-path img { width: 180px; height: 101px; object-fit: cover; }
+.hub-path .n::before { content: counter(hub, decimal-leading-zero) " · "; color: var(--magenta); }
+.hub-path .n { font: 500 11px "JetBrains Mono", monospace; letter-spacing: .08em; text-transform: uppercase; color: var(--mute); }
+.hub-path h2 { font-family: "Cormorant Garamond", Georgia, serif; font-weight: 500; font-size: 24px; line-height: 1.15; margin: 6px 0 6px; color: var(--ivory); }
+.hub-path p { margin: 0; color: var(--ink); font-size: 15px; }
+.hub-others { margin-top: 44px; font: 500 12px "JetBrains Mono", monospace; letter-spacing: .06em; }
+.hub-others a { color: var(--ivory); margin-right: 14px; }
+@media (max-width: 640px) { .hub-path a { grid-template-columns: 1fr; } .hub-path img { width: 100%; height: auto; aspect-ratio: 16/9; } }
+</style>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"CollectionPage","@id":"https://myaiplug.github.io/coproducer-web/blog/topics/stems-sampling-and-privacy.html#collection","url":"https://myaiplug.github.io/coproducer-web/blog/topics/stems-sampling-and-privacy.html","name":"Stem separation, sampling & privacy for unreleased music","description":"Lacquer essays on stem separation: Demucs vs MDX-Net, splitting from the cleanest copy, sampling around bleed, cloud splitter terms and local processing.","inLanguage":"en-US","isPartOf":{"@id":"https://myaiplug.github.io/coproducer-web/#website"},"publisher":{"@id":"https://myaiplug.github.io/coproducer-web/#organization"},"about":"Stem separation, sampling & privacy","mainEntity":{"@type":"ItemList","numberOfItems":8,"itemListOrder":"https://schema.org/ItemListOrderAscending","itemListElement":[{"@type":"ListItem","position":1,"url":"https://myaiplug.github.io/coproducer-web/blog/stems-diagnose-mixes-do-not-replace-them.html","name":"Stems diagnose mixes — they do not replace them"},{"@type":"ListItem","position":2,"url":"https://myaiplug.github.io/coproducer-web/blog/demucs-vs-mdx-net-stem-separation-compared.html","name":"Demucs vs MDX-Net: what each separator gets wrong, and why"},{"@type":"ListItem","position":3,"url":"https://myaiplug.github.io/coproducer-web/blog/split-stems-from-youtube-audio-you-own.html","name":"Splitting stems from YouTube audio you own starts with the cleanest copy"},{"@type":"ListItem","position":4,"url":"https://myaiplug.github.io/coproducer-web/blog/sampling-from-separated-stems-workflow.html","name":"Sampling from separated stems: chop around the bleed, not through it"},{"@type":"ListItem","position":5,"url":"https://myaiplug.github.io/coproducer-web/blog/cloud-stem-splitter-privacy-unreleased-music.html","name":"Before a cloud stem splitter gets your unreleased song, read four clauses"},{"@type":"ListItem","position":6,"url":"https://myaiplug.github.io/coproducer-web/blog/local-audio-processing-for-unreleased-masters.html","name":"Keeping an unreleased master on your own machine, honestly"},{"@type":"ListItem","position":7,"url":"https://myaiplug.github.io/coproducer-web/blog/should-you-upload-an-unreleased-master.html","name":"Should you upload an unreleased master to the cloud?"},{"@type":"ListItem","position":8,"url":"https://myaiplug.github.io/coproducer-web/blog/local-tools-beat-upload-queues.html","name":"Local tools beat upload queues"}]}}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"CoProducer","item":"https://myaiplug.github.io/coproducer-web/"},{"@type":"ListItem","position":2,"name":"Lacquer Journal","item":"https://myaiplug.github.io/coproducer-web/blog/index.html"},{"@type":"ListItem","position":3,"name":"Stem separation, sampling & privacy","item":"https://myaiplug.github.io/coproducer-web/blog/topics/stems-sampling-and-privacy.html"}]}</script>
+</head>
+<body>
+<header class="top">
+<a class="mark" href="../../index.html"><em>Co</em>Producer</a>
+<nav aria-label="Primary" class="nav">
+<a href="../index.html">Journal</a>
+<a href="../../index.html#ab">A/B</a>
+<a href="../../index.html#analyzeHome">Analyze</a>
+<a href="../../guides/index.html">Guides</a>
+<a href="../../pricing.html">Pricing</a>
+</nav>
+<a class="cta" href="../../index.html#analyzeHome">Measure a mix</a>
+</header>
+<main class="hub" id="main">
+<p class="kicker"><a href="../index.html">Lacquer</a> · Topic · 8 essays</p>
+<h1>Stem separation, sampling &amp; privacy</h1>
+<p class="lede">Stems are a diagnostic tool and a sampling source. Both raise the same questions: how clean is the split, and where did the audio go to get split?</p>
+<div class="intro">
+<p>Stem separation is a diagnostic tool and, more and more, a sampling source. Both uses raise the same two questions: how clean is the split, and where did the audio have to go to get split? These essays compare Demucs and MDX-Net using the published benchmarks and a runnable listening window, explain why the copy you feed a separator sets the quality ceiling, and give a sampling workflow that chops around bleed instead of through it.</p>
+<p>The privacy half is about unreleased music: the four terms-of-service clauses to read before uploading to a cloud splitter, what browser-local and offline processing actually protect (and the metadata that leaks anyway), and when local tools beat an upload queue. The thread through all of it: use stems to hear the problem, fix the mix itself, and keep unreleased files on your own machine when you can.</p>
+</div>
+<ol class="hub-path" aria-label="Reading path">
+<li><a href="../stems-diagnose-mixes-do-not-replace-them.html"><img src="../img/essays/w/stems-diagnose-mixes-do-not-replace-them-480.webp" alt="Separated acetate ribbons above a turntable" width="480" height="270" loading="lazy" decoding="async"/><div><span class="n">Stems · 21 August 2026 · 7 min</span><h2>Stems diagnose mixes — they do not replace them</h2><p>Stem separation isolates parts so you can hear collisions. It does not invent a better arrangement. Use stems to diagnose, then fix the mix.</p></div></a></li>
+<li><a href="../demucs-vs-mdx-net-stem-separation-compared.html"><img src="../img/essays/w/demucs-vs-mdx-net-stem-separation-compared-480.webp" alt="Two precision analyzers on black marble, one drawing a sharp cyan waveform and the other a magenta spectrogram grid, their beams crossing at the center" width="480" height="270" loading="lazy" decoding="async"/><div><span class="n">Stems · 8 October 2026 · 11 min</span><h2>Demucs vs MDX-Net: what each separator gets wrong, and why</h2><p>Demucs vs MDX-Net from the published benchmarks and a runnable window test: who wins drums and bass, who wins vocals, and how to hear it.</p></div></a></li>
+<li><a href="../split-stems-from-youtube-audio-you-own.html"><img src="../img/essays/w/split-stems-from-youtube-audio-you-own-480.webp" alt="A cyan waveform lifting out of a dark video frame and splitting into five glowing stem lanes across black marble" width="480" height="270" loading="lazy" decoding="async"/><div><span class="n">Stems · 8 October 2026 · 11 min</span><h2>Splitting stems from YouTube audio you own starts with the cleanest copy</h2><p>Want stems from a song you uploaded to YouTube? The copy you feed the separator sets the ceiling. Find the first-generation file, then split locally.</p></div></a></li>
+<li><a href="../sampling-from-separated-stems-workflow.html"><img src="../img/essays/w/sampling-from-separated-stems-workflow-480.webp" alt="An MPC-style sampler on black marble with a separated drum waveform sliced into glowing cyan chops and a faint magenta bass trace beneath" width="480" height="270" loading="lazy" decoding="async"/><div><span class="n">Sampling · 8 October 2026 · 11 min</span><h2>Sampling from separated stems: chop around the bleed, not through it</h2><p>A producer’s workflow for sampling from AI-separated stems: audit the bleed, restore the attack, null-test, match key, clear what you don’t own.</p></div></a></li>
+<li><a href="../cloud-stem-splitter-privacy-unreleased-music.html"><img src="../img/essays/w/cloud-stem-splitter-privacy-unreleased-music-480.webp" alt="A sealed glass vault on black marble holding a glowing master tape, with a faint magenta upload beam stopped at the glass" width="480" height="270" loading="lazy" decoding="async"/><div><span class="n">Local-first · 8 October 2026 · 10 min</span><h2>Before a cloud stem splitter gets your unreleased song, read four clauses</h2><p>Uploading an unreleased track to a cloud stem splitter is a rights decision. Four terms clauses to read, and how to prove a split stays local.</p></div></a></li>
+<li><a href="../local-audio-processing-for-unreleased-masters.html"><img src="../img/essays/w/local-audio-processing-for-unreleased-masters-480.webp" alt="A sealed black lacquer case on black marble holding a glowing master reel, cyan light inside, a magenta-lit unplugged network cable coiled beside it" width="480" height="270" loading="lazy" decoding="async"/><div><span class="n">Privacy · 8 October 2026 · 10 min</span><h2>Keeping an unreleased master on your own machine, honestly</h2><p>What browser-local and offline audio processing protect for unreleased music, what they don&#x27;t, the metadata that leaks anyway, and privacy claims to defend.</p></div></a></li>
+<li><a href="../should-you-upload-an-unreleased-master.html"><img src="../img/essays/w/should-you-upload-an-unreleased-master-480.webp" alt="Closed steel vault beside a quiet local workstation" width="480" height="270" loading="lazy" decoding="async"/><div><span class="n">Practice · 20 August 2026 · 7 min</span><h2>Should you upload an unreleased master to the cloud?</h2><p>Upload an unreleased master only if you accept a vendor holding the file. Loudness, true peak, and clip checks can stay fully local with CoProducer.</p></div></a></li>
+<li><a href="../local-tools-beat-upload-queues.html"><img src="../img/essays/w/local-tools-beat-upload-queues-480.webp" alt="Vault and local workstation" width="480" height="270" loading="lazy" decoding="async"/><div><span class="n">Local-first · 21 August 2026 · 7 min</span><h2>Local tools beat upload queues</h2><p>Local .bat and desktop tools skip upload queues, retention policies, and per-track metering fees. Keep measurement, stems, and syrup renders on your machine.</p></div></a></li>
+</ol>
+<p class="hub-others">More topics: <a href="loudness-and-lufs.html">Loudness &amp; LUFS</a> <a href="true-peak-limiting-and-delivery.html">True peak, limiting &amp; delivery</a> <a href="low-end-and-mix-dynamics.html">Low end, 808s &amp; mix dynamics</a> <a href="432-hz-pitch-and-tempo.html">432 Hz, pitch &amp; tempo</a> <a href="../index.html">All essays</a></p>
+</main>
+<footer class="site"><span>Lacquer · CoProducer Journal</span><span><a href="../index.html">All essays</a> · <a href="../rss.xml">RSS</a></span></footer>
+</body>
+</html>

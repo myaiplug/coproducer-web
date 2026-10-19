@@ -673,4 +673,34 @@
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
+  <url>
+    <loc>https://myaiplug.github.io/coproducer-web/blog/topics/loudness-and-lufs.html</loc>
+    <lastmod>2026-10-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://myaiplug.github.io/coproducer-web/blog/topics/true-peak-limiting-and-delivery.html</loc>
+    <lastmod>2026-10-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://myaiplug.github.io/coproducer-web/blog/topics/low-end-and-mix-dynamics.html</loc>
+    <lastmod>2026-10-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://myaiplug.github.io/coproducer-web/blog/topics/432-hz-pitch-and-tempo.html</loc>
+    <lastmod>2026-10-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://myaiplug.github.io/coproducer-web/blog/topics/stems-sampling-and-privacy.html</loc>
+    <lastmod>2026-10-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
 </urlset>
