@@ -6,6 +6,11 @@
 <title>Why streaming platforms turn loud masters down | Lacquer</title>
 <meta content="Streaming services normalize toward −14 LUFS (Apple closer to −16). A hotter master is turned down, not played louder. Measure integrated LUFS before you limit again." name="description"/>
 <link href="https://myaiplug.github.io/coproducer-web/blog/why-streaming-turns-loud-masters-down.html" rel="canonical"/>
+<link rel="alternate" type="application/rss+xml" title="Lacquer — CoProducer Journal" href="https://myaiplug.github.io/coproducer-web/blog/rss.xml"/>
+<link rel="icon" href="../favicon.ico" sizes="48x48"/>
+<link rel="icon" type="image/svg+xml" href="../assets/favicon.svg"/>
+<link rel="apple-touch-icon" href="../assets/apple-touch-icon.png"/>
+<link rel="manifest" href="../site.webmanifest"/>
 <meta content="https://myaiplug.github.io/coproducer-web/blog/img/essays/why-streaming-turns-loud-masters-down.jpg?v=shd" property="og:image"/>
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;1,500;1,600&amp;family=Figtree:wght@400;500&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
@@ -43,6 +48,7 @@
 <tr><td>TIDAL</td><td>−14 LUFS</td><td>−1.0 dBTP</td></tr>
 </tbody>
 </table>
+<p class="sources-note"><small>Sources: <a href="https://support.spotify.com/us/artists/article/loudness-normalization/" rel="noopener">Spotify for Artists, “Loudness normalization”</a> (tracks adjusted to −14 LUFS per ITU 1770); <a href="https://support.apple.com/en-us/109331" rel="noopener">Apple Support, “Sound Check”</a> (Apple describes the feature but does not publish a LUFS figure there, so ≈ −16 is the commonly reported value); <a href="https://aes.org/community/technical-council/technical-document-aestd1008/" rel="noopener">AES TD1008</a>, the AES recommendations for streaming loudness; <a href="https://www.itu.int/rec/R-REC-BS.1770" rel="noopener">ITU-R BS.1770</a>, the loudness and true-peak measurement. The YouTube, Amazon Music and TIDAL rows are commonly reported figures; we did not find an official published target to link.</small></p>
 <p>CoProducer’s analyze table treats −14 LUFS as the release target, with a 1.5 LU pass window. That is the same column you see next to “If repaired in CoProducer.” It is not a taste score. It is a distance.</p>
 <h2>A faster session</h2>
 <p>Do not print a new limiter preset until you have a number. Bounce. Measure integrated LUFS and true peak. If you are already inside the window, stop. If you are hot, take gain out of the chain before you add more compression. If you are quiet, ask whether the noise floor can survive a turn-up. That sequence is shorter than another hour of “one more dB.”</p>
