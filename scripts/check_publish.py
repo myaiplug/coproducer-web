@@ -149,6 +149,11 @@ def main() -> int:
             if snippet and snippet not in " ".join(llms_full.split()):
                 err(f"{name}: llms-full.txt lacks the essay body (answer paragraph not found)")
 
+    for mirror in (".well-known/llms.txt", "well-known/llms.txt"):
+        mp = ROOT / mirror
+        if not mp.exists() or mp.read_text(encoding="utf-8") != llms:
+            err(f"{mirror}: missing or out of sync with llms.txt (run scripts/build_llms_full.py)")
+
     if errors:
         print(f"check_publish: {len(errors)} problem(s) across {len(posts)} essays")
         for e in errors:
