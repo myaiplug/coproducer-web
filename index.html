@@ -12,7 +12,7 @@
 <meta content="CoProducer is local-first audio analysis for LUFS, true peak, clips, phase, reference matching, and conservative repair. Free demo; Pro $49 one-time — not cloud mastering." name="description"/>
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Grotesk:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500;700&family=Barlow+Condensed:wght@600;700;800;900&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&family=Rajdhani:wght@500;700&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Grotesk:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500;700&family=Barlow+Condensed:wght@600;700;800;900&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&family=Rajdhani:wght@500;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'"/><noscript><link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Grotesk:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500;700&family=Barlow+Condensed:wght@600;700;800;900&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&family=Rajdhani:wght@500;700&display=swap" rel="stylesheet"/></noscript>
 <style>
 :root{--bg:#050308;--p:#a839ff;--m:#e84cff;--line:rgba(194,111,255,.2);--muted:#a79daf;--green:#c9ff4d}
 *{box-sizing:border-box}
@@ -53,6 +53,7 @@ h1 span{display:block;color:var(--p)}
 .points div:before{content:"✦ ";color:var(--m)}
 .buttons{display:flex;gap:15px;align-items:center}
 .btn.alt{background:transparent;border-color:var(--line);box-shadow:none; color:var(--text);}
+:where(img[width][height]){height:auto}
 .hero-art img{width:100%;border-radius:12px;border:1px solid var(--line);box-shadow:0 30px 80px rgba(168,57,255,.25)}
 
 .rail-wrap{border-bottom:1px solid var(--line); width:100%; display:flex; justify-content:center; background:rgba(5,3,8,0.5);}
@@ -425,7 +426,7 @@ footer { width: 100%; display: flex; justify-content: center; border-top: 1px so
 </div>
 </div>
 <div class="hero-art">
-<img alt="CoProducer dashboard with circular mix score and analysis modules" src="assets/screens/screen-02.png"/>
+<img alt="CoProducer dashboard with circular mix score and analysis modules" src="assets/screens/screen-02.png" srcset="assets/screens/w/screen-02-480.webp 480w, assets/screens/w/screen-02-960.webp 960w, assets/screens/w/screen-02-1600.webp 1600w" sizes="(max-width: 900px) 100vw, 50vw" width="2337" height="1304" fetchpriority="high" decoding="async"/>
 </div>
 </div>
 </div>
@@ -564,7 +565,7 @@ footer { width: 100%; display: flex; justify-content: center; border-top: 1px so
 </div>
 <div class="shots">
 <article class="shot wide">
-<img alt="CoProducer analysis overview with loudness meters, stereo field, and spectral charts" src="assets/screens/screen-01.png"/>
+<img alt="CoProducer analysis overview with loudness meters, stereo field, and spectral charts" src="assets/screens/screen-01.png" srcset="assets/screens/w/screen-01-480.webp 480w, assets/screens/w/screen-01-960.webp 960w, assets/screens/w/screen-01-1600.webp 1600w" sizes="(max-width: 900px) 100vw, 50vw" width="2334" height="1302" loading="lazy" decoding="async"/>
 <div class="copy">
 <h3>Analysis, repair and release workflow</h3>
 <p>Mix scoring, loudness meters, stereo imaging, spectral balance, and repair guidance in the real desktop app.</p>
@@ -581,7 +582,7 @@ footer { width: 100%; display: flex; justify-content: center; border-top: 1px so
 </div>
 </article>
 <article class="shot">
-<img alt="CoProducer spectral balance chart with AI suggestions and severity" src="assets/screens/screen-04.png"/>
+<img alt="CoProducer spectral balance chart with AI suggestions and severity" src="assets/screens/screen-04.png" srcset="assets/screens/w/screen-04-480.webp 480w, assets/screens/w/screen-04-774.webp 774w" sizes="(max-width: 900px) 100vw, 50vw" width="774" height="1383" loading="lazy" decoding="async"/>
 <div class="copy">
 <h3>Studio intelligence, not another meter.</h3>
 <p>Spectral clues and actionable suggestions move you from measurement to a fix.</p>
@@ -635,7 +636,7 @@ footer { width: 100%; display: flex; justify-content: center; border-top: 1px so
 </div>
 <div class="product-grid">
 <article class="product-card" id="product-analyzer">
-<img alt="CoProducer analyzer dashboard with mix score" src="assets/screens/screen-02.png"/>
+<img alt="CoProducer analyzer dashboard with mix score" src="assets/screens/screen-02.png" srcset="assets/screens/w/screen-02-480.webp 480w, assets/screens/w/screen-02-960.webp 960w, assets/screens/w/screen-02-1600.webp 1600w" sizes="(max-width: 900px) 100vw, 50vw" width="2337" height="1304" loading="lazy" decoding="async"/>
 <div class="product-body">
 <h3>CoProducer Analyzer .bat</h3>
 <p>Drop audio. Auto-generate engineering reports.</p>
@@ -652,7 +653,7 @@ footer { width: 100%; display: flex; justify-content: center; border-top: 1px so
 </div>
 </article>
 <article class="product-card" id="product-mixmaster">
-<img alt="NoDAW Mastering FX Studio bat product art" src="assets/products/mastering-fx.png"/>
+<img alt="NoDAW Mastering FX Studio bat product art" src="assets/products/mastering-fx.png" srcset="assets/products/w/mastering-fx-480.webp 480w, assets/products/w/mastering-fx-960.webp 960w, assets/products/w/mastering-fx-1254.webp 1254w" sizes="(max-width: 900px) 100vw, 50vw" width="1254" height="1254" loading="lazy" decoding="async"/>
 <div class="product-body">
 <h3>Audio Mix & Mastering .bat</h3>
 <p>Mastering FX Studio — drag unfinished bounces onto the bat. Get mix/master-ready renders without opening a DAW.</p>
@@ -668,7 +669,7 @@ footer { width: 100%; display: flex; justify-content: center; border-top: 1px so
 </div>
 </article>
 <article class="product-card" id="product-screw">
-<img alt="ScrewAI syrup bottle product art" src="assets/products/screwai.png"/>
+<img alt="ScrewAI syrup bottle product art" src="assets/products/screwai.png" srcset="assets/products/w/screwai-480.webp 480w, assets/products/w/screwai-960.webp 960w, assets/products/w/screwai-1254.webp 1254w" sizes="(max-width: 900px) 100vw, 50vw" width="1254" height="1254" loading="lazy" decoding="async"/>
 <div class="product-body">
 <h3>ScrewAI Syrup .bat</h3>
 <p>17 codeine flavors. Select multiple strains. Render unlimited screwed versions locally.</p>
@@ -702,9 +703,9 @@ footer { width: 100%; display: flex; justify-content: center; border-top: 1px so
 </div>
 </div>
 <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px;">
-<img alt="NoDAW Liminal stem separation product art" src="assets/products/liminal-stems.png" style="width:100%; border-radius:10px; border:1px solid var(--line);"/>
-<img alt="Neon Stem Splitting app poster" src="assets/products/stemsplit-neon.png" style="width:100%; border-radius:10px; border:1px solid var(--line);"/>
-<img alt="Stem Separated vinyl artwork" src="assets/products/stem-separated.jpg" style="width:100%; border-radius:10px; border:1px solid var(--line); grid-column:1 / -1;"/>
+<img alt="NoDAW Liminal stem separation product art" src="assets/products/liminal-stems.png" srcset="assets/products/w/liminal-stems-480.webp 480w, assets/products/w/liminal-stems-960.webp 960w, assets/products/w/liminal-stems-1536.webp 1536w" sizes="(max-width: 900px) 100vw, 50vw" style="width:100%; border-radius:10px; border:1px solid var(--line);" width="1536" height="1024" loading="lazy" decoding="async"/>
+<img alt="Neon Stem Splitting app poster" src="assets/products/stemsplit-neon.png" srcset="assets/products/w/stemsplit-neon-480.webp 480w, assets/products/w/stemsplit-neon-960.webp 960w, assets/products/w/stemsplit-neon-1254.webp 1254w" sizes="(max-width: 900px) 100vw, 50vw" style="width:100%; border-radius:10px; border:1px solid var(--line);" width="1254" height="1254" loading="lazy" decoding="async"/>
+<img alt="Stem Separated vinyl artwork" src="assets/products/stem-separated.jpg" srcset="assets/products/w/stem-separated-480.webp 480w, assets/products/w/stem-separated-960.webp 960w, assets/products/w/stem-separated-1254.webp 1254w" sizes="(max-width: 900px) 100vw, 50vw" style="width:100%; border-radius:10px; border:1px solid var(--line); grid-column:1 / -1;" width="1254" height="1254" loading="lazy" decoding="async"/>
 </div>
 </div>
 </article>

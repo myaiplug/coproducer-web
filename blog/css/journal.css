@@ -26,6 +26,7 @@ body {
 }
 a { color: inherit; }
 img { max-width: 100%; display: block; }
+:where(img[width][height]) { height: auto; }
 ::selection { background: var(--magenta); color: #1a0a22; }
 .skip { position: absolute; left: -999px; }
 .skip:focus { left: 12px; top: 12px; z-index: 50; background: var(--ivory); color: var(--lacquer); padding: 8px 12px; }
