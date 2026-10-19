@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1" name="viewport"/><meta content="https://myaiplug.github.io/coproducer-web/blog/img/essays/how-much-headroom-to-leave-for-mastering.jpg?v=shd" name="twitter:image"/><meta content="Headroom for mastering means no clipping and no mix-bus limiter. Peaks near −6 to −3 dBFS in 24-bit or float is convention; clipping can’t be undone." name="twitter:description"/><meta content="How much headroom to leave for mastering (and why −6 dB isn’t the point)" name="twitter:title"/><meta content="summary_large_image" name="twitter:card"/><meta content="2026-10-15T00:00:00Z" property="article:modified_time"/><meta content="2026-10-15T00:00:00Z" property="article:published_time"/><meta content="1440" property="og:image:height"/><meta content="2560" property="og:image:width"/><meta content="https://myaiplug.github.io/coproducer-web/blog/how-much-headroom-to-leave-for-mastering.html" property="og:url"/><meta content="en_US" property="og:locale"/><meta content="CoProducer" property="og:site_name"/><meta content="article" property="og:type"/><link href="https://myaiplug.github.io/coproducer-web/llms.txt" rel="alternate" title="llms.txt" type="text/plain"/><meta content="NoDAW Labs" name="author"/><meta content="#050308" name="theme-color"/><meta content="index,follow,max-image-preview:large" name="robots"/><meta content="headroom for mastering, how much headroom mastering, -6 dB headroom, premaster, mix bus limiter, 32-bit float export, clipping, sending mix to mastering, CoProducer, NoDAW" name="keywords"/>
+<title>How much headroom to leave for mastering (and why −6 dB isn’t the point) | Lacquer</title>
+<meta content="Headroom for mastering means no clipping and no mix-bus limiter. Peaks near −6 to −3 dBFS in 24-bit or float is convention; clipping can’t be undone." name="description"/>
+<link href="https://myaiplug.github.io/coproducer-web/blog/how-much-headroom-to-leave-for-mastering.html" rel="canonical"/>
+<meta content="How much headroom to leave for mastering (and why −6 dB isn’t the point)" property="og:title"/>
+<meta content="Headroom for mastering means no clipping and no mix-bus limiter. Peaks near −6 to −3 dBFS in 24-bit or float is convention; clipping can’t be undone." property="og:description"/>
+<meta content="https://myaiplug.github.io/coproducer-web/blog/img/essays/how-much-headroom-to-leave-for-mastering.jpg?v=shd" property="og:image"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;1,500;1,600&amp;family=Figtree:wght@400;500&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<link href="css/journal.css" rel="stylesheet"/>
+
+
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"How much headroom to leave for mastering (and why −6 dB isn’t the point)","description":"Headroom for mastering means no clipping and no mix-bus limiter. Peaks near −6 to −3 dBFS in 24-bit or float is convention; clipping can’t be undone.","datePublished":"2026-10-15","dateModified":"2026-10-15","mainEntityOfPage":{"@type":"WebPage","@id":"https://myaiplug.github.io/coproducer-web/blog/how-much-headroom-to-leave-for-mastering.html"},"image":{"@type":"ImageObject","url":"https://myaiplug.github.io/coproducer-web/blog/img/essays/how-much-headroom-to-leave-for-mastering.jpg?v=shd","width":2560,"height":1440},"author":{"@type":"Organization","name":"NoDAW Labs","url":"https://myaiplug.github.io/coproducer-web/","logo":"https://myaiplug.github.io/coproducer-web/assets/og-default.jpg"},"publisher":{"@type":"Organization","name":"NoDAW Labs","url":"https://myaiplug.github.io/coproducer-web/","logo":"https://myaiplug.github.io/coproducer-web/assets/og-default.jpg"},"isPartOf":{"@type":"Blog","name":"Lacquer — CoProducer Journal","url":"https://myaiplug.github.io/coproducer-web/blog/index.html"},"keywords":["headroom for mastering","how much headroom mastering","-6 dB headroom","premaster","mix bus limiter","32-bit float export","clipping","sending mix to mastering","CoProducer","NoDAW"],"speakable":{"@type":"SpeakableSpecification","cssSelector":[".answer","h1"]}}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Is −6 dB of headroom required for mastering?","acceptedAnswer":{"@type":"Answer","text":"No. It’s a convention. What matters is that nothing clips and there’s no limiter on the mix bus. In a 24-bit file, peaking anywhere from about −10 to −3 dBFS gives the engineer the same quality to work with; they set the gain either way."}},{"@type":"Question","name":"Should I normalize my mix before sending it to mastering?","acceptedAnswer":{"@type":"Answer","text":"No. Normalizing just moves the peak to a fixed level, often right up to 0 dBFS, which removes the safety margin you were asked for. Leave the gain where your headroom puts it."}},{"@type":"Question","name":"Can I send a 32-bit float file that peaks over 0 dBFS?","acceptedAnswer":{"@type":"Answer","text":"Yes, the overs are still in the file and turning it down recovers them exactly. Tell the engineer, though, because any fixed-point step before that turn-down will clip it, and some tools convert on import."}},{"@type":"Question","name":"Should I send my mix with or without the limiter?","acceptedAnswer":{"@type":"Answer","text":"Without, as the main file. If the limiter is part of the sound you’ve been living with, include the limited bounce as a labeled reference so the engineer knows what you liked."}}]}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"CoProducer","item":"https://myaiplug.github.io/coproducer-web/"},{"@type":"ListItem","position":2,"name":"Lacquer Journal","item":"https://myaiplug.github.io/coproducer-web/blog/index.html"},{"@type":"ListItem","position":3,"name":"How much headroom to leave for mastering (and why −6 dB isn’t the point)","item":"https://myaiplug.github.io/coproducer-web/blog/how-much-headroom-to-leave-for-mastering.html"}]}</script></head>
+<body>
+<header class="top">
+<a class="mark" href="../index.html"><em>Co</em>Producer</a>
+<nav aria-label="Primary" class="nav">
+<a href="index.html">Journal</a>
+<a href="../index.html#ab">A/B</a>
+<a href="../index.html#analyzeHome">Analyze</a>
+<a href="../guides/index.html">Guides</a>
+<a href="../pricing.html">Pricing</a>
+</nav>
+<a class="cta" href="../index.html#analyzeHome">Measure a mix</a>
+</header>
+<article class="post" id="main">
+<div class="post-hero"><img alt="A gold-framed peak meter on black marble, a cyan waveform with space above it beside a magenta waveform pressed flat against a gold ceiling line" src="img/essays/how-much-headroom-to-leave-for-mastering.jpg?v=shd"/></div>
+<header>
+<p class="kicker">Delivery · 15 October 2026 · 8 min</p>
+<h1>How much headroom to leave for mastering (and why −6 dB isn’t the point)</h1>
+<p class="meta">NoDAW Labs · Lacquer Vol. 05</p>
+</header>
+<p class="answer">Leave enough headroom that nothing clips, and send it with no limiter or clipper on the mix bus. Peaks somewhere around −6 to −3 dBFS in a 24-bit or 32-bit float file is a polite convention, not a rule: in 24-bit there’s no audible cost to leaving more, but a clipped fixed-point bounce can’t be undone.</p>
+<p>The email says “please leave −6 dB of headroom.” So you pull the master fader until the meter peaks at −6 and export. Or, more often, the mix already sounds great with the limiter on the bus, so you leave it there and just turn the output down to −6. Both feel like you followed the instructions. Only one of them actually did.</p>
+<p>The number is the least important part of that request. What the mastering engineer is really asking for is a file they can still make decisions on.</p>
+<h2>What headroom actually protects</h2>
+<ul>
+<li><strong>No clipping baked in.</strong> Inside a modern DAW the mix bus runs in floating point, so it can go over 0 dBFS without damage. The moment you export to a fixed-point format like 24-bit WAV, anything over 0 is sliced flat. That damage is permanent.</li>
+<li><strong>No mastering decision made early.</strong> A limiter or clipper on the mix bus sets how hard the peaks get pushed before the person whose job that is gets the file. Turning its output down to −6 afterwards leaves the squash in place.</li>
+<li><strong>A little room between samples.</strong> The waveform between samples can peak higher than the samples themselves (inter-sample peaks). A few dB of space keeps the file honest on the way into the mastering chain.</li>
+</ul>
+<p>What headroom does <em>not</em> do is change the quality of a 24-bit file. The engineer is going to set the gain anyway. A 24-bit file has a theoretical noise floor around −144 dBFS, so leaving 6 dB, 10 dB or even 20 dB of headroom costs nothing you’ll ever hear. The difference between peaking at −3 and peaking at −8 is just a gain knob.</p>
+<h2>One mix, four exports</h2>
+<p>We summed a synthetic hot mix (kick, snare, bass, pad, hats) so its float peak landed at +4.5 dBFS, which is common when a mix bus is running hot and nobody’s looking. Then we exported it four ways and ran each file through the check script below. These are synthetic test signals, but the failure modes are the real ones.</p>
+<table>
+<thead><tr><th>Export</th><th>Sample peak</th><th>True peak</th><th>Integrated</th><th>Crest</th><th>Clipped runs</th><th>Check says</th></tr></thead>
+<tbody>
+<tr><td>32-bit float, overs kept</td><td>+4.5 dBFS</td><td>+4.7 dBTP</td><td>−11.7 LUFS</td><td>17.0 dB</td><td>—</td><td>Recoverable; say so</td></tr>
+<tr><td>24-bit, overs clipped</td><td>+0.0 dBFS</td><td>+2.7 dBTP</td><td>−11.7 LUFS</td><td>12.5 dB</td><td>5</td><td>Clipped</td></tr>
+<tr><td>24-bit, limiter on the bus (−0.3 ceiling)</td><td>−0.3 dBFS</td><td>+1.1 dBTP</td><td>−12.4 LUFS</td><td>12.6 dB</td><td>0</td><td>Limiter on the bus?</td></tr>
+<tr><td>24-bit, turned down 10 dB first</td><td>−5.5 dBFS</td><td>−5.3 dBTP</td><td>−21.7 LUFS</td><td>17.0 dB</td><td>0</td><td>OK to send</td></tr>
+</tbody>
+</table>
+<p>Then we did what a mastering engineer would do first: turn each file down 10 dB and compare it against the clean, unclipped original.</p>
+<table>
+<thead><tr><th>Export</th><th>Error vs the clean original</th><th>What that means</th></tr></thead>
+<tbody>
+<tr><td>32-bit float, overs kept</td><td>−151.9 dB</td><td>Nothing lost. Float only rounds.</td></tr>
+<tr><td>24-bit, turned down 10 dB first</td><td>−121.2 dB</td><td>24-bit rounding, far below anything audible</td></tr>
+<tr><td>24-bit, overs clipped</td><td>−33.4 dB</td><td>Flat-topped transients, permanently. At the worst moment the error is only 8 dB below the peak itself.</td></tr>
+</tbody>
+</table>
+<p>Three things jump out. The clipped file reads the same −11.7 LUFS as the float one, so a loudness meter won’t warn you. Its crest factor dropped from 17.0 to 12.5 dB: that’s the punch of the kick and snare, gone. And the file that peaked at −5.5 is the cleanest fixed-point export of the lot, even though it’s 10 dB “quieter.”</p>
+<p>The limiter file needs its own sentence. It shows zero clipped runs, so a quick clip check passes it. But its crest dropped 4.4 dB, nearly as much as the clipped file, and the peaks keep landing on the same ceiling, about 9% of all 50 ms blocks, against roughly 1% in the untouched exports. That pattern is what the script flags. Also notice that a sample-peak limiter set to −0.3 still let a +1.1 dBTP true peak through. <a href="true-peak-is-what-codecs-clip.html">True peak is what codecs clip</a> goes into why.</p>
+<h2>The send-to-mastering checklist</h2>
+<ol>
+<li><strong>Take the limiter, maximizer or clipper off the mix bus.</strong> If the mix depends on how it sounds through it, send two files: the clean premaster, and the limited version labeled as a vibe reference. A clipper on the 808 or drum bus is a mix choice and can stay; on the whole mix it’s a mastering choice.</li>
+<li><strong>Peak somewhere around −6 to −3 dBFS.</strong> That’s the convention most engineers ask for. Anything under 0 in 24-bit is technically fine; the range just leaves room for inter-sample peaks and stray overs.</li>
+<li><strong>Make headroom at the source, not after a bus processor.</strong> Pull the mix bus input trim, or lower the faders or a VCA. Pulling the master fader works in a float DAW only if no plugin after it clips internally.</li>
+<li><strong>Export 24-bit or 32-bit float at the session’s sample rate.</strong> No dither unless you’re going to 16-bit, no normalize box ticked, no MP3 preview as the master. <a href="sample-rate-and-bit-depth-for-delivery.html">Sample rate and bit depth are delivery hygiene</a> has the details.</li>
+<li><strong>If you send float with overs, say so in the email.</strong> It’s recoverable, but only if the next person turns it down before anything fixed-point touches it.</li>
+<li><strong>Leave the reverb tail and a breath of room at the end.</strong> Don’t trim it tight; the engineer will set fades.</li>
+</ol>
+<h2>A check you can run before you hit send</h2>
+<p>This reads any file ffmpeg can open and prints its format, sample peak, true peak, integrated loudness and crest, counts runs of three or more samples stuck at full scale (per channel, so stereo interleaving can’t hide them), and measures how often the peaks land on one ceiling, which is a hint that a limiter or clipper is on the bus. That last one is a heuristic, not a verdict. It needs Python 3, numpy and ffmpeg.</p>
+<pre><code>#!/usr/bin/env python3
+"""premaster_check.py: is this bounce safe to send to mastering?
+Usage: python3 premaster_check.py mix.wav [more.wav ...]   (needs ffmpeg + numpy)
+Reports format, sample peak, true peak, integrated LUFS, clipped runs and how much
+of the file sits pinned near its own ceiling (a hint that a limiter or clipper is on)."""
+import sys, re, json, subprocess, numpy as np
+
+def probe(p):
+    j = json.loads(subprocess.run(["ffprobe", "-v", "error", "-select_streams", "a:0", "-show_entries",
+        "stream=codec_name,sample_rate,channels,bits_per_raw_sample,bits_per_sample", "-of", "json", p],
+        capture_output=True, text=True, check=True).stdout)["streams"][0]
+    return j
+
+def pcm(p):
+    raw = subprocess.run(["ffmpeg", "-v", "error", "-i", p, "-f", "f32le", "-"], capture_output=True, check=True).stdout
+    return np.frombuffer(raw, np.float32)
+
+def loud(p):
+    err = subprocess.run(["ffmpeg", "-nostats", "-i", p, "-af", "ebur128=peak=true", "-f", "null", "-"],
+                         capture_output=True, text=True).stderr
+    I = float(re.findall(r"I:\s+(-?[\d.]+) LUFS", err)[-1]); tp = float(re.findall(r"Peak:\s+(-?[\d.]+) dBFS", err)[-1])
+    return I, tp
+
+def runs(x, thr, minlen=3):
+    hot = np.abs(x) &gt;= thr
+    if not hot.any(): return 0
+    d = np.diff(np.concatenate([[0], hot.astype(np.int8), [0]]))
+    return int(np.sum((np.where(d == -1)[0] - np.where(d == 1)[0]) &gt;= minlen))
+
+for p in sys.argv[1:]:
+    s = probe(p); x = pcm(p); pk = np.max(np.abs(x)); I, tp = loud(p)
+    fmt = s["codec_name"]; floaty = fmt.startswith("pcm_f")
+    ch = int(s["channels"])
+    clip_runs = 0 if floaty else sum(runs(x[c::ch], 0.9999) for c in range(ch))   # 3+ samples in a row at full scale, per channel
+    blk = int(int(s["sample_rate"]) * 0.05) * ch
+    bp = np.abs(x[:len(x) // blk * blk]).reshape(-1, blk).max(1)
+    pinned = 100 * np.mean(bp &gt;= pk * 10 ** (-0.5 / 20))   # 50 ms blocks peaking within 0.5 dB of the max
+    crest = 20 * np.log10(pk / np.sqrt(np.mean(x.astype(np.float64) ** 2)))
+    notes = []
+    if floaty and pk &gt; 1: notes.append("overs kept in float: recoverable, but say so when you send it")
+    if not floaty and clip_runs: notes.append("CLIPPED: flat tops baked into a fixed-point file")
+    if pinned &gt; 5 and not clip_runs: notes.append("peaks keep landing on one ceiling: limiter or clipper on the mix bus?")
+    if pk &lt; 10 ** (-24 / 20): notes.append("very quiet: fine in 24-bit/float, just check it's the right file")
+    print(f"\n{p}\n  format {fmt}, {s['sample_rate']} Hz, {s['channels']} ch")
+    print(f"  sample peak {20*np.log10(pk):+.1f} dBFS | true peak {tp:+.1f} dBTP | {I:.1f} LUFS | crest {crest:.1f} dB")
+    print(f"  clipped runs (3+ samples at full scale) {clip_runs} | 50 ms blocks at the ceiling {pinned:.1f}%")
+    print("  " + ("; ".join(notes) if notes else "OK to send"))</code></pre>
+<p>On the four exports above it printed (trimmed to the last line of each):</p>
+<pre><code>mix_float.wav        overs kept in float: recoverable, but say so when you send it
+mix_24_clipped.wav   CLIPPED: flat tops baked into a fixed-point file
+mix_24_limited.wav   peaks keep landing on one ceiling: limiter or clipper on the mix bus?
+mix_24_headroom.wav  OK to send</code></pre>
+<p>If you’d rather not run Python, CoProducer’s analyze page reads clipped samples, true peak and crest for a bounce right in the browser, without uploading it anywhere. Drop the premaster there before it goes out. A zero in the clipped samples row plus a crest that looks like your mix (not like a master) is a good sign.</p>
+<aside class="aside">Mastering your own mix? The same rule applies with one person playing both roles. Bounce the premaster clean, take a break, then master the bounce. More on resisting the bus limiter in <a href="when-not-to-reach-for-the-limiter.html">when not to reach for the limiter</a>.</aside>
+<dl class="faq">
+<dt>Is −6 dB of headroom required for mastering?</dt>
+<dd>No. It’s a convention. What matters is that nothing clips and there’s no limiter on the mix bus. In a 24-bit file, peaking anywhere from about −10 to −3 dBFS gives the engineer the same quality to work with; they set the gain either way.</dd>
+<dt>Should I normalize my mix before sending it to mastering?</dt>
+<dd>No. Normalizing just moves the peak to a fixed level, often right up to 0 dBFS, which removes the safety margin you were asked for. Leave the gain where your headroom puts it.</dd>
+<dt>Can I send a 32-bit float file that peaks over 0 dBFS?</dt>
+<dd>Yes, the overs are still in the file and turning it down recovers them exactly. Tell the engineer, though, because any fixed-point step before that turn-down will clip it, and some tools convert on import.</dd>
+<dt>Should I send my mix with or without the limiter?</dt>
+<dd>Without, as the main file. If the limiter is part of the sound you’ve been living with, include the limited bounce as a labeled reference so the engineer knows what you liked.</dd>
+</dl>
+<nav aria-label="Related essays" class="related-essays" style="margin:48px 0 24px;padding-top:24px;border-top:1px solid rgba(196,165,116,.32)"><h2>Related in Lacquer</h2><ul><li><a href="when-not-to-reach-for-the-limiter.html">When not to reach for the limiter</a></li><li><a href="sample-rate-and-bit-depth-for-delivery.html">Sample rate and bit depth are delivery hygiene</a></li><li><a href="true-peak-is-what-codecs-clip.html">True peak is what codecs clip</a></li></ul></nav></article>
+<section class="comments" data-comments="" data-thread="headroom"></section>
+<script src="js/studio.js" type="module"></script>
+<script src="js/comments.js" type="module"></script>
+<footer class="site"><span>Lacquer · CoProducer Journal</span><span><a href="index.html">All essays</a></span></footer>
+</body>
+</html>

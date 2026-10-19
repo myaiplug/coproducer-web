@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1" name="viewport"/><meta content="https://myaiplug.github.io/coproducer-web/blog/img/essays/local-audio-processing-for-unreleased-masters.jpg?v=r432" name="twitter:image"/><meta content="What browser-local and offline audio processing protect for unreleased music, what they don&#x27;t, the metadata that leaks anyway, and privacy claims to defend." name="twitter:description"/><meta content="Keeping an unreleased master on your own machine, honestly" name="twitter:title"/><meta content="summary_large_image" name="twitter:card"/><meta content="2026-10-08T00:00:00Z" property="article:modified_time"/><meta content="2026-10-08T00:00:00Z" property="article:published_time"/><meta content="1440" property="og:image:height"/><meta content="2560" property="og:image:width"/><meta content="A sealed black lacquer case on black marble holding a glowing master reel, cyan light inside, a magenta-lit unplugged network cable coiled beside it" property="og:image:alt"/><meta content="https://myaiplug.github.io/coproducer-web/blog/local-audio-processing-for-unreleased-masters.html" property="og:url"/><meta content="en_US" property="og:locale"/><meta content="CoProducer" property="og:site_name"/><meta content="article" property="og:type"/><link href="https://myaiplug.github.io/coproducer-web/llms.txt" rel="alternate" title="llms.txt" type="text/plain"/><meta content="NoDAW Labs" name="author"/><meta content="#050308" name="theme-color"/><meta content="index,follow,max-image-preview:large" name="robots"/><meta content="local audio processing, unreleased music privacy, browser audio processing, offline audio converter, audio metadata strip, Web Audio API privacy, CoProducer, NoDAW" name="keywords"/>
+<title>Local Audio Processing for Unreleased Music, Honestly | Lacquer</title>
+<meta content="What browser-local and offline audio processing protect for unreleased music, what they don&#x27;t, the metadata that leaks anyway, and privacy claims to defend." name="description"/>
+<link href="https://myaiplug.github.io/coproducer-web/blog/local-audio-processing-for-unreleased-masters.html" rel="canonical"/>
+<meta content="Keeping an unreleased master on your own machine, honestly" property="og:title"/>
+<meta content="What browser-local and offline audio processing protect for unreleased music, what they don&#x27;t, the metadata that leaks anyway, and privacy claims to defend." property="og:description"/>
+<meta content="https://myaiplug.github.io/coproducer-web/blog/img/essays/local-audio-processing-for-unreleased-masters.jpg?v=r432" property="og:image"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;1,500;1,600&amp;family=Figtree:wght@400;500&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<link href="css/journal.css" rel="stylesheet"/>
+
+
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Keeping an unreleased master on your own machine, honestly","description":"What browser-local and offline audio processing protect for unreleased music, what they don't, the metadata that leaks anyway, and privacy claims to defend.","datePublished":"2026-10-08","dateModified":"2026-10-08","mainEntityOfPage":{"@type":"WebPage","@id":"https://myaiplug.github.io/coproducer-web/blog/local-audio-processing-for-unreleased-masters.html"},"image":{"@type":"ImageObject","url":"https://myaiplug.github.io/coproducer-web/blog/img/essays/local-audio-processing-for-unreleased-masters.jpg?v=r432","width":2560,"height":1440},"author":{"@type":"Organization","name":"NoDAW Labs","url":"https://myaiplug.github.io/coproducer-web/","logo":"https://myaiplug.github.io/coproducer-web/assets/og-default.jpg"},"publisher":{"@type":"Organization","name":"NoDAW Labs","url":"https://myaiplug.github.io/coproducer-web/","logo":"https://myaiplug.github.io/coproducer-web/assets/og-default.jpg"},"isPartOf":{"@type":"Blog","name":"Lacquer — CoProducer Journal","url":"https://myaiplug.github.io/coproducer-web/blog/index.html"},"keywords":["local audio processing","unreleased music privacy","browser audio processing","offline audio converter","audio metadata strip","Web Audio API privacy","CoProducer","NoDAW"],"wordCount":1954,"speakable":{"@type":"SpeakableSpecification","cssSelector":[".answer","h1"]}}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Does browser-based audio processing upload my file?","acceptedAnswer":{"@type":"Answer","text":"Not necessarily. Tools built on the Web Audio API can decode and render a file you select inside the browser tab, without sending it to a server for conversion. The page itself still loads over the network, so check how a specific tool works before trusting it."}},{"@type":"Question","name":"Is local audio processing completely private?","acceptedAnswer":{"@type":"Answer","text":"No. It removes the upload for the conversion, but extensions, malware, backups, and cloud-synced download folders can still copy files, and the page request is still logged like any website visit. It protects one important link, not the whole chain."}},{"@type":"Question","name":"Do audio files contain hidden metadata?","acceptedAnswer":{"@type":"Answer","text":"Yes. WAV and MP3 files can carry titles, artist names, comments, copyright lines, and encoder tags. In our synthetic test, an embargo comment survived both a 432 render and an MP3 made from it until the metadata was explicitly stripped."}},{"@type":"Question","name":"How do I remove metadata from an audio file with FFmpeg?","acceptedAnswer":{"@type":"Answer","text":"Add -map_metadata -1 to drop copied tags, and -fflags +bitexact with -flags:a +bitexact to stop FFmpeg writing its own encoder tag. This changes the container, not the audio samples."}},{"@type":"Question","name":"Can I retune audio to 432 Hz without an internet connection?","acceptedAnswer":{"@type":"Answer","text":"Yes. A 432 conversion is a resample by 432/440 and needs no server. Our demo rendered it inside a sandbox with no network at all. Offline desktop tools do the same for whole folders."}}]}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"CoProducer","item":"https://myaiplug.github.io/coproducer-web/"},{"@type":"ListItem","position":2,"name":"Lacquer Journal","item":"https://myaiplug.github.io/coproducer-web/blog/index.html"},{"@type":"ListItem","position":3,"name":"Keeping an unreleased master on your own machine, honestly","item":"https://myaiplug.github.io/coproducer-web/blog/local-audio-processing-for-unreleased-masters.html"}]}</script></head>
+<body>
+<header class="top">
+<a class="mark" href="../index.html"><em>Co</em>Producer</a>
+<nav aria-label="Primary" class="nav">
+<a href="index.html">Journal</a>
+<a href="../index.html#ab">A/B</a>
+<a href="../index.html#analyzeHome">Analyze</a>
+<a href="../guides/index.html">Guides</a>
+<a href="../pricing.html">Pricing</a>
+</nav>
+<a class="cta" href="../index.html#analyzeHome">Measure a mix</a>
+</header>
+<article class="post" id="main">
+<div class="post-hero"><img alt="A sealed black lacquer case on black marble holding a glowing master reel, cyan light inside, a magenta-lit unplugged network cable coiled beside it" src="img/essays/local-audio-processing-for-unreleased-masters.jpg?v=r432" width="2560" height="1440"/></div>
+<header>
+<p class="kicker">Privacy · 8 October 2026 · 10 min</p>
+<h1>Keeping an unreleased master on your own machine, honestly</h1>
+<p class="meta">NoDAW Labs · Lacquer Vol. 05</p>
+</header>
+<p class="answer">Local processing means the audio you select is converted on your device instead of being uploaded, which removes the biggest exposure for an unreleased master. It does not make you invisible: pages still load over the network, synced folders still upload outputs, and tags inside the file still travel. Process locally, strip metadata from delivery copies, and promise only what is true.</p>
+<p>There's a specific kind of nervous you feel holding an unreleased record. It might be a client's single under embargo, a feature verse you were trusted with, or a vocal that hasn't been registered or cleared yet. Then you want to try something small on it, like a 432 alternate or a quick check, and the tool you find wants you to upload the file first. For a job that's basically one ratio applied to some samples, that's a strange trade.</p>
+<p>This essay is about what local processing actually protects, what it doesn't, and how to talk about it without overpromising, to a client or to yourself. If you've read <a href="should-you-upload-an-unreleased-master.html">Should you upload an unreleased master to the cloud?</a>, this is the next layer down: not whether to upload, but what "it stays on your machine" really means once you look closely.</p>
+
+<h2>Why a retune doesn't need a server</h2>
+<p>Some jobs genuinely need someone else's computer. Large AI models, collaborative sessions, and human mastering engineers all qualify. A pitch-reference conversion isn't one of them. Moving 440 to 432 is a resample by 432/440. On an ordinary laptop it usually finishes before an upload of the same file would. In a browser, the <a href="https://developer.mozilla.org/en-US/docs/Web/API/Web_Audio_API">Web Audio API</a> can decode a file you choose, render it offline at a new rate, and hand you back a WAV, all inside the tab.</p>
+<p>So the honest default flips. If the operation is narrow and deterministic, the burden of proof is on the upload, not on keeping it local. Every transfer adds another copy, another storage policy to read, another retention window you don't control, and another place a file can surface before release day.</p>
+
+<h2>What "local" protects, and what it doesn't</h2>
+<p>Here's the part privacy copy usually skips. When a web tool processes audio in the browser, the bytes of the song you pick don't need to go to an application server for the conversion. That's real, and it removes the biggest single exposure. It isn't invisibility.</p>
+<ul>
+<li><strong>The page still came over the internet.</strong> The host's normal logs can record that your browser requested the page and its assets, along with the network details any website sees.</li>
+<li><strong>Your device is still your device.</strong> Browser extensions with broad permissions, malware, screen recorders, and backups all operate outside the tool's control.</li>
+<li><strong>The output lands somewhere.</strong> If your Downloads folder syncs to a cloud drive, the rendered file gets uploaded anyway, just by a different program.</li>
+<li><strong>Paying isn't processing.</strong> A checkout or license system may receive your email and a payment record. That identity doesn't need to contain the music, and it shouldn't.</li>
+</ul>
+<p>The defensible sentence is narrow: the selected audio is processed on this device, and it isn't intentionally uploaded for conversion. That's meaningful, it's checkable, and it doesn't pretend to be more.</p>
+
+<h2>Where the copies go, path by path</h2>
+<table>
+<thead><tr><th>Workflow</th><th>Audio leaves the device?</th><th>Who else may hold a copy</th><th>Works offline?</th><th>Your remaining job</th></tr></thead>
+<tbody>
+<tr><td>Upload-based online converter</td><td>Yes, by design</td><td>The service, its storage and processing vendors, per its terms</td><td>No</td><td>Read retention and training terms before uploading</td></tr>
+<tr><td>Browser-local tool (Web Audio)</td><td>No, for the conversion</td><td>Nobody, unless extensions or sync grab it</td><td>Once the page is loaded, often</td><td>Trusted browser, controlled download folder</td></tr>
+<tr><td>Offline desktop batch</td><td>No</td><td>Nobody, unless backup or sync tools copy it</td><td>Yes</td><td>Trusted install, read-only inputs, backups</td></tr>
+<tr><td>Cloud-synced output folder</td><td>Yes, after render</td><td>The sync provider</td><td>N/A</td><td>Render outside synced folders, or accept it knowingly</td></tr>
+<tr><td>Handoff by chat or email</td><td>Yes</td><td>The platform, every recipient, their devices</td><td>N/A</td><td>Use the client-approved channel, strip tags, send hashes</td></tr>
+</tbody></table>
+<p>Read the table top to bottom and something becomes obvious. Local processing fixes one link in the chain. It's an important link, but the leaks that actually hurt people tend to happen at the edges: the synced Downloads folder, the forwarded email, the file whose tags announce what it is.</p>
+
+<h2>The leak nobody checks: what's written inside the file</h2>
+<p>Audio files carry text. Titles, artist names, comments, copyright lines, and encoder names ride along in the container. DAWs and assistants fill them in helpfully, with things like "v7 for Label X" or "do not share before the 20th." Most conversion tools copy those tags forward by default, because usually that's what you want. With an unreleased record, it's the opposite of what you want. You can strip every identifying word from the file name and still send a WAV whose comment field names the label and the embargo date.</p>
+
+<h2>Proving it on the box</h2>
+<p>This script does three things with a synthetic file: a decaying 440 Hz tone generated in code, tagged like a real unreleased mix so you can see what happens to the tags. First, it renders the 432 version inside a Linux sandbox with no network at all (<code>unshare -rn</code>), and tells FFmpeg to accept only local files and pipes. Then it tries to feed the same sandboxed FFmpeg a remote URL, to show the refusal. Second, it follows the tags through a default render, an MP3 made from that render, and a render with metadata stripped. Third, it writes a short hash manifest and confirms that stripping tags didn't change a single audio sample.</p>
+<pre><code>#!/usr/bin/env python3
+&quot;&quot;&quot;11_local_private_render.py: prove a 432 render needs no network, and catch the metadata
+that quietly travels with an &quot;unreleased&quot; file. SYNTHETIC AUDIO ONLY.
+Needs: python3 + numpy, ffmpeg/ffprobe on PATH. Part 1 uses Linux `unshare -rn` (no network
+namespace); on other systems, switch the network off and run the same ffmpeg command.
+Usage: python3 11_local_private_render.py [workdir]&quot;&quot;&quot;
+import hashlib, json, os, shutil, subprocess, sys
+import numpy as np
+
+SR = 48000
+work = os.path.abspath(sys.argv[1] if len(sys.argv) &gt; 1 else &quot;private_demo&quot;)
+shutil.rmtree(work, ignore_errors=True); os.makedirs(work)
+src = os.path.join(work, &quot;client_unreleased_v7.wav&quot;)
+CHAIN = &quot;aresample=88000:resampler=soxr:precision=28,asetrate=86400,aresample=48000:resampler=soxr:precision=28&quot;
+
+def sh(cmd, **kw):
+    return subprocess.run(cmd, capture_output=True, text=True, **kw)
+
+def tags(p):
+    j = json.loads(sh([&quot;ffprobe&quot;, &quot;-v&quot;, &quot;error&quot;, &quot;-show_entries&quot;, &quot;format_tags&quot;, &quot;-of&quot;, &quot;json&quot;, p]).stdout)
+    return j.get(&quot;format&quot;, {}).get(&quot;tags&quot;, {})
+
+# a synthetic &quot;unreleased&quot; mix with the kind of tags DAWs and assistants leave behind
+t = np.arange(SR * 6) / SR
+x = (0.3 * np.sin(2 * np.pi * 440 * t) * np.exp(-((t % 1.5) * 1.2))).astype(np.float32)
+subprocess.run([&quot;ffmpeg&quot;, &quot;-y&quot;, &quot;-v&quot;, &quot;error&quot;, &quot;-f&quot;, &quot;f32le&quot;, &quot;-ar&quot;, str(SR), &quot;-ac&quot;, &quot;1&quot;, &quot;-i&quot;, &quot;-&quot;,
+                &quot;-metadata&quot;, &quot;title=SECRET SINGLE (unreleased) v7&quot;,
+                &quot;-metadata&quot;, &quot;artist=Client Artist&quot;,
+                &quot;-metadata&quot;, &quot;comment=mix v7 for Label X, embargo until 2026-11-20, do not share&quot;,
+                &quot;-metadata&quot;, &quot;copyright=Client Artist / Label X&quot;,
+                &quot;-c:a&quot;, &quot;pcm_s24le&quot;, src], input=x.tobytes(), check=True)
+
+print(&quot;1) render with the network switched off&quot;)
+offline = os.path.join(work, &quot;offline_432.wav&quot;)
+r = sh([&quot;unshare&quot;, &quot;-rn&quot;, &quot;sh&quot;, &quot;-c&quot;,
+        &quot;ip -o link show | awk &#x27;{print $2, $9}&#x27;; &quot;
+        f&quot;ffmpeg -y -v error -protocol_whitelist file,pipe -i &#x27;{src}&#x27; -af &#x27;{CHAIN}&#x27; -c:a pcm_s24le &#x27;{offline}&#x27; &quot;
+        &quot;&amp;&amp; echo render: ok&quot;])
+print(&quot;   interfaces inside sandbox:&quot;, &quot; | &quot;.join(l for l in r.stdout.splitlines() if not l.startswith(&quot;render&quot;)))
+print(&quot;  &quot;, [l for l in r.stdout.splitlines() if l.startswith(&quot;render&quot;)][0], &quot;| stderr:&quot;, r.stderr.strip() or &quot;none&quot;)
+r = sh([&quot;unshare&quot;, &quot;-rn&quot;, &quot;ffmpeg&quot;, &quot;-v&quot;, &quot;error&quot;, &quot;-protocol_whitelist&quot;, &quot;file,pipe&quot;,
+        &quot;-i&quot;, &quot;https://example.com/upload.wav&quot;, &quot;-f&quot;, &quot;null&quot;, &quot;-&quot;])
+print(&quot;   same sandbox, remote URL as input:&quot;, (r.stderr.strip().splitlines() or [&quot;(no error)&quot;])[0].split(&quot;] &quot;)[-1])
+
+print(&quot;\n2) what travels inside the file&quot;)
+default = os.path.join(work, &quot;default_432.wav&quot;)
+sh([&quot;ffmpeg&quot;, &quot;-y&quot;, &quot;-v&quot;, &quot;error&quot;, &quot;-i&quot;, src, &quot;-af&quot;, CHAIN, &quot;-c:a&quot;, &quot;pcm_s24le&quot;, default], check=True)
+mp3 = os.path.join(work, &quot;default_432.mp3&quot;)
+sh([&quot;ffmpeg&quot;, &quot;-y&quot;, &quot;-v&quot;, &quot;error&quot;, &quot;-i&quot;, default, &quot;-c:a&quot;, &quot;libmp3lame&quot;, &quot;-b:a&quot;, &quot;320k&quot;, mp3], check=True)
+clean = os.path.join(work, &quot;clean_432.wav&quot;)
+sh([&quot;ffmpeg&quot;, &quot;-y&quot;, &quot;-v&quot;, &quot;error&quot;, &quot;-i&quot;, src, &quot;-map_metadata&quot;, &quot;-1&quot;, &quot;-fflags&quot;, &quot;+bitexact&quot;,
+    &quot;-flags:a&quot;, &quot;+bitexact&quot;, &quot;-af&quot;, CHAIN, &quot;-c:a&quot;, &quot;pcm_s24le&quot;, clean], check=True)
+for label, p in ((&quot;source&quot;, src), (&quot;default render&quot;, default), (&quot;mp3 of render&quot;, mp3), (&quot;stripped render&quot;, clean)):
+    tg = tags(p)
+    print(f&quot;   {label:16s}: {len(tg)} tags&quot;)
+    for k, v in sorted(tg.items()):
+        print(f&quot;      {k:10s} = {v}&quot;)
+
+print(&quot;\n3) handoff manifest (hash what you send, so the receiver can verify it arrived intact)&quot;)
+for p in (src, clean):
+    h = hashlib.sha256(open(p, &quot;rb&quot;).read()).hexdigest()
+    print(f&quot;   {h[:20]}...  {os.path.getsize(p):&gt;8d} B  {os.path.basename(p)}&quot;)
+same_audio = sh([&quot;ffmpeg&quot;, &quot;-v&quot;, &quot;error&quot;, &quot;-i&quot;, default, &quot;-f&quot;, &quot;md5&quot;, &quot;-&quot;]).stdout.strip() == \
+             sh([&quot;ffmpeg&quot;, &quot;-v&quot;, &quot;error&quot;, &quot;-i&quot;, clean, &quot;-f&quot;, &quot;md5&quot;, &quot;-&quot;]).stdout.strip()
+print(&quot;   audio identical between default and stripped render:&quot;, same_audio)</code></pre>
+<p>Unedited output:</p>
+<pre><code>1) render with the network switched off
+   interfaces inside sandbox: lo: DOWN
+   render: ok | stderr: none
+   same sandbox, remote URL as input: Protocol &#x27;https&#x27; not on whitelist &#x27;file,pipe&#x27;!
+
+2) what travels inside the file
+   source          : 5 tags
+      artist     = Client Artist
+      comment    = mix v7 for Label X, embargo until 2026-11-20, do not share
+      copyright  = Client Artist / Label X
+      encoder    = Lavf61.7.103
+      title      = SECRET SINGLE (unreleased) v7
+   default render  : 5 tags
+      artist     = Client Artist
+      comment    = mix v7 for Label X, embargo until 2026-11-20, do not share
+      copyright  = Client Artist / Label X
+      encoder    = Lavf61.7.103
+      title      = SECRET SINGLE (unreleased) v7
+   mp3 of render   : 5 tags
+      artist     = Client Artist
+      comment    = mix v7 for Label X, embargo until 2026-11-20, do not share
+      copyright  = Client Artist / Label X
+      encoder    = Lavf61.7.103
+      title      = SECRET SINGLE (unreleased) v7
+   stripped render : 0 tags
+
+3) handoff manifest (hash what you send, so the receiver can verify it arrived intact)
+   75aa39c178c3534007fa...    864262 B  client_unreleased_v7.wav
+   382857b0c59010a731c6...    880068 B  clean_432.wav
+   audio identical between default and stripped render: True</code></pre>
+
+<h2>What that output means for a real session</h2>
+<p><strong>The render finished with the only network interface down.</strong> Inside the sandbox, the loopback interface was the only one, and it was down. The 432 render still completed with no errors. That's the cleanest possible evidence that this job never needed the internet. On a Mac or Windows machine you can run the same test the low-tech way: turn Wi-Fi off, render, check the file.</p>
+<p><strong>The whitelist turned away a remote input.</strong> <code>-protocol_whitelist file,pipe</code> made FFmpeg refuse an https address outright, before it even tried the network. It's a small belt-and-braces flag for scripts that handle sensitive material, because it means a typo or a pasted URL can't quietly make a local job reach out.</p>
+<p><strong>The tags survived everything.</strong> The default render carried all five tags, including the embargo comment. The MP3 made from it carried all five too, even though it was a separate encode of a separate file. That's the point to remember: conversion doesn't launder metadata. Only the explicit strip, <code>-map_metadata -1</code> plus the bitexact flags (which also drop FFmpeg's own encoder tag), produced a file with zero tags.</p>
+<p><strong>The audio didn't change when the tags did.</strong> The default and stripped renders have identical decoded audio, checked by an MD5 of the samples, not the file. Stripping is a container change, not a sound change, so there's no quality excuse for skipping it.</p>
+<p><strong>The hashes are for the person on the other end.</strong> Send the SHA-256 alongside the file through a different channel. The receiver can confirm they got exactly what you sent, not a re-encode some chat app made "to save space." It also gives your notes a fingerprint that says which file left the room on which day.</p>
+
+<h2>Offline goes one step further</h2>
+<p>A browser tool removes the upload. A downloadable offline tool also removes the dependency on a live web page. It works on a plane, behind a studio firewall, on a machine that's never logged into anything, and it keeps working if the website changes or disappears. For catalog work, it also keeps the files right next to the storage they already live on instead of shuttling them anywhere. That ties into why <a href="local-tools-beat-upload-queues.html">local tools beat upload queues</a> on speed as well as privacy.</p>
+<p>It still isn't a security system. Offline means nobody else is involved in the conversion. It doesn't mean you have backups, permission, malware protection, or a sane delivery plan. Those were always your job.</p>
+
+<h2>A private workflow for someone else's record</h2>
+<ol>
+<li><strong>Confirm you're allowed.</strong> Before any tool question, make sure you have permission to process this audio. A private test of someone else's unreleased master is still their master.</li>
+<li><strong>Work from a copy.</strong> Keep the original where it lives and process a duplicate in a local, non-synced working folder. Check your Downloads and Desktop sync settings once and you'll know for good.</li>
+<li><strong>Use a trusted environment.</strong> An updated browser and a short list of extensions, ideally a clean profile for client work. Close the tab full of random plugins before you drop in an embargoed file.</li>
+<li><strong>Render locally, strip tags on delivery copies.</strong> Keep full internal tags in your archive copy if they help you. Strip them from anything that leaves the room, unless the client asked for specific tags, and then write only those.</li>
+<li><strong>Hand off through the approved channel.</strong> Whatever the client or label specified, with a hash manifest sent separately.</li>
+<li><strong>Clean up.</strong> Delete temp renders and stray exports you don't need. An old test file in a forgotten folder is how a record leaks a year later.</li>
+</ol>
+
+<h2>How to say it without overpromising</h2>
+<p>Privacy language gets a studio in trouble when it's broader than the truth. "Your music never touches the internet" is a promise about your whole device, network, and future behavior, and nobody can make it. "This tool processes the selected audio on your device and doesn't upload it for conversion" is a promise about one code path, and you can stand behind it. The same goes for what you tell a client: "I render alternates locally, strip metadata from delivery copies, and send through the channel you specified." Specific beats sweeping, every time.</p>
+<p>None of this needs to be paranoid. It's the same habit as checking true peak before delivery: a few small, boring steps that make the bad day much less likely. The unreleased record is often the most valuable file in the room. It deserves a workflow that treats it that way.</p>
+<aside class="aside"><a href="https://retune-432.vercel.app">reTUNE[432]</a> follows that pattern for the 440-to-432 job: the browser engine decodes and renders the file you pick in the tab, and the full system adds an offline Windows batch engine for complete files and folders, no catalog account needed.</aside>
+<dl class="faq">
+<dt>Does browser-based audio processing upload my file?</dt><dd>Not necessarily. Tools built on the Web Audio API can decode and render a file you select inside the browser tab, without sending it to a server for conversion. The page itself still loads over the network, so check how a specific tool works before trusting it.</dd>
+<dt>Is local audio processing completely private?</dt><dd>No. It removes the upload for the conversion, but extensions, malware, backups, and cloud-synced download folders can still copy files, and the page request is still logged like any website visit. It protects one important link, not the whole chain.</dd>
+<dt>Do audio files contain hidden metadata?</dt><dd>Yes. WAV and MP3 files can carry titles, artist names, comments, copyright lines, and encoder tags. In our synthetic test, an embargo comment survived both a 432 render and an MP3 made from it until the metadata was explicitly stripped.</dd>
+<dt>How do I remove metadata from an audio file with FFmpeg?</dt><dd>Add -map_metadata -1 to drop copied tags, and -fflags +bitexact with -flags:a +bitexact to stop FFmpeg writing its own encoder tag. This changes the container, not the audio samples.</dd>
+<dt>Can I retune audio to 432 Hz without an internet connection?</dt><dd>Yes. A 432 conversion is a resample by 432/440 and needs no server. Our demo rendered it inside a sandbox with no network at all. Offline desktop tools do the same for whole folders.</dd>
+</dl>
+<nav aria-label="Related essays" class="related-essays" style="margin:48px 0 24px;padding-top:24px;border-top:1px solid rgba(196,165,116,.32)"><h2>Related in Lacquer</h2><ul>
+<li><a href="should-you-upload-an-unreleased-master.html">Should you upload an unreleased master to the cloud?</a></li>
+<li><a href="local-tools-beat-upload-queues.html">Local tools beat upload queues</a></li>
+<li><a href="how-to-make-a-432-hz-alternate-master.html">A 432 alternate master should never cost you the original</a></li>
+<li><a href="432-hz-release-checklist.html">Before a 432 version ships: the release checklist</a></li>
+</ul></nav>
+</article>
+<section class="comments" data-comments="" data-thread="r432-local"></section>
+<script src="js/studio.js" type="module"></script>
+<script src="js/comments.js" type="module"></script>
+<footer class="site"><span>Lacquer · CoProducer Journal</span><span><a href="index.html">All essays</a></span></footer>
+</body>
+</html>

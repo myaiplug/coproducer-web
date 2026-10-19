@@ -1,6 +1,126 @@
 # CoProducer — full assistant digest
 Base: https://myaiplug.github.io/coproducer-web/
-Updated: 2026-10-07
+Updated: 2026-10-18
+
+## Parallel compression sounds thin? Check the latency first
+URL: https://myaiplug.github.io/coproducer-web/blog/parallel-compression-sounds-thin-check-latency.html
+Parallel compression making drums or vocals thinner? The parallel bus is probably arriving late. Find the offset, fix the timing, then dial it in.
+Keywords: parallel compression, parallel compression sounds thin, New York compression, plugin delay compensation, comb filtering, null test, phase drum bus, latency, CoProducer, NoDAW
+
+## Why your gapless album gets gaps after MP3 or AAC
+URL: https://myaiplug.github.io/coproducer-web/blog/gapless-album-gaps-after-mp3-or-aac.html
+MP3 and AAC encoders add silence at the start and padding at the end of every file. Why segues break, what we measured, and how to stay seamless.
+Keywords: gapless playback, gap between tracks, encoder delay, MP3 gapless, AAC priming, LAME tag, album segue, continuous mix, DDP, NoDAW
+
+## Why your 808 disappears on phone speakers
+URL: https://myaiplug.github.io/coproducer-web/blog/808-disappears-on-phone-speakers.html
+Phone speakers barely play below 200–300 Hz, so a clean 808 vanishes. Add a parallel harmonic layer, then check it through a phone filter.
+Keywords: 808 not audible on phone, 808 phone speakers, 808 harmonics, parallel saturation 808, missing fundamental, small speaker translation, trap mixing, low end translation, CoProducer, ScrewAI, NoDAW
+
+## How much headroom to leave for mastering (and why −6 dB isn’t the point)
+URL: https://myaiplug.github.io/coproducer-web/blog/how-much-headroom-to-leave-for-mastering.html
+Headroom for mastering means no clipping and no mix-bus limiter. Peaks near −6 to −3 dBFS in 24-bit or float is convention; clipping can’t be undone.
+Keywords: headroom for mastering, how much headroom mastering, -6 dB headroom, premaster, mix bus limiter, 32-bit float export, clipping, sending mix to mastering, CoProducer, NoDAW
+
+## Integrated LUFS hides how loud the chorus actually is
+URL: https://myaiplug.github.io/coproducer-web/blog/integrated-lufs-hides-the-chorus.html
+A master can read −14 LUFS integrated while its chorus runs 3–4 LU hotter. Measure integrated, short-term and momentary on one bounce first.
+Keywords: integrated LUFS, short-term LUFS, momentary loudness, max short-term, BS.1770 gating, EBU R128, chorus loudness, ffmpeg ebur128, CoProducer, NoDAW
+
+## Don’t match a streamed reference
+URL: https://myaiplug.github.io/coproducer-web/blog/dont-match-a-streamed-reference.html
+A streamed reference was already turned down or up by the platform. Match it and you inherit an offset you never measured. Compare lossless files.
+Keywords: reference track, streamed reference, loudness normalization, Spotify normalization, Sound Check, YouTube content loudness, loudness matching, reference mastering, CoProducer, NoDAW
+
+## Short-term LUFS is not your target
+URL: https://myaiplug.github.io/coproducer-web/blog/short-term-lufs-is-not-your-target.html
+Stores use integrated LUFS over the whole file. A hook at −9 short-term can still miss −14 integrated. Read both meters, then decide.
+Keywords: short-term LUFS, integrated LUFS, momentary LUFS, streaming loudness, EBU R128, CoProducer, mastering
+
+## Turn the mix down before you limit
+URL: https://myaiplug.github.io/coproducer-web/blog/turn-the-mix-down-before-you-limit.html
+If the mix already hits 0 dBFS into the limiter, extra loudness is distortion you can’t take back. Pull the bus down 3–6 dB, then limit.
+Keywords: gain staging, limiter headroom, mix bus level, true peak, clips, mastering, CoProducer, hip-hop, EDM
+
+## What 432 Hz actually changes in a finished master
+URL: https://myaiplug.github.io/coproducer-web/blog/what-432-hz-actually-changes-in-a-master.html
+Retuning a master from 440 to 432 Hz scales every frequency by 0.981818 (−31.77 cents) and, with resampling, adds 1.85% length. Measured on real renders.
+Keywords: 432 Hz, 440 vs 432, what does 432 Hz do to music, retune master, cents, resampling, BPM, LUFS, reTUNE[432], NoDAW
+
+## Resampling, pitch shifting, and tempo change are three different jobs
+URL: https://myaiplug.github.io/coproducer-web/blog/resampling-vs-pitch-shift-vs-tempo.html
+Resampling moves pitch and time together, pitch shifting rebuilds time, tempo change keeps pitch. Seven FFmpeg renders measured for pitch, BPM, and smearing.
+Keywords: resampling vs pitch shifting, time stretch, atempo, rubberband ffmpeg, asetrate, 432 Hz conversion, transient smearing, BPM drift, NoDAW
+
+## Concert pitch before A=440: a history that never stood still
+URL: https://myaiplug.github.io/coproducer-web/blog/concert-pitch-history-before-a440.html
+Before A=440, concert pitch ran from about 415 to 457 Hz. The dated record from Shore's 1711 fork to ISO 16, the temperature fights, and the 432 math.
+Keywords: history of 440 Hz tuning, concert pitch history, A440, diapason normal 435, Stuttgart pitch, ISO 16, 432 Hz history, tuning fork 1711
+
+## The 432 Hz conspiracy theories, checked against the record
+URL: https://myaiplug.github.io/coproducer-web/blog/432-hz-conspiracy-theories-fact-check.html
+Did the Nazis or the Rockefellers change music from 432 to 440 Hz? Where each 432 rumor started, what the dated record shows, and how to read health studies.
+Keywords: who changed 432 Hz to 440 Hz, 432 Hz conspiracy, Goebbels 440 Hz, 432 Hz Nazi myth, 432 Hz Rockefeller, 432 Hz health study, A440 history, C=256 scientific pitch
+
+## How to run a 432 vs 440 listening test you can trust
+URL: https://myaiplug.github.io/coproducer-web/blog/432-vs-440-blind-listening-test.html
+432 Hz vs 440 Hz, tested fairly: level-match within 0.1 LU, switch at the same note, run a blind ABX round, and score it so placebo and loudness can't win.
+Keywords: 432 Hz vs 440 Hz, 432 vs 440 listening test, blind ABX test, level matching, A/B comparison audio, 432 Hz difference, loudness bias
+
+## Which songs reveal a 432 Hz retune, and which hide it
+URL: https://myaiplug.github.io/coproducer-web/blog/songs-that-reveal-a-432-hz-retune.html
+The best songs to test 432 Hz have exposed vocals, sustained chords and piano tails. Dense mixes and drums hide it. A measured way to build a test set.
+Keywords: songs to test 432 Hz, songs in 432 Hz, 432 Hz test tracks, best music for 432 Hz, 432 Hz vocals, 432 Hz 808, 432 Hz comparison playlist
+
+## 432 Hz mastering: LUFS and true peak after a retune
+URL: https://myaiplug.github.io/coproducer-web/blog/lufs-and-true-peak-after-432-retune.html
+A 432 retune barely moves LUFS, but resampling can turn hidden inter-sample peaks into real overs. Render in float, measure, then normalize in two passes.
+Keywords: 432 Hz mastering, LUFS after retuning, true peak 432 Hz, loudnorm two pass, 432 Hz loudness, inter-sample peaks resampling, -14 LUFS
+
+## A 432 alternate master should never cost you the original
+URL: https://myaiplug.github.io/coproducer-web/blog/how-to-make-a-432-hz-alternate-master.html
+Build a 432 Hz alternate master beside the approved 440 file: read-only source, exact-ratio render, names, notes, runtime and ISRC checks, and full-file QC.
+Keywords: 432 Hz alternate master, 432 Hz version, alternate master workflow, 440 to 432, ISRC alternate version, file naming, CoProducer, NoDAW
+
+## Batch retune a folder to 432 Hz without damaging a master
+URL: https://myaiplug.github.io/coproducer-web/blog/batch-retune-a-folder-to-432-hz-safely.html
+A safe batch workflow for retuning a folder to 432 Hz: preflight, read-only inputs, temp-file renders, exact per-source ratios, error logs, restartable runs.
+Keywords: batch convert to 432 Hz, 432 Hz folder conversion, ffmpeg batch retune, safe batch audio processing, 432 Hz Windows batch, CoProducer, NoDAW
+
+## 432, 435, 442 and the reference pitch you actually started from
+URL: https://myaiplug.github.io/coproducer-web/blog/432-vs-435-vs-442-hz-reference-pitch-guide.html
+432, 435, 438, 442, and custom A4 references compared: exact ratios, cents, runtime and BPM changes, documented history, and why the source reference matters.
+Keywords: alternative tuning frequencies, 432 vs 435 Hz, 442 Hz to 432 Hz, A4 reference pitch, cents formula, diapason normal 435, CoProducer, NoDAW
+
+## Keeping an unreleased master on your own machine, honestly
+URL: https://myaiplug.github.io/coproducer-web/blog/local-audio-processing-for-unreleased-masters.html
+What browser-local and offline audio processing protect for unreleased music, what they don't, the metadata that leaks anyway, and privacy claims to defend.
+Keywords: local audio processing, unreleased music privacy, browser audio processing, offline audio converter, audio metadata strip, Web Audio API privacy, CoProducer, NoDAW
+
+## Before a 432 version ships: the release checklist
+URL: https://myaiplug.github.io/coproducer-web/blog/432-hz-release-checklist.html
+Before releasing a 432 Hz version: rights, the right source reference, a QC gate for clipping and true peak, runtime fixes, honest copy, an archive.
+Keywords: 432 Hz release checklist, release 432 Hz version, 432 Hz alternate master QC, true peak after retuning, 432 Hz metadata, CoProducer, NoDAW
+
+## Splitting stems from YouTube audio you own starts with the cleanest copy
+URL: https://myaiplug.github.io/coproducer-web/blog/split-stems-from-youtube-audio-you-own.html
+Want stems from a song you uploaded to YouTube? The copy you feed the separator sets the ceiling. Find the first-generation file, then split locally.
+Keywords: split stems from youtube, stem separation, own music, lossless source, AAC, generation loss, Demucs, MDX-Net, DeepSplit, Lacquer
+
+## Demucs vs MDX-Net: what each separator gets wrong, and why
+URL: https://myaiplug.github.io/coproducer-web/blog/demucs-vs-mdx-net-stem-separation-compared.html
+Demucs vs MDX-Net from the published benchmarks and a runnable window test: who wins drums and bass, who wins vocals, and how to hear it.
+Keywords: Demucs vs MDX-Net, stem separation models, Hybrid Demucs, HT Demucs, KUIELab-MDX-Net, SDR, SI-SDR, spectrogram vs waveform, DeepSplit, Lacquer
+
+## Before a cloud stem splitter gets your unreleased song, read four clauses
+URL: https://myaiplug.github.io/coproducer-web/blog/cloud-stem-splitter-privacy-unreleased-music.html
+Uploading an unreleased track to a cloud stem splitter is a rights decision. Four terms clauses to read, and how to prove a split stays local.
+Keywords: cloud stem splitter privacy, unreleased music, terms of service, audio fingerprint, local stem separation, offline, DeepSplit, Lacquer
+
+## Sampling from separated stems: chop around the bleed, not through it
+URL: https://myaiplug.github.io/coproducer-web/blog/sampling-from-separated-stems-workflow.html
+A producer’s workflow for sampling from AI-separated stems: audit the bleed, restore the attack, null-test, match key, clear what you don’t own.
+Keywords: sampling from stems, stem separation for producers, drum stem bleed, transient restore, null test, key match, sample clearance, DeepSplit, Lacquer
 
 ## Rumble you can’t hear is eating your limiter
 URL: https://myaiplug.github.io/coproducer-web/blog/subsonic-rumble-steals-limiter-headroom.html

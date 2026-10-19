@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1" name="viewport"/><meta content="https://myaiplug.github.io/coproducer-web/blog/img/essays/batch-retune-a-folder-to-432-hz-safely.jpg?v=r432" name="twitter:image"/><meta content="A safe batch workflow for retuning a folder to 432 Hz: preflight, read-only inputs, temp-file renders, exact per-source ratios, error logs, restartable runs." name="twitter:description"/><meta content="Batch retune a folder to 432 Hz without damaging a master" name="twitter:title"/><meta content="summary_large_image" name="twitter:card"/><meta content="2026-10-08T00:00:00Z" property="article:modified_time"/><meta content="2026-10-08T00:00:00Z" property="article:published_time"/><meta content="1440" property="og:image:height"/><meta content="2560" property="og:image:width"/><meta content="A row of identical lacquered master tapes on black marble feeding one cyan-lit machine, with a single magenta-lit tape set aside" property="og:image:alt"/><meta content="https://myaiplug.github.io/coproducer-web/blog/batch-retune-a-folder-to-432-hz-safely.html" property="og:url"/><meta content="en_US" property="og:locale"/><meta content="CoProducer" property="og:site_name"/><meta content="article" property="og:type"/><link href="https://myaiplug.github.io/coproducer-web/llms.txt" rel="alternate" title="llms.txt" type="text/plain"/><meta content="NoDAW Labs" name="author"/><meta content="#050308" name="theme-color"/><meta content="index,follow,max-image-preview:large" name="robots"/><meta content="batch convert to 432 Hz, 432 Hz folder conversion, ffmpeg batch retune, safe batch audio processing, 432 Hz Windows batch, CoProducer, NoDAW" name="keywords"/>
+<title>How to Batch Convert a Music Folder to 432 Hz Safely | Lacquer</title>
+<meta content="A safe batch workflow for retuning a folder to 432 Hz: preflight, read-only inputs, temp-file renders, exact per-source ratios, error logs, restartable runs." name="description"/>
+<link href="https://myaiplug.github.io/coproducer-web/blog/batch-retune-a-folder-to-432-hz-safely.html" rel="canonical"/>
+<meta content="Batch retune a folder to 432 Hz without damaging a master" property="og:title"/>
+<meta content="A safe batch workflow for retuning a folder to 432 Hz: preflight, read-only inputs, temp-file renders, exact per-source ratios, error logs, restartable runs." property="og:description"/>
+<meta content="https://myaiplug.github.io/coproducer-web/blog/img/essays/batch-retune-a-folder-to-432-hz-safely.jpg?v=r432" property="og:image"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;1,500;1,600&amp;family=Figtree:wght@400;500&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<link href="css/journal.css" rel="stylesheet"/>
+
+
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Batch retune a folder to 432 Hz without damaging a master","description":"A safe batch workflow for retuning a folder to 432 Hz: preflight, read-only inputs, temp-file renders, exact per-source ratios, error logs, restartable runs.","datePublished":"2026-10-08","dateModified":"2026-10-08","mainEntityOfPage":{"@type":"WebPage","@id":"https://myaiplug.github.io/coproducer-web/blog/batch-retune-a-folder-to-432-hz-safely.html"},"image":{"@type":"ImageObject","url":"https://myaiplug.github.io/coproducer-web/blog/img/essays/batch-retune-a-folder-to-432-hz-safely.jpg?v=r432","width":2560,"height":1440},"author":{"@type":"Organization","name":"NoDAW Labs","url":"https://myaiplug.github.io/coproducer-web/","logo":"https://myaiplug.github.io/coproducer-web/assets/og-default.jpg"},"publisher":{"@type":"Organization","name":"NoDAW Labs","url":"https://myaiplug.github.io/coproducer-web/","logo":"https://myaiplug.github.io/coproducer-web/assets/og-default.jpg"},"isPartOf":{"@type":"Blog","name":"Lacquer — CoProducer Journal","url":"https://myaiplug.github.io/coproducer-web/blog/index.html"},"keywords":["batch convert to 432 Hz","432 Hz folder conversion","ffmpeg batch retune","safe batch audio processing","432 Hz Windows batch","CoProducer","NoDAW"],"wordCount":2096,"speakable":{"@type":"SpeakableSpecification","cssSelector":[".answer","h1"]}}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Can I batch convert a whole music folder to 432 Hz at once?","acceptedAnswer":{"@type":"Answer","text":"Yes, but approve one representative file first, work from a read-only copy of the folder, and write outputs to a new folder. Verify input and output counts, durations, sample rates, and channels before treating the batch as finished."}},{"@type":"Question","name":"How do I know a batch 432 conversion worked?","acceptedAnswer":{"@type":"Answer","text":"In classic resampling mode, each output should be the input duration divided by 0.981818, with the same sample rate and channel count. Reconcile input, output, and error counts against a log, then listen to the loudest, quietest, longest, shortest, widest, and most transient-heavy files."}},{"@type":"Question","name":"What happens if I retune a file that is already at 432 Hz?","acceptedAnswer":{"@type":"Answer","text":"It drops another 31.77 cents, to about 424 Hz. Batch tools can't hear that, so keep a list of each file's real source reference and refuse files that are already at the target."}},{"@type":"Question","name":"What if some files were recorded at 442 Hz instead of 440?","acceptedAnswer":{"@type":"Answer","text":"Use the documented source in the ratio: 432 divided by 442 is 0.977376, about −39.62 cents. Applying the 440 recipe would land that file near 434 Hz instead of 432."}},{"@type":"Question","name":"Is it safe to restart a batch job after a crash?","acceptedAnswer":{"@type":"Answer","text":"It is if every render writes to a temporary file and is renamed only after it passes checks, and existing outputs are skipped. Then a restart cleans partial files and doesn't overwrite or double-convert finished work."}}]}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"CoProducer","item":"https://myaiplug.github.io/coproducer-web/"},{"@type":"ListItem","position":2,"name":"Lacquer Journal","item":"https://myaiplug.github.io/coproducer-web/blog/index.html"},{"@type":"ListItem","position":3,"name":"Batch retune a folder to 432 Hz without damaging a master","item":"https://myaiplug.github.io/coproducer-web/blog/batch-retune-a-folder-to-432-hz-safely.html"}]}</script></head>
+<body>
+<header class="top">
+<a class="mark" href="../index.html"><em>Co</em>Producer</a>
+<nav aria-label="Primary" class="nav">
+<a href="index.html">Journal</a>
+<a href="../index.html#ab">A/B</a>
+<a href="../index.html#analyzeHome">Analyze</a>
+<a href="../guides/index.html">Guides</a>
+<a href="../pricing.html">Pricing</a>
+</nav>
+<a class="cta" href="../index.html#analyzeHome">Measure a mix</a>
+</header>
+<article class="post" id="main">
+<div class="post-hero"><img alt="A row of identical lacquered master tapes on black marble feeding one cyan-lit machine, with a single magenta-lit tape set aside" src="img/essays/batch-retune-a-folder-to-432-hz-safely.jpg?v=r432" width="2560" height="1440"/></div>
+<header>
+<p class="kicker">Batch · 8 October 2026 · 11 min</p>
+<h1>Batch retune a folder to 432 Hz without damaging a master</h1>
+<p class="meta">NoDAW Labs · Lacquer Vol. 05</p>
+</header>
+<p class="answer">To batch retune a folder to 432 Hz safely, approve one file first, work from a read-only copy of the inputs, and render into a new target-specific folder. Write each file to a temp name before an atomic rename, use the documented source reference for every file, log every result, and verify counts and durations before you call it finished.</p>
+<p>Converting one song to 432 is a listening decision. Converting a folder of forty is an operations job, and operations jobs fail in boring ways. A typo in the output path. A previously retuned master that gets retuned again. A half-downloaded file that kills the queue at track 31 while you're asleep. A command that "worked" but quietly wrote 44.1 kHz files into a 48 kHz delivery. None of those are audio problems. They're process problems, and a batch just makes them faster.</p>
+<p>I like to think of a batch as a machine that repeats your judgment forty times. If the judgment is right, you saved an afternoon. If it's wrong, you now have forty wrong files that all look plausible. So the work comes before you press go: decide once, prove it on one file, then build the job so it can't hurt the originals and can be run again without making things worse.</p>
+
+<h2>Approve one file before you touch the folder</h2>
+<p>Pick a representative track and settle three things on it: the render mode (classic resample, where pitch and time move together, or a time-preserving shift), the naming pattern, and the loudness rule. Most of the time the loudness rule should be "none." Listen to that one file end to end. If you're building an alternate release, the process in <a href="how-to-make-a-432-hz-alternate-master.html">A 432 alternate master should never cost you the original</a> is the template. Only when the one file is approved does it become a recipe.</p>
+<p>Then write the recipe down before the batch runs, not after: input folder, output folder, source reference, target, mode, loudness option, date. You'll want it when someone asks why track nine sounds different. Or when you need to re-run the job six months from now on a new machine.</p>
+
+<h2>Preflight: know what's actually in the folder</h2>
+<p>Real folders are messy. Full mixes sit next to instrumentals, stems, MP3 previews, a <code>.part</code> file from an interrupted download, and a temp file your DAW forgot to clean up. Before anything renders, look at every file and decide whether it belongs in this job.</p>
+<ul>
+<li><strong>Formats and rates.</strong> A folder mixing 44.1 and 48 kHz is fine, as long as each output keeps its own rate. A batch that silently forces everything to one rate is a delivery bug. <a href="sample-rate-and-bit-depth-for-delivery.html">Sample rate and bit depth are delivery hygiene</a> for a reason.</li>
+<li><strong>Channel layouts.</strong> A mono demo should come out mono, not as fake stereo, and definitely not as one channel dropped.</li>
+<li><strong>Source reference.</strong> This is the one that bites. Don't assume every file is at 440. An orchestral recording may have been made against a higher A. A file somebody already retuned is sitting at 432. The batch can't hear that, and the filename usually won't say. Write the real reference for every exception into a small sidecar list. Files that are already at the target get refused, not retuned again.</li>
+<li><strong>Disk space.</strong> Lossless output is big, and a classic retune is 1.85% longer than its source. Predict the output size and compare it to free space before you start, not at file 38.</li>
+</ul>
+
+<h2>Make the job impossible to hurt the originals</h2>
+<p>Three rules do most of the protecting.</p>
+<p><strong>Inputs are read-only.</strong> Work from a copy of the source folder, and set that copy read-only. If any step tries to write there, the operating system stops it. Never point a batch at the only copy of a client catalog.</p>
+<p><strong>Outputs go to a new, target-specific folder.</strong> Something like <code>OUTPUT_432_RAW</code>, so nobody mistakes it for a loudness-processed delivery. Keep each base name and add a clear suffix, so <code>Song One.wav</code> becomes <code>Song One_432.wav</code>. If the output already exists, skip it or version it. Never overwrite it.</p>
+<p><strong>Every render writes to a temp file first.</strong> FFmpeg writes <code>Song One_432.wav.part</code>. The script checks it, and only then renames it to the real name in one atomic step. If the power cuts mid-render, what's left is a <code>.part</code> file the next run knows to delete, never a truncated WAV with a legitimate-looking name. That one habit is what makes a job safe to restart. Engineers call this property idempotent: running it again doesn't damage finished work or stack conversions.</p>
+
+<h2>A batch you can actually run</h2>
+<p>This script builds a deliberately messy synthetic folder: tones generated in code, so it's safe to share and easy to measure. There's a 48 kHz stereo song, a 44.1 kHz club mix with parentheses in the name, a mono demo, a file with an accented name, a recording made against A=442, a master that was already retuned to 432, a corrupt "partial download," a temp file, and a stale <code>.part</code> left over from a fake power cut. Then it runs the same batch twice.</p>
+<p>The filter chain resamples up to 200 times the source reference (88,000 for a 440 source, 88,400 for 442), relabels it as 200 times the target (86,400), and comes back down to each file's own rate. That makes the ratio exact for any whole-number reference, and it keeps 44.1 kHz files at 44.1.</p>
+<pre><code>#!/usr/bin/env python3
+&quot;&quot;&quot;09_safe_batch.py: retune a folder to A=432 without ever risking the inputs.
+Preflight -&gt; read-only inputs -&gt; temp-file renders -&gt; atomic rename -&gt; CSV log -&gt; verify -&gt; rerun safely.
+SYNTHETIC AUDIO ONLY: the input folder is generated below, including deliberately bad files.
+Needs: python3 + numpy, ffmpeg/ffprobe on PATH.  Usage: python3 09_safe_batch.py [workdir]&quot;&quot;&quot;
+import csv, json, math, os, shutil, stat, subprocess, sys
+import numpy as np
+
+TARGET = 432
+work = os.path.abspath(sys.argv[1] if len(sys.argv) &gt; 1 else &quot;batch_demo&quot;)
+IN, OUT = os.path.join(work, &quot;INPUT_COPY&quot;), os.path.join(work, &quot;OUTPUT_432_RAW&quot;)
+LOG = os.path.join(work, &quot;batch_log.csv&quot;)
+
+def sh(cmd, **kw):
+    return subprocess.run(cmd, capture_output=True, text=True, **kw)
+
+def probe(p):
+    r = sh([&quot;ffprobe&quot;, &quot;-v&quot;, &quot;error&quot;, &quot;-show_streams&quot;, &quot;-show_format&quot;, &quot;-of&quot;, &quot;json&quot;, p])
+    if r.returncode:
+        return None
+    j = json.loads(r.stdout)
+    a = [s for s in j.get(&quot;streams&quot;, []) if s.get(&quot;codec_type&quot;) == &quot;audio&quot;]
+    if not a or &quot;duration&quot; not in j.get(&quot;format&quot;, {}):
+        return None
+    return dict(dur=float(j[&quot;format&quot;][&quot;duration&quot;]), rate=int(a[0][&quot;sample_rate&quot;]), ch=a[0][&quot;channels&quot;])
+
+def make_inputs():
+    if os.path.isdir(work):
+        for r, ds, fs in os.walk(work):
+            for x in ds + fs:
+                os.chmod(os.path.join(r, x), 0o755)
+        shutil.rmtree(work)
+    os.makedirs(IN); os.makedirs(OUT)
+    def tone(name, secs, rate, ch, a4=440.0):
+        t = np.arange(int(secs * rate)) / rate
+        x = 0.3 * np.sin(2 * np.pi * a4 * t) + 0.2 * np.sin(2 * np.pi * a4 / 2 * t)
+        x = np.repeat(x[:, None], ch, 1).astype(np.float32)
+        subprocess.run([&quot;ffmpeg&quot;, &quot;-y&quot;, &quot;-v&quot;, &quot;error&quot;, &quot;-f&quot;, &quot;f32le&quot;, &quot;-ar&quot;, str(rate), &quot;-ac&quot;, str(ch), &quot;-i&quot;, &quot;-&quot;,
+                        &quot;-c:a&quot;, &quot;pcm_s24le&quot;, os.path.join(IN, name)], input=x.tobytes(), check=True)
+    tone(&quot;Song One.wav&quot;, 30, 48000, 2)
+    tone(&quot;song-two (club mix).wav&quot;, 12, 44100, 2)
+    tone(&quot;Mono Demo.wav&quot;, 8, 48000, 1)
+    tone(&quot;Écoute finale.wav&quot;, 10, 48000, 2)
+    tone(&quot;Orchestral_442.wav&quot;, 10, 48000, 2, a4=442.0)       # recorded against A=442
+    tone(&quot;Already_432_Master.wav&quot;, 10, 48000, 2, a4=432.0)   # previously retuned
+    open(os.path.join(IN, &quot;partial_download.wav&quot;), &quot;wb&quot;).write(b&quot;RIFF\x00\x10\x00\x00WAVEfmt &quot; + os.urandom(64))
+    open(os.path.join(IN, &quot;~session.tmp&quot;), &quot;wb&quot;).write(b&quot;junk&quot;)
+    # the operator documents real source references; anything unlisted is assumed 440
+    with open(os.path.join(work, &quot;references.csv&quot;), &quot;w&quot;, newline=&quot;&quot;) as f:
+        csv.writer(f).writerows([[&quot;file&quot;, &quot;source_hz&quot;], [&quot;Orchestral_442.wav&quot;, &quot;442&quot;],
+                                 [&quot;Already_432_Master.wav&quot;, &quot;432&quot;]])
+    # leftover from a &quot;power cut&quot; during an earlier run
+    open(os.path.join(OUT, &quot;Song One_432.wav.part&quot;), &quot;wb&quot;).write(b&quot;half a file&quot;)
+    for f in os.listdir(IN):                                   # inputs are read-only from here on
+        os.chmod(os.path.join(IN, f), stat.S_IRUSR | stat.S_IRGRP | stat.S_IROTH)
+
+def run_batch(label):
+    refs = {r[&quot;file&quot;]: float(r[&quot;source_hz&quot;]) for r in csv.DictReader(open(os.path.join(work, &quot;references.csv&quot;)))}
+    for f in os.listdir(OUT):                                 # stale temp files are never &quot;done&quot;
+        if f.endswith(&quot;.part&quot;):
+            os.remove(os.path.join(OUT, f)); print(f&quot;  cleaned stale temp: {f}&quot;)
+    rows, need_bytes = [], 0
+    files = sorted(os.listdir(IN))
+    for f in files:
+        src = os.path.join(IN, f)
+        base, ext = os.path.splitext(f)
+        dst = os.path.join(OUT, f&quot;{base}_{TARGET}.wav&quot;)
+        ref = refs.get(f, 440.0)
+        row = dict(file=f, source_hz=ref, status=&quot;&quot;, detail=&quot;&quot;, in_s=&quot;&quot;, out_s=&quot;&quot;)
+        info = probe(src) if ext.lower() in (&quot;.wav&quot;, &quot;.flac&quot;, &quot;.aif&quot;, &quot;.aiff&quot;) else None
+        if ext.lower() not in (&quot;.wav&quot;, &quot;.flac&quot;, &quot;.aif&quot;, &quot;.aiff&quot;):
+            row.update(status=&quot;SKIP&quot;, detail=&quot;not an audio master&quot;)
+        elif info is None:
+            row.update(status=&quot;ERROR&quot;, detail=&quot;decoder could not read file&quot;)
+        elif ref == TARGET:
+            row.update(status=&quot;SKIP&quot;, detail=&quot;source already at target; refusing to stack&quot;)
+        elif os.path.exists(dst):
+            row.update(status=&quot;SKIP&quot;, detail=&quot;verified output exists&quot;, in_s=f&quot;{info[&#x27;dur&#x27;]:.3f}&quot;)
+        else:
+            ratio = TARGET / ref
+            chain = (f&quot;aresample={int(ref*200)}:resampler=soxr:precision=28,asetrate={TARGET*200},&quot;
+                     f&quot;aresample={info[&#x27;rate&#x27;]}:resampler=soxr:precision=28&quot;)
+            tmp = dst + &quot;.part&quot;
+            r = sh([&quot;ffmpeg&quot;, &quot;-n&quot;, &quot;-v&quot;, &quot;error&quot;, &quot;-i&quot;, src, &quot;-af&quot;, chain, &quot;-c:a&quot;, &quot;pcm_s24le&quot;, &quot;-f&quot;, &quot;wav&quot;, tmp])
+            o = probe(tmp) if r.returncode == 0 else None
+            exp = info[&quot;dur&quot;] / ratio
+            if o and abs(o[&quot;dur&quot;] - exp) &lt; 0.005 and o[&quot;rate&quot;] == info[&quot;rate&quot;] and o[&quot;ch&quot;] == info[&quot;ch&quot;]:
+                os.replace(tmp, dst)                          # atomic: a file is either whole or absent
+                row.update(status=&quot;OK&quot;, detail=f&quot;ratio {ratio:.6f} ({1200*math.log2(ratio):+.2f} c), &quot;
+                           f&quot;{o[&#x27;rate&#x27;]} Hz/{o[&#x27;ch&#x27;]} ch&quot;, in_s=f&quot;{info[&#x27;dur&#x27;]:.3f}&quot;, out_s=f&quot;{o[&#x27;dur&#x27;]:.3f}&quot;)
+                need_bytes += os.path.getsize(dst)
+            else:
+                if os.path.exists(tmp): os.remove(tmp)
+                row.update(status=&quot;ERROR&quot;, detail=&quot;verification failed: &quot; + (r.stderr.strip()[:60] or &quot;duration/format&quot;))
+        rows.append(row)
+    new = not os.path.exists(LOG)
+    with open(LOG, &quot;a&quot;, newline=&quot;&quot;) as fh:
+        w = csv.DictWriter(fh, fieldnames=[&quot;run&quot;, *rows[0].keys()])
+        if new: w.writeheader()
+        for r in rows: w.writerow({&quot;run&quot;: label, **r})
+    print(f&quot;  {&#x27;file&#x27;:26s} {&#x27;src Hz&#x27;:&gt;6s}  {&#x27;status&#x27;:6s} {&#x27;in s&#x27;:&gt;7s} {&#x27;out s&#x27;:&gt;7s}  detail&quot;)
+    for r in rows:
+        print(f&quot;  {r[&#x27;file&#x27;]:26s} {r[&#x27;source_hz&#x27;]:6.0f}  {r[&#x27;status&#x27;]:6s} {r[&#x27;in_s&#x27;]:&gt;7s} {r[&#x27;out_s&#x27;]:&gt;7s}  {r[&#x27;detail&#x27;]}&quot;)
+    ok = sum(r[&quot;status&quot;] == &quot;OK&quot; for r in rows); sk = sum(r[&quot;status&quot;] == &quot;SKIP&quot; for r in rows)
+    er = sum(r[&quot;status&quot;] == &quot;ERROR&quot; for r in rows)
+    outs = [f for f in os.listdir(OUT) if f.endswith(&quot;.wav&quot;)]
+    print(f&quot;  inputs {len(files)} | rendered {ok} | skipped {sk} | errors {er} | wavs in output {len(outs)}&quot;)
+    return rows
+
+make_inputs()
+du = shutil.disk_usage(work)
+pred = sum((probe(os.path.join(IN, f)) or {&quot;dur&quot;: 0, &quot;rate&quot;: 0, &quot;ch&quot;: 0}).get(&quot;dur&quot;, 0) * 48000 * 2 * 3 / (432/440)
+           for f in os.listdir(IN))
+print(f&quot;preflight: free {du.free/1e9:.1f} GB, predicted lossless output ~{pred/1e6:.1f} MB (worst case 48k/24-bit/stereo)&quot;)
+print(&quot;\nRUN 1&quot;)
+run_batch(&quot;1&quot;)
+print(&quot;\nRUN 2 (same command again, nothing should be re-rendered)&quot;)
+run_batch(&quot;2&quot;)
+print(&quot;\ninputs still read-only:&quot;, all(not os.access(os.path.join(IN, f), os.W_OK) for f in os.listdir(IN)))
+print(&quot;log rows written:&quot;, sum(1 for _ in open(LOG)) - 1)
+r = 48000 * 432 / 440
+print(f&quot;\nprecision note: asetrate needs an integer. 48000*432/440 = {r:.2f} -&gt; 47127 gives &quot;
+      f&quot;{1200*math.log2(47127/48000):.4f} c vs exact {1200*math.log2(432/440):.4f} c&quot;)</code></pre>
+<p>Real output from the box:</p>
+<pre><code>preflight: free 102.5 GB, predicted lossless output ~23.5 MB (worst case 48k/24-bit/stereo)
+
+RUN 1
+  cleaned stale temp: Song One_432.wav.part
+  file                       src Hz  status    in s   out s  detail
+  Already_432_Master.wav        432  SKIP                    source already at target; refusing to stack
+  Mono Demo.wav                 440  OK       8.000   8.148  ratio 0.981818 (-31.77 c), 48000 Hz/1 ch
+  Orchestral_442.wav            442  OK      10.000  10.231  ratio 0.977376 (-39.62 c), 48000 Hz/2 ch
+  Song One.wav                  440  OK      30.000  30.556  ratio 0.981818 (-31.77 c), 48000 Hz/2 ch
+  partial_download.wav          440  ERROR                   decoder could not read file
+  song-two (club mix).wav       440  OK      12.000  12.222  ratio 0.981818 (-31.77 c), 44100 Hz/2 ch
+  ~session.tmp                  440  SKIP                    not an audio master
+  Écoute finale.wav             440  OK      10.000  10.185  ratio 0.981818 (-31.77 c), 48000 Hz/2 ch
+  inputs 8 | rendered 5 | skipped 2 | errors 1 | wavs in output 5
+
+RUN 2 (same command again, nothing should be re-rendered)
+  file                       src Hz  status    in s   out s  detail
+  Already_432_Master.wav        432  SKIP                    source already at target; refusing to stack
+  Mono Demo.wav                 440  SKIP     8.000          verified output exists
+  Orchestral_442.wav            442  SKIP    10.000          verified output exists
+  Song One.wav                  440  SKIP    30.000          verified output exists
+  partial_download.wav          440  ERROR                   decoder could not read file
+  song-two (club mix).wav       440  SKIP    12.000          verified output exists
+  ~session.tmp                  440  SKIP                    not an audio master
+  Écoute finale.wav             440  SKIP    10.000          verified output exists
+  inputs 8 | rendered 0 | skipped 7 | errors 1 | wavs in output 5
+
+inputs still read-only: True
+log rows written: 16
+
+precision note: asetrate needs an integer. 48000*432/440 = 47127.27 -&gt; 47127 gives -31.7767 c vs exact -31.7667 c</code></pre>
+
+<h2>What the log is telling you</h2>
+<p><strong>The stale temp file got cleaned before anything else happened.</strong> That's the restart logic doing its job. A <code>.part</code> file is never treated as a finished render.</p>
+<p><strong>The already-432 master was refused.</strong> Retuning it again would have dropped it another 31.77 cents, to about 424 Hz, and nobody would have noticed until a listener did. Stacked conversions are the most common silent catalog error, and the only defense is documenting the real source reference.</p>
+<p><strong>The 442 recording got its own ratio.</strong> 432/442 is 0.977376, about −39.62 cents, not the default −31.77. Feed it the 440 recipe and it would land near 434 Hz, which is neither the original nor the target. The next essay, on <a href="432-vs-435-vs-442-hz-reference-pitch-guide.html">432, 435, 442 and the reference pitch you actually started from</a>, goes deep on why the source number matters.</p>
+<p><strong>Every duration matches the math.</strong> 30.000 becomes 30.556, 12.000 becomes 12.222, 8.000 becomes 8.148. In classic mode, output duration should equal input divided by 0.981818. The script refuses to rename any output that misses by more than 5 ms. A wildly different runtime means the wrong ratio, a second operation, or a truncated file.</p>
+<p><strong>Formats survived.</strong> The 44.1 kHz club mix came out at 44.1. The mono demo came out mono. The accented filename and the parentheses didn't break anything, because the script passes paths as arguments instead of gluing them into a shell string.</p>
+<p><strong>One error is still an error.</strong> The partial download failed decode both times, and the summary says so in plain numbers: 8 inputs, 5 rendered, 2 skipped on purpose, 1 error. A queue with one failed file is not a finished catalog. Resolve the error list before you call it done.</p>
+<p><strong>Run 2 rendered nothing.</strong> Same command, same folder, zero new files, zero overwrites. That's what you want from a job you might need to restart at 2 a.m.</p>
+<p>And the precision footnote: the common one-liner <code>asetrate=47127</code> lands at −31.7767 cents instead of −31.7667. That's a hundredth of a cent, and no one will ever hear it. But the notes should describe what you actually did, and the exact chain costs nothing extra.</p>
+
+<h2>Failure modes and the guard that catches each</h2>
+<table>
+<thead><tr><th>Failure</th><th>How it shows up</th><th>Guard in the job</th><th>How you verify</th></tr></thead>
+<tbody>
+<tr><td>Overwriting a master</td><td>Original gone, no undo</td><td>Read-only input copy, separate output folder</td><td>Input hashes or write test after the run</td></tr>
+<tr><td>Interrupted render</td><td>Truncated WAV with a real name</td><td>Temp file + atomic rename</td><td>Stale <code>.part</code> cleaned on restart</td></tr>
+<tr><td>Stacked retune</td><td>Already-432 file lands near 424 Hz</td><td>Sidecar of real source references; refuse at-target files</td><td>SKIP line in the log</td></tr>
+<tr><td>Wrong source reference</td><td>442 source lands near 434 Hz</td><td>Ratio = target ÷ documented source</td><td>Ratio and cents printed per file</td></tr>
+<tr><td>Format drift</td><td>44.1 forced to 48, mono doubled</td><td>Resample back to each file's own rate</td><td>Rate and channels compared before rename</td></tr>
+<tr><td>Corrupt input</td><td>Queue stops or skips silently</td><td>Probe before render, log the error</td><td>Input, output, and error counts reconcile</td></tr>
+<tr><td>Disk fills mid-job</td><td>Half a folder, mystery failures</td><td>Predict output size at preflight</td><td>Free space printed before run 1</td></tr>
+</tbody></table>
+
+<h2>Verify with meters, then with ears, by risk</h2>
+<p>Meters first, because they're cheap. Count inputs and outputs and make sure they reconcile against the log. Check duration, sample rate, channel count, and codec with ffprobe. Peak level only matters if the source was already hot: a resample rebuilds the waveform, so sample peaks can shift a little even when loudness doesn't. A master that was already at the ceiling deserves a true-peak look. <a href="true-peak-is-what-codecs-clip.html">True peak is what codecs clip</a> covers why.</p>
+<p>Then listen, and don't do it at random. Pick the files most likely to expose each kind of failure. The loudest for clipping. The quietest for noise. The longest for interruption. The shortest for edge handling at the start and end. The widest for channel integrity. The most transient-heavy for conversion quality. Six files, listened to properly, beat forty skimmed in the background.</p>
+<p>When you set up a new machine or a new FFmpeg build, run a known test tone through it first and measure the result. A 440 Hz sine should come out at 432.00 Hz and 1.85% longer. If it doesn't, nothing else in the folder will be right either.</p>
+
+<h2>Windows notes, because most folder jobs happen there</h2>
+<p>A few things trip up batch work on Windows specifically. Confirm FFmpeg is on your PATH by running <code>ffmpeg -version</code> in a fresh terminal, not the one you had open when you installed it. Long, deeply nested project folders can hit the classic <a href="https://learn.microsoft.com/en-us/windows/win32/fileio/maximum-file-path-limitation">260-character MAX_PATH limit</a>, which Microsoft documents as still applying unless an app opts in to long paths. So run the job from a short path like <code>D:\retune\</code>. Test a filename with spaces, parentheses, and an accent before the real run, exactly like the synthetic folder above does. And check whether your output folder is inside a cloud-synced directory, because a sync client touching a half-written file is one more thing that can go sideways.</p>
+
+<h2>Keep the log with the delivery</h2>
+<p>The CSV the script writes, with run number, file, source reference, status, durations, and detail, belongs in the delivered folder next to the WAVs. It's the receipt. If someone finds a problem in a year, the log says which run produced the file, from what, at what ratio. Then you can fix one file instead of redoing the catalog.</p>
+<aside class="aside">This is the job the full <a href="https://retune-432.vercel.app">reTUNE[432]</a> system packages for Windows: an offline FFmpeg batch engine with alternate references and optional LUFS targets. Approve one file with the free browser A/B first, then let the batch repeat the decision. It handles the repetition. Listening is still your job.</aside>
+<dl class="faq">
+<dt>Can I batch convert a whole music folder to 432 Hz at once?</dt><dd>Yes, but approve one representative file first, work from a read-only copy of the folder, and write outputs to a new folder. Verify input and output counts, durations, sample rates, and channels before treating the batch as finished.</dd>
+<dt>How do I know a batch 432 conversion worked?</dt><dd>In classic resampling mode, each output should be the input duration divided by 0.981818, with the same sample rate and channel count. Reconcile input, output, and error counts against a log, then listen to the loudest, quietest, longest, shortest, widest, and most transient-heavy files.</dd>
+<dt>What happens if I retune a file that is already at 432 Hz?</dt><dd>It drops another 31.77 cents, to about 424 Hz. Batch tools can't hear that, so keep a list of each file's real source reference and refuse files that are already at the target.</dd>
+<dt>What if some files were recorded at 442 Hz instead of 440?</dt><dd>Use the documented source in the ratio: 432 divided by 442 is 0.977376, about −39.62 cents. Applying the 440 recipe would land that file near 434 Hz instead of 432.</dd>
+<dt>Is it safe to restart a batch job after a crash?</dt><dd>It is if every render writes to a temporary file and is renamed only after it passes checks, and existing outputs are skipped. Then a restart cleans partial files and doesn't overwrite or double-convert finished work.</dd>
+</dl>
+<nav aria-label="Related essays" class="related-essays" style="margin:48px 0 24px;padding-top:24px;border-top:1px solid rgba(196,165,116,.32)"><h2>Related in Lacquer</h2><ul>
+<li><a href="how-to-make-a-432-hz-alternate-master.html">A 432 alternate master should never cost you the original</a></li>
+<li><a href="sample-rate-and-bit-depth-for-delivery.html">Sample rate and bit depth are delivery hygiene</a></li>
+<li><a href="album-consistency-in-one-meter.html">Album consistency is a batch problem</a></li>
+<li><a href="432-vs-435-vs-442-hz-reference-pitch-guide.html">432, 435, 442 and the reference pitch you actually started from</a></li>
+</ul></nav>
+</article>
+<section class="comments" data-comments="" data-thread="r432-batch"></section>
+<script src="js/studio.js" type="module"></script>
+<script src="js/comments.js" type="module"></script>
+<footer class="site"><span>Lacquer · CoProducer Journal</span><span><a href="index.html">All essays</a></span></footer>
+</body>
+</html>

@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1" name="viewport"/><meta content="https://myaiplug.github.io/coproducer-web/blog/img/essays/how-to-make-a-432-hz-alternate-master.jpg?v=r432" name="twitter:image"/><meta content="Build a 432 Hz alternate master beside the approved 440 file: read-only source, exact-ratio render, names, notes, runtime and ISRC checks, and full-file QC." name="twitter:description"/><meta content="A 432 alternate master should never cost you the original" name="twitter:title"/><meta content="summary_large_image" name="twitter:card"/><meta content="2026-10-08T00:00:00Z" property="article:modified_time"/><meta content="2026-10-08T00:00:00Z" property="article:published_time"/><meta content="1440" property="og:image:height"/><meta content="2560" property="og:image:width"/><meta content="Two lacquered master reels on black marble, one rimmed in cyan and one in magenta, with a closed vault drawer between them" property="og:image:alt"/><meta content="https://myaiplug.github.io/coproducer-web/blog/how-to-make-a-432-hz-alternate-master.html" property="og:url"/><meta content="en_US" property="og:locale"/><meta content="CoProducer" property="og:site_name"/><meta content="article" property="og:type"/><link href="https://myaiplug.github.io/coproducer-web/llms.txt" rel="alternate" title="llms.txt" type="text/plain"/><meta content="NoDAW Labs" name="author"/><meta content="#050308" name="theme-color"/><meta content="index,follow,max-image-preview:large" name="robots"/><meta content="432 Hz alternate master, 432 Hz version, alternate master workflow, 440 to 432, ISRC alternate version, file naming, CoProducer, NoDAW" name="keywords"/>
+<title>How to Make a 432 Hz Alternate Master Safely | Lacquer</title>
+<meta content="Build a 432 Hz alternate master beside the approved 440 file: read-only source, exact-ratio render, names, notes, runtime and ISRC checks, and full-file QC." name="description"/>
+<link href="https://myaiplug.github.io/coproducer-web/blog/how-to-make-a-432-hz-alternate-master.html" rel="canonical"/>
+<meta content="A 432 alternate master should never cost you the original" property="og:title"/>
+<meta content="Build a 432 Hz alternate master beside the approved 440 file: read-only source, exact-ratio render, names, notes, runtime and ISRC checks, and full-file QC." property="og:description"/>
+<meta content="https://myaiplug.github.io/coproducer-web/blog/img/essays/how-to-make-a-432-hz-alternate-master.jpg?v=r432" property="og:image"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;1,500;1,600&amp;family=Figtree:wght@400;500&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<link href="css/journal.css" rel="stylesheet"/>
+
+
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"A 432 alternate master should never cost you the original","description":"Build a 432 Hz alternate master beside the approved 440 file: read-only source, exact-ratio render, names, notes, runtime and ISRC checks, and full-file QC.","datePublished":"2026-10-08","dateModified":"2026-10-08","mainEntityOfPage":{"@type":"WebPage","@id":"https://myaiplug.github.io/coproducer-web/blog/how-to-make-a-432-hz-alternate-master.html"},"image":{"@type":"ImageObject","url":"https://myaiplug.github.io/coproducer-web/blog/img/essays/how-to-make-a-432-hz-alternate-master.jpg?v=r432","width":2560,"height":1440},"author":{"@type":"Organization","name":"NoDAW Labs","url":"https://myaiplug.github.io/coproducer-web/","logo":"https://myaiplug.github.io/coproducer-web/assets/og-default.jpg"},"publisher":{"@type":"Organization","name":"NoDAW Labs","url":"https://myaiplug.github.io/coproducer-web/","logo":"https://myaiplug.github.io/coproducer-web/assets/og-default.jpg"},"isPartOf":{"@type":"Blog","name":"Lacquer — CoProducer Journal","url":"https://myaiplug.github.io/coproducer-web/blog/index.html"},"keywords":["432 Hz alternate master","432 Hz version","alternate master workflow","440 to 432","ISRC alternate version","file naming","CoProducer","NoDAW"],"wordCount":2058,"speakable":{"@type":"SpeakableSpecification","cssSelector":[".answer","h1"]}}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Should I overwrite the 440 master with the 432 version?","acceptedAnswer":{"@type":"Answer","text":"No. Keep the approved 440 master untouched and read-only, and render the 432 alternate into a separate folder with a different file name. The alternate has a different pitch center, runtime, and tempo, so it is a second deliverable."}},{"@type":"Question","name":"How much longer is a 432 Hz version of a song?","acceptedAnswer":{"@type":"Answer","text":"With classic resampling, about 1.85% longer, because the playback rate drops by 432/440. A four-minute song gains about 4.4 seconds and 120 BPM becomes about 117.82 BPM. A time-preserving pitch shift keeps the runtime but can add artifacts."}},{"@type":"Question","name":"Does a 432 Hz alternate need its own ISRC?","acceptedAnswer":{"@type":"Answer","text":"The IFPI ISRC Handbook says a speed-only length change under 10 seconds does not call for a new code, and 10 seconds or more does. A classic retune only adds 10 seconds on tracks of about nine minutes or longer. Distributors have their own rules, so confirm with yours before upload."}},{"@type":"Question","name":"What should I name a 432 Hz alternate master file?","acceptedAnswer":{"@type":"Answer","text":"Put the facts in the name, such as Artist_Title_432Master_48k_24b.wav, and use a public title like Title (432 Hz Alternate Master). Add a LUFS suffix only if you actually normalized the file."}},{"@type":"Question","name":"Will the 432 version be louder or quieter?","acceptedAnswer":{"@type":"Answer","text":"A clean resample should land within a few tenths of a LU and a similar true peak. In our synthetic test it moved 0.1 LU with no true-peak change. A bigger difference means something else was added to the chain."}}]}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"CoProducer","item":"https://myaiplug.github.io/coproducer-web/"},{"@type":"ListItem","position":2,"name":"Lacquer Journal","item":"https://myaiplug.github.io/coproducer-web/blog/index.html"},{"@type":"ListItem","position":3,"name":"A 432 alternate master should never cost you the original","item":"https://myaiplug.github.io/coproducer-web/blog/how-to-make-a-432-hz-alternate-master.html"}]}</script></head>
+<body>
+<header class="top">
+<a class="mark" href="../index.html"><em>Co</em>Producer</a>
+<nav aria-label="Primary" class="nav">
+<a href="index.html">Journal</a>
+<a href="../index.html#ab">A/B</a>
+<a href="../index.html#analyzeHome">Analyze</a>
+<a href="../guides/index.html">Guides</a>
+<a href="../pricing.html">Pricing</a>
+</nav>
+<a class="cta" href="../index.html#analyzeHome">Measure a mix</a>
+</header>
+<article class="post" id="main">
+<div class="post-hero"><img alt="Two lacquered master reels on black marble, one rimmed in cyan and one in magenta, with a closed vault drawer between them" src="img/essays/how-to-make-a-432-hz-alternate-master.jpg?v=r432" width="2560" height="1440"/></div>
+<header>
+<p class="kicker">Workflow · 8 October 2026 · 10 min</p>
+<h1>A 432 alternate master should never cost you the original</h1>
+<p class="meta">NoDAW Labs · Lacquer Vol. 05</p>
+</header>
+<p class="answer">Treat a 432 Hz alternate as a second deliverable, not an edit of the first. Lock the approved 440 master read-only, render the alternate once at the exact 432/440 ratio into its own folder, name it so nobody can confuse the two, write down what you did, and re-check runtime, tempo, loudness, and identifiers before it leaves the room.</p>
+<p>The way it usually goes: the record is mastered, approved, and sitting in the client folder. Then somebody plays the artist a 432 version on a phone in the car. They light up. Now they want it on the deluxe, or on a separate listening edition, or just "both, please." That's a reasonable creative request. What goes wrong usually isn't the conversion. It's what happens three weeks later, when nobody can say which WAV is the master, the distributor has a file called <code>final_432_NEW.wav</code>, and the lyric video is drifting off the vocal by the second chorus.</p>
+<p>So this one isn't about whether 432 sounds better. That's taste, and the artist gets to decide it. It's about building the alternate as a real deliverable: its own folder, its own name, its own notes, its own QC pass, with the approved original sitting untouched the whole time. If you want the math first, <a href="what-432-hz-actually-changes-in-a-master.html">What 432 Hz actually changes in a finished master</a> walks through it. Here we're building the thing.</p>
+
+<h2>Two masters, one source of truth</h2>
+<p>A classic 432 retune of a 440 record is a different file in every way that matters downstream. The pitch center sits about 31.77 cents lower. The runtime is about 1.85% longer. The tempo drops by the same ratio, so 120 BPM becomes roughly 117.82. Any timecode built on the original (cue sheets, video edits, CD indexes, DJ grids, sync points) is now wrong for the new file. It's a sibling, not a replacement.</p>
+<p>The simplest way to keep that straight is physical separation. One folder per release with four rooms in it:</p>
+<ul>
+<li><strong>SOURCE</strong>: the approved 440 master, exactly as signed off, set to read-only. Nothing gets rendered into this folder, ever.</li>
+<li><strong>RETUNED_MASTER</strong>: the lossless 432 alternate, rendered once from SOURCE.</li>
+<li><strong>DELIVERY</strong>: encodes and platform files, every one made from the 24-bit alternate, never from another encode.</li>
+<li><strong>NOTES</strong>: a small text or JSON file that says what happened, so a stranger could rebuild the alternate without calling you.</li>
+</ul>
+<p>The read-only flag sounds fussy until the day a batch tool or a tired assistant writes over the approved file. Your operating system will say no before anyone else gets the chance to.</p>
+
+<h2>Names that survive a handoff</h2>
+<p>File names are the only metadata guaranteed to travel. Tags get stripped by upload forms, chat apps rename things, and folders get flattened in zips. So put the facts in the name: <code>Artist_Title_Version_Pitch_Rate_Depth</code>. The approved file becomes <code>Artist_Title_Master_440_48k_24b.wav</code>. The alternate becomes <code>Artist_Title_432Master_48k_24b.wav</code>. Add a loudness suffix like <code>_-14LUFS</code> only when you deliberately normalized it, because a suffix that describes processing that never happened is worse than no suffix.</p>
+<p>The public title deserves the same care. "Title (432 Hz Alternate Master)" tells a listener, a playlist curator, and a distributor exactly what they're getting. Don't call it a remaster if no remastering happened. Don't dress the artwork in lab seals or certification badges that imply something was clinically measured. A consistent mark or color shift is enough to tell the two versions apart.</p>
+
+<h2>Render it once and write down what you did</h2>
+<p>Here's the whole workflow as one script you can run. It builds a synthetic "approved master" (an A major pad with a held A4 and a 120 BPM click-kick, generated in code so nobody mistakes it for a real record), locks it read-only in SOURCE, renders the alternate with an exact-ratio resample, makes a labeled MP3 from the 24-bit alternate, measures both versions, and writes the notes file.</p>
+<p>One detail in the filter chain is worth slowing down for. FFmpeg's <code>asetrate</code> only takes whole numbers, and 48000 × 432/440 is 47127.27, so the obvious one-liner lands a hair off the target. Resampling to 88000 first means the relabel is 88000 to 86400, which is exactly 432/440. Then it comes back down to 48 kHz with the SoX resampler at high precision. It's a small thing, but it's the difference between documenting the ratio and approximating it.</p>
+<pre><code>#!/usr/bin/env python3
+&quot;&quot;&quot;08_alternate_master.py: build a 432 alternate master next to an approved 440 master,
+without ever touching the original. SYNTHETIC AUDIO ONLY (generated below).
+Needs: python3 + numpy, ffmpeg/ffprobe on PATH.
+Usage: python3 08_alternate_master.py [workdir]&quot;&quot;&quot;
+import hashlib, json, os, re, stat, subprocess, sys
+import numpy as np
+
+SR, SRC_REF, TARGET = 48000, 440.0, 432.0
+RATIO = TARGET / SRC_REF
+root = os.path.abspath(sys.argv[1] if len(sys.argv) &gt; 1 else &quot;Artist_Title_release&quot;)
+dirs = {k: os.path.join(root, k) for k in (&quot;SOURCE&quot;, &quot;RETUNED_MASTER&quot;, &quot;DELIVERY&quot;, &quot;NOTES&quot;)}
+for d in dirs.values():
+    os.makedirs(d, exist_ok=True)
+
+def run(cmd):
+    return subprocess.run(cmd, capture_output=True, text=True, check=True)
+
+def sha(p):
+    return hashlib.sha256(open(p, &quot;rb&quot;).read()).hexdigest()
+
+def decode(p):
+    raw = subprocess.run([&quot;ffmpeg&quot;, &quot;-v&quot;, &quot;error&quot;, &quot;-i&quot;, p, &quot;-f&quot;, &quot;f32le&quot;, &quot;-ac&quot;, &quot;2&quot;, &quot;-&quot;],
+                         capture_output=True, check=True).stdout
+    return np.frombuffer(raw, np.float32).reshape(-1, 2)
+
+def probe(p):
+    j = json.loads(run([&quot;ffprobe&quot;, &quot;-v&quot;, &quot;error&quot;, &quot;-show_streams&quot;, &quot;-show_format&quot;, &quot;-of&quot;, &quot;json&quot;, p]).stdout)
+    s = j[&quot;streams&quot;][0]
+    return dict(duration=float(j[&quot;format&quot;][&quot;duration&quot;]), rate=int(s[&quot;sample_rate&quot;]),
+                channels=s[&quot;channels&quot;], bits=s.get(&quot;bits_per_raw_sample&quot;) or s.get(&quot;bits_per_sample&quot;))
+
+def loudness(p):
+    err = run([&quot;ffmpeg&quot;, &quot;-nostats&quot;, &quot;-hide_banner&quot;, &quot;-i&quot;, p, &quot;-af&quot;, &quot;ebur128=peak=true:framelog=quiet&quot;,
+               &quot;-f&quot;, &quot;null&quot;, &quot;-&quot;]).stderr
+    s = err[err.rfind(&quot;Summary:&quot;):]
+    return (float(re.search(r&quot;I:\s+(-?[\d.]+) LUFS&quot;, s).group(1)),
+            float(re.search(r&quot;Peak:\s+(-?[\d.]+) dBFS&quot;, s).group(1)))
+
+def peak_hz(x, lo, hi):
+    m = x.mean(axis=1)[: SR * 8] * np.hanning(SR * 8)
+    sp = np.abs(np.fft.rfft(m, 16 * len(m)))
+    f = np.fft.rfftfreq(16 * len(m), 1 / SR)
+    band = (f &gt; lo) &amp; (f &lt; hi)
+    return f[band][np.argmax(sp[band])]
+
+def bpm(x):
+    env = np.abs(x.mean(axis=1))
+    hop = SR // 1000                       # 1 ms frames
+    e = env[: len(env) // hop * hop].reshape(-1, hop).max(axis=1)
+    hits = np.flatnonzero((e[1:] &gt; 0.5) &amp; (e[:-1] &lt;= 0.5)) + 1
+    hits = hits[np.insert(np.diff(hits) &gt; 200, 0, True)]
+    return 60000.0 * (len(hits) - 1) / (hits[-1] - hits[0])   # average over every beat
+
+# 1) synthetic &quot;approved&quot; 440 master: A major pad + held A4 + a 120 BPM click-kick, 24 s
+t = np.arange(SR * 24) / SR
+pad = sum(a * np.sin(2 * np.pi * f * t) for f, a in ((220, .18), (277.18, .12), (329.63, .12), (440, .20)))
+kick = np.zeros_like(t)
+for n in range(48):                         # one hit every 0.5 s = 120 BPM
+    i = int(n * 0.5 * SR); seg = np.arange(min(4800, len(t) - i)) / SR
+    kick[i:i + len(seg)] += 0.9 * np.sin(2 * np.pi * 55 * seg) * np.exp(-seg * 30)
+mix = np.stack([pad * 0.9 + kick, pad * 0.8 + kick], 1) * 0.6
+src = os.path.join(dirs[&quot;SOURCE&quot;], &quot;Artist_Title_Master_440_48k_24b.wav&quot;)
+if os.path.exists(src):
+    os.chmod(src, stat.S_IWUSR | stat.S_IRUSR)
+subprocess.run([&quot;ffmpeg&quot;, &quot;-y&quot;, &quot;-v&quot;, &quot;error&quot;, &quot;-f&quot;, &quot;f32le&quot;, &quot;-ar&quot;, str(SR), &quot;-ac&quot;, &quot;2&quot;, &quot;-i&quot;, &quot;-&quot;,
+                &quot;-c:a&quot;, &quot;pcm_s24le&quot;, src], input=mix.astype(np.float32).tobytes(), check=True)
+os.chmod(src, stat.S_IRUSR | stat.S_IRGRP | stat.S_IROTH)   # approved master is read-only
+src_hash = sha(src)
+
+# 2) classic exact-ratio retune: 88000 -&gt; relabel as 86400 -&gt; back to 48000 (432/440 exactly)
+out = os.path.join(dirs[&quot;RETUNED_MASTER&quot;], &quot;Artist_Title_432Master_48k_24b.wav&quot;)
+chain = &quot;aresample=88000:resampler=soxr:precision=28,asetrate=86400,aresample=48000:resampler=soxr:precision=28&quot;
+run([&quot;ffmpeg&quot;, &quot;-y&quot;, &quot;-v&quot;, &quot;error&quot;, &quot;-i&quot;, src, &quot;-af&quot;, chain, &quot;-c:a&quot;, &quot;pcm_s24le&quot;, out])
+
+# 3) a labeled delivery encode made from the 24-bit alternate, never from another encode
+mp3 = os.path.join(dirs[&quot;DELIVERY&quot;], &quot;Artist_Title_432Master_320k.mp3&quot;)
+run([&quot;ffmpeg&quot;, &quot;-y&quot;, &quot;-v&quot;, &quot;error&quot;, &quot;-i&quot;, out, &quot;-c:a&quot;, &quot;libmp3lame&quot;, &quot;-b:a&quot;, &quot;320k&quot;,
+     &quot;-metadata&quot;, &quot;title=Title (432 Hz Alternate Master)&quot;, &quot;-metadata&quot;, &quot;artist=Artist&quot;, mp3])
+
+# 4) measure both and write the notes file
+a, b = decode(src), decode(out)
+pa, pb, ma = probe(src), probe(out), probe(mp3)
+la, lb = loudness(src), loudness(out)
+corr = float(np.corrcoef(b[:, 0], b[:, 1])[0, 1])
+notes = {
+    &quot;source_file&quot;: os.path.basename(src), &quot;source_sha256&quot;: src_hash[:16] + &quot;...&quot;,
+    &quot;source_reference_hz&quot;: SRC_REF, &quot;target_hz&quot;: TARGET, &quot;ratio&quot;: round(RATIO, 6),
+    &quot;cents&quot;: round(1200 * np.log2(RATIO), 2), &quot;mode&quot;: &quot;classic resample (pitch and time move together)&quot;,
+    &quot;filter_chain&quot;: chain, &quot;loudness_processing&quot;: &quot;none&quot;,
+    &quot;duration_s&quot;: [round(pa[&quot;duration&quot;], 3), round(pb[&quot;duration&quot;], 3)],
+    &quot;expected_duration_s&quot;: round(pa[&quot;duration&quot;] / RATIO, 3),
+    &quot;measured_A4_hz&quot;: [round(peak_hz(a, 420, 460), 2), round(peak_hz(b, 420, 460), 2)],
+    &quot;measured_bpm&quot;: [round(bpm(a), 2), round(bpm(b), 2)],
+    &quot;integrated_lufs&quot;: [la[0], lb[0]], &quot;true_peak_dbtp&quot;: [la[1], lb[1]],
+    &quot;format_out&quot;: f&#x27;{pb[&quot;rate&quot;]} Hz / {pb[&quot;bits&quot;]}-bit / {pb[&quot;channels&quot;]} ch&#x27;,
+    &quot;lr_correlation_out&quot;: round(corr, 3),
+}
+json.dump(notes, open(os.path.join(dirs[&quot;NOTES&quot;], &quot;render-notes.json&quot;), &quot;w&quot;), indent=2)
+
+tags = run([&quot;ffprobe&quot;, &quot;-v&quot;, &quot;error&quot;, &quot;-show_entries&quot;, &quot;format_tags=title&quot;, &quot;-of&quot;, &quot;default=nw=1:nk=1&quot;, mp3]).stdout.strip()
+print(&quot;tree:&quot;)
+for d in sorted(dirs):
+    for f in sorted(os.listdir(dirs[d])):
+        print(f&quot;  {d}/{f}&quot;)
+print(&quot;notes:&quot;, json.dumps(notes, indent=2))
+print(&quot;delivery title tag :&quot;, tags, f&#x27;({ma[&quot;duration&quot;]:.3f} s mp3)&#x27;)
+print(&quot;source untouched   :&quot;, sha(src) == src_hash)
+try:
+    open(src, &quot;ab&quot;).close(); print(&quot;source writable    : yes (fix permissions!)&quot;)
+except PermissionError:
+    print(&quot;source writable    : no (read-only, as it should be)&quot;)</code></pre>
+<p>And this is what it printed on the box, unedited:</p>
+<pre><code>tree:
+  DELIVERY/Artist_Title_432Master_320k.mp3
+  NOTES/render-notes.json
+  RETUNED_MASTER/Artist_Title_432Master_48k_24b.wav
+  SOURCE/Artist_Title_Master_440_48k_24b.wav
+notes: {
+  &quot;source_file&quot;: &quot;Artist_Title_Master_440_48k_24b.wav&quot;,
+  &quot;source_sha256&quot;: &quot;49eeb5eacb852f64...&quot;,
+  &quot;source_reference_hz&quot;: 440.0,
+  &quot;target_hz&quot;: 432.0,
+  &quot;ratio&quot;: 0.981818,
+  &quot;cents&quot;: -31.77,
+  &quot;mode&quot;: &quot;classic resample (pitch and time move together)&quot;,
+  &quot;filter_chain&quot;: &quot;aresample=88000:resampler=soxr:precision=28,asetrate=86400,aresample=48000:resampler=soxr:precision=28&quot;,
+  &quot;loudness_processing&quot;: &quot;none&quot;,
+  &quot;duration_s&quot;: [
+    24.0,
+    24.444
+  ],
+  &quot;expected_duration_s&quot;: 24.444,
+  &quot;measured_A4_hz&quot;: [
+    440.0,
+    432.0
+  ],
+  &quot;measured_bpm&quot;: [
+    120.01,
+    117.83
+  ],
+  &quot;integrated_lufs&quot;: [
+    -15.9,
+    -16.0
+  ],
+  &quot;true_peak_dbtp&quot;: [
+    -2.5,
+    -2.5
+  ],
+  &quot;format_out&quot;: &quot;48000 Hz / 24-bit / 2 ch&quot;,
+  &quot;lr_correlation_out&quot;: 0.999
+}
+delivery title tag : Title (432 Hz Alternate Master) (24.480 s mp3)
+source untouched   : True
+source writable    : no (read-only, as it should be)</code></pre>
+
+<h2>Reading the printout like a mastering engineer</h2>
+<p>Every number in that notes file is there to answer a question somebody will ask you later.</p>
+<p><strong>Measured A4 went from 440.00 to 432.00 Hz.</strong> That's the proof the ratio is real and not a guessed pitch knob. If you ever see 431.8 or 432.3 here, something in the chain is rounding.</p>
+<p><strong>Duration went from 24.000 to 24.444 seconds,</strong> matching the expected value to the millisecond. On a real four-minute song that's about 4.4 extra seconds. On a ten-minute ambient piece it's over 11. That matters more than it looks, and we'll get to why.</p>
+<p><strong>Tempo measured 120.01 and 117.83 BPM.</strong> The script times every kick on a 1 ms grid, so the last decimal wobbles a little. The theory says 117.82. Close enough to confirm the speed moved with the pitch, which is what classic resampling should do.</p>
+<p><strong>Loudness moved by a tenth of a LU and true peak didn't move at all.</strong> That's the result you want. A resample isn't a loudness process, and it shouldn't act like one. If your alternate comes out a dB hotter, something else got added to the chain, and that's a second variable riding along with the tuning.</p>
+<p><strong>The MP3 reports 24.480 seconds.</strong> That's 36 ms longer than the WAV it came from, because encoders add padding at the start and end. It's a small, real reason to pull runtimes for cue sheets and video from the lossless file, not the encode. And because the encode reuses the 24-bit alternate, you're never stacking one lossy pass on another, which is exactly how <a href="reencoding-eats-true-peak-headroom.html">re-encoding eats true-peak headroom</a>.</p>
+<p><strong>Source untouched: True, and not writable.</strong> That's the line that lets you sleep.</p>
+
+<h2>What changes between the two deliverables</h2>
+<table>
+<thead><tr><th>Property</th><th>Approved 440 master</th><th>Classic 432 alternate</th><th>What to do about it</th></tr></thead>
+<tbody>
+<tr><td>A4 reference</td><td>440 Hz</td><td>432 Hz (ratio 0.981818, about −31.77 cents)</td><td>State it in notes and in the version title</td></tr>
+<tr><td>Runtime</td><td>Original</td><td>About 1.85% longer</td><td>Rebuild cue sheets, video, CD indexes from the WAV</td></tr>
+<tr><td>Tempo</td><td>Original BPM</td><td>BPM × 0.981818</td><td>Update DJ grids, stems, and any tempo metadata</td></tr>
+<tr><td>Loudness and true peak</td><td>As mastered</td><td>Should land within a few tenths</td><td>Measure; don't add a loudness advantage by accident</td></tr>
+<tr><td>File name</td><td><code>..._Master_440_48k_24b</code></td><td><code>..._432Master_48k_24b</code></td><td>Never reuse or overwrite the original name</td></tr>
+<tr><td>Public title</td><td>Title</td><td>Title (432 Hz Alternate Master)</td><td>No "remaster" unless it was remastered</td></tr>
+<tr><td>Lyric and visual sync</td><td>Locked</td><td>Drifts unless rebuilt</td><td>Re-time it, or use a time-preserving shift and audition hard</td></tr>
+</tbody></table>
+
+<h2>The runtime ripple most people miss</h2>
+<p>A longer file breaks anything that was timed against the shorter one. Lyric videos and visualizers drift a little more every bar. Continuous mixes and gapless album transitions land late. Live playback cues fire early. If the alternate needs to sit under unchanged picture, you have two honest choices: re-time the visuals to the new audio, or render with a time-preserving pitch shift instead and listen carefully for smeared transients and swirly reverb tails. Neither is automatically better. The trade-offs are laid out in <a href="resampling-vs-pitch-shift-vs-tempo.html">Resampling, pitch shifting, and tempo change are three different jobs</a>.</p>
+<p>Then there's the identifier question, and this one surprises people. Your distributor will want to know if the alternate gets its own ISRC. The <a href="https://isrc.ifpi.org/images/downloads/ISRC_Handbook.pdf">IFPI ISRC Handbook (4th edition, Annex A.10.2)</a> says that when a recording's length changes through something like a speed change, without new creative input, a new code is <em>not</em> assigned if the length difference is under 10 seconds, and <em>is</em> assigned if it's 10 seconds or more. At 1.85%, a track has to run about nine minutes before a classic 432 retune adds 10 seconds. So for most songs, the handbook's length rule alone doesn't call for a new code. Distributors have their own systems, though, and some won't accept two different audio files on one code. Ask your distributor or your national ISRC agency before upload, not after. Write their answer in NOTES.</p>
+
+<h2>QC the whole file, not the chorus</h2>
+<p>The script measures. You still have to listen. Play the alternate from the first transient to the last tail. You're listening for a clipped start, a truncated reverb, a channel swap, or a click at the edit. Confirm the format line reads what you expect: 48 kHz, 24-bit, two channels. If the mix leans on wide stereo processing, sum to mono once and make sure nothing vanishes. The script's L/R correlation of 0.999 is about as safe as it gets, but a real record won't be that tidy.</p>
+<p>Then do a short synchronized A/B on a passage the artist knows by heart, at matched level. The point isn't to prove anything. It's to make sure the version you're about to deliver is the version that won in the car. If the intro gets better and the chorus loses its push, that's useful information. Some records want the alternate as an intro-to-outro listening edition. Some want it as one track on a deluxe, and some don't want it at all.</p>
+
+<h2>Talking to the client like a grown-up</h2>
+<p>Your delivery note can be short and still say everything: "432 Hz alternate master, rendered from the approved 440 master. Ratio 432/440, about 31.77 cents lower. Classic resample, so it runs about 1.85% longer and the tempo drops by the same ratio. No additional mastering or loudness processing." That's it. You can describe the character the artist hears. Lower, heavier, a little more suspended, a touch slower are all fair words for creative intent.</p>
+<p>Stay away from anything that sounds like a medical or cosmic claim. You don't need it, it isn't supported, and it makes the whole release look less serious. The alternate is a creative version, and creative is enough.</p>
+
+<h2>Approve one, then repeat it</h2>
+<p>If this is an album, don't convert twelve songs because the first one sounded good. Approve the naming pattern, the render mode, and the loudness rule on one representative track. Then run the rest against a read-only copy of the source folder, and spot-check the shortest, longest, loudest, and most dynamic files. Album work is a batch problem, the same way <a href="album-consistency-in-one-meter.html">album consistency is a batch problem</a>, and the next essay in this series, <a href="batch-retune-a-folder-to-432-hz-safely.html">Batch retune a folder to 432 Hz without damaging a master</a>, is about doing that part safely.</p>
+<aside class="aside">If the artist hasn't heard it yet, <a href="https://retune-432.vercel.app">reTUNE[432]</a> runs the 440-to-432 preview in the browser with a synchronized A/B player, so you can settle the "do we even want this" question on audio you own before anyone builds a folder.</aside>
+<dl class="faq">
+<dt>Should I overwrite the 440 master with the 432 version?</dt><dd>No. Keep the approved 440 master untouched and read-only, and render the 432 alternate into a separate folder with a different file name. The alternate has a different pitch center, runtime, and tempo, so it is a second deliverable.</dd>
+<dt>How much longer is a 432 Hz version of a song?</dt><dd>With classic resampling, about 1.85% longer, because the playback rate drops by 432/440. A four-minute song gains about 4.4 seconds and 120 BPM becomes about 117.82 BPM. A time-preserving pitch shift keeps the runtime but can add artifacts.</dd>
+<dt>Does a 432 Hz alternate need its own ISRC?</dt><dd>The IFPI ISRC Handbook says a speed-only length change under 10 seconds does not call for a new code, and 10 seconds or more does. A classic retune only adds 10 seconds on tracks of about nine minutes or longer. Distributors have their own rules, so confirm with yours before upload.</dd>
+<dt>What should I name a 432 Hz alternate master file?</dt><dd>Put the facts in the name, such as Artist_Title_432Master_48k_24b.wav, and use a public title like Title (432 Hz Alternate Master). Add a LUFS suffix only if you actually normalized the file.</dd>
+<dt>Will the 432 version be louder or quieter?</dt><dd>A clean resample should land within a few tenths of a LU and a similar true peak. In our synthetic test it moved 0.1 LU with no true-peak change. A bigger difference means something else was added to the chain.</dd>
+</dl>
+<nav aria-label="Related essays" class="related-essays" style="margin:48px 0 24px;padding-top:24px;border-top:1px solid rgba(196,165,116,.32)"><h2>Related in Lacquer</h2><ul>
+<li><a href="what-432-hz-actually-changes-in-a-master.html">What 432 Hz actually changes in a finished master</a></li>
+<li><a href="reencoding-eats-true-peak-headroom.html">Re-encoding eats true-peak headroom</a></li>
+<li><a href="album-consistency-in-one-meter.html">Album consistency is a batch problem</a></li>
+<li><a href="batch-retune-a-folder-to-432-hz-safely.html">Batch retune a folder to 432 Hz without damaging a master</a></li>
+</ul></nav>
+</article>
+<section class="comments" data-comments="" data-thread="r432-altmaster"></section>
+<script src="js/studio.js" type="module"></script>
+<script src="js/comments.js" type="module"></script>
+<footer class="site"><span>Lacquer · CoProducer Journal</span><span><a href="index.html">All essays</a></span></footer>
+</body>
+</html>

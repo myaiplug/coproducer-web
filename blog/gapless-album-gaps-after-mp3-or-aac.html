@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1" name="viewport"/><meta content="https://myaiplug.github.io/coproducer-web/blog/img/essays/gapless-album-gaps-after-mp3-or-aac.jpg?v=shd" name="twitter:image"/><meta content="MP3 and AAC encoders add silence at the start and padding at the end of every file. Why segues break, what we measured, and how to stay seamless." name="twitter:description"/><meta content="Why your gapless album gets gaps after MP3 or AAC" name="twitter:title"/><meta content="summary_large_image" name="twitter:card"/><meta content="2026-10-16T00:00:00Z" property="article:modified_time"/><meta content="2026-10-16T00:00:00Z" property="article:published_time"/><meta content="1440" property="og:image:height"/><meta content="2560" property="og:image:width"/><meta content="https://myaiplug.github.io/coproducer-web/blog/gapless-album-gaps-after-mp3-or-aac.html" property="og:url"/><meta content="en_US" property="og:locale"/><meta content="CoProducer" property="og:site_name"/><meta content="article" property="og:type"/><link href="https://myaiplug.github.io/coproducer-web/llms.txt" rel="alternate" title="llms.txt" type="text/plain"/><meta content="NoDAW Labs" name="author"/><meta content="#050308" name="theme-color"/><meta content="index,follow,max-image-preview:large" name="robots"/><meta content="gapless playback, gap between tracks, encoder delay, MP3 gapless, AAC priming, LAME tag, album segue, continuous mix, DDP, NoDAW" name="keywords"/>
+<title>Why your gapless album gets gaps after MP3 or AAC | Lacquer</title>
+<meta content="MP3 and AAC encoders add silence at the start and padding at the end of every file. Why segues break, what we measured, and how to stay seamless." name="description"/>
+<link href="https://myaiplug.github.io/coproducer-web/blog/gapless-album-gaps-after-mp3-or-aac.html" rel="canonical"/>
+<meta content="Why your gapless album gets gaps after MP3 or AAC" property="og:title"/>
+<meta content="MP3 and AAC encoders add silence at the start and padding at the end of every file. Why segues break, what we measured, and how to stay seamless." property="og:description"/>
+<meta content="https://myaiplug.github.io/coproducer-web/blog/img/essays/gapless-album-gaps-after-mp3-or-aac.jpg?v=shd" property="og:image"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;1,500;1,600&amp;family=Figtree:wght@400;500&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<link href="css/journal.css" rel="stylesheet"/>
+
+
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Why your gapless album gets gaps after MP3 or AAC","description":"MP3 and AAC encoders add silence at the start and padding at the end of every file. Why segues break, what we measured, and how to stay seamless.","datePublished":"2026-10-16","dateModified":"2026-10-16","mainEntityOfPage":{"@type":"WebPage","@id":"https://myaiplug.github.io/coproducer-web/blog/gapless-album-gaps-after-mp3-or-aac.html"},"image":{"@type":"ImageObject","url":"https://myaiplug.github.io/coproducer-web/blog/img/essays/gapless-album-gaps-after-mp3-or-aac.jpg?v=shd","width":2560,"height":1440},"author":{"@type":"Organization","name":"NoDAW Labs","url":"https://myaiplug.github.io/coproducer-web/","logo":"https://myaiplug.github.io/coproducer-web/assets/og-default.jpg"},"publisher":{"@type":"Organization","name":"NoDAW Labs","url":"https://myaiplug.github.io/coproducer-web/","logo":"https://myaiplug.github.io/coproducer-web/assets/og-default.jpg"},"isPartOf":{"@type":"Blog","name":"Lacquer — CoProducer Journal","url":"https://myaiplug.github.io/coproducer-web/blog/index.html"},"keywords":["gapless playback","gap between tracks","encoder delay","MP3 gapless","AAC priming","LAME tag","album segue","continuous mix","DDP","NoDAW"],"speakable":{"@type":"SpeakableSpecification","cssSelector":[".answer","h1"]}}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Why is there a gap between tracks on my album after converting to MP3?","acceptedAnswer":{"@type":"Answer","text":"MP3 encoders add priming silence at the start and padding at the end of every file. LAME records both in a header so players can trim them. If the tag is missing or the player ignores it, the silences play. In our test that was a 28.2 ms hole at 44.1 kHz."}},{"@type":"Question","name":"Do I need to split album tracks at zero crossings?","acceptedAnswer":{"@type":"Answer","text":"Not for lossless delivery. Two WAVs cut from one render reassemble exactly, even mid-note. What matters is cutting at a single sample position with no fades, trims or per-track processing at the cut."}},{"@type":"Question","name":"Do streaming platforms fix gapless playback for me?","acceptedAnswer":{"@type":"Answer","text":"They encode from your lossless files and handle playback themselves, so you can’t control their decoder. You do control whether the files you upload are continuous to the sample. A dip or fade baked into your WAVs survives every platform."}},{"@type":"Question","name":"How do I check that an MP3 or AAC file is gapless?","acceptedAnswer":{"@type":"Answer","text":"Decode it and compare its sample count with the WAV it came from. A tagged LAME MP3 decoded by ffmpeg matched exactly in our test. An untagged one was 1,245 samples longer, and an ffmpeg AAC .m4a kept 221 samples of end padding."}}]}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"CoProducer","item":"https://myaiplug.github.io/coproducer-web/"},{"@type":"ListItem","position":2,"name":"Lacquer Journal","item":"https://myaiplug.github.io/coproducer-web/blog/index.html"},{"@type":"ListItem","position":3,"name":"Why your gapless album gets gaps after MP3 or AAC","item":"https://myaiplug.github.io/coproducer-web/blog/gapless-album-gaps-after-mp3-or-aac.html"}]}</script></head>
+<body>
+<header class="top">
+<a class="mark" href="../index.html"><em>Co</em>Producer</a>
+<nav aria-label="Primary" class="nav">
+<a href="index.html">Journal</a>
+<a href="../index.html#ab">A/B</a>
+<a href="../index.html#analyzeHome">Analyze</a>
+<a href="../guides/index.html">Guides</a>
+<a href="../pricing.html">Pricing</a>
+</nav>
+<a class="cta" href="../index.html#analyzeHome">Measure a mix</a>
+</header>
+<article class="post" id="main">
+<div class="post-hero"><img alt="One continuous gold-to-teal waveform across gold-veined black marble, split by a thin dark gap with a magenta spark at the cut" src="img/essays/gapless-album-gaps-after-mp3-or-aac.jpg?v=shd"/></div>
+<header>
+<p class="kicker">Delivery · 16 October 2026 · 7 min</p>
+<h1>Why your gapless album gets gaps after MP3 or AAC</h1>
+<p class="meta">NoDAW Labs · Lacquer Vol. 05</p>
+</header>
+<p class="answer">Every MP3 and AAC encoder adds a little silence at the start of a file and pads the end out to a full frame, so two tracks that flowed perfectly as WAVs can play with a 5–30 ms hole or a tick between them unless the file carries gapless info and the player reads it. Render the album in one pass, split it at exact sample positions, deliver lossless, and count samples on anything you encode yourself.</p>
+<p>Live record, DJ mix, ambient album, a concept project where track 4 pours into track 5 under a held chord. In the session it’s one long, beautiful sentence. Then you make MP3s for the press folder, or a client plays the AAC previews in a car, and right at the segue there’s a hiccup. A tiny hole, sometimes a tick. Nobody touched the transition. The files did.</p>
+<p>Single-song releases don’t care about any of this. A few tens of milliseconds of silence before a single is inaudible. It only bites when one track is supposed to keep flowing into the next.</p>
+<h2>Where the hole comes from</h2>
+<p>Lossy codecs work in frames, and the encoder needs a run-up before the first one. So every MP3 and AAC file starts with a short stretch of priming (encoder delay) and ends with padding that fills out the last frame. The file is a little longer than your audio, on both ends.</p>
+<p>There’s a fix built into the formats, as long as everyone plays along. LAME writes the exact delay and padding into a header in the first frame (the LAME/Info tag). MP4 files use an edit list (Apple’s encoders also write an iTunSMPB tag). Opus stores a pre-skip in its header. A player that reads these trims the priming and padding and plays your audio sample for sample. A player that doesn’t plays the silence, and two of those silences back to back are your gap.</p>
+<h2>What we measured</h2>
+<p>We rendered a synthetic 20-second segue at 44.1 kHz (a sustained pad chord, a low pulse, a little noise for air) and split it into two tracks at sample 441,123. That’s deliberately mid-note, at −12.4 dBFS, not on a zero crossing. Then we encoded both halves the common ways, decoded them back to back with ffmpeg the way a player would, and compared the join with the continuous original.</p>
+<table>
+<thead><tr><th>Delivery / playback</th><th>Lead-in</th><th>Extra at end</th><th>Track 2 arrives late</th><th>Dip at the join</th><th>Join null (mid-track)</th></tr></thead>
+<tbody>
+<tr><td>24-bit WAV or FLAC, split from one render</td><td>0</td><td>0</td><td>0</td><td>none</td><td>−128.7 dB (−128.5)</td></tr>
+<tr><td>Each track bounced separately, 10 ms edge fades</td><td>0</td><td>0</td><td>0</td><td>−6.0 dB</td><td>−10.2 dB (−184.6)</td></tr>
+<tr><td>MP3 (LAME 320k), tag read</td><td>0</td><td>0</td><td>0</td><td>none</td><td>−36.7 dB (−36.5)</td></tr>
+<tr><td>Same MP3, player ignores the tag</td><td>1,105</td><td>140</td><td>28.2 ms</td><td>silence (−90 dB)</td><td>—</td></tr>
+<tr><td>MP3 written without the tag</td><td>1,105</td><td>140</td><td>28.2 ms</td><td>silence (−90 dB)</td><td>—</td></tr>
+<tr><td>AAC .m4a (ffmpeg aac 256k), edit list read</td><td>0</td><td>221</td><td>5.0 ms</td><td>−23.1 dB</td><td>−16.1 dB (−38.2)</td></tr>
+<tr><td>Same .m4a, edit list ignored / raw .aac</td><td>1,024</td><td>221</td><td>28.2 ms</td><td>−29.4 dB</td><td>−16.1 dB (−38.2)</td></tr>
+</tbody>
+</table>
+<p>Lead-in and extra are in samples. “Dip” is the quietest 2 ms right at the join compared with the same spot in the original. “Join null” re-aligns track 2 and nulls ±50 ms around the cut against the original, with the same measure from the middle of the track in brackets, so you can see whether the join is any worse than the codec already is.</p>
+<ul>
+<li><strong>Lossless split from one render is perfect.</strong> The two WAVs put back together match the original to 24-bit rounding, even cut mid-note. You don’t need zero crossings when nothing is going to be re-encoded at the edges.</li>
+<li><strong>A tagged MP3 is seamless, if the player reads the tag.</strong> With the tag honoured, the join nulled exactly as well as the middle of the track (−36.7 vs −36.5 dB), which means it’s only codec noise. Ignore the tag, or never write it, and you get 1,245 samples of pure digital silence: 28.2 ms, right in the middle of your held chord.</li>
+<li><strong>AAC was the touchier one here.</strong> With ffmpeg’s built-in encoder the start was trimmed, but 221 samples of end padding stayed in, and the edges reconstructed noticeably worse than the middle of the file (−16 vs −38 dB). That reads as a small smeared tick rather than a clean hole. Other AAC encoders and players behave differently, which is exactly why you test the pair you’re shipping.</li>
+<li><strong>You can break it before any codec gets near it.</strong> Bouncing each song as its own region with default edge fades gave a 6 dB dip at the join in a lossless WAV. No encoder will fix that.</li>
+</ul>
+<h2>What’s yours to control</h2>
+<p>For streaming releases you upload WAV or FLAC and the platform does its own encoding and gapless playback. You can’t control their decoder, but you control whether the files you hand them are continuous to the sample, and that’s the part that breaks most often. If your distributor’s form asks whether the album should play continuously or gapless, say yes.</p>
+<p>Anything you encode yourself is all on you: press MP3s, a DJ pool upload, the player on your own site, previews for a client. Use an encoder that writes gapless info (LAME does by default) and check the result.</p>
+<h2>The workflow</h2>
+<ol>
+<li><strong>Do the transitions in one session and render once.</strong> Crossfades, reverb tails, room tone between live songs: all of it lives in the long render. Dither once on that render if you’re going to 16-bit, then split.</li>
+<li><strong>Split at sample positions, not by bouncing regions.</strong> No auto-fades at the cut points, no per-track normalize, no tail trimming. The tracks should butt together and reassemble into the original exactly.</li>
+<li><strong>For CD, author from the continuous file.</strong> Red Book audio is addressed in frames of 1/75 s (588 samples at 44.1 kHz), and track marks in a DDP land on those frames. If a plant insists on individual WAVs, put the splits on 588-sample boundaries so the authoring tool has nothing to pad.</li>
+<li><strong>Encode with gapless metadata,</strong> then count samples. Every encoded track should decode to the same number of samples as its WAV.</li>
+</ol>
+<p>Here’s steps 2 and 4 as a script. It cuts one album render at the sample positions you give it, writes 24-bit WAVs for delivery, and makes LAME-tagged MP3s for anything you hand out. The optional <code>--cd</code> flag snaps the splits to CD frames.</p>
+<pre><code>#!/usr/bin/env bash
+# split_album.sh — cut one continuous album render into tracks at exact sample positions,
+# write 24-bit WAVs for delivery plus gapless-tagged MP3s for anything you hand out yourself.
+#   ./split_album.sh album_full.wav markers.txt [--cd]
+# markers.txt: one track START per line, in samples (0 for track 1). --cd snaps starts to 588-sample CD frames.
+set -euo pipefail
+src=$1; markers=$2; cd_snap=${3:-}
+sr=$(ffprobe -v error -select_streams a:0 -show_entries stream=sample_rate -of csv=p=0 "$src")
+total=$(ffprobe -v error -select_streams a:0 -count_packets -show_entries stream=duration_ts -of csv=p=0 "$src")
+mapfile -t starts &lt; &lt;(grep -v '^\s*$' "$markers")
+[[ $cd_snap == --cd ]] &amp;&amp; for i in "${!starts[@]}"; do starts[$i]=$(( (starts[$i] + 294) / 588 * 588 )); done
+starts+=("$total")
+for (( i = 0; i &lt; ${#starts[@]} - 1; i++ )); do
+  a=${starts[$i]}; b=${starts[$((i + 1))]}; n=$(printf "%02d" $((i + 1)))
+  ffmpeg -v error -y -i "$src" -af "atrim=start_sample=$a:end_sample=$b,asetpts=N/SR/TB" -c:a pcm_s24le "track$n.wav"
+  ffmpeg -v error -y -i "track$n.wav" -c:a libmp3lame -b:a 320k "track$n.mp3"   # LAME/Xing tag carries delay + padding
+  echo "track$n  samples $a-$b  ($(( b - a )) samples, $(awk "BEGIN{printf \"%.3f\", ($b-$a)/$sr}") s)"
+done</code></pre>
+<p>On our segue, with markers at 0 and 441123:</p>
+<pre><code>track01  samples 0-441123  (441123 samples, 10.003 s)
+track02  samples 441123-882000  (440877 samples, 9.997 s)</code></pre>
+<p>Then the check. Each encoded file should decode to exactly the sample count of its WAV:</p>
+<pre><code>#!/usr/bin/env bash
+# count_samples.sh — does each encoded track decode to exactly as many samples as its WAV?
+#   ./count_samples.sh track01 track02 ...   (expects trackNN.wav next to trackNN.mp3 / .m4a)
+for t in "$@"; do
+  wav=$(ffmpeg -v error -i "$t.wav" -f s16le -ac 1 - | wc -c)
+  for enc in "$t".mp3 "$t".m4a; do
+    [[ -f $enc ]] || continue
+    dec=$(ffmpeg -v error -i "$enc" -f s16le -ac 1 - | wc -c)
+    printf '%-14s %9d samples   wav %9d   extra %+d\n' "$enc" $((dec / 2)) $((wav / 2)) $(((dec - wav) / 2))
+  done
+done</code></pre>
+<p>From the split above (MP3 from the script, plus an ffmpeg AAC for comparison):</p>
+<pre><code>track01.mp3       441123 samples   wav    441123   extra +0
+track01.m4a       441344 samples   wav    441123   extra +221
+track02.mp3       440877 samples   wav    440877   extra +0
+track02.m4a       441344 samples   wav    440877   extra +467</code></pre>
+<p>And the same MP3s written without the tag came back +1,245 and +1,491 samples longer. That’s the gap, measured in advance instead of discovered by a listener. <code>+0</code> means the decoder knows where your audio starts and stops. Anything else is a gap waiting for a segue.</p>
+<p>Screw tapes were continuous by design, and the rule carries over: whether the slowdowns come from ScrewAI or a turntable pass, blend the tape in one session, render it once and cut it after. Don’t bounce every song separately and hope the joins line up.</p>
+<aside class="aside">Encoders change more than timing. <a href="reencoding-eats-true-peak-headroom.html">Re-encoding eats true-peak headroom</a> covers what they do to your peaks. And if a track’s leading silence is dragging its loudness reading down, that’s <a href="leading-silence-steals-integrated-lufs.html">a different edge problem</a> with its own fix.</aside>
+<dl class="faq">
+<dt>Why is there a gap between tracks on my album after converting to MP3?</dt>
+<dd>MP3 encoders add priming silence at the start and padding at the end of every file. LAME records both in a header so players can trim them. If the tag is missing or the player ignores it, the silences play. In our test that was a 28.2 ms hole at 44.1 kHz.</dd>
+<dt>Do I need to split album tracks at zero crossings?</dt>
+<dd>Not for lossless delivery. Two WAVs cut from one render reassemble exactly, even mid-note. What matters is cutting at a single sample position with no fades, trims or per-track processing at the cut.</dd>
+<dt>Do streaming platforms fix gapless playback for me?</dt>
+<dd>They encode from your lossless files and handle playback themselves, so you can’t control their decoder. You do control whether the files you upload are continuous to the sample. A dip or fade baked into your WAVs survives every platform.</dd>
+<dt>How do I check that an MP3 or AAC file is gapless?</dt>
+<dd>Decode it and compare its sample count with the WAV it came from. A tagged LAME MP3 decoded by ffmpeg matched exactly in our test. An untagged one was 1,245 samples longer, and an ffmpeg AAC .m4a kept 221 samples of end padding.</dd>
+</dl>
+<nav aria-label="Related essays" class="related-essays" style="margin:48px 0 24px;padding-top:24px;border-top:1px solid rgba(196,165,116,.32)"><h2>Related in Lacquer</h2><ul><li><a href="leading-silence-steals-integrated-lufs.html">The silence at the top of your bounce steals LUFS</a></li><li><a href="reencoding-eats-true-peak-headroom.html">Re-encoding eats true-peak headroom</a></li><li><a href="album-consistency-in-one-meter.html">Album consistency is a batch problem</a></li><li><a href="screw-tempo-still-needs-a-legal-peak.html">Screw tempo still needs a legal peak</a></li></ul></nav></article>
+<section class="comments" data-comments="" data-thread="gapless"></section>
+<script src="js/studio.js" type="module"></script>
+<script src="js/comments.js" type="module"></script>
+<footer class="site"><span>Lacquer · CoProducer Journal</span><span><a href="index.html">All essays</a></span></footer>
+</body>
+</html>

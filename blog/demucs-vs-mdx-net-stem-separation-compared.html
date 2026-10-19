@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1" name="viewport"/><meta content="https://myaiplug.github.io/coproducer-web/blog/img/essays/demucs-vs-mdx-net-stem-separation-compared.jpg?v=r432" name="twitter:image"/><meta content="Demucs vs MDX-Net from the published benchmarks and a runnable window test: who wins drums and bass, who wins vocals, and how to hear it." name="twitter:description"/><meta content="Demucs vs MDX-Net: what each separator gets wrong, and why" name="twitter:title"/><meta content="summary_large_image" name="twitter:card"/><meta content="2026-10-08T00:00:00Z" property="article:modified_time"/><meta content="2026-10-08T00:00:00Z" property="article:published_time"/><meta content="1440" property="og:image:height"/><meta content="2560" property="og:image:width"/><meta content="https://myaiplug.github.io/coproducer-web/blog/demucs-vs-mdx-net-stem-separation-compared.html" property="og:url"/><meta content="en_US" property="og:locale"/><meta content="CoProducer" property="og:site_name"/><meta content="article" property="og:type"/><link href="https://myaiplug.github.io/coproducer-web/llms.txt" rel="alternate" title="llms.txt" type="text/plain"/><meta content="NoDAW Labs" name="author"/><meta content="#050308" name="theme-color"/><meta content="index,follow,max-image-preview:large" name="robots"/><meta content="Demucs vs MDX-Net, stem separation models, Hybrid Demucs, HT Demucs, KUIELab-MDX-Net, SDR, SI-SDR, spectrogram vs waveform, DeepSplit, Lacquer" name="keywords"/>
+<title>Demucs vs MDX-Net: what each separator gets wrong, and why | Lacquer</title>
+<meta content="Demucs vs MDX-Net from the published benchmarks and a runnable window test: who wins drums and bass, who wins vocals, and how to hear it." name="description"/>
+<link href="https://myaiplug.github.io/coproducer-web/blog/demucs-vs-mdx-net-stem-separation-compared.html" rel="canonical"/>
+<meta content="Demucs vs MDX-Net: what each separator gets wrong, and why" property="og:title"/>
+<meta content="Demucs vs MDX-Net from the published benchmarks and a runnable window test: who wins drums and bass, who wins vocals, and how to hear it." property="og:description"/>
+<meta content="https://myaiplug.github.io/coproducer-web/blog/img/essays/demucs-vs-mdx-net-stem-separation-compared.jpg?v=r432" property="og:image"/>
+<meta content="Two precision analyzers on black marble, one drawing a sharp cyan waveform and the other a magenta spectrogram grid, their beams crossing at the center" property="og:image:alt"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;1,500;1,600&amp;family=Figtree:wght@400;500&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<link href="css/journal.css" rel="stylesheet"/>
+
+
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Demucs vs MDX-Net: what each separator gets wrong, and why","description":"Demucs vs MDX-Net from the published benchmarks and a runnable window test: who wins drums and bass, who wins vocals, and how to hear it.","datePublished":"2026-10-08","dateModified":"2026-10-08","mainEntityOfPage":{"@type":"WebPage","@id":"https://myaiplug.github.io/coproducer-web/blog/demucs-vs-mdx-net-stem-separation-compared.html"},"image":{"@type":"ImageObject","url":"https://myaiplug.github.io/coproducer-web/blog/img/essays/demucs-vs-mdx-net-stem-separation-compared.jpg?v=r432","width":2560,"height":1440},"author":{"@type":"Organization","name":"NoDAW Labs","url":"https://myaiplug.github.io/coproducer-web/","logo":"https://myaiplug.github.io/coproducer-web/assets/og-default.jpg"},"publisher":{"@type":"Organization","name":"NoDAW Labs","url":"https://myaiplug.github.io/coproducer-web/","logo":"https://myaiplug.github.io/coproducer-web/assets/og-default.jpg"},"isPartOf":{"@type":"Blog","name":"Lacquer — CoProducer Journal","url":"https://myaiplug.github.io/coproducer-web/blog/index.html"},"keywords":["Demucs vs MDX-Net","stem separation models","Hybrid Demucs","HT Demucs","KUIELab-MDX-Net","SDR","SI-SDR","spectrogram vs waveform","DeepSplit","Lacquer"],"speakable":{"@type":"SpeakableSpecification","cssSelector":[".answer","h1"]}}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Is Demucs or MDX-Net better?","acceptedAnswer":{"@type":"Answer","text":"Neither wins everywhere. In the MDX 2021 challenge results, Hybrid Demucs scored higher on drums and bass, and KUIELab-MDX-Net scored higher on vocals and the ‘other’ stem. Choose by the stem you need."}},{"@type":"Question","name":"Is Demucs a waveform model or a spectrogram model?","acceptedAnswer":{"@type":"Answer","text":"Both, these days. The original Demucs worked on waveforms. Hybrid Demucs (v3) and Hybrid Transformer Demucs (v4) run a waveform branch and a spectrogram branch together and add their outputs."}},{"@type":"Question","name":"What does SDR actually measure?","acceptedAnswer":{"@type":"Answer","text":"It compares the energy of the true stem with the energy of the error, in dB. Higher is better. It doesn’t weight errors by how audible they are, so a transient smeared before the hit can hide inside a good score."}},{"@type":"Question","name":"Why do separated drums sound hollow?","acceptedAnswer":{"@type":"Answer","text":"Spectrogram masking smears energy across the analysis window, and estimating phase is hard. The Hybrid Demucs paper notes that phase inconsistency in spectrogram methods can make attacks sound hollow."}},{"@type":"Question","name":"Should I ensemble two models?","acceptedAnswer":{"@type":"Answer","text":"Blending is a sound idea, and it’s what KUIELab-MDX-Net itself does with Demucs for drums and bass. Null-test the blend against the mix and listen to transients before you trust it."}}]}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"CoProducer","item":"https://myaiplug.github.io/coproducer-web/"},{"@type":"ListItem","position":2,"name":"Lacquer Journal","item":"https://myaiplug.github.io/coproducer-web/blog/index.html"},{"@type":"ListItem","position":3,"name":"Demucs vs MDX-Net: what each separator gets wrong, and why","item":"https://myaiplug.github.io/coproducer-web/blog/demucs-vs-mdx-net-stem-separation-compared.html"}]}</script></head>
+<body>
+<header class="top">
+<a class="mark" href="../index.html"><em>Co</em>Producer</a>
+<nav aria-label="Primary" class="nav">
+<a href="index.html">Journal</a>
+<a href="../index.html#ab">A/B</a>
+<a href="../index.html#analyzeHome">Analyze</a>
+<a href="../guides/index.html">Guides</a>
+<a href="../pricing.html">Pricing</a>
+</nav>
+<a class="cta" href="../index.html#analyzeHome">Measure a mix</a>
+</header>
+<article class="post" id="main">
+<div class="post-hero"><img alt="Two precision analyzers on black marble, one drawing a sharp cyan waveform and the other a magenta spectrogram grid, their beams crossing at the center" src="img/essays/demucs-vs-mdx-net-stem-separation-compared.jpg?v=r432"/></div>
+<header>
+<p class="kicker">Stems · 8 October 2026 · 11 min</p>
+<h1>Demucs vs MDX-Net: what each separator gets wrong, and why</h1>
+<p class="meta">NoDAW Labs · Lacquer Vol. 05</p>
+</header>
+<p class="answer">Demucs and MDX-Net each fail in their own way. In the published 2021 Music Demixing Challenge numbers, Hybrid Demucs led on drums and bass, and KUIELab-MDX-Net led on vocals and the catch-all “other” stem. The reason is representation. A model that thinks in long spectrogram windows resolves pitch beautifully and smears attacks. A model that thinks in waveforms keeps the hit and fights with sustained harmony. Choose by the stem you need, and judge the result with your ears and a null test, not with a single score.</p>
+<p>Every forum thread on this question ends the same way. Someone posts “Demucs for drums, MDX for vocals,” someone else says the opposite, and nobody shows their work. The truth is more interesting than a tier list. These two families are two answers to one hard trade-off, and once you can hear that trade-off, you can choose a model per stem instead of picking a team.</p>
+
+<h2>Two families, and how they blurred</h2>
+<p>The original <a href="https://arxiv.org/abs/1911.13254">Demucs</a> from Meta’s research team was a waveform model. It was a U-Net that took raw samples in and put raw samples out, with a recurrent layer in the middle for longer context. Spectrogram models came at the problem from the other side. They look at a time-frequency picture of the mix and predict how much of each tile belongs to each source.</p>
+<p>That neat split didn’t last. <a href="https://arxiv.org/abs/2111.03600">Hybrid Demucs</a> (Défossez, 2021) runs a waveform branch and a spectrogram branch side by side, shares a core between them, and sums their outputs. The paper reports that it won the Sony-organized Music Demixing Challenge 2021. <a href="https://arxiv.org/abs/2211.08553">Hybrid Transformer Demucs</a> (Rouard, Massa and Défossez, 2022), the “htdemucs” you see in most tools today, swaps the innermost layers for a cross-domain Transformer. With extra training data and per-source fine-tuning it reached 9.0 dB SDR on MUSDB HQ, and 9.2 dB with sparse attention.</p>
+<p><a href="https://arxiv.org/abs/2111.12203">KUIELab-MDX-Net</a> (Kim, Choi and colleagues), the model behind the “MDX” name, was blended from the start. It uses four spectrogram U-Nets, one per source, plus a small mixer network, and blends the result with a pretrained Demucs for the time-domain side. Per the authors, it placed second on leaderboard A and third on leaderboard B of the same challenge. So “Demucs versus MDX” really means “a waveform-first hybrid versus a spectrogram-first blend.”</p>
+
+<h2>What the published numbers say</h2>
+<p>Here are the MDX 2021 hidden-test results for Track A (MUSDB-only training), as reported in the Hybrid Demucs paper. The scores are in the challenge’s SDR, higher is better:</p>
+<table>
+<thead><tr><th>Model (MDX 2021, Track A)</th><th>Overall</th><th>Drums</th><th>Bass</th><th>Other</th><th>Vocals</th></tr></thead>
+<tbody>
+<tr><td>Hybrid Demucs</td><td>7.33</td><td><strong>8.04</strong></td><td><strong>8.12</strong></td><td>5.19</td><td>7.97</td></tr>
+<tr><td>KUIELab-MDX-Net</td><td>7.24</td><td>7.17</td><td>7.23</td><td><strong>5.63</strong></td><td><strong>8.90</strong></td></tr>
+</tbody></table>
+<p>Almost a dB apart on drums and bass, almost a dB the other way on vocals, and nearly tied overall. The same paper ran a listening test on MUSDB. Listeners rated KUIELab-MDX-Net best for vocal quality, and rated Hybrid Demucs much better for low bleed across sources. Défossez also names each family’s signature flaw plainly: phase inconsistency in spectrogram methods can make attacks sound hollow, and waveform Demucs vocals can carry a crunchy static.</p>
+<p>That’s the whole forum argument, settled by the people who built the models. The rest of this essay is about why it happens, and how to check it on your own material.</p>
+
+<h2>The trade-off you can run</h2>
+<p>Any time-frequency method has to choose a window. Long windows separate close pitches, like a 48 Hz kick tail and a 55 Hz bass note, but they spread each event across their whole length. Short windows pin events in time but blur pitch. MDX-Net leans into this openly: the paper lists a different FFT size per source, 6144 for vocals, 4096 for drums, 16384 for bass and 8192 for other.</p>
+<p>To isolate the effect of the window from any model’s mistakes, this script uses <em>oracle</em> masks. They’re built from the true stems of a synthetic mix, so they’re the best a mask can ever do at each window size. It also measures kick pre-echo, the energy that leaks into the 20 ms before each hit, and shows why researchers moved to scale-invariant SDR.</p>
+<pre><code>#!/usr/bin/env python3
+&quot;&quot;&quot;window_tradeoff.py: why spectrogram separators and waveform separators fail
+differently, shown with oracle masks on a SYNTHETIC mix (lab.py).
+
+For each STFT size we build the best possible soft mask from the true stems
+and score every stem. Short windows keep the kick&#x27;s attack; long windows
+resolve the bass and pad harmonics. Then we measure kick pre-echo (energy
+smeared into the 20 ms before each hit) and show why SI-SDR exists.
+Usage: python3 window_tradeoff.py   (numpy + lab.py)
+&quot;&quot;&quot;
+import numpy as np
+import lab
+
+stems = lab.synth_stems(seed=7)
+mix, stems = lab.mixdown(stems)
+names = list(stems)
+sizes = [512, 1024, 2048, 4096, 8192, 16384]
+best = {n: (-99, None, None) for n in names}
+
+print(&quot;oracle soft-mask SDR (dB) by STFT size, SYNTHETIC 92 BPM mix&quot;)
+print(f&quot;{&#x27;n_fft&#x27;:&gt;6s} {&#x27;ms&#x27;:&gt;6s} &quot; + &quot; &quot;.join(f&quot;{n:&gt;6s}&quot; for n in names) + f&quot; {&#x27;mean&#x27;:&gt;6s}&quot;)
+for nf in sizes:
+    est = lab.separate_with_masks(mix, lab.ratio_masks(stems, nf), nf)
+    s = [lab.sdr(stems[n], est[n]) for n in names]
+    for n, v in zip(names, s):
+        if v &gt; best[n][0]:
+            best[n] = (v, nf, est[n])
+    print(f&quot;{nf:6d} {1000*nf/lab.SR:6.1f} &quot; + &quot; &quot;.join(f&quot;{v:6.1f}&quot; for v in s) + f&quot; {np.mean(s):6.1f}&quot;)
+
+print(&quot;\nper-stem best window (the MDX-Net idea: a different n_fft per source)&quot;)
+for n in names:
+    print(f&quot;  {n:5s} best at n_fft={best[n][1]:5d}  SDR {best[n][0]:5.1f} dB&quot;)
+print(f&quot;  mean of per-stem bests: {np.mean([best[n][0] for n in names]):.1f} dB&quot;)
+
+# kick pre-echo: energy in the 20 ms before each onset, relative to the 20 ms after
+k = stems[&quot;kick&quot;]
+on = np.where((np.abs(k[1:]) &gt; 0.05) &amp; (np.abs(k[:-1]) &lt;= 0.05))[0]
+on = [o for i, o in enumerate(on) if i == 0 or o - on[i - 1] &gt; lab.SR // 4]
+w = int(0.02 * lab.SR)
+def pre_echo(x):
+    pre = sum(np.sum(x[o - w:o] ** 2) for o in on if o &gt; w)
+    post = sum(np.sum(x[o:o + w] ** 2) for o in on)
+    return 10 * np.log10(pre / post + 1e-12)
+print(&quot;\nkick pre-echo (20 ms before hit vs 20 ms after; lower is cleaner)&quot;)
+print(f&quot;  true kick stem          : {pre_echo(k):6.1f} dB&quot;)
+for nf in (512, 4096, 16384):
+    e = lab.separate_with_masks(mix, lab.ratio_masks(stems, nf), nf)[&quot;kick&quot;]
+    print(f&quot;  oracle mask n_fft={nf:5d} : {pre_echo(e):6.1f} dB&quot;)
+
+# SDR vs SI-SDR: turn a good estimate down 6 dB
+e = best[&quot;lead&quot;][2]
+print(&quot;\nscale check on the lead estimate&quot;)
+print(f&quot;  as is      : SDR {lab.sdr(stems[&#x27;lead&#x27;], e):5.1f} dB   SI-SDR {lab.si_sdr(stems[&#x27;lead&#x27;], e):5.1f} dB&quot;)
+print(f&quot;  -6 dB gain : SDR {lab.sdr(stems[&#x27;lead&#x27;], 0.5*e):5.1f} dB   SI-SDR {lab.si_sdr(stems[&#x27;lead&#x27;], 0.5*e):5.1f} dB&quot;)</code></pre>
+<p>Real output, synthetic audio (the groove from <code>lab.py</code>: kick, bass, pad, vowel-like lead, hats):</p>
+<pre><code>oracle soft-mask SDR (dB) by STFT size, SYNTHETIC 92 BPM mix
+ n_fft     ms   kick   bass    pad   lead   hats   mean
+   512   11.6    7.8    7.9    8.7   13.5   18.0   11.2
+  1024   23.2    7.8    7.7    8.9   15.5   18.1   11.6
+  2048   46.4    8.5    8.2    8.8   16.3   18.1   12.0
+  4096   92.9    9.6    9.1    9.1   16.9   18.1   12.6
+  8192  185.8   10.5    9.7    9.3   16.9   18.1   12.9
+ 16384  371.5   10.8   10.0    9.5   16.7   17.7   12.9
+
+per-stem best window (the MDX-Net idea: a different n_fft per source)
+  kick  best at n_fft=16384  SDR  10.8 dB
+  bass  best at n_fft=16384  SDR  10.0 dB
+  pad   best at n_fft=16384  SDR   9.5 dB
+  lead  best at n_fft= 8192  SDR  16.9 dB
+  hats  best at n_fft= 4096  SDR  18.1 dB
+  mean of per-stem bests: 13.1 dB
+
+kick pre-echo (20 ms before hit vs 20 ms after; lower is cleaner)
+  true kick stem          : -120.0 dB
+  oracle mask n_fft=  512 :  -22.8 dB
+  oracle mask n_fft= 4096 :  -18.2 dB
+  oracle mask n_fft=16384 :  -17.2 dB
+
+scale check on the lead estimate
+  as is      : SDR  16.9 dB   SI-SDR  16.9 dB
+  -6 dB gain : SDR   5.8 dB   SI-SDR  16.9 dB</code></pre>
+
+<h3>What that tells you</h3>
+<p><strong>SDR loves long windows, even for the kick.</strong> Kick SDR climbs from 7.8 dB at 512 points to 10.8 dB at 16384. That’s because most of a kick’s energy is its low sine tail, and a long window is what pulls that tail apart from the bass. Bass and pad follow the same curve. The hats don’t care at all, about 18 dB everywhere.</p>
+<p><strong>Your ears hear the other column.</strong> The true kick has no energy before the hit (the −120 dB is just our floor). A 512-point mask leaks a ghost at −22.8 dB, and a 16384-point mask leaks one at −17.2 dB. That’s the soft “fff-THUMP” pre-echo on separated drums, and the window that won on SDR made it worse. A score that sums error energy over the whole file will happily trade a smeared transient for a cleaner tail.</p>
+<p><strong>Choosing per stem helps.</strong> Taking the best window for each stem raises the mean from 12.9 dB, the best single size, to 13.1 dB. It’s a small gain with oracle masks. With real models it’s the logic behind per-source FFT sizes and blending.</p>
+<p><strong>Watch how a score is defined.</strong> Turning a perfectly good lead estimate down 6 dB drops plain SDR from 16.9 dB to 5.8 dB, while SI-SDR stays at 16.9 dB. Le Roux and colleagues argue the case in <a href="https://arxiv.org/abs/1811.02508">“SDR – half-baked or well done?”</a>. If a tool’s marketing quotes an SDR, ask which one, and on what test set.</p>
+<p>A caveat that should keep everyone humble. Oracle masks are a ceiling for masking, not for models. The HT Demucs paper lists an ideal-ratio-mask oracle at 8.22 dB on MUSDB HQ, and its best model at 9.20 dB. Hybrid models that predict complex spectra or waveforms can beat a magnitude mask. Our synthetic groove shows you the trade-off. It doesn’t rank real models.</p>
+
+<h2>Choosing by stem, in practice</h2>
+<table>
+<thead><tr><th>You need</th><th>Lean toward</th><th>Listen for</th><th>Quick fix</th></tr></thead>
+<tbody>
+<tr><td>Acapella, vocal for a remix</td><td>MDX-style vocal model</td><td>Snare ghosts, hollow “s” sounds</td><td>Gate between phrases, de-ess gently</td></tr>
+<tr><td>Drum loop or breaks</td><td>htdemucs</td><td>Pre-echo before hits, cymbal swirl</td><td>Transient shaper, short fade-in on each chop</td></tr>
+<tr><td>Bassline</td><td>htdemucs</td><td>Kick thump riding the bass</td><td>Sidechain-style ducking keyed from the drum stem</td></tr>
+<tr><td>Instrumental or karaoke</td><td>Either; blend if you can</td><td>Reverb tails left behind from the vocal</td><td>Null test, then decide if the leftover matters</td></tr>
+<tr><td>Pads, keys, “other”</td><td>MDX-style</td><td>Watery, phasey sustain</td><td>Accept a little bleed; it often glues</td></tr>
+</tbody></table>
+<p>None of this replaces your ears. Separators are trained on particular data, and a dense trap mix, a jazz trio and a live rock room will each surprise you. Treat the table as a place to start.</p>
+
+<h2>Decoding the model names in a menu</h2>
+<p>Stem tools tend to show you a menu of names that sound like firmware versions, so here’s a quick translation. “htdemucs” is Hybrid Transformer Demucs, the v4 release. “htdemucs_ft” is the per-source fine-tuned version: four models, one per stem, slower and usually a bit cleaner. “htdemucs_6s” adds guitar and piano stems. The <a href="https://github.com/facebookresearch/demucs">Demucs README</a> calls that six-source model experimental and warns of a lot of bleeding in the piano stem, so treat it that way. “MDX” on its own usually means a model descended from the KUIELab challenge work. “MDX23C” is a later, community-trained successor, and “Roformer” names usually point to band-split Transformer designs, the line of work that grew out of Band-Split RNN, which the HT Demucs paper itself names as its strongest competitor.</p>
+<p>Two practical rules come out of that. More stems doesn’t mean better stems. Each extra source is another chance for two similar timbres to trade energy, so start with four and only go wider when you actually need the guitar on its own. And the newest name isn’t automatically the best one for your record. The benchmarks are averages over pop and rock multitracks. A sparse 808 record or a bowed-string arrangement can rank models differently, and that’s exactly why the five-minute audition below beats any chart.</p>
+<h2>How to audition two models without fooling yourself</h2>
+<ol>
+<li><strong>Use the same source.</strong> Same WAV, same sample rate, no re-encode between runs. A lossy source takes away more than the model difference adds back.</li>
+<li><strong>Level-match the stems.</strong> A stem that’s 1 dB louder sounds “better.” Match by RMS or LUFS before you compare. This is the SI-SDR lesson in practice.</li>
+<li><strong>Solo the transients first.</strong> Loop two bars of drums and listen right before each hit. Pre-echo is the fastest tell between the families.</li>
+<li><strong>Then listen in the mix.</strong> A stem that sounds rough soloed can sit perfectly once the rest of the track is playing.</li>
+<li><strong>Null-test.</strong> Add all the stems up, flip polarity, sum with the original. A loud residual means the model dropped or invented something.</li>
+</ol>
+<p>If you’d rather not wire this up by hand, <a href="https://myaiplug.github.io/DeepSplit/">DeepSplit</a> runs htdemucs-, MDX23C- and Roformer-class models locally, so you can split the same file several ways on your own machine and compare the results without any upload in between.</p>
+<p>Once a rebuild is done, the transient you were fighting is still what the limiter sees. <a href="crest-factor-is-not-loudness.html">Crest factor is not loudness</a> covers what a softened attack does to your master, and checking the summed stems in mono with <a href="phase-correlation-and-mono.html">a phase-correlation pass</a> catches the phasey sustain that spectrogram bleed leaves behind.</p>
+<aside class="aside">The one-line answer: Demucs-family for the hits and the low end, MDX-family for the voice, a blend when it matters. Then trust the null test over the leaderboard.</aside>
+
+<dl class="faq">
+<dt>Is Demucs or MDX-Net better?</dt><dd>Neither wins everywhere. In the MDX 2021 challenge results, Hybrid Demucs scored higher on drums and bass, and KUIELab-MDX-Net scored higher on vocals and the ‘other’ stem. Choose by the stem you need.</dd>
+<dt>Is Demucs a waveform model or a spectrogram model?</dt><dd>Both, these days. The original Demucs worked on waveforms. Hybrid Demucs (v3) and Hybrid Transformer Demucs (v4) run a waveform branch and a spectrogram branch together and add their outputs.</dd>
+<dt>What does SDR actually measure?</dt><dd>It compares the energy of the true stem with the energy of the error, in dB. Higher is better. It doesn’t weight errors by how audible they are, so a transient smeared before the hit can hide inside a good score.</dd>
+<dt>Why do separated drums sound hollow?</dt><dd>Spectrogram masking smears energy across the analysis window, and estimating phase is hard. The Hybrid Demucs paper notes that phase inconsistency in spectrogram methods can make attacks sound hollow.</dd>
+<dt>Should I ensemble two models?</dt><dd>Blending is a sound idea, and it’s what KUIELab-MDX-Net itself does with Demucs for drums and bass. Null-test the blend against the mix and listen to transients before you trust it.</dd>
+</dl>
+<nav aria-label="Related essays" class="related-essays" style="margin:48px 0 24px;padding-top:24px;border-top:1px solid rgba(196,165,116,.32)"><h2>Related in Lacquer</h2><ul>
+<li><a href="split-stems-from-youtube-audio-you-own.html">Splitting stems from YouTube audio you own starts with the cleanest copy</a></li>
+<li><a href="phase-correlation-and-mono.html">Phase correlation is a mono audition</a></li>
+<li><a href="crest-factor-is-not-loudness.html">Crest factor is not loudness</a></li>
+</ul></nav>
+</article>
+<section class="comments" data-comments="" data-thread="demucs-mdx"></section>
+<script src="js/studio.js" type="module"></script>
+<script src="js/comments.js" type="module"></script>
+<footer class="site"><span>Lacquer · CoProducer Journal</span><span><a href="index.html">All essays</a></span></footer>
+</body>
+</html>

@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1" name="viewport"/><meta content="https://myaiplug.github.io/coproducer-web/blog/img/essays/432-vs-435-vs-442-hz-reference-pitch-guide.jpg?v=r432" name="twitter:image"/><meta content="432, 435, 438, 442, and custom A4 references compared: exact ratios, cents, runtime and BPM changes, documented history, and why the source reference matters." name="twitter:description"/><meta content="432, 435, 442 and the reference pitch you actually started from" name="twitter:title"/><meta content="summary_large_image" name="twitter:card"/><meta content="2026-10-08T00:00:00Z" property="article:modified_time"/><meta content="2026-10-08T00:00:00Z" property="article:published_time"/><meta content="1440" property="og:image:height"/><meta content="2560" property="og:image:width"/><meta content="A row of polished tuning forks of slightly different lengths standing on black marble, edge-lit in cyan and magenta" property="og:image:alt"/><meta content="https://myaiplug.github.io/coproducer-web/blog/432-vs-435-vs-442-hz-reference-pitch-guide.html" property="og:url"/><meta content="en_US" property="og:locale"/><meta content="CoProducer" property="og:site_name"/><meta content="article" property="og:type"/><link href="https://myaiplug.github.io/coproducer-web/llms.txt" rel="alternate" title="llms.txt" type="text/plain"/><meta content="NoDAW Labs" name="author"/><meta content="#050308" name="theme-color"/><meta content="index,follow,max-image-preview:large" name="robots"/><meta content="alternative tuning frequencies, 432 vs 435 Hz, 442 Hz to 432 Hz, A4 reference pitch, cents formula, diapason normal 435, CoProducer, NoDAW" name="keywords"/>
+<title>432 vs 435 vs 442 Hz: Alternate Tuning References Compared | Lacquer</title>
+<meta content="432, 435, 438, 442, and custom A4 references compared: exact ratios, cents, runtime and BPM changes, documented history, and why the source reference matters." name="description"/>
+<link href="https://myaiplug.github.io/coproducer-web/blog/432-vs-435-vs-442-hz-reference-pitch-guide.html" rel="canonical"/>
+<meta content="432, 435, 442 and the reference pitch you actually started from" property="og:title"/>
+<meta content="432, 435, 438, 442, and custom A4 references compared: exact ratios, cents, runtime and BPM changes, documented history, and why the source reference matters." property="og:description"/>
+<meta content="https://myaiplug.github.io/coproducer-web/blog/img/essays/432-vs-435-vs-442-hz-reference-pitch-guide.jpg?v=r432" property="og:image"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;1,500;1,600&amp;family=Figtree:wght@400;500&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<link href="css/journal.css" rel="stylesheet"/>
+
+
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"432, 435, 442 and the reference pitch you actually started from","description":"432, 435, 438, 442, and custom A4 references compared: exact ratios, cents, runtime and BPM changes, documented history, and why the source reference matters.","datePublished":"2026-10-08","dateModified":"2026-10-08","mainEntityOfPage":{"@type":"WebPage","@id":"https://myaiplug.github.io/coproducer-web/blog/432-vs-435-vs-442-hz-reference-pitch-guide.html"},"image":{"@type":"ImageObject","url":"https://myaiplug.github.io/coproducer-web/blog/img/essays/432-vs-435-vs-442-hz-reference-pitch-guide.jpg?v=r432","width":2560,"height":1440},"author":{"@type":"Organization","name":"NoDAW Labs","url":"https://myaiplug.github.io/coproducer-web/","logo":"https://myaiplug.github.io/coproducer-web/assets/og-default.jpg"},"publisher":{"@type":"Organization","name":"NoDAW Labs","url":"https://myaiplug.github.io/coproducer-web/","logo":"https://myaiplug.github.io/coproducer-web/assets/og-default.jpg"},"isPartOf":{"@type":"Blog","name":"Lacquer — CoProducer Journal","url":"https://myaiplug.github.io/coproducer-web/blog/index.html"},"keywords":["alternative tuning frequencies","432 vs 435 Hz","442 Hz to 432 Hz","A4 reference pitch","cents formula","diapason normal 435","CoProducer","NoDAW"],"wordCount":2024,"speakable":{"@type":"SpeakableSpecification","cssSelector":[".answer","h1"]}}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What is the difference between 432 Hz and 435 Hz tuning?","acceptedAnswer":{"@type":"Answer","text":"Both lower A4 from 440. 432 is about −31.77 cents and 435 is about −19.79 cents. A=435 has documented history as the French standard set in 1859, while 432 is a modern alternate-listening preference without a standards role."}},{"@type":"Question","name":"How do I convert a 442 Hz recording to 432 Hz?","acceptedAnswer":{"@type":"Answer","text":"Use 432 divided by 442, a ratio of 0.977376 or about −39.62 cents. Applying the usual 432/440 ratio to a 442 source lands near 433.96 Hz instead of 432."}},{"@type":"Question","name":"How do I calculate cents between two reference pitches?","acceptedAnswer":{"@type":"Answer","text":"Cents = 1200 × log2(target ÷ source). From 440, 438 is −7.89 cents, 435 is −19.79 cents, 432 is −31.77 cents, and 444 is +15.67 cents."}},{"@type":"Question","name":"Does changing to 432 Hz change the tuning system or temperament?","acceptedAnswer":{"@type":"Answer","text":"No. A reference change scales every note by the same ratio, so an equal-tempered major third stays 400 cents wide. Converting to just intonation or another temperament requires changing note relationships, which one ratio cannot do."}},{"@type":"Question","name":"Can I convert a 432 Hz file to 435 Hz?","acceptedAnswer":{"@type":"Answer","text":"You can, but render every target from the untouched original instead. In our synthetic test, stacking lossless conversions was numerically harmless below 16 kHz, but an MP3 step in the middle left the file measurably different, and stacked versions are hard to document."}},{"@type":"Question","name":"Which reference frequency is correct?","acceptedAnswer":{"@type":"Answer","text":"There is no universally correct one. 440 is the current ISO standard, 435 and 439 have documented history, and other targets are creative choices. Pick by matched-level listening on the record itself."}}]}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"CoProducer","item":"https://myaiplug.github.io/coproducer-web/"},{"@type":"ListItem","position":2,"name":"Lacquer Journal","item":"https://myaiplug.github.io/coproducer-web/blog/index.html"},{"@type":"ListItem","position":3,"name":"432, 435, 442 and the reference pitch you actually started from","item":"https://myaiplug.github.io/coproducer-web/blog/432-vs-435-vs-442-hz-reference-pitch-guide.html"}]}</script></head>
+<body>
+<header class="top">
+<a class="mark" href="../index.html"><em>Co</em>Producer</a>
+<nav aria-label="Primary" class="nav">
+<a href="index.html">Journal</a>
+<a href="../index.html#ab">A/B</a>
+<a href="../index.html#analyzeHome">Analyze</a>
+<a href="../guides/index.html">Guides</a>
+<a href="../pricing.html">Pricing</a>
+</nav>
+<a class="cta" href="../index.html#analyzeHome">Measure a mix</a>
+</header>
+<article class="post" id="main">
+<div class="post-hero"><img alt="A row of polished tuning forks of slightly different lengths standing on black marble, edge-lit in cyan and magenta" src="img/essays/432-vs-435-vs-442-hz-reference-pitch-guide.jpg?v=r432" width="2560" height="1440"/></div>
+<header>
+<p class="kicker">Reference · 8 October 2026 · 10 min</p>
+<h1>432, 435, 442 and the reference pitch you actually started from</h1>
+<p class="meta">NoDAW Labs · Lacquer Vol. 05</p>
+</header>
+<p class="answer">An alternate reference is just a ratio: target divided by the source the recording was actually made at. 432 from 440 is −31.77 cents, 435 is −19.79, 438 is −7.89. A 442 source needs 432/442, which is −39.62 cents. Only 435, 439, and 440 have documented standards history. The rest are taste. Render each target from the untouched original.</p>
+<p>Once you've heard a 432 version of something you love, the internet will offer you a whole menu. 435, 436, 438, 444, "Verdi pitch," "scientific pitch," a custom number someone swears by for vocals. It can start to feel like there's a correct frequency out there and you just haven't found it. There isn't one. What there is, is a simple piece of math, a little real history, and one question that matters more than the target: what reference was the recording made against in the first place?</p>
+<p>This is the field guide I'd want handed to me. What the numbers do, which ones have documented history behind them, which are just taste (taste is allowed), and the two mistakes that quietly ruin alternate versions: assuming every source is 440, and stacking one conversion on another.</p>
+
+<h2>The formula is target over source</h2>
+<p>Changing the A4 reference scales the whole note map by one ratio: target divided by source. Every fundamental, every harmonic, every room resonance moves by the same proportion, so the harmony stays intact and the whole record sits a little higher or lower. To compare references on a musical scale instead of a hertz scale, convert the ratio to cents. Cents = 1200 × log2(target ÷ source). A semitone is 100 cents.</p>
+<p>From a verified 440 source, 432 is a ratio of 0.981818, about −31.77 cents. In classic resampling, where pitch and time move together like tape, the record also runs about 1.85% longer. If you want the full anatomy of that one move, <a href="what-432-hz-actually-changes-in-a-master.html">What 432 Hz actually changes in a finished master</a> covers it. Here we're widening the lens.</p>
+<p>One thing worth noticing: equal steps in hertz aren't equal steps in cents. 440 to 438 is −7.89 cents. 440 to 432 is −31.77. And 442 to 432 is −39.62. Those last two are only 2 Hz apart at the source, but that's nearly 8 cents of difference in where you land.</p>
+
+<h2>Every reference, side by side</h2>
+<p>Here's the menu with the context that actually applies to each number. "Evidence status" means whether there's a documented historical or standards role. It's not a verdict on whether the number sounds good. That part is yours.</p>
+<table>
+<thead><tr><th>A4 target</th><th>Ratio from 440</th><th>Cents</th><th>4:00 song becomes</th><th>120 BPM becomes</th><th>Where it comes from</th><th>Evidence status</th></tr></thead>
+<tbody>
+<tr><td>430</td><td>0.977273</td><td>−39.80</td><td>4:05.58</td><td>117.27</td><td>Custom sound design</td><td>Taste; no standards role</td></tr>
+<tr><td>432</td><td>0.981818</td><td>−31.77</td><td>4:04.44</td><td>117.82</td><td>Popular alternate-listening reference</td><td>Preference; health claims unsupported</td></tr>
+<tr><td>435</td><td>0.988636</td><td>−19.79</td><td>4:02.76</td><td>118.64</td><td>French government commission, 1859</td><td>Documented historical standard</td></tr>
+<tr><td>436</td><td>0.990909</td><td>−15.81</td><td>4:02.20</td><td>118.91</td><td>Custom sound design</td><td>Taste; no standards role</td></tr>
+<tr><td>438</td><td>0.995455</td><td>−7.89</td><td>4:01.10</td><td>119.45</td><td>Subtle custom darkening</td><td>Taste; no standards role</td></tr>
+<tr><td>439</td><td>0.997727</td><td>−3.94</td><td>4:00.55</td><td>119.73</td><td>London Philharmonic Society, 1896</td><td>Documented, oddly derived</td></tr>
+<tr><td>440</td><td>1.000000</td><td>0.00</td><td>4:00.00</td><td>120.00</td><td>London conference 1939; ISO 16:1975</td><td>Current international standard</td></tr>
+<tr><td>442</td><td>1.004545</td><td>+7.85</td><td>3:58.91</td><td>120.55</td><td>Sharper reference some ensembles choose</td><td>Practice varies; verify per recording</td></tr>
+<tr><td>443</td><td>1.006818</td><td>+11.76</td><td>3:58.37</td><td>120.82</td><td>Sharper still</td><td>Practice varies; verify per recording</td></tr>
+<tr><td>444</td><td>1.009091</td><td>+15.67</td><td>3:57.84</td><td>121.09</td><td>Alternate-tuning communities</td><td>Preference only</td></tr>
+</tbody></table>
+<p>Every ratio, cents value, runtime, and BPM in that table comes straight from the demo script below, computed on the box rather than typed in.</p>
+
+<h2>The history that actually checks out</h2>
+<p>Pitch used to be local. Before electronic references, an orchestra's A depended on its instruments, its organ, its city, and the temperature of the room. Cavanagh's <a href="https://www.wam.hr/sadrzaj/us/Cavanagh_440Hz.pdf">short history of A=440</a> lays out the arc with sources. Nineteenth-century instrument makers pushed pitch upward because higher sounded more brilliant, until singers were straining at references near 450. In 1859 a French government commission made A=435 law in France. It was a compromise, and it was adopted for a time in some other European houses.</p>
+<p>Britain went its own way. In 1896 the Philharmonic Society in London settled on 439. Cavanagh describes it as coming from a common but mistaken belief that the French 435 had been specified at 59°F, and then adjusting it for a warmer room. Broadcasting then forced the question internationally. A 1939 conference in London agreed on A=440, and <a href="https://www.iso.org/standard/3601.html">ISO 16:1975</a> still specifies 440 Hz for the A in the treble stave. Cavanagh also notes that in practice pitch kept creeping upward in some places after 1939.</p>
+<p>Two honest takeaways. First, 435 and 439 have real, documented histories, which makes them interesting listening references. Second, putting a modern record at 435 does not recreate a nineteenth-century performance. Period sound also depends on temperament, instrument construction, playing technique, the room, and the repertoire. One global ratio is one ingredient, not a time machine.</p>
+
+<h2>Reference pitch is not temperament</h2>
+<p>This is where a lot of online discussion goes sideways. Changing A4 moves the anchor. It doesn't change the relationships between notes. An equal-tempered major third is 400 cents wide whether A is 440 or 432. A pure "just" third (a 5:4 ratio) is about 386 cents. Turning one into the other means retuning individual notes relative to each other, which a single ratio applied to a finished stereo master cannot do. If someone tells you a 432 conversion "puts the song in natural tuning," the math says otherwise, and section C of the demo below measures it.</p>
+
+<h2>The source reference comes first</h2>
+<p>Batch software can't infer intent from a filename. It also can't hear that a recording was tracked against something other than 440. Maybe it's a sharper ensemble, an older session, a detuned production, or a file somebody already retuned. If the source was 442 and you apply the default 432/440, you don't land on 432. You land a couple of hertz above it, at a reference nobody chose.</p>
+<p>How do you find out? Ask the session notes first. Failing that, put a good tuner (set to A=440) on a long, stable, exposed note, like a sustained piano chord, a held vocal, or a synth pad. If it consistently reads around +8 cents, you're probably looking at a 442 source, because 442 is +7.85 cents. Around −20 cents suggests 435. Around −32, it's already been retuned to 432, and the right move is to leave it alone. Write the number down before anything renders. This exact case is built into the folder workflow in <a href="batch-retune-a-folder-to-432-hz-safely.html">Batch retune a folder to 432 Hz without damaging a master</a>.</p>
+
+<h2>Proof on the box</h2>
+<p>Synthetic signals only: sines and filtered noise generated in code, so the measurements are clean and nothing here is anyone's record. The script prints the reference table, converts a 442 tone with the right and the wrong ratio, checks that an equal-tempered third keeps its size through a 432 conversion, and compares rendering 432 directly against stacking 440→435→432, once through lossless files and once through an MP3 in the middle. The renders use the same exact-ratio chain as the rest of this series: resample to 200 times the source reference, relabel as 200 times the target, come back to 48 kHz.</p>
+<pre><code>#!/usr/bin/env python3
+&quot;&quot;&quot;10_reference_math.py: alternate A4 references by the numbers, plus three render checks.
+SYNTHETIC AUDIO ONLY (tones and noise generated below).
+Needs: python3 + numpy, ffmpeg on PATH.  Usage: python3 10_reference_math.py&quot;&quot;&quot;
+import math, os, subprocess, tempfile
+import numpy as np
+
+SR = 48000
+tmp = tempfile.mkdtemp()
+
+def cents(r): return 1200 * math.log2(r)
+def mmss(s): return f&quot;{int(s // 60)}:{s % 60:05.2f}&quot;
+
+print(&quot;A) reference table from a verified 440 source (classic resample: pitch and time move together)&quot;)
+print(f&quot;{&#x27;target&#x27;:&gt;7} {&#x27;ratio&#x27;:&gt;9} {&#x27;cents&#x27;:&gt;8} {&#x27;4:00 song&#x27;:&gt;10} {&#x27;120 BPM&#x27;:&gt;8}&quot;)
+for t in (430, 432, 435, 436, 438, 439, 440, 442, 443, 444):
+    r = t / 440
+    print(f&quot;{t:&gt;7} {r:&gt;9.6f} {cents(r):&gt;+8.2f} {mmss(240 / r):&gt;10} {120 * r:&gt;8.2f}&quot;)
+
+def write(x, path, rate=SR):
+    subprocess.run([&quot;ffmpeg&quot;, &quot;-y&quot;, &quot;-v&quot;, &quot;error&quot;, &quot;-f&quot;, &quot;f32le&quot;, &quot;-ar&quot;, str(rate), &quot;-ac&quot;, &quot;1&quot;, &quot;-i&quot;, &quot;-&quot;,
+                    &quot;-c:a&quot;, &quot;pcm_f32le&quot;, path], input=x.astype(np.float32).tobytes(), check=True)
+
+def read(path):
+    raw = subprocess.run([&quot;ffmpeg&quot;, &quot;-v&quot;, &quot;error&quot;, &quot;-i&quot;, path, &quot;-f&quot;, &quot;f32le&quot;, &quot;-ac&quot;, &quot;1&quot;, &quot;-ar&quot;, str(SR), &quot;-&quot;],
+                         capture_output=True, check=True).stdout
+    return np.frombuffer(raw, np.float32).astype(np.float64)
+
+def retune(src, dst, source_hz, target_hz, codec=&quot;pcm_f32le&quot;):
+    chain = (f&quot;aresample={int(source_hz*200)}:resampler=soxr:precision=28,asetrate={int(target_hz*200)},&quot;
+             f&quot;aresample={SR}:resampler=soxr:precision=28&quot;)
+    subprocess.run([&quot;ffmpeg&quot;, &quot;-y&quot;, &quot;-v&quot;, &quot;error&quot;, &quot;-i&quot;, src, &quot;-af&quot;, chain, &quot;-c:a&quot;, codec, dst], check=True)
+
+def peaks(x, lo, hi, n=1):
+    w = x[: SR * 4] * np.hanning(SR * 4)
+    sp = np.abs(np.fft.rfft(w, 32 * len(w))); f = np.fft.rfftfreq(32 * len(w), 1 / SR)
+    out = []
+    for a, b in ([(lo, hi)] if n == 1 else [(lo, (lo + hi) / 2), ((lo + hi) / 2, hi)]):
+        m = (f &gt; a) &amp; (f &lt; b); out.append(f[m][np.argmax(sp[m])])
+    return out
+
+t = np.arange(SR * 6) / SR
+print(&quot;\nB) a file recorded against A=442, converted two ways&quot;)
+write(0.4 * np.sin(2 * np.pi * 442 * t), f&quot;{tmp}/a442.wav&quot;)
+retune(f&quot;{tmp}/a442.wav&quot;, f&quot;{tmp}/right.wav&quot;, 442, 432)
+retune(f&quot;{tmp}/a442.wav&quot;, f&quot;{tmp}/wrong.wav&quot;, 440, 432)
+print(f&quot;  source A4 measured        : {peaks(read(f&#x27;{tmp}/a442.wav&#x27;), 420, 460)[0]:.2f} Hz&quot;)
+print(f&quot;  432/442 (documented)      : {peaks(read(f&#x27;{tmp}/right.wav&#x27;), 420, 460)[0]:.2f} Hz  ({cents(432/442):+.2f} c)&quot;)
+print(f&quot;  432/440 (assumed default) : {peaks(read(f&#x27;{tmp}/wrong.wav&#x27;), 420, 460)[0]:.2f} Hz  ({cents(432/440):+.2f} c)&quot;)
+
+print(&quot;\nC) reference vs temperament: an equal-tempered major third keeps its size&quot;)
+third = 440 * 2 ** (4 / 12)
+write(0.3 * np.sin(2 * np.pi * 440 * t) + 0.3 * np.sin(2 * np.pi * third * t), f&quot;{tmp}/third.wav&quot;)
+retune(f&quot;{tmp}/third.wav&quot;, f&quot;{tmp}/third432.wav&quot;, 440, 432)
+for name in (&quot;third&quot;, &quot;third432&quot;):
+    a, b = peaks(read(f&quot;{tmp}/{name}.wav&quot;), 400, 600, n=2)
+    print(f&quot;  {name:9s}: {a:7.2f} Hz + {b:7.2f} Hz -&gt; interval {cents(b / a):.2f} c &quot;
+          f&quot;(just third would be {cents(5 / 4):.2f} c)&quot;)
+
+print(&quot;\nD) render every target from the original, or stack them? (broadband synthetic test)&quot;)
+rng = np.random.default_rng(7)
+x = 0.2 * rng.standard_normal(SR * 6)
+x = np.convolve(x, np.ones(4) / 4, &quot;same&quot;) + 0.2 * np.sin(2 * np.pi * 440 * t)
+write(x, f&quot;{tmp}/src.wav&quot;)
+retune(f&quot;{tmp}/src.wav&quot;, f&quot;{tmp}/direct.wav&quot;, 440, 432)
+retune(f&quot;{tmp}/src.wav&quot;, f&quot;{tmp}/s435.wav&quot;, 440, 435)
+retune(f&quot;{tmp}/s435.wav&quot;, f&quot;{tmp}/stacked.wav&quot;, 435, 432)
+retune(f&quot;{tmp}/src.wav&quot;, f&quot;{tmp}/s435.mp3&quot;, 440, 435, codec=&quot;libmp3lame&quot;)  # ffmpeg default 128 kbps
+retune(f&quot;{tmp}/s435.mp3&quot;, f&quot;{tmp}/stacked_mp3.wav&quot;, 435, 432)
+d = read(f&quot;{tmp}/direct.wav&quot;)
+
+def residual(y):
+    best = None
+    for lag in range(-2000, 2001):          # align, since encoders add delay
+        a = d[max(0, lag):]; b = y[max(0, -lag):]; n = min(len(a), len(b)) - 4000
+        e = a[2000:n] - b[2000:n]
+        r = 10 * np.log10(np.mean(e ** 2) / np.mean(a[2000:n] ** 2))
+        if best is None or r &lt; best[0]: best = (r, lag)
+    return best
+
+def lowpass(v, hz=16000):                  # brick-wall FFT low-pass, for a &quot;band you can hear&quot; view
+    V = np.fft.rfft(v); V[np.fft.rfftfreq(len(v), 1 / SR) &gt; hz] = 0
+    return np.fft.irfft(V, len(v))
+
+def band_residual(y, lag):
+    a = lowpass(d[max(0, lag):]); b = lowpass(y[max(0, -lag):]); n = min(len(a), len(b)) - 4000
+    e = a[2000:n] - b[2000:n]
+    return 10 * np.log10(np.mean(e ** 2) / np.mean(a[2000:n] ** 2))
+
+print(&quot;  (difference = how far each stacked render sits from a direct 440-&gt;432 render; lower is closer)&quot;)
+for name, path in ((&quot;440-&gt;435-&gt;432 lossless&quot;, &quot;stacked.wav&quot;), (&quot;440-&gt;435 mp3 128k -&gt;432&quot;, &quot;stacked_mp3.wav&quot;)):
+    y = read(f&quot;{tmp}/{path}&quot;)
+    r, lag = residual(y)
+    print(f&quot;  {name:24s}: A4 {peaks(y, 420, 460)[0]:.2f} Hz | full band {r:6.1f} dB | &quot;
+          f&quot;below 16 kHz {band_residual(y, lag):6.1f} dB | lag {lag}&quot;)</code></pre>
+<p>What it printed:</p>
+<pre><code>A) reference table from a verified 440 source (classic resample: pitch and time move together)
+ target     ratio    cents  4:00 song  120 BPM
+    430  0.977273   -39.80    4:05.58   117.27
+    432  0.981818   -31.77    4:04.44   117.82
+    435  0.988636   -19.79    4:02.76   118.64
+    436  0.990909   -15.81    4:02.20   118.91
+    438  0.995455    -7.89    4:01.10   119.45
+    439  0.997727    -3.94    4:00.55   119.73
+    440  1.000000    +0.00    4:00.00   120.00
+    442  1.004545    +7.85    3:58.91   120.55
+    443  1.006818   +11.76    3:58.37   120.82
+    444  1.009091   +15.67    3:57.84   121.09
+
+B) a file recorded against A=442, converted two ways
+  source A4 measured        : 442.00 Hz
+  432/442 (documented)      : 432.00 Hz  (-39.62 c)
+  432/440 (assumed default) : 433.96 Hz  (-31.77 c)
+
+C) reference vs temperament: an equal-tempered major third keeps its size
+  third    :  440.00 Hz +  554.37 Hz -&gt; interval 400.01 c (just third would be 386.31 c)
+  third432 :  432.00 Hz +  544.29 Hz -&gt; interval 400.01 c (just third would be 386.31 c)
+
+D) render every target from the original, or stack them? (broadband synthetic test)
+  (difference = how far each stacked render sits from a direct 440-&gt;432 render; lower is closer)
+  440-&gt;435-&gt;432 lossless  : A4 432.00 Hz | full band  -58.4 dB | below 16 kHz -130.7 dB | lag 0
+  440-&gt;435 mp3 128k -&gt;432 : A4 432.00 Hz | full band  -12.7 dB | below 16 kHz  -14.3 dB | lag 0</code></pre>
+
+<h2>What those numbers say</h2>
+<p><strong>B is the expensive mistake.</strong> The 442 tone converted with the documented ratio landed at exactly 432.00 Hz. Converted with the assumed 440 default, it landed at 433.96, almost 8 cents sharp of the target. That's not a disaster you'd hear on a phone. But it means the file's label is wrong, and every later version built from it inherits the error.</p>
+<p><strong>C settles the temperament question.</strong> Before conversion: 440.00 and 554.37 Hz, 400.01 cents apart. After: 432.00 and 544.29 Hz, still 400.01 cents apart. The extra hundredth is the FFT's measurement resolution, not the conversion. The whole chord moved and its internal shape didn't change. A just third would be 386.31 cents, and nothing about a reference conversion gets you there.</p>
+<p><strong>D is subtler and worth reading carefully.</strong> Stacking two lossless conversions landed on the same 432.00 Hz, and below 16 kHz it was indistinguishable from a direct render: −130.7 dB of difference, which is numerically nothing. The full-band figure of −58.4 dB comes from the very top octave near the Nyquist limit, where each resampling pass applies its own steep anti-aliasing filter. So stacking lossless renders isn't a sonic catastrophe. It's a documentation catastrophe, because the file's history now has two steps nobody wrote down.</p>
+<p>The MP3-in-the-middle path is different. The difference against a direct render was −14.3 dB below 16 kHz. Be careful reading that. Broadband noise is the hardest possible material for a perceptual codec, and codecs are designed to throw away what they predict you won't hear, so a big null difference isn't the same as a big audible difference. What it does prove is that the stacked file is no longer the same signal. It also carries the encoder's choices forward into every version built on top of it. That's the same reason <a href="reencoding-eats-true-peak-headroom.html">re-encoding eats true-peak headroom</a>.</p>
+<p>The rule falls out on its own: render every target from the untouched original. If you want 435 and 432 versions, that's two renders from the 440 master. It is not one render from the other.</p>
+
+<h2>Custom targets are sound design, and that's fine</h2>
+<p>Sometimes 438 just suits the singer better. Sometimes a sample sits sweeter at 436 against the rest of the arrangement, or a slowed, darker 430 is exactly the mood. None of those numbers needs a mythology. They need a known source, an intentional target, a written ratio, and an honest A/B at matched level. Remember that classic mode moves time too: a 430 version of a four-minute song runs 4:05.58, and that slower pace is part of what you're hearing, the same way it is <a href="when-to-slow-the-bounce.html">when you slow the bounce</a> on purpose. If runtime has to stay fixed, a time-preserving shift is the alternative, with its own trade-offs, covered in <a href="resampling-vs-pitch-shift-vs-tempo.html">Resampling, pitch shifting, and tempo change are three different jobs</a>.</p>
+<p>Write the cents value in your notes, not just the hertz. "Slightly lower" is not a production instruction. "−15.81 cents from a verified 440 source, classic mode" is.</p>
+<aside class="aside">The full <a href="https://retune-432.vercel.app">reTUNE[432]</a> system adds named alternate references and custom targets on top of the 432 preview, so you can render 435 or 438 straight from the original and let the record decide instead of a slogan.</aside>
+<dl class="faq">
+<dt>What is the difference between 432 Hz and 435 Hz tuning?</dt><dd>Both lower A4 from 440. 432 is about −31.77 cents and 435 is about −19.79 cents. A=435 has documented history as the French standard set in 1859, while 432 is a modern alternate-listening preference without a standards role.</dd>
+<dt>How do I convert a 442 Hz recording to 432 Hz?</dt><dd>Use 432 divided by 442, a ratio of 0.977376 or about −39.62 cents. Applying the usual 432/440 ratio to a 442 source lands near 433.96 Hz instead of 432.</dd>
+<dt>How do I calculate cents between two reference pitches?</dt><dd>Cents = 1200 × log2(target ÷ source). From 440, 438 is −7.89 cents, 435 is −19.79 cents, 432 is −31.77 cents, and 444 is +15.67 cents.</dd>
+<dt>Does changing to 432 Hz change the tuning system or temperament?</dt><dd>No. A reference change scales every note by the same ratio, so an equal-tempered major third stays 400 cents wide. Converting to just intonation or another temperament requires changing note relationships, which one ratio cannot do.</dd>
+<dt>Can I convert a 432 Hz file to 435 Hz?</dt><dd>You can, but render every target from the untouched original instead. In our synthetic test, stacking lossless conversions was numerically harmless below 16 kHz, but an MP3 step in the middle left the file measurably different, and stacked versions are hard to document.</dd>
+<dt>Which reference frequency is correct?</dt><dd>There is no universally correct one. 440 is the current ISO standard, 435 and 439 have documented history, and other targets are creative choices. Pick by matched-level listening on the record itself.</dd>
+</dl>
+<nav aria-label="Related essays" class="related-essays" style="margin:48px 0 24px;padding-top:24px;border-top:1px solid rgba(196,165,116,.32)"><h2>Related in Lacquer</h2><ul>
+<li><a href="what-432-hz-actually-changes-in-a-master.html">What 432 Hz actually changes in a finished master</a></li>
+<li><a href="resampling-vs-pitch-shift-vs-tempo.html">Resampling, pitch shifting, and tempo change are three different jobs</a></li>
+<li><a href="reencoding-eats-true-peak-headroom.html">Re-encoding eats true-peak headroom</a></li>
+<li><a href="when-to-slow-the-bounce.html">When to slow the bounce</a></li>
+</ul></nav>
+</article>
+<section class="comments" data-comments="" data-thread="r432-refs"></section>
+<script src="js/studio.js" type="module"></script>
+<script src="js/comments.js" type="module"></script>
+<footer class="site"><span>Lacquer · CoProducer Journal</span><span><a href="index.html">All essays</a></span></footer>
+</body>
+</html>

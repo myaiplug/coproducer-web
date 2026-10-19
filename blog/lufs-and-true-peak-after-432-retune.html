@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1" name="viewport"/><meta content="https://myaiplug.github.io/coproducer-web/blog/img/essays/lufs-and-true-peak-after-432-retune.jpg?v=r432" name="twitter:image"/><meta content="A 432 retune barely moves LUFS, but resampling can turn hidden inter-sample peaks into real overs. Render in float, measure, then normalize in two passes." name="twitter:description"/><meta content="432 Hz mastering: LUFS and true peak after a retune" name="twitter:title"/><meta content="summary_large_image" name="twitter:card"/><meta content="2026-10-08T00:00:00Z" property="article:modified_time"/><meta content="2026-10-08T00:00:00Z" property="article:published_time"/><meta content="1440" property="og:image:height"/><meta content="2560" property="og:image:width"/><meta content="https://myaiplug.github.io/coproducer-web/blog/lufs-and-true-peak-after-432-retune.html" property="og:url"/><meta content="en_US" property="og:locale"/><meta content="CoProducer" property="og:site_name"/><meta content="article" property="og:type"/><link href="https://myaiplug.github.io/coproducer-web/llms.txt" rel="alternate" title="llms.txt" type="text/plain"/><meta content="NoDAW Labs" name="author"/><meta content="#050308" name="theme-color"/><meta content="index,follow,max-image-preview:large" name="robots"/><meta content="432 Hz mastering, LUFS after retuning, true peak 432 Hz, loudnorm two pass, 432 Hz loudness, inter-sample peaks resampling, -14 LUFS" name="keywords"/>
+<title>432 Hz mastering: LUFS and true peak after a retune | Lacquer</title>
+<meta content="A 432 retune barely moves LUFS, but resampling can turn hidden inter-sample peaks into real overs. Render in float, measure, then normalize in two passes." name="description"/>
+<link href="https://myaiplug.github.io/coproducer-web/blog/lufs-and-true-peak-after-432-retune.html" rel="canonical"/>
+<meta content="432 Hz mastering: LUFS and true peak after a retune" property="og:title"/>
+<meta content="A 432 retune barely moves LUFS, but resampling can turn hidden inter-sample peaks into real overs. Render in float, measure, then normalize in two passes." property="og:description"/>
+<meta content="https://myaiplug.github.io/coproducer-web/blog/img/essays/lufs-and-true-peak-after-432-retune.jpg?v=r432" property="og:image"/>
+<meta content="A mastering limiter and a glowing loudness meter on black marble, one needle in cyan and one in magenta, with a thin waveform pressing against a ceiling line" property="og:image:alt"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;1,500;1,600&amp;family=Figtree:wght@400;500&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<link href="css/journal.css" rel="stylesheet"/>
+
+
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"432 Hz mastering: LUFS and true peak after a retune","description":"A 432 retune barely moves LUFS, but resampling can turn hidden inter-sample peaks into real overs. Render in float, measure, then normalize in two passes.","datePublished":"2026-10-08","dateModified":"2026-10-08","mainEntityOfPage":{"@type":"WebPage","@id":"https://myaiplug.github.io/coproducer-web/blog/lufs-and-true-peak-after-432-retune.html"},"image":{"@type":"ImageObject","url":"https://myaiplug.github.io/coproducer-web/blog/img/essays/lufs-and-true-peak-after-432-retune.jpg?v=r432","width":2560,"height":1440},"author":{"@type":"Organization","name":"NoDAW Labs","url":"https://myaiplug.github.io/coproducer-web/","logo":"https://myaiplug.github.io/coproducer-web/assets/og-default.jpg"},"publisher":{"@type":"Organization","name":"NoDAW Labs","url":"https://myaiplug.github.io/coproducer-web/","logo":"https://myaiplug.github.io/coproducer-web/assets/og-default.jpg"},"isPartOf":{"@type":"Blog","name":"Lacquer — CoProducer Journal","url":"https://myaiplug.github.io/coproducer-web/blog/index.html"},"keywords":["432 Hz mastering","LUFS after retuning","true peak 432 Hz","loudnorm two pass","432 Hz loudness","inter-sample peaks resampling","-14 LUFS"],"speakable":{"@type":"SpeakableSpecification","cssSelector":[".answer","h1"]},"citation":["https://tech.ebu.ch/publications/r128","https://support.spotify.com/us/artists/article/loudness-normalization/","https://ffmpeg.org/ffmpeg-filters.html#loudnorm"]}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Does converting to 432 Hz change LUFS?","acceptedAnswer":{"@type":"Answer","text":"Barely. In our synthetic tests integrated loudness moved by about 0.1 LU. Pitch and loudness are separate properties, so a retuned file is as loud or quiet as its source. Measure the render anyway."}},{"@type":"Question","name":"Why did my 432 version clip when the original didn't?","acceptedAnswer":{"@type":"Answer","text":"Resampling reconstructs the waveform between the original samples. If the source had inter-sample peaks above 0 dBFS, they become real sample values in the new file. In a 24-bit fixed-point render those clip. Render in 32-bit float or leave true-peak headroom first."}},{"@type":"Question","name":"Should I normalize the 432 version to -14 LUFS?","acceptedAnswer":{"@type":"Answer","text":"Only if that matches where it's going. Spotify documents a -14 LUFS playback reference and recommends keeping true peak below -1 dBTP. Broadcast under EBU R 128 targets -23 LUFS. Keep an un-normalized master and make target-specific copies."}},{"@type":"Question","name":"What is two-pass loudness normalization?","acceptedAnswer":{"@type":"Answer","text":"The first pass measures the whole file. The second applies gain using those measurements. With ffmpeg loudnorm, the second pass stays a clean linear gain change only if the target fits under the true-peak ceiling; otherwise it switches to dynamic processing."}},{"@type":"Question","name":"Can a retune or normalization fix a clipped master?","acceptedAnswer":{"@type":"Answer","text":"No. Gain changes and limiters can't restore waveform detail that clipping flattened. Retuning a clipped file just moves the damage down in pitch. Go back to an unclipped source if you have one."}}]}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"CoProducer","item":"https://myaiplug.github.io/coproducer-web/"},{"@type":"ListItem","position":2,"name":"Lacquer Journal","item":"https://myaiplug.github.io/coproducer-web/blog/index.html"},{"@type":"ListItem","position":3,"name":"432 Hz mastering: LUFS and true peak after a retune","item":"https://myaiplug.github.io/coproducer-web/blog/lufs-and-true-peak-after-432-retune.html"}]}</script></head>
+<body>
+<header class="top">
+<a class="mark" href="../index.html"><em>Co</em>Producer</a>
+<nav aria-label="Primary" class="nav">
+<a href="index.html">Journal</a>
+<a href="../index.html#ab">A/B</a>
+<a href="../index.html#analyzeHome">Analyze</a>
+<a href="../guides/index.html">Guides</a>
+<a href="../pricing.html">Pricing</a>
+</nav>
+<a class="cta" href="../index.html#analyzeHome">Measure a mix</a>
+</header>
+<article class="post" id="main">
+<div class="post-hero"><img alt="A mastering limiter and a glowing loudness meter on black marble, one needle in cyan and one in magenta, with a thin waveform pressing against a ceiling line" src="img/essays/lufs-and-true-peak-after-432-retune.jpg?v=r432"/></div>
+<header>
+<p class="kicker">Mastering · 8 October 2026 · 12 min</p>
+<h1>432 Hz mastering: LUFS and true peak after a retune</h1>
+<p class="meta">NoDAW Labs · Lacquer Vol. 05</p>
+</header>
+<p class="answer">A 432 retune changes pitch, not loudness: in our tests integrated LUFS moved by about 0.1 LU. Peaks are a different story. Resampling rebuilds the waveform, so inter-sample peaks hiding in a crushed master become real samples above 0 dBFS, and a fixed-point render clips them. Retune into 32-bit float, measure the result, then deliver any LUFS target as a separate, named, two-pass step, and always keep an un-normalized 432 master.</p>
+<p>Here's a question that comes up the moment somebody likes a 432 version: "Cool, so what LUFS should it be?" Which is a fair question with a slightly awkward answer. The retune doesn't decide that. Where the file is going decides that. The retune only decides whether you've got a peak problem waiting for you.</p>
+<p>So let's take the two things apart properly, look at what really happens to loudness and peaks when you resample a finished master, and then put them back together in an order that doesn't wreck the file or rig the comparison.</p>
+
+<h2>Pitch is not loudness</h2>
+<p>LUFS is an estimate of perceived program loudness, built on the ITU BS.1770 measurement, with a weighting curve that mostly ignores the deepest lows and leans a little on the upper mids. A 432 conversion slides every frequency down by 0.981818, about 31.77 cents. That moves a tiny bit of energy relative to the weighting curve, but it doesn't make the record meaningfully louder or quieter. A crushed master stays crushed, a dynamic one stays dynamic.</p>
+<p>That has one important consequence for listening tests: don't normalize only one side. If the 432 version gets a loudness pass and the 440 doesn't, you're comparing loudness, not pitch. Decide whether the lower version works first, level-matched, the way <a href="432-vs-440-blind-listening-test.html">How to run a 432 vs 440 listening test you can trust</a> describes. Then think about delivery.</p>
+
+<h2>What actually moves: the peaks</h2>
+<p>A sample peak meter reads the stored sample values. A true-peak meter estimates the waveform <em>between</em> those samples, which is what a DAC, a sample-rate converter, or a codec will actually reconstruct. <a href="true-peak-is-what-codecs-clip.html">True peak is what codecs clip</a> covers the difference in depth. The short version: a loud master can show a sample peak of &minus;0.3 dBFS while its true peak sits above zero.</p>
+<p>Classic retuning is a resample. It reinterprets the sample rate and then reconstructs new samples at different points in time. Those new points can land right on top of the inter-sample peaks the original was hiding. So a peak that was only "virtual" in the source becomes a real number above 1.0 in the output. In a 32-bit float file that's harmless and recoverable. In a 24-bit or 16-bit fixed-point file, it's clipped the moment it's written.</p>
+
+<h2>A test on three synthetic masters</h2>
+<p>This script builds three synthetic 40-second masters (a heavily limited loud one, a dynamic quiet one, and a hard-clipped one), retunes each with ffmpeg's soxr resampler into 32-bit float, measures loudness, loudness range, true peak, sample peak, and the number of samples over full scale, then normalizes the 432 renders to &minus;14 LUFS and &minus;1 dBTP with a proper two-pass loudnorm.</p>
+<pre><code>#!/usr/bin/env python3
+&quot;&quot;&quot;lufs_after_retune.py: what a 440-&gt;432 retune does to loudness and peaks,
+and how to deliver a LUFS target afterwards without cheating.
+Usage: python3 lufs_after_retune.py
+Needs: numpy, ffmpeg (with soxr) on PATH.
+
+Builds three SYNTHETIC 40 s masters (loud/limited, dynamic/quiet, hard-
+clipped), retunes each with asetrate + soxr into 32-bit float, measures
+integrated loudness, loudness range, true peak, sample peak and overs, then
+runs ffmpeg loudnorm to -14 LUFS / -1 dBTP in two passes and reports
+whether it could stay linear or fell back to dynamic processing.&quot;&quot;&quot;
+import json, re, subprocess
+import numpy as np
+
+SR, D = 48000, 40.0
+t = np.arange(int(SR * D)) / SR
+rng = np.random.default_rng(14)
+
+def ff(*a, inp=None):
+    return subprocess.run([&quot;ffmpeg&quot;, &quot;-v&quot;, &quot;error&quot;, &quot;-y&quot;, *a], input=inp, capture_output=True, check=True)
+
+def write(name, x):
+    st = np.stack([x, np.roll(x, 31)], 1).astype(np.float32)
+    ff(&quot;-f&quot;, &quot;f32le&quot;, &quot;-ar&quot;, str(SR), &quot;-ac&quot;, &quot;2&quot;, &quot;-i&quot;, &quot;-&quot;, &quot;-c:a&quot;, &quot;pcm_f32le&quot;, name, inp=st.tobytes())
+
+def decode(name):
+    return np.frombuffer(ff(&quot;-i&quot;, name, &quot;-f&quot;, &quot;f32le&quot;, &quot;-&quot;).stdout, dtype=np.float32)
+
+def meas(name):
+    err = subprocess.run([&quot;ffmpeg&quot;, &quot;-nostats&quot;, &quot;-hide_banner&quot;, &quot;-i&quot;, name, &quot;-af&quot;,
+                          &quot;ebur128=peak=true:framelog=quiet&quot;, &quot;-f&quot;, &quot;null&quot;, &quot;-&quot;],
+                         capture_output=True, text=True).stderr
+    s = err[err.rfind(&quot;Summary:&quot;):]
+    g = lambda pat: float(re.search(pat, s).group(1))
+    x = decode(name)
+    sp = 20 * np.log10(np.max(np.abs(x)))
+    return g(r&quot;I:\s+(-?[\d.]+) LUFS&quot;), g(r&quot;LRA:\s+(-?[\d.]+) LU&quot;), g(r&quot;Peak:\s+(-?[\d.]+) dBFS&quot;), sp, int(np.sum(np.abs(x) &gt; 1.0))
+
+beat = (t * 92 / 60) % 1.0
+music = (0.5 * np.sin(2 * np.pi * 49 * t) * np.exp(-2.5 * beat)                       # 808
+         + sum(0.12 / h * np.sin(2 * np.pi * 196 * h * t) for h in range(1, 9))         # chord bed
+         + 0.15 * rng.standard_normal(t.size) * np.exp(-40 * ((t * 92 / 30) % 1.0)))    # hats/snare noise
+music *= 1 + 0.5 * np.sin(2 * np.pi * t / 20)                                           # verse/chorus swell
+loud = np.tanh(3.2 * music / np.max(np.abs(music))) * 0.966                             # heavy limiting, ~-0.3 dBFS
+quiet = 0.6 * music / np.max(np.abs(music))                                            # dynamic, lots of headroom
+clipped = np.clip(1.8 * music / np.max(np.abs(music)), -0.891, 0.891)                   # hard clip at -1 dBFS
+write(&quot;syn_loud_440.wav&quot;, loud); write(&quot;syn_quiet_440.wav&quot;, quiet); write(&quot;syn_clipped_440.wav&quot;, clipped)
+
+RT = f&quot;asetrate={SR*432/440:.6f},aresample={SR}:resampler=soxr:precision=28&quot;
+print(&quot;SYNTHETIC masters, before and after a classic 440-&gt;432 retune (32-bit float render)&quot;)
+print(f&quot;{&#x27;file&#x27;:22s} {&#x27;LUFS-I&#x27;:&gt;7s} {&#x27;LRA&#x27;:&gt;5s} {&#x27;dBTP&#x27;:&gt;6s} {&#x27;sample pk&#x27;:&gt;9s} {&#x27;overs&gt;0dBFS&#x27;:&gt;11s}&quot;)
+for k in (&quot;loud&quot;, &quot;quiet&quot;, &quot;clipped&quot;):
+    ff(&quot;-i&quot;, f&quot;syn_{k}_440.wav&quot;, &quot;-af&quot;, RT, &quot;-c:a&quot;, &quot;pcm_f32le&quot;, f&quot;syn_{k}_432.wav&quot;)
+    for v in (&quot;440&quot;, &quot;432&quot;):
+        i, lra, tp, sp, overs = meas(f&quot;syn_{k}_{v}.wav&quot;)
+        print(f&quot;{k+&#x27; &#x27;+v:22s} {i:7.1f} {lra:5.1f} {tp:+6.1f} {sp:+9.2f} {overs:11d}&quot;)
+
+print(&quot;\nTwo-pass loudnorm to -14 LUFS / -1.0 dBTP / LRA 11, on the 432 renders&quot;)
+for k in (&quot;loud&quot;, &quot;quiet&quot;):
+    p1 = subprocess.run([&quot;ffmpeg&quot;, &quot;-nostats&quot;, &quot;-hide_banner&quot;, &quot;-i&quot;, f&quot;syn_{k}_432.wav&quot;, &quot;-af&quot;,
+                         &quot;loudnorm=I=-14:TP=-1:LRA=11:print_format=json&quot;, &quot;-f&quot;, &quot;null&quot;, &quot;-&quot;],
+                        capture_output=True, text=True).stderr
+    m = json.loads(p1[p1.rfind(&quot;{&quot;):p1.rfind(&quot;}&quot;) + 1])
+    af = (f&quot;loudnorm=I=-14:TP=-1:LRA=11:linear=true:measured_I={m[&#x27;input_i&#x27;]}:measured_TP={m[&#x27;input_tp&#x27;]}&quot;
+          f&quot;:measured_LRA={m[&#x27;input_lra&#x27;]}:measured_thresh={m[&#x27;input_thresh&#x27;]}:offset={m[&#x27;target_offset&#x27;]}:print_format=json&quot;)
+    p2 = subprocess.run([&quot;ffmpeg&quot;, &quot;-nostats&quot;, &quot;-hide_banner&quot;, &quot;-y&quot;, &quot;-i&quot;, f&quot;syn_{k}_432.wav&quot;, &quot;-af&quot;, af,
+                         &quot;-ar&quot;, str(SR), &quot;-c:a&quot;, &quot;pcm_s24le&quot;, f&quot;syn_{k}_432_-14.wav&quot;], capture_output=True, text=True).stderr
+    r = json.loads(p2[p2.rfind(&quot;{&quot;):p2.rfind(&quot;}&quot;) + 1])
+    i, lra, tp, sp, _ = meas(f&quot;syn_{k}_432_-14.wav&quot;)
+    print(f&quot;  {k:6s} in {float(m[&#x27;input_i&#x27;]):6.1f} LUFS {float(m[&#x27;input_tp&#x27;]):+5.1f} dBTP -&gt; &quot;
+          f&quot;mode={r[&#x27;normalization_type&#x27;]:7s} out {i:6.1f} LUFS {tp:+5.1f} dBTP, LRA {float(m[&#x27;input_lra&#x27;]):.1f} -&gt; {lra:.1f}&quot;)
+
+print(&quot;\nPlain gain instead of loudnorm (what a linear target would need)&quot;)
+for k in (&quot;loud&quot;, &quot;quiet&quot;):
+    i, _, tp, _, _ = meas(f&quot;syn_{k}_432.wav&quot;)
+    g = -14 - i
+    print(f&quot;  {k:6s}: gain {g:+5.1f} dB -&gt; true peak would be {tp+g:+5.1f} dBTP &quot;
+          f&quot;({&#x27;fits&#x27; if tp + g &lt;= -1 else &#x27;over the -1 dBTP ceiling, needs limiting or a lower target&#x27;})&quot;)
+
+subprocess.run(&quot;rm -f syn_*.wav&quot;, shell=True)
+</code></pre>
+<p>Real output from this machine. All three masters are synthetic signals made by the script, not real releases.</p>
+<pre><code>SYNTHETIC masters, before and after a classic 440-&gt;432 retune (32-bit float render)
+file                    LUFS-I   LRA   dBTP sample pk overs&gt;0dBFS
+loud 440                  -9.3   7.2   +1.6     -0.33           0
+loud 432                  -9.4   7.3   +1.4     +1.32          40
+quiet 440                -22.1   8.8   -4.3     -4.44           0
+quiet 432                -22.2   8.8   -4.2     -4.21           0
+clipped 440              -12.6   8.7   +1.2     -1.00           0
+clipped 432              -12.7   8.7   +1.2     +1.05          31
+
+Two-pass loudnorm to -14 LUFS / -1.0 dBTP / LRA 11, on the 432 renders
+  loud   in   -9.5 LUFS  +1.4 dBTP -&gt; mode=linear  out  -13.9 LUFS  -3.1 dBTP, LRA 7.0 -&gt; 7.3
+  quiet  in  -22.3 LUFS  -4.2 dBTP -&gt; mode=dynamic out  -14.2 LUFS  -0.7 dBTP, LRA 8.5 -&gt; 7.0
+
+Plain gain instead of loudnorm (what a linear target would need)
+  loud  : gain  -4.6 dB -&gt; true peak would be  -3.2 dBTP (fits)
+  quiet : gain  +8.2 dB -&gt; true peak would be  +4.0 dBTP (over the -1 dBTP ceiling, needs limiting or a lower target)</code></pre>
+
+<h2>What those numbers say</h2>
+<p><strong>Loudness barely moved.</strong> Every master lost about 0.1 LU of integrated loudness and kept essentially the same loudness range. That's the "pitch is not loudness" point in numbers.</p>
+<p><strong>The loud master was already over, and the retune made it visible.</strong> Look at the first two rows. The 440 source had a sample peak of &minus;0.33 dBFS and looked fine on a sample meter, but its true peak was +1.6 dBTP. After the retune, the sample peak jumped to +1.32 dBFS with 40 samples over full scale. The retune didn't create the problem. It revealed it. Write that file at 24-bit and those 40 samples clip.</p>
+<p><strong>The clipped master stayed damaged.</strong> It went in with flat tops at &minus;1 dBFS and came out with 31 overs, because resampling rounds off flattened peaks and overshoots around them. Nothing about a retune, or a normalizer, puts the missing waveform back.</p>
+<p><strong>The quiet master was fine.</strong> Plenty of headroom in, plenty out. Most of what follows is about the loud case, because that's the kind of master most people retune.</p>
+
+<h2>A thirty-second QC check for any render</h2>
+<p>You don't need the whole script to catch this on a real file. This little wrapper prints the format, duration, integrated loudness, loudness range, sample peak, and true peak in one go, using nothing but ffprobe and ffmpeg's ebur128 meter.</p>
+<pre><code>#!/usr/bin/env bash
+# check_render.sh: one-glance QC for a retuned render.
+# Usage: ./check_render.sh file.wav
+set -euo pipefail
+f=&quot;$1&quot;
+ffprobe -v error -show_entries stream=sample_rate,channels,codec_name:format=duration -of csv=p=0 &quot;$f&quot; | paste -sd&#x27; &#x27;
+ffmpeg -nostats -hide_banner -i &quot;$f&quot; -af &quot;ebur128=peak=sample+true:framelog=quiet&quot; -f null - 2&gt;&amp;1 \
+  | awk &#x27;/Summary:/{s=1} s&amp;&amp;/Sample peak:/{k=&quot;sample peak&quot;} s&amp;&amp;/True peak:/{k=&quot;true peak&quot;}
+         s&amp;&amp;/ I:/{print &quot;  integrated&quot;, $2, $3} s&amp;&amp;/LRA:/{print &quot;  LRA&quot;, $2, $3} s&amp;&amp;/Peak:/{print &quot;  &quot; k, $2, $3}&#x27;
+</code></pre>
+<p>Here it is on the synthetic loud master from above, then on two 432 renders of it, one written as 32-bit float and one written straight to 24-bit:</p>
+<pre><code>$ ./check_render.sh syn_loud_440.wav
+pcm_s24le,48000,2 40.000000
+  integrated -9.3 LUFS
+  LRA 7.2 LU
+  sample peak -0.3 dBFS
+  true peak 1.6 dBFS
+$ ./check_render.sh syn_loud_432_float.wav
+pcm_f32le,48000,2 40.740979
+  integrated -9.4 LUFS
+  LRA 7.3 LU
+  sample peak 1.3 dBFS
+  true peak 1.4 dBFS
+$ ./check_render.sh syn_loud_432_24bit.wav
+pcm_s24le,48000,2 40.740979
+  integrated -9.4 LUFS
+  LRA 7.3 LU
+  sample peak 0.0 dBFS
+  true peak 1.4 dBFS</code></pre>
+<p>Read the last two blocks side by side. Same loudness, same duration (40.74 seconds, the expected 1.85% longer). The float file keeps its +1.3 dBFS sample peak, which you can still trim cleanly. The 24-bit file reports a sample peak of exactly 0.0 dBFS. That isn't headroom, it's the ceiling of the format: the overs were chopped off as the file was written, and the true-peak reading still sits at +1.4 because the flattened tops reconstruct above full scale. If you ever see 0.0 dBFS on a fresh retune, assume it clipped.</p>
+
+<h2>Retune first, measure second, deliver third</h2>
+<p>The order matters more than any single setting:</p>
+<ol>
+<li><strong>Start from the best source.</strong> If you have a pre-limiter master or the session, retune that and re-limit afterwards. If you only have the final master, accept that you're working on a file with no headroom left.</li>
+<li><strong>Render the retune in 32-bit float.</strong> Overs survive intact and you can deal with them deliberately.</li>
+<li><strong>Measure the render.</strong> Integrated loudness, true peak, sample peak, duration. Don't assume the source numbers carried over.</li>
+<li><strong>Bring true peak under the ceiling.</strong> A simple trim of a dB or two, or a transparent true-peak limiter, on the float file. This is your clean 432 master.</li>
+<li><strong>Only then make delivery copies.</strong> Each one named for its target, each one made from the clean 432 master, never from another delivery copy.</li>
+</ol>
+
+<h2>Two-pass loudnorm, and when it quietly stops being linear</h2>
+<p>If you normalize with ffmpeg's loudnorm, use two passes. The first pass measures the whole file. The second applies a correction using those measurements, which a single pass can't do properly because it hasn't heard the ending yet.</p>
+<p>There's a catch the demo shows clearly. The <a href="https://ffmpeg.org/ffmpeg-filters.html#loudnorm">ffmpeg documentation</a> says linear mode only holds if the target loudness range isn't below the source's and the gain change wouldn't push true peak past the ceiling. If either condition fails, loudnorm reverts to dynamic mode. The loud master needed &minus;4.6 dB to hit &minus;14 LUFS, which fit easily, so it stayed linear: a clean gain change landing at &minus;13.9 LUFS and &minus;3.1 dBTP. The quiet master needed +8.2 dB, which would have put true peak near +4.0 dBTP. So loudnorm switched to dynamic processing, squeezed its loudness range from 8.5 to 7.0 LU, and still came out at &minus;0.7 dBTP, slightly over the &minus;1.0 ceiling I asked for.</p>
+<p>That's not a bug report, it's a reminder. Always read the <code>normalization_type</code> in the second-pass output, and re-measure the file you actually wrote. Two more practical notes from the same docs: in dynamic mode loudnorm upsamples to 192 kHz internally, so set your output rate explicitly with <code>-ar</code>, and decide whether you'd rather have a lower target than a dynamically processed dynamic record.</p>
+
+<h2>Pick a destination, not a number</h2>
+<p>Targets belong to destinations. Spotify's <a href="https://support.spotify.com/us/artists/article/loudness-normalization/">loudness normalization guide</a> describes a &minus;14 LUFS playback reference, recommends keeping true peak below &minus;1 dBTP, and suggests below &minus;2 dBTP if your master is louder than &minus;14. <a href="https://tech.ebu.ch/publications/r128">EBU R 128</a> is a broadcast recommendation built around &minus;23 LUFS with a maximum true-peak descriptor; it's not a music-mastering target. A club file can stay louder as long as its peaks are legal. And an archive master shouldn't be normalized at all. <a href="why-streaming-turns-loud-masters-down.html">Why streaming platforms turn loud masters down</a> explains why chasing loudness past the platform reference buys you nothing.</p>
+<table>
+<thead><tr><th>File</th><th>Made from</th><th>Processing</th><th>Loudness</th><th>True peak</th></tr></thead>
+<tbody>
+<tr><td>Artist_Title_440Master_48k_24b.wav</td><td>Approved session</td><td>None; never touched</td><td>As mastered</td><td>As mastered</td></tr>
+<tr><td>Artist_Title_432Master_48k_32f.wav</td><td>440 master</td><td>Classic retune, float render</td><td>Within ~0.1 LU of source</td><td>Can exceed 0 dBFS; trim before use</td></tr>
+<tr><td>Artist_Title_432Master_48k_24b.wav</td><td>432 float master</td><td>Trim or true-peak limit only</td><td>Near source</td><td>&le; &minus;1 dBTP</td></tr>
+<tr><td>Artist_Title_432_-14LUFS_48k_24b.wav</td><td>432 24-bit master</td><td>Two-pass loudnorm, linear if possible</td><td>&minus;14 LUFS</td><td>&le; &minus;1 dBTP (&minus;2 if loud)</td></tr>
+<tr><td>Artist_Title_432_-23LUFS_48k_24b.wav</td><td>432 24-bit master</td><td>Two-pass loudnorm for broadcast</td><td>&minus;23 LUFS</td><td>Per broadcaster spec</td></tr>
+</tbody>
+</table>
+<p>The naming is doing real work there. A LUFS suffix appears only on files that were intentionally normalized. The float file is labeled as float so nobody uploads it by accident. And the untouched 440 master stays exactly that.</p>
+
+<h2>Leave room for the encoder</h2>
+<p>Whatever target you choose, remember the file you hand over is rarely the file people hear. Lossy encoders reconstruct the waveform again and can create fresh inter-sample peaks. That's exactly what <a href="reencoding-eats-true-peak-headroom.html">Re-encoding eats true-peak headroom</a> measures. A retuned master that sits at &minus;0.1 dBTP is one encode away from distortion. A dB of true-peak margin is cheap insurance.</p>
+
+<h2>What loudness can't do</h2>
+<p>Normalization moves gain. A limiter contains peaks. Neither restores detail lost to clipping, low-bitrate encoding, heavy noise reduction, or repeated conversion. A louder render can sound more impressive for ten seconds while actually having less transient detail. That's the whole reason to choose your pitch reference first, at matched loudness, and treat loudness as a delivery job afterwards.</p>
+<p>If you want the background on why a classic retune also changes duration, which matters for any loudness measurement that includes silence at the ends, <a href="what-432-hz-actually-changes-in-a-master.html">What 432 Hz actually changes in a finished master</a> and <a href="resampling-vs-pitch-shift-vs-tempo.html">Resampling, pitch shifting, and tempo change are three different jobs</a> cover it.</p>
+<aside class="aside">If you're doing this across a whole folder, the <a href="https://retune-432.vercel.app/#system">reTUNE[432] $4 system</a> pairs the exact-ratio retune with an offline Windows batch engine and optional LUFS delivery targets, while keeping the raw 432 render separate from the normalized copies.</aside>
+<dl class="faq">
+<dt>Does converting to 432 Hz change LUFS?</dt><dd>Barely. In our synthetic tests integrated loudness moved by about 0.1 LU. Pitch and loudness are separate properties, so a retuned file is as loud or quiet as its source. Measure the render anyway.</dd>
+<dt>Why did my 432 version clip when the original didn&#x27;t?</dt><dd>Resampling reconstructs the waveform between the original samples. If the source had inter-sample peaks above 0 dBFS, they become real sample values in the new file. In a 24-bit fixed-point render those clip. Render in 32-bit float or leave true-peak headroom first.</dd>
+<dt>Should I normalize the 432 version to -14 LUFS?</dt><dd>Only if that matches where it&#x27;s going. Spotify documents a -14 LUFS playback reference and recommends keeping true peak below -1 dBTP. Broadcast under EBU R 128 targets -23 LUFS. Keep an un-normalized master and make target-specific copies.</dd>
+<dt>What is two-pass loudness normalization?</dt><dd>The first pass measures the whole file. The second applies gain using those measurements. With ffmpeg loudnorm, the second pass stays a clean linear gain change only if the target fits under the true-peak ceiling; otherwise it switches to dynamic processing.</dd>
+<dt>Can a retune or normalization fix a clipped master?</dt><dd>No. Gain changes and limiters can&#x27;t restore waveform detail that clipping flattened. Retuning a clipped file just moves the damage down in pitch. Go back to an unclipped source if you have one.</dd>
+</dl>
+<nav aria-label="Related essays" class="related-essays" style="margin:48px 0 24px;padding-top:24px;border-top:1px solid rgba(196,165,116,.32)"><h2>Related in Lacquer</h2><ul>
+<li><a href="true-peak-is-what-codecs-clip.html">True peak is what codecs clip</a></li>
+<li><a href="reencoding-eats-true-peak-headroom.html">Re-encoding eats true-peak headroom</a></li>
+<li><a href="why-streaming-turns-loud-masters-down.html">Why streaming platforms turn loud masters down</a></li>
+<li><a href="432-vs-440-blind-listening-test.html">How to run a 432 vs 440 listening test you can trust</a></li>
+</ul></nav>
+</article>
+<section class="comments" data-comments="" data-thread="r432-lufs"></section>
+<script src="js/studio.js" type="module"></script>
+<script src="js/comments.js" type="module"></script>
+<footer class="site"><span>Lacquer · CoProducer Journal</span><span><a href="index.html">All essays</a></span></footer>
+</body>
+</html>

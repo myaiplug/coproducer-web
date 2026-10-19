@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1" name="viewport"/><meta content="https://myaiplug.github.io/coproducer-web/blog/img/essays/what-432-hz-actually-changes-in-a-master.jpg?v=r432" name="twitter:image"/><meta content="Retuning a master from 440 to 432 Hz scales every frequency by 0.981818 (−31.77 cents) and, with resampling, adds 1.85% length. Measured on real renders." name="twitter:description"/><meta content="What 432 Hz actually changes in a finished master" name="twitter:title"/><meta content="summary_large_image" name="twitter:card"/><meta content="2026-10-08T00:00:00Z" property="article:modified_time"/><meta content="2026-10-08T00:00:00Z" property="article:published_time"/><meta content="1440" property="og:image:height"/><meta content="2560" property="og:image:width"/><meta content="https://myaiplug.github.io/coproducer-web/blog/what-432-hz-actually-changes-in-a-master.html" property="og:url"/><meta content="en_US" property="og:locale"/><meta content="CoProducer" property="og:site_name"/><meta content="article" property="og:type"/><link href="https://myaiplug.github.io/coproducer-web/llms.txt" rel="alternate" title="llms.txt" type="text/plain"/><meta content="NoDAW Labs" name="author"/><meta content="#050308" name="theme-color"/><meta content="index,follow,max-image-preview:large" name="robots"/><meta content="432 Hz, 440 vs 432, what does 432 Hz do to music, retune master, cents, resampling, BPM, LUFS, reTUNE[432], NoDAW" name="keywords"/>
+<title>What 432 Hz Actually Changes in a Master | Lacquer</title>
+<meta content="Retuning a master from 440 to 432 Hz scales every frequency by 0.981818 (−31.77 cents) and, with resampling, adds 1.85% length. Measured on real renders." name="description"/>
+<link href="https://myaiplug.github.io/coproducer-web/blog/what-432-hz-actually-changes-in-a-master.html" rel="canonical"/>
+<meta content="What 432 Hz actually changes in a finished master" property="og:title"/>
+<meta content="Retuning a master from 440 to 432 Hz scales every frequency by 0.981818 (−31.77 cents) and, with resampling, adds 1.85% length. Measured on real renders." property="og:description"/>
+<meta content="https://myaiplug.github.io/coproducer-web/blog/img/essays/what-432-hz-actually-changes-in-a-master.jpg?v=r432" property="og:image"/>
+<meta content="Two brass tuning forks on black marble in a dark studio, a cyan wave above the taller fork flowing into a slightly lower magenta wave above the shorter one" property="og:image:alt"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;1,500;1,600&amp;family=Figtree:wght@400;500&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<link href="css/journal.css" rel="stylesheet"/>
+
+
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"What 432 Hz actually changes in a finished master","description":"Retuning a master from 440 to 432 Hz scales every frequency by 0.981818 (−31.77 cents) and, with resampling, adds 1.85% length. Measured on real renders.","datePublished":"2026-10-08","dateModified":"2026-10-08","mainEntityOfPage":{"@type":"WebPage","@id":"https://myaiplug.github.io/coproducer-web/blog/what-432-hz-actually-changes-in-a-master.html"},"image":{"@type":"ImageObject","url":"https://myaiplug.github.io/coproducer-web/blog/img/essays/what-432-hz-actually-changes-in-a-master.jpg?v=r432","width":2560,"height":1440},"author":{"@type":"Organization","name":"NoDAW Labs","url":"https://myaiplug.github.io/coproducer-web/","logo":"https://myaiplug.github.io/coproducer-web/assets/og-default.jpg"},"publisher":{"@type":"Organization","name":"NoDAW Labs","url":"https://myaiplug.github.io/coproducer-web/","logo":"https://myaiplug.github.io/coproducer-web/assets/og-default.jpg"},"isPartOf":{"@type":"Blog","name":"Lacquer — CoProducer Journal","url":"https://myaiplug.github.io/coproducer-web/blog/index.html"},"keywords":["432 Hz","440 vs 432","what does 432 Hz do to music","retune master","cents","resampling","BPM","LUFS","reTUNE[432]","NoDAW"],"speakable":{"@type":"SpeakableSpecification","cssSelector":[".answer","h1"]}}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Does converting a song to 432 Hz change its key?","acceptedAnswer":{"@type":"Answer","text":"Not by name. The shift is −31.77 cents, less than a third of a semitone, so a song in A minor is still labeled A minor. It just sits lower than a 440-referenced A minor, and it will sound slightly flat next to unshifted instruments."}},{"@type":"Question","name":"Does 432 Hz make a song slower?","acceptedAnswer":{"@type":"Answer","text":"With plain resampling, yes. Length grows by 1.85% and tempo drops by the same ratio, so 120 BPM becomes 117.82. A time-preserving pitch shift keeps the original tempo but can add artifacts."}},{"@type":"Question","name":"Is 432 Hz better for your health or more natural?","acceptedAnswer":{"@type":"Answer","text":"There’s no reliable evidence for health benefits. ISO 16 sets A4 at 440 Hz as a shared reference for coordination, and 432 is a valid creative alternative. Prefer it if it sounds better to you. That’s the honest claim."}},{"@type":"Question","name":"Does retuning to 432 change LUFS or true peak?","acceptedAnswer":{"@type":"Answer","text":"Usually only slightly. On our synthetic loop, integrated loudness and true peak stayed within the meter’s 0.1 resolution. Resampling rebuilds the waveform, so always re-measure the final file before delivery."}},{"@type":"Question","name":"What is the exact ratio for 440 to 432?","acceptedAnswer":{"@type":"Answer","text":"432/440 = 0.981818, which is exactly 54/55. That works out to −31.77 cents. In FFmpeg you can apply it exactly by upsampling to a rate divisible by 55, relabeling the rate at 54/55, then resampling back."}}]}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"CoProducer","item":"https://myaiplug.github.io/coproducer-web/"},{"@type":"ListItem","position":2,"name":"Lacquer Journal","item":"https://myaiplug.github.io/coproducer-web/blog/index.html"},{"@type":"ListItem","position":3,"name":"What 432 Hz actually changes in a finished master","item":"https://myaiplug.github.io/coproducer-web/blog/what-432-hz-actually-changes-in-a-master.html"}]}</script></head>
+<body>
+<header class="top">
+<a class="mark" href="../index.html"><em>Co</em>Producer</a>
+<nav aria-label="Primary" class="nav">
+<a href="index.html">Journal</a>
+<a href="../index.html#ab">A/B</a>
+<a href="../index.html#analyzeHome">Analyze</a>
+<a href="../guides/index.html">Guides</a>
+<a href="../pricing.html">Pricing</a>
+</nav>
+<a class="cta" href="../index.html#analyzeHome">Measure a mix</a>
+</header>
+<article class="post" id="main">
+<div class="post-hero"><img alt="Two brass tuning forks on black marble in a dark studio, a cyan wave above the taller fork flowing into a slightly lower magenta wave above the shorter one" src="img/essays/what-432-hz-actually-changes-in-a-master.jpg?v=r432"/></div>
+<header>
+<p class="kicker">Pitch · 8 October 2026 · 12 min</p>
+<h1>What 432 Hz actually changes in a finished master</h1>
+<p class="meta">NoDAW Labs · Lacquer Vol. 05</p>
+</header>
+<p class="answer">Moving a finished master from A=440 to A=432 multiplies every frequency in the file by 432/440 = 0.981818, which is about 31.77 cents lower, a little under a third of a semitone. Harmony, mix balance, and loudness stay where they were. With plain resampling the track also runs about 1.85% longer, so 120 BPM becomes 117.82.</p>
+<p>Somebody always brings it up near the end of a session. The record is done, the master is approved, and then someone asks what it would sound like at 432. Half the room rolls their eyes. The other half has already heard a video saying it’s the frequency of the universe. And the person who actually has to render the file just wants to know what’s going to happen to it.</p>
+<p>So let’s skip the mythology and the eye-rolling and look at what really changes in the file. Some of it is exact math. Some of it is measurable but small. Some of it is taste, and taste is a perfectly good reason to make a record. It just isn’t physics.</p>
+
+<h2>What “440” actually refers to</h2>
+<p>When people say a record is “in 440,” they mean the tuning reference: the A above middle C (A4) sits at 440 cycles per second, and every other note in equal temperament is placed relative to it. That reference is the international standard, <a href="https://www.iso.org/standard/3601.html" rel="noopener">ISO 16, the standard tuning frequency</a>. It doesn’t mean anything in the song actually <em>is</em> 440 Hz. A finished master holds fundamentals, overtones, kick resonances, room reflections, cymbal noise, and reverb tails spread across the whole audible range. The 440 is just where the grid is anchored.</p>
+<p>Retuning a finished master to 432 doesn’t re-pitch notes one at a time the way Auto-Tune would. It slides the entire grid. Every component, from the sub to the hiss, gets multiplied by the same number:</p>
+<ul>
+<li><strong>Ratio:</strong> 432 ÷ 440 = 0.981818 (exactly 54/55)</li>
+<li><strong>Pitch:</strong> 1200 × log2(0.981818) ≈ −31.77 cents. A semitone is 100 cents, so this is less than a third of one.</li>
+<li><strong>Length, with plain resampling:</strong> 440 ÷ 432 = 1.018519, so about 1.85% longer. A 3:00 song gains about 3.3 seconds.</li>
+<li><strong>Tempo, with plain resampling:</strong> ×0.981818. 90 BPM becomes 88.36, 120 becomes 117.82, 140 becomes 137.45.</li>
+</ul>
+<p>Because every frequency moves by the same ratio, every interval survives. A major third is still a major third. The chord is the same chord, played from a slightly lower floor.</p>
+
+<h2>Follow one note through the conversion</h2>
+<p>Claims are cheap, so here’s a script that renders an exact 432 version and then shows you what moved. It finds the strongest partials before and after so you can watch A4 and its harmonics land where the math says they should. It also measures length, tempo, integrated loudness, and true peak. It writes a new 24-bit WAV and never touches your original.</p>
+<p>One detail is worth a sentence. FFmpeg’s <code>asetrate</code> only takes whole numbers, and 48000 × 0.981818 = 47127.27. So the script first upsamples to a rate that divides cleanly by 55 (52.8 kHz for a 48 kHz file, 48.51 kHz for 44.1), relabels it at exactly 54/55 of that rate, and resamples back. That gives the exact ratio and no rounding.</p>
+<pre><code>#!/usr/bin/env python3
+"""retune_check.py: render an exact 440 -&gt; 432 classic retune and prove what moved.
+Usage: python3 retune_check.py in.wav [out_432.wav]
+Needs: numpy + ffmpeg on PATH. Works on any sample rate that is a multiple of 50 Hz
+(44.1, 48, 88.2, 96 kHz...). Writes a 24-bit WAV; never touches the input.
+
+Prints the ratio math, the strongest partials before and after (so you can follow A4
+and its harmonics), duration, tempo, integrated loudness, and true peak."""
+import re, subprocess, sys
+import numpy as np
+
+SRC, TGT = 440, 432
+r = TGT / SRC
+src = sys.argv[1]
+out = sys.argv[2] if len(sys.argv) &gt; 2 else re.sub(r"\.\w+$", "", src) + "_432.wav"
+
+def probe_sr(path):
+    return int(subprocess.run(["ffprobe", "-v", "error", "-select_streams", "a:0", "-show_entries",
+                               "stream=sample_rate", "-of", "csv=p=0", path],
+                              capture_output=True, text=True, check=True).stdout.strip())
+
+def decode(path, sr):
+    raw = subprocess.run(["ffmpeg", "-v", "error", "-i", path, "-ac", "1", "-ar", str(sr), "-f", "f32le", "-"],
+                         capture_output=True, check=True).stdout
+    return np.frombuffer(raw, dtype=np.float32)
+
+def loudness(path):
+    err = subprocess.run(["ffmpeg", "-nostats", "-hide_banner", "-i", path, "-af",
+                          "ebur128=peak=true:framelog=quiet", "-f", "null", "-"],
+                         capture_output=True, text=True).stderr
+    s = err[err.rfind("Summary:"):]
+    return (float(re.search(r"I:\s+(-?[\d.]+) LUFS", s).group(1)),
+            float(re.search(r"Peak:\s+(-?[\d.]+) dBFS", s).group(1)))
+
+def partials(x, sr, fmax=2000.0, top=8):
+    """Strongest spectral peaks (Hann window, zero-padded FFT, parabolic interpolation)."""
+    n = 1 &lt;&lt; int(np.ceil(np.log2(len(x)))) + 1
+    mag = np.abs(np.fft.rfft(x * np.hanning(len(x)), n))
+    lm = 20 * np.log10(mag + 1e-12)
+    f = np.fft.rfftfreq(n, 1 / sr)
+    k = np.where((f &gt; 30) &amp; (f &lt; fmax))[0]
+    pk = k[(lm[k] &gt; lm[k - 1]) &amp; (lm[k] &gt;= lm[k + 1])]
+    pk = pk[np.argsort(lm[pk])[::-1]]
+    chosen = []
+    for p in pk:                                   # skip side lobes within 3 Hz of a stronger peak
+        if all(abs(f[p] - f[q]) &gt; 3 for q in chosen):
+            chosen.append(p)
+        if len(chosen) == top:
+            break
+    res = []
+    for p in sorted(chosen):
+        a, b, c = lm[p - 1], lm[p], lm[p + 1]
+        d = 0.5 * (a - c) / (a - 2 * b + c)
+        res.append((f[p] + d * (f[1] - f[0]), b))
+    return res
+
+def tempo(x, sr):
+    """BPM from the autocorrelation of an onset envelope (low band + high band, 2 ms hop).
+    The beat-length peak is refined at 8 beats out, which makes the estimate 8x finer."""
+    hop = int(0.002 * sr)
+    spec = np.fft.rfft(x); f = np.fft.rfftfreq(len(x), 1 / sr)
+    onset = 0
+    for band in (f &lt; 200, f &gt; 2000):
+        b = np.fft.irfft(spec * band, len(x))
+        e = np.sqrt(np.mean(b[: len(b) // hop * hop].reshape(-1, hop) ** 2, axis=1))
+        o = np.maximum(np.diff(e), 0)
+        onset = onset + o / (o.max() + 1e-12)
+    ac = np.correlate(onset, onset, "full")[len(onset) - 1:]
+    fps = sr / hop
+    ok = np.arange(int(fps * 60 / 180), int(fps * 60 / 70))
+    i = ok[np.argmax(ac[ok])]                       # one beat
+    j = 8 * i + np.argmax(ac[8 * i - 8: 8 * i + 9]) - 8  # eight beats
+    d = 0.5 * (ac[j - 1] - ac[j + 1]) / (ac[j - 1] - 2 * ac[j] + ac[j + 1])
+    return 60 * 8 / ((j + d) / fps)
+
+sr = probe_sr(src)
+if sr % 50:
+    sys.exit("sample rate must be a multiple of 50 Hz for the exact chain")
+up = sr * 11 // 10                      # 48000 -&gt; 52800, 44100 -&gt; 48510 (both divisible by 55)
+chain = f"aresample={up},asetrate={up * 54 // 55},aresample={sr}"   # 54/55 == 432/440 exactly
+subprocess.run(["ffmpeg", "-v", "error", "-y", "-i", src, "-af", chain, "-c:a", "pcm_s24le", out], check=True)
+
+x, y = decode(src, sr), decode(out, sr)
+print(f"ratio          : {TGT}/{SRC} = {r:.6f}   shift = {1200 * np.log2(r):+.2f} cents")
+print(f"ffmpeg chain   : {chain}")
+print(f"duration       : {len(x) / sr:.3f} s -&gt; {len(y) / sr:.3f} s  ({100 * (len(y) / len(x) - 1):+.2f}%, expect {100 * (1 / r - 1):+.2f}%)")
+print("partials (Hz)  :  before   -&gt;  after     ratio     cents")
+after = partials(y, sr, top=16)
+for fb, lvl in partials(x, sr):
+    fa = min(after, key=lambda p: abs(p[0] - fb * r))[0]
+    print(f"                {fb:8.2f} -&gt; {fa:8.2f}   {fa / fb:.6f}  {1200 * np.log2(fa / fb):+7.2f}")
+bi, bo = tempo(x, sr), tempo(y, sr)
+print(f"tempo          : {bi:.2f} BPM -&gt; {bo:.2f} BPM  (x{bo / bi:.4f}, expect x{r:.4f})")
+(li, ti), (lo, to) = loudness(src), loudness(out)
+print(f"integrated     : {li:.1f} LUFS -&gt; {lo:.1f} LUFS")
+print(f"true peak      : {ti:+.2f} dBTP -&gt; {to:+.2f} dBTP")
+print(f"wrote          : {out}")</code></pre>
+<p>Run it on your own bounce with <code>python3 retune_check.py mix.wav</code>. It needs Python with numpy, plus ffmpeg on your PATH.</p>
+
+<h2>What it printed on a synthetic loop</h2>
+<p>The test file is synthetic. We built it on the box so the answers are known in advance, and it isn’t anyone’s record. It’s a 17-second, 48 kHz, 120 BPM loop with an A-major pad (A3, A4, C♯5, E5 with overtones), a 55 Hz sub note on every bar, a pitch-swept kick, and short high ticks on every eighth note. Here’s the real output, trimmed to the parts that matter:</p>
+<pre><code>ratio          : 432/440 = 0.981818   shift = -31.77 cents
+ffmpeg chain   : aresample=52800,asetrate=51840,aresample=48000
+duration       : 17.000 s -&gt; 17.315 s  (+1.85%, expect +1.85%)
+partials (Hz)  :  before   -&gt;  after     ratio     cents
+                   55.00 -&gt;    54.00   0.981819   -31.77
+                  220.00 -&gt;   216.00   0.981818   -31.77
+                  440.00 -&gt;   432.00   0.981818   -31.77
+                  554.37 -&gt;   544.29   0.981818   -31.77
+                  659.26 -&gt;   647.27   0.981818   -31.77
+                  880.00 -&gt;   864.00   0.981818   -31.77
+                 1108.73 -&gt;  1088.57   0.981818   -31.77
+tempo          : 120.00 BPM -&gt; 117.82 BPM  (x0.9818, expect x0.9818)
+integrated     : -15.1 LUFS -&gt; -15.1 LUFS
+true peak      : -3.00 dBTP -&gt; -3.00 dBTP</code></pre>
+<p>Every partial moved by the same ratio to six decimal places. A4 landed on 432. Its octave, 880, landed on 864. The 55 Hz sub, which is A1, landed on 54. The third of the chord, C♯5, went from 554.37 to 544.29. Divide each by its A and you get 1.25993 both times, so the interval didn’t move at all. That’s the whole idea in one line: the chord keeps its shape and sits about a third of a semitone lower.</p>
+<p>The tempo was measured from the audio, not just calculated: 120.00 BPM went in and 117.82 came out. Loudness and true peak didn’t move at the meter’s resolution.</p>
+<p>We also ran the same loop after pushing it 12 dB into a limiter, so it looked more like a modern master. It measured −6.7 LUFS and −0.40 dBTP before, and −6.8 LUFS and −0.40 dBTP after. That’s close to unchanged, but notice we said <em>measured</em>. Resampling rebuilds the waveform, so on a real master inter-sample peaks can land a little differently. Measure the file you’re actually going to ship. It takes ten seconds.</p>
+<p>About that rounding detail: if you skip the trick and just write <code>asetrate=47127</code>, the error is −0.01 cents and about one millisecond over a three-minute song. Nobody will hear it. It only matters if you document your masters like an archivist, and some of us do.</p>
+
+<h2>What does not change</h2>
+<p>This is where most of the confusion lives, so here it is plainly. A 432 conversion is one operation. It doesn’t do any of the following.</p>
+<ul>
+<li><strong>It isn’t EQ.</strong> Nothing gets warmer because a band was boosted. Spectral balance moves down with everything else, by the same ratio.</li>
+<li><strong>It doesn’t change the mix.</strong> Vocal level, 808 balance, stereo width, and compression all carry over exactly as printed.</li>
+<li><strong>It doesn’t change the temperament.</strong> Equal temperament stays equal temperament. Just intonation and other historical tunings change the relationships <em>between</em> notes, and a single global ratio can’t do that.</li>
+<li><strong>It doesn’t master anything.</strong> If the source is clipped, the 432 version is clipped too, just a little lower. Loudness is a separate decision you make afterward.</li>
+<li><strong>It doesn’t carry any medical or spiritual payload.</strong> There’s no credible evidence that 432 heals anything, changes your biology, or is more “natural” than any other reference. We’ll leave it there.</li>
+</ul>
+
+<aside class="aside"><strong>What we can prove.</strong> Every frequency is multiplied by 0.981818, which is −31.77 cents. Intervals are preserved exactly. With plain resampling the file is 1.85% longer and the tempo is 1.85% slower. On our synthetic loop, loudness and true peak didn’t move at the meter’s resolution. All of that is measurable, and the script above shows it.<br/><br/><strong>What’s taste.</strong> Whether the lower version feels heavier, darker, calmer, or just less urgent. Whether the slight slowdown suits the groove. Whether your singer sounds better a third of a semitone down. Those are real reactions and good reasons to print an alternate master. They aren’t measurements, and they won’t hold for every song or every listener.</aside>
+
+<h2>Where you’ll actually hear it</h2>
+<p>Thirty-two cents is subtle, but it isn’t nothing. Most trained listeners can tell a shift that size when they A/B it directly. Where it shows up:</p>
+<table>
+<thead><tr><th>Material</th><th>What usually changes</th><th>How obvious</th></tr></thead>
+<tbody>
+<tr><td>Exposed lead vocal</td><td>Chest weight drops slightly; bright vowels lose a touch of edge</td><td>Clear in a synced A/B</td></tr>
+<tr><td>Sustained 808 / sub</td><td>The fundamental moves down (55 → 54 Hz on an A1); on small speakers it slides a bit further toward roll-off</td><td>Felt more than heard</td></tr>
+<tr><td>Piano, pads, strings</td><td>The whole chord sits lower and decays read slightly longer with resampling</td><td>Clear on held chords</td></tr>
+<tr><td>Dense distorted chorus</td><td>Pitch center is masked by saturation and drums</td><td>Often hard to call</td></tr>
+<tr><td>Groove and pocket</td><td>With resampling the tempo drops 1.85%: 120 → 117.82, 140 → 137.45</td><td>Some feel it as “laid back”</td></tr>
+<tr><td>Hats and cymbals</td><td>Spectrum moves down by the same ratio and timing stretches slightly</td><td>Rarely noticed on its own</td></tr>
+</tbody></table>
+<p>The sub row deserves a second look if you make 808 records. An 808 tuned to E1 (41.2 Hz) lands around 40.5 Hz after conversion. That won’t matter on a club system. On a phone that’s already rolling off below 100 Hz, you’re hearing harmonics anyway, and they move down by the same ratio. It’s worth one check on the small speaker before you commit.</p>
+
+<h2>How to compare without fooling yourself</h2>
+<p>The fastest way to convince yourself of anything is a bad A/B. Everyone has done it: the new version is half a dB louder, or you restart it from the top while the old one was mid-chorus, and your brain hands you a winner. A few rules make the comparison honest.</p>
+<ol>
+<li><strong>Same source, rendered once.</strong> Use the approved WAV, not a stream rip. Change only the tuning.</li>
+<li><strong>Level-matched.</strong> Don’t normalize one side and leave the other. If the files measure differently, it’s because something else in the chain changed.</li>
+<li><strong>Same musical position.</strong> This is where plain resampling gets tricky. The 432 file is longer, so ten seconds into the original lines up with about 10.185 seconds into the retune. If your player switches by clock time, you drift a little further off the beat with every switch. By the end of a three-minute song you’re off by more than three seconds.</li>
+<li><strong>Short loops, reversed order, a break.</strong> Fifteen to thirty seconds of something exposed, switched every few bars. Take five minutes away, come back, and run it in the opposite order. If the preference survives that, it’s real for you.</li>
+</ol>
+<p>That third rule is the one people trip on, and it’s why <a href="https://retune-432.vercel.app" rel="noopener">reTUNE[432]</a> is built around a synced A/B player. It maps the same musical position between the 440 and 432 versions, so switching lands on the same syllable instead of the same clock reading. The retune happens locally in the browser, so your unreleased master never leaves your machine. When a song earns a full alternate, the $4 system adds full-length export and an offline Windows batch for folders, other reference targets, and optional LUFS delivery copies. If the comparison doesn’t win you over, keep the 440. That’s a perfectly good result.</p>
+
+<h2>Shipping a 432 alternate like a professional</h2>
+<p>If the lower version wins, treat it as its own deliverable, not as a replacement:</p>
+<ul>
+<li><strong>Never overwrite the approved master.</strong> Name the alternate plainly, something like <code>Artist_Title_432Alt_48k_24b.wav</code>.</li>
+<li><strong>Render from the original, once.</strong> Don’t retune an MP3, and don’t retune something that’s already been retuned.</li>
+<li><strong>Re-measure true peak and loudness on the new file.</strong> On ours they held. On yours, check. If it needs a delivery target, apply it afterward as its own step.</li>
+<li><strong>Update anything that depends on time.</strong> A resampled alternate is 1.85% longer, so lyric videos, visualizers, DJ grids, and stems all need to follow it.</li>
+<li><strong>Describe it honestly.</strong> “Retuned from A=440 to A=432 (−31.77 cents), classic resample” tells listeners exactly what they’re getting. Words like warmer and heavier are fine as artistic description. Health claims aren’t.</li>
+</ul>
+<p>If the master is going out anyway, dropping both versions into CoProducer’s analyzer is a quick way to confirm that loudness and true peak are still legal side by side. Pitch is a choice. The delivery rules don’t change.</p>
+<p>And if you need the alternate to keep the exact original runtime for picture lock, choreography, or a fixed DJ grid, that’s a different operation with different trade-offs. We measured those trade-offs in <a href="resampling-vs-pitch-shift-vs-tempo.html">Resampling, pitch shifting, and tempo change are three different jobs</a>.</p>
+
+<dl class="faq">
+<dt>Does converting a song to 432 Hz change its key?</dt><dd>Not by name. The shift is −31.77 cents, less than a third of a semitone, so a song in A minor is still labeled A minor. It just sits lower than a 440-referenced A minor, and it will sound slightly flat next to unshifted instruments.</dd>
+<dt>Does 432 Hz make a song slower?</dt><dd>With plain resampling, yes. Length grows by 1.85% and tempo drops by the same ratio, so 120 BPM becomes 117.82. A time-preserving pitch shift keeps the original tempo but can add artifacts.</dd>
+<dt>Is 432 Hz better for your health or more natural?</dt><dd>There’s no reliable evidence for health benefits. ISO 16 sets A4 at 440 Hz as a shared reference for coordination, and 432 is a valid creative alternative. Prefer it if it sounds better to you. That’s the honest claim.</dd>
+<dt>Does retuning to 432 change LUFS or true peak?</dt><dd>Usually only slightly. On our synthetic loop, integrated loudness and true peak stayed within the meter’s 0.1 resolution. Resampling rebuilds the waveform, so always re-measure the final file before delivery.</dd>
+<dt>What is the exact ratio for 440 to 432?</dt><dd>432/440 = 0.981818, which is exactly 54/55. That works out to −31.77 cents. In FFmpeg you can apply it exactly by upsampling to a rate divisible by 55, relabeling the rate at 54/55, then resampling back.</dd>
+</dl>
+<nav aria-label="Related essays" class="related-essays" style="margin:48px 0 24px;padding-top:24px;border-top:1px solid rgba(196,165,116,.32)"><h2>Related in Lacquer</h2><ul>
+<li><a href="resampling-vs-pitch-shift-vs-tempo.html">Resampling, pitch shifting, and tempo change are three different jobs</a></li>
+<li><a href="true-peak-is-what-codecs-clip.html">True peak is what codecs clip</a></li>
+<li><a href="sample-rate-and-bit-depth-for-delivery.html">Sample rate and bit depth are delivery hygiene</a></li>
+</ul></nav>
+</article>
+<section class="comments" data-comments="" data-thread="r432-what-changes"></section>
+<script src="js/studio.js" type="module"></script>
+<script src="js/comments.js" type="module"></script>
+<footer class="site"><span>Lacquer · CoProducer Journal</span><span><a href="index.html">All essays</a></span></footer>
+</body>
+</html>

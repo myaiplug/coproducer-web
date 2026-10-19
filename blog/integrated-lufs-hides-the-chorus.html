@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1" name="viewport"/><meta content="https://myaiplug.github.io/coproducer-web/blog/img/essays/integrated-lufs-hides-the-chorus.jpg?v=shd" name="twitter:image"/><meta content="A master can read −14 LUFS integrated while its chorus runs 3–4 LU hotter. Measure integrated, short-term and momentary on one bounce first." name="twitter:description"/><meta content="Integrated LUFS hides how loud the chorus actually is" name="twitter:title"/><meta content="summary_large_image" name="twitter:card"/><meta content="2026-10-14T00:00:00Z" property="article:modified_time"/><meta content="2026-10-14T00:00:00Z" property="article:published_time"/><meta content="1440" property="og:image:height"/><meta content="2560" property="og:image:width"/><meta content="https://myaiplug.github.io/coproducer-web/blog/integrated-lufs-hides-the-chorus.html" property="og:url"/><meta content="en_US" property="og:locale"/><meta content="CoProducer" property="og:site_name"/><meta content="article" property="og:type"/><link href="https://myaiplug.github.io/coproducer-web/llms.txt" rel="alternate" title="llms.txt" type="text/plain"/><meta content="NoDAW Labs" name="author"/><meta content="#050308" name="theme-color"/><meta content="index,follow,max-image-preview:large" name="robots"/><meta content="integrated LUFS, short-term LUFS, momentary loudness, max short-term, BS.1770 gating, EBU R128, chorus loudness, ffmpeg ebur128, CoProducer, NoDAW" name="keywords"/>
+<title>Integrated LUFS hides how loud the chorus actually is | Lacquer</title>
+<meta content="A master can read −14 LUFS integrated while its chorus runs 3–4 LU hotter. Measure integrated, short-term and momentary on one bounce first." name="description"/>
+<link href="https://myaiplug.github.io/coproducer-web/blog/integrated-lufs-hides-the-chorus.html" rel="canonical"/>
+<meta content="Integrated LUFS hides how loud the chorus actually is" property="og:title"/>
+<meta content="A master can read −14 LUFS integrated while its chorus runs 3–4 LU hotter. Measure integrated, short-term and momentary on one bounce first." property="og:description"/>
+<meta content="https://myaiplug.github.io/coproducer-web/blog/img/essays/integrated-lufs-hides-the-chorus.jpg?v=shd" property="og:image"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;1,500;1,600&amp;family=Figtree:wght@400;500&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<link href="css/journal.css" rel="stylesheet"/>
+
+
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Integrated LUFS hides how loud the chorus actually is","description":"A master can read −14 LUFS integrated while its chorus runs 3–4 LU hotter. Measure integrated, short-term and momentary on one bounce first.","datePublished":"2026-10-14","dateModified":"2026-10-14","mainEntityOfPage":{"@type":"WebPage","@id":"https://myaiplug.github.io/coproducer-web/blog/integrated-lufs-hides-the-chorus.html"},"image":{"@type":"ImageObject","url":"https://myaiplug.github.io/coproducer-web/blog/img/essays/integrated-lufs-hides-the-chorus.jpg?v=shd","width":2560,"height":1440},"author":{"@type":"Organization","name":"NoDAW Labs","url":"https://myaiplug.github.io/coproducer-web/","logo":"https://myaiplug.github.io/coproducer-web/assets/og-default.jpg"},"publisher":{"@type":"Organization","name":"NoDAW Labs","url":"https://myaiplug.github.io/coproducer-web/","logo":"https://myaiplug.github.io/coproducer-web/assets/og-default.jpg"},"isPartOf":{"@type":"Blog","name":"Lacquer — CoProducer Journal","url":"https://myaiplug.github.io/coproducer-web/blog/index.html"},"keywords":["integrated LUFS","short-term LUFS","momentary loudness","max short-term","BS.1770 gating","EBU R128","chorus loudness","ffmpeg ebur128","CoProducer","NoDAW"],"speakable":{"@type":"SpeakableSpecification","cssSelector":[".answer","h1"]}}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Why does my chorus read louder than my integrated LUFS?","acceptedAnswer":{"@type":"Answer","text":"Integrated is a gated average of the whole song, including verses and intros that sit under the chorus. Short-term only looks at the last 3 seconds. On a dynamic song the loudest short-term window usually runs 2–5 LU over integrated, and that’s normal."}},{"@type":"Question","name":"Should I master so the chorus reads −14 LUFS short-term?","acceptedAnswer":{"@type":"Answer","text":"No. Stores normalize on integrated, so a chorus at −14 short-term usually leaves the song around −17 or −18 integrated, and many platforms won’t turn it back up. Hit your integrated number, then make sure the chorus gap sounds intentional."}}]}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"CoProducer","item":"https://myaiplug.github.io/coproducer-web/"},{"@type":"ListItem","position":2,"name":"Lacquer Journal","item":"https://myaiplug.github.io/coproducer-web/blog/index.html"},{"@type":"ListItem","position":3,"name":"Integrated LUFS hides how loud the chorus actually is","item":"https://myaiplug.github.io/coproducer-web/blog/integrated-lufs-hides-the-chorus.html"}]}</script></head>
+<body>
+<header class="top">
+<a class="mark" href="../index.html"><em>Co</em>Producer</a>
+<nav aria-label="Primary" class="nav">
+<a href="index.html">Journal</a>
+<a href="../index.html#ab">A/B</a>
+<a href="../index.html#analyzeHome">Analyze</a>
+<a href="../guides/index.html">Guides</a>
+<a href="../pricing.html">Pricing</a>
+</nav>
+<a class="cta" href="../index.html#analyzeHome">Measure a mix</a>
+</header>
+<article class="post" id="main">
+<div class="post-hero"><img alt="A loudness-history LED meter on a lacquer desk, one run of columns burning magenta above a thin reference line" src="img/essays/integrated-lufs-hides-the-chorus.jpg?v=shd"/></div>
+<header>
+<p class="kicker">Meters · 14 October 2026 · 7 min</p>
+<h1>Integrated LUFS hides how loud the chorus actually is</h1>
+<p class="meta">NoDAW Labs · Lacquer Vol. 05</p>
+</header>
+<p class="answer">Integrated LUFS is a gated average of the whole song, so a master that reads −14 can carry a chorus running 3–4 LU hotter on the short-term meter — and that chorus is what your ears, your limiter, and the next track in the playlist actually meet. Measure I, S max and M max on the same bounce before you decide anything.</p>
+<p>Here’s the session. The delivery sheet says −14.1 LUFS integrated. Right in the lane. Then you play the first chorus with a loudness meter open, and the short-term readout says −10.6. Momentary flicks up to −9.5 on the downbeat. First thought: one of these meters is broken. Neither is. They’re answering three different questions, and only one of them is the question the store asks.</p>
+<p>Once you know which is which, the “is my master too loud or too quiet” argument gets a lot shorter.</p>
+<h2>Three windows on the same file</h2>
+<p>All three readings come from the same BS.1770 measurement: K-weighting (a gentle low cut and a high-shelf lift that roughly track how loud things feel), then average power over a window. The only thing that changes is the window.</p>
+<ul>
+<li><strong>Momentary (M)</strong> is a 400 ms sliding window with no gate. It’s the needle that jumps on a snare or an impact, which makes it good for spotting one hit that lands way above its bar.</li>
+<li><strong>Short-term (S)</strong> is a 3-second sliding window with no gate, roughly a bar or two. It’s the honest answer to “how loud is this section?”</li>
+<li><strong>Integrated (I)</strong> covers the whole program in 400 ms blocks, gated twice: an absolute gate drops anything under −70 LUFS, then a relative gate drops blocks more than 10 LU under the running level. This is the single number the stores normalize on.</li>
+</ul>
+<p>Here’s the part that surprises people. Integrated isn’t an average of decibels. It’s an average of power, so loud sections count for far more than quiet ones. A chorus 9 LU over the verse carries roughly eight times the power per second. The integrated number leans hard toward the chorus, and the verses pull it down a few LU. That’s why, on a song with real sections, the loudest short-term window usually sits somewhere around 2–5 LU over integrated, and mastering louder barely closes it unless the limiter starts crushing the chorus.</p>
+<h2>One bounce, three readings</h2>
+<p>We built a synthetic test song (a pink-noise bed, a few tones, a kick, verses about 9 dB under the chorus, and an impact on every chorus downbeat) and drove it into a plain limiter until the integrated number landed at −14. These are synthetic test signals, not a real record, but the relationships are the same ones you’ll find on your own bounces.</p>
+<table>
+<thead><tr><th>Reading</th><th>Window</th><th>Value</th><th>What it tells you</th></tr></thead>
+<tbody>
+<tr><td>Integrated (I)</td><td>Whole song, gated</td><td>−14.1 LUFS</td><td>The number the store normalizes on</td></tr>
+<tr><td>Short-term max (S max)</td><td>3 s, first chorus</td><td>−10.6 LUFS</td><td>How loud the chorus plays: 3.5 LU over I</td></tr>
+<tr><td>Momentary max (M max)</td><td>400 ms, chorus downbeat</td><td>−9.5 LUFS</td><td>The hit itself: 4.6 LU over I</td></tr>
+<tr><td>Verse (measured alone)</td><td>28 s of verse</td><td>−19.8 LUFS</td><td>Above the gate, so it’s counted and drags I down</td></tr>
+</tbody>
+</table>
+<p>And all of the limiter’s work happened in the chorus: about 0.9 dB of average gain reduction there, effectively none in the verses. The number on the delivery sheet (−14.1) and the section your limiter is fighting (−10.6) are describing two different parts of the song.</p>
+<h2>Why the store and your ears disagree</h2>
+<p>The store measures integrated, applies one gain to the whole track, and walks away. Spotify’s own artist docs say tracks are adjusted to −14 LUFS, and they point out that a dynamic track mastered to −14 keeps its peaks, so it can feel louder in contrast than a crushed one played at the same level. That’s this exact effect. On normalized playback, your chorus plays at the target plus your gap. Here that means about −10.5, on every normalized player.</p>
+<p>Your ears don’t average a three-minute song. They hear your chorus, then the next song’s chorus. Your limiter doesn’t average either. It reacts to the loudest bars, which is why a master that “only” reads −14 integrated can still sound flattened in the hook. And if you ever deliver to a spec that caps max short-term (some broadcast and ad specs do), the gap is the number that fails, not the integrated one.</p>
+<h2>The mistake that costs the most</h2>
+<p>The common slip goes the other way. You watch the short-term meter during the loudest part, pull the master down until the chorus reads −14, and bounce. We tried it. The chorus reads −14.0 short-term, and the integrated number falls to <strong>−17.6</strong>.</p>
+<p>Now the store has a quiet track. Spotify only turns quiet tracks up as far as their peaks allow (they keep 1 dB for the encoder), and this master already peaks at −1.1 dBTP, so it gets about a tenth of a dB. YouTube doesn’t turn quiet tracks up at all. The chorus ends up playing around 3.4 LU under the same song mastered to −14 integrated. Nothing about the mix changed. Only the meter you trusted did.</p>
+<p>Short-term is a great meter for the session. It’s the wrong meter for the delivery number.</p>
+<h2>The call: tame the chorus, or accept the number</h2>
+<p>Once you have I, S max and M max side by side, there are really two honest moves. Here’s the same song four ways:</p>
+<table>
+<thead><tr><th>Version</th><th>I</th><th>S max</th><th>M max</th><th>LRA</th><th>Verse</th></tr></thead>
+<tbody>
+<tr><td>As bounced</td><td>−14.1</td><td>−10.6</td><td>−9.5</td><td>12.1 LU</td><td>−19.8</td></tr>
+<tr><td>Chorus −2.5 dB, re-mastered to −14</td><td>−14.1</td><td>−10.9</td><td>−9.7</td><td>9.7 LU</td><td>−17.7</td></tr>
+<tr><td>Kept the chorus, accepted −14.9</td><td>−14.9</td><td>−11.3</td><td>−10.2</td><td>12.3 LU</td><td>−20.8</td></tr>
+<tr><td>Chorus set to −14 short-term</td><td>−17.6</td><td>−14.0</td><td>−12.4</td><td>12.9 LU</td><td>−24.0</td></tr>
+</tbody>
+</table>
+<p><strong>Tame the chorus</strong> when the limiter is grinding there, when the downbeat impact jumps out on the momentary meter, or when the hook sounds smaller than the verse in context. But look at what that row actually did. We pulled the chorus down 2.5 dB, chased −14 again, and the loudest three seconds moved only 0.3 LU. Because the integrated number is mostly made of the chorus, re-mastering to the same integrated hands most of the level straight back. What really changed was the verses: up 2.1 dB, with loudness range down from 12.1 to 9.7 LU. At a fixed integrated number, taming the chorus is a contrast decision. Make it on purpose, with the verse in your ears.</p>
+<p><strong>Accept the quieter integrated number</strong> when the chorus sounds right and the limiter is only there to catch it. Backing the input off 1 dB put the master at −14.9 with less limiting in the hook. On Apple’s Sound Check, which plays around −16, both versions get turned down to the same place, so it costs nothing there. On Spotify Normal it plays about 0.8 LU quieter, because the peaks leave no room for a lift. That’s a trade you can hear and choose, instead of one a meter chose for you.</p>
+<p>What we wouldn’t do: push the whole master another dB into the limiter just to see −14.0 on the sheet, or pull it down until the chorus reads −14. Both let a meter make an arrangement decision.</p>
+<h2>The check, in one pass</h2>
+<p>This prints all three readings, plus where the loudest 3 seconds sit, from a single ffmpeg pass. Give it several bounces at once to compare versions side by side.</p>
+<pre><code>#!/usr/bin/env bash
+# ism.sh — integrated, max short-term and max momentary loudness from one ffmpeg pass.
+# Usage: ./ism.sh master.wav [another.wav ...]      Needs: ffmpeg
+set -euo pipefail
+for f in "$@"; do
+  ffmpeg -nostats -hide_banner -i "$f" -af ebur128=peak=true -f null - 2&gt;&amp;1 |
+  sed -E 's/(t|M|S|I):[[:space:]]*/\1: /g' |
+  awk -v f="$f" '
+    / M: / { for (i = 1; i &lt;= NF; i++) {
+               if ($i == "t:") t = $(i+1); if ($i == "M:") m = $(i+1) + 0; if ($i == "S:") s = $(i+1) + 0 }
+             if (mm == "" || m &gt; mm) mm = m
+             if (sm == "" || s &gt; sm) { sm = s; at = t } }
+    /Integrated loudness/ { sum = 1 }
+    sum &amp;&amp; $1 == "I:"    { I = $2 }
+    sum &amp;&amp; $1 == "LRA:"  { L = $2 }
+    sum &amp;&amp; $1 == "Peak:" { P = $2 }
+    END { printf "%s\n  I %.1f LUFS | S max %.1f (at %.0f s) | M max %.1f | LRA %.1f LU | TP %s dBTP\n", f, I, sm, at, mm, L, P
+          printf "  the loudest 3 seconds sit %.1f LU over the integrated number\n", sm - I }'
+done</code></pre>
+<p>How to read it. If S max sits 2–5 LU over I and the chorus sounds right, you’re done. That’s a song with sections, and the store will play it the way you hear it. If the gap is a lot bigger, check the verse and the intro, because something is pulling integrated down hard. If M max sits more than 2–3 LU over S max, one hit is jumping out of its own bar, and that’s a transient or clipper job, not a loudness job.</p>
+<p>Then drop the same bounce on CoProducer’s analyze page and read the LUFS row. That’s the integrated number the stores act on, measured the same BS.1770 way, so the two should agree within a tenth or so. The script tells you how far the chorus sits above it. Between them, you’ve got the whole picture.</p>
+<aside class="aside">The gating math lives in the <a href="../guides/what-is-lufs.html">LUFS guide</a>. If the store turn-down is new to you, start with <a href="why-streaming-turns-loud-masters-down.html">Why streaming platforms turn loud masters down</a>. Then <a href="../index.html#analyzeHome">measure the bounce</a> and read the LUFS row next to your short-term max. The web form tells you the distance and doesn’t write a master.</aside>
+<dl class="faq">
+<dt>Why does my chorus read louder than my integrated LUFS?</dt>
+<dd>Integrated is a gated average of the whole song, including verses and intros that sit under the chorus. Short-term only looks at the last 3 seconds. On a dynamic song the loudest short-term window usually runs 2–5 LU over integrated, and that’s normal.</dd>
+<dt>Should I master so the chorus reads −14 LUFS short-term?</dt>
+<dd>No. Stores normalize on integrated, so a chorus at −14 short-term usually leaves the song around −17 or −18 integrated, and many platforms won’t turn it back up. Hit your integrated number, then make sure the chorus gap sounds intentional.</dd>
+</dl>
+<nav aria-label="Related essays" class="related-essays" style="margin:48px 0 24px;padding-top:24px;border-top:1px solid rgba(196,165,116,.32)"><h2>Related in Lacquer</h2><ul><li><a href="why-streaming-turns-loud-masters-down.html">Why streaming platforms turn loud masters down</a></li><li><a href="leading-silence-steals-integrated-lufs.html">The silence at the top of your bounce steals LUFS</a></li><li><a href="when-not-to-reach-for-the-limiter.html">When not to reach for the limiter</a></li></ul></nav></article>
+<section class="comments" data-comments="" data-thread="chorus"></section>
+<script src="js/studio.js" type="module"></script>
+<script src="js/comments.js" type="module"></script>
+<footer class="site"><span>Lacquer · CoProducer Journal</span><span><a href="index.html">All essays</a></span></footer>
+</body>
+</html>

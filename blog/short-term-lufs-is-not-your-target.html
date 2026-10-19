@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1" name="viewport"/><meta content="https://myaiplug.github.io/coproducer-web/blog/img/essays/short-term-lufs-is-not-your-target.jpg?v=shd" name="twitter:image"/><meta content="Stores use integrated LUFS over the whole file. A hook at −9 short-term can still miss −14 integrated. Read both meters, then decide." name="twitter:description"/><meta content="Short-term LUFS is not your target" name="twitter:title"/><meta content="summary_large_image" name="twitter:card"/><meta content="2026-10-12T00:00:00Z" property="article:modified_time"/><meta content="2026-10-12T00:00:00Z" property="article:published_time"/><meta content="1440" property="og:image:height"/><meta content="2560" property="og:image:width"/><meta content="https://myaiplug.github.io/coproducer-web/blog/short-term-lufs-is-not-your-target.html" property="og:url"/><meta content="en_US" property="og:locale"/><meta content="CoProducer" property="og:site_name"/><meta content="article" property="og:type"/><link href="https://myaiplug.github.io/coproducer-web/llms.txt" rel="alternate" title="llms.txt" type="text/plain"/><meta content="NoDAW Labs" name="author"/><meta content="#050308" name="theme-color"/><meta content="index,follow,max-image-preview:large" name="robots"/><meta content="short-term LUFS, integrated LUFS, momentary LUFS, streaming loudness, EBU R128, CoProducer, mastering" name="keywords"/>
+<title>Short-term LUFS is not your target | Lacquer</title>
+<meta content="Stores use integrated LUFS over the whole file. A hook at −9 short-term can still miss −14 integrated. Read both meters, then decide." name="description"/>
+<link href="https://myaiplug.github.io/coproducer-web/blog/short-term-lufs-is-not-your-target.html" rel="canonical"/>
+<meta content="Short-term LUFS is not your target" property="og:title"/>
+<meta content="Stores use integrated LUFS over the whole file. A hook at −9 short-term can still miss −14 integrated. Read both meters, then decide." property="og:description"/>
+<meta content="https://myaiplug.github.io/coproducer-web/blog/img/essays/short-term-lufs-is-not-your-target.jpg?v=shd" property="og:image"/>
+<meta content="A lacquer-black mastering desk with three glowing LUFS needles—momentary, short-term, and integrated—in cyan and warm amber, on black marble" property="og:image:alt"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;1,500;1,600&amp;family=Figtree:wght@400;500&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<link href="css/journal.css" rel="stylesheet"/>
+
+
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Short-term LUFS is not your target","description":"Stores use integrated LUFS over the whole file. A hook at −9 short-term can still miss −14 integrated. Read both meters, then decide.","datePublished":"2026-10-12","dateModified":"2026-10-12","mainEntityOfPage":{"@type":"WebPage","@id":"https://myaiplug.github.io/coproducer-web/blog/short-term-lufs-is-not-your-target.html"},"image":{"@type":"ImageObject","url":"https://myaiplug.github.io/coproducer-web/blog/img/essays/short-term-lufs-is-not-your-target.jpg?v=shd","width":2560,"height":1440},"author":{"@type":"Organization","name":"NoDAW Labs","url":"https://myaiplug.github.io/coproducer-web/","logo":"https://myaiplug.github.io/coproducer-web/assets/og-default.jpg"},"publisher":{"@type":"Organization","name":"NoDAW Labs","url":"https://myaiplug.github.io/coproducer-web/","logo":"https://myaiplug.github.io/coproducer-web/assets/og-default.jpg"},"isPartOf":{"@type":"Blog","name":"Lacquer — CoProducer Journal","url":"https://myaiplug.github.io/coproducer-web/blog/index.html"},"keywords":["short-term LUFS","integrated LUFS","momentary LUFS","streaming loudness","EBU R128","CoProducer","mastering"],"speakable":{"@type":"SpeakableSpecification","cssSelector":[".answer","h1"]}}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Should I master to −9 short-term LUFS?","acceptedAnswer":{"@type":"Answer","text":"No. Short-term is a sectional readout, not a delivery target. Aim the whole file near the store lane (often around −14 integrated, Apple closer to −16), and use short-term to see whether the hook is carrying the loudness or the arrangement still has contrast."}},{"@type":"Question","name":"Why does my chorus meter hot but the upload report says I’m quiet?","acceptedAnswer":{"@type":"Answer","text":"The store averages the gated whole file. A hot chorus over quieter verses, long intros that still count, or fades can pull integrated down even when short-term on the drop looks competitive. Measure both, trim fake edges, then decide."}}]}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"CoProducer","item":"https://myaiplug.github.io/coproducer-web/"},{"@type":"ListItem","position":2,"name":"Lacquer Journal","item":"https://myaiplug.github.io/coproducer-web/blog/index.html"},{"@type":"ListItem","position":3,"name":"Short-term LUFS is not your target","item":"https://myaiplug.github.io/coproducer-web/blog/short-term-lufs-is-not-your-target.html"}]}</script></head>
+<body>
+<header class="top">
+<a class="mark" href="../index.html"><em>Co</em>Producer</a>
+<nav aria-label="Primary" class="nav">
+<a href="index.html">Journal</a>
+<a href="../index.html#ab">A/B</a>
+<a href="../index.html#analyzeHome">Analyze</a>
+<a href="../guides/index.html">Guides</a>
+<a href="../pricing.html">Pricing</a>
+</nav>
+<a class="cta" href="../index.html#analyzeHome">Measure a mix</a>
+</header>
+<article class="post" id="main">
+<div class="post-hero"><img alt="A lacquer-black mastering desk with three glowing LUFS needles—momentary, short-term, and integrated—in cyan and warm amber, on black marble" src="img/essays/short-term-lufs-is-not-your-target.jpg?v=shd"/></div>
+<header>
+<p class="kicker">Loudness · 12 October 2026 · 8 min</p>
+<h1>Short-term LUFS is not your target</h1>
+<p class="meta">NoDAW Labs · Lacquer Vol. 05</p>
+</header>
+<p class="answer">Streaming and stores care about integrated LUFS over the whole file. A drop that hits −9 short-term can still miss −14 integrated—or look “quiet” while the chorus is already crushed. Read both meters, then decide.</p>
+<p>You’ve seen this one. The hook meter needles into the red, short-term sitting somewhere around −9, and it feels competitive. You bounce, upload, and the store report says −16 integrated. Or the opposite: the whole-song number looks soft, so you shove another dB into the limiter and suddenly the chorus is brickwalled while the verses still sit in the mud.</p>
+<p>Neither meter lied. You asked them different questions and treated the answers as the same number.</p>
+<h2>Three windows, three jobs</h2>
+<p>Loudness meters in the EBU R128 / BS.1770 family give you three reads that move at different speeds:</p>
+<table>
+<thead>
+<tr>
+<th>Meter</th>
+<th>Window</th>
+<th>What it’s for</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Momentary</td>
+<td>~400 ms</td>
+<td>Catching peaks and hits while you work. Not a delivery target.</td>
+</tr>
+<tr>
+<td>Short-term</td>
+<td>3 seconds</td>
+<td>Sectional truth—verse vs hook, drop vs breakdown.</td>
+</tr>
+<tr>
+<td>Integrated</td>
+<td>Whole file (gated)</td>
+<td>What Spotify, YouTube, Apple Sound Check, and most stores use for playback gain.</td>
+</tr>
+</tbody>
+</table>
+<p>Integrated is the delivery lane. Short-term is how the arrangement actually breathes. Momentary is the warning light on the desk. Chasing short-term on the hook and calling it done is how you either over-limit the whole song or leave the integrated number in the wrong place.</p>
+<p>A quick mental model: if the chorus is 6 LU hotter than the verse on short-term, and the chorus is half the song, the integrated number will land somewhere between them—not at the chorus. Push the chorus to “competitive” short-term and the integrated reading can still look quiet. Leave the verses alone and the store average never catches the hook.</p>
+<h2>Measure both before you touch the limiter</h2>
+<p>Here’s a small script that runs ffmpeg’s ebur128 meter on a bounce and prints integrated loudness, loudness range, true peak, max short-term, and the gap between the hottest short-term window and the whole-song average. That’s the number that tells you whether the hook is doing all the work.</p>
+<pre><code>#!/usr/bin/env python3
+&quot;&quot;&quot;shortterm_check.py — integrated vs max short-term on one bounce.
+Usage: python3 shortterm_check.py master.wav
+Needs: ffmpeg on PATH. Uses ffmpeg's EBU R128 meter (same family as a LUFS plugin).&quot;&quot;&quot;
+import re, subprocess, sys
+def run(path):
+    out = subprocess.run(
+        [&quot;ffmpeg&quot;, &quot;-hide_banner&quot;, &quot;-nostats&quot;, &quot;-i&quot;, path,
+         &quot;-filter_complex&quot;,
+         &quot;ebur128=metadata=1:peak=true,ametadata=print:key=lavfi.r128.S:file=-&quot;,
+         &quot;-f&quot;, &quot;null&quot;, &quot;-&quot;],
+        capture_output=True, text=True, check=True,
+    )
+    # Live short-term samples (3 s windows, updated ~10×/sec)
+    times = [float(t) for t in re.findall(r&quot;pts_time:([\d.]+)&quot;, out.stdout)]
+    shorts = [float(v) for v in re.findall(r&quot;lavfi\.r128\.S=(-?[\d.]+|-inf)&quot;, out.stdout)]
+    pairs = [(t, s) for t, s in zip(times, shorts) if s != float(&quot;-inf&quot;) and s &gt; -70]
+    # Summary block on stderr
+    integ = float(re.findall(r&quot;I:\s+(-?[\d.]+) LUFS&quot;, out.stderr)[-1])
+    lra = float(re.findall(r&quot;LRA:\s+([\d.]+) LU&quot;, out.stderr)[-1])
+    tp = float(re.findall(r&quot;Peak:\s+(-?[\d.]+) dBFS&quot;, out.stderr)[-1])
+    return integ, lra, tp, pairs
+def mmss(s):
+    return f&quot;{int(s // 60)}:{int(s % 60):02d}&quot;
+integ, lra, tp, pairs = run(sys.argv[1])
+if not pairs:
+    sys.exit(&quot;No short-term samples above −70 LUFS.&quot;)
+max_s = max(pairs, key=lambda x: x[1])
+# Skip the first ~3 s while the short-term window fills
+usable = [(t, s) for t, s in pairs if t &gt;= 3.0] or pairs
+median_s = sorted(s for _, s in usable)[len(usable) // 2]
+print(f&quot;integrated     : {integ:6.1f} LUFS&quot;)
+print(f&quot;loudness range : {lra:6.1f} LU&quot;)
+print(f&quot;true peak      : {tp:6.1f} dBTP&quot;)
+print(f&quot;max short-term : {max_s[1]:6.1f} LUFS  at {mmss(max_s[0])}&quot;)
+print(f&quot;median short   : {median_s:6.1f} LUFS  (after window fill)&quot;)
+print(f&quot;hook vs song   : {max_s[1] - integ:+6.1f} LU  (max short-term minus integrated)&quot;)
+if max_s[1] - integ &gt;= 6:
+    print(&quot;note           : hook is 6+ LU hotter than the whole-song average.&quot;)
+    print(&quot;                 Don’t push the limiter to chase the hook number.&quot;)
+</code></pre>
+<p>Run it like <code>python3 shortterm_check.py master.wav</code>. On a synthetic two-minute file—verse at roughly −18 LUFS short-term for a minute, then a chorus 6 LU hotter—the script reports something like integrated around −15.5, max short-term near −12, and a “hook vs song” gap of about +3.5 LU. Same file, if you only watched short-term on the drop, you’d swear you were already competitive. The store would still turn you up a little, and the chorus would get louder than you meant.</p>
+<p>The opposite synthetic—same average energy smashed flat so short-term barely moves—lands integrated near the short-term reading and a tiny LRA. That’s the crushed master that “hits −14” while the hook has nowhere left to go.</p>
+<h2>When the hook is 6+ LU hotter than the verse</h2>
+<p>That’s not a bug. Arrangement is supposed to move. The mistake is treating the hook’s short-term as the delivery target.</p>
+<p><strong>If integrated is quiet and the hook is already hot.</strong> Don’t add more limiting. The verses are dragging the average down, which is often what you want for drama. Trim fake silence at the edges first (quiet intros that still count still pull integrated), then decide whether the arrangement needs a louder verse bed—or whether −15 integrated with a −9 short-term hook is the record you meant to make. Streaming will turn a quiet file up; the question is whether the noise floor and true-peak headroom survive that turn-up.</p>
+<p><strong>If integrated is already near −14 and the hook short-term is −8 or hotter.</strong> The chorus is doing almost all the loudness work. More limiter input gain will mostly crush the drop and barely move the song average. Pull a dB or two out of the hook bus, or shorten how long the biggest texture stays in, before you ask the master chain for another LU.</p>
+<p><strong>If short-term and integrated are almost the same.</strong> You’ve flattened the sectional contrast. That can be right for some club and hip-hop delivery, but it’s a choice—not an accident. Check crest / dynamic range next to the LUFS row so you know what you spent.</p>
+<p>Across genres the gap looks different on purpose. A ballad can sit with 8–10 LU between verse and chorus short-term and still land a polite integrated number. Trap and drill often keep the short-term closer together because the 808 and hats never really leave. EDM drops can spike short-term hard for eight bars and still average near −14 if the breakdowns are long. None of those need the same limiter preset.</p>
+<h2>Read the bounce, then decide</h2>
+<p>Once the mix bounce is done, measure integrated and true peak the way a store will. CoProducer’s analyze table puts integrated LUFS, true peak, and clips next to each other so you’re not chasing a short-term needle that the distributor never sees. If the hook feels soft next to a reference, match levels on short sections by ear—then confirm the whole-file number hasn’t left the lane.</p>
+<aside class="aside">After the bounce, <a href="../index.html#analyzeHome">measure integrated and true peak</a> before you upload. If sections feel uneven, split and listen on the <a href="../index.html#ab">A/B player</a> at matched loudness instead of trusting the short-term needle alone.</aside>
+<dl class="faq">
+<dt>Should I master to −9 short-term LUFS?</dt><dd>No. Short-term is a sectional readout, not a delivery target. Aim the whole file near the store lane (often around −14 integrated, Apple closer to −16), and use short-term to see whether the hook is carrying the loudness or the arrangement still has contrast.</dd>
+<dt>Why does my chorus meter hot but the upload report says I’m quiet?</dt><dd>The store averages the gated whole file. A hot chorus over quieter verses, long intros that still count, or fades can pull integrated down even when short-term on the drop looks competitive. Measure both, trim fake edges, then decide.</dd>
+</dl>
+<nav aria-label="Related essays" class="related-essays" style="margin:48px 0 24px;padding-top:24px;border-top:1px solid rgba(196,165,116,.32)"><h2>Related in Lacquer</h2><ul>
+<li><a href="why-streaming-turns-loud-masters-down.html">Why streaming platforms turn loud masters down</a></li>
+<li><a href="crest-factor-is-not-loudness.html">Crest factor is not loudness</a></li>
+<li><a href="leading-silence-steals-integrated-lufs.html">The silence at the top of your bounce steals LUFS</a></li>
+</ul></nav>
+</article>
+<section class="comments" data-comments="" data-thread="shortterm"></section>
+<script src="js/studio.js" type="module"></script>
+<script src="js/comments.js" type="module"></script>
+<footer class="site"><span>Lacquer · CoProducer Journal</span><span><a href="index.html">All essays</a></span></footer>
+</body>
+</html>

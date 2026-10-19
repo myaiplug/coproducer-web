@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1" name="viewport"/><meta content="https://myaiplug.github.io/coproducer-web/blog/img/essays/split-stems-from-youtube-audio-you-own.jpg?v=r432" name="twitter:image"/><meta content="Want stems from a song you uploaded to YouTube? The copy you feed the separator sets the ceiling. Find the first-generation file, then split locally." name="twitter:description"/><meta content="Splitting stems from YouTube audio you own starts with the cleanest copy" name="twitter:title"/><meta content="summary_large_image" name="twitter:card"/><meta content="2026-10-08T00:00:00Z" property="article:modified_time"/><meta content="2026-10-08T00:00:00Z" property="article:published_time"/><meta content="1440" property="og:image:height"/><meta content="2560" property="og:image:width"/><meta content="https://myaiplug.github.io/coproducer-web/blog/split-stems-from-youtube-audio-you-own.html" property="og:url"/><meta content="en_US" property="og:locale"/><meta content="CoProducer" property="og:site_name"/><meta content="article" property="og:type"/><link href="https://myaiplug.github.io/coproducer-web/llms.txt" rel="alternate" title="llms.txt" type="text/plain"/><meta content="NoDAW Labs" name="author"/><meta content="#050308" name="theme-color"/><meta content="index,follow,max-image-preview:large" name="robots"/><meta content="split stems from youtube, stem separation, own music, lossless source, AAC, generation loss, Demucs, MDX-Net, DeepSplit, Lacquer" name="keywords"/>
+<title>Splitting stems from YouTube audio you own starts with the cleanest copy | Lacquer</title>
+<meta content="Want stems from a song you uploaded to YouTube? The copy you feed the separator sets the ceiling. Find the first-generation file, then split locally." name="description"/>
+<link href="https://myaiplug.github.io/coproducer-web/blog/split-stems-from-youtube-audio-you-own.html" rel="canonical"/>
+<meta content="Splitting stems from YouTube audio you own starts with the cleanest copy" property="og:title"/>
+<meta content="Want stems from a song you uploaded to YouTube? The copy you feed the separator sets the ceiling. Find the first-generation file, then split locally." property="og:description"/>
+<meta content="https://myaiplug.github.io/coproducer-web/blog/img/essays/split-stems-from-youtube-audio-you-own.jpg?v=r432" property="og:image"/>
+<meta content="A cyan waveform lifting out of a dark video frame and splitting into five glowing stem lanes across black marble" property="og:image:alt"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;1,500;1,600&amp;family=Figtree:wght@400;500&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<link href="css/journal.css" rel="stylesheet"/>
+
+
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Splitting stems from YouTube audio you own starts with the cleanest copy","description":"Want stems from a song you uploaded to YouTube? The copy you feed the separator sets the ceiling. Find the first-generation file, then split locally.","datePublished":"2026-10-08","dateModified":"2026-10-08","mainEntityOfPage":{"@type":"WebPage","@id":"https://myaiplug.github.io/coproducer-web/blog/split-stems-from-youtube-audio-you-own.html"},"image":{"@type":"ImageObject","url":"https://myaiplug.github.io/coproducer-web/blog/img/essays/split-stems-from-youtube-audio-you-own.jpg?v=r432","width":2560,"height":1440},"author":{"@type":"Organization","name":"NoDAW Labs","url":"https://myaiplug.github.io/coproducer-web/","logo":"https://myaiplug.github.io/coproducer-web/assets/og-default.jpg"},"publisher":{"@type":"Organization","name":"NoDAW Labs","url":"https://myaiplug.github.io/coproducer-web/","logo":"https://myaiplug.github.io/coproducer-web/assets/og-default.jpg"},"isPartOf":{"@type":"Blog","name":"Lacquer — CoProducer Journal","url":"https://myaiplug.github.io/coproducer-web/blog/index.html"},"keywords":["split stems from youtube","stem separation","own music","lossless source","AAC","generation loss","Demucs","MDX-Net","DeepSplit","Lacquer"],"speakable":{"@type":"SpeakableSpecification","cssSelector":[".answer","h1"]}}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Is it legal to split stems from a YouTube video?","acceptedAnswer":{"@type":"Answer","text":"It depends on whose audio it is. YouTube’s Terms don’t allow downloading content unless the service expressly authorizes it or you have permission from YouTube and the rights holders. For your own uploads, YouTube Studio offers a download. For anyone else’s song, get permission or a licensed copy first."}},{"@type":"Question","name":"How do I download a video I uploaded myself?","acceptedAnswer":{"@type":"Answer","text":"Sign in to YouTube Studio, open Content, pick the video, and choose Download from its menu. YouTube’s help page says you get an MP4 at 720p or 360p. Google Takeout can export all your uploads at once."}},{"@type":"Question","name":"Why do my separated hi-hats sound swirly?","acceptedAnswer":{"@type":"Answer","text":"Most of the time it’s the source copy. Lossy codecs drop or coarsen the top octave, and the separator then has to assign codec noise to some stem. In our synthetic test the hats lost most of their SDR at 128 kbps while kick and bass barely moved."}},{"@type":"Question","name":"Will converting the MP4 audio to WAV improve the stems?","acceptedAnswer":{"@type":"Answer","text":"No. Converting to WAV only stops further damage. Decode once to WAV and work from that file so you don’t stack another lossy generation on top."}},{"@type":"Question","name":"How many stems should I ask for?","acceptedAnswer":{"@type":"Answer","text":"Ask for the fewest that do the job. Four stems (vocals, drums, bass, other) are the most mature in published benchmarks. Extra guitar or piano stems are useful, but expect more bleed between similar instruments."}}]}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"CoProducer","item":"https://myaiplug.github.io/coproducer-web/"},{"@type":"ListItem","position":2,"name":"Lacquer Journal","item":"https://myaiplug.github.io/coproducer-web/blog/index.html"},{"@type":"ListItem","position":3,"name":"Splitting stems from YouTube audio you own starts with the cleanest copy","item":"https://myaiplug.github.io/coproducer-web/blog/split-stems-from-youtube-audio-you-own.html"}]}</script></head>
+<body>
+<header class="top">
+<a class="mark" href="../index.html"><em>Co</em>Producer</a>
+<nav aria-label="Primary" class="nav">
+<a href="index.html">Journal</a>
+<a href="../index.html#ab">A/B</a>
+<a href="../index.html#analyzeHome">Analyze</a>
+<a href="../guides/index.html">Guides</a>
+<a href="../pricing.html">Pricing</a>
+</nav>
+<a class="cta" href="../index.html#analyzeHome">Measure a mix</a>
+</header>
+<article class="post" id="main">
+<div class="post-hero"><img alt="A cyan waveform lifting out of a dark video frame and splitting into five glowing stem lanes across black marble" src="img/essays/split-stems-from-youtube-audio-you-own.jpg?v=r432"/></div>
+<header>
+<p class="kicker">Stems · 8 October 2026 · 11 min</p>
+<h1>Splitting stems from YouTube audio you own starts with the cleanest copy</h1>
+<p class="meta">NoDAW Labs · Lacquer Vol. 05</p>
+</header>
+<p class="answer">If the song is yours and the only copy you can find is the one on YouTube, you can still get usable stems out of it. But the separator can’t give back what the codec already threw away. Before you split anything, hunt down the earliest-generation file you have, check that it really is lossless, decode it to WAV exactly once, and then split on your own machine. The kick and bass will survive a lossy copy fine. The cymbals and air won’t.</p>
+<p>Most of us have been here. A track you made three laptops ago, the session folder gone with a dead drive, and the record still sitting on your channel with a few thousand plays. Or a live set your band filmed, you have the rights to it, and the multitrack never got exported. You want the vocal out of it for a remix, or the drums for a new edit, or just the bassline so you can finally figure out what you played.</p>
+<p>Stem separation can do that now, and it does it well. What it can’t do is undo the trip your audio took to get to you. That trip is the part people skip, and it’s where most of the “AI stems sound watery” complaints actually start.</p>
+
+<h2>First, whose audio is it</h2>
+<p>This essay is about your own music, or music you’ve been given rights to. That isn’t a disclaimer bolted onto the end. It changes what you’re allowed to do and where you should look for the file. <a href="https://www.youtube.com/static?template=terms">YouTube’s Terms of Service</a> say you can’t download content except where the service expressly authorizes it, or with prior written permission from YouTube and the rights holders. Pulling someone else’s single off a video page so you can strip the vocal falls outside that, and the copyright problem follows you into anything you release.</p>
+<p>For your own uploads there’s a sanctioned route. YouTube’s help page on <a href="https://support.google.com/youtube/answer/56100">downloading videos you’ve uploaded</a> describes it: open YouTube Studio, go to Content, choose the video, and pick Download from its menu. You get an MP4 at 720p or 360p. Google Takeout can export everything you’ve uploaded in one go. That MP4 is your fallback, but it isn’t your first choice, for reasons the numbers below make clear.</p>
+
+<h2>What a separator is really doing</h2>
+<p>Modern separators like Demucs and the MDX-Net family learn, from thousands of multitrack songs, how to estimate each source from a mix. Many of them work, at least partly, by building a mask over a time-frequency picture of the song: for every small tile of time and frequency, how much of it belongs to the vocal, the drums, the bass. The rest is detail, and we go deep on the differences in <a href="demucs-vs-mdx-net-stem-separation-compared.html">the Demucs vs MDX-Net essay</a>.</p>
+<p>The detail that matters here is simpler. Whatever lands in those tiles gets handed to some stem. If a codec replaced the top octave of your hi-hats with smeared, quantized noise, the separator can’t tell that noise from cymbal. It just does its best with it. The source copy sets a ceiling, and no model, however good, gets above it.</p>
+
+<h2>Measuring the ceiling</h2>
+<p>We wanted to put a number on that, so we built a test with no real record in it at all. <code>lab.py</code> synthesizes a short 92 BPM groove: a pitch-swept kick, a band-limited saw bass, a detuned pad, a vowel-like lead standing in for a voice, and noise-burst hats. Because we made every stem ourselves, we know the truth exactly.</p>
+<p>Then we push the mix through the lossy chains a real song tends to pass through: a single AAC or Opus encode, an MP3, and the classic “downloaded it, then a converter re-exported it” double hop. Every decoded copy gets split with the same oracle soft masks, built from the true stems. That’s the best any mask could ever do, a perfect separator. So any drop in quality is damage done by the copy, not by the separator.</p>
+<pre><code>#!/usr/bin/env python3
+&quot;&quot;&quot;source_ceiling.py: how much separation quality a lossy copy costs you
+before any AI model touches it.
+
+SYNTHETIC test: a 92 BPM groove (kick, bass, pad, vowel-like lead, hats) built
+in lab.py. We push the mix (as 2-channel, like a real stereo file) through common lossy chains with ffmpeg, then split
+every decoded copy with the SAME oracle soft masks (computed from the true
+stems, the best a mask can ever do). Any drop in SDR is damage the source copy
+did, not the separator.
+
+Usage: python3 source_ceiling.py            (needs numpy + ffmpeg)
+&quot;&quot;&quot;
+import numpy as np
+import lab
+
+N_FFT = 4096
+stems = lab.synth_stems(seed=7)
+mix, stems = lab.mixdown(stems)
+masks = lab.ratio_masks(stems, N_FFT, power=2.0)
+
+AAC = lambda k: (&quot;m4a&quot;, [&quot;-ac&quot;, &quot;2&quot;, &quot;-c:a&quot;, &quot;aac&quot;, &quot;-b:a&quot;, k])
+MP3 = lambda k: (&quot;mp3&quot;, [&quot;-ac&quot;, &quot;2&quot;, &quot;-c:a&quot;, &quot;libmp3lame&quot;, &quot;-b:a&quot;, k])
+OPUS = lambda k: (&quot;opus&quot;, [&quot;-ac&quot;, &quot;2&quot;, &quot;-c:a&quot;, &quot;libopus&quot;, &quot;-b:a&quot;, k])
+chains = [
+    (&quot;lossless WAV (your bounce)&quot;, []),
+    (&quot;AAC 256k&quot;, [AAC(&quot;256k&quot;)]),
+    (&quot;AAC 128k&quot;, [AAC(&quot;128k&quot;)]),
+    (&quot;Opus 128k&quot;, [OPUS(&quot;128k&quot;)]),
+    (&quot;MP3 128k&quot;, [MP3(&quot;128k&quot;)]),
+    (&quot;AAC 128k -&gt; MP3 192k&quot;, [AAC(&quot;128k&quot;), MP3(&quot;192k&quot;)]),
+    (&quot;AAC 128k -&gt; MP3 128k -&gt; AAC 128k&quot;, [AAC(&quot;128k&quot;), MP3(&quot;128k&quot;), AAC(&quot;128k&quot;)]),
+]
+
+def hf_share(x, lo=15000):
+    X = np.abs(np.fft.rfft(x)) ** 2
+    f = np.fft.rfftfreq(len(x), 1 / lab.SR)
+    return X[f &gt;= lo].sum() / (X.sum() + 1e-20)
+
+hf_ref = hf_share(mix)
+names = list(stems)
+print(f&quot;synthetic mix: {len(mix)/lab.SR:.1f} s mono @ {lab.SR} Hz, oracle masks n_fft={N_FFT}&quot;)
+print(f&quot;{&#x27;source copy&#x27;:36s} {&#x27;mix SNR&#x27;:&gt;8s} {&#x27;&gt;15k kept&#x27;:&gt;9s} &quot; +
+      &quot; &quot;.join(f&quot;{n:&gt;6s}&quot; for n in names) + f&quot; {&#x27;mean&#x27;:&gt;6s}&quot;)
+for label, chain in chains:
+    if chain:
+        y, lag = lab.codec_roundtrip(mix, chain)
+    else:
+        y, lag = mix.copy(), 0
+    est = lab.separate_with_masks(y, masks, N_FFT)
+    s = [lab.sdr(stems[n], est[n]) for n in names]
+    snr = lab.sdr(mix, y)
+    kept = 100 * hf_share(y) / hf_ref
+    snr_txt = &quot;   inf&quot; if not chain else f&quot;{snr:6.1f}&quot;
+    print(f&quot;{label:36s} {snr_txt:&gt;8s} {kept:8.0f}% &quot; +
+          &quot; &quot;.join(f&quot;{v:6.1f}&quot; for v in s) + f&quot; {np.mean(s):6.1f}&quot;)
+print(&quot;SDR in dB against the true synthetic stems (MDX-2021 definition). Higher is better.&quot;)</code></pre>
+<p>This is the real output from the box. The shared helpers (synthesis, STFT, SDR, codec round-trip with delay alignment) are in <code>lab.py</code> in the demos folder.</p>
+<pre><code>synthetic mix: 8.0 s mono @ 44100 Hz, oracle masks n_fft=4096
+source copy                           mix SNR &gt;15k kept   kick   bass    pad   lead   hats   mean
+lossless WAV (your bounce)                inf      100%    9.6    9.1    9.1   16.9   18.1   12.6
+AAC 256k                                 30.0       98%    9.6    9.0    9.1   16.9   13.7   11.7
+AAC 128k                                 25.1       20%    9.6    9.0    9.0   16.9    2.4    9.4
+Opus 128k                                23.7       65%    9.6    8.9    9.0   16.8    5.2    9.9
+MP3 128k                                 23.0       20%    9.4    8.9    9.0   16.4    2.8    9.3
+AAC 128k -&gt; MP3 192k                     23.8       21%    9.5    9.0    9.0   16.7    2.4    9.3
+AAC 128k -&gt; MP3 128k -&gt; AAC 128k         21.3       17%    9.4    8.8    8.9   16.2    1.5    9.0
+SDR in dB against the true synthetic stems (MDX-2021 definition). Higher is better.</code></pre>
+
+<h3>Reading it like an engineer</h3>
+<table>
+<thead><tr><th>Source copy (synthetic test)</th><th>Mix SNR vs bounce</th><th>Energy kept above 15 kHz</th><th>Kick SDR</th><th>Lead SDR</th><th>Hats SDR</th></tr></thead>
+<tbody>
+<tr><td>Lossless WAV bounce</td><td>reference</td><td>100%</td><td>9.6 dB</td><td>16.9 dB</td><td>18.1 dB</td></tr>
+<tr><td>AAC 256k</td><td>30.0 dB</td><td>98%</td><td>9.6 dB</td><td>16.9 dB</td><td>13.7 dB</td></tr>
+<tr><td>AAC 128k</td><td>25.1 dB</td><td>20%</td><td>9.6 dB</td><td>16.9 dB</td><td>2.4 dB</td></tr>
+<tr><td>MP3 128k</td><td>23.0 dB</td><td>20%</td><td>9.4 dB</td><td>16.4 dB</td><td>2.8 dB</td></tr>
+<tr><td>AAC → MP3 → AAC, all 128k</td><td>21.3 dB</td><td>17%</td><td>9.4 dB</td><td>16.2 dB</td><td>1.5 dB</td></tr>
+</tbody></table>
+<p>Look at the columns, not the averages. The kick, bass, pad and lead hardly notice. They live where codecs spend their bits, and at 128 kbps their stems stay within a few tenths of a dB of the lossless result. The hats tell the other story. They go from 18.1 dB SDR on the bounce to 2.4 dB through a single 128k AAC encode, and to 1.5 dB after three generations. At 128k on a stereo file, both AAC and MP3 kept only about a fifth of the energy above 15 kHz.</p>
+<p>A 2–3 dB SDR stem is the swirly, sandy cymbal you’ve heard out of every quick YouTube split. The separator didn’t invent that. The copy handed it a top end that was mostly codec.</p>
+<p>Two honest caveats. This is one synthetic groove in mono, run through ffmpeg’s encoders. YouTube’s own encoder settings aren’t public in a form we can reproduce, so read these as directions, not as a measurement of YouTube itself. And the kick’s ceiling of about 9.6 dB is a limit of the 4096-point mask, not the codec. Long analysis windows blur transients. That’s a story for the model comparison.</p>
+
+<h2>Find out what you actually have</h2>
+<p>The worst file in your archive is the one that says <code>.wav</code> and isn’t. A WAV decoded from an MP3 keeps the codec’s low-pass shelf forever, and nothing in the file name or the header will tell you. This little checker prints what ffprobe sees and then finds where the long-term spectrum drops off a cliff:</p>
+<pre><code>#!/usr/bin/env python3
+&quot;&quot;&quot;fake_lossless_check.py: is this &quot;WAV&quot; really a first-generation file?
+
+A WAV that was decoded from an MP3/AAC keeps the codec&#x27;s low-pass shelf.
+This prints the codec ffprobe sees, plus the frequency where the long-term
+spectrum falls off a cliff. Usage: python3 fake_lossless_check.py file [file...]
+With no arguments it builds SYNTHETIC test files from lab.py and checks those.
+&quot;&quot;&quot;
+import json, os, subprocess, sys, tempfile
+import numpy as np
+import lab
+
+def probe(path):
+    out = subprocess.run([&quot;ffprobe&quot;, &quot;-v&quot;, &quot;error&quot;, &quot;-select_streams&quot;, &quot;a:0&quot;, &quot;-show_entries&quot;,
+                          &quot;stream=codec_name,sample_rate,bits_per_raw_sample,bit_rate&quot;,
+                          &quot;-of&quot;, &quot;json&quot;, path], capture_output=True, text=True).stdout
+    return json.loads(out)[&quot;streams&quot;][0]
+
+def cliff(path):
+    x = lab.read_audio(path)
+    n = 8192
+    frames = [x[i:i + n] * np.hanning(n) for i in range(0, len(x) - n, n // 2)]
+    P = np.mean([np.abs(np.fft.rfft(f)) ** 2 for f in frames], axis=0)
+    f = np.fft.rfftfreq(n, 1 / lab.SR)
+    PdB = 10 * np.log10(P + 1e-20)
+    ref = np.median(PdB[(f &gt; 2000) &amp; (f &lt; 8000)])
+    # walk 250 Hz bands from 10 kHz up; the cliff is the last band within 30 dB of the mids
+    top = 10000.0
+    for lo in np.arange(10000, lab.SR / 2 - 250, 250):
+        band = PdB[(f &gt;= lo) &amp; (f &lt; lo + 250)]
+        if band.size and band.mean() &gt; ref - 30:
+            top = lo + 250
+    return top, None
+
+def report(path):
+    p = probe(path)
+    top, shelf = cliff(path)
+    verdict = &quot;looks full-band&quot; if top &gt; 19500 else &quot;LOW-PASS SHELF: probably decoded from a lossy file&quot;
+    print(f&quot;{os.path.basename(path):28s} codec={p.get(&#x27;codec_name&#x27;):10s} sr={p.get(&#x27;sample_rate&#x27;)} &quot;
+          f&quot;content to ~{top/1000:4.1f} kHz  -&gt; {verdict}&quot;)
+
+if len(sys.argv) &gt; 1:
+    for pth in sys.argv[1:]:
+        report(pth)
+else:
+    stems = lab.synth_stems(seed=7)
+    mix, _ = lab.mixdown(stems)
+    with tempfile.TemporaryDirectory() as d:
+        wav = os.path.join(d, &quot;bounce_24bit.wav&quot;); lab.write_wav(wav, mix)
+        mp3 = os.path.join(d, &quot;tmp.mp3&quot;)
+        subprocess.run([&quot;ffmpeg&quot;, &quot;-v&quot;, &quot;error&quot;, &quot;-y&quot;, &quot;-i&quot;, wav, &quot;-ac&quot;, &quot;2&quot;, &quot;-c:a&quot;, &quot;libmp3lame&quot;, &quot;-b:a&quot;, &quot;128k&quot;, mp3], check=True)
+        fake = os.path.join(d, &quot;fake_lossless_from_mp3.wav&quot;)
+        subprocess.run([&quot;ffmpeg&quot;, &quot;-v&quot;, &quot;error&quot;, &quot;-y&quot;, &quot;-i&quot;, mp3, &quot;-ac&quot;, &quot;1&quot;, &quot;-c:a&quot;, &quot;pcm_s24le&quot;, fake], check=True)
+        m4a = os.path.join(d, &quot;tmp.m4a&quot;)
+        subprocess.run([&quot;ffmpeg&quot;, &quot;-v&quot;, &quot;error&quot;, &quot;-y&quot;, &quot;-i&quot;, wav, &quot;-ac&quot;, &quot;2&quot;, &quot;-c:a&quot;, &quot;aac&quot;, &quot;-b:a&quot;, &quot;128k&quot;, m4a], check=True)
+        fake2 = os.path.join(d, &quot;fake_lossless_from_aac.wav&quot;)
+        subprocess.run([&quot;ffmpeg&quot;, &quot;-v&quot;, &quot;error&quot;, &quot;-y&quot;, &quot;-i&quot;, m4a, &quot;-ac&quot;, &quot;1&quot;, &quot;-c:a&quot;, &quot;pcm_s24le&quot;, fake2], check=True)
+        print(&quot;SYNTHETIC files (built from lab.py):&quot;)
+        for pth in (wav, fake, fake2):
+            report(pth)</code></pre>
+<pre><code>SYNTHETIC files (built from lab.py):
+bounce_24bit.wav             codec=pcm_s24le  sr=44100 content to ~22.0 kHz  -&gt; looks full-band
+fake_lossless_from_mp3.wav   codec=pcm_s24le  sr=44100 content to ~16.8 kHz  -&gt; LOW-PASS SHELF: probably decoded from a lossy file
+fake_lossless_from_aac.wav   codec=pcm_s24le  sr=44100 content to ~17.5 kHz  -&gt; LOW-PASS SHELF: probably decoded from a lossy file</code></pre>
+<p>All three files say <code>pcm_s24le</code>, 44.1 kHz. The header has no idea. The spectrum knows: real content to 22 kHz on the true bounce, and a hard shelf around 17 kHz on the two that came from 128k lossy files. Run it on anything you find before you trust it. A shelf near 16–20 kHz means a lossy ancestor somewhere.</p>
+
+<h2>The order that gets you the best stems</h2>
+<ol>
+<li><strong>Dig for the first generation.</strong> Check old bounce folders and external drives. Search your sent mail for the WAV you sent the mastering engineer. Look at your distributor’s dashboard, since some keep the file you delivered. Ask collaborators and the studio that tracked you. A 16-bit master from 2014 beats a 2024 upload every time.</li>
+<li><strong>If YouTube really is all that’s left, use the official download.</strong> YouTube Studio for your own channel, Takeout for the whole archive. For a band or label channel, ask whoever controls it. Don’t point a ripper at a video you don’t control.</li>
+<li><strong>Decode once, to WAV, and archive that file.</strong> <code>ffmpeg -i upload.mp4 -vn -c:a pcm_s24le song.wav</code>. Converting doesn’t add quality back. It stops the next tool from encoding it again. Every “export as MP3 to save space” in the chain is another row down that table.</li>
+<li><strong>Ask for the fewest stems that do the job.</strong> Vocals, drums, bass and other is the most mature split in published benchmarks. Separate guitar and piano stems are handy, but similar timbres bleed into each other more.</li>
+<li><strong>Split locally, audition, then null-test.</strong> Sum the stems back together and subtract the original. The leftover tells you what the separator dropped or invented, and it’s often a quick read on how much the source copy hurt.</li>
+<li><strong>Export stems as WAV.</strong> They’re working files. Compress the delivery, never the parts.</li>
+</ol>
+<p>For the splitting step, a local tool keeps the whole thing in your room. <a href="https://myaiplug.github.io/DeepSplit/">DeepSplit</a> runs Demucs- and MDX-style models on your own computer, from two stems up to drum sub-separation, and writes lossless stems. If you’re working from an upload of your own unreleased demo, that matters. The file never has to go to someone else’s server just to be taken apart.</p>
+
+<h2>When the lossy copy is all you’ll ever have</h2>
+<p>Sometimes the master is truly gone. Then you’re working with the stems the copy allows, and a few habits help.</p>
+<ul>
+<li><strong>Trust the low and mid stems.</strong> Vocal, bass, kick and most of the snare body came through our test nearly untouched. Build the remix around those.</li>
+<li><strong>Replace, don’t rescue, the top end.</strong> Swirly hats are codec damage. Re-program them, or layer a clean shaker or ride over a filtered version of the original, instead of boosting 12 kHz on something that’s mostly noise.</li>
+<li><strong>Don’t high-shelf the vocal to “restore air.”</strong> You’ll be turning up quantization noise. A gentle exciter driven from the 3–6 kHz region tends to sound more honest than EQ above the shelf.</li>
+<li><strong>Measure after you rebuild.</strong> A remix built from separated parts still has to hit the same delivery numbers. Re-encoding it on the way out costs peak headroom again, as <a href="reencoding-eats-true-peak-headroom.html">Re-encoding eats true-peak headroom</a> shows. Leave margin for it.</li>
+</ul>
+<p>When the new version is printed, a pass through CoProducer’s analyzer is a good last look: loudness, true peak and the stereo picture, measured on your own machine, before the file heads back to the platform it came from.</p>
+<aside class="aside">The short version: your rights, then your earliest copy, then one decode to WAV, then a local split. Everything after that is taste.</aside>
+
+<dl class="faq">
+<dt>Is it legal to split stems from a YouTube video?</dt><dd>It depends on whose audio it is. YouTube’s Terms don’t allow downloading content unless the service expressly authorizes it or you have permission from YouTube and the rights holders. For your own uploads, YouTube Studio offers a download. For anyone else’s song, get permission or a licensed copy first.</dd>
+<dt>How do I download a video I uploaded myself?</dt><dd>Sign in to YouTube Studio, open Content, pick the video, and choose Download from its menu. YouTube’s help page says you get an MP4 at 720p or 360p. Google Takeout can export all your uploads at once.</dd>
+<dt>Why do my separated hi-hats sound swirly?</dt><dd>Most of the time it’s the source copy. Lossy codecs drop or coarsen the top octave, and the separator then has to assign codec noise to some stem. In our synthetic test the hats lost most of their SDR at 128 kbps while kick and bass barely moved.</dd>
+<dt>Will converting the MP4 audio to WAV improve the stems?</dt><dd>No. Converting to WAV only stops further damage. Decode once to WAV and work from that file so you don’t stack another lossy generation on top.</dd>
+<dt>How many stems should I ask for?</dt><dd>Ask for the fewest that do the job. Four stems (vocals, drums, bass, other) are the most mature in published benchmarks. Extra guitar or piano stems are useful, but expect more bleed between similar instruments.</dd>
+</dl>
+<nav aria-label="Related essays" class="related-essays" style="margin:48px 0 24px;padding-top:24px;border-top:1px solid rgba(196,165,116,.32)"><h2>Related in Lacquer</h2><ul>
+<li><a href="reencoding-eats-true-peak-headroom.html">Re-encoding eats true-peak headroom</a></li>
+<li><a href="stems-diagnose-mixes-do-not-replace-them.html">Stems diagnose mixes — they do not replace them</a></li>
+<li><a href="demucs-vs-mdx-net-stem-separation-compared.html">Demucs vs MDX-Net: what each separator gets wrong, and why</a></li>
+</ul></nav>
+</article>
+<section class="comments" data-comments="" data-thread="yt-own-stems"></section>
+<script src="js/studio.js" type="module"></script>
+<script src="js/comments.js" type="module"></script>
+<footer class="site"><span>Lacquer · CoProducer Journal</span><span><a href="index.html">All essays</a></span></footer>
+</body>
+</html>

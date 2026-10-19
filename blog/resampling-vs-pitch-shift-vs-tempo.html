@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1" name="viewport"/><meta content="https://myaiplug.github.io/coproducer-web/blog/img/essays/resampling-vs-pitch-shift-vs-tempo.jpg?v=r432" name="twitter:image"/><meta content="Resampling moves pitch and time together, pitch shifting rebuilds time, tempo change keeps pitch. Seven FFmpeg renders measured for pitch, BPM, and smearing." name="twitter:description"/><meta content="Resampling, pitch shifting, and tempo change are three different jobs" name="twitter:title"/><meta content="summary_large_image" name="twitter:card"/><meta content="2026-10-08T00:00:00Z" property="article:modified_time"/><meta content="2026-10-08T00:00:00Z" property="article:published_time"/><meta content="1440" property="og:image:height"/><meta content="2560" property="og:image:width"/><meta content="https://myaiplug.github.io/coproducer-web/blog/resampling-vs-pitch-shift-vs-tempo.html" property="og:url"/><meta content="en_US" property="og:locale"/><meta content="CoProducer" property="og:site_name"/><meta content="article" property="og:type"/><link href="https://myaiplug.github.io/coproducer-web/llms.txt" rel="alternate" title="llms.txt" type="text/plain"/><meta content="NoDAW Labs" name="author"/><meta content="#050308" name="theme-color"/><meta content="index,follow,max-image-preview:large" name="robots"/><meta content="resampling vs pitch shifting, time stretch, atempo, rubberband ffmpeg, asetrate, 432 Hz conversion, transient smearing, BPM drift, NoDAW" name="keywords"/>
+<title>Resampling vs Pitch Shift vs Tempo Change, Measured | Lacquer</title>
+<meta content="Resampling moves pitch and time together, pitch shifting rebuilds time, tempo change keeps pitch. Seven FFmpeg renders measured for pitch, BPM, and smearing." name="description"/>
+<link href="https://myaiplug.github.io/coproducer-web/blog/resampling-vs-pitch-shift-vs-tempo.html" rel="canonical"/>
+<meta content="Resampling, pitch shifting, and tempo change are three different jobs" property="og:title"/>
+<meta content="Resampling moves pitch and time together, pitch shifting rebuilds time, tempo change keeps pitch. Seven FFmpeg renders measured for pitch, BPM, and smearing." property="og:description"/>
+<meta content="https://myaiplug.github.io/coproducer-web/blog/img/essays/resampling-vs-pitch-shift-vs-tempo.jpg?v=r432" property="og:image"/>
+<meta content="Three reel-to-reel machines on black marble: one throwing a long stretched cyan tape, one wrapped in a magenta pitch spiral, and a chrome metronome beside the third" property="og:image:alt"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;1,500;1,600&amp;family=Figtree:wght@400;500&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<link href="css/journal.css" rel="stylesheet"/>
+
+
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Resampling, pitch shifting, and tempo change are three different jobs","description":"Resampling moves pitch and time together, pitch shifting rebuilds time, tempo change keeps pitch. Seven FFmpeg renders measured for pitch, BPM, and smearing.","datePublished":"2026-10-08","dateModified":"2026-10-08","mainEntityOfPage":{"@type":"WebPage","@id":"https://myaiplug.github.io/coproducer-web/blog/resampling-vs-pitch-shift-vs-tempo.html"},"image":{"@type":"ImageObject","url":"https://myaiplug.github.io/coproducer-web/blog/img/essays/resampling-vs-pitch-shift-vs-tempo.jpg?v=r432","width":2560,"height":1440},"author":{"@type":"Organization","name":"NoDAW Labs","url":"https://myaiplug.github.io/coproducer-web/","logo":"https://myaiplug.github.io/coproducer-web/assets/og-default.jpg"},"publisher":{"@type":"Organization","name":"NoDAW Labs","url":"https://myaiplug.github.io/coproducer-web/","logo":"https://myaiplug.github.io/coproducer-web/assets/og-default.jpg"},"isPartOf":{"@type":"Blog","name":"Lacquer — CoProducer Journal","url":"https://myaiplug.github.io/coproducer-web/blog/index.html"},"keywords":["resampling vs pitch shifting","time stretch","atempo","rubberband ffmpeg","asetrate","432 Hz conversion","transient smearing","BPM drift","NoDAW"],"speakable":{"@type":"SpeakableSpecification","cssSelector":[".answer","h1"]}}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What is the difference between resampling and pitch shifting?","acceptedAnswer":{"@type":"Answer","text":"Resampling changes pitch and length together, like varispeed tape: 440 to 432 is −31.77 cents and 1.85% longer. Pitch shifting changes pitch while rebuilding the timeline so the length stays the same, which can add smearing or phasey artifacts."}},{"@type":"Question","name":"Does converting to 432 Hz change the BPM?","acceptedAnswer":{"@type":"Answer","text":"With resampling, yes. Tempo drops by the ratio 0.981818, so 120 BPM becomes 117.82. With a time-preserving pitch shift, the BPM stays the same."}},{"@type":"Question","name":"Is FFmpeg atempo or rubberband better for pitch shifting?","acceptedAnswer":{"@type":"Answer","text":"It depends on the material. On our synthetic loop, resample plus atempo kept transients sharp, while Rubber Band in its default crisp mode didn’t hold a sustained note at pitch and needed transients=mixed. Test both on your hardest passage."}},{"@type":"Question","name":"Why does my pitch-shifted audio sound phasey or smeared?","acceptedAnswer":{"@type":"Answer","text":"Time-preserving algorithms rebuild phase in short frames or splice short grains. Transients can spread out and sustained notes can pick up sidebands. Try a different transient mode, or resample if a change in length is acceptable."}},{"@type":"Question","name":"Can I do an exact 440 to 432 conversion in FFmpeg?","acceptedAnswer":{"@type":"Answer","text":"Yes. At 48 kHz, use aresample=52800,asetrate=51840,aresample=48000, which is exactly 54/55. The asetrate and aresample options take plain whole numbers, so expressions like sample_rate*432/440 fail."}}]}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"CoProducer","item":"https://myaiplug.github.io/coproducer-web/"},{"@type":"ListItem","position":2,"name":"Lacquer Journal","item":"https://myaiplug.github.io/coproducer-web/blog/index.html"},{"@type":"ListItem","position":3,"name":"Resampling, pitch shifting, and tempo change are three different jobs","item":"https://myaiplug.github.io/coproducer-web/blog/resampling-vs-pitch-shift-vs-tempo.html"}]}</script></head>
+<body>
+<header class="top">
+<a class="mark" href="../index.html"><em>Co</em>Producer</a>
+<nav aria-label="Primary" class="nav">
+<a href="index.html">Journal</a>
+<a href="../index.html#ab">A/B</a>
+<a href="../index.html#analyzeHome">Analyze</a>
+<a href="../guides/index.html">Guides</a>
+<a href="../pricing.html">Pricing</a>
+</nav>
+<a class="cta" href="../index.html#analyzeHome">Measure a mix</a>
+</header>
+<article class="post" id="main">
+<div class="post-hero"><img alt="Three reel-to-reel machines on black marble: one throwing a long stretched cyan tape, one wrapped in a magenta pitch spiral, and a chrome metronome beside the third" src="img/essays/resampling-vs-pitch-shift-vs-tempo.jpg?v=r432"/></div>
+<header>
+<p class="kicker">Pitch · 8 October 2026 · 14 min</p>
+<h1>Resampling, pitch shifting, and tempo change are three different jobs</h1>
+<p class="meta">NoDAW Labs · Lacquer Vol. 05</p>
+</header>
+<p class="answer">Resampling moves pitch and time together, like slowing tape: 440 to 432 is −31.77 cents and 1.85% longer. Pitch shifting moves pitch and rebuilds the timeline so length stays fixed. Tempo change moves length and keeps pitch. They answer different questions, and the time-preserving ones always rebuild something you should listen to.</p>
+<p>Every DAW, DJ app, and plugin has a knob for this, and most of them are labeled something vague like “speed,” “pitch,” “warp,” or “key lock.” Three different operations hide behind those labels. If you don’t know which one you’re using, you can’t predict what will happen to your hats, your reverb tails, or the runtime the video editor is counting on.</p>
+<p>So we rendered one loop seven ways and measured all of them: length, where the held note lands, BPM, how far the last hit drifts, how sharp the transients stay, loudness, and true peak. Some results were what you’d expect. One of them surprised us.</p>
+
+<h2>The one question that sorts them</h2>
+<p>Ask what stays fixed.</p>
+<ul>
+<li><strong>Resampling (varispeed):</strong> nothing stays fixed. The samples are played back as if the clock ran slower, so every frequency drops by the ratio and every event arrives later by the inverse. For 440 → 432 that’s ×0.981818 on pitch and ×1.018519 on length. It’s the cleanest operation of the three because there’s nothing to invent. It’s just very good interpolation.</li>
+<li><strong>Pitch shifting (time-preserving):</strong> length stays fixed and pitch moves. To do that, the algorithm has to take the audio apart and put it back together: phase vocoders split it into short FFT frames, and time-domain methods cut and overlap little grains. Something gets rebuilt, and rebuilding is where artifacts come from.</li>
+<li><strong>Tempo change (time stretch):</strong> pitch stays fixed and length moves. It’s the same reconstruction problem pointed the other way. It’s what DJ key-lock and practice apps do, and it isn’t a 432 conversion, even though the slowdown can feel similar.</li>
+</ul>
+<p>There’s also a combined recipe you’ll see in batch tools: resample first, then time-stretch back to the original length. On paper that equals a pitch shift. In practice its artifacts come from the stretcher, not the resampler.</p>
+
+<h2>The FFmpeg lines, so you know what you’re running</h2>
+<p>These are the exact filters we measured. They run the same in any terminal: Windows, macOS, or Linux. The <code>rubberband</code> lines need an FFmpeg built with librubberband. Most “full” builds include it. Run <code>ffmpeg -filters</code> and look for it.</p>
+<pre><code># A  resample, exact 54/55 (48 kHz source; for 44.1 kHz use 48510 / 47628 / 44100)
+ffmpeg -i in.wav -af "aresample=52800,asetrate=51840,aresample=48000" -c:a pcm_s24le A_resample.wav
+
+# B/C/D  time-preserving pitch shift (Rubber Band), default "crisp", then mixed, then smooth
+ffmpeg -i in.wav -af "rubberband=pitch=0.9818181818" -c:a pcm_s24le B_rb_crisp.wav
+ffmpeg -i in.wav -af "rubberband=pitch=0.9818181818:transients=mixed" -c:a pcm_s24le C_rb_mixed.wav
+ffmpeg -i in.wav -af "rubberband=pitch=0.9818181818:transients=smooth" -c:a pcm_s24le D_rb_smooth.wav
+
+# E  resample, then stretch back to the original length (WSOLA-style atempo)
+ffmpeg -i in.wav -af "aresample=52800,asetrate=51840,aresample=48000,atempo=1.0185185185" -c:a pcm_s24le E_resample_atempo.wav
+
+# F/G  tempo only: 1.85% slower, pitch kept
+ffmpeg -i in.wav -af "atempo=0.9818181818" -c:a pcm_s24le F_atempo.wav
+ffmpeg -i in.wav -af "rubberband=tempo=0.9818181818" -c:a pcm_s24le G_rb_tempo.wav</code></pre>
+<p>Watch for one trap. <code>asetrate</code> and <code>aresample</code> only accept plain whole numbers. Something like <code>asetrate=sample_rate*432/440</code> looks reasonable, but FFmpeg rejects it with “Undefined constant” and renders nothing. Work out the number yourself, or use the exact 52800 → 51840 trick above.</p>
+
+<h2>A script that measures all seven</h2>
+<p>This runs every render above on one file and measures each result against the source. Pitch is measured by sliding the spectrum on a log-frequency axis, in one-second frames taken at the <em>same musical position</em>, so a longer render is compared bar for bar instead of by clock time. The “match” column shows how cleanly the shifted spectrum lines up with the original, where 1.000 is identical in shape. Hits are found above 3 kHz. Width is how long each hit stays within 12 dB of its peak. Pre-echo is the loudest level in the 2–20 ms before each hit.</p>
+<pre><code>#!/usr/bin/env python3
+"""three_ways.py: resampling vs pitch shifting vs tempo change, measured on one file.
+Usage: python3 three_ways.py in.wav [source_bpm]
+Needs: numpy + ffmpeg on PATH. Rows that need librubberband are skipped if your build lacks it.
+Sample rate must be a multiple of 50 Hz (44.1/48/88.2/96 kHz). Renders are written next to
+the input as 32-bit float WAVs; the input is never modified.
+
+Per render: length change; pitch change (log-frequency cross-correlation of 1 s frames:
+median, spread in cents, and "match", how cleanly the shifted spectrum lines up, 1.000 = perfect); time scale from matched high-band hits (and BPM if you pass it);
+drift of the last hit; hit width and pre-echo in the band above 3 kHz; loudness; true peak."""
+import re, subprocess, sys
+import numpy as np
+
+r = 432 / 440
+src = sys.argv[1]
+bpm_in = float(sys.argv[2]) if len(sys.argv) &gt; 2 else None
+base = re.sub(r"\.\w+$", "", src)
+sr = int(subprocess.run(["ffprobe", "-v", "error", "-select_streams", "a:0", "-show_entries",
+                         "stream=sample_rate", "-of", "csv=p=0", src], capture_output=True, text=True).stdout)
+up = sr * 11 // 10
+exact = f"aresample={up},asetrate={up * 54 // 55},aresample={sr}"      # 54/55 == 432/440 exactly
+RENDERS = [  # (label, filter, what the textbook says should happen: pitch factor, time factor)
+    ("A classic resample",          exact,                                         r, 1 / r),
+    ("B rubberband pitch, crisp",   f"rubberband=pitch={r:.10f}",                  r, 1),
+    ("C rubberband pitch, mixed",   f"rubberband=pitch={r:.10f}:transients=mixed", r, 1),
+    ("D rubberband pitch, smooth",  f"rubberband=pitch={r:.10f}:transients=smooth", r, 1),
+    ("E resample + atempo",         f"{exact},atempo={1 / r:.10f}",                r, 1),
+    ("F atempo only",               f"atempo={r:.10f}",                            1, 1 / r),
+    ("G rubberband tempo only",     f"rubberband=tempo={r:.10f}",                  1, 1 / r),
+]
+
+def decode(path):
+    raw = subprocess.run(["ffmpeg", "-v", "error", "-i", path, "-ac", "1", "-ar", str(sr), "-f", "f32le", "-"],
+                         capture_output=True, check=True).stdout
+    return np.frombuffer(raw, dtype=np.float32).astype(np.float64)
+
+def loud(path):
+    e = subprocess.run(["ffmpeg", "-nostats", "-hide_banner", "-i", path, "-af", "ebur128=peak=true:framelog=quiet",
+                        "-f", "null", "-"], capture_output=True, text=True).stderr
+    s = e[e.rfind("Summary:"):]
+    return float(re.search(r"I:\s+(-?[\d.]+) LUFS", s).group(1)), float(re.search(r"Peak:\s+(-?[\d.]+) dBFS", s).group(1))
+
+def logspec(x, lo=100.0, hi=2000.0, step=0.25):
+    n = 1 &lt;&lt; 18
+    mag = np.abs(np.fft.rfft(x * np.hanning(len(x)), n)); f = np.fft.rfftfreq(n, 1 / sr)
+    return np.interp(lo * 2 ** (np.arange(0, 1200 * np.log2(hi / lo), step) / 1200), f, mag)
+
+def xcorr_cents(A, B, step=0.25, span=60):
+    """Shift (cents) that best lines B's spectrum up with A's, and how well it lines up (1.0 = identical shape)."""
+    lags = np.arange(-int(span / step), int(span / step) + 1)
+    c = np.array([np.dot(A[max(0, -k):len(A) - max(0, k)], B[max(0, k):len(B) - max(0, -k)]) for k in lags])
+    i = int(np.clip(np.argmax(c), 1, len(c) - 2)); d = 0.5 * (c[i - 1] - c[i + 1]) / (c[i - 1] - 2 * c[i] + c[i + 1])
+    return (lags[i] + d) * step, c[i] / (np.linalg.norm(A) * np.linalg.norm(B) + 1e-20)
+
+def pitch(x, y, tf):
+    """Compare 1 s frames at the SAME musical position (source time t maps to t*tf in the render)."""
+    out = []
+    for t in np.arange(0.5, len(x) / sr - 1.5, 1.0):
+        a = x[int(t * sr): int((t + 1) * sr)]; b = y[int(t * tf * sr): int(t * tf * sr) + sr]
+        if len(b) == sr:
+            out.append(xcorr_cents(logspec(a), logspec(b)))
+    c, m = np.array(out).T
+    return np.median(c), c.max() - c.min(), np.median(m)
+
+def match_hits(h0, h):
+    """Pair source hits with render hits (allowing a dropped hit at either end), fit time = a*t + b.
+    Returns time scale a, drift of the last paired hit in ms, and how many hits were paired."""
+    best = None
+    for k in range(-3, 4):
+        a0, a1 = h0[max(0, -k):], h[max(0, k):]; n = min(len(a0), len(a1)); a0, a1 = a0[:n], a1[:n]
+        fit = np.polyfit(a0, a1, 1)
+        if best is None or abs(fit[1]) &lt; best[0]:          # the pairing whose first hit lines up at t = 0
+            best = (abs(fit[1]), fit[0], (a1[-1] - a0[-1]) * 1000, n)
+    return best[1:]
+
+def hf_env(x):
+    spec = np.fft.rfft(x); f = np.fft.rfftfreq(len(x), 1 / sr)
+    edge = np.clip((f - 2200) / 800, 0, 1); edge = 0.5 - 0.5 * np.cos(np.pi * edge)  # smooth 2.2-3.0 kHz high-pass
+    h = np.r_[1, 2 * np.ones(len(spec) - 1)]                                             # analytic signal
+    env = np.abs(np.fft.ifft(np.r_[spec * edge * h, np.zeros(len(x) - len(spec))]))
+    k = max(int(0.0002 * sr), 1)
+    return np.convolve(env, np.ones(k) / k, "same")
+
+def hits(x):
+    env = hf_env(x); thr = env.max() * 0.1; gap = int(0.05 * sr)
+    cand = np.where(env &gt; thr)[0]; peaks, i = [], 0
+    while i &lt; len(cand):
+        j = cand[i]; p = j + int(np.argmax(env[j:j + gap])); peaks.append(p)
+        i = np.searchsorted(cand, p + gap)
+    widths, pre = [], []
+    for p in peaks:
+        lvl = env[p] * 10 ** (-12 / 20); a = b = p
+        while a &gt; 0 and env[a] &gt; lvl: a -= 1
+        while b &lt; len(env) - 1 and env[b] &gt; lvl: b += 1
+        widths.append((b - a) / sr * 1000)
+        w = env[max(0, p - int(0.020 * sr)): max(1, p - int(0.002 * sr))]
+        pre.append(20 * np.log10(w.max() / env[p] + 1e-9))
+    return np.array(peaks) / sr, float(np.median(widths)), float(np.median(pre))
+
+x = decode(src); li, ti = loud(src); h0, w0, p0 = hits(x)
+print(f"source : {src} (SYNTHETIC if it came from synth.py)  {len(x) / sr:.3f} s, {len(h0)} hits, "
+      f"width {w0:.2f} ms, pre-echo {p0:.1f} dB, {li:.1f} LUFS, {ti:+.2f} dBTP")
+print(f"target : pitch x{r:.6f} ({1200 * np.log2(r):+.2f} c); classic resample length x{1 / r:.6f} ({100 * (1 / r - 1):+.2f}%)")
+print(f"{'render':27s} {'length':&gt;7s} {'pitch c':&gt;8s} {'spread':&gt;6s} {'match':&gt;6s} {'time x':&gt;8s} {'BPM':&gt;7s} {'drift':&gt;8s} "
+      f"{'hits':&gt;4s} {'width':&gt;7s} {'pre':&gt;7s} {'LUFS':&gt;6s} {'dBTP':&gt;6s}")
+for name, af, pf, tf in RENDERS:
+    out = f"{base}__{re.sub(r'[^a-z]+', '_', name.lower()[2:]).strip('_')}.wav"
+    run = subprocess.run(["ffmpeg", "-v", "error", "-y", "-i", src, "-af", af, "-c:a", "pcm_f32le", out],
+                         capture_output=True, text=True)
+    if run.returncode:
+        print(f"{name:27s} skipped: {run.stderr.strip().splitlines()[-1][:70]}"); continue
+    y = decode(out); lo_, to_ = loud(out); h, w, p = hits(y)
+    med, spread, match = pitch(x, y, tf)
+    scale, drift, paired = match_hits(h0, h)
+    tempo = f"{bpm_in / scale:7.2f}" if bpm_in else "    n/a"
+    print(f"{name:27s} {100 * (len(y) / len(x) - 1):+6.2f}% {med:+8.2f} {spread:6.2f} {match:6.3f} {scale:8.5f} {tempo} "
+          f"{drift:+7.1f}ms {len(h):4d} {w:5.2f}ms {p:5.1f}dB {lo_:6.1f} {to_:+6.2f}")</code></pre>
+<p>Usage: <code>python3 three_ways.py mix.wav 120</code>. The BPM argument is optional and only used to turn the measured time scale into a tempo.</p>
+
+<h2>What it measured on a synthetic loop</h2>
+<p>The source is synthetic, built on the box from formulas so every answer is known: 17 seconds at 48 kHz and 120 BPM, with an A-major pad including a held A4, a 55 Hz sub on every bar, a swept kick on 1 and 3, and 1 ms high ticks on every eighth note standing in for hats and snare. It isn’t a real record. The table below combines the script’s output with a second check, <code>a4_track.py</code>, which reads the held A4 in each of 15 one-second frames.</p>
+<table>
+<thead><tr><th>Render</th><th>Length</th><th>Held A4, 15 frames</th><th>Tempo (120 in)</th><th>Last hit drift</th><th>Hit width / pre-echo</th><th>LUFS / dBTP</th></tr></thead>
+<tbody>
+<tr><td>Source</td><td>17.000 s</td><td>440.0</td><td>120.00</td><td>0</td><td>0.67 ms / −64.7 dB</td><td>−15.1 / −3.00</td></tr>
+<tr><td>A · Resample</td><td>+1.85%</td><td>432.0 in 15/15</td><td>117.82</td><td>+291.7 ms</td><td>0.69 ms / −64.1 dB</td><td>−15.1 / −3.00</td></tr>
+<tr><td>B · Rubber Band pitch, crisp (default)</td><td>0.00%</td><td><strong>0/15 at 432</strong>, read 426.4–439.9</td><td>120.00</td><td>+1.0 ms</td><td>0.69 ms / −15.6 dB</td><td>−15.5 / −3.20</td></tr>
+<tr><td>C · Rubber Band pitch, mixed</td><td>0.00%</td><td>432.0 in 15/15</td><td>120.00</td><td>+1.0 ms</td><td>0.69 ms / −15.6 dB</td><td>−15.2 / −3.20</td></tr>
+<tr><td>D · Rubber Band pitch, smooth</td><td>0.00%</td><td>432.0 in 15/15</td><td>120.00</td><td>+3.3 ms</td><td><strong>2.60 ms / −2.6 dB</strong></td><td>−15.7 / −4.00</td></tr>
+<tr><td>E · Resample + atempo</td><td>−0.12%</td><td>432.0–432.2 in 15/15</td><td>119.99</td><td>+6.5 ms</td><td>0.69 ms / −64.1 dB</td><td>−15.1 / −3.00</td></tr>
+<tr><td>F · atempo only</td><td>+1.72%</td><td>439.7–440.0 in 15/15</td><td>117.82</td><td>+285.9 ms</td><td>0.67 ms / −64.7 dB</td><td>−15.1 / −3.00</td></tr>
+<tr><td>G · Rubber Band tempo only</td><td>+1.85%</td><td><strong>0/15 at 440</strong>, read 431.9–447.5</td><td>117.82</td><td>+290.4 ms</td><td>0.71 ms / −14.4 dB</td><td>−15.6 / −3.60</td></tr>
+</tbody></table>
+<p>Here’s how to read it.</p>
+<p><strong>Resampling did exactly what the math says.</strong> The length grew 1.85%, the held A4 read 432.0 in every frame, and the tempo measured from the hits was 117.82. Transients came through essentially untouched: 0.69 ms wide with no pre-echo to speak of. Loudness and true peak didn’t move. We also built the mathematically ideal 432 version of the loop from the same formulas and subtracted it. The residual was −44.5 dB, which is about as close as our sample-quantized reference can show. No other render can pass that test, because the time-preserving methods rebuild phase in their own way. They came in between −0.2 and −3.3 dB, which tells you they’re reconstructions, not that they’re bad.</p>
+<p><strong>Watch the last-hit drift.</strong> After 15.75 seconds, the resampled loop’s final hit lands 291.7 ms late. At 120 BPM a sixteenth note is 125 ms, so the two versions are a full sixteenth apart about 6.75 seconds in. That’s why a resampled 432 version can’t share stems, a beat grid, or a video timeline with the original, and why an A/B player that switches by clock time sends you to the wrong syllable.</p>
+<p><strong>The surprise was Rubber Band’s default in FFmpeg.</strong> With <code>transients=crisp</code>, which is what you get if you type nothing else, the held A4 never read 432 in a single frame. It read 426 to 429 most of the time and 439.9 once. The match score fell to 0.674, while every clean render scored above 0.97. Rubber Band documents crisp mode as resetting phase at transients. Our loop has a hit every eighth note, four per second, and what we measured looks like the held chord being reset four times a second: its energy splits into sidebands a few hertz either side of where it belongs. The tempo-only version (G) did the same thing around 440. Switching to <code>transients=mixed</code> fixed the pitch completely, 432.0 in every frame. That’s on a synthetic loop with very sharp ticks, so your music may behave better. But it’s exactly the kind of thing you should test before trusting a preset.</p>
+<p><strong>Smooth mode buys stable pitch with blurry hits.</strong> D held 432 perfectly, but the hits got almost four times wider (2.60 ms against 0.69) and the 2–20 ms before each hit came up to −2.6 dB of the hit itself. That’s the soft, chorus-like attack people describe as “phasey,” and it pulled true peak down by a full dB. All three Rubber Band pitch renders also dropped the very first hit at 0:00, so leave a little silence at the top of anything you process this way.</p>
+<p><strong>The resample-plus-atempo recipe held up better than its reputation.</strong> E kept the original length to within 0.12% (atempo trimmed about 20 ms off the end), held A4 at 432.0–432.2, and kept transients as sharp as the source. FFmpeg’s atempo is a time-domain splicer, and on dense polyphonic material those splices can turn into audible flutter or doubling. Our loop is simple enough that they mostly didn’t. The 0.2 Hz wobble in its A4 readings is the trace they left.</p>
+
+<aside class="aside"><strong>What we can prove.</strong> Resampling scales pitch and time by the same exact ratio and reproduces the textbook result. Pitch shifters keep the length and rebuild phase. On this loop, Rubber Band’s default crisp mode didn’t hold a sustained note at its target pitch, mixed mode did, and smooth mode widened every hit almost fourfold. Tempo change slows the music without moving the pitch.<br/><br/><strong>What’s taste.</strong> Whether the 1.85% slowdown of a resampled 432 sounds relaxed or just slow. Whether a slightly soft attack from a pitch shifter bothers you on a piano ballad (probably not) or on a drill hat pattern (probably yes). Which artifacts you can live with is a listening decision, and the right answer changes from song to song.</aside>
+
+<h2>Choosing the mode from the job, not the label</h2>
+<table>
+<thead><tr><th>If the job is…</th><th>Use</th><th>Because</th><th>Then check</th></tr></thead>
+<tbody>
+<tr><td>A 432 listening alternate of a finished master</td><td>Resample</td><td>Nothing gets rebuilt, and the slight slowdown is part of the sound people expect</td><td>New runtime, true peak, metadata</td></tr>
+<tr><td>A 432 version locked to picture, choreography, or a DJ grid</td><td>Resample + stretch back, or a pitch shifter in a mode you’ve tested</td><td>The length has to match to the frame</td><td>Hats, reverb tails, held chords in a synced A/B</td></tr>
+<tr><td>Matching a sample to a 432 session</td><td>Resample the sample</td><td>One-shots and loops can take the 1.85% length change, and it stays clean</td><td>Loop points and the grid</td></tr>
+<tr><td>Practice, DJ key-lock, a slower edit</td><td>Tempo change only</td><td>The pitch has to stay at concert reference</td><td>Transient doubling on drums</td></tr>
+<tr><td>Stems that must stay in sync with the full mix</td><td>Process every stem with the same operation and settings</td><td>Different algorithms drift and phase differently</td><td>Null the summed stems against the processed mix</td></tr>
+</tbody></table>
+
+<h2>A render routine that doesn’t bite later</h2>
+<ol>
+<li><strong>Start from the approved lossless master</strong> and render once. Re-processing a render stacks one algorithm’s artifacts on another’s.</li>
+<li><strong>Write down the operation, not just the number.</strong> “432, resample, 54/55 exact” and “432, Rubber Band mixed, length locked” are different masters.</li>
+<li><strong>Check the length.</strong> A resample should come out at about the original duration ÷ 0.981818. Anything else means a second operation snuck in.</li>
+<li><strong>Listen where reconstruction fails:</strong> the first transient, sustained cymbals, a held chord under busy drums, reverb tails, and the widest stereo moment.</li>
+<li><strong>Re-measure loudness and true peak</strong> on the file you’ll actually ship. In our test the pitch shifters moved integrated loudness by up to 0.6 LU and true peak by up to 1 dB.</li>
+</ol>
+<p>For the common case, a 432 alternate of a finished record, <a href="https://retune-432.vercel.app" rel="noopener">reTUNE[432]</a> keeps it simple. The browser engine does an exact-ratio resample locally, and its synced A/B player maps musical position across the longer timeline, so switching lands on the same beat. The $4 full system adds full-length export and an offline Windows batch with a classic mode and a preserve-duration mode, so you can render both, compare them, and decide by ear. If you want the background on what the conversion itself does to a master, start with <a href="what-432-hz-actually-changes-in-a-master.html">What 432 Hz actually changes in a finished master</a>.</p>
+
+<dl class="faq">
+<dt>What is the difference between resampling and pitch shifting?</dt><dd>Resampling changes pitch and length together, like varispeed tape: 440 to 432 is −31.77 cents and 1.85% longer. Pitch shifting changes pitch while rebuilding the timeline so the length stays the same, which can add smearing or phasey artifacts.</dd>
+<dt>Does converting to 432 Hz change the BPM?</dt><dd>With resampling, yes. Tempo drops by the ratio 0.981818, so 120 BPM becomes 117.82. With a time-preserving pitch shift, the BPM stays the same.</dd>
+<dt>Is FFmpeg atempo or rubberband better for pitch shifting?</dt><dd>It depends on the material. On our synthetic loop, resample plus atempo kept transients sharp, while Rubber Band in its default crisp mode didn’t hold a sustained note at pitch and needed transients=mixed. Test both on your hardest passage.</dd>
+<dt>Why does my pitch-shifted audio sound phasey or smeared?</dt><dd>Time-preserving algorithms rebuild phase in short frames or splice short grains. Transients can spread out and sustained notes can pick up sidebands. Try a different transient mode, or resample if a change in length is acceptable.</dd>
+<dt>Can I do an exact 440 to 432 conversion in FFmpeg?</dt><dd>Yes. At 48 kHz, use aresample=52800,asetrate=51840,aresample=48000, which is exactly 54/55. The asetrate and aresample options take plain whole numbers, so expressions like sample_rate*432/440 fail.</dd>
+</dl>
+<nav aria-label="Related essays" class="related-essays" style="margin:48px 0 24px;padding-top:24px;border-top:1px solid rgba(196,165,116,.32)"><h2>Related in Lacquer</h2><ul>
+<li><a href="what-432-hz-actually-changes-in-a-master.html">What 432 Hz actually changes in a finished master</a></li>
+<li><a href="halftime-still-needs-a-legal-peak.html">Halftime still needs a legal peak</a></li>
+<li><a href="reencoding-eats-true-peak-headroom.html">Re-encoding eats true-peak headroom</a></li>
+</ul></nav>
+</article>
+<section class="comments" data-comments="" data-thread="r432-three-jobs"></section>
+<script src="js/studio.js" type="module"></script>
+<script src="js/comments.js" type="module"></script>
+<footer class="site"><span>Lacquer · CoProducer Journal</span><span><a href="index.html">All essays</a></span></footer>
+</body>
+</html>

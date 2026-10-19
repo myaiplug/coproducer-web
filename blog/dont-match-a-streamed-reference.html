@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1" name="viewport"/><meta content="https://myaiplug.github.io/coproducer-web/blog/img/essays/dont-match-a-streamed-reference.jpg?v=shd" name="twitter:image"/><meta content="A streamed reference was already turned down or up by the platform. Match it and you inherit an offset you never measured. Compare lossless files." name="twitter:description"/><meta content="Don’t match a streamed reference" name="twitter:title"/><meta content="summary_large_image" name="twitter:card"/><meta content="2026-10-14T00:00:00Z" property="article:modified_time"/><meta content="2026-10-14T00:00:00Z" property="article:published_time"/><meta content="1440" property="og:image:height"/><meta content="2560" property="og:image:width"/><meta content="https://myaiplug.github.io/coproducer-web/blog/dont-match-a-streamed-reference.html" property="og:url"/><meta content="en_US" property="og:locale"/><meta content="CoProducer" property="og:site_name"/><meta content="article" property="og:type"/><link href="https://myaiplug.github.io/coproducer-web/llms.txt" rel="alternate" title="llms.txt" type="text/plain"/><meta content="NoDAW Labs" name="author"/><meta content="#050308" name="theme-color"/><meta content="index,follow,max-image-preview:large" name="robots"/><meta content="reference track, streamed reference, loudness normalization, Spotify normalization, Sound Check, YouTube content loudness, loudness matching, reference mastering, CoProducer, NoDAW" name="keywords"/>
+<title>Don’t match a streamed reference | Lacquer</title>
+<meta content="A streamed reference was already turned down or up by the platform. Match it and you inherit an offset you never measured. Compare lossless files." name="description"/>
+<link href="https://myaiplug.github.io/coproducer-web/blog/dont-match-a-streamed-reference.html" rel="canonical"/>
+<meta content="Don’t match a streamed reference" property="og:title"/>
+<meta content="A streamed reference was already turned down or up by the platform. Match it and you inherit an offset you never measured. Compare lossless files." property="og:description"/>
+<meta content="https://myaiplug.github.io/coproducer-web/blog/img/essays/dont-match-a-streamed-reference.jpg?v=shd" property="og:image"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;1,500;1,600&amp;family=Figtree:wght@400;500&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<link href="css/journal.css" rel="stylesheet"/>
+
+
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Don’t match a streamed reference","description":"A streamed reference was already turned down or up by the platform. Match it and you inherit an offset you never measured. Compare lossless files.","datePublished":"2026-10-14","dateModified":"2026-10-14","mainEntityOfPage":{"@type":"WebPage","@id":"https://myaiplug.github.io/coproducer-web/blog/dont-match-a-streamed-reference.html"},"image":{"@type":"ImageObject","url":"https://myaiplug.github.io/coproducer-web/blog/img/essays/dont-match-a-streamed-reference.jpg?v=shd","width":2560,"height":1440},"author":{"@type":"Organization","name":"NoDAW Labs","url":"https://myaiplug.github.io/coproducer-web/","logo":"https://myaiplug.github.io/coproducer-web/assets/og-default.jpg"},"publisher":{"@type":"Organization","name":"NoDAW Labs","url":"https://myaiplug.github.io/coproducer-web/","logo":"https://myaiplug.github.io/coproducer-web/assets/og-default.jpg"},"isPartOf":{"@type":"Blog","name":"Lacquer — CoProducer Journal","url":"https://myaiplug.github.io/coproducer-web/blog/index.html"},"keywords":["reference track","streamed reference","loudness normalization","Spotify normalization","Sound Check","YouTube content loudness","loudness matching","reference mastering","CoProducer","NoDAW"],"speakable":{"@type":"SpeakableSpecification","cssSelector":[".answer","h1"]}}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Can I use a Spotify or YouTube stream as a mix reference?","acceptedAnswer":{"@type":"Answer","text":"For arrangement and vibe, sure. For loudness or peaks, no: the stream has already been turned down or up by the platform and passed through a codec. Use a lossless file, or measure the stream’s offset and compensate for it."}},{"@type":"Question","name":"How do I loudness-match a reference track properly?","acceptedAnswer":{"@type":"Answer","text":"Measure the integrated LUFS of both lossless files on the same meter, then turn the louder one down by the difference with clean gain. Compare at equal loudness, and set your own delivery level separately."}}]}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"CoProducer","item":"https://myaiplug.github.io/coproducer-web/"},{"@type":"ListItem","position":2,"name":"Lacquer Journal","item":"https://myaiplug.github.io/coproducer-web/blog/index.html"},{"@type":"ListItem","position":3,"name":"Don’t match a streamed reference","item":"https://myaiplug.github.io/coproducer-web/blog/dont-match-a-streamed-reference.html"}]}</script></head>
+<body>
+<header class="top">
+<a class="mark" href="../index.html"><em>Co</em>Producer</a>
+<nav aria-label="Primary" class="nav">
+<a href="index.html">Journal</a>
+<a href="../index.html#ab">A/B</a>
+<a href="../index.html#analyzeHome">Analyze</a>
+<a href="../guides/index.html">Guides</a>
+<a href="../pricing.html">Pricing</a>
+</nav>
+<a class="cta" href="../index.html#analyzeHome">Measure a mix</a>
+</header>
+<article class="post" id="main">
+<div class="post-hero"><img alt="A phone showing a small turned-down waveform beside a gold studio interface throwing a full-scale waveform, on dark marble" src="img/essays/dont-match-a-streamed-reference.jpg?v=shd"/></div>
+<header>
+<p class="kicker">Workflow · 14 October 2026 · 7 min</p>
+<h1>Don’t match a streamed reference</h1>
+<p class="meta">NoDAW Labs · Lacquer Vol. 05</p>
+</header>
+<p class="answer">A streamed reference isn’t the master. It’s the master after the platform turned it down (or up), ran it through a codec, and sometimes through a limiter — so if you match your loudness to the stream, you’re matching an offset you never measured. Get a lossless file, measure both on the same meter, and compare there.</p>
+<p>We’ve all done this one. The mix is nearly there, you pull up the record you love on Spotify or YouTube, flip between it and your bounce, and nudge the limiter until they feel the same. It’s fast, and it feels like the responsible move. The catch: what comes out of the app isn’t the file that engineer delivered. It’s that file plus a gain change the platform picked, plus a lossy encode, plus whatever your app and system volume are doing. You matched against all of it at once.</p>
+<p>None of this is a reason to stop referencing. It’s a reason to reference the right file.</p>
+<h2>What the stream did before you heard it</h2>
+<p>Every big store measures integrated loudness when the track comes in and applies one playback gain. Loud records get turned down. Quiet ones get turned up only sometimes, and only as far as their peaks allow. We built two synthetic references, one loud (−8.8 LUFS) and one dynamic (−17.4 LUFS), and simulated what each platform would hand you: the platform’s gain, then an encode and a decode.</p>
+<table>
+<thead><tr><th>Reference file</th><th>Spotify Normal</th><th>Apple Sound Check</th><th>YouTube</th><th>Spotify Loud</th></tr></thead>
+<tbody>
+<tr><td>Loud: −8.8 LUFS, −0.3 dBTP</td><td>−14.0 (down 5.2 dB)</td><td>−16.0 (down 7.2)</td><td>−14.0 (down 5.2)</td><td>−11.0 (down 2.2)</td></tr>
+<tr><td>Dynamic: −17.4 LUFS, −0.6 dBTP</td><td>−17.5 (no lift, peaks)</td><td>−17.4 (no lift)</td><td>−17.4 (never lifts)</td><td>−12.3 (up 6.4 into a limiter)</td></tr>
+</tbody>
+</table>
+<p>These are synthetic signals and simulated platform behavior, based on what the platforms document, so treat the tenths as illustration. The shape is the point. The loud reference came out of four players at three different levels, and none of them was its real −8.8. The dynamic one didn’t move on three of them, then got shoved through a limiter on the fourth.</p>
+<p>Check the peaks, too. The loud reference’s Spotify capture measured −5.1 dBTP. The actual file runs at −0.3. Read peaks off a stream and you’ll decide the pros leave 5 dB of headroom. They don’t. You’re reading the turn-down.</p>
+<h2>How it bites once you upload</h2>
+<p>Say you matched the loud reference by meter while it played with Sound Check on. The capture reads −16.0, so you master to −16.1 with a −1.1 dBTP ceiling. Then both records land on Spotify. The reference gets turned down to −14.0. Yours is quiet, and Spotify only lifts quiet tracks until their peaks reach −1 dBTP. You’re already there, so you get about a tenth of a dB. Your record plays around <strong>2 LU under</strong> the one you matched. YouTube never turns up, so same story there.</p>
+<p>It goes the other way just as easily. Say you referenced the dynamic record on Spotify with the Premium “Loud” setting on. That mode targets −11 regardless of peaks and runs a limiter to get there, so the dynamic reference came out at −12.3 with its peaks already squashed. You chase that and limit your master to −12.3. On Normal playback you get turned down to −14 while the reference plays at its real −17.4. You’re now <strong>3.4 LU hotter</strong> than the record you were matching, and you paid for it with limiting you didn’t need.</p>
+<p>Same ears, same mix decisions, a completely different result, purely because of which setting was on when you A/B’d. That’s the trap. It also bakes in the codec: lossy streams soften the very top end and smear transients a little, so an air-band or punch match against a stream is partly a match against the encoder.</p>
+<h2>Platform targets, as guidance not gospel</h2>
+<table>
+<thead><tr><th>Where it plays</th><th>Plays at about</th><th>Turns quiet tracks up?</th><th>Worth knowing</th></tr></thead>
+<tbody>
+<tr><td>Spotify (Normal)</td><td>−14 LUFS</td><td>Only until peaks reach −1 dBTP</td><td>Premium listeners can pick Loud (−11, with a limiter) or Quiet (−19)</td></tr>
+<tr><td>Apple Music (Sound Check)</td><td>≈ −16 LUFS</td><td>Commonly reported as peak-limited</td><td>With Sound Check off you hear the file’s own level</td></tr>
+<tr><td>YouTube</td><td>−14 LUFS</td><td>No</td><td>“Stats for nerds” shows content loudness, the turn-down in dB</td></tr>
+<tr><td>Amazon Music</td><td>≈ −14 LUFS</td><td>Not well documented</td><td>Often wants −2 dBTP on loud masters</td></tr>
+<tr><td>TIDAL</td><td>≈ −14 LUFS</td><td>Not well documented</td><td>Often normalizes per album, not per track</td></tr>
+<tr><td>Bandcamp, downloads, DJ pools</td><td>No platform gain</td><td>—</td><td>The file is the playback level</td></tr>
+</tbody>
+</table>
+<p>These drift. Platforms change targets, apps change defaults, listeners change settings. Read the table as the shape of the problem, not a spec sheet. The one constant: the level you hear from a stream is the platform’s decision, not the engineer’s.</p>
+<h2>The fix: compare files, not apps</h2>
+<p>The clean version takes about ten minutes:</p>
+<ol>
+<li><strong>Get a lossless file of the reference.</strong> A Bandcamp or Qobuz purchase, a label promo, or the WAV your mastering engineer worked from. A lossless stream beats a lossy one, but it’s still gain-shifted unless normalization is off.</li>
+<li><strong>If all you have is a stream, measure the offset.</strong> On YouTube, right-click the video, open Stats for nerds and read “content loudness”: 5.2 dB there means it’s playing 5.2 dB under its own file. In Spotify or Apple Music, switch off normalization (Normalize volume, Sound Check), set the app volume to full, and treat a loopback capture as a ballpark, not a measurement.</li>
+<li><strong>Measure both files on the same meter:</strong> integrated, short-term max, loudness range, true peak.</li>
+<li><strong>Loudness-match for listening with clean gain only,</strong> turning the louder file down so nothing clips. Then compare tone, punch and width at equal loudness.</li>
+<li><strong>Pick your delivery number separately.</strong> Matching a reference’s balance is the goal. Copying its loudness is optional. Copying its peaks is how you inherit someone else’s codec problem.</li>
+</ol>
+<p>Here are steps 3 and 4 as a script. It measures both files on ffmpeg’s EBU R128 meter and writes a loudness-matched listening copy, gain only, so you hear balance instead of level.</p>
+<pre><code>#!/usr/bin/env bash
+# refcheck.sh — measure your master and a lossless reference on the same meter,
+# then write a loudness-matched listening copy (clean gain only, no limiter, no EQ).
+# Usage: ./refcheck.sh my_master.wav reference.wav       Needs: ffmpeg
+set -euo pipefail
+mine="$1"; ref="$2"
+meas(){ ffmpeg -nostats -hide_banner -i "$1" -af ebur128=peak=true -f null - 2&gt;&amp;1 |
+  awk '/Integrated loudness/{s=1} s&amp;&amp;$1=="I:"{i=$2} s&amp;&amp;$1=="LRA:"{l=$2} s&amp;&amp;$1=="Peak:"{p=$2} END{print i, l, p}'; }
+read -r mi ml mp &lt; &lt;(meas "$mine")
+read -r ri rl rp &lt; &lt;(meas "$ref")
+printf "mine  I %6s LUFS  LRA %5s LU  TP %5s dBTP\n" "$mi" "$ml" "$mp"
+printf "ref   I %6s LUFS  LRA %5s LU  TP %5s dBTP\n" "$ri" "$rl" "$rp"
+d=$(awk -v a="$ri" -v b="$mi" 'BEGIN{printf "%+.1f", a-b}')
+echo "reference minus yours: ${d} LU"
+# Turn the louder file DOWN, so nothing in the listening copy can clip.
+if awk -v d="$d" 'BEGIN{exit !(d&gt;0)}'; then src="$ref"; g="-${d#+}"; else src="$mine"; g="${d#+}"; fi
+out="${src%.*}_listen.wav"
+ffmpeg -v error -y -i "$src" -af "volume=${g}dB" -c:a pcm_f32le "$out"
+echo "wrote $out (${g} dB). A/B it against the other file at one monitor level."</code></pre>
+<p>On our synthetic pair, a master at −14.9 against the loud reference file, it reports:</p>
+<pre><code>mine  I  -14.9 LUFS  LRA  12.3 LU  TP  -1.1 dBTP
+ref   I   -8.8 LUFS  LRA   6.0 LU  TP  -0.3 dBTP
+reference minus yours: +6.1 LU
+wrote ref_loud_listen.wav (-6.1 dB). A/B it against the other file at one monitor level.</code></pre>
+<p>Six LU is the real distance between the two files, the number the Spotify capture hid by reading −14.0. Now A/B the listening copy against your master at one monitor level. If yours still sounds smaller at matched loudness, that’s a real mix note: low-mid density, transient shape, width. If it sounds the same or better, the gap you heard in the app was the app.</p>
+<p>When you want more than loudness, CoProducer’s reference table does this same comparison on two local bounces, with loudness, peak, balance and the delivery gates side by side, so you’re reading divergence on files you control instead of on a stream. Meters only mean something when both sides came through the same door.</p>
+<aside class="aside">If the divergence table is new to you, <a href="reference-matching-without-guesswork.html">Reference matching without guesswork</a> walks through it. For the turn-up side of this story, read <a href="quiet-masters-and-noise-floor.html">Quiet masters get turned up — and so does the noise</a>. Then <a href="../index.html#analyzeHome">measure your bounce</a> before you reach for the limiter. The web form tells you the distance and doesn’t write a master.</aside>
+<dl class="faq">
+<dt>Can I use a Spotify or YouTube stream as a mix reference?</dt>
+<dd>For arrangement and vibe, sure. For loudness or peaks, no: the stream has already been turned down or up by the platform and passed through a codec. Use a lossless file, or measure the stream’s offset and compensate for it.</dd>
+<dt>How do I loudness-match a reference track properly?</dt>
+<dd>Measure the integrated LUFS of both lossless files on the same meter, then turn the louder one down by the difference with clean gain. Compare at equal loudness, and set your own delivery level separately.</dd>
+</dl>
+<nav aria-label="Related essays" class="related-essays" style="margin:48px 0 24px;padding-top:24px;border-top:1px solid rgba(196,165,116,.32)"><h2>Related in Lacquer</h2><ul><li><a href="reference-matching-without-guesswork.html">Reference matching without guesswork</a></li><li><a href="why-streaming-turns-loud-masters-down.html">Why streaming platforms turn loud masters down</a></li><li><a href="quiet-masters-and-noise-floor.html">Quiet masters get turned up — and so does the noise</a></li></ul></nav></article>
+<section class="comments" data-comments="" data-thread="streamed-reference"></section>
+<script src="js/studio.js" type="module"></script>
+<script src="js/comments.js" type="module"></script>
+<footer class="site"><span>Lacquer · CoProducer Journal</span><span><a href="index.html">All essays</a></span></footer>
+</body>
+</html>

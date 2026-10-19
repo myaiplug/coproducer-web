@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1" name="viewport"/><meta content="https://myaiplug.github.io/coproducer-web/blog/img/essays/sampling-from-separated-stems-workflow.jpg?v=r432" name="twitter:image"/><meta content="A producer’s workflow for sampling from AI-separated stems: audit the bleed, restore the attack, null-test, match key, clear what you don’t own." name="twitter:description"/><meta content="Sampling from separated stems: chop around the bleed, not through it" name="twitter:title"/><meta content="summary_large_image" name="twitter:card"/><meta content="2026-10-08T00:00:00Z" property="article:modified_time"/><meta content="2026-10-08T00:00:00Z" property="article:published_time"/><meta content="1440" property="og:image:height"/><meta content="2560" property="og:image:width"/><meta content="https://myaiplug.github.io/coproducer-web/blog/sampling-from-separated-stems-workflow.html" property="og:url"/><meta content="en_US" property="og:locale"/><meta content="CoProducer" property="og:site_name"/><meta content="article" property="og:type"/><link href="https://myaiplug.github.io/coproducer-web/llms.txt" rel="alternate" title="llms.txt" type="text/plain"/><meta content="NoDAW Labs" name="author"/><meta content="#050308" name="theme-color"/><meta content="index,follow,max-image-preview:large" name="robots"/><meta content="sampling from stems, stem separation for producers, drum stem bleed, transient restore, null test, key match, sample clearance, DeepSplit, Lacquer" name="keywords"/>
+<title>Sampling from separated stems: chop around the bleed, not through it | Lacquer</title>
+<meta content="A producer’s workflow for sampling from AI-separated stems: audit the bleed, restore the attack, null-test, match key, clear what you don’t own." name="description"/>
+<link href="https://myaiplug.github.io/coproducer-web/blog/sampling-from-separated-stems-workflow.html" rel="canonical"/>
+<meta content="Sampling from separated stems: chop around the bleed, not through it" property="og:title"/>
+<meta content="A producer’s workflow for sampling from AI-separated stems: audit the bleed, restore the attack, null-test, match key, clear what you don’t own." property="og:description"/>
+<meta content="https://myaiplug.github.io/coproducer-web/blog/img/essays/sampling-from-separated-stems-workflow.jpg?v=r432" property="og:image"/>
+<meta content="An MPC-style sampler on black marble with a separated drum waveform sliced into glowing cyan chops and a faint magenta bass trace beneath" property="og:image:alt"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;1,500;1,600&amp;family=Figtree:wght@400;500&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<link href="css/journal.css" rel="stylesheet"/>
+
+
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Sampling from separated stems: chop around the bleed, not through it","description":"A producer’s workflow for sampling from AI-separated stems: audit the bleed, restore the attack, null-test, match key, clear what you don’t own.","datePublished":"2026-10-08","dateModified":"2026-10-08","mainEntityOfPage":{"@type":"WebPage","@id":"https://myaiplug.github.io/coproducer-web/blog/sampling-from-separated-stems-workflow.html"},"image":{"@type":"ImageObject","url":"https://myaiplug.github.io/coproducer-web/blog/img/essays/sampling-from-separated-stems-workflow.jpg?v=r432","width":2560,"height":1440},"author":{"@type":"Organization","name":"NoDAW Labs","url":"https://myaiplug.github.io/coproducer-web/","logo":"https://myaiplug.github.io/coproducer-web/assets/og-default.jpg"},"publisher":{"@type":"Organization","name":"NoDAW Labs","url":"https://myaiplug.github.io/coproducer-web/","logo":"https://myaiplug.github.io/coproducer-web/assets/og-default.jpg"},"isPartOf":{"@type":"Blog","name":"Lacquer — CoProducer Journal","url":"https://myaiplug.github.io/coproducer-web/blog/index.html"},"keywords":["sampling from stems","stem separation for producers","drum stem bleed","transient restore","null test","key match","sample clearance","DeepSplit","Lacquer"],"speakable":{"@type":"SpeakableSpecification","cssSelector":[".answer","h1"]}}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Is sampling from a separated stem legal?","acceptedAnswer":{"@type":"Answer","text":"How you got the stem doesn’t change the copyright. If the recording isn’t yours, licensed, or public domain, clear it. In the Sixth Circuit, Bridgeport v. Dimension Films said ‘Get a license or do not sample’; the Ninth Circuit disagreed in VMG Salsoul v. Ciccone, so the law isn’t uniform. Clearance avoids the argument."}},{"@type":"Question","name":"Why does my separated drum loop have a ghost bassline?","acceptedAnswer":{"@type":"Answer","text":"The kick and bass share the same low frequencies, so a separator can’t fully pull them apart. In our synthetic audit, about 78% of the bleed in the drum stem sat below 120 Hz. A high-pass or a layered kick usually fixes it."}},{"@type":"Question","name":"How do I get the punch back on separated drums?","acceptedAnswer":{"@type":"Answer","text":"Use a transient shaper, gently. In our test it lifted attack from −8.9 dB to −5.2 dB, which is past the original −7.7 dB, so go by ear. It doesn’t remove pre-echo, so trim each chop’s start to the hit."}},{"@type":"Question","name":"What is a null test for stems?","acceptedAnswer":{"@type":"Answer","text":"Sum all the stems, flip polarity, and add the original mix. With mask-based separation the result should be near silence. After you process a stem, the same subtraction gives you exactly what you removed."}},{"@type":"Question","name":"How do I change the key of a sampled bassline?","acceptedAnswer":{"@type":"Answer","text":"Shift by a ratio of 2^(n/12) for n semitones, with a formant-aware pitch shifter such as Rubber Band. Check the result with a tuner or FFT. Our +2 semitone shift moved 54.8 Hz to 61.3 Hz, against an expected 61.5 Hz."}}]}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"CoProducer","item":"https://myaiplug.github.io/coproducer-web/"},{"@type":"ListItem","position":2,"name":"Lacquer Journal","item":"https://myaiplug.github.io/coproducer-web/blog/index.html"},{"@type":"ListItem","position":3,"name":"Sampling from separated stems: chop around the bleed, not through it","item":"https://myaiplug.github.io/coproducer-web/blog/sampling-from-separated-stems-workflow.html"}]}</script></head>
+<body>
+<header class="top">
+<a class="mark" href="../index.html"><em>Co</em>Producer</a>
+<nav aria-label="Primary" class="nav">
+<a href="index.html">Journal</a>
+<a href="../index.html#ab">A/B</a>
+<a href="../index.html#analyzeHome">Analyze</a>
+<a href="../guides/index.html">Guides</a>
+<a href="../pricing.html">Pricing</a>
+</nav>
+<a class="cta" href="../index.html#analyzeHome">Measure a mix</a>
+</header>
+<article class="post" id="main">
+<div class="post-hero"><img alt="An MPC-style sampler on black marble with a separated drum waveform sliced into glowing cyan chops and a faint magenta bass trace beneath" src="img/essays/sampling-from-separated-stems-workflow.jpg?v=r432"/></div>
+<header>
+<p class="kicker">Sampling · 8 October 2026 · 11 min</p>
+<h1>Sampling from separated stems: chop around the bleed, not through it</h1>
+<p class="meta">NoDAW Labs · Lacquer Vol. 05</p>
+</header>
+<p class="answer">A separated stem is a great sample source, as long as you treat it like a recording with a known flaw. Before you chop, find out where the bleed lives. In drum stems it’s mostly the bass, under 120 Hz. Put the attack back that the mask softened. Null-test so you know exactly what any processing removed. Match the key with a clean pitch ratio. And clear anything you don’t own, because how you got the stem doesn’t change whose recording it is.</p>
+<p>Chopping a full mix used to mean choosing the least-bad two bars: the break where the vocal drops out, the intro before the bass comes in. Separation changed that. Now you can lift the drums from bar 37, where the drummer finally opens the hats, or the bassline from the chorus without the singer on top. It’s a huge creative unlock, and it comes with a catch nobody puts on the box. The stem isn’t the original track. It’s an estimate, and estimates have fingerprints.</p>
+<p>The good news is that those fingerprints are predictable. Once you know where to look, the cleanup takes minutes.</p>
+
+<h2>First, what you’re allowed to sample</h2>
+<p>Quickly, because it matters more than any EQ move. The separator doesn’t launder anything. Pull a drum stem out of a commercial record and you’re still copying that record. US courts don’t even agree on how small a sample can be before it counts. In <a href="https://en.wikipedia.org/wiki/Bridgeport_Music,_Inc._v._Dimension_Films">Bridgeport Music v. Dimension Films</a> (6th Cir. 2005), the court wrote “Get a license or do not sample” about a two-second sample. In 2016 the Ninth Circuit called that reasoning unpersuasive in VMG Salsoul v. Ciccone. A split like that is exactly why clearance is the only answer that works everywhere.</p>
+<p>So this workflow is for sources you have a right to: your own old records and sessions, recordings you’ve licensed, a collaborator’s track they’ve said yes to, sample packs whose license covers it, and genuinely public-domain recordings. That covers a lot of ground. Some of the best flips come from your own catalog, where you no longer have the session.</p>
+
+<h2>A stand-in for a real model</h2>
+<p>To show the flaws honestly, we needed a separator that makes mistakes the way real ones do. Oracle masks are too perfect, so <code>sampling_lab.py</code> takes the oracle mask for a synthetic groove, blurs it by about 70 ms and three frequency bins, and pulls it 25% toward an even split. The result is a believable imitation of a model: decent on the voice, soft on transients, smeary on hats. Everything below is measured on that synthetic stand-in.</p>
+<pre><code>#!/usr/bin/env python3
+&quot;&quot;&quot;sampling_lab.py: three checks before you chop a separated stem.
+
+SYNTHETIC audio only (lab.py). A real model makes mistakes an oracle mask
+doesn&#x27;t, so we fake a model: the oracle mask blurred over ~70 ms and ~3 bins,
+then pulled 25% toward an even split. Then:
+  1. bleed audit: where the other instruments hide inside the &quot;drum&quot; stem, by band
+  2. transient check: kick attack in the true vs separated drums, and after a
+     simple transient restore
+  3. null test + residual: stems sum back to the mix; mix minus a processed
+     stem gives you back exactly what you removed
+  4. key match: rubberband pitch shift of the bass stem, verified by FFT
+Usage: python3 sampling_lab.py   (numpy + ffmpeg with rubberband + lab.py)
+&quot;&quot;&quot;
+import os, subprocess, tempfile
+import numpy as np
+import lab
+
+NF = 4096
+stems = lab.synth_stems(seed=7)
+mix, stems = lab.mixdown(stems)
+names = list(stems)
+
+def blur(M, t=3, f=3):
+    k = np.ones(t) / t
+    M = np.apply_along_axis(lambda c: np.convolve(c, k, &quot;same&quot;), 0, M)
+    k = np.ones(f) / f
+    return np.apply_along_axis(lambda r: np.convolve(r, k, &quot;same&quot;), 1, M)
+
+oracle = lab.ratio_masks(stems, NF)
+imperfect = {k: 0.75 * blur(m) + 0.25 / len(names) for k, m in oracle.items()}
+tot = sum(imperfect.values())
+imperfect = {k: m / tot for k, m in imperfect.items()}
+est = lab.separate_with_masks(mix, imperfect, NF)
+print(&quot;imperfect-mask stems (stand-in for a real model), SDR dB:&quot;,
+      &quot; &quot;.join(f&quot;{k}={lab.sdr(stems[k], est[k]):.1f}&quot; for k in names))
+
+# 1. bleed audit in the drum stem (kick + hats)
+drums_true = stems[&quot;kick&quot;] + stems[&quot;hats&quot;]
+drums_est = est[&quot;kick&quot;] + est[&quot;hats&quot;]
+X, meta = lab.stft(mix, NF)
+Md = imperfect[&quot;kick&quot;] + imperfect[&quot;hats&quot;]
+contrib = {k: lab.istft(lab.stft(v, NF)[0] * Md, meta) for k, v in stems.items()}
+bleed = sum(contrib[k] for k in (&quot;bass&quot;, &quot;pad&quot;, &quot;lead&quot;))
+target = contrib[&quot;kick&quot;] + contrib[&quot;hats&quot;]
+f = np.fft.rfftfreq(len(mix), 1 / lab.SR)
+B = np.abs(np.fft.rfft(bleed)) ** 2; T = np.abs(np.fft.rfft(target)) ** 2
+print(&quot;\n1) bleed audit, drum stem: drums-to-bleed ratio by band (higher = cleaner)&quot;)
+for lo, hi in [(20, 60), (60, 120), (120, 250), (250, 1000), (1000, 4000), (4000, 20000)]:
+    sel = (f &gt;= lo) &amp; (f &lt; hi)
+    r = 10 * np.log10(T[sel].sum() / (B[sel].sum() + 1e-20) + 1e-20)
+    share = 100 * B[sel].sum() / B.sum()
+    print(f&quot;   {lo:5d}-{hi:&lt;5d} Hz  drums/bleed {r:6.1f} dB   {share:5.1f}% of all bleed&quot;)
+
+# 2. transient check on kick hits
+k = stems[&quot;kick&quot;]
+on = np.where((np.abs(k[1:]) &gt; 0.05) &amp; (np.abs(k[:-1]) &lt;= 0.05))[0]
+on = [o for i, o in enumerate(on) if i == 0 or o - on[i - 1] &gt; lab.SR // 4]
+def attack(x):
+    a = int(0.005 * lab.SR); b = int(0.05 * lab.SR); p = int(0.02 * lab.SR)
+    early = np.mean([np.sum(x[o:o + a] ** 2) for o in on])
+    body = np.mean([np.sum(x[o:o + b] ** 2) for o in on])
+    pre = np.mean([np.sum(x[o - p:o] ** 2) for o in on if o &gt; p])
+    return 10 * np.log10(early / body), 10 * np.log10(pre / body + 1e-12)
+def restore(x, fast=0.0005, slow=0.02, amount=1.5):
+    env = np.abs(x)
+    def follow(e, tau):
+        a = np.exp(-1 / (tau * lab.SR)); y = np.empty_like(e); s = 0.0
+        for i, v in enumerate(e):
+            s = a * s + (1 - a) * v; y[i] = s
+        return y
+    ef, es = follow(env, fast), follow(env, slow)
+    g = np.clip((ef / (es + 1e-6)) ** (amount - 1), 1.0, 4.0)  # boost only where the hit outruns the body
+    return x * g
+print(&quot;\n2) kick attack: first 5 ms vs first 50 ms (higher = punchier); 20 ms pre-echo vs body (lower = cleaner)&quot;)
+for label, x in [(&quot;true drums&quot;, drums_true), (&quot;separated drums&quot;, drums_est),
+                 (&quot;separated + transient restore&quot;, restore(drums_est))]:
+    a, p = attack(x)
+    print(f&quot;   {label:30s} attack {a:6.1f} dB   pre-echo {p:6.1f} dB&quot;)
+
+# 3. null test and residual recovery
+recon = sum(est.values())
+print(f&quot;\n3) null test: mix - sum(stems) peak = {lab.db(np.abs(mix - recon).max()):.1f} dBFS&quot;)
+hp = np.fft.irfft(np.fft.rfft(est[&quot;kick&quot;] + est[&quot;hats&quot;]) * (f &gt; 150), n=len(mix))
+other = recon - (est[&quot;kick&quot;] + est[&quot;hats&quot;])
+removed = mix - other - hp
+print(f&quot;   high-passed the drum stem at 150 Hz; mix - (other stems + HP drums) = what you cut:&quot;)
+print(f&quot;   residual RMS {lab.db(np.sqrt(np.mean(removed**2))):.1f} dBFS, of which &quot;
+      f&quot;{100*np.sum(np.abs(np.fft.rfft(removed))[f&lt;150]**2)/np.sum(np.abs(np.fft.rfft(removed))**2):.1f}% sits below 150 Hz&quot;)
+
+# 4. key match with rubberband
+def peak_hz(x, lo=30, hi=90):
+    X = np.abs(np.fft.rfft(x[: 4 * int(lab.SR * 60 / 92)] * np.hanning(4 * int(lab.SR * 60 / 92))))
+    fr = np.fft.rfftfreq(4 * int(lab.SR * 60 / 92), 1 / lab.SR)
+    sel = (fr &gt; lo) &amp; (fr &lt; hi)
+    return fr[sel][np.argmax(X[sel])]
+with tempfile.TemporaryDirectory() as d:
+    src = os.path.join(d, &quot;bass.wav&quot;); dst = os.path.join(d, &quot;bass_up2.wav&quot;)
+    lab.write_wav(src, est[&quot;bass&quot;])
+    subprocess.run([&quot;ffmpeg&quot;, &quot;-v&quot;, &quot;error&quot;, &quot;-y&quot;, &quot;-i&quot;, src, &quot;-af&quot;,
+                    f&quot;rubberband=pitch={2**(2/12):.6f}&quot;, dst], check=True)
+    up = lab.read_audio(dst)
+print(f&quot;\n4) key match: bass bar 1 fundamental {peak_hz(est[&#x27;bass&#x27;]):.1f} Hz -&gt; &quot;
+      f&quot;{peak_hz(up):.1f} Hz after +2 semitones (expected x{2**(2/12):.4f} = {peak_hz(est[&#x27;bass&#x27;])*2**(2/12):.1f} Hz)&quot;)</code></pre>
+<p>Real output from the box:</p>
+<pre><code>imperfect-mask stems (stand-in for a real model), SDR dB: kick=6.8 bass=6.9 pad=7.3 lead=11.0 hats=2.2
+
+1) bleed audit, drum stem: drums-to-bleed ratio by band (higher = cleaner)
+      20-60    Hz  drums/bleed    4.5 dB    48.9% of all bleed
+      60-120   Hz  drums/bleed   10.3 dB    28.9% of all bleed
+     120-250   Hz  drums/bleed    8.3 dB     9.3% of all bleed
+     250-1000  Hz  drums/bleed  -13.5 dB    10.9% of all bleed
+    1000-4000  Hz  drums/bleed   -9.4 dB     1.7% of all bleed
+    4000-20000 Hz  drums/bleed   19.0 dB     0.1% of all bleed
+
+2) kick attack: first 5 ms vs first 50 ms (higher = punchier); 20 ms pre-echo vs body (lower = cleaner)
+   true drums                     attack   -7.7 dB   pre-echo -120.0 dB
+   separated drums                attack   -8.9 dB   pre-echo  -19.8 dB
+   separated + transient restore  attack   -5.2 dB   pre-echo  -19.8 dB
+
+3) null test: mix - sum(stems) peak = -240.0 dBFS
+   high-passed the drum stem at 150 Hz; mix - (other stems + HP drums) = what you cut:
+   residual RMS -27.8 dBFS, of which 100.0% sits below 150 Hz
+
+4) key match: bass bar 1 fundamental 54.8 Hz -&gt; 61.3 Hz after +2 semitones (expected x1.1225 = 61.5 Hz)</code></pre>
+
+<h2>1. Audit the bleed before you chop</h2>
+<p>The audit splits the drum stem into what truly came from the drums and what leaked in from bass, pad and lead, then reports it band by band. The pattern is the one you’ll hear on almost every real drum stem: <strong>78% of the bleed sits under 120 Hz</strong>, where the bass lives right under the kick. In the low mids, 250 Hz to 4 kHz, the bleed actually outweighs the drums by 9–14 dB. That isn’t a lot of energy, but it’s the pad and voice ghosting between hits. Above 4 kHz the stem is clean.</p>
+<table>
+<thead><tr><th>Band (synthetic drum stem)</th><th>Drums vs bleed</th><th>Share of all bleed</th><th>What to do with the chop</th></tr></thead>
+<tbody>
+<tr><td>20–60 Hz</td><td>4.5 dB</td><td>48.9%</td><td>High-pass, then layer your own sub or kick</td></tr>
+<tr><td>60–120 Hz</td><td>10.3 dB</td><td>28.9%</td><td>Keep the punch; duck it against your new bass</td></tr>
+<tr><td>120–250 Hz</td><td>8.3 dB</td><td>9.3%</td><td>Usually fine; a narrow cut if the old bass note rings</td></tr>
+<tr><td>250 Hz–4 kHz</td><td>−13.5 to −9.4 dB</td><td>12.6%</td><td>Gate or trim between hits; this is the ghost pad and voice</td></tr>
+<tr><td>4–20 kHz</td><td>19.0 dB</td><td>0.1%</td><td>Leave it; this is your snap and air</td></tr>
+</tbody></table>
+<p>The practical lesson is to chop around the bleed, not through it. Start each slice right on the hit and end it before the next ghost swells up. Take the low end out of the chop and put your own underneath, which is the same chair problem as in <a href="kick-and-808-same-chair.html">Your kick and 808 are arguing in the same chair</a>, just with an old bassline as the second person. If the old bass note under the kick is in a different key from your track, no amount of EQ will make it sit. High-pass it and move on.</p>
+
+<h2>2. Put the attack back, carefully</h2>
+<p>Masks smear energy across their window, so separated hits come out softer and get a faint pre-echo. In the test, attack (the first 5 ms against the first 50 ms) dropped from −7.7 dB on the true drums to −8.9 dB on the separated stem, and a ghost appeared at −19.8 dB in the 20 ms before each kick, where the original had nothing.</p>
+<p>The simple transient restore in the script compares a fast and a slow envelope and boosts only where the hit outruns the body. It lifted attack to −5.2 dB, which is <em>past</em> the original. That overshoot is the warning. Transient shapers on separated drums are easy to overdo, and the result sounds clicky and fake. Dial it in by ear against the source. Notice too that the pre-echo didn’t move. A shaper can’t remove energy that sits before the transient. Only editing can: start the slice on the hit, with a 1–2 ms fade-in.</p>
+
+<h2>3. Null-test, then use the residual</h2>
+<p>With mask-based separation the stems sum back to the mix. The test shows a null at −240 dBFS, which is numerical silence. That gives you a superpower most producers never use: <strong>whatever you take away from a stem, you can get back exactly</strong>. After high-passing the drum stem at 150 Hz, the mix minus the other stems minus the processed drums is precisely the part you cut. In the test that was −27.8 dBFS RMS, all of it below 150 Hz.</p>
+<p>Print that residual as its own track. Sometimes the “bleed” you removed is the thing that made the loop feel like a record: a room tone, the old bass breathing under the kick. Now it’s a fader instead of a loss. One caveat: not every model is mask-based. Some predict waveforms directly, and their stems may not null perfectly. Run the test anyway. The size of the residual tells you how much the model made up.</p>
+
+<h2>4. Match the key with a real ratio</h2>
+<p>A semitone is a frequency ratio of 2<sup>1/12</sup>, so n semitones is 2<sup>n/12</sup>. Two up is ×1.1225. In the test, Rubber Band through ffmpeg’s <code>rubberband</code> filter moved the separated bass from 54.8 Hz to 61.3 Hz, against an expected 61.5 Hz. That’s within the FFT’s resolution and close enough for any tuner. Use a formant-aware shifter for vocals so a +3 doesn’t turn the singer into a cartoon. Keep shifts within a few semitones when you can, because bleed shifts along with the target and gets more noticeable the further you go.</p>
+
+<p>Tempo works the same way, as a ratio. To pull a 92 BPM loop up to 100 BPM, stretch by 100/92 = 1.087. In ffmpeg, <code>rubberband=tempo=1.087</code> changes the timing and leaves the pitch alone, and <code>atempo</code> does the same with a simpler algorithm that’s fine for small moves. Do the tempo stretch and the pitch shift as separate, deliberate steps, and print each one to a new file. If you only change the sample rate, the old turntable way, pitch and tempo move together. That can be exactly the color you want for a chipmunked soul flip, but then choose it on purpose, not by accident.</p>
+<h2>The routine, start to finish</h2>
+<ol>
+<li><strong>Confirm the rights.</strong> Yours, licensed, cleared or public domain. Write down which.</li>
+<li><strong>Use the best source you can get.</strong> A first-generation WAV, not a lossy copy. The cleanest-copy essay in this series shows why.</li>
+<li><strong>Split to four stems first.</strong> Go wider only when a part really needs its own lane.</li>
+<li><strong>Audit, then chop.</strong> Slice on the hits, clear the low end, trim the ghosts.</li>
+<li><strong>Restore the attack by ear,</strong> stopping before it clicks.</li>
+<li><strong>Null-test and keep the residual</strong> as an optional layer.</li>
+<li><strong>Key-match with clean ratios</strong> and check with a tuner.</li>
+<li><strong>Bounce the chops as WAV</strong> with the source noted in the file name or metadata, so clearance questions later take a minute instead of a week.</li>
+</ol>
+<p>For the split itself, <a href="https://myaiplug.github.io/DeepSplit/">DeepSplit</a> runs locally, does everything from two stems to separate kick, snare and hat lanes, and includes per-stem effects presets if you want a starting point before you do the careful work by hand. On your own catalog, keeping the files on your machine is the natural fit.</p>
+<p>Once the beat is built, remember the separated parts were only ever a diagnosis of someone’s mix. <a href="stems-diagnose-mixes-do-not-replace-them.html">Stems diagnose mixes — they do not replace them</a> is the reminder. The chops are raw material. The record is still yours to mix.</p>
+<aside class="aside">Rights, then the cleanest source. Audit, chop on the hit, restore by ear, null, key-match. Every flip after that is your taste, not the separator’s.</aside>
+
+<dl class="faq">
+<dt>Is sampling from a separated stem legal?</dt><dd>How you got the stem doesn’t change the copyright. If the recording isn’t yours, licensed, or public domain, clear it. In the Sixth Circuit, Bridgeport v. Dimension Films said ‘Get a license or do not sample’; the Ninth Circuit disagreed in VMG Salsoul v. Ciccone, so the law isn’t uniform. Clearance avoids the argument.</dd>
+<dt>Why does my separated drum loop have a ghost bassline?</dt><dd>The kick and bass share the same low frequencies, so a separator can’t fully pull them apart. In our synthetic audit, about 78% of the bleed in the drum stem sat below 120 Hz. A high-pass or a layered kick usually fixes it.</dd>
+<dt>How do I get the punch back on separated drums?</dt><dd>Use a transient shaper, gently. In our test it lifted attack from −8.9 dB to −5.2 dB, which is past the original −7.7 dB, so go by ear. It doesn’t remove pre-echo, so trim each chop’s start to the hit.</dd>
+<dt>What is a null test for stems?</dt><dd>Sum all the stems, flip polarity, and add the original mix. With mask-based separation the result should be near silence. After you process a stem, the same subtraction gives you exactly what you removed.</dd>
+<dt>How do I change the key of a sampled bassline?</dt><dd>Shift by a ratio of 2^(n/12) for n semitones, with a formant-aware pitch shifter such as Rubber Band. Check the result with a tuner or FFT. Our +2 semitone shift moved 54.8 Hz to 61.3 Hz, against an expected 61.5 Hz.</dd>
+</dl>
+<nav aria-label="Related essays" class="related-essays" style="margin:48px 0 24px;padding-top:24px;border-top:1px solid rgba(196,165,116,.32)"><h2>Related in Lacquer</h2><ul>
+<li><a href="kick-and-808-same-chair.html">Your kick and 808 are arguing in the same chair</a></li>
+<li><a href="stems-diagnose-mixes-do-not-replace-them.html">Stems diagnose mixes — they do not replace them</a></li>
+<li><a href="demucs-vs-mdx-net-stem-separation-compared.html">Demucs vs MDX-Net: what each separator gets wrong, and why</a></li>
+</ul></nav>
+</article>
+<section class="comments" data-comments="" data-thread="sampling-stems"></section>
+<script src="js/studio.js" type="module"></script>
+<script src="js/comments.js" type="module"></script>
+<footer class="site"><span>Lacquer · CoProducer Journal</span><span><a href="index.html">All essays</a></span></footer>
+</body>
+</html>

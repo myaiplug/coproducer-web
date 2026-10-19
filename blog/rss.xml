@@ -6,7 +6,199 @@
     <atom:link href="https://myaiplug.github.io/coproducer-web/blog/rss.xml" rel="self" type="application/rss+xml"/>
     <description>Answer-first essays on loudness, true peak, repair, stems, ScrewAI, and local .bat workflows.</description>
     <language>en-us</language>
-    <lastBuildDate>Wed, 07 Oct 2026 16:00:00 GMT</lastBuildDate>
+    <lastBuildDate>Sun, 18 Oct 2026 16:00:00 GMT</lastBuildDate>
+    <item>
+      <title>Parallel compression sounds thin? Check the latency first</title>
+      <link>https://myaiplug.github.io/coproducer-web/blog/parallel-compression-sounds-thin-check-latency.html</link>
+      <guid isPermaLink="true">https://myaiplug.github.io/coproducer-web/blog/parallel-compression-sounds-thin-check-latency.html</guid>
+      <pubDate>Fri, 16 Oct 2026 16:00:00 GMT</pubDate>
+      <description>Parallel compression making drums or vocals thinner? The parallel bus is probably arriving late. Find the offset, fix the timing, then dial it in.</description>
+      <enclosure url="https://myaiplug.github.io/coproducer-web/blog/img/essays/parallel-compression-sounds-thin-check-latency.jpg?v=shd" type="image/jpeg" length="956721"/>
+    </item>
+    <item>
+      <title>Why your gapless album gets gaps after MP3 or AAC</title>
+      <link>https://myaiplug.github.io/coproducer-web/blog/gapless-album-gaps-after-mp3-or-aac.html</link>
+      <guid isPermaLink="true">https://myaiplug.github.io/coproducer-web/blog/gapless-album-gaps-after-mp3-or-aac.html</guid>
+      <pubDate>Fri, 16 Oct 2026 16:00:00 GMT</pubDate>
+      <description>MP3 and AAC encoders add silence at the start and padding at the end of every file. Why segues break, what we measured, and how to stay seamless.</description>
+      <enclosure url="https://myaiplug.github.io/coproducer-web/blog/img/essays/gapless-album-gaps-after-mp3-or-aac.jpg?v=shd" type="image/jpeg" length="1097354"/>
+    </item>
+    <item>
+      <title>Why your 808 disappears on phone speakers</title>
+      <link>https://myaiplug.github.io/coproducer-web/blog/808-disappears-on-phone-speakers.html</link>
+      <guid isPermaLink="true">https://myaiplug.github.io/coproducer-web/blog/808-disappears-on-phone-speakers.html</guid>
+      <pubDate>Thu, 15 Oct 2026 16:00:00 GMT</pubDate>
+      <description>Phone speakers barely play below 200–300 Hz, so a clean 808 vanishes. Add a parallel harmonic layer, then check it through a phone filter.</description>
+      <enclosure url="https://myaiplug.github.io/coproducer-web/blog/img/essays/808-disappears-on-phone-speakers.jpg?v=shd" type="image/jpeg" length="890946"/>
+    </item>
+    <item>
+      <title>How much headroom to leave for mastering (and why −6 dB isn’t the point)</title>
+      <link>https://myaiplug.github.io/coproducer-web/blog/how-much-headroom-to-leave-for-mastering.html</link>
+      <guid isPermaLink="true">https://myaiplug.github.io/coproducer-web/blog/how-much-headroom-to-leave-for-mastering.html</guid>
+      <pubDate>Thu, 15 Oct 2026 16:00:00 GMT</pubDate>
+      <description>Headroom for mastering means no clipping and no mix-bus limiter. Peaks near −6 to −3 dBFS in 24-bit or float is convention; clipping can’t be undone.</description>
+      <enclosure url="https://myaiplug.github.io/coproducer-web/blog/img/essays/how-much-headroom-to-leave-for-mastering.jpg?v=shd" type="image/jpeg" length="1354322"/>
+    </item>
+    <item>
+      <title>Integrated LUFS hides how loud the chorus actually is</title>
+      <link>https://myaiplug.github.io/coproducer-web/blog/integrated-lufs-hides-the-chorus.html</link>
+      <guid isPermaLink="true">https://myaiplug.github.io/coproducer-web/blog/integrated-lufs-hides-the-chorus.html</guid>
+      <pubDate>Wed, 14 Oct 2026 16:00:00 GMT</pubDate>
+      <description>A master can read −14 LUFS integrated while its chorus runs 3–4 LU hotter. Measure integrated, short-term and momentary on one bounce first.</description>
+      <enclosure url="https://myaiplug.github.io/coproducer-web/blog/img/essays/integrated-lufs-hides-the-chorus.jpg?v=shd" type="image/jpeg" length="410133"/>
+    </item>
+    <item>
+      <title>Don’t match a streamed reference</title>
+      <link>https://myaiplug.github.io/coproducer-web/blog/dont-match-a-streamed-reference.html</link>
+      <guid isPermaLink="true">https://myaiplug.github.io/coproducer-web/blog/dont-match-a-streamed-reference.html</guid>
+      <pubDate>Wed, 14 Oct 2026 16:00:00 GMT</pubDate>
+      <description>A streamed reference was already turned down or up by the platform. Match it and you inherit an offset you never measured. Compare lossless files.</description>
+      <enclosure url="https://myaiplug.github.io/coproducer-web/blog/img/essays/dont-match-a-streamed-reference.jpg?v=shd" type="image/jpeg" length="685144"/>
+    </item>
+    <item>
+      <title>Short-term LUFS is not your target</title>
+      <link>https://myaiplug.github.io/coproducer-web/blog/short-term-lufs-is-not-your-target.html</link>
+      <guid isPermaLink="true">https://myaiplug.github.io/coproducer-web/blog/short-term-lufs-is-not-your-target.html</guid>
+      <pubDate>Mon, 12 Oct 2026 16:00:00 GMT</pubDate>
+      <description>Stores use integrated LUFS over the whole file. A hook at −9 short-term can still miss −14 integrated. Read both meters, then decide.</description>
+      <enclosure url="https://myaiplug.github.io/coproducer-web/blog/img/essays/short-term-lufs-is-not-your-target.jpg?v=shd" type="image/jpeg" length="502626"/>
+    </item>
+    <item>
+      <title>Turn the mix down before you limit</title>
+      <link>https://myaiplug.github.io/coproducer-web/blog/turn-the-mix-down-before-you-limit.html</link>
+      <guid isPermaLink="true">https://myaiplug.github.io/coproducer-web/blog/turn-the-mix-down-before-you-limit.html</guid>
+      <pubDate>Mon, 12 Oct 2026 16:00:00 GMT</pubDate>
+      <description>If the mix already hits 0 dBFS into the limiter, extra loudness is distortion you can’t take back. Pull the bus down 3–6 dB, then limit.</description>
+      <enclosure url="https://myaiplug.github.io/coproducer-web/blog/img/essays/turn-the-mix-down-before-you-limit.jpg?v=shd" type="image/jpeg" length="675745"/>
+    </item>
+    <item>
+      <title>What 432 Hz actually changes in a finished master</title>
+      <link>https://myaiplug.github.io/coproducer-web/blog/what-432-hz-actually-changes-in-a-master.html</link>
+      <guid isPermaLink="true">https://myaiplug.github.io/coproducer-web/blog/what-432-hz-actually-changes-in-a-master.html</guid>
+      <pubDate>Thu, 08 Oct 2026 16:00:00 GMT</pubDate>
+      <description>Retuning a master from 440 to 432 Hz scales every frequency by 0.981818 (−31.77 cents) and, with resampling, adds 1.85% length. Measured on real renders.</description>
+      <enclosure url="https://myaiplug.github.io/coproducer-web/blog/img/essays/what-432-hz-actually-changes-in-a-master.jpg?v=r432" type="image/jpeg" length="409764"/>
+    </item>
+    <item>
+      <title>Resampling, pitch shifting, and tempo change are three different jobs</title>
+      <link>https://myaiplug.github.io/coproducer-web/blog/resampling-vs-pitch-shift-vs-tempo.html</link>
+      <guid isPermaLink="true">https://myaiplug.github.io/coproducer-web/blog/resampling-vs-pitch-shift-vs-tempo.html</guid>
+      <pubDate>Thu, 08 Oct 2026 16:00:00 GMT</pubDate>
+      <description>Resampling moves pitch and time together, pitch shifting rebuilds time, tempo change keeps pitch. Seven FFmpeg renders measured for pitch, BPM, and smearing.</description>
+      <enclosure url="https://myaiplug.github.io/coproducer-web/blog/img/essays/resampling-vs-pitch-shift-vs-tempo.jpg?v=r432" type="image/jpeg" length="480024"/>
+    </item>
+    <item>
+      <title>Concert pitch before A=440: a history that never stood still</title>
+      <link>https://myaiplug.github.io/coproducer-web/blog/concert-pitch-history-before-a440.html</link>
+      <guid isPermaLink="true">https://myaiplug.github.io/coproducer-web/blog/concert-pitch-history-before-a440.html</guid>
+      <pubDate>Thu, 08 Oct 2026 16:00:00 GMT</pubDate>
+      <description>Before A=440, concert pitch ran from about 415 to 457 Hz. The dated record from Shore's 1711 fork to ISO 16, the temperature fights, and the 432 math.</description>
+      <enclosure url="https://myaiplug.github.io/coproducer-web/blog/img/essays/concert-pitch-history-before-a440.jpg?v=r432" type="image/jpeg" length="597602"/>
+    </item>
+    <item>
+      <title>The 432 Hz conspiracy theories, checked against the record</title>
+      <link>https://myaiplug.github.io/coproducer-web/blog/432-hz-conspiracy-theories-fact-check.html</link>
+      <guid isPermaLink="true">https://myaiplug.github.io/coproducer-web/blog/432-hz-conspiracy-theories-fact-check.html</guid>
+      <pubDate>Thu, 08 Oct 2026 16:00:00 GMT</pubDate>
+      <description>Did the Nazis or the Rockefellers change music from 432 to 440 Hz? Where each 432 rumor started, what the dated record shows, and how to read health studies.</description>
+      <enclosure url="https://myaiplug.github.io/coproducer-web/blog/img/essays/432-hz-conspiracy-theories-fact-check.jpg?v=r432" type="image/jpeg" length="389349"/>
+    </item>
+    <item>
+      <title>How to run a 432 vs 440 listening test you can trust</title>
+      <link>https://myaiplug.github.io/coproducer-web/blog/432-vs-440-blind-listening-test.html</link>
+      <guid isPermaLink="true">https://myaiplug.github.io/coproducer-web/blog/432-vs-440-blind-listening-test.html</guid>
+      <pubDate>Thu, 08 Oct 2026 16:00:00 GMT</pubDate>
+      <description>432 Hz vs 440 Hz, tested fairly: level-match within 0.1 LU, switch at the same note, run a blind ABX round, and score it so placebo and loudness can't win.</description>
+      <enclosure url="https://myaiplug.github.io/coproducer-web/blog/img/essays/432-vs-440-blind-listening-test.jpg?v=r432" type="image/jpeg" length="352923"/>
+    </item>
+    <item>
+      <title>Which songs reveal a 432 Hz retune, and which hide it</title>
+      <link>https://myaiplug.github.io/coproducer-web/blog/songs-that-reveal-a-432-hz-retune.html</link>
+      <guid isPermaLink="true">https://myaiplug.github.io/coproducer-web/blog/songs-that-reveal-a-432-hz-retune.html</guid>
+      <pubDate>Thu, 08 Oct 2026 16:00:00 GMT</pubDate>
+      <description>The best songs to test 432 Hz have exposed vocals, sustained chords and piano tails. Dense mixes and drums hide it. A measured way to build a test set.</description>
+      <enclosure url="https://myaiplug.github.io/coproducer-web/blog/img/essays/songs-that-reveal-a-432-hz-retune.jpg?v=r432" type="image/jpeg" length="396193"/>
+    </item>
+    <item>
+      <title>432 Hz mastering: LUFS and true peak after a retune</title>
+      <link>https://myaiplug.github.io/coproducer-web/blog/lufs-and-true-peak-after-432-retune.html</link>
+      <guid isPermaLink="true">https://myaiplug.github.io/coproducer-web/blog/lufs-and-true-peak-after-432-retune.html</guid>
+      <pubDate>Thu, 08 Oct 2026 16:00:00 GMT</pubDate>
+      <description>A 432 retune barely moves LUFS, but resampling can turn hidden inter-sample peaks into real overs. Render in float, measure, then normalize in two passes.</description>
+      <enclosure url="https://myaiplug.github.io/coproducer-web/blog/img/essays/lufs-and-true-peak-after-432-retune.jpg?v=r432" type="image/jpeg" length="385801"/>
+    </item>
+    <item>
+      <title>A 432 alternate master should never cost you the original</title>
+      <link>https://myaiplug.github.io/coproducer-web/blog/how-to-make-a-432-hz-alternate-master.html</link>
+      <guid isPermaLink="true">https://myaiplug.github.io/coproducer-web/blog/how-to-make-a-432-hz-alternate-master.html</guid>
+      <pubDate>Thu, 08 Oct 2026 16:00:00 GMT</pubDate>
+      <description>Build a 432 Hz alternate master beside the approved 440 file: read-only source, exact-ratio render, names, notes, runtime and ISRC checks, and full-file QC.</description>
+      <enclosure url="https://myaiplug.github.io/coproducer-web/blog/img/essays/how-to-make-a-432-hz-alternate-master.jpg?v=r432" type="image/jpeg" length="411789"/>
+    </item>
+    <item>
+      <title>Batch retune a folder to 432 Hz without damaging a master</title>
+      <link>https://myaiplug.github.io/coproducer-web/blog/batch-retune-a-folder-to-432-hz-safely.html</link>
+      <guid isPermaLink="true">https://myaiplug.github.io/coproducer-web/blog/batch-retune-a-folder-to-432-hz-safely.html</guid>
+      <pubDate>Thu, 08 Oct 2026 16:00:00 GMT</pubDate>
+      <description>A safe batch workflow for retuning a folder to 432 Hz: preflight, read-only inputs, temp-file renders, exact per-source ratios, error logs, restartable runs.</description>
+      <enclosure url="https://myaiplug.github.io/coproducer-web/blog/img/essays/batch-retune-a-folder-to-432-hz-safely.jpg?v=r432" type="image/jpeg" length="358473"/>
+    </item>
+    <item>
+      <title>432, 435, 442 and the reference pitch you actually started from</title>
+      <link>https://myaiplug.github.io/coproducer-web/blog/432-vs-435-vs-442-hz-reference-pitch-guide.html</link>
+      <guid isPermaLink="true">https://myaiplug.github.io/coproducer-web/blog/432-vs-435-vs-442-hz-reference-pitch-guide.html</guid>
+      <pubDate>Thu, 08 Oct 2026 16:00:00 GMT</pubDate>
+      <description>432, 435, 438, 442, and custom A4 references compared: exact ratios, cents, runtime and BPM changes, documented history, and why the source reference matters.</description>
+      <enclosure url="https://myaiplug.github.io/coproducer-web/blog/img/essays/432-vs-435-vs-442-hz-reference-pitch-guide.jpg?v=r432" type="image/jpeg" length="457837"/>
+    </item>
+    <item>
+      <title>Keeping an unreleased master on your own machine, honestly</title>
+      <link>https://myaiplug.github.io/coproducer-web/blog/local-audio-processing-for-unreleased-masters.html</link>
+      <guid isPermaLink="true">https://myaiplug.github.io/coproducer-web/blog/local-audio-processing-for-unreleased-masters.html</guid>
+      <pubDate>Thu, 08 Oct 2026 16:00:00 GMT</pubDate>
+      <description>What browser-local and offline audio processing protect for unreleased music, what they don't, the metadata that leaks anyway, and privacy claims to defend.</description>
+      <enclosure url="https://myaiplug.github.io/coproducer-web/blog/img/essays/local-audio-processing-for-unreleased-masters.jpg?v=r432" type="image/jpeg" length="523382"/>
+    </item>
+    <item>
+      <title>Before a 432 version ships: the release checklist</title>
+      <link>https://myaiplug.github.io/coproducer-web/blog/432-hz-release-checklist.html</link>
+      <guid isPermaLink="true">https://myaiplug.github.io/coproducer-web/blog/432-hz-release-checklist.html</guid>
+      <pubDate>Thu, 08 Oct 2026 16:00:00 GMT</pubDate>
+      <description>Before releasing a 432 Hz version: rights, the right source reference, a QC gate for clipping and true peak, runtime fixes, honest copy, an archive.</description>
+      <enclosure url="https://myaiplug.github.io/coproducer-web/blog/img/essays/432-hz-release-checklist.jpg?v=r432" type="image/jpeg" length="469086"/>
+    </item>
+    <item>
+      <title>Splitting stems from YouTube audio you own starts with the cleanest copy</title>
+      <link>https://myaiplug.github.io/coproducer-web/blog/split-stems-from-youtube-audio-you-own.html</link>
+      <guid isPermaLink="true">https://myaiplug.github.io/coproducer-web/blog/split-stems-from-youtube-audio-you-own.html</guid>
+      <pubDate>Thu, 08 Oct 2026 16:00:00 GMT</pubDate>
+      <description>Want stems from a song you uploaded to YouTube? The copy you feed the separator sets the ceiling. Find the first-generation file, then split locally.</description>
+      <enclosure url="https://myaiplug.github.io/coproducer-web/blog/img/essays/split-stems-from-youtube-audio-you-own.jpg?v=r432" type="image/jpeg" length="379298"/>
+    </item>
+    <item>
+      <title>Demucs vs MDX-Net: what each separator gets wrong, and why</title>
+      <link>https://myaiplug.github.io/coproducer-web/blog/demucs-vs-mdx-net-stem-separation-compared.html</link>
+      <guid isPermaLink="true">https://myaiplug.github.io/coproducer-web/blog/demucs-vs-mdx-net-stem-separation-compared.html</guid>
+      <pubDate>Thu, 08 Oct 2026 16:00:00 GMT</pubDate>
+      <description>Demucs vs MDX-Net from the published benchmarks and a runnable window test: who wins drums and bass, who wins vocals, and how to hear it.</description>
+      <enclosure url="https://myaiplug.github.io/coproducer-web/blog/img/essays/demucs-vs-mdx-net-stem-separation-compared.jpg?v=r432" type="image/jpeg" length="362926"/>
+    </item>
+    <item>
+      <title>Before a cloud stem splitter gets your unreleased song, read four clauses</title>
+      <link>https://myaiplug.github.io/coproducer-web/blog/cloud-stem-splitter-privacy-unreleased-music.html</link>
+      <guid isPermaLink="true">https://myaiplug.github.io/coproducer-web/blog/cloud-stem-splitter-privacy-unreleased-music.html</guid>
+      <pubDate>Thu, 08 Oct 2026 16:00:00 GMT</pubDate>
+      <description>Uploading an unreleased track to a cloud stem splitter is a rights decision. Four terms clauses to read, and how to prove a split stays local.</description>
+      <enclosure url="https://myaiplug.github.io/coproducer-web/blog/img/essays/cloud-stem-splitter-privacy-unreleased-music.jpg?v=r432" type="image/jpeg" length="377896"/>
+    </item>
+    <item>
+      <title>Sampling from separated stems: chop around the bleed, not through it</title>
+      <link>https://myaiplug.github.io/coproducer-web/blog/sampling-from-separated-stems-workflow.html</link>
+      <guid isPermaLink="true">https://myaiplug.github.io/coproducer-web/blog/sampling-from-separated-stems-workflow.html</guid>
+      <pubDate>Thu, 08 Oct 2026 16:00:00 GMT</pubDate>
+      <description>A producer’s workflow for sampling from AI-separated stems: audit the bleed, restore the attack, null-test, match key, clear what you don’t own.</description>
+      <enclosure url="https://myaiplug.github.io/coproducer-web/blog/img/essays/sampling-from-separated-stems-workflow.jpg?v=r432" type="image/jpeg" length="368130"/>
+    </item>
     <item>
       <title>Rumble you can’t hear is eating your limiter</title>
       <link>https://myaiplug.github.io/coproducer-web/blog/subsonic-rumble-steals-limiter-headroom.html</link>
