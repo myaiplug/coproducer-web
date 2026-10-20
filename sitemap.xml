@@ -120,6 +120,26 @@
     <priority>0.7</priority>
   </url>
     <url>
+    <loc>https://myaiplug.github.io/coproducer-web/blog/reverb-makes-the-mix-muddy-filter-the-return.html</loc>
+    <lastmod>2026-10-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://myaiplug.github.io/coproducer-web/blog/img/essays/reverb-makes-the-mix-muddy-filter-the-return.jpg?v=shd</image:loc>
+      <image:title>Reverb making the mix muddy? Filter the return, not the vocal</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://myaiplug.github.io/coproducer-web/blog/low-end-changes-when-you-move-your-chair.html</loc>
+    <lastmod>2026-10-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://myaiplug.github.io/coproducer-web/blog/img/essays/low-end-changes-when-you-move-your-chair.jpg?v=shd</image:loc>
+      <image:title>Your low end changes when you move your chair. That’s the room, not the mix</image:title>
+    </image:image>
+  </url>
+  <url>
     <loc>https://myaiplug.github.io/coproducer-web/blog/parallel-compression-sounds-thin-check-latency.html</loc>
     <lastmod>2026-10-16</lastmod>
     <changefreq>monthly</changefreq>

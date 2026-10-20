@@ -56,16 +56,17 @@ TOPICS = [
         "slug": "low-end-and-mix-dynamics",
         "name": "Low end, 808s & mix dynamics",
         "title": "Low end, 808s & mix dynamics: who owns each frequency",
-        "description": "Lacquer essays on 808s and kicks, bus compressor pumping, subsonic rumble, parallel compression, vocal level, sibilance and mono compatibility.",
+        "description": "Lacquer essays on 808s and kicks, bus compressor pumping, subsonic rumble, room modes, parallel compression, vocal level, sibilance, reverb mud and mono compatibility.",
         "lede": "Most low-end problems are arguments over a small piece of the spectrum. Decide who owns it, then measure the translation instead of guessing.",
         "intro": [
-            "Most low-end problems are arguments over a small piece of the spectrum. A kick and an 808 both want roughly 40–80 Hz. A bus compressor reacting to that energy ducks the hats and vocal air on every note. Rumble under 20–30 Hz that you can barely hear still counts toward the peak your limiter has to catch. And phone speakers play almost nothing below 200–300 Hz, so a clean sub can vanish on the speaker most people actually use.",
-            "These essays decide who owns each frequency, how to keep glue without pumping, and how to check translation with a measurement instead of a guess. The second half moves up the mix: parallel compression that sounds thin because the parallel bus arrives late, vocal level measured as a loudness gap against the beat, sibilance that a master makes louder, and stereo width that collapses when the mix folds to mono.",
+            "Most low-end problems are arguments over a small piece of the spectrum. A kick and an 808 both want roughly 40–80 Hz. A bus compressor reacting to that energy ducks the hats and vocal air on every note. Rumble under 20–30 Hz that you can barely hear still counts toward the peak your limiter has to catch. And phone speakers play almost nothing below 200–300 Hz, so a clean sub can vanish on the speaker most people actually use. Even your own chair can lie: room modes make one bass note boom or vanish when you roll back a foot.",
+            "These essays decide who owns each frequency, how to keep glue without pumping, and how to check translation with a measurement instead of a guess. The second half moves up the mix: parallel compression that sounds thin because the parallel bus arrives late, vocal level measured as a loudness gap against the beat, sibilance that a master makes louder, reverb returns that fill the low-mids with fog, and stereo width that collapses when the mix folds to mono.",
         ],
         "essays": [
             "808-disappears-on-phone-speakers", "kick-and-808-same-chair", "bus-compressor-pumps-on-the-808",
-            "subsonic-rumble-steals-limiter-headroom", "parallel-compression-sounds-thin-check-latency", "how-loud-should-the-vocal-sit",
-            "harsh-esses-get-louder-after-mastering", "wide-mixes-fail-in-mono", "phase-correlation-and-mono",
+            "subsonic-rumble-steals-limiter-headroom", "low-end-changes-when-you-move-your-chair", "parallel-compression-sounds-thin-check-latency",
+            "how-loud-should-the-vocal-sit", "harsh-esses-get-louder-after-mastering", "reverb-makes-the-mix-muddy-filter-the-return",
+            "wide-mixes-fail-in-mono", "phase-correlation-and-mono",
         ],
     },
     {

@@ -41,6 +41,8 @@
 - https://myaiplug.github.io/coproducer-web/blog/topics/stems-sampling-and-privacy.html — Stem separation, sampling & privacy
 
 ## Lacquer essays (answer-first)
+- https://myaiplug.github.io/coproducer-web/blog/reverb-makes-the-mix-muddy-filter-the-return.html — Reverb making the mix muddy? Filter the return, not the vocal: Reverb muddying the mix? Most of a return’s energy sits in low-mids you don’t hear as space. High-pass the return, add pre-delay, duck it and time the decay.
+- https://myaiplug.github.io/coproducer-web/blog/low-end-changes-when-you-move-your-chair.html — Your low end changes when you move your chair. That’s the room, not the mix: Bass booms in one spot and vanishes a foot away? That’s room modes. Work out your room’s modes, find a better seat and check low end without treatment.
 - https://myaiplug.github.io/coproducer-web/blog/parallel-compression-sounds-thin-check-latency.html — Parallel compression sounds thin? Check the latency first: Parallel compression making drums or vocals thinner? The parallel bus is probably arriving late. Find the offset, fix the timing, then dial it in.
 - https://myaiplug.github.io/coproducer-web/blog/gapless-album-gaps-after-mp3-or-aac.html — Why your gapless album gets gaps after MP3 or AAC: MP3 and AAC encoders add silence at the start and padding at the end of every file. Why segues break, what we measured, and how to stay seamless.
 - https://myaiplug.github.io/coproducer-web/blog/808-disappears-on-phone-speakers.html — Why your 808 disappears on phone speakers: Phone speakers barely play below 200–300 Hz, so a clean 808 vanishes. Add a parallel harmonic layer, then check it through a phone filter.

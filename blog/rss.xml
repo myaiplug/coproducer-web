@@ -6,7 +6,23 @@
     <atom:link href="https://myaiplug.github.io/coproducer-web/blog/rss.xml" rel="self" type="application/rss+xml"/>
     <description>Answer-first essays on loudness, true peak, repair, stems, ScrewAI, and local .bat workflows.</description>
     <language>en-us</language>
-    <lastBuildDate>Sun, 18 Oct 2026 16:00:00 GMT</lastBuildDate>
+    <lastBuildDate>Mon, 19 Oct 2026 16:00:00 GMT</lastBuildDate>
+    <item>
+      <title>Reverb making the mix muddy? Filter the return, not the vocal</title>
+      <link>https://myaiplug.github.io/coproducer-web/blog/reverb-makes-the-mix-muddy-filter-the-return.html</link>
+      <guid isPermaLink="true">https://myaiplug.github.io/coproducer-web/blog/reverb-makes-the-mix-muddy-filter-the-return.html</guid>
+      <pubDate>Mon, 19 Oct 2026 16:00:00 GMT</pubDate>
+      <description>Reverb muddying the mix? Most of a return’s energy sits in low-mids you don’t hear as space. High-pass the return, add pre-delay, duck it and time the decay.</description>
+      <enclosure url="https://myaiplug.github.io/coproducer-web/blog/img/essays/reverb-makes-the-mix-muddy-filter-the-return.jpg?v=shd" type="image/jpeg" length="720317"/>
+    </item>
+    <item>
+      <title>Your low end changes when you move your chair. That’s the room, not the mix</title>
+      <link>https://myaiplug.github.io/coproducer-web/blog/low-end-changes-when-you-move-your-chair.html</link>
+      <guid isPermaLink="true">https://myaiplug.github.io/coproducer-web/blog/low-end-changes-when-you-move-your-chair.html</guid>
+      <pubDate>Mon, 19 Oct 2026 16:00:00 GMT</pubDate>
+      <description>Bass booms in one spot and vanishes a foot away? That’s room modes. Work out your room’s modes, find a better seat and check low end without treatment.</description>
+      <enclosure url="https://myaiplug.github.io/coproducer-web/blog/img/essays/low-end-changes-when-you-move-your-chair.jpg?v=shd" type="image/jpeg" length="591316"/>
+    </item>
     <item>
       <title>Parallel compression sounds thin? Check the latency first</title>
       <link>https://myaiplug.github.io/coproducer-web/blog/parallel-compression-sounds-thin-check-latency.html</link>
