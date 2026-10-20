@@ -180,8 +180,8 @@ ESSAY_META = {
         "date": "2026-08-21",
     },
     "vertical-video-is-a-loudness-trap": {
-        "title": "Vertical video is a loudness trap | Lacquer",
-        "description": "Shorts, Reels, and Stories normalize differently from music stores, but crushed dialog and clipped music still fail. Measure before you post vertical.",
+        "title": "What LUFS for Reels, TikTok and Shorts? | Lacquer",
+        "description": "Reels, TikTok and Shorts don’t publish a LUFS target. Check the exported clip instead: true peak under −1 dBTP, a strong first 3 seconds, a mono check.",
         "keywords": ["vertical video", "Reels loudness", "Shorts audio", "true peak"],
         "related": ["why-streaming-turns-loud-masters-down", "true-peak-is-what-codecs-clip", "quiet-masters-and-noise-floor"],
         "date": "2026-08-21",
@@ -201,8 +201,8 @@ ESSAY_META = {
         "date": "2026-08-21",
     },
     "reencoding-eats-true-peak-headroom": {
-        "title": "Re-encoding eats true-peak headroom | Lacquer",
-        "description": "Every lossy encode can invent new inter-sample peaks. Leaving only 0.1 dB of true-peak margin is how a ‘clean’ WAV becomes a clipped stream.",
+        "title": "Why does my master clip after MP3 or AAC? | Lacquer",
+        "description": "A WAV peaking at −0.1 dBFS can clip once it’s encoded to AAC or MP3. Why it happens, how much true-peak headroom to leave, and a script to test it.",
         "keywords": ["re-encoding", "true peak", "AAC", "headroom", "delivery"],
         "related": ["true-peak-is-what-codecs-clip", "sample-rate-and-bit-depth-for-delivery", "screw-tempo-still-needs-a-legal-peak"],
         "date": "2026-08-21",

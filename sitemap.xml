@@ -641,12 +641,12 @@
   </url>
   <url>
     <loc>https://myaiplug.github.io/coproducer-web/blog/vertical-video-is-a-loudness-trap.html</loc>
-    <lastmod>2026-08-21</lastmod>
+    <lastmod>2026-10-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.75</priority>
     <image:image>
       <image:loc>https://myaiplug.github.io/coproducer-web/blog/img/essays/vertical-video-is-a-loudness-trap.jpg?v=shd</image:loc>
-      <image:title>Vertical video is a loudness trap</image:title>
+      <image:title>What LUFS for Reels, TikTok and Shorts?</image:title>
     </image:image>
   </url>
   <url>
@@ -671,12 +671,12 @@
   </url>
   <url>
     <loc>https://myaiplug.github.io/coproducer-web/blog/reencoding-eats-true-peak-headroom.html</loc>
-    <lastmod>2026-08-21</lastmod>
+    <lastmod>2026-10-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.75</priority>
     <image:image>
       <image:loc>https://myaiplug.github.io/coproducer-web/blog/img/essays/reencoding-eats-true-peak-headroom.jpg?v=shd</image:loc>
-      <image:title>Re-encoding eats true-peak headroom</image:title>
+      <image:title>Why does my master clip after MP3 or AAC?</image:title>
     </image:image>
   </url>
   <url>

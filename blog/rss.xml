@@ -424,11 +424,11 @@
       <enclosure url="https://myaiplug.github.io/coproducer-web/blog/img/essays/screw-tempo-still-needs-a-legal-peak.jpg?v=shd" type="image/jpeg" length="0"/>
     </item>
     <item>
-      <title>Vertical video is a loudness trap</title>
+      <title>What LUFS for Reels, TikTok and Shorts?</title>
       <link>https://myaiplug.github.io/coproducer-web/blog/vertical-video-is-a-loudness-trap.html</link>
       <guid isPermaLink="true">https://myaiplug.github.io/coproducer-web/blog/vertical-video-is-a-loudness-trap.html</guid>
       <pubDate>Thu, 21 Aug 2026 00:00:00 GMT</pubDate>
-      <description>Shorts, Reels, and Stories normalize differently from music stores, but crushed dialog and clipped music still fail. Measure before you post vertical.</description>
+      <description>Reels, TikTok and Shorts don’t publish a LUFS target. Check the exported clip instead: true peak under −1 dBTP, a strong first 3 seconds, a mono check.</description>
       <enclosure url="https://myaiplug.github.io/coproducer-web/blog/img/essays/vertical-video-is-a-loudness-trap.jpg?v=shd" type="image/jpeg" length="0"/>
     </item>
     <item>
@@ -448,11 +448,11 @@
       <enclosure url="https://myaiplug.github.io/coproducer-web/blog/img/essays/how-to-read-a-coproducer-score.jpg?v=shd" type="image/jpeg" length="0"/>
     </item>
     <item>
-      <title>Re-encoding eats true-peak headroom</title>
+      <title>Why does my master clip after MP3 or AAC?</title>
       <link>https://myaiplug.github.io/coproducer-web/blog/reencoding-eats-true-peak-headroom.html</link>
       <guid isPermaLink="true">https://myaiplug.github.io/coproducer-web/blog/reencoding-eats-true-peak-headroom.html</guid>
       <pubDate>Thu, 21 Aug 2026 00:00:00 GMT</pubDate>
-      <description>Every lossy encode can invent new inter-sample peaks. Leaving only 0.1 dB of true-peak margin is how a ‘clean’ WAV becomes a clipped stream.</description>
+      <description>A WAV peaking at −0.1 dBFS can clip once it’s encoded to AAC or MP3. Why it happens, how much true-peak headroom to leave, and a script to test it.</description>
       <enclosure url="https://myaiplug.github.io/coproducer-web/blog/img/essays/reencoding-eats-true-peak-headroom.jpg?v=shd" type="image/jpeg" length="0"/>
     </item>
   </channel>
