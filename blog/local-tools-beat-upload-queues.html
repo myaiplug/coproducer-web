@@ -2,17 +2,17 @@
 <html lang="en">
 <head>
 <meta charset="utf-8"/>
-<meta content="width=device-width,initial-scale=1" name="viewport"/><meta content="https://myaiplug.github.io/coproducer-web/blog/img/essays/local-tools-beat-upload-queues.jpg?v=shd" name="twitter:image"/><meta content="Local .bat and desktop tools skip upload queues, retention policies, and per-track metering fees. Keep measurement, stems, and syrup renders on your machine." name="twitter:description"/><meta content="Local tools beat upload queues" name="twitter:title"/><meta content="summary_large_image" name="twitter:card"/><meta content="2026-08-21T00:00:00Z" property="article:modified_time"/><meta content="2026-08-21T00:00:00Z" property="article:published_time"/><meta content="1440" property="og:image:height"/><meta content="2560" property="og:image:width"/><meta content="https://myaiplug.github.io/coproducer-web/blog/local-tools-beat-upload-queues.html" property="og:url"/><meta content="en_US" property="og:locale"/><meta content="CoProducer" property="og:site_name"/><meta content="article" property="og:type"/><link href="https://myaiplug.github.io/coproducer-web/llms.txt" rel="alternate" title="llms.txt" type="text/plain"/><meta content="NoDAW Labs" name="author"/><meta content="#050308" name="theme-color"/><meta content="index,follow,max-image-preview:large" name="robots"/>
-<title>Local tools beat upload queues | Lacquer</title>
-<meta content="Local .bat and desktop tools skip upload queues, retention policies, and per-track metering fees. Keep measurement, stems, and syrup renders on your machine." name="description"/>
+<meta content="width=device-width,initial-scale=1" name="viewport"/><meta content="https://myaiplug.github.io/coproducer-web/blog/img/essays/local-tools-beat-upload-queues.jpg?v=shd" name="twitter:image"/><meta content="You don’t need to upload a track to measure LUFS or true peak. A free meter plugin or one FFmpeg command does it in seconds, and your unreleased song stays put." name="twitter:description"/><meta content="How to check LUFS without uploading your song" name="twitter:title"/><meta content="summary_large_image" name="twitter:card"/><meta content="2026-10-22T00:00:00Z" property="article:modified_time"/><meta content="2026-08-21T00:00:00Z" property="article:published_time"/><meta content="1440" property="og:image:height"/><meta content="2560" property="og:image:width"/><meta content="https://myaiplug.github.io/coproducer-web/blog/local-tools-beat-upload-queues.html" property="og:url"/><meta content="en_US" property="og:locale"/><meta content="CoProducer" property="og:site_name"/><meta content="article" property="og:type"/><link href="https://myaiplug.github.io/coproducer-web/llms.txt" rel="alternate" title="llms.txt" type="text/plain"/><meta content="NoDAW Labs" name="author"/><meta content="#050308" name="theme-color"/><meta content="index,follow,max-image-preview:large" name="robots"/>
+<title>How to check LUFS without uploading your song | Lacquer</title>
+<meta content="You don’t need to upload a track to measure LUFS or true peak. A free meter plugin or one FFmpeg command does it in seconds, and your unreleased song stays put." name="description"/>
 <link href="https://myaiplug.github.io/coproducer-web/blog/local-tools-beat-upload-queues.html" rel="canonical"/>
 <link rel="alternate" type="application/rss+xml" title="Lacquer — CoProducer Journal" href="https://myaiplug.github.io/coproducer-web/blog/rss.xml"/>
 <link rel="icon" href="../favicon.ico" sizes="48x48"/>
 <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg"/>
 <link rel="apple-touch-icon" href="../assets/apple-touch-icon.png"/>
 <link rel="manifest" href="../site.webmanifest"/>
-<meta content="Local tools beat upload queues" property="og:title"/>
-<meta content="Local .bat and desktop tools skip upload queues, retention policies, and per-track metering fees. Keep measurement, stems, and syrup renders on your machine." property="og:description"/>
+<meta content="How to check LUFS without uploading your song" property="og:title"/>
+<meta content="You don’t need to upload a track to measure LUFS or true peak. A free meter plugin or one FFmpeg command does it in seconds, and your unreleased song stays put." property="og:description"/>
 <meta content="https://myaiplug.github.io/coproducer-web/blog/img/essays/local-tools-beat-upload-queues.jpg?v=shd" property="og:image"/>
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
@@ -21,7 +21,7 @@
 <link href="css/journal.css" rel="stylesheet"/>
 
 
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Local tools beat upload queues","description":"Local .bat and desktop tools skip upload queues, retention policies, and per-track metering fees. Keep measurement, stems, and syrup renders on your machine.","datePublished":"2026-08-21","dateModified":"2026-08-21","mainEntityOfPage":{"@type":"WebPage","@id":"https://myaiplug.github.io/coproducer-web/blog/local-tools-beat-upload-queues.html"},"image":{"@type":"ImageObject","url":"https://myaiplug.github.io/coproducer-web/blog/img/essays/local-tools-beat-upload-queues.jpg?v=shd","width":2560,"height":1440},"author":{"@type":"Organization","name":"NoDAW Labs","url":"https://myaiplug.github.io/coproducer-web/","logo":"https://myaiplug.github.io/coproducer-web/assets/og-default.jpg"},"publisher":{"@type":"Organization","name":"NoDAW Labs","url":"https://myaiplug.github.io/coproducer-web/","logo":"https://myaiplug.github.io/coproducer-web/assets/og-default.jpg"},"isPartOf":{"@type":"Blog","name":"Lacquer — CoProducer Journal","url":"https://myaiplug.github.io/coproducer-web/blog/index.html"},"keywords":["local tools","NoDAW bat","privacy","offline audio"],"speakable":{"@type":"SpeakableSpecification","cssSelector":[".answer","h1"]}}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Is local always higher quality?","acceptedAnswer":{"@type":"Answer","text":"Not automatically. It is better defined: you keep the WAV and the plan."}},{"@type":"Question","name":"Does the GitHub Pages site upload my song?","acceptedAnswer":{"@type":"Answer","text":"No. Analyze needs a local API you control."}}]}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"CoProducer","item":"https://myaiplug.github.io/coproducer-web/"},{"@type":"ListItem","position":2,"name":"Lacquer Journal","item":"https://myaiplug.github.io/coproducer-web/blog/index.html"},{"@type":"ListItem","position":3,"name":"Local tools beat upload queues","item":"https://myaiplug.github.io/coproducer-web/blog/local-tools-beat-upload-queues.html"}]}</script></head>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"How to check LUFS without uploading your song","description":"You don’t need to upload a track to measure LUFS or true peak. A free meter plugin or one FFmpeg command does it in seconds, and your unreleased song stays put.","datePublished":"2026-08-21","dateModified":"2026-10-22","mainEntityOfPage":{"@type":"WebPage","@id":"https://myaiplug.github.io/coproducer-web/blog/local-tools-beat-upload-queues.html"},"image":{"@type":"ImageObject","url":"https://myaiplug.github.io/coproducer-web/blog/img/essays/local-tools-beat-upload-queues.jpg?v=shd","width":2560,"height":1440},"author":{"@type":"Organization","name":"NoDAW Labs","url":"https://myaiplug.github.io/coproducer-web/","logo":"https://myaiplug.github.io/coproducer-web/assets/og-default.jpg"},"publisher":{"@type":"Organization","name":"NoDAW Labs","url":"https://myaiplug.github.io/coproducer-web/","logo":"https://myaiplug.github.io/coproducer-web/assets/og-default.jpg"},"isPartOf":{"@type":"Blog","name":"Lacquer — CoProducer Journal","url":"https://myaiplug.github.io/coproducer-web/blog/index.html"},"keywords":["check LUFS offline","measure LUFS without uploading","free LUFS meter","true peak","FFmpeg ebur128","local audio tools","unreleased music privacy"],"speakable":{"@type":"SpeakableSpecification","cssSelector":[".answer","h1"]}}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Can I check LUFS without uploading my song?","acceptedAnswer":{"@type":"Answer","text":"Yes. LUFS and true peak are defined by a public standard (ITU-R BS.1770) that any computer can calculate. A free meter plugin in your DAW, or FFmpeg’s ebur128 filter from the command line, measures the file on your own machine without an account or an upload."}},{"@type":"Question","name":"Is a local LUFS meter as accurate as an online one?","acceptedAnswer":{"@type":"Answer","text":"If both follow ITU-R BS.1770, they should agree closely on integrated loudness, usually within a tenth of a dB or so. True-peak readings can differ slightly because meters oversample differently. Pick one meter and use it for every version you compare."}},{"@type":"Question","name":"Is local always higher quality?","acceptedAnswer":{"@type":"Answer","text":"Not automatically. A local tool isn’t smarter, it’s just better defined: you keep the original WAV, you know which settings ran, and you can run it again tomorrow and get the same answer."}},{"@type":"Question","name":"Does the CoProducer site upload my song when I analyze it?","acceptedAnswer":{"@type":"Answer","text":"No. The analyzer on the CoProducer page sends your file to an engine running on your own computer (at 127.0.0.1) if you’ve started one. If that engine isn’t running, the page measures the file in your browser, so it stays on your device either way."}}]}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"CoProducer","item":"https://myaiplug.github.io/coproducer-web/"},{"@type":"ListItem","position":2,"name":"Lacquer Journal","item":"https://myaiplug.github.io/coproducer-web/blog/index.html"},{"@type":"ListItem","position":3,"name":"How to check LUFS without uploading your song","item":"https://myaiplug.github.io/coproducer-web/blog/local-tools-beat-upload-queues.html"}]}</script></head>
 <body>
 <header class="top">
 <a class="mark" href="../index.html"><em>Co</em>Producer</a>
@@ -38,25 +38,128 @@
 <div class="post-hero"><img alt="Vault and local workstation" src="img/essays/local-tools-beat-upload-queues.jpg?v=shd" srcset="img/essays/w/local-tools-beat-upload-queues-480.webp 480w, img/essays/w/local-tools-beat-upload-queues-960.webp 960w, img/essays/w/local-tools-beat-upload-queues-1600.webp 1600w" sizes="(max-width: 1100px) 100vw, 1100px" width="2560" height="1440" fetchpriority="high" decoding="async"/></div>
 <header>
 <p class="kicker">Local-first · 21 August 2026 · 7 min</p>
-<h1>Local tools beat upload queues</h1>
+<h1>How to check LUFS without uploading your song: local tools beat upload queues</h1>
 <p class="meta">NoDAW Labs · Lacquer Vol. 02</p>
 </header>
-<p class="answer">Local .bat and desktop tools skip upload queues, retention policies, and per-track metering fees. If the job is measurement, stems, or syrup renders, keeping the file in the room is usually the faster and safer default.</p>
-<h2>Time is the hidden price</h2>
-<p>Cloud clubs charge money and attention: accounts, queues, “which genre preset,” waiting. Local drop workflows charge electricity and honesty about your CPU.</p>
-<p>NoDAW’s analyzer, StemSplit, ScrewAI, and video bats share that posture.</p>
-<h2>When cloud is honest</h2>
-<p>If you want a third party to own a creative render and you accept their terms, upload deliberately. Do not upload to “just check LUFS.”</p>
-<p>LUFS does not require a stranger’s disk.</p>
+<p class="answer">You don’t need to upload a song to check its loudness. Integrated LUFS and true peak are calculated with a public method, <a href="https://www.itu.int/rec/R-REC-BS.1770">ITU-R BS.1770</a>, that any laptop can run. A free meter plugin in your DAW or one FFmpeg command measures a track in well under a second, with no account, no queue and no copy of your unreleased song on somebody else’s server. Upload when you’ve chosen a service to do real work you can’t do yourself, not just to read a number.</p>
+<p>It’s an easy habit to fall into. You finish a bounce at 1 a.m., you want to know if it’s too loud for Spotify, and the first search result is a site that asks you to upload. So you sign up, wait for the progress bar, wait in a queue, and get back a number your own computer could have worked out before the upload finished. Meanwhile a song nobody has heard yet is now sitting on a disk you don’t control, under terms you probably didn’t read.</p>
+
+<h2>Why would I avoid uploading a song just to check its loudness?</h2>
+<ul>
+<li><strong>It’s slower.</strong> Measuring is fast. Moving a big WAV over a home upload connection is not. The numbers are below.</li>
+<li><strong>You lose track of the file.</strong> Once it’s uploaded, how long it’s kept, who can see it and what it may be used for is up to that service’s terms. Some are clear and fair. You still have to go and read them, for every site, every time they change.</li>
+<li><strong>Unreleased means unreleased.</strong> A leak before release can cost you the rollout you planned. The fewer copies exist, the fewer can leak.</li>
+<li><strong>Friction adds up.</strong> Accounts, logins, credits, per-track limits, “pick a genre preset” screens. None of it changes the math of a loudness measurement.</li>
+</ul>
+<p>None of that makes online tools bad. It just means “I want a number” is the wrong reason to use one.</p>
+
+<h2>How long does uploading a song actually take?</h2>
+<p>Here’s the plain arithmetic. A four-minute stereo WAV at 48 kHz and 24-bit is 4 × 60 × 48,000 × 3 bytes × 2 channels, which is about 69 MB. Upload time is just size divided by your upload speed. These are example speeds, not anyone’s actual connection, and real uploads add overhead and queue time on top:</p>
+<table>
+<thead><tr><th>Upload speed (example)</th><th>One 4-minute WAV (69 MB)</th><th>A 12-track album (829 MB)</th></tr></thead>
+<tbody>
+<tr><td>5 Mbps</td><td>about 1 min 51 s</td><td>about 22 min</td></tr>
+<tr><td>20 Mbps</td><td>about 28 s</td><td>about 5.5 min</td></tr>
+<tr><td>50 Mbps</td><td>about 11 s</td><td>about 2.2 min</td></tr>
+</tbody>
+</table>
+<p>Upload speeds on home connections are often much lower than download speeds, so run a test at <a href="https://www.speedtest.net/">Speedtest</a> and look at the “Upload” number for your real figure. Now compare that with measuring locally. On our test machine, FFmpeg measured four minutes of synthetic audio across four files (92 MB) in about one second, including true peak. Your computer may be slower or faster, but the measurement is rarely the slow part.</p>
+
+<h2>How do I check LUFS on my own computer?</h2>
+<p>Three ways, from no setup to fully automatic.</p>
+<p><strong>1. A meter plugin in your DAW.</strong> Put a loudness meter on the master bus and play the whole song through. The <a href="https://youlean.co/youlean-loudness-meter/">Youlean Loudness Meter</a> has a free version that runs as a VST, AU or AAX plugin and shows integrated LUFS, short-term loudness and true peak. Most DAWs also ship a meter of their own. Play the song start to finish, because integrated loudness only means something once it has heard the whole track.</p>
+<p><strong>2. One FFmpeg command.</strong> <a href="https://ffmpeg.org/download.html">FFmpeg</a> is free and runs on Windows, macOS and Linux. Its <a href="https://ffmpeg.org/ffmpeg-filters.html#ebur128">ebur128 filter</a> follows the EBU R 128 method, which uses BS.1770 loudness. It reads the file faster than real time, so you don’t sit through playback. Here it is on a synthetic test file, trimmed to the summary it prints at the end:</p>
+<pre><code>$ ffmpeg -hide_banner -nostats -i mix_v2.wav -af ebur128=peak=true -f null -
+...
+Summary:
+
+  Integrated loudness:
+    I:          -9.8 LUFS
+    Threshold: -19.8 LUFS
+
+  Loudness range:
+    LRA:         0.3 LU
+    Threshold: -29.7 LUFS
+    LRA low:    -9.9 LUFS
+    LRA high:   -9.6 LUFS
+
+  True peak:
+    Peak:       -1.0 dBFS</code></pre>
+<p>“I” is integrated loudness. “LRA” is loudness range. With <code>peak=true</code>, the “Peak” line under “True peak” is the true peak; FFmpeg labels it dBFS, but it’s the true-peak value, so read it as dBTP.</p>
+<p><strong>3. A whole folder at once.</strong> When you’re checking an album, an EP or a pile of alternate mixes, measure them all in one go. This script runs the same FFmpeg meter over every audio file in a folder, prints a table and saves a CSV next to the songs:</p>
+<pre><code>#!/usr/bin/env python3
+"""measure_folder.py: loudness for every audio file in a folder, measured on this machine.
+    python3 measure_folder.py ./bounces
+Prints a table and writes loudness.csv into the folder. Uses ffmpeg's EBU R128 meter
+(integrated LUFS, loudness range, true peak). No account, no upload, no network."""
+import csv, re, subprocess, sys, time
+from pathlib import Path
+
+AUDIO = {".wav", ".aif", ".aiff", ".flac", ".mp3", ".m4a", ".ogg", ".opus"}
+
+def measure(path):
+    err = subprocess.run(["ffmpeg", "-hide_banner", "-nostats", "-i", str(path), "-vn",
+                          "-af", "ebur128=peak=true", "-f", "null", "-"],
+                         capture_output=True, text=True).stderr
+    s = err[err.rindex("Summary:"):]
+    f = lambda pat: float(re.search(pat, s, re.S).group(1))
+    return f(r"I:\s+(-?[\d.]+) LUFS"), f(r"LRA:\s+(-?[\d.]+) LU"), f(r"Peak:\s+(-?[\d.]+) dBFS")
+
+folder = Path(sys.argv[1] if len(sys.argv) &gt; 1 else ".")
+files = sorted(p for p in folder.iterdir() if p.suffix.lower() in AUDIO)
+rows, t0 = [], time.perf_counter()
+for p in files:
+    I, lra, tp = measure(p)
+    rows.append((p.name, I, lra, tp, "check peak" if tp &gt; -1.0 else ""))
+    print(f"{p.name:22} {I:6.1f} LUFS  LRA {lra:4.1f} LU  TP {tp:+5.1f} dBTP  {rows[-1][4]}")
+loud = [r[1] for r in rows]
+if loud:
+    print(f"spread: {max(loud) - min(loud):.1f} LU between loudest and quietest")
+print(f"{len(rows)} files, {sum(p.stat().st_size for p in files) / 1e6:.0f} MB, "
+      f"measured in {time.perf_counter() - t0:.1f} s")
+with open(folder / "loudness.csv", "w", newline="") as fh:
+    w = csv.writer(fh); w.writerow(["file", "integrated_lufs", "lra_lu", "true_peak_dbtp", "note"]); w.writerows(rows)</code></pre>
+<p>We ran it on a folder of four <strong>synthetic</strong> one-minute tracks made to be deliberately inconsistent, the way a rough album folder often is:</p>
+<pre><code>$ python3 measure_folder.py album
+01_intro.wav            -15.1 LUFS  LRA  0.9 LU  TP  -2.6 dBTP  
+02_single.wav            -8.3 LUFS  LRA  0.3 LU  TP  +1.5 dBTP  check peak
+03_ballad.wav           -19.1 LUFS  LRA  0.8 LU  TP  -5.9 dBTP  
+04_closer.wav            -9.7 LUFS  LRA  0.4 LU  TP  +0.1 dBTP  check peak
+spread: 10.8 LU between loudest and quietest
+4 files, 92 MB, measured in 1.0 s</code></pre>
+<p>Two things jump out without listening to a note. The tracks sit 10.8 LU apart, so on an album the ballad would land like a different record unless that’s the intent. And two tracks have true peaks above −1 dBTP, one of them at +1.5, which is the kind of file that can clip once it’s encoded. That took about a second, and nothing left the folder.</p>
+
+<h2>Is a local meter as accurate as an online one?</h2>
+<p>It’s the same math. Any meter that follows BS.1770 (and the EBU’s <a href="https://tech.ebu.ch/docs/r/r128.pdf">R 128</a> recommendation built on it) applies the same weighting filter, the same 400 ms blocks and the same gating to work out integrated loudness. Two compliant meters should agree closely on integrated LUFS. True peak can differ by a small amount between meters, because each one estimates the waveform between samples with its own oversampling. The EBU publishes <a href="https://tech.ebu.ch/docs/tech/tech3341.pdf">test signals and tolerances in Tech 3341</a> that meters are checked against.</p>
+<p>The bigger source of disagreement is usually not the meter at all. It’s measuring a different file: the MP3 preview instead of the WAV, the version before the last limiter tweak, or 30 seconds instead of the whole song. Measuring locally, on the exact file you’ll deliver, removes most of that.</p>
+<p>And remember what the number is for. Spotify’s <a href="https://support.spotify.com/us/artists/article/loudness-normalization/">loudness normalization</a> plays tracks at around −14 LUFS by default and turns louder masters down, so the target isn’t “as loud as possible”. It’s knowing where you are, and keeping true peak below −1 dBTP (−2 dBTP if the master is louder than −14 LUFS).</p>
+
+<h2>What about stem separation and other heavy jobs?</h2>
+<p>This is where the trade gets real. Measuring loudness is light work. Splitting a song into vocals, drums and bass with a neural network is heavy, and it runs much faster on a decent graphics card. Open-source separators such as <a href="https://github.com/facebookresearch/demucs">Demucs</a> run locally (its repository is archived now, but the code still works), and on an older laptop without a GPU a split can take a few minutes per song rather than seconds.</p>
+<p>So the honest question is whether a few minutes of your own computer’s time is worth keeping the song at home. For an unreleased record, it usually is. For a public song you just want to study, a cloud tool you trust can be fine. Either way, it’s your decision to make on purpose, not the default because a website asked first.</p>
 <div data-stems=""></div>
-<aside class="aside">Compare field notes in <a href="../comparisons/vs-landr.html">vs LANDR</a> and keep metering on <a href="../index.html#analyzeHome">Analyze</a>.</aside>
+
+<h2>When is uploading the right call?</h2>
+<p>Plenty of times. Uploading is the whole point when:</p>
+<ul>
+<li>You’re sending the mix to a mastering engineer or collaborator you’ve chosen.</li>
+<li>You’re delivering to your distributor. That upload has to happen, and it’s the one that counts.</li>
+<li>You’ve picked a cloud service to do creative work, such as an online master, and you’re comfortable with its terms.</li>
+</ul>
+<p>Before uploading something unreleased, do three quick things. Read the part of the terms about how long files are kept, who can access them and whether they can be used for anything else. Keep your original WAV and session where they are, since an upload is a copy, not a backup. And upload once, the final file, rather than every rough version you’re testing.</p>
+<p>For day-to-day checks, keep the meter on your own machine. That’s how <a href="../index.html#analyzeHome">CoProducer’s analyzer</a> is built: the page talks to an engine on your own computer, and if that isn’t running, it measures in the browser, so the file stays on your device.</p>
+<aside class="aside">Short version: measure locally, upload deliberately. If you’re weighing an online mastering service, our <a href="../comparisons/vs-landr.html">CoProducer vs LANDR notes</a> lay out the trade-offs, and <a href="should-you-upload-an-unreleased-master.html">should you upload an unreleased master?</a> goes deeper on the privacy side.</aside>
 <dl class="faq">
+<dt>Can I check LUFS without uploading my song?</dt>
+<dd>Yes. LUFS and true peak are defined by a public standard (ITU-R BS.1770) that any computer can calculate. A free meter plugin in your DAW, or FFmpeg’s ebur128 filter from the command line, measures the file on your own machine without an account or an upload.</dd>
+<dt>Is a local LUFS meter as accurate as an online one?</dt>
+<dd>If both follow ITU-R BS.1770, they should agree closely on integrated loudness, usually within a tenth of a dB or so. True-peak readings can differ slightly because meters oversample differently. Pick one meter and use it for every version you compare.</dd>
 <dt>Is local always higher quality?</dt>
-<dd>Not automatically. It is better defined: you keep the WAV and the plan.</dd>
-<dt>Does the GitHub Pages site upload my song?</dt>
-<dd>No. Analyze needs a local API you control.</dd>
+<dd>Not automatically. A local tool isn’t smarter, it’s just better defined: you keep the original WAV, you know which settings ran, and you can run it again tomorrow and get the same answer.</dd>
+<dt>Does the CoProducer site upload my song when I analyze it?</dt>
+<dd>No. The analyzer on the CoProducer page sends your file to an engine running on your own computer (at 127.0.0.1) if you’ve started one. If that engine isn’t running, the page measures the file in your browser, so it stays on your device either way.</dd>
 </dl>
-<nav aria-label="Keep reading" class="related-essays keep-reading" style="margin:48px 0 24px;padding-top:24px;border-top:1px solid rgba(196,165,116,.32)"><h2>Keep reading</h2><ul><li><a href="should-you-upload-an-unreleased-master.html">Should you upload an unreleased master to the cloud?</a></li><li><a href="mastering-bat-vs-opening-the-session.html">Mastering .bat versus opening the session</a></li><li><a href="screw-tempo-still-needs-a-legal-peak.html">Screw tempo still needs a legal peak</a></li><li><a href="stems-diagnose-mixes-do-not-replace-them.html">Stems diagnose mixes — they do not replace them</a></li><li><a href="demucs-vs-mdx-net-stem-separation-compared.html">Demucs vs MDX-Net: what each separator gets wrong, and why</a></li><li><a href="split-stems-from-youtube-audio-you-own.html">Splitting stems from YouTube audio you own starts with the cleanest copy</a></li></ul><p class="hub-link">More in <a href="topics/stems-sampling-and-privacy.html">Stem separation, sampling &amp; privacy</a> · <a href="index.html">All essays</a></p></nav></article>
+<nav aria-label="Keep reading" class="related-essays keep-reading" style="margin:48px 0 24px;padding-top:24px;border-top:1px solid rgba(196,165,116,.32)"><h2>Keep reading</h2><ul><li><a href="should-you-upload-an-unreleased-master.html">Should you upload an unreleased master to the cloud?</a></li><li><a href="mastering-bat-vs-opening-the-session.html">Mastering .bat versus opening the session</a></li><li><a href="screw-tempo-still-needs-a-legal-peak.html">Screw tempo still needs a legal peak</a></li><li><a href="stems-diagnose-mixes-do-not-replace-them.html">Stems diagnose mixes — they do not replace them</a></li><li><a href="demucs-vs-mdx-net-stem-separation-compared.html">Demucs vs MDX-Net: what each separator gets wrong, and why</a></li><li><a href="split-stems-from-youtube-audio-you-own.html">Splitting stems from YouTube audio you own starts with the cleanest copy</a></li><li><a href="why-three-report-formats.html">What should a loudness report include? HTML, JSON, TXT</a></li></ul><p class="hub-link">More in <a href="topics/stems-sampling-and-privacy.html">Stem separation, sampling &amp; privacy</a> · <a href="index.html">All essays</a></p></nav></article>
 <aside aria-label="About the publisher" class="author-box"><p class="author-k">Written and published by</p><p class="author-name"><a href="about.html">NoDAW Labs</a></p><p class="author-bio">NoDAW Labs makes local-first audio tools: CoProducer, reTUNE[432] and DeepSplit. Essays are credited to the studio, not to individual writers. <a href="methodology.html">How we test, cite and correct</a>.</p></aside>
 <section class="comments" data-comments="" data-thread="local"></section>
 <script src="js/studio.js" type="module"></script>

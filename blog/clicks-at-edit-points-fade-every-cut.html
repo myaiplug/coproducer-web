@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1" name="viewport"/><meta content="https://myaiplug.github.io/coproducer-web/blog/img/essays/clicks-at-edit-points-fade-every-cut.jpg?v=shd" name="twitter:image"/><meta content="Why audio edits click and pop: a cut or splice that lands mid-waveform makes an instant jump. A 5 ms fade or crossfade removes it. Includes a click-finder script." name="twitter:description"/><meta content="Clicks at your edit points come from cutting mid-wave. Fade every cut" name="twitter:title"/><meta content="summary_large_image" name="twitter:card"/><meta content="2026-10-21T00:00:00Z" property="article:modified_time"/><meta content="2026-10-21T00:00:00Z" property="article:published_time"/><meta content="1440" property="og:image:height"/><meta content="2560" property="og:image:width"/><meta content="https://myaiplug.github.io/coproducer-web/blog/clicks-at-edit-points-fade-every-cut.html" property="og:url"/><meta content="en_US" property="og:locale"/><meta content="CoProducer" property="og:site_name"/><meta content="article" property="og:type"/><link href="https://myaiplug.github.io/coproducer-web/llms.txt" rel="alternate" title="llms.txt" type="text/plain"/><meta content="NoDAW Labs" name="author"/><meta content="#050308" name="theme-color"/><meta content="index,follow,max-image-preview:large" name="robots"/><meta content="clicks and pops in audio edits, how to remove clicks between edits, crossfade length, fade in fade out clicks, zero crossing editing, vocal comp clicks, chopping samples clicks, find clicks in audio, StemSplit, NoDAW" name="keywords"/>
+<title>Clicks at your edit points come from cutting mid-wave. Fade every cut | Lacquer</title>
+<meta content="Why audio edits click and pop: a cut or splice that lands mid-waveform makes an instant jump. A 5 ms fade or crossfade removes it. Includes a click-finder script." name="description"/>
+<link href="https://myaiplug.github.io/coproducer-web/blog/clicks-at-edit-points-fade-every-cut.html" rel="canonical"/>
+<link rel="alternate" type="application/rss+xml" title="Lacquer — CoProducer Journal" href="https://myaiplug.github.io/coproducer-web/blog/rss.xml"/>
+<link rel="icon" href="../favicon.ico" sizes="48x48"/>
+<link rel="icon" type="image/svg+xml" href="../assets/favicon.svg"/>
+<link rel="apple-touch-icon" href="../assets/apple-touch-icon.png"/>
+<link rel="manifest" href="../site.webmanifest"/>
+<meta content="Clicks at your edit points come from cutting mid-wave. Fade every cut" property="og:title"/>
+<meta content="Why audio edits click and pop: a cut or splice that lands mid-waveform makes an instant jump. A 5 ms fade or crossfade removes it. Includes a click-finder script." property="og:description"/>
+<meta content="https://myaiplug.github.io/coproducer-web/blog/img/essays/clicks-at-edit-points-fade-every-cut.jpg?v=shd" property="og:image"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;1,500;1,600&amp;family=Figtree:wght@400;500&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet" media="print" onload="this.media='all'"/><noscript><link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;1,500;1,600&amp;family=Figtree:wght@400;500&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/></noscript>
+<link rel="preload" as="image" type="image/webp" fetchpriority="high" imagesrcset="img/essays/w/clicks-at-edit-points-fade-every-cut-480.webp 480w, img/essays/w/clicks-at-edit-points-fade-every-cut-960.webp 960w, img/essays/w/clicks-at-edit-points-fade-every-cut-1600.webp 1600w" imagesizes="(max-width: 1100px) 100vw, 1100px"/>
+<link href="css/journal.css" rel="stylesheet"/>
+
+
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Clicks at your edit points come from cutting mid-wave. Fade every cut","description":"Why audio edits click and pop: a cut or splice that lands mid-waveform makes an instant jump. A 5 ms fade or crossfade removes it. Includes a click-finder script.","datePublished":"2026-10-21","dateModified":"2026-10-21","mainEntityOfPage":{"@type":"WebPage","@id":"https://myaiplug.github.io/coproducer-web/blog/clicks-at-edit-points-fade-every-cut.html"},"image":{"@type":"ImageObject","url":"https://myaiplug.github.io/coproducer-web/blog/img/essays/clicks-at-edit-points-fade-every-cut.jpg?v=shd","width":2560,"height":1440},"author":{"@type":"Organization","name":"NoDAW Labs","url":"https://myaiplug.github.io/coproducer-web/","logo":"https://myaiplug.github.io/coproducer-web/assets/og-default.jpg"},"publisher":{"@type":"Organization","name":"NoDAW Labs","url":"https://myaiplug.github.io/coproducer-web/","logo":"https://myaiplug.github.io/coproducer-web/assets/og-default.jpg"},"isPartOf":{"@type":"Blog","name":"Lacquer — CoProducer Journal","url":"https://myaiplug.github.io/coproducer-web/blog/index.html"},"keywords":["clicks and pops in audio edits","how to remove clicks between edits","crossfade length","fade in fade out clicks","zero crossing editing","vocal comp clicks","chopping samples clicks","find clicks in audio","StemSplit","NoDAW"],"speakable":{"@type":"SpeakableSpecification","cssSelector":[".answer","h1"]}}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Why do my audio edits click?","acceptedAnswer":{"@type":"Answer","text":"The cut or splice lands in the middle of a waveform cycle, so the signal jumps instantly between two values. That jump is a burst of high-frequency energy you hear as a click or pop."}},{"@type":"Question","name":"How long should a crossfade be to remove clicks?","acceptedAnswer":{"@type":"Answer","text":"Around 5 ms works for most cuts. Use 1 to 2 ms on drum hits so the transient survives, around 10 ms on low notes, and 10 to 30 ms inside a sustained vowel when comping vocals."}},{"@type":"Question","name":"Is cutting at zero crossings enough?","acceptedAnswer":{"@type":"Answer","text":"Not always. A splice can meet the other take moving in the opposite direction, and stereo channels rarely cross zero together. A short fade fixes both cases."}},{"@type":"Question","name":"How much does a 5 ms fade help?","acceptedAnswer":{"@type":"Answer","text":"In our test on a −6 dBFS 55 Hz note, the content above 2 kHz at an unfaded stop peaked at −13.3 dBFS. With a 5 ms fade-out it dropped to −82.9 dBFS, roughly 70 dB lower."}}]}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"CoProducer","item":"https://myaiplug.github.io/coproducer-web/"},{"@type":"ListItem","position":2,"name":"Lacquer Journal","item":"https://myaiplug.github.io/coproducer-web/blog/index.html"},{"@type":"ListItem","position":3,"name":"Clicks at your edit points come from cutting mid-wave. Fade every cut","item":"https://myaiplug.github.io/coproducer-web/blog/clicks-at-edit-points-fade-every-cut.html"}]}</script></head>
+<body>
+<header class="top">
+<a class="mark" href="../index.html"><em>Co</em>Producer</a>
+<nav aria-label="Primary" class="nav">
+<a href="index.html">Journal</a>
+<a href="../index.html#ab">A/B</a>
+<a href="../index.html#analyzeHome">Analyze</a>
+<a href="../guides/index.html">Guides</a>
+<a href="../pricing.html">Pricing</a>
+</nav>
+<a class="cta" href="../index.html#analyzeHome">Measure a mix</a>
+</header>
+<article class="post" id="main">
+<div class="post-hero"><img alt="A glowing cyan waveform on black marble split in two with magenta sparks at the cut, one end trailing into a smooth gold curve, a razor blade and a loop of tape beside it" src="img/essays/clicks-at-edit-points-fade-every-cut.jpg?v=shd" srcset="img/essays/w/clicks-at-edit-points-fade-every-cut-480.webp 480w, img/essays/w/clicks-at-edit-points-fade-every-cut-960.webp 960w, img/essays/w/clicks-at-edit-points-fade-every-cut-1600.webp 1600w" sizes="(max-width: 1100px) 100vw, 1100px" width="2560" height="1440" fetchpriority="high" decoding="async"/></div>
+<header>
+<p class="kicker">Editing · 21 October 2026 · 7 min</p>
+<h1>Clicks at your edit points come from cutting mid-wave. Fade every cut</h1>
+<p class="meta">NoDAW Labs · Lacquer Vol. 06</p>
+</header>
+<p class="answer">An edit clicks when the waveform jumps instantly from one value to another, which happens whenever you cut or splice in the middle of a cycle instead of at silence. That jump is a burst of high-frequency energy. A short fade on every cut, or a crossfade on every splice, around 5 ms, smooths the jump out and the click disappears.</p>
+<p>You comp the best vocal take out of six, chop a sample into a new pattern, or trim the tail off an 808, and it all looks fine on the screen. Then on headphones there’s a tiny tick right where the edit is. Sometimes you only hear it after mastering, when the limiter and a brighter top end pull it forward.</p>
+<p>It isn’t the plugin and it isn’t your interface. It’s the edit.</p>
+<h2>Why a cut clicks</h2>
+<p>Audio is a wave moving up and down around zero. If you stop it when it’s at zero, nothing happens. If you stop it at the top of a cycle, the next sample is zero and the speaker cone has to snap back instantly. That instant jump isn’t a low note anymore, it’s a broadband spike, and your ears hear it as a click.</p>
+<p>Splices do the same thing. Two takes of the same note are almost never at the same point in their cycle at the edit, so the waveform jumps from where take one was to where take two is. Low, sustained sounds give it away first: 808s, bass, pads, held vowels. Drums usually hide it, because a hit is already a jump.</p>
+<h2>We made four edits and measured them</h2>
+<p>A synthetic 48 kHz file: one long 55 Hz note at −6 dBFS, about where a sustained 808 or bass would sit. We stopped it mid-wave once with no fade and once with a 5 ms fade-out, and spliced it to a second take a quarter-cycle off once with no fade and once with a 5 ms crossfade. A clean 55 Hz note has almost nothing above 2 kHz, so anything up there near an edit is the click:</p>
+<table>
+<thead><tr><th>Edit</th><th>Loudest content above 2 kHz near the edit</th></tr></thead>
+<tbody>
+<tr><td>Stop mid-wave, no fade</td><td>−13.3 dBFS</td></tr>
+<tr><td>Same stop, 5 ms fade-out</td><td>−82.9 dBFS</td></tr>
+<tr><td>Splice to the other take, no fade</td><td>−8.9 dBFS</td></tr>
+<tr><td>Same splice, 5 ms crossfade</td><td>−78.4 dBFS</td></tr>
+</tbody>
+</table>
+<p>The unfaded edits throw a burst only a few dB under the note itself, in a range where the note has nothing. Five milliseconds of fade drops that by about 70 dB, which puts it well below anything you’ll hear. Five milliseconds is also short enough that nobody notices the fade.</p>
+<h2>Fade lengths that work</h2>
+<ul>
+<li><strong>Most cuts: 2 to 10 ms.</strong> Enough to smooth the jump, short enough to be invisible. Five is a good default.</li>
+<li><strong>Drum hits and chops: 1 to 2 ms fade-in.</strong> A long fade-in softens the transient you wanted. Start the slice on the hit, as in our <a href="sampling-from-separated-stems-workflow.html">sampling from separated stems</a> workflow, and keep the fade-in tiny.</li>
+<li><strong>Low notes: a little longer.</strong> A 40 Hz cycle is 25 ms long. A fade of 10 ms or so keeps the bottom from thumping at the cut.</li>
+<li><strong>Comps inside a sustained vowel: 10 to 30 ms crossfade.</strong> Longer crossfades hide the change in tone between takes, not just the click.</li>
+<li><strong>Crossfade shape.</strong> Use equal-power for two different takes and equal-gain when the material on both sides is nearly identical, such as a loop to itself.</li>
+</ul>
+<p>Snapping to zero crossings helps, and most DAWs can do it, but it isn’t enough on its own. A zero crossing on one side of a splice can still meet the other take going in the opposite direction, and in stereo the left and right channels rarely cross zero at the same moment. A fade fixes both.</p>
+<h2>Find the ones you missed</h2>
+<p>After a long comp it’s easy to lose track of an edit. This scans a bounce for sudden changes in the waveform’s slope that stand far above the audio around them, which is what an unfaded edit looks like:</p>
+<pre><code>#!/usr/bin/env python3
+"""Flag edit clicks: sudden jumps in the waveform's slope that a fade would have smoothed.
+usage: python3 find_clicks.py file.wav [threshold_dB]      (pip install numpy soundfile)"""
+import sys
+import numpy as np, soundfile as sf
+x, sr = sf.read(sys.argv[1], always_2d=True)
+x = x.mean(axis=1)
+thr = float(sys.argv[2]) if len(sys.argv) &gt; 2 else 20.0
+d2 = np.abs(np.diff(x, 2))                                  # second difference: ~0 on smooth audio, a spike at a discontinuity
+win = int(0.05 * sr)
+local = np.sqrt(np.convolve(d2**2, np.ones(win) / win, mode="same")) + 1e-12
+ratio = 20 * np.log10(d2 / local + 1e-12)
+hits, last = [], -sr
+for i in np.flatnonzero(ratio &gt; thr):
+    if i - last &gt; int(0.02 * sr):                           # one report per 20 ms
+        hits.append(i); last = i
+print(f"{sys.argv[1]}: {len(hits)} likely click(s) above {thr:g} dB")
+for i in hits:
+    print(f"  {i / sr:8.3f} s   spike {ratio[i]:4.1f} dB above the surrounding audio")</code></pre>
+<pre><code>$ python3 find_clicks.py comp.wav
+comp.wav: 2 likely click(s) above 20 dB
+     1.512 s   spike 30.8 dB above the surrounding audio
+     3.507 s   spike 30.8 dB above the surrounding audio</code></pre>
+<p>It found the two raw edits and ignored both faded ones. It’s a rough tool, not a mastering-grade declicker: sharp drum hits and some synths can trip it too, so treat every hit as a place to listen, and raise the threshold if a busy track flags too much. On a vocal, bass or pad stem it’s quick and honest.</p>
+<h2>Where edit clicks hide</h2>
+<ol>
+<li><strong>Vocal comps.</strong> Every take boundary is a splice. Crossfade all of them, then solo the vocal and listen at the edits.</li>
+<li><strong>Trimmed tails.</strong> Cutting the end of an 808 or a reverb tail without a fade-out leaves a click on the last sample.</li>
+<li><strong>Loops and chops.</strong> A loop that doesn’t start and end at the same point in the cycle clicks every time it repeats.</li>
+<li><strong>Bounce starts and ends.</strong> A file that starts mid-note or gets cut before the tail finishes clicks at the very edge. Leave a short fade on both ends of the master.</li>
+<li><strong>Stems you split yourself.</strong> When you chop a vocal or a bass line out of a separated stem, the chops need the same fades as anything else. If you pull stems with <a href="../index.html#stemDemo">StemSplit</a>, cut on the stem, fade, then sample.</li>
+</ol>
+<h2>Why mastering makes them louder</h2>
+<p>A click is mostly high-frequency energy, and mastering usually adds some top end and brings everything up toward the limiter. Both pull a tick that was barely there in the mix right to the front. Clicks also sit in the same band as <a href="harsh-esses-get-louder-after-mastering.html">harsh esses after mastering</a>, for the same reason. Fix them in the edit, before the bounce, where it takes two seconds.</p>
+<aside class="aside">Fade every cut, crossfade every splice, scan the stem before you bounce. If the edit started as a separated stem, hear how <a href="../index.html#stemDemo">StemSplit</a> handles the split, then <a href="../index.html#analyzeHome">measure the final bounce</a>.</aside>
+<dl class="faq">
+<dt>Why do my audio edits click?</dt>
+<dd>The cut or splice lands in the middle of a waveform cycle, so the signal jumps instantly between two values. That jump is a burst of high-frequency energy you hear as a click or pop.</dd>
+<dt>How long should a crossfade be to remove clicks?</dt>
+<dd>Around 5 ms works for most cuts. Use 1 to 2 ms on drum hits so the transient survives, around 10 ms on low notes, and 10 to 30 ms inside a sustained vowel when comping vocals.</dd>
+<dt>Is cutting at zero crossings enough?</dt>
+<dd>Not always. A splice can meet the other take moving in the opposite direction, and stereo channels rarely cross zero together. A short fade fixes both cases.</dd>
+<dt>How much does a 5 ms fade help?</dt>
+<dd>In our test on a −6 dBFS 55 Hz note, the content above 2 kHz at an unfaded stop peaked at −13.3 dBFS. With a 5 ms fade-out it dropped to −82.9 dBFS, roughly 70 dB lower.</dd>
+</dl>
+<nav aria-label="Keep reading" class="related-essays keep-reading" style="margin:48px 0 24px;padding-top:24px;border-top:1px solid rgba(196,165,116,.32)"><h2>Keep reading</h2><ul><li><a href="sampling-from-separated-stems-workflow.html">Sampling from separated stems: chop around the bleed, not through it</a></li><li><a href="harsh-esses-get-louder-after-mastering.html">Harsh S’s get louder after mastering. De-ess before the limiter</a></li><li><a href="gapless-album-gaps-after-mp3-or-aac.html">Why your gapless album gets gaps after MP3 or AAC</a></li><li><a href="how-much-headroom-to-leave-for-mastering.html">How much headroom to leave for mastering (and why −6 dB isn’t the point)</a></li><li><a href="stems-diagnose-mixes-do-not-replace-them.html">Stems diagnose mixes — they do not replace them</a></li><li><a href="808-disappears-on-phone-speakers.html">Why your 808 disappears on phone speakers</a></li></ul><p class="hub-link">More in <a href="topics/stems-sampling-and-privacy.html">Stems, sampling &amp; privacy</a> · <a href="index.html">All essays</a></p></nav></article>
+<aside aria-label="About the publisher" class="author-box"><p class="author-k">Written and published by</p><p class="author-name"><a href="about.html">NoDAW Labs</a></p><p class="author-bio">NoDAW Labs makes local-first audio tools: CoProducer, reTUNE[432] and DeepSplit. Essays are credited to the studio, not to individual writers. <a href="methodology.html">How we test, cite and correct</a>.</p></aside>
+<section class="comments" data-comments="" data-thread="edit-clicks"></section>
+<script src="js/studio.js" type="module"></script>
+<script src="js/comments.js" type="module"></script>
+<footer class="site"><span>Lacquer · CoProducer Journal</span><span><a href="index.html">All essays</a> · <a href="about.html">About</a> · <a href="methodology.html">Methodology</a></span></footer>
+</body>
+</html>

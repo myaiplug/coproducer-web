@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1" name="viewport"/><meta content="https://myaiplug.github.io/coproducer-web/blog/img/essays/delay-time-from-bpm-sync-your-throws.jpg?v=shd" name="twitter:image"/><meta content="How to calculate delay time from BPM: 60,000 ÷ BPM is a quarter note in ms. Straight, dotted and triplet times, grid-locked pre-delay, and why &#x27;close enough&#x27; drifts." name="twitter:description"/><meta content="Your delay sounds off the beat? Set it from the tempo, not by ear" name="twitter:title"/><meta content="summary_large_image" name="twitter:card"/><meta content="2026-10-21T00:00:00Z" property="article:modified_time"/><meta content="2026-10-21T00:00:00Z" property="article:published_time"/><meta content="1440" property="og:image:height"/><meta content="2560" property="og:image:width"/><meta content="https://myaiplug.github.io/coproducer-web/blog/delay-time-from-bpm-sync-your-throws.html" property="og:url"/><meta content="en_US" property="og:locale"/><meta content="CoProducer" property="og:site_name"/><meta content="article" property="og:type"/><link href="https://myaiplug.github.io/coproducer-web/llms.txt" rel="alternate" title="llms.txt" type="text/plain"/><meta content="NoDAW Labs" name="author"/><meta content="#050308" name="theme-color"/><meta content="index,follow,max-image-preview:large" name="robots"/><meta content="delay time calculator, how to calculate delay time from bpm, delay time ms bpm, dotted eighth delay, triplet delay, reverb pre-delay tempo, vocal delay throw, delay off beat, ScrewAI, NoDAW" name="keywords"/>
+<title>Your delay sounds off the beat? Set it from the tempo, not by ear | Lacquer</title>
+<meta content="How to calculate delay time from BPM: 60,000 ÷ BPM is a quarter note in ms. Straight, dotted and triplet times, grid-locked pre-delay, and why &#x27;close enough&#x27; drifts." name="description"/>
+<link href="https://myaiplug.github.io/coproducer-web/blog/delay-time-from-bpm-sync-your-throws.html" rel="canonical"/>
+<link rel="alternate" type="application/rss+xml" title="Lacquer — CoProducer Journal" href="https://myaiplug.github.io/coproducer-web/blog/rss.xml"/>
+<link rel="icon" href="../favicon.ico" sizes="48x48"/>
+<link rel="icon" type="image/svg+xml" href="../assets/favicon.svg"/>
+<link rel="apple-touch-icon" href="../assets/apple-touch-icon.png"/>
+<link rel="manifest" href="../site.webmanifest"/>
+<meta content="Your delay sounds off the beat? Set it from the tempo, not by ear" property="og:title"/>
+<meta content="How to calculate delay time from BPM: 60,000 ÷ BPM is a quarter note in ms. Straight, dotted and triplet times, grid-locked pre-delay, and why &#x27;close enough&#x27; drifts." property="og:description"/>
+<meta content="https://myaiplug.github.io/coproducer-web/blog/img/essays/delay-time-from-bpm-sync-your-throws.jpg?v=shd" property="og:image"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;1,500;1,600&amp;family=Figtree:wght@400;500&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet" media="print" onload="this.media='all'"/><noscript><link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;1,500;1,600&amp;family=Figtree:wght@400;500&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/></noscript>
+<link rel="preload" as="image" type="image/webp" fetchpriority="high" imagesrcset="img/essays/w/delay-time-from-bpm-sync-your-throws-480.webp 480w, img/essays/w/delay-time-from-bpm-sync-your-throws-960.webp 960w, img/essays/w/delay-time-from-bpm-sync-your-throws-1600.webp 1600w" imagesizes="(max-width: 1100px) 100vw, 1100px"/>
+<link href="css/journal.css" rel="stylesheet"/>
+
+
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Your delay sounds off the beat? Set it from the tempo, not by ear","description":"How to calculate delay time from BPM: 60,000 ÷ BPM is a quarter note in ms. Straight, dotted and triplet times, grid-locked pre-delay, and why 'close enough' drifts.","datePublished":"2026-10-21","dateModified":"2026-10-21","mainEntityOfPage":{"@type":"WebPage","@id":"https://myaiplug.github.io/coproducer-web/blog/delay-time-from-bpm-sync-your-throws.html"},"image":{"@type":"ImageObject","url":"https://myaiplug.github.io/coproducer-web/blog/img/essays/delay-time-from-bpm-sync-your-throws.jpg?v=shd","width":2560,"height":1440},"author":{"@type":"Organization","name":"NoDAW Labs","url":"https://myaiplug.github.io/coproducer-web/","logo":"https://myaiplug.github.io/coproducer-web/assets/og-default.jpg"},"publisher":{"@type":"Organization","name":"NoDAW Labs","url":"https://myaiplug.github.io/coproducer-web/","logo":"https://myaiplug.github.io/coproducer-web/assets/og-default.jpg"},"isPartOf":{"@type":"Blog","name":"Lacquer — CoProducer Journal","url":"https://myaiplug.github.io/coproducer-web/blog/index.html"},"keywords":["delay time calculator","how to calculate delay time from bpm","delay time ms bpm","dotted eighth delay","triplet delay","reverb pre-delay tempo","vocal delay throw","delay off beat","ScrewAI","NoDAW"],"speakable":{"@type":"SpeakableSpecification","cssSelector":[".answer","h1"]}}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How do I calculate delay time from BPM?","acceptedAnswer":{"@type":"Answer","text":"Divide 60,000 by the tempo to get a quarter note in milliseconds. At 140 BPM that’s 428.6 ms. Halve it for an eighth (214.3 ms), multiply by 1.5 for a dotted note and by 2/3 for a triplet."}},{"@type":"Question","name":"What is a dotted eighth delay in milliseconds?","acceptedAnswer":{"@type":"Answer","text":"Three-quarters of a beat: 60,000 ÷ BPM × 0.75. At 140 BPM it’s 321.4 ms, at 120 BPM it’s 375 ms."}},{"@type":"Question","name":"Why does my delay sound off beat even though it’s close?","acceptedAnswer":{"@type":"Answer","text":"Each repeat copies the one before, so a small error adds up. A 250 ms delay in a 140 BPM song is 35.7 ms late on the first repeat and a full sixteenth note late by the third."}},{"@type":"Question","name":"Should reverb pre-delay be synced to tempo?","acceptedAnswer":{"@type":"Answer","text":"It doesn’t have to be, but a value that’s a clean division of the beat tends to feel attached to the groove. At 140 BPM, 1/64 is 26.8 ms and 1/32 is 53.6 ms, both inside the common 10 to 60 ms range."}}]}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"CoProducer","item":"https://myaiplug.github.io/coproducer-web/"},{"@type":"ListItem","position":2,"name":"Lacquer Journal","item":"https://myaiplug.github.io/coproducer-web/blog/index.html"},{"@type":"ListItem","position":3,"name":"Your delay sounds off the beat? Set it from the tempo, not by ear","item":"https://myaiplug.github.io/coproducer-web/blog/delay-time-from-bpm-sync-your-throws.html"}]}</script></head>
+<body>
+<header class="top">
+<a class="mark" href="../index.html"><em>Co</em>Producer</a>
+<nav aria-label="Primary" class="nav">
+<a href="index.html">Journal</a>
+<a href="../index.html#ab">A/B</a>
+<a href="../index.html#analyzeHome">Analyze</a>
+<a href="../guides/index.html">Guides</a>
+<a href="../pricing.html">Pricing</a>
+</nav>
+<a class="cta" href="../index.html#analyzeHome">Measure a mix</a>
+</header>
+<article class="post" id="main">
+<div class="post-hero"><img alt="A row of glowing echo rings fading from cyan to magenta across black marble, each standing on a thin gold grid line, a reel-to-reel tape machine softly lit behind" src="img/essays/delay-time-from-bpm-sync-your-throws.jpg?v=shd" srcset="img/essays/w/delay-time-from-bpm-sync-your-throws-480.webp 480w, img/essays/w/delay-time-from-bpm-sync-your-throws-960.webp 960w, img/essays/w/delay-time-from-bpm-sync-your-throws-1600.webp 1600w" sizes="(max-width: 1100px) 100vw, 1100px" width="2560" height="1440" fetchpriority="high" decoding="async"/></div>
+<header>
+<p class="kicker">Mix · 21 October 2026 · 7 min</p>
+<h1>Your delay sounds off the beat? Set it from the tempo, not by ear</h1>
+<p class="meta">NoDAW Labs · Lacquer Vol. 06</p>
+</header>
+<p class="answer">A quarter note lasts 60,000 ÷ BPM milliseconds, so at 140 BPM it’s 428.6 ms and an eighth is 214.3 ms. Halve it for shorter notes, multiply by 1.5 for dotted and by 2/3 for triplets. A delay set by ear a little off that number drifts further off the grid with every repeat, and that’s what makes a throw feel sloppy.</p>
+<p>You throw a delay on the last word of the hook and it sounds great on the first repeat. By the third one it’s smearing into the snare and the pocket feels a little drunk. You nudge the time knob, it gets better in one spot and worse in another, and twenty minutes later you’ve automated it off entirely.</p>
+<p>Most of the time the delay isn’t too loud or too dark. It’s just a few milliseconds off the tempo, and every repeat doubles down on the mistake.</p>
+<h2>The one formula</h2>
+<p>There are 60,000 milliseconds in a minute. Divide by the tempo and you have one beat, which in 4/4 is a quarter note. Everything else comes from that:</p>
+<ul>
+<li><strong>Straight notes.</strong> Halve for an eighth, halve again for a sixteenth. Double for a half note.</li>
+<li><strong>Dotted notes.</strong> Multiply by 1.5. The dotted eighth is the classic bouncing guitar and vocal delay.</li>
+<li><strong>Triplets.</strong> Multiply by 2/3. Triplet delays roll against a straight beat, which is why they sound so good on trap hats and swung vocals.</li>
+</ul>
+<p>Here it is as a small script, so you never have to look up a chart again:</p>
+<pre><code>#!/usr/bin/env python3
+"""Delay and pre-delay times from tempo, in milliseconds.
+usage: python3 delay_times.py 140 [0.8]     (optional second number: a playback-speed factor, e.g. a slowed bounce)"""
+import sys
+bpm = float(sys.argv[1])
+if len(sys.argv) &gt; 2:
+    bpm *= float(sys.argv[2])                    # slowing the whole bounce slows the tempo by the same factor
+beat = 60_000 / bpm                              # one quarter note in ms
+notes = [("1/2", 2), ("1/4", 1), ("1/8", 0.5), ("1/16", 0.25)]
+print(f"{bpm:g} BPM  (quarter note = {beat:.1f} ms)")
+print(f"{'note':&gt;6} {'straight':&gt;10} {'dotted':&gt;10} {'triplet':&gt;10}")
+for name, q in notes:
+    ms = beat * q
+    print(f"{name:&gt;6} {ms:10.1f} {ms*1.5:10.1f} {ms*2/3:10.1f}")
+print(f"reverb pre-delay that lands on the grid: 1/64 = {beat/16:.1f} ms, 1/32 = {beat/8:.1f} ms")</code></pre>
+<pre><code>$ python3 delay_times.py 140
+140 BPM  (quarter note = 428.6 ms)
+  note   straight     dotted    triplet
+   1/2      857.1     1285.7      571.4
+   1/4      428.6      642.9      285.7
+   1/8      214.3      321.4      142.9
+  1/16      107.1      160.7       71.4
+reverb pre-delay that lands on the grid: 1/64 = 26.8 ms, 1/32 = 53.6 ms</code></pre>
+<p>If your delay plugin has a sync button, use it, and you’re done. This matters when it doesn’t: hardware units, older plugins, a tape-style delay where you dial milliseconds, or a reverb whose pre-delay only takes a number.</p>
+<h2>Why “close enough” falls apart</h2>
+<p>Say you dialed 250 ms by ear in a 140 BPM session. That’s the eighth note at 120 BPM, and on the first repeat it sounds almost right, because 35.7 ms is easy to miss on one hit. But each repeat is a copy of the last one, so the error stacks:</p>
+<pre><code>$ python3 drift.py 140 250 0.5
+grid 214.3 ms, delay set to 250.0 ms (+35.7 ms per repeat)
+repeat 1:   +35.7 ms off the grid  (+16.7% of a step)
+repeat 2:   +71.4 ms off the grid  (+33.3% of a step)
+repeat 3:  +107.1 ms off the grid  (+50.0% of a step)
+repeat 4:  +142.9 ms off the grid  (+66.7% of a step)
+repeat 5:  +178.6 ms off the grid  (+83.3% of a step)</code></pre>
+<p>By the third repeat the echo lands exactly a sixteenth late, which is a different rhythm, not a slightly loose one. By the fifth it’s most of the way to the next eighth. This is why a long feedback tail set by ear can make a tight beat feel rushed or dragging even when the first slap sounds fine.</p>
+<p>The fix is boring: type the number. If you want the delay a hair behind for feel, push it a few milliseconds late on purpose, and keep the feedback low so the drift can’t pile up.</p>
+<h2>Pre-delay can sit on the grid too</h2>
+<p>Reverb pre-delay is the gap before the reverb starts. It keeps the dry vocal clear of its own wash, which is half of what we covered in <a href="reverb-makes-the-mix-muddy-filter-the-return.html">filtering the reverb return</a>. Any value from about 10 to 60 ms can work, but picking one that’s a clean division of the beat makes the tail feel attached to the groove. At 140 BPM a 1/64 note is 26.8 ms and a 1/32 is 53.6 ms. Start at the 1/64 for a vocal that needs to stay up front, and try the 1/32 on a slow ballad or a snare plate where you want the space to open up.</p>
+<h2>Slowed and sped-up versions</h2>
+<p>When you slow the whole bounce, everything printed in it slows together, delays included, so the repeats stay locked to the beat. That goes for a screw in <a href="../screwai.html">ScrewAI</a>, a tape-style varispeed, or a nightcore speed-up. What doesn’t follow along is any new delay you add after the fact. At 0.8× speed a 140 BPM record becomes 112 BPM, so a fresh throw needs the new tempo:</p>
+<pre><code>$ python3 delay_times.py 140 0.8
+112 BPM  (quarter note = 535.7 ms)
+  note   straight     dotted    triplet
+   1/2     1071.4     1607.1      714.3
+   1/4      535.7      803.6      357.1
+   1/8      267.9      401.8      178.6
+  1/16      133.9      200.9       89.3
+reverb pre-delay that lands on the grid: 1/64 = 33.5 ms, 1/32 = 67.0 ms</code></pre>
+<p>The eighth goes from 214.3 ms to 267.9 ms. Re-use the old number on the slowed version and you’re back to drifting. If you’re making a slowed cut for a release, our note on <a href="screw-tempo-still-needs-a-legal-peak.html">why screw tempo still needs a legal peak</a> covers the delivery side.</p>
+<h2>Making throws sit</h2>
+<ol>
+<li><strong>Put the delay on a send, not the insert.</strong> Then you can automate the send level on the exact word you want thrown, and leave the rest of the vocal dry.</li>
+<li><strong>Filter the return.</strong> A high-pass around 300 to 500 Hz and a low-pass somewhere in the 4 to 8 kHz range keeps repeats behind the lead instead of competing with it.</li>
+<li><strong>Keep feedback low on busy beats.</strong> Two or three audible repeats is plenty under a full arrangement. Long tails belong in the gaps.</li>
+<li><strong>Duck it.</strong> A compressor on the delay return keyed from the dry vocal pushes the repeats down while the singer is singing and lets them bloom in the space after.</li>
+<li><strong>Check it in mono.</strong> Ping-pong delays are wide by design. Fold to mono and make sure the throw doesn’t vanish or flam. More in <a href="wide-mixes-fail-in-mono.html">why wide mixes fail in mono</a>.</li>
+</ol>
+<h2>Genre notes</h2>
+<ul>
+<li><strong>Trap and drill.</strong> Eighth-triplet throws on the last word of a bar sit right with triplet hat rolls. Keep them short and ducked so they don’t mask the 808.</li>
+<li><strong>R&amp;B.</strong> A quarter or dotted eighth with gentle feedback on a send, filtered dark, gives the vocal a trail without pushing it back.</li>
+<li><strong>Rock and indie.</strong> A slapback around 80 to 140 ms is usually set for feel rather than the grid, and that’s fine because it has no feedback to drift.</li>
+<li><strong>House and techno.</strong> Dotted eighths on a stab or vocal chop are the default for a reason. Sync it, and automate the feedback for builds.</li>
+<li><strong>Reggae and dub.</strong> Long, high-feedback tails are the instrument. That’s exactly when the number has to be right, because you’re going to hear every repeat.</li>
+</ul>
+<aside class="aside">Tempo in, milliseconds out, and the throw stays in the pocket. If you’re making a slowed version, hear the <a href="../index.html#screwDemo">ScrewAI demo</a>, then <a href="../index.html#analyzeHome">measure the bounce</a> before it ships.</aside>
+<dl class="faq">
+<dt>How do I calculate delay time from BPM?</dt>
+<dd>Divide 60,000 by the tempo to get a quarter note in milliseconds. At 140 BPM that’s 428.6 ms. Halve it for an eighth (214.3 ms), multiply by 1.5 for a dotted note and by 2/3 for a triplet.</dd>
+<dt>What is a dotted eighth delay in milliseconds?</dt>
+<dd>Three-quarters of a beat: 60,000 ÷ BPM × 0.75. At 140 BPM it’s 321.4 ms, at 120 BPM it’s 375 ms.</dd>
+<dt>Why does my delay sound off beat even though it’s close?</dt>
+<dd>Each repeat copies the one before, so a small error adds up. A 250 ms delay in a 140 BPM song is 35.7 ms late on the first repeat and a full sixteenth note late by the third.</dd>
+<dt>Should reverb pre-delay be synced to tempo?</dt>
+<dd>It doesn’t have to be, but a value that’s a clean division of the beat tends to feel attached to the groove. At 140 BPM, 1/64 is 26.8 ms and 1/32 is 53.6 ms, both inside the common 10 to 60 ms range.</dd>
+</dl>
+<nav aria-label="Keep reading" class="related-essays keep-reading" style="margin:48px 0 24px;padding-top:24px;border-top:1px solid rgba(196,165,116,.32)"><h2>Keep reading</h2><ul><li><a href="reverb-makes-the-mix-muddy-filter-the-return.html">Reverb making the mix muddy? Filter the return, not the vocal</a></li><li><a href="wide-mixes-fail-in-mono.html">Wide mixes fail in mono. Check mid/side before you bounce</a></li><li><a href="screw-tempo-still-needs-a-legal-peak.html">Screw tempo still needs a legal peak</a></li><li><a href="when-to-slow-the-bounce.html">When to slow the bounce</a></li><li><a href="resampling-vs-pitch-shift-vs-tempo.html">Resampling, pitch shifting, and tempo change are three different jobs</a></li><li><a href="parallel-compression-sounds-thin-check-latency.html">Parallel compression sounds thin? Check the latency first</a></li></ul><p class="hub-link">More in <a href="topics/low-end-and-mix-dynamics.html">Low end &amp; mix dynamics</a> · <a href="index.html">All essays</a></p></nav></article>
+<aside aria-label="About the publisher" class="author-box"><p class="author-k">Written and published by</p><p class="author-name"><a href="about.html">NoDAW Labs</a></p><p class="author-bio">NoDAW Labs makes local-first audio tools: CoProducer, reTUNE[432] and DeepSplit. Essays are credited to the studio, not to individual writers. <a href="methodology.html">How we test, cite and correct</a>.</p></aside>
+<section class="comments" data-comments="" data-thread="delay-time-bpm"></section>
+<script src="js/studio.js" type="module"></script>
+<script src="js/comments.js" type="module"></script>
+<footer class="site"><span>Lacquer · CoProducer Journal</span><span><a href="index.html">All essays</a> · <a href="about.html">About</a> · <a href="methodology.html">Methodology</a></span></footer>
+</body>
+</html>

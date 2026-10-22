@@ -1,7 +1,7 @@
 # CoProducer and Lacquer — full text for assistants
 Base: https://myaiplug.github.io/coproducer-web/
-Updated: 2026-10-20
-Essays: 56 (full plain-text bodies, in journal order)
+Updated: 2026-10-22
+Essays: 62 (full plain-text bodies, in journal order)
 Summary index: https://myaiplug.github.io/coproducer-web/llms.txt
 
 ## Identity
@@ -27,6 +27,610 @@ Summary index: https://myaiplug.github.io/coproducer-web/llms.txt
 - Booth / journal comments on Lacquer pages are real reader notes posted through a public comment form (no seeded or sample comments). Notes with links are held for review before they appear.
 
 # Lacquer essays
+
+## Panned parts get quieter in mono? That’s your pan law, not your ears
+URL: https://myaiplug.github.io/coproducer-web/blog/pan-law-why-panned-parts-change-level.html
+Section: Mix · 22 October 2026 · 7 min
+Summary: What pan law is and why it matters: a centered sound is turned down on both sides so panning doesn’t change its loudness. Fold to mono and the center jumps up to 3 dB. Table and script inside.
+
+Pan law is how much a mono sound is turned down on each side when it sits in the center, so it doesn’t sound louder there than panned hard. With the common −3 dB law the stereo loudness stays even across the pan, but fold the mix to mono and anything in the center comes out 3 dB louder than the same sound panned hard. That’s why hard-panned guitars and hats seem to fall back on a phone or a club’s mono system.
+You balance the mix on headphones and it feels right: guitars wide, hats off to one side, vocal and 808 dead center. Then you hit the mono button, or play it on a phone, and the vocal and bass jump forward while the panned parts sink. Nothing is out of phase. The correlation meter looks fine. It’s still a different mix.
+Most of that shift comes from a setting you probably never chose: the pan law.
+
+### What the pan knob is actually doing
+A mono track panned to the center plays out of both speakers. Two speakers playing the same thing add up, so if the panner left both sides at full level, the sound would get louder every time you moved it toward the middle. A pan law turns both sides down at center to stop that. The question is by how much, and there are four common answers. This little script prints all four for a sound in the center, halfway left (L50) and hard left (L100):
+#!/usr/bin/env python3
+"""Pan law table: per-side gain and level change for a mono source, in stereo and folded to mono.
+Levels are relative to the same source panned hard to one side (which every law leaves at unity)."""
+import math, sys
+
+def gains(law_db, pos):
+    """pos -1 (hard L) .. 0 (center) .. +1 (hard R). Returns (L, R) linear gains."""
+    t = (pos + 1) / 2                      # 0..1
+    if law_db == 0:                        # balance-style: center is unity on both sides
+        return min(1, 2 * (1 - t)), min(1, 2 * t)
+    p = math.cos(t * math.pi / 2), math.sin(t * math.pi / 2)   # constant power, -3 dB at center
+    lin = 1 - t, t                                              # linear, -6 dB at center
+    if law_db == -3: return p
+    if law_db == -6: return lin
+    if law_db == -4.5: return tuple(math.sqrt(a * b) for a, b in zip(p, lin))
+    raise SystemExit("laws: 0, -3, -4.5, -6")
+
+db = lambda x: 20 * math.log10(x) if x > 0 else float("-inf")
+laws = [float(a) if "." in a else int(a) for a in sys.argv[1:]] or [0, -3, -4.5, -6]
+print(f"{'law':>6} {'pan':>6} {'L gain':>8} {'R gain':>8} {'stereo':>8} {'mono':>8}")
+for law in laws:
+    for pos, name in ((0, "C"), (-0.5, "L50"), (-1, "L100")):
+        l, r = gains(law, pos)
+        stereo = 10 * math.log10(l * l + r * r)    # acoustic power from two speakers
+        mono = db(l + r)                           # both sides summed to one speaker
+        print(f"{law:>5}dB {name:>6} {db(l):>7.1f}  {db(r):>7.1f}  {stereo:>+7.1f}  {mono:>+7.1f}")
+$ python3 pan_law.py
+   law    pan   L gain   R gain   stereo     mono
+    0dB      C     0.0      0.0     +3.0     +6.0
+    0dB    L50     0.0     -6.0     +1.0     +3.5
+    0dB   L100     0.0     -inf     +0.0     +0.0
+   -3dB      C    -3.0     -3.0     +0.0     +3.0
+   -3dB    L50    -0.7     -8.3     +0.0     +2.3
+   -3dB   L100     0.0     -inf     +0.0     +0.0
+ -4.5dB      C    -4.5     -4.5     -1.5     +1.5
+ -4.5dB    L50    -1.6    -10.2     -1.0     +1.2
+ -4.5dB   L100     0.0     -inf     +0.0     +0.0
+   -6dB      C    -6.0     -6.0     -3.0     +0.0
+   -6dB    L50    -2.5    -12.0     -2.0     +0.0
+   -6dB   L100     0.0     -inf     +0.0     +0.0
+Read the table against a sound panned hard left, which every law leaves alone. The stereo column is what you hear from two speakers in a room, and the mono column is what happens when both sides are added together into one speaker.
+- 0 dB (no compensation). Center is 3 dB louder in stereo and 6 dB louder in mono. You’ll mostly meet this on balance knobs, not true panners.
+- −3 dB (constant power). Loudness stays even as you pan in stereo. Fold to mono and the center is 3 dB hotter than anything hard-panned.
+- −6 dB. Perfect in mono, but in stereo the center dips 3 dB, so centered parts feel a bit too quiet on speakers.
+- −4.5 dB. The compromise. Center is 1.5 dB down in stereo and 1.5 dB up in mono.
+No law is right in both places at once. That’s the whole point: pick one, know which way it leans, and check the other way before you bounce.
+
+### Why your mix changes in mono
+With a −3 dB law, mixing on speakers or headphones gives you a fair picture of the stereo balance. But a lot of playback is effectively mono: phone speakers, many Bluetooth speakers, club systems and some broadcast chains. In mono everything you put in the middle gets a 3 dB lift relative to anything panned hard, and parts at half-pan get about 2.3 dB. So the vocal, kick, snare and 808 move forward together, and the double-tracked guitars, wide pads and panned percussion step back.
+Three decibels doesn’t sound like a lot until it’s the hats in a drill beat or the rhythm guitars in a rock mix. That’s the difference between a part that drives the song and one you have to look for. If your low end also lives in the center, mono makes the bass feel bigger too, which is one more reason a mix that’s balanced on headphones can sound heavy and narrow on a phone. We go into the phone side in why the 808 disappears on phone speakers.
+
+### The pan knob on a stereo track is usually a balance knob
+In many DAWs, the single pan knob on a stereo track doesn’t move the sound anywhere. It turns the opposite side down. Push a stereo synth halfway left and you haven’t moved it, you’ve made its right channel quieter, and whatever was only on the right side is fading away. Hard left and the right channel is gone. If you want to move or narrow a stereo source, use a stereo panner or width control (many DAWs offer one on the track), or split it into two mono tracks and pan each one.
+
+### When pan law bites you in practice
+1. Moving a session between DAWs. Open the same mix in an app with a different default law and every panned part shifts against the centered ones by a dB or more. If a collaborator says your session sounds different, check the pan law in both projects before you touch a fader.
+2. Changing the law mid-mix. Most DAWs let you set it per project. Change it halfway through and your balance moves. Pick one at the start and leave it.
+3. Summing stems somewhere else. Panning is printed into the stems, so they come back correctly. But if you send mono stems and let the mix engineer pan them, their law decides the balance, not yours. Our note on exporting stems for a mix engineer covers what to print.
+4. Automating pans. A sweep from hard left to center with a −3 dB law is level in stereo but rises 3 dB in mono. If the move needs to be level everywhere, ride the volume a touch with it.
+
+### A quick routine that works
+1. Find the pan law in your project settings, write it down, and keep it the same for the whole record.
+2. Balance in stereo first. That’s how most people judge a mix.
+3. Fold to mono at a low monitor level for ten seconds per section. Listen for which parts drop out, not for the whole mix getting smaller.
+4. If a hard-panned part disappears, bring it a little toward center (70 to 80% often keeps the width and loses less in mono) or lift it 1 to 2 dB, then recheck stereo.
+5. Bounce and measure the file, not the session. A low correlation reading is a separate problem from pan law, covered in phase correlation and mono.
+
+### Genre notes
+- Hip-hop and trap. Vocal, kick and 808 in the middle get the mono lift, so hats and percussion panned hard are the first things to vanish on a phone. Keep the main hat closer to center and spread the extras.
+- Rock and metal. Double-tracked guitars hard left and right are the sound of the genre, and they’re exactly what drops 3 dB in mono. Check that the riff still carries before you pull the vocal up.
+- EDM and house. Club systems are often mono or close to it. Leads and stabs you widened with a balance knob can lose half their content. Use a real width tool and check it summed.
+- Jazz and acoustic. Panning often mirrors where players stood. A gentler spread, around half-pan, keeps that picture in mono with only about a 2 dB shift.
+Note: Stereo balance, mono check, then the file. When the bounce is done, run it through CoProducer to catch phase problems a pan law won’t explain.
+Q: What is pan law?
+A: Pan law is the amount a mono sound is turned down on each side when it’s panned to the center, so it doesn’t get louder than when it’s panned hard. Common values are 0, −3, −4.5 and −6 dB.
+Q: Which pan law should I use?
+A: −3 dB keeps stereo loudness even as you pan and is a common default. −6 dB keeps mono even instead, and −4.5 dB splits the difference. The best choice is the one you pick at the start and keep, then check the other way before you bounce.
+Q: Why do my panned instruments get quieter in mono?
+A: With a −3 dB pan law, a centered sound adds up to 3 dB louder in mono than the same sound panned hard. So centered parts like the vocal and 808 come forward and hard-panned parts like guitars and hats fall back.
+Q: Is the pan knob on a stereo track a panner?
+A: In many DAWs it’s a balance control. Turning it left lowers the right channel instead of moving the sound, so anything only on the right side fades out. Use a stereo panner or width control to move or narrow a stereo source.
+
+---
+
+## Loud breaths in your vocal? Turn them down before the compressor, don’t cut them
+URL: https://myaiplug.github.io/coproducer-web/blog/vocal-breaths-turn-them-down-dont-cut-them.html
+Section: Vocals · 22 October 2026 · 7 min
+Summary: How to handle breaths in a vocal: lower them with clip gain before compression instead of deleting them. A compressor with make-up gain can shrink the gap between singing and breath from 12 dB to 3 dB.
+
+Breaths get loud because compression and limiting turn down the singing but not the quieter breath, then make-up gain lifts everything. Lower each breath with clip gain before the compressor, usually by 4 to 10 dB, instead of deleting it. A vocal with no breaths sounds chopped and robotic; a vocal with breaths sitting well under the words sounds human and still clean.
+The raw vocal sounded fine. Then you put a compressor on it, pushed it into the beat, and now every line starts with a gasp that’s almost as loud as the first word. After mastering it’s worse. The obvious fix is to cut every breath out, and that’s usually where the vocal stops sounding like a person.
+Breaths aren’t the problem. The gap between the breath and the singing is, and your chain is what’s closing it.
+
+### Why compression brings breaths up
+A compressor only turns down what goes over its threshold. The singing is loud, so it gets pulled down. The breath is quieter, often under the threshold, so it doesn’t. Then you add make-up gain to bring the singing back to where it was, and that gain lifts the breath too. Here’s the arithmetic for a simple 4:1 compressor:
+$ python3 comp_math.py -12 -24 -24 4
+in : sung -12.0  breath -24.0  gap 12.0 dB
+out: sung -12.0  breath -15.0  gap 3.0 dB  (threshold -24.0, 4.0:1, make-up +9.0 dB)
+Going in, the breath sat 12 dB under the singing. Coming out, it’s 3 dB under. Same take, same breath, it just lost most of the space around it. Breaths that start further down still lose half their gap:
+$ python3 comp_math.py -12 -30 -24 4
+in : sung -12.0  breath -30.0  gap 18.0 dB
+out: sung -12.0  breath -21.0  gap 9.0 dB  (threshold -24.0, 4.0:1, make-up +9.0 dB)
+A mastering limiter does the same thing again on the whole mix. That’s why breaths you never noticed in the session show up on the master, the same way esses get louder after mastering.
+
+### Turn them down first, with clip gain
+The fix is to set the breath level before the compressor sees it. Clip gain (also called region or item gain) changes the audio before any plugin, so the compressor works on a vocal where the breaths are already in their place.
+1. Split around each breath. Cut just before it starts and just after it ends, leaving the first consonant of the word alone.
+2. Lower it, don’t mute it. Start with 6 dB down and adjust by ear. Some breaths are part of the phrasing and only need 3 or 4. A big gasp before a loud chorus might want 10 or more.
+3. Fade the edges. A few milliseconds of fade on each split keeps the gain change from clicking. We measured why in clicks at edit points.
+4. Then compress. Now the compressor and make-up gain bring everything up together and the breath stays where you put it.
+On a long session you can let a script find the breaths first. This one looks for stretches that are quieter than the singing, well above silence, and mostly high-frequency noise, and tells you how much clip gain puts each one 18 dB under the sung level:
+#!/usr/bin/env python3
+"""List likely breaths in a mono or stereo vocal WAV and how much clip gain brings each to a target level.
+A breath here = a stretch of 10 ms frames that is quieter than the singing but well above silence, with
+most of its energy above 1.5 kHz. Usage: python3 find_breaths.py vocal.wav [target_dB_below_vocal]"""
+import sys, wave, numpy as np
+
+def load(path):
+    with wave.open(path) as w:
+        sr, ch, sw = w.getframerate(), w.getnchannels(), w.getsampwidth()
+        x = np.frombuffer(w.readframes(w.getnframes()), {2: "<i2", 4: "<i4"}[sw]).astype(float)
+    return x.reshape(-1, ch).mean(axis=1) / (2 ** (8 * sw - 1)), sr
+
+x, sr = load(sys.argv[1]); below = float(sys.argv[2]) if len(sys.argv) > 2 else 18
+hop = sr // 100; frames = x[: len(x) // hop * hop].reshape(-1, hop)
+rms = 20 * np.log10(np.sqrt((frames ** 2).mean(axis=1)) + 1e-12)
+spec = np.abs(np.fft.rfft(frames * np.hanning(hop), axis=1)) ** 2
+hi = spec[:, np.fft.rfftfreq(hop, 1 / sr) >= 1500].sum(axis=1) / (spec.sum(axis=1) + 1e-20)
+voice = np.percentile(rms[rms > -60], 90)                 # loud sung level
+is_breath = (rms < voice - 6) & (rms > voice - 45) & (hi > 0.7)
+print(f"sung level ≈ {voice:.1f} dBFS (10 ms RMS); target for breaths: {voice - below:.1f} dBFS")
+i, n = 0, 0
+while i < len(is_breath):
+    if is_breath[i]:
+        j = i
+        while j < len(is_breath) and is_breath[j]: j += 1
+        if j - i >= 8:                                      # at least 80 ms
+            lvl = 10 * np.log10(np.mean(10 ** (rms[i:j] / 10)))
+            n += 1
+            print(f"breath {n}: {i/100:6.2f}-{j/100:6.2f} s  {lvl:6.1f} dBFS  clip gain {min(0, voice - below - lvl):+5.1f} dB")
+        i = j
+    else: i += 1
+Run on a test vocal with three sung phrases and a breath before each one:
+$ python3 find_breaths.py vocal.wav
+sung level ≈ -11.5 dBFS (10 ms RMS); target for breaths: -29.5 dBFS
+breath 1:   0.30-  0.65 s   -24.0 dBFS  clip gain  -5.5 dB
+breath 2:   2.73-  3.08 s   -24.0 dBFS  clip gain  -5.5 dB
+breath 3:   5.16-  5.51 s   -24.0 dBFS  clip gain  -5.5 dB
+Treat the list as a map, not a verdict. Thresholds that fit one singer and mic won’t fit every take, and a soft sung word or a breathy note can look like a breath. You still listen to every one.
+
+### Why not just cut them, or gate them?
+- Cutting leaves holes. Room tone and headphone bleed disappear and come back on every line. Hard silence between phrases sounds edited, especially on a quiet song.
+- Breaths carry the timing. The inhale tells the listener the next line is coming. Remove it and phrases start out of nowhere, which is a big part of the robotic, over-tuned feel.
+- Gates chatter. A gate set to catch breaths also chops soft word endings and the start of quiet consonants, and it opens and closes on reverb tails.
+- De-breath plugins help, carefully. They’re quick on long takes, but they tend to work by reducing, not removing. Set them to turn breaths down a few dB and check the soft passages.
+
+### Genre notes
+- Pop and R&B. Heavy compression and stacked vocals make breaths add up fast. Lower them on the lead, and on doubles and harmonies cut them or bring them way down, since five breaths at once sounds like wind.
+- Rap. Breaths before a fast verse are part of the energy. Keep them, just under the words. Ad-lib tracks usually don’t need their own breaths at all.
+- Acoustic, folk and jazz. Lighter compression means breaths stay lower on their own. Touch only the ones that jump out, and leave the rest of the performance alone.
+- Podcasts and voiceover. The same rule applies. Cut-out breaths are the first thing listeners notice as over-edited speech.
+The same goes for an acapella you pulled from a finished song. Separation keeps the breaths along with the voice, so if you’re pulling a vocal with StemSplit for a remix, set the breaths on the stem first, then build your chain on top. More on that workflow in sampling from separated stems.
+Note: Breaths down, not out, then compress. When the vocal’s in the mix, measure the bounce before it ships.
+Q: Should you remove breaths from vocals?
+A: Usually no. Deleting every breath makes a vocal sound chopped and robotic. Lower them with clip gain, often 4 to 10 dB, so they sit well under the words.
+Q: Why are breaths so loud after compression?
+A: A compressor turns down the loud singing but not the quieter breath, then make-up gain lifts both. In a 4:1 example with a −24 dB threshold, a breath 12 dB under the singing ends up only 3 dB under.
+Q: Should I edit breaths before or after compression?
+A: Before. Clip gain works before any plugin, so the compressor reacts to a vocal where the breaths are already at the right level.
+Q: How much should I turn down a breath?
+A: Start around 6 dB and adjust by ear. Breaths that are part of the phrasing may only need 3 or 4 dB; a large gasp before a loud section can take 10 dB or more.
+
+---
+
+## Your delay sounds off the beat? Set it from the tempo, not by ear
+URL: https://myaiplug.github.io/coproducer-web/blog/delay-time-from-bpm-sync-your-throws.html
+Section: Mix · 21 October 2026 · 7 min
+Summary: How to calculate delay time from BPM: 60,000 ÷ BPM is a quarter note in ms. Straight, dotted and triplet times, grid-locked pre-delay, and why 'close enough' drifts.
+
+A quarter note lasts 60,000 ÷ BPM milliseconds, so at 140 BPM it’s 428.6 ms and an eighth is 214.3 ms. Halve it for shorter notes, multiply by 1.5 for dotted and by 2/3 for triplets. A delay set by ear a little off that number drifts further off the grid with every repeat, and that’s what makes a throw feel sloppy.
+You throw a delay on the last word of the hook and it sounds great on the first repeat. By the third one it’s smearing into the snare and the pocket feels a little drunk. You nudge the time knob, it gets better in one spot and worse in another, and twenty minutes later you’ve automated it off entirely.
+Most of the time the delay isn’t too loud or too dark. It’s just a few milliseconds off the tempo, and every repeat doubles down on the mistake.
+
+### The one formula
+There are 60,000 milliseconds in a minute. Divide by the tempo and you have one beat, which in 4/4 is a quarter note. Everything else comes from that:
+- Straight notes. Halve for an eighth, halve again for a sixteenth. Double for a half note.
+- Dotted notes. Multiply by 1.5. The dotted eighth is the classic bouncing guitar and vocal delay.
+- Triplets. Multiply by 2/3. Triplet delays roll against a straight beat, which is why they sound so good on trap hats and swung vocals.
+Here it is as a small script, so you never have to look up a chart again:
+#!/usr/bin/env python3
+"""Delay and pre-delay times from tempo, in milliseconds.
+usage: python3 delay_times.py 140 [0.8]     (optional second number: a playback-speed factor, e.g. a slowed bounce)"""
+import sys
+bpm = float(sys.argv[1])
+if len(sys.argv) > 2:
+    bpm *= float(sys.argv[2])                    # slowing the whole bounce slows the tempo by the same factor
+beat = 60_000 / bpm                              # one quarter note in ms
+notes = [("1/2", 2), ("1/4", 1), ("1/8", 0.5), ("1/16", 0.25)]
+print(f"{bpm:g} BPM  (quarter note = {beat:.1f} ms)")
+print(f"{'note':>6} {'straight':>10} {'dotted':>10} {'triplet':>10}")
+for name, q in notes:
+    ms = beat * q
+    print(f"{name:>6} {ms:10.1f} {ms*1.5:10.1f} {ms*2/3:10.1f}")
+print(f"reverb pre-delay that lands on the grid: 1/64 = {beat/16:.1f} ms, 1/32 = {beat/8:.1f} ms")
+$ python3 delay_times.py 140
+140 BPM  (quarter note = 428.6 ms)
+  note   straight     dotted    triplet
+   1/2      857.1     1285.7      571.4
+   1/4      428.6      642.9      285.7
+   1/8      214.3      321.4      142.9
+  1/16      107.1      160.7       71.4
+reverb pre-delay that lands on the grid: 1/64 = 26.8 ms, 1/32 = 53.6 ms
+If your delay plugin has a sync button, use it, and you’re done. This matters when it doesn’t: hardware units, older plugins, a tape-style delay where you dial milliseconds, or a reverb whose pre-delay only takes a number.
+
+### Why “close enough” falls apart
+Say you dialed 250 ms by ear in a 140 BPM session. That’s the eighth note at 120 BPM, and on the first repeat it sounds almost right, because 35.7 ms is easy to miss on one hit. But each repeat is a copy of the last one, so the error stacks:
+$ python3 drift.py 140 250 0.5
+grid 214.3 ms, delay set to 250.0 ms (+35.7 ms per repeat)
+repeat 1:   +35.7 ms off the grid  (+16.7% of a step)
+repeat 2:   +71.4 ms off the grid  (+33.3% of a step)
+repeat 3:  +107.1 ms off the grid  (+50.0% of a step)
+repeat 4:  +142.9 ms off the grid  (+66.7% of a step)
+repeat 5:  +178.6 ms off the grid  (+83.3% of a step)
+By the third repeat the echo lands exactly a sixteenth late, which is a different rhythm, not a slightly loose one. By the fifth it’s most of the way to the next eighth. This is why a long feedback tail set by ear can make a tight beat feel rushed or dragging even when the first slap sounds fine.
+The fix is boring: type the number. If you want the delay a hair behind for feel, push it a few milliseconds late on purpose, and keep the feedback low so the drift can’t pile up.
+
+### Pre-delay can sit on the grid too
+Reverb pre-delay is the gap before the reverb starts. It keeps the dry vocal clear of its own wash, which is half of what we covered in filtering the reverb return. Any value from about 10 to 60 ms can work, but picking one that’s a clean division of the beat makes the tail feel attached to the groove. At 140 BPM a 1/64 note is 26.8 ms and a 1/32 is 53.6 ms. Start at the 1/64 for a vocal that needs to stay up front, and try the 1/32 on a slow ballad or a snare plate where you want the space to open up.
+
+### Slowed and sped-up versions
+When you slow the whole bounce, everything printed in it slows together, delays included, so the repeats stay locked to the beat. That goes for a screw in ScrewAI, a tape-style varispeed, or a nightcore speed-up. What doesn’t follow along is any new delay you add after the fact. At 0.8× speed a 140 BPM record becomes 112 BPM, so a fresh throw needs the new tempo:
+$ python3 delay_times.py 140 0.8
+112 BPM  (quarter note = 535.7 ms)
+  note   straight     dotted    triplet
+   1/2     1071.4     1607.1      714.3
+   1/4      535.7      803.6      357.1
+   1/8      267.9      401.8      178.6
+  1/16      133.9      200.9       89.3
+reverb pre-delay that lands on the grid: 1/64 = 33.5 ms, 1/32 = 67.0 ms
+The eighth goes from 214.3 ms to 267.9 ms. Re-use the old number on the slowed version and you’re back to drifting. If you’re making a slowed cut for a release, our note on why screw tempo still needs a legal peak covers the delivery side.
+
+### Making throws sit
+1. Put the delay on a send, not the insert. Then you can automate the send level on the exact word you want thrown, and leave the rest of the vocal dry.
+2. Filter the return. A high-pass around 300 to 500 Hz and a low-pass somewhere in the 4 to 8 kHz range keeps repeats behind the lead instead of competing with it.
+3. Keep feedback low on busy beats. Two or three audible repeats is plenty under a full arrangement. Long tails belong in the gaps.
+4. Duck it. A compressor on the delay return keyed from the dry vocal pushes the repeats down while the singer is singing and lets them bloom in the space after.
+5. Check it in mono. Ping-pong delays are wide by design. Fold to mono and make sure the throw doesn’t vanish or flam. More in why wide mixes fail in mono.
+
+### Genre notes
+- Trap and drill. Eighth-triplet throws on the last word of a bar sit right with triplet hat rolls. Keep them short and ducked so they don’t mask the 808.
+- R&B. A quarter or dotted eighth with gentle feedback on a send, filtered dark, gives the vocal a trail without pushing it back.
+- Rock and indie. A slapback around 80 to 140 ms is usually set for feel rather than the grid, and that’s fine because it has no feedback to drift.
+- House and techno. Dotted eighths on a stab or vocal chop are the default for a reason. Sync it, and automate the feedback for builds.
+- Reggae and dub. Long, high-feedback tails are the instrument. That’s exactly when the number has to be right, because you’re going to hear every repeat.
+Note: Tempo in, milliseconds out, and the throw stays in the pocket. If you’re making a slowed version, hear the ScrewAI demo, then measure the bounce before it ships.
+Q: How do I calculate delay time from BPM?
+A: Divide 60,000 by the tempo to get a quarter note in milliseconds. At 140 BPM that’s 428.6 ms. Halve it for an eighth (214.3 ms), multiply by 1.5 for a dotted note and by 2/3 for a triplet.
+Q: What is a dotted eighth delay in milliseconds?
+A: Three-quarters of a beat: 60,000 ÷ BPM × 0.75. At 140 BPM it’s 321.4 ms, at 120 BPM it’s 375 ms.
+Q: Why does my delay sound off beat even though it’s close?
+A: Each repeat copies the one before, so a small error adds up. A 250 ms delay in a 140 BPM song is 35.7 ms late on the first repeat and a full sixteenth note late by the third.
+Q: Should reverb pre-delay be synced to tempo?
+A: It doesn’t have to be, but a value that’s a clean division of the beat tends to feel attached to the groove. At 140 BPM, 1/64 is 26.8 ms and 1/32 is 53.6 ms, both inside the common 10 to 60 ms range.
+
+---
+
+## Clicks at your edit points come from cutting mid-wave. Fade every cut
+URL: https://myaiplug.github.io/coproducer-web/blog/clicks-at-edit-points-fade-every-cut.html
+Section: Editing · 21 October 2026 · 7 min
+Summary: Why audio edits click and pop: a cut or splice that lands mid-waveform makes an instant jump. A 5 ms fade or crossfade removes it. Includes a click-finder script.
+
+An edit clicks when the waveform jumps instantly from one value to another, which happens whenever you cut or splice in the middle of a cycle instead of at silence. That jump is a burst of high-frequency energy. A short fade on every cut, or a crossfade on every splice, around 5 ms, smooths the jump out and the click disappears.
+You comp the best vocal take out of six, chop a sample into a new pattern, or trim the tail off an 808, and it all looks fine on the screen. Then on headphones there’s a tiny tick right where the edit is. Sometimes you only hear it after mastering, when the limiter and a brighter top end pull it forward.
+It isn’t the plugin and it isn’t your interface. It’s the edit.
+
+### Why a cut clicks
+Audio is a wave moving up and down around zero. If you stop it when it’s at zero, nothing happens. If you stop it at the top of a cycle, the next sample is zero and the speaker cone has to snap back instantly. That instant jump isn’t a low note anymore, it’s a broadband spike, and your ears hear it as a click.
+Splices do the same thing. Two takes of the same note are almost never at the same point in their cycle at the edit, so the waveform jumps from where take one was to where take two is. Low, sustained sounds give it away first: 808s, bass, pads, held vowels. Drums usually hide it, because a hit is already a jump.
+
+### We made four edits and measured them
+A synthetic 48 kHz file: one long 55 Hz note at −6 dBFS, about where a sustained 808 or bass would sit. We stopped it mid-wave once with no fade and once with a 5 ms fade-out, and spliced it to a second take a quarter-cycle off once with no fade and once with a 5 ms crossfade. A clean 55 Hz note has almost nothing above 2 kHz, so anything up there near an edit is the click:
+Edit | Loudest content above 2 kHz near the edit
+Stop mid-wave, no fade | −13.3 dBFS
+Same stop, 5 ms fade-out | −82.9 dBFS
+Splice to the other take, no fade | −8.9 dBFS
+Same splice, 5 ms crossfade | −78.4 dBFS
+The unfaded edits throw a burst only a few dB under the note itself, in a range where the note has nothing. Five milliseconds of fade drops that by about 70 dB, which puts it well below anything you’ll hear. Five milliseconds is also short enough that nobody notices the fade.
+
+### Fade lengths that work
+- Most cuts: 2 to 10 ms. Enough to smooth the jump, short enough to be invisible. Five is a good default.
+- Drum hits and chops: 1 to 2 ms fade-in. A long fade-in softens the transient you wanted. Start the slice on the hit, as in our sampling from separated stems workflow, and keep the fade-in tiny.
+- Low notes: a little longer. A 40 Hz cycle is 25 ms long. A fade of 10 ms or so keeps the bottom from thumping at the cut.
+- Comps inside a sustained vowel: 10 to 30 ms crossfade. Longer crossfades hide the change in tone between takes, not just the click.
+- Crossfade shape. Use equal-power for two different takes and equal-gain when the material on both sides is nearly identical, such as a loop to itself.
+Snapping to zero crossings helps, and most DAWs can do it, but it isn’t enough on its own. A zero crossing on one side of a splice can still meet the other take going in the opposite direction, and in stereo the left and right channels rarely cross zero at the same moment. A fade fixes both.
+
+### Find the ones you missed
+After a long comp it’s easy to lose track of an edit. This scans a bounce for sudden changes in the waveform’s slope that stand far above the audio around them, which is what an unfaded edit looks like:
+#!/usr/bin/env python3
+"""Flag edit clicks: sudden jumps in the waveform's slope that a fade would have smoothed.
+usage: python3 find_clicks.py file.wav [threshold_dB]      (pip install numpy soundfile)"""
+import sys
+import numpy as np, soundfile as sf
+x, sr = sf.read(sys.argv[1], always_2d=True)
+x = x.mean(axis=1)
+thr = float(sys.argv[2]) if len(sys.argv) > 2 else 20.0
+d2 = np.abs(np.diff(x, 2))                                  # second difference: ~0 on smooth audio, a spike at a discontinuity
+win = int(0.05 * sr)
+local = np.sqrt(np.convolve(d2**2, np.ones(win) / win, mode="same")) + 1e-12
+ratio = 20 * np.log10(d2 / local + 1e-12)
+hits, last = [], -sr
+for i in np.flatnonzero(ratio > thr):
+    if i - last > int(0.02 * sr):                           # one report per 20 ms
+        hits.append(i); last = i
+print(f"{sys.argv[1]}: {len(hits)} likely click(s) above {thr:g} dB")
+for i in hits:
+    print(f"  {i / sr:8.3f} s   spike {ratio[i]:4.1f} dB above the surrounding audio")
+$ python3 find_clicks.py comp.wav
+comp.wav: 2 likely click(s) above 20 dB
+     1.512 s   spike 30.8 dB above the surrounding audio
+     3.507 s   spike 30.8 dB above the surrounding audio
+It found the two raw edits and ignored both faded ones. It’s a rough tool, not a mastering-grade declicker: sharp drum hits and some synths can trip it too, so treat every hit as a place to listen, and raise the threshold if a busy track flags too much. On a vocal, bass or pad stem it’s quick and honest.
+
+### Where edit clicks hide
+1. Vocal comps. Every take boundary is a splice. Crossfade all of them, then solo the vocal and listen at the edits.
+2. Trimmed tails. Cutting the end of an 808 or a reverb tail without a fade-out leaves a click on the last sample.
+3. Loops and chops. A loop that doesn’t start and end at the same point in the cycle clicks every time it repeats.
+4. Bounce starts and ends. A file that starts mid-note or gets cut before the tail finishes clicks at the very edge. Leave a short fade on both ends of the master.
+5. Stems you split yourself. When you chop a vocal or a bass line out of a separated stem, the chops need the same fades as anything else. If you pull stems with StemSplit, cut on the stem, fade, then sample.
+
+### Why mastering makes them louder
+A click is mostly high-frequency energy, and mastering usually adds some top end and brings everything up toward the limiter. Both pull a tick that was barely there in the mix right to the front. Clicks also sit in the same band as harsh esses after mastering, for the same reason. Fix them in the edit, before the bounce, where it takes two seconds.
+Note: Fade every cut, crossfade every splice, scan the stem before you bounce. If the edit started as a separated stem, hear how StemSplit handles the split, then measure the final bounce.
+Q: Why do my audio edits click?
+A: The cut or splice lands in the middle of a waveform cycle, so the signal jumps instantly between two values. That jump is a burst of high-frequency energy you hear as a click or pop.
+Q: How long should a crossfade be to remove clicks?
+A: Around 5 ms works for most cuts. Use 1 to 2 ms on drum hits so the transient survives, around 10 ms on low notes, and 10 to 30 ms inside a sustained vowel when comping vocals.
+Q: Is cutting at zero crossings enough?
+A: Not always. A splice can meet the other take moving in the opposite direction, and stereo channels rarely cross zero together. A short fade fixes both cases.
+Q: How much does a 5 ms fade help?
+A: In our test on a −6 dBFS 55 Hz note, the content above 2 kHz at an unfaded stop peaked at −13.3 dBFS. With a 5 ms fade-out it dropped to −82.9 dBFS, roughly 70 dB lower.
+
+---
+
+## Sending stems to a mixer? Export them so they line up and add back up
+URL: https://myaiplug.github.io/coproducer-web/blog/export-stems-for-a-mix-engineer.html
+Section: Delivery · 20 October 2026 · 8 min
+Summary: How to export stems for a mixing engineer: same start, same length, one sample rate, no mix-bus chain, and a null test against your rough before you send the link.
+
+Stems a mixer can use all start at the same point, run the same length, share the session’s sample rate, and add back up to your rough mix when every fader sits at zero. Export every track from the same start to the same end, keep send effects on their own stems, switch off the mix-bus chain, and null the stems against your bounce before you send the link.
+You send the link, feel good about it, and the first reply isn’t about the mix. The vocal comes in two bars early. The 808 sounds a little sharp. Where are the adlibs? And the rough you sent has a glue the mixer can’t find on any of the stems. Day one of a paid mix gets spent on email.
+Every one of those is an export setting, and you can catch all of them in about thirty seconds before the files leave your machine.
+
+### What “lined up” actually means
+- Same start. Every stem begins at the same moment: bar 1, or one shared point before it if there’s a count-in or a pickup. Not at the first note on that track.
+- Same length. Every stem runs to the same end, past the last reverb tail. Drop them all at zero in any DAW and they play in time with no nudging.
+- Same format. One sample rate (the session’s), one bit depth, WAV or AIFF. Nothing lossy.
+- They add back up. With every fader at zero, the stems summed together should be your rough mix. That’s the one people skip.
+The last check is a null test. Flip the polarity of your rough bounce and play it against all the stems at once. If what’s left is silence, the stems are the mix, and the mixer starts exactly where you left off. If what’s left is loud, something on the rough never made it into the stems.
+
+### We broke a session on purpose
+To put numbers on it we built a small synthetic session: eight bars at 140 BPM, 48 kHz, five stems (drums, 808, vocal, keys, adlibs). The vocal doesn’t start until bar 3 and the adlibs until bar 5. We exported it cleanly once. Then we exported it the way a rushed export goes: the vocal as region-only, the 808 at 44.1 kHz with its fader pushed 12 dB, the adlib track still muted, and a soft-clip glue on the mix bus that only the rough went through.
+What went wrong | What the mixer gets | The fix
+Vocal exported from its first note | A 10.256 s file instead of 13.714 s. Dropped at zero, it plays 3.459 s early: two bars plus the 30 ms pickup | Export every stem from the same start bar, even when the track is silent there
+808 bounced at 44.1 kHz in a 48 kHz session | Either the DAW converts it on import, or it plays about 8.8% fast and 1.47 semitones sharp (48,000 ÷ 44,100) | Export everything at the session rate. Let the mixer decide on any conversion
+808 fader pushed 12 dB, 24-bit fixed | The peak went from −11.4 dBFS to over full scale, so 18,488 samples were flattened at 0 dBFS. That clipping is printed, and the mixer can’t undo it | Leave headroom on the stem, or export 32-bit float, which keeps overs intact
+Adlib track muted | A file of digital silence with the right name | Unmute and unsolo everything, and check no file is empty
+Glue on the mix bus, rough only | The stems summed back up miss the rough by a residual only 9.9 dB under the mix. That’s a different record | Bypass the bus chain for the stems and the rough, or send a second rough with it on and tell them what the chain is
+The clean export, by contrast, nulled to −120.4 dB under the mix, which is just rounding, with zero samples of lag. That’s what a stem folder should look like.
+
+### Check the folder before you send it
+This reads a folder of stems and, optionally, your rough bounce. It prints each stem’s rate, format, length, peak and where its first audio starts, then lists anything a mixer would email you about. With a rough it lines every stem up at zero, adds them together and runs the null test:
+#!/usr/bin/env python3
+"""Check a folder of exported stems before they go to a mixer.
+usage: python3 stem_check.py STEMS_DIR [MIX.wav]      (pip install numpy soundfile)"""
+import sys, pathlib
+import numpy as np, soundfile as sf
+
+def db(v): return 20 * np.log10(max(float(v), 1e-12))
+folder = pathlib.Path(sys.argv[1]); mix_path = sys.argv[2] if len(sys.argv) > 2 else None
+files = sorted(p for p in folder.iterdir() if p.suffix.lower() in (".wav", ".aif", ".aiff", ".flac"))
+problems, stems = [], {}
+print(f"{'stem':<11}{'rate':>7}{'format':>8}{'length s':>10}{'peak dBFS':>11}{'first audio':>13}")
+for p in files:
+    i = sf.info(p); x, sr = sf.read(p, dtype="float64", always_2d=True); stems[p.name] = (x, sr)
+    peak = np.abs(x).max(); loud = np.flatnonzero(np.abs(x).max(axis=1) > 1e-4)   # above -80 dBFS
+    first = f"{loud[0] / sr:.2f} s" if loud.size else "silent"
+    print(f"{p.stem:<11}{sr:>7}{i.subtype:>8}{i.frames / sr:>10.3f}{(f"{db(peak):.1f}" if peak else "-inf"):>11}{first:>13}")
+    if not loud.size: problems.append(f"{p.name}: silent (muted when you exported?)")
+    clipped = int((np.abs(x) >= 0.99999).sum())
+    if clipped and i.subtype != "FLOAT": problems.append(f"{p.name}: {clipped} samples at full scale, clipped on export")
+rates = {sr for _, sr in stems.values()}; lengths = {len(x) for x, _ in stems.values()}
+if len(rates) > 1: problems.append(f"mixed sample rates {sorted(rates)}: re-export everything at the session rate")
+if len(lengths) > 1:
+    longest = max(len(x) / sr for x, sr in stems.values())
+    for name, (x, sr) in stems.items():
+        if longest - len(x) / sr > 0.001:
+            problems.append(f"{name}: {longest - len(x) / sr:.3f} s shorter than the longest stem")
+if mix_path and len(rates) == 1:
+    mix, _ = sf.read(mix_path, dtype="float64", always_2d=True)
+    total = np.zeros_like(mix)
+    for x, sr in stems.values():                     # line every stem up at zero, the way a mixer imports them
+        n = min(len(x), len(total)); total[:n, :x.shape[1]] += x[:n]
+    a, b = mix.mean(axis=1), total.mean(axis=1)      # lag between the mix and the stems added back up
+    n = 1 << int(np.ceil(np.log2(len(a) * 2)))
+    xc = np.fft.irfft(np.fft.rfft(a, n) * np.conj(np.fft.rfft(b, n)), n)
+    lag = int(np.argmax(xc)); lag = lag - n if lag > n // 2 else lag
+    resid = db(np.sqrt(np.mean((mix - total) ** 2)) / np.sqrt(np.mean(mix ** 2)))
+    print(f"\nnull vs {pathlib.Path(mix_path).name}: residual {resid:.1f} dB under the mix, best lag {lag} samples")
+    if resid > -40: problems.append("stems don't add back up to the mix (bus processing, missing FX return, moved stem?)")
+print("\n" + ("\n".join("- " + s for s in problems) if problems else "ok: same rate, same length, nulls against the mix"))
+On the clean export:
+$ python3 stem_check.py clean mix_clean.wav
+stem          rate  format  length s  peak dBFS  first audio
+01_drums     48000  PCM_24    13.714       -1.6       0.00 s
+02_808       48000  PCM_24    13.714      -11.4       0.00 s
+03_vocal     48000  PCM_24    13.714      -16.5       3.46 s
+04_keys      48000  PCM_24    13.714      -18.7       0.00 s
+05_adlibs    48000  PCM_24    13.714      -20.5       8.15 s
+
+null vs mix_clean.wav: residual -120.4 dB under the mix, best lag 0 samples
+
+ok: same rate, same length, nulls against the mix
+On the rushed one. The null test is skipped because the sample rates don’t match, and that alone is a reason to re-export:
+$ python3 stem_check.py messy mix_glue.wav
+stem          rate  format  length s  peak dBFS  first audio
+01_drums     48000  PCM_24    13.714       -1.6       0.00 s
+02_808       44100  PCM_24    13.714        0.0       0.00 s
+03_vocal     48000  PCM_24    10.256      -16.5       0.00 s
+04_keys      48000  PCM_24    13.714      -18.7       0.00 s
+05_adlibs    48000  PCM_24    13.714       -inf       silent
+
+- 02_808.wav: 18488 samples at full scale, clipped on export
+- 05_adlibs.wav: silent (muted when you exported?)
+- mixed sample rates [44100, 48000]: re-export everything at the session rate
+- 03_vocal.wav: 3.459 s shorter than the longest stem
+And on correct stems sent with a rough that went through the bus glue. Everything looks fine file by file. Only the null test catches it:
+$ python3 stem_check.py busonly mix_glue.wav
+stem          rate  format  length s  peak dBFS  first audio
+01_drums     48000  PCM_24    13.714       -1.6       0.00 s
+02_808       48000  PCM_24    13.714      -11.4       0.00 s
+03_vocal     48000  PCM_24    13.714      -16.5       3.46 s
+04_keys      48000  PCM_24    13.714      -18.7       0.00 s
+05_adlibs    48000  PCM_24    13.714      -20.5       8.15 s
+
+null vs mix_glue.wav: residual -9.9 dB under the mix, best lag 0 samples
+
+- stems don't add back up to the mix (bus processing, missing FX return, moved stem?)
+Note the vocal’s “first audio” of 3.46 s on the clean export. That’s correct. A stem should carry its silence. A first-audio time of 0.00 on a part you know comes in late is the tell that it was trimmed.
+
+### Export settings that save a day
+- Format. WAV at the session sample rate, 24-bit or 32-bit float. Float if any stem peaks over 0 dBFS on its own fader. Turn normalise off. No MP3s, ever, not even “just to listen”.
+- Start and end. Same start for every stem. Run the export at least a bar past the last note so reverb and delay tails aren’t cut, two bars for long halls.
+- Mix bus off. Bypass the bus compressor, clipper, limiter and anything “mastering” on the main out. If that chain is the sound, say so in a note and send a second rough with it on.
+- Send effects get their own stems. A reverb or delay on a send becomes its own file: “Vocal FX”, “Keys verb”. Insert effects that are part of the part (the distortion on the 808, the tuning on the lead) get printed on that stem. For the lead vocal, send the printed version and the raw one if you can.
+- Sidechain. If the 808 ducks off the kick and you like it, print it ducked and include the kick as its own stem, so the mixer can keep it or rebuild it.
+- Names. Number them in a sensible order (01_Kick, 02_808, 08_Lead_Vox) and put the BPM and key in the folder name. A short text file with the BPM, key, sample rate and which stems have printed effects answers the first three questions before they’re asked.
+- Send the rough from the same start. It’s what the mixer listens to first and what the null test runs against.
+Mono or stereo files is mostly preference. Mono sources can go as mono files; stereo is never wrong. If you don’t know what your mixer likes, ask once and save the answer.
+Lost the session and only have the two-track? StemSplit can pull vocals, drums and bass out of the bounce on your own machine, so a mixer can at least hear what they’re working with. Just tell them which stems came from a separator. Separated stems won’t null against the bounce, and they’re a rescue, not a delivery: stems diagnose mixes, they don’t replace them.
+
+### Genre notes
+- Trap and drill. Kick and 808 always on separate stems, with the 808’s saturation printed. Split the vocal by role (lead, doubles, adlibs, tags), because those get very different treatment. Tags with long throws need their delay stem too.
+- R&B and soul. Group stacks and harmonies into a few stems (low BGVs, high BGVs) rather than one “background vocals” file. Lead dry plus lead FX. Long tails, so give the export two bars after the last note.
+- Rock and live bands. If the mixer is actually mixing the drums, send the multitracks (kick in, snare top, overheads and so on), not a stereo drum stem, and keep the count-in on every file so everything shares a start.
+- House and techno. Long arrangements, so the null test earns its keep: one moved clip in a six-minute track is easy to miss by ear. Print the pumping if the sidechain is the groove, and send the kick separately.
+Note: Same start, same length, one rate, bus off, null it. Do that and the mixer’s first email is about the music. Before you bounce anything, sample rate and bit depth are delivery hygiene and how much headroom to leave cover the format side. Only have the bounce? Hear what a split sounds like with StemSplit.
+Q: How do I export stems for a mixing engineer?
+A: Export every track or group from the same start point to the same end, past the last tail, as WAV at the session sample rate in 24-bit or 32-bit float. Bypass the mix-bus chain, give send effects their own stems, then sum the stems against your rough bounce. If they null, the mixer can rebuild your rough exactly.
+Q: Should stems have effects on them?
+A: Print insert effects that are part of the sound, like 808 distortion or vocal tuning, on the stem. Put send effects such as reverb and delay on their own stems so the mixer can rebalance them. Leave the mix-bus chain off, and send a second rough with it on if it’s part of the vibe.
+Q: What sample rate and bit depth should stems be?
+A: The session’s own sample rate and 24-bit or 32-bit float WAV. Don’t mix rates in one folder: in our test a 44.1 kHz 808 in a 48 kHz session would play about 8.8% fast and 1.47 semitones sharp if the DAW didn’t convert it. Use float if any stem peaks over 0 dBFS.
+Q: How do I check that my stems line up?
+A: Drop them all at zero with your rough bounce, flip the bounce’s polarity and play. Silence means they line up and add back up. In our synthetic session a clean export nulled to −120 dB, while correct stems against a rough with mix-bus glue left a residual only 9.9 dB under the mix.
+
+---
+
+## Your mix sounds better loud and thinner quiet. Pick one monitoring level
+URL: https://myaiplug.github.io/coproducer-web/blog/mix-sounds-better-louder-pick-one-monitor-level.html
+Section: Monitoring · 20 October 2026 · 7 min
+Summary: Why your mix changes with the volume knob: equal-loudness, and louder always winning the A/B. Calibrate one listening level, level-match, then check loud and quiet.
+
+Your ears change with the volume knob: as playback gets quieter, the bass and the very top fade faster than the mids, and whatever is a little louder tends to sound better. Pick one listening level for most of the mix, mark the knob, level-match every comparison, and check loud and quiet on purpose, briefly, at the end.
+Two in the morning, everyone’s asleep, so you mix quietly and push the 808 until it feels right. Next afternoon you play it at a normal volume and the low end is a mess. Or the other way round: you crank it to feel the record, pull the bass down because it’s shaking the desk, and the next morning on earbuds the whole thing is thin.
+Neither mix was wrong for the volume you made it at. That’s the problem. The knob changed what you heard, and you mixed to the knob.
+
+### Your ears have a volume-dependent EQ
+Human hearing isn’t flat, and how unflat it is depends on level. Researchers have mapped this since Fletcher and Munson in the 1930s, and the modern version is the equal-loudness contours in the ISO 226 standard. The short version: we’re most sensitive in the low few kilohertz, where speech lives. As the level drops, low frequencies (and the extreme top) need more and more energy to sound as loud as the mids.
+In a session that means:
+- Mix quiet and you over-feed the ends. The 808 and the air sound weak, so you push them. Played louder, the bottom booms and the top hisses.
+- Mix loud and you starve them. Everything sounds full already, so the bass goes down and harshness in the upper mids hides inside the excitement. Played quieter, it’s thin.
+- The song didn’t change. Your ears’ balance did. Nothing on the meter moves when you turn the monitor knob.
+
+### Louder wins every A/B
+The second trap is the same effect in a comparison. When two versions differ in level, the louder one usually comes across as fuller and clearer, even when the gap is only a decibel or so and nothing else changed. It’s why good plugins have an output trim or auto-gain, and why “this EQ sounds amazing” so often means “this EQ is louder”.
+So level-match before you judge. This measures integrated loudness (the same ITU-R BS.1770 measure streaming services use) and tells you how much to pull the louder one down:
+#!/usr/bin/env python3
+"""Level-match two bounces before you decide which one is better.
+usage: python3 level_match.py A.wav B.wav      (pip install numpy soundfile pyloudnorm)"""
+import sys
+import numpy as np, soundfile as sf, pyloudnorm as pyln
+
+def measure(path):
+    x, sr = sf.read(path, always_2d=True)
+    lufs = pyln.Meter(sr).integrated_loudness(x)          # ITU-R BS.1770 integrated loudness
+    return lufs, 20 * np.log10(np.abs(x).max())
+(la, pa), (lb, pb) = measure(sys.argv[1]), measure(sys.argv[2])
+print(f"A {sys.argv[1]}: {la:6.2f} LUFS integrated, sample peak {pa:5.1f} dBFS")
+print(f"B {sys.argv[2]}: {lb:6.2f} LUFS integrated, sample peak {pb:5.1f} dBFS")
+d = lb - la
+if abs(d) < 0.1: print("within 0.1 LU: compare as they are")
+else:
+    loud = "B" if d > 0 else "A"
+    print(f"{loud} is {abs(d):.1f} LU louder: turn {loud} down {abs(d):.1f} dB (don't turn the other up) before you judge")
+We made a version B of a synthetic loop with a 3 dB high shelf and 1.5 dB more gain, then compared it with the original:
+$ python3 level_match.py ab_A.wav ab_B.wav
+A ab_A.wav: -19.38 LUFS integrated, sample peak  -4.2 dBFS
+B ab_B.wav: -17.49 LUFS integrated, sample peak  -1.4 dBFS
+B is 1.9 LU louder: turn B down 1.9 dB (don't turn the other up) before you judge
+B came out 1.9 LU louder, not 1.5, because the brighter top adds measured loudness too. Unmatched, B wins on volume alone. Matched, you finally hear whether the shelf is actually better. Turn the louder one down rather than the quieter one up; it keeps your headroom and your ears.
+
+### Set one level you can come back to
+The usual way to calibrate is pink noise at a known digital level, played through one speaker at a time, with an SPL meter at your listening position set to C-weighting and slow response. Turn the monitor level until each speaker reads your target, then mark that spot on the knob. This writes the noise file:
+#!/usr/bin/env python3
+"""Pink noise at -20 dBFS RMS for setting a monitoring level with an SPL meter.
+usage: python3 calibration_noise.py [seconds]      (pip install numpy soundfile)"""
+import sys
+import numpy as np, soundfile as sf
+
+sr, secs = 48000, float(sys.argv[1]) if len(sys.argv) > 1 else 60
+n = int(sr * secs); rng = np.random.default_rng(1)
+spec = np.fft.rfft(rng.standard_normal(n)); f = np.fft.rfftfreq(n, 1 / sr)
+band = (f >= 20) & (f <= 20000)
+spec[band] /= np.sqrt(f[band]); spec[~band] = 0         # -3 dB per octave from 20 Hz to 20 kHz
+x = np.fft.irfft(spec, n)
+x *= 10 ** (-20 / 20) / np.sqrt(np.mean(x ** 2))        # exactly -20 dBFS RMS
+fade = int(0.05 * sr); x[:fade] *= np.linspace(0, 1, fade); x[-fade:] *= np.linspace(1, 0, fade)
+sf.write("pink_-20dBFS_rms.wav", x, sr, subtype="PCM_24")
+rms, peak = np.sqrt(np.mean(x ** 2)), np.abs(x).max()
+print(f"wrote pink_-20dBFS_rms.wav: {secs:.0f} s mono, {sr} Hz, 24-bit")
+print(f"RMS {20*np.log10(rms):.2f} dBFS, peak {20*np.log10(peak):.2f} dBFS, crest {20*np.log10(peak/rms):.1f} dB")
+X = np.abs(np.fft.rfft(x)) ** 2; octave = lambda c: X[(f >= c / np.sqrt(2)) & (f < c * np.sqrt(2))].sum()
+for c in (31.5, 125, 500, 2000, 8000):                  # pink noise: equal energy in every octave
+    print(f"  octave at {c:>6g} Hz: {10*np.log10(octave(c) / octave(500)):+5.1f} dB vs 500 Hz")
+$ python3 calibration_noise.py 60
+wrote pink_-20dBFS_rms.wav: 60 s mono, 48000 Hz, 24-bit
+RMS -20.00 dBFS, peak -5.93 dBFS, crest 14.1 dB
+  octave at   31.5 Hz:  +0.0 dB vs 500 Hz
+  octave at    125 Hz:  +0.0 dB vs 500 Hz
+  octave at    500 Hz:  +0.0 dB vs 500 Hz
+  octave at   2000 Hz:  +0.0 dB vs 500 Hz
+  octave at   8000 Hz:  +0.0 dB vs 500 Hz
+Pink noise has equal energy in every octave, which is why it’s used for this: the meter sees the whole range at once instead of one frequency your room happens to like. The 14.1 dB crest factor is also about what you’d expect from real music.
+What target? Big film stages have traditionally calibrated around 85 dB SPL per speaker, but that’s a large room with the speakers far away. In a bedroom or a small studio most people land lower, somewhere in the 70s. The exact number matters less than coming back to the same one. A phone SPL app can be a few dB off, but it’ll be off the same way every time, and consistency is the whole point.
+No meter at all? Use the conversation test: at your mix level you should be able to talk to someone next to you in a normal voice without raising it. It’s rough, but it’s repeatable, which a level you pick by feel each night isn’t.
+
+### How long you can listen
+There’s a second reason to mix at a moderate level. In the US, NIOSH recommends limiting noise exposure to 85 dBA averaged over eight hours, and halving the time for every 3 dB above that:
+Level (dBA) | NIOSH recommended limit per day
+85 | 8 hours
+88 | 4 hours
+91 | 2 hours
+94 | 1 hour
+97 | 30 minutes
+100 | 15 minutes
+A ten-hour session at a level that feels exciting can be several days’ worth of exposure. Mixing in the 70s isn’t only better for balance. It’s how you’re still hearing the top end in twenty years. Take breaks, too: after a few hours your sense of the top end gets less trustworthy, which is a good time to stop making EQ decisions.
+
+### Then check loud and quiet, on purpose
+1. Do most of the mix at your marked level. Balance, EQ and compression decisions happen here.
+2. Quiet check. Drop it to just above a whisper. The lead vocal should still be clear and the kick and 808 should still read as a groove. If the vocal disappears when it’s quiet, it’s too low in the mix, not just quiet.
+3. Loud check, briefly. Thirty seconds at a loud level shows you what jumps out: sibilance, a harsh synth, a boomy note. Not a chorus on loop for an hour.
+4. Level-match every comparison. References, your last version, the plugin on and off. Run the script or use a matched A/B.
+5. Read the file, not the room. A meter doesn’t have a volume knob. Run the bounce through CoProducer and the report reads integrated LUFS and true peak straight off the file, the same at 2 a.m. as at noon.
+
+### Genre notes
+- Trap and drill. The 808 is the first casualty of quiet late-night mixing. Set its level at your marked volume, confirm on headphones, and if it changes when you lean back, that’s the room, not the mix.
+- R&B and soul. The quiet check is your friend. A lead vocal that still carries at whisper volume is a lead vocal that’s sitting right, and it tells you when the ad-libs are fighting it.
+- House and techno. It’ll be played loud, which is exactly why you shouldn’t mix it loud. Get the balance at your level, then use the short loud check to catch harshness that only shows up when it’s pushed.
+- Rock and metal. Walls of guitars sound huge loud and hide everything. If the vocal drops behind them in the quiet check, ride it up or carve the guitars, because that’s how most people will hear it.
+- Lo-fi and ambient. A lot of it gets played quietly in the background. Spend more time at low volume than usual, and make sure the bass doesn’t vanish.
+Note: One marked level, matched comparisons, a short loud and quiet check, and a meter that can’t hear your knob. Analyze a bounce, or compare it against a reference in the desktop app. Pro is $49 one-time. When the comparison is a released track, read why not to match a streamed reference and reference matching without guesswork.
+Q: What volume should I mix at?
+A: Pick one moderate level and come back to it every time. Calibrate with pink noise at −20 dBFS RMS and an SPL meter (C-weighted, slow) at your seat. Large film rooms use about 85 dB SPL per speaker. In small rooms most people go lower, into the 70s. Consistency matters more than the exact number.
+Q: Why does my mix sound different at different volumes?
+A: Because hearing sensitivity changes with level. The equal-loudness contours (Fletcher and Munson, now ISO 226) show that at lower volumes bass and extreme treble need more energy to sound as loud as the mids. Mix quiet and you tend to over-boost the lows; mix loud and you tend to under-do them.
+Q: Why does the louder version always sound better?
+A: A small level difference, around a decibel, is often heard as fuller or clearer rather than simply louder. Level-match before comparing. In our test a version with a 3 dB high shelf and 1.5 dB more gain measured 1.9 LU louder, so it would win an unmatched A/B on volume alone.
+Q: How do I calibrate my monitors without an SPL meter?
+A: A phone SPL app is fine for consistency even if it’s a few dB off. With nothing at all, use the conversation test: at your mix level you should be able to talk to someone beside you without raising your voice. Then mark the knob so you can return to it.
+
+---
 
 ## Reverb making the mix muddy? Filter the return, not the vocal
 URL: https://myaiplug.github.io/coproducer-web/blog/reverb-makes-the-mix-muddy-filter-the-return.html
@@ -5328,47 +5932,270 @@ A: The site analyzes one file at a time. Desktop/batch tools handle folders.
 
 ---
 
-## Why HTML, JSON, and TXT all matter
+## What should a loudness report include? Why HTML, JSON and TXT all matter
 URL: https://myaiplug.github.io/coproducer-web/blog/why-three-report-formats.html
-Section: Reports · 21 August 2026 · 6 min
-Summary: HTML is for humans and clients. JSON is for pipelines. TXT is for quick notes and tickets. CoProducer writes all three so the same facts travel cleanly.
+Section: Reports · 21 August 2026 · 7 min
+Summary: A loudness report should name the exact file, its hash, LUFS, true peak and LRA. Keep HTML for people, JSON for scripts and TXT for chat. Script included.
 
-HTML is for humans and clients. JSON is for pipelines. TXT is for quick notes and tickets. CoProducer’s analyzer .bat writes all three beside the bounce so you are not trapped in a single UI.
+A useful loudness report names the exact file it measured (its name plus a hash of the audio), says when it was measured, and lists the numbers delivery cares about: integrated loudness in LUFS, true peak in dBTP, loudness range, sample rate, channels and length. Keep it in three forms because it has three kinds of reader. HTML is for people, JSON is for scripts, and a one-line TXT is for chat and tickets. They hold the same facts, written once by the meter, so nobody has to retype a number.
+Here’s the situation it prevents. Someone in the group chat asks “is the single legal yet?” You’ve got single_master_v3.wav, single_master_v3_FINAL.wav and a screenshot of your meter from Tuesday. Which file did the screenshot measure? Was that before or after you pulled the limiter back? Nobody can say for sure, so somebody re-checks it, and somebody else asks again tomorrow. A report that travels with the file answers the question once.
 
-### Who reads what
-A&R opens HTML. Your script reads JSON. You paste TXT into a chat when someone asks “is it legal yet?” Three formats prevent translation errors.
-The web report is on-screen proof. The .bat is the folder-native habit.
+### What should a loudness report include?
+Keep it short. Every field should answer a question someone will actually ask:
+- File name and a hash. The name tells people what it is. The hash (a SHA-256 fingerprint of the file’s bytes) proves which file it is. Rename it and the hash stays the same. Re-bounce it and the hash changes, even if the numbers barely move. That’s the only way to know a report belongs to the file in your hand.
+- When it was measured, with the time zone. A date written like 2026-10-22T10:04:56-04:00 (the RFC 3339 format) sorts correctly and reads the same everywhere.
+- Integrated loudness (LUFS). The average loudness of the whole track, measured the way ITU-R BS.1770 defines it. It’s the number streaming services use when they turn tracks up or down.
+- True peak (dBTP). The highest point of the waveform once it’s rebuilt between samples, which is where codecs and converters clip. Also in BS.1770.
+- Sample peak (dBFS). Worth keeping beside true peak because the gap between them tells a story. A master at −0.1 dBFS sample peak and +1.2 dBTP true peak was limited by sample peak only.
+- Loudness range (LU). How much the loudness moves across the track, defined in EBU Tech 3342. When a revision suddenly drops in range, something squashed it.
+- Format facts. Sample rate, channels, codec and length. They catch the boring mistakes, like a 44.1 kHz file where the label asked for 48, or a bounce that stopped eight seconds early.
+Notice what isn’t on the list: opinions. A report says what the file measures. Whether −9 LUFS is right for the record is a creative call, and it belongs in your notes, not in the numbers.
 
-### Cheap forever tooling
-One-time license, unlimited local use, drag-and-drop simplicity — that is the NoDAW .bat thesis across analyzer, mastering, video, and ScrewAI tools.
-Reports are the artifact. Convenience is the product.
-Note: See the .bat suite for analyzer, mix/master, video, and more. CoProducer Pro is $49 one-time.
-Q: Can I turn formats off?
-A: Keep all three until you know which stakeholder actually reads which file.
-Q: Is the website JSON downloadable?
-A: Prefer the desktop/.bat exports for archival reports.
+### Why not just send a screenshot of the meter?
+Screenshots are fine for a glance and bad for a record. Three problems:
+- No identity. A screenshot doesn’t say which file it measured. Two weeks later, neither do you.
+- Retyping. Someone will copy “−9.8” into a spreadsheet as “−8.9”. Every copy by hand is a chance to flip digits or units, and LUFS, LU, dBFS and dBTP are easy to mix up.
+- No history. You can’t search a folder of screenshots for “every master with true peak above −1”. You can do that with text in about one line.
+
+### Who reads the HTML, the JSON and the TXT?
+Format | Who reads it | What it’s good at | Where it falls short
+HTML | Artists, A&R, clients, you on your phone | Opens in any browser, can show a clear pass/check line, easy to forward | Awkward for scripts to read back
+JSON | Your scripts, spreadsheets, a release checklist | Every number has a name and a type, so tools can compare and filter without guessing (RFC 8259 is the spec) | Nobody wants to read it in a group chat
+TXT | Chats, tickets, email, notes apps | One line you can paste anywhere, readable with no app at all | Not built for tools to read back reliably
+The point isn’t the formats, it’s that the meter writes all three at the same moment from the same measurement. Three files that were typed separately can disagree. Three files written by one run can’t.
+
+### What does a three-format report look like in practice?
+Here’s a small script that measures a file with FFmpeg’s ebur128 meter and writes all three reports next to it. It needs Python 3 and FFmpeg. Nothing leaves your computer.
+#!/usr/bin/env python3
+"""report.py: measure one bounce and write the same facts three ways.
+    python3 report.py my_mix_v2.wav
+Writes my_mix_v2.report.json (for scripts), .txt (for chat and tickets) and .html (for people)
+next to the audio. Needs ffmpeg/ffprobe on your PATH. Nothing is uploaded anywhere."""
+import hashlib, html, json, re, subprocess, sys, datetime
+from pathlib import Path
+
+def measure(path):
+    err = subprocess.run(["ffmpeg", "-hide_banner", "-nostats", "-i", str(path), "-vn",
+                          "-af", "ebur128=peak=sample+true", "-f", "null", "-"],
+                         capture_output=True, text=True).stderr
+    summary = err[err.rindex("Summary:"):]
+    num = lambda pat: float(re.search(pat, summary, re.S).group(1))
+    probe = json.loads(subprocess.run(["ffprobe", "-v", "error", "-select_streams", "a:0", "-show_entries",
+        "stream=sample_rate,channels,codec_name,bits_per_raw_sample:format=duration", "-of", "json", str(path)],
+        capture_output=True, text=True).stdout)
+    st, fmt = probe["streams"][0], probe["format"]
+    return {
+        "file": path.name,
+        "sha256": hashlib.sha256(path.read_bytes()).hexdigest(),
+        "measured_at": datetime.datetime.now().astimezone().isoformat(timespec="seconds"),
+        "duration_s": round(float(fmt["duration"]), 2),
+        "codec": st["codec_name"], "sample_rate_hz": int(st["sample_rate"]), "channels": st["channels"],
+        "integrated_lufs": num(r"I:\s+(-?[\d.]+) LUFS"),
+        "loudness_range_lu": num(r"LRA:\s+(-?[\d.]+) LU"),
+        "true_peak_dbtp": num(r"True peak:\s+Peak:\s+(-?[\d.]+) dBFS"),
+        "sample_peak_dbfs": num(r"Sample peak:\s+Peak:\s+(-?[\d.]+) dBFS"),
+    }
+
+def verdict(r, tp_max=-1.0):
+    return "PASS" if r["true_peak_dbtp"] <= tp_max else f"CHECK: true peak above {tp_max} dBTP"
+
+def write_all(r, stem):
+    stem.with_suffix(".report.json").write_text(json.dumps(r, indent=2) + "\n")
+    txt = (f"{r['file']}  {r['integrated_lufs']:.1f} LUFS | TP {r['true_peak_dbtp']:+.1f} dBTP | "
+           f"LRA {r['loudness_range_lu']:.1f} LU | {r['sample_rate_hz']/1000:g} kHz | {verdict(r)} | "
+           f"sha256 {r['sha256'][:12]}")
+    stem.with_suffix(".report.txt").write_text(txt + "\n")
+    rows = "".join(f"<tr><th>{html.escape(k)}</th><td>{html.escape(str(v))}</td></tr>" for k, v in r.items())
+    stem.with_suffix(".report.html").write_text(
+        f"<!doctype html><meta charset=utf-8><title>{html.escape(r['file'])}</title>"
+        f"<h1>{html.escape(r['file'])}</h1><p><b>{html.escape(verdict(r))}</b></p><table>{rows}</table>\n")
+    return txt
+
+if __name__ == "__main__":
+    for arg in sys.argv[1:]:
+        p = Path(arg); print(write_all(measure(p), p.with_suffix("")))
+To show it working, we made two synthetic test files (a 30-second generated beat, no real song). mix_v1.wav was pushed 6 dB into a sample-peak limiter set to −0.1 dBFS, the way plenty of loud masters get made. mix_v2.wav is the same audio turned down so its true peak lands at −1.0 dBTP. Here are the two TXT lines the script printed:
+$ python3 report.py mix_v1.wav mix_v2.wav
+mix_v1.wav  -7.6 LUFS | TP +1.2 dBTP | LRA 0.3 LU | 48 kHz | CHECK: true peak above -1.0 dBTP | sha256 65c5ad9b4035
+mix_v2.wav  -9.8 LUFS | TP -1.0 dBTP | LRA 0.3 LU | 48 kHz | PASS | sha256 4cca0dbad305
+And here’s the JSON for the fixed version, exactly as written:
+{
+  "file": "mix_v2.wav",
+  "sha256": "4cca0dbad305bdaed6978829aa13fcff9fd6e80253834131490bace296e46c07",
+  "measured_at": "2026-10-22T10:04:56-04:00",
+  "duration_s": 31.0,
+  "codec": "pcm_f32le",
+  "sample_rate_hz": 48000,
+  "channels": 2,
+  "integrated_lufs": -9.8,
+  "loudness_range_lu": 0.3,
+  "true_peak_dbtp": -1.0,
+  "sample_peak_dbfs": -2.3
+}
+A few things worth reading out of that:
+- v1 looked clean and wasn’t. Its sample peak was −0.1 dBFS, so an ordinary peak meter showed no problem. True peak was +1.2 dBTP, over full scale, and the TXT line flags it. Spotify’s loudness guidance asks for true peak below −1 dBTP, and below −2 dBTP for masters louder than −14 LUFS like this one. That’s why the PASS rule in the script is only a starting point.
+- The hashes are different (65c5ad9b… and 4cca0dba…), so nobody can confuse the reports even if the files get renamed.
+- The loudness range is tiny (0.3 LU) because the test beat is a short loop that never changes. A real song with a verse and a chorus usually reads several LU. Don’t copy that number as a target.
+
+### How do I compare two versions of a master?
+This is where JSON pays for itself. A second tiny script reads two reports and prints only what changed:
+#!/usr/bin/env python3
+"""compare.py: what changed between two versions? Reads two .report.json files.
+    python3 compare.py mix_v1.report.json mix_v2.report.json"""
+import json, sys
+a, b = (json.load(open(p)) for p in sys.argv[1:3])
+print(f"{a['file']} -> {b['file']}")
+if a["sha256"] == b["sha256"]:
+    print("  same audio bytes: nothing changed")
+for k in ("integrated_lufs", "true_peak_dbtp", "sample_peak_dbfs", "loudness_range_lu", "duration_s", "sample_rate_hz"):
+    if a[k] != b[k]:
+        print(f"  {k:18} {a[k]:>8} -> {b[k]:>8}  ({b[k] - a[k]:+.1f})")
+On the synthetic pair it printed:
+$ python3 compare.py mix_v1.report.json mix_v2.report.json
+mix_v1.wav -> mix_v2.wav
+  integrated_lufs        -7.6 ->     -9.8  (-2.2)
+  true_peak_dbtp          1.2 ->     -1.0  (-2.2)
+  sample_peak_dbfs       -0.1 ->     -2.3  (-2.2)
+Integrated loudness, true peak and sample peak all moved by exactly −2.2 dB, and loudness range didn’t move at all. That pattern means the only change was a gain trim. If the range had dropped too, you’d know something compressed or limited the new version harder, and that’s worth a listen before anyone signs off. If the two hashes had matched, the script would say “same audio bytes”, which settles the classic “did you actually send me the new one?” question in a second.
+When you want a spreadsheet, jq turns a folder of JSON reports into CSV rows in one line:
+$ jq -r '[.file, .integrated_lufs, .true_peak_dbtp, .sha256[0:12]] | @csv' *.report.json
+"mix_v1.wav",-7.6,1.2,"65c5ad9b4035"
+"mix_v2.wav",-9.8,-1.0,"4cca0dbad305"
+
+### Where should the reports live?
+- Beside the bounce, with the same name. single_master_v4.wav sits next to single_master_v4.report.json, .txt and .html. Move the folder and everything moves together.
+- Never edit a report by hand. If a number looks wrong, measure again. A report you edited is a note, not a measurement.
+- Re-measure after every render that changes the audio. That includes sample-rate conversion, a new limiter setting, a slowed or sped-up version and an encoded preview. Each is a new file with a new hash and its own peaks.
+- Archive them with the release. When a distributor, a sync house or a collaborator asks a year from now what you delivered, the JSON and the hash answer it.
+Use the same meter for every version you compare. Meters that follow BS.1770 should agree closely on integrated loudness, but true-peak readings can differ a little with the oversampling each meter uses. Comparing v1 from one tool with v2 from another adds noise you don’t need. EBU Tech 3341 describes the test signals meters are checked against, if you ever want to test one yourself.
+
+### What should a report never claim?
+That a track is “good”. A report can tell you a file is −9.8 LUFS with −1.0 dBTP true peak at 48 kHz. It can’t tell you whether the vocal sits right or whether the chorus lifts. It also can’t promise how a platform will play it, since each service applies its own normalization and encoding. Keep the numbers honest and narrow, and keep the taste in your ears.
+If you’d rather not keep scripts around, CoProducer’s analyzer works the same way. It writes HTML, JSON and TXT beside each bounce, so the facts travel with the file.
+Note: Short version: one measurement, three formats, a hash in every one. HTML for people, JSON for tools, TXT for the chat. For what the numbers mean, see how to read a CoProducer score and true peak is what codecs clip.
+Q: What should a loudness report include?
+A: The file name and a hash of the audio, the date it was measured, integrated loudness in LUFS, true peak in dBTP, loudness range in LU, sample rate, channels and length. The hash ties the numbers to one exact file, so a renamed or re-bounced version can’t borrow an old report.
+Q: Why keep a report in three formats?
+A: Because three kinds of reader need the same facts. HTML is for people who open it in a browser, JSON is for scripts that compare versions or check a target, and a one-line TXT is for pasting into a chat or ticket. When the meter writes all three at once, nobody retypes a number.
+Q: Can I just send a screenshot of my meter?
+A: It works for a quick look, but a screenshot doesn’t say which file it measured, can’t be searched or compared, and invites someone to retype the numbers wrong. A text report with a file hash is easier to trust and keeps working months later.
+Q: How do I compare two versions of a master?
+A: Measure both with the same meter and compare the JSON reports field by field. If the hashes match, the audio is identical. If loudness, true peak and sample peak all moved by the same amount, the only change was gain. If loudness range changed too, something compressed or expanded the track.
 
 ---
 
-## Local tools beat upload queues
+## How to check LUFS without uploading your song: local tools beat upload queues
 URL: https://myaiplug.github.io/coproducer-web/blog/local-tools-beat-upload-queues.html
 Section: Local-first · 21 August 2026 · 7 min
-Summary: Local .bat and desktop tools skip upload queues, retention policies, and per-track metering fees. Keep measurement, stems, and syrup renders on your machine.
+Summary: You don’t need to upload a track to measure LUFS or true peak. A free meter plugin or one FFmpeg command does it in seconds, and your unreleased song stays put.
 
-Local .bat and desktop tools skip upload queues, retention policies, and per-track metering fees. If the job is measurement, stems, or syrup renders, keeping the file in the room is usually the faster and safer default.
+You don’t need to upload a song to check its loudness. Integrated LUFS and true peak are calculated with a public method, ITU-R BS.1770, that any laptop can run. A free meter plugin in your DAW or one FFmpeg command measures a track in well under a second, with no account, no queue and no copy of your unreleased song on somebody else’s server. Upload when you’ve chosen a service to do real work you can’t do yourself, not just to read a number.
+It’s an easy habit to fall into. You finish a bounce at 1 a.m., you want to know if it’s too loud for Spotify, and the first search result is a site that asks you to upload. So you sign up, wait for the progress bar, wait in a queue, and get back a number your own computer could have worked out before the upload finished. Meanwhile a song nobody has heard yet is now sitting on a disk you don’t control, under terms you probably didn’t read.
 
-### Time is the hidden price
-Cloud clubs charge money and attention: accounts, queues, “which genre preset,” waiting. Local drop workflows charge electricity and honesty about your CPU.
-NoDAW’s analyzer, StemSplit, ScrewAI, and video bats share that posture.
+### Why would I avoid uploading a song just to check its loudness?
+- It’s slower. Measuring is fast. Moving a big WAV over a home upload connection is not. The numbers are below.
+- You lose track of the file. Once it’s uploaded, how long it’s kept, who can see it and what it may be used for is up to that service’s terms. Some are clear and fair. You still have to go and read them, for every site, every time they change.
+- Unreleased means unreleased. A leak before release can cost you the rollout you planned. The fewer copies exist, the fewer can leak.
+- Friction adds up. Accounts, logins, credits, per-track limits, “pick a genre preset” screens. None of it changes the math of a loudness measurement.
+None of that makes online tools bad. It just means “I want a number” is the wrong reason to use one.
 
-### When cloud is honest
-If you want a third party to own a creative render and you accept their terms, upload deliberately. Do not upload to “just check LUFS.”
-LUFS does not require a stranger’s disk.
-Note: Compare field notes in vs LANDR and keep metering on Analyze.
+### How long does uploading a song actually take?
+Here’s the plain arithmetic. A four-minute stereo WAV at 48 kHz and 24-bit is 4 × 60 × 48,000 × 3 bytes × 2 channels, which is about 69 MB. Upload time is just size divided by your upload speed. These are example speeds, not anyone’s actual connection, and real uploads add overhead and queue time on top:
+Upload speed (example) | One 4-minute WAV (69 MB) | A 12-track album (829 MB)
+5 Mbps | about 1 min 51 s | about 22 min
+20 Mbps | about 28 s | about 5.5 min
+50 Mbps | about 11 s | about 2.2 min
+Upload speeds on home connections are often much lower than download speeds, so run a test at Speedtest and look at the “Upload” number for your real figure. Now compare that with measuring locally. On our test machine, FFmpeg measured four minutes of synthetic audio across four files (92 MB) in about one second, including true peak. Your computer may be slower or faster, but the measurement is rarely the slow part.
+
+### How do I check LUFS on my own computer?
+Three ways, from no setup to fully automatic.
+1. A meter plugin in your DAW. Put a loudness meter on the master bus and play the whole song through. The Youlean Loudness Meter has a free version that runs as a VST, AU or AAX plugin and shows integrated LUFS, short-term loudness and true peak. Most DAWs also ship a meter of their own. Play the song start to finish, because integrated loudness only means something once it has heard the whole track.
+2. One FFmpeg command. FFmpeg is free and runs on Windows, macOS and Linux. Its ebur128 filter follows the EBU R 128 method, which uses BS.1770 loudness. It reads the file faster than real time, so you don’t sit through playback. Here it is on a synthetic test file, trimmed to the summary it prints at the end:
+$ ffmpeg -hide_banner -nostats -i mix_v2.wav -af ebur128=peak=true -f null -
+...
+Summary:
+
+  Integrated loudness:
+    I:          -9.8 LUFS
+    Threshold: -19.8 LUFS
+
+  Loudness range:
+    LRA:         0.3 LU
+    Threshold: -29.7 LUFS
+    LRA low:    -9.9 LUFS
+    LRA high:   -9.6 LUFS
+
+  True peak:
+    Peak:       -1.0 dBFS
+“I” is integrated loudness. “LRA” is loudness range. With peak=true, the “Peak” line under “True peak” is the true peak; FFmpeg labels it dBFS, but it’s the true-peak value, so read it as dBTP.
+3. A whole folder at once. When you’re checking an album, an EP or a pile of alternate mixes, measure them all in one go. This script runs the same FFmpeg meter over every audio file in a folder, prints a table and saves a CSV next to the songs:
+#!/usr/bin/env python3
+"""measure_folder.py: loudness for every audio file in a folder, measured on this machine.
+    python3 measure_folder.py ./bounces
+Prints a table and writes loudness.csv into the folder. Uses ffmpeg's EBU R128 meter
+(integrated LUFS, loudness range, true peak). No account, no upload, no network."""
+import csv, re, subprocess, sys, time
+from pathlib import Path
+
+AUDIO = {".wav", ".aif", ".aiff", ".flac", ".mp3", ".m4a", ".ogg", ".opus"}
+
+def measure(path):
+    err = subprocess.run(["ffmpeg", "-hide_banner", "-nostats", "-i", str(path), "-vn",
+                          "-af", "ebur128=peak=true", "-f", "null", "-"],
+                         capture_output=True, text=True).stderr
+    s = err[err.rindex("Summary:"):]
+    f = lambda pat: float(re.search(pat, s, re.S).group(1))
+    return f(r"I:\s+(-?[\d.]+) LUFS"), f(r"LRA:\s+(-?[\d.]+) LU"), f(r"Peak:\s+(-?[\d.]+) dBFS")
+
+folder = Path(sys.argv[1] if len(sys.argv) > 1 else ".")
+files = sorted(p for p in folder.iterdir() if p.suffix.lower() in AUDIO)
+rows, t0 = [], time.perf_counter()
+for p in files:
+    I, lra, tp = measure(p)
+    rows.append((p.name, I, lra, tp, "check peak" if tp > -1.0 else ""))
+    print(f"{p.name:22} {I:6.1f} LUFS  LRA {lra:4.1f} LU  TP {tp:+5.1f} dBTP  {rows[-1][4]}")
+loud = [r[1] for r in rows]
+if loud:
+    print(f"spread: {max(loud) - min(loud):.1f} LU between loudest and quietest")
+print(f"{len(rows)} files, {sum(p.stat().st_size for p in files) / 1e6:.0f} MB, "
+      f"measured in {time.perf_counter() - t0:.1f} s")
+with open(folder / "loudness.csv", "w", newline="") as fh:
+    w = csv.writer(fh); w.writerow(["file", "integrated_lufs", "lra_lu", "true_peak_dbtp", "note"]); w.writerows(rows)
+We ran it on a folder of four synthetic one-minute tracks made to be deliberately inconsistent, the way a rough album folder often is:
+$ python3 measure_folder.py album
+01_intro.wav            -15.1 LUFS  LRA  0.9 LU  TP  -2.6 dBTP  
+02_single.wav            -8.3 LUFS  LRA  0.3 LU  TP  +1.5 dBTP  check peak
+03_ballad.wav           -19.1 LUFS  LRA  0.8 LU  TP  -5.9 dBTP  
+04_closer.wav            -9.7 LUFS  LRA  0.4 LU  TP  +0.1 dBTP  check peak
+spread: 10.8 LU between loudest and quietest
+4 files, 92 MB, measured in 1.0 s
+Two things jump out without listening to a note. The tracks sit 10.8 LU apart, so on an album the ballad would land like a different record unless that’s the intent. And two tracks have true peaks above −1 dBTP, one of them at +1.5, which is the kind of file that can clip once it’s encoded. That took about a second, and nothing left the folder.
+
+### Is a local meter as accurate as an online one?
+It’s the same math. Any meter that follows BS.1770 (and the EBU’s R 128 recommendation built on it) applies the same weighting filter, the same 400 ms blocks and the same gating to work out integrated loudness. Two compliant meters should agree closely on integrated LUFS. True peak can differ by a small amount between meters, because each one estimates the waveform between samples with its own oversampling. The EBU publishes test signals and tolerances in Tech 3341 that meters are checked against.
+The bigger source of disagreement is usually not the meter at all. It’s measuring a different file: the MP3 preview instead of the WAV, the version before the last limiter tweak, or 30 seconds instead of the whole song. Measuring locally, on the exact file you’ll deliver, removes most of that.
+And remember what the number is for. Spotify’s loudness normalization plays tracks at around −14 LUFS by default and turns louder masters down, so the target isn’t “as loud as possible”. It’s knowing where you are, and keeping true peak below −1 dBTP (−2 dBTP if the master is louder than −14 LUFS).
+
+### What about stem separation and other heavy jobs?
+This is where the trade gets real. Measuring loudness is light work. Splitting a song into vocals, drums and bass with a neural network is heavy, and it runs much faster on a decent graphics card. Open-source separators such as Demucs run locally (its repository is archived now, but the code still works), and on an older laptop without a GPU a split can take a few minutes per song rather than seconds.
+So the honest question is whether a few minutes of your own computer’s time is worth keeping the song at home. For an unreleased record, it usually is. For a public song you just want to study, a cloud tool you trust can be fine. Either way, it’s your decision to make on purpose, not the default because a website asked first.
+
+### When is uploading the right call?
+Plenty of times. Uploading is the whole point when:
+- You’re sending the mix to a mastering engineer or collaborator you’ve chosen.
+- You’re delivering to your distributor. That upload has to happen, and it’s the one that counts.
+- You’ve picked a cloud service to do creative work, such as an online master, and you’re comfortable with its terms.
+Before uploading something unreleased, do three quick things. Read the part of the terms about how long files are kept, who can access them and whether they can be used for anything else. Keep your original WAV and session where they are, since an upload is a copy, not a backup. And upload once, the final file, rather than every rough version you’re testing.
+For day-to-day checks, keep the meter on your own machine. That’s how CoProducer’s analyzer is built: the page talks to an engine on your own computer, and if that isn’t running, it measures in the browser, so the file stays on your device.
+Note: Short version: measure locally, upload deliberately. If you’re weighing an online mastering service, our CoProducer vs LANDR notes lay out the trade-offs, and should you upload an unreleased master? goes deeper on the privacy side.
+Q: Can I check LUFS without uploading my song?
+A: Yes. LUFS and true peak are defined by a public standard (ITU-R BS.1770) that any computer can calculate. A free meter plugin in your DAW, or FFmpeg’s ebur128 filter from the command line, measures the file on your own machine without an account or an upload.
+Q: Is a local LUFS meter as accurate as an online one?
+A: If both follow ITU-R BS.1770, they should agree closely on integrated loudness, usually within a tenth of a dB or so. True-peak readings can differ slightly because meters oversample differently. Pick one meter and use it for every version you compare.
 Q: Is local always higher quality?
-A: Not automatically. It is better defined: you keep the WAV and the plan.
-Q: Does the GitHub Pages site upload my song?
-A: No. Analyze needs a local API you control.
+A: Not automatically. A local tool isn’t smarter, it’s just better defined: you keep the original WAV, you know which settings ran, and you can run it again tomorrow and get the same answer.
+Q: Does the CoProducer site upload my song when I analyze it?
+A: No. The analyzer on the CoProducer page sends your file to an engine running on your own computer (at 127.0.0.1) if you’ve started one. If that engine isn’t running, the page measures the file in your browser, so it stays on your device either way.
 
 ---
 

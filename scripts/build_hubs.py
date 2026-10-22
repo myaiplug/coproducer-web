@@ -32,6 +32,7 @@ TOPICS = [
             "leading-silence-steals-integrated-lufs", "dont-match-a-streamed-reference", "reference-matching-without-guesswork",
             "crest-factor-is-not-loudness", "quiet-masters-and-noise-floor", "album-consistency-in-one-meter",
             "vertical-video-is-a-loudness-trap",
+            "mix-sounds-better-louder-pick-one-monitor-level",
         ],
     },
     {
@@ -50,6 +51,7 @@ TOPICS = [
             "sample-rate-and-bit-depth-for-delivery", "gapless-album-gaps-after-mp3-or-aac", "release-checklist-that-matches-the-meter",
             "mastering-bat-vs-opening-the-session", "how-to-read-a-coproducer-score", "what-a-70-to-90-repair-changes",
             "why-three-report-formats",
+            "export-stems-for-a-mix-engineer",
         ],
     },
     {
@@ -67,6 +69,9 @@ TOPICS = [
             "subsonic-rumble-steals-limiter-headroom", "low-end-changes-when-you-move-your-chair", "parallel-compression-sounds-thin-check-latency",
             "how-loud-should-the-vocal-sit", "harsh-esses-get-louder-after-mastering", "reverb-makes-the-mix-muddy-filter-the-return",
             "wide-mixes-fail-in-mono", "phase-correlation-and-mono",
+            "delay-time-from-bpm-sync-your-throws",
+            "vocal-breaths-turn-them-down-dont-cut-them",
+            "pan-law-why-panned-parts-change-level",
         ],
     },
     {
@@ -101,6 +106,7 @@ TOPICS = [
             "stems-diagnose-mixes-do-not-replace-them", "demucs-vs-mdx-net-stem-separation-compared", "split-stems-from-youtube-audio-you-own",
             "sampling-from-separated-stems-workflow", "cloud-stem-splitter-privacy-unreleased-music", "local-audio-processing-for-unreleased-masters",
             "should-you-upload-an-unreleased-master", "local-tools-beat-upload-queues",
+            "clicks-at-edit-points-fade-every-cut",
         ],
     },
 ]

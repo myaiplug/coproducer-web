@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1" name="viewport"/><meta content="https://myaiplug.github.io/coproducer-web/blog/img/essays/export-stems-for-a-mix-engineer.jpg?v=shd" name="twitter:image"/><meta content="How to export stems for a mixing engineer: same start, same length, one sample rate, no mix-bus chain, and a null test against your rough before you send the link." name="twitter:description"/><meta content="Sending stems to a mixer? Export them so they line up and add back up" name="twitter:title"/><meta content="summary_large_image" name="twitter:card"/><meta content="2026-10-20T00:00:00Z" property="article:modified_time"/><meta content="2026-10-20T00:00:00Z" property="article:published_time"/><meta content="1440" property="og:image:height"/><meta content="2560" property="og:image:width"/><meta content="https://myaiplug.github.io/coproducer-web/blog/export-stems-for-a-mix-engineer.html" property="og:url"/><meta content="en_US" property="og:locale"/><meta content="CoProducer" property="og:site_name"/><meta content="article" property="og:type"/><link href="https://myaiplug.github.io/coproducer-web/llms.txt" rel="alternate" title="llms.txt" type="text/plain"/><meta content="NoDAW Labs" name="author"/><meta content="#050308" name="theme-color"/><meta content="index,follow,max-image-preview:large" name="robots"/><meta content="how to export stems for mixing, stems for mix engineer, stem export settings, stems not lining up, null test stems, stem sample rate, print effects on stems, send stems to mixer, StemSplit, NoDAW" name="keywords"/>
+<title>Sending stems to a mixer? Export them so they line up and add back up | Lacquer</title>
+<meta content="How to export stems for a mixing engineer: same start, same length, one sample rate, no mix-bus chain, and a null test against your rough before you send the link." name="description"/>
+<link href="https://myaiplug.github.io/coproducer-web/blog/export-stems-for-a-mix-engineer.html" rel="canonical"/>
+<link rel="alternate" type="application/rss+xml" title="Lacquer — CoProducer Journal" href="https://myaiplug.github.io/coproducer-web/blog/rss.xml"/>
+<link rel="icon" href="../favicon.ico" sizes="48x48"/>
+<link rel="icon" type="image/svg+xml" href="../assets/favicon.svg"/>
+<link rel="apple-touch-icon" href="../assets/apple-touch-icon.png"/>
+<link rel="manifest" href="../site.webmanifest"/>
+<meta content="Sending stems to a mixer? Export them so they line up and add back up" property="og:title"/>
+<meta content="How to export stems for a mixing engineer: same start, same length, one sample rate, no mix-bus chain, and a null test against your rough before you send the link." property="og:description"/>
+<meta content="https://myaiplug.github.io/coproducer-web/blog/img/essays/export-stems-for-a-mix-engineer.jpg?v=shd" property="og:image"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;1,500;1,600&amp;family=Figtree:wght@400;500&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet" media="print" onload="this.media='all'"/><noscript><link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;1,500;1,600&amp;family=Figtree:wght@400;500&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/></noscript>
+<link rel="preload" as="image" type="image/webp" fetchpriority="high" imagesrcset="img/essays/w/export-stems-for-a-mix-engineer-480.webp 480w, img/essays/w/export-stems-for-a-mix-engineer-960.webp 960w, img/essays/w/export-stems-for-a-mix-engineer-1600.webp 1600w" imagesizes="(max-width: 1100px) 100vw, 1100px"/>
+<link href="css/journal.css" rel="stylesheet"/>
+
+
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Sending stems to a mixer? Export them so they line up and add back up","description":"How to export stems for a mixing engineer: same start, same length, one sample rate, no mix-bus chain, and a null test against your rough before you send the link.","datePublished":"2026-10-20","dateModified":"2026-10-20","mainEntityOfPage":{"@type":"WebPage","@id":"https://myaiplug.github.io/coproducer-web/blog/export-stems-for-a-mix-engineer.html"},"image":{"@type":"ImageObject","url":"https://myaiplug.github.io/coproducer-web/blog/img/essays/export-stems-for-a-mix-engineer.jpg?v=shd","width":2560,"height":1440},"author":{"@type":"Organization","name":"NoDAW Labs","url":"https://myaiplug.github.io/coproducer-web/","logo":"https://myaiplug.github.io/coproducer-web/assets/og-default.jpg"},"publisher":{"@type":"Organization","name":"NoDAW Labs","url":"https://myaiplug.github.io/coproducer-web/","logo":"https://myaiplug.github.io/coproducer-web/assets/og-default.jpg"},"isPartOf":{"@type":"Blog","name":"Lacquer — CoProducer Journal","url":"https://myaiplug.github.io/coproducer-web/blog/index.html"},"keywords":["how to export stems for mixing","stems for mix engineer","stem export settings","stems not lining up","null test stems","stem sample rate","print effects on stems","send stems to mixer","StemSplit","NoDAW"],"speakable":{"@type":"SpeakableSpecification","cssSelector":[".answer","h1"]}}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How do I export stems for a mixing engineer?","acceptedAnswer":{"@type":"Answer","text":"Export every track or group from the same start point to the same end, past the last tail, as WAV at the session sample rate in 24-bit or 32-bit float. Bypass the mix-bus chain, give send effects their own stems, then sum the stems against your rough bounce. If they null, the mixer can rebuild your rough exactly."}},{"@type":"Question","name":"Should stems have effects on them?","acceptedAnswer":{"@type":"Answer","text":"Print insert effects that are part of the sound, like 808 distortion or vocal tuning, on the stem. Put send effects such as reverb and delay on their own stems so the mixer can rebalance them. Leave the mix-bus chain off, and send a second rough with it on if it’s part of the vibe."}},{"@type":"Question","name":"What sample rate and bit depth should stems be?","acceptedAnswer":{"@type":"Answer","text":"The session’s own sample rate and 24-bit or 32-bit float WAV. Don’t mix rates in one folder: in our test a 44.1 kHz 808 in a 48 kHz session would play about 8.8% fast and 1.47 semitones sharp if the DAW didn’t convert it. Use float if any stem peaks over 0 dBFS."}},{"@type":"Question","name":"How do I check that my stems line up?","acceptedAnswer":{"@type":"Answer","text":"Drop them all at zero with your rough bounce, flip the bounce’s polarity and play. Silence means they line up and add back up. In our synthetic session a clean export nulled to −120 dB, while correct stems against a rough with mix-bus glue left a residual only 9.9 dB under the mix."}}]}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"CoProducer","item":"https://myaiplug.github.io/coproducer-web/"},{"@type":"ListItem","position":2,"name":"Lacquer Journal","item":"https://myaiplug.github.io/coproducer-web/blog/index.html"},{"@type":"ListItem","position":3,"name":"Sending stems to a mixer? Export them so they line up and add back up","item":"https://myaiplug.github.io/coproducer-web/blog/export-stems-for-a-mix-engineer.html"}]}</script></head>
+<body>
+<header class="top">
+<a class="mark" href="../index.html"><em>Co</em>Producer</a>
+<nav aria-label="Primary" class="nav">
+<a href="index.html">Journal</a>
+<a href="../index.html#ab">A/B</a>
+<a href="../index.html#analyzeHome">Analyze</a>
+<a href="../guides/index.html">Guides</a>
+<a href="../pricing.html">Pricing</a>
+</nav>
+<a class="cta" href="../index.html#analyzeHome">Measure a mix</a>
+</header>
+<article class="post" id="main">
+<div class="post-hero"><img alt="Six glowing waveform strips in cyan, magenta, gold, violet, teal and amber laid in parallel on black marble, all starting at one thin gold line, one dim strip slightly out of place, a black drive with a cyan light beside them" src="img/essays/export-stems-for-a-mix-engineer.jpg?v=shd" srcset="img/essays/w/export-stems-for-a-mix-engineer-480.webp 480w, img/essays/w/export-stems-for-a-mix-engineer-960.webp 960w, img/essays/w/export-stems-for-a-mix-engineer-1600.webp 1600w" sizes="(max-width: 1100px) 100vw, 1100px" width="2560" height="1440" fetchpriority="high" decoding="async"/></div>
+<header>
+<p class="kicker">Delivery · 20 October 2026 · 8 min</p>
+<h1>Sending stems to a mixer? Export them so they line up and add back up</h1>
+<p class="meta">NoDAW Labs · Lacquer Vol. 05</p>
+</header>
+<p class="answer">Stems a mixer can use all start at the same point, run the same length, share the session’s sample rate, and add back up to your rough mix when every fader sits at zero. Export every track from the same start to the same end, keep send effects on their own stems, switch off the mix-bus chain, and null the stems against your bounce before you send the link.</p>
+<p>You send the link, feel good about it, and the first reply isn’t about the mix. The vocal comes in two bars early. The 808 sounds a little sharp. Where are the adlibs? And the rough you sent has a glue the mixer can’t find on any of the stems. Day one of a paid mix gets spent on email.</p>
+<p>Every one of those is an export setting, and you can catch all of them in about thirty seconds before the files leave your machine.</p>
+<h2>What “lined up” actually means</h2>
+<ul>
+<li><strong>Same start.</strong> Every stem begins at the same moment: bar 1, or one shared point before it if there’s a count-in or a pickup. Not at the first note on that track.</li>
+<li><strong>Same length.</strong> Every stem runs to the same end, past the last reverb tail. Drop them all at zero in any DAW and they play in time with no nudging.</li>
+<li><strong>Same format.</strong> One sample rate (the session’s), one bit depth, WAV or AIFF. Nothing lossy.</li>
+<li><strong>They add back up.</strong> With every fader at zero, the stems summed together should be your rough mix. That’s the one people skip.</li>
+</ul>
+<p>The last check is a null test. Flip the polarity of your rough bounce and play it against all the stems at once. If what’s left is silence, the stems <em>are</em> the mix, and the mixer starts exactly where you left off. If what’s left is loud, something on the rough never made it into the stems.</p>
+<h2>We broke a session on purpose</h2>
+<p>To put numbers on it we built a small synthetic session: eight bars at 140 BPM, 48 kHz, five stems (drums, 808, vocal, keys, adlibs). The vocal doesn’t start until bar 3 and the adlibs until bar 5. We exported it cleanly once. Then we exported it the way a rushed export goes: the vocal as region-only, the 808 at 44.1 kHz with its fader pushed 12 dB, the adlib track still muted, and a soft-clip glue on the mix bus that only the rough went through.</p>
+<table>
+<thead><tr><th>What went wrong</th><th>What the mixer gets</th><th>The fix</th></tr></thead>
+<tbody>
+<tr><td>Vocal exported from its first note</td><td>A 10.256 s file instead of 13.714 s. Dropped at zero, it plays 3.459 s early: two bars plus the 30 ms pickup</td><td>Export every stem from the same start bar, even when the track is silent there</td></tr>
+<tr><td>808 bounced at 44.1 kHz in a 48 kHz session</td><td>Either the DAW converts it on import, or it plays about 8.8% fast and 1.47 semitones sharp (48,000 ÷ 44,100)</td><td>Export everything at the session rate. Let the mixer decide on any conversion</td></tr>
+<tr><td>808 fader pushed 12 dB, 24-bit fixed</td><td>The peak went from −11.4 dBFS to over full scale, so 18,488 samples were flattened at 0 dBFS. That clipping is printed, and the mixer can’t undo it</td><td>Leave headroom on the stem, or export 32-bit float, which keeps overs intact</td></tr>
+<tr><td>Adlib track muted</td><td>A file of digital silence with the right name</td><td>Unmute and unsolo everything, and check no file is empty</td></tr>
+<tr><td>Glue on the mix bus, rough only</td><td>The stems summed back up miss the rough by a residual only 9.9 dB under the mix. That’s a different record</td><td>Bypass the bus chain for the stems and the rough, or send a second rough with it on and tell them what the chain is</td></tr>
+</tbody>
+</table>
+<p>The clean export, by contrast, nulled to −120.4 dB under the mix, which is just rounding, with zero samples of lag. That’s what a stem folder should look like.</p>
+<h2>Check the folder before you send it</h2>
+<p>This reads a folder of stems and, optionally, your rough bounce. It prints each stem’s rate, format, length, peak and where its first audio starts, then lists anything a mixer would email you about. With a rough it lines every stem up at zero, adds them together and runs the null test:</p>
+<pre><code>#!/usr/bin/env python3
+"""Check a folder of exported stems before they go to a mixer.
+usage: python3 stem_check.py STEMS_DIR [MIX.wav]      (pip install numpy soundfile)"""
+import sys, pathlib
+import numpy as np, soundfile as sf
+
+def db(v): return 20 * np.log10(max(float(v), 1e-12))
+folder = pathlib.Path(sys.argv[1]); mix_path = sys.argv[2] if len(sys.argv) &gt; 2 else None
+files = sorted(p for p in folder.iterdir() if p.suffix.lower() in (".wav", ".aif", ".aiff", ".flac"))
+problems, stems = [], {}
+print(f"{'stem':&lt;11}{'rate':&gt;7}{'format':&gt;8}{'length s':&gt;10}{'peak dBFS':&gt;11}{'first audio':&gt;13}")
+for p in files:
+    i = sf.info(p); x, sr = sf.read(p, dtype="float64", always_2d=True); stems[p.name] = (x, sr)
+    peak = np.abs(x).max(); loud = np.flatnonzero(np.abs(x).max(axis=1) &gt; 1e-4)   # above -80 dBFS
+    first = f"{loud[0] / sr:.2f} s" if loud.size else "silent"
+    print(f"{p.stem:&lt;11}{sr:&gt;7}{i.subtype:&gt;8}{i.frames / sr:&gt;10.3f}{(f"{db(peak):.1f}" if peak else "-inf"):&gt;11}{first:&gt;13}")
+    if not loud.size: problems.append(f"{p.name}: silent (muted when you exported?)")
+    clipped = int((np.abs(x) &gt;= 0.99999).sum())
+    if clipped and i.subtype != "FLOAT": problems.append(f"{p.name}: {clipped} samples at full scale, clipped on export")
+rates = {sr for _, sr in stems.values()}; lengths = {len(x) for x, _ in stems.values()}
+if len(rates) &gt; 1: problems.append(f"mixed sample rates {sorted(rates)}: re-export everything at the session rate")
+if len(lengths) &gt; 1:
+    longest = max(len(x) / sr for x, sr in stems.values())
+    for name, (x, sr) in stems.items():
+        if longest - len(x) / sr &gt; 0.001:
+            problems.append(f"{name}: {longest - len(x) / sr:.3f} s shorter than the longest stem")
+if mix_path and len(rates) == 1:
+    mix, _ = sf.read(mix_path, dtype="float64", always_2d=True)
+    total = np.zeros_like(mix)
+    for x, sr in stems.values():                     # line every stem up at zero, the way a mixer imports them
+        n = min(len(x), len(total)); total[:n, :x.shape[1]] += x[:n]
+    a, b = mix.mean(axis=1), total.mean(axis=1)      # lag between the mix and the stems added back up
+    n = 1 &lt;&lt; int(np.ceil(np.log2(len(a) * 2)))
+    xc = np.fft.irfft(np.fft.rfft(a, n) * np.conj(np.fft.rfft(b, n)), n)
+    lag = int(np.argmax(xc)); lag = lag - n if lag &gt; n // 2 else lag
+    resid = db(np.sqrt(np.mean((mix - total) ** 2)) / np.sqrt(np.mean(mix ** 2)))
+    print(f"\nnull vs {pathlib.Path(mix_path).name}: residual {resid:.1f} dB under the mix, best lag {lag} samples")
+    if resid &gt; -40: problems.append("stems don't add back up to the mix (bus processing, missing FX return, moved stem?)")
+print("\n" + ("\n".join("- " + s for s in problems) if problems else "ok: same rate, same length, nulls against the mix"))</code></pre>
+<p>On the clean export:</p>
+<pre><code>$ python3 stem_check.py clean mix_clean.wav
+stem          rate  format  length s  peak dBFS  first audio
+01_drums     48000  PCM_24    13.714       -1.6       0.00 s
+02_808       48000  PCM_24    13.714      -11.4       0.00 s
+03_vocal     48000  PCM_24    13.714      -16.5       3.46 s
+04_keys      48000  PCM_24    13.714      -18.7       0.00 s
+05_adlibs    48000  PCM_24    13.714      -20.5       8.15 s
+
+null vs mix_clean.wav: residual -120.4 dB under the mix, best lag 0 samples
+
+ok: same rate, same length, nulls against the mix</code></pre>
+<p>On the rushed one. The null test is skipped because the sample rates don’t match, and that alone is a reason to re-export:</p>
+<pre><code>$ python3 stem_check.py messy mix_glue.wav
+stem          rate  format  length s  peak dBFS  first audio
+01_drums     48000  PCM_24    13.714       -1.6       0.00 s
+02_808       44100  PCM_24    13.714        0.0       0.00 s
+03_vocal     48000  PCM_24    10.256      -16.5       0.00 s
+04_keys      48000  PCM_24    13.714      -18.7       0.00 s
+05_adlibs    48000  PCM_24    13.714       -inf       silent
+
+- 02_808.wav: 18488 samples at full scale, clipped on export
+- 05_adlibs.wav: silent (muted when you exported?)
+- mixed sample rates [44100, 48000]: re-export everything at the session rate
+- 03_vocal.wav: 3.459 s shorter than the longest stem</code></pre>
+<p>And on correct stems sent with a rough that went through the bus glue. Everything looks fine file by file. Only the null test catches it:</p>
+<pre><code>$ python3 stem_check.py busonly mix_glue.wav
+stem          rate  format  length s  peak dBFS  first audio
+01_drums     48000  PCM_24    13.714       -1.6       0.00 s
+02_808       48000  PCM_24    13.714      -11.4       0.00 s
+03_vocal     48000  PCM_24    13.714      -16.5       3.46 s
+04_keys      48000  PCM_24    13.714      -18.7       0.00 s
+05_adlibs    48000  PCM_24    13.714      -20.5       8.15 s
+
+null vs mix_glue.wav: residual -9.9 dB under the mix, best lag 0 samples
+
+- stems don't add back up to the mix (bus processing, missing FX return, moved stem?)</code></pre>
+<p>Note the vocal’s “first audio” of 3.46 s on the clean export. That’s correct. A stem should carry its silence. A first-audio time of 0.00 on a part you know comes in late is the tell that it was trimmed.</p>
+<h2>Export settings that save a day</h2>
+<ul>
+<li><strong>Format.</strong> WAV at the session sample rate, 24-bit or 32-bit float. Float if any stem peaks over 0 dBFS on its own fader. Turn normalise off. No MP3s, ever, not even “just to listen”.</li>
+<li><strong>Start and end.</strong> Same start for every stem. Run the export at least a bar past the last note so reverb and delay tails aren’t cut, two bars for long halls.</li>
+<li><strong>Mix bus off.</strong> Bypass the bus compressor, clipper, limiter and anything “mastering” on the main out. If that chain is the sound, say so in a note and send a second rough with it on.</li>
+<li><strong>Send effects get their own stems.</strong> A reverb or delay on a send becomes its own file: “Vocal FX”, “Keys verb”. Insert effects that are part of the part (the distortion on the 808, the tuning on the lead) get printed on that stem. For the lead vocal, send the printed version and the raw one if you can.</li>
+<li><strong>Sidechain.</strong> If the 808 ducks off the kick and you like it, print it ducked and include the kick as its own stem, so the mixer can keep it or rebuild it.</li>
+<li><strong>Names.</strong> Number them in a sensible order (<code>01_Kick</code>, <code>02_808</code>, <code>08_Lead_Vox</code>) and put the BPM and key in the folder name. A short text file with the BPM, key, sample rate and which stems have printed effects answers the first three questions before they’re asked.</li>
+<li><strong>Send the rough from the same start.</strong> It’s what the mixer listens to first and what the null test runs against.</li>
+</ul>
+<p>Mono or stereo files is mostly preference. Mono sources can go as mono files; stereo is never wrong. If you don’t know what your mixer likes, ask once and save the answer.</p>
+<p>Lost the session and only have the two-track? StemSplit can pull vocals, drums and bass out of the bounce on your own machine, so a mixer can at least hear what they’re working with. Just tell them which stems came from a separator. Separated stems won’t null against the bounce, and they’re a rescue, not a delivery: <a href="stems-diagnose-mixes-do-not-replace-them.html">stems diagnose mixes, they don’t replace them</a>.</p>
+<h2>Genre notes</h2>
+<ul>
+<li><strong>Trap and drill.</strong> Kick and 808 always on separate stems, with the 808’s saturation printed. Split the vocal by role (lead, doubles, adlibs, tags), because those get very different treatment. Tags with long throws need their delay stem too.</li>
+<li><strong>R&amp;B and soul.</strong> Group stacks and harmonies into a few stems (low BGVs, high BGVs) rather than one “background vocals” file. Lead dry plus lead FX. Long tails, so give the export two bars after the last note.</li>
+<li><strong>Rock and live bands.</strong> If the mixer is actually mixing the drums, send the multitracks (kick in, snare top, overheads and so on), not a stereo drum stem, and keep the count-in on every file so everything shares a start.</li>
+<li><strong>House and techno.</strong> Long arrangements, so the null test earns its keep: one moved clip in a six-minute track is easy to miss by ear. Print the pumping if the sidechain is the groove, and send the kick separately.</li>
+</ul>
+<aside class="aside">Same start, same length, one rate, bus off, null it. Do that and the mixer’s first email is about the music. Before you bounce anything, <a href="sample-rate-and-bit-depth-for-delivery.html">sample rate and bit depth are delivery hygiene</a> and <a href="how-much-headroom-to-leave-for-mastering.html">how much headroom to leave</a> cover the format side. Only have the bounce? Hear what a split sounds like with <a href="../index.html#stemDemo">StemSplit</a>.</aside>
+<dl class="faq">
+<dt>How do I export stems for a mixing engineer?</dt>
+<dd>Export every track or group from the same start point to the same end, past the last tail, as WAV at the session sample rate in 24-bit or 32-bit float. Bypass the mix-bus chain, give send effects their own stems, then sum the stems against your rough bounce. If they null, the mixer can rebuild your rough exactly.</dd>
+<dt>Should stems have effects on them?</dt>
+<dd>Print insert effects that are part of the sound, like 808 distortion or vocal tuning, on the stem. Put send effects such as reverb and delay on their own stems so the mixer can rebalance them. Leave the mix-bus chain off, and send a second rough with it on if it’s part of the vibe.</dd>
+<dt>What sample rate and bit depth should stems be?</dt>
+<dd>The session’s own sample rate and 24-bit or 32-bit float WAV. Don’t mix rates in one folder: in our test a 44.1 kHz 808 in a 48 kHz session would play about 8.8% fast and 1.47 semitones sharp if the DAW didn’t convert it. Use float if any stem peaks over 0 dBFS.</dd>
+<dt>How do I check that my stems line up?</dt>
+<dd>Drop them all at zero with your rough bounce, flip the bounce’s polarity and play. Silence means they line up and add back up. In our synthetic session a clean export nulled to −120 dB, while correct stems against a rough with mix-bus glue left a residual only 9.9 dB under the mix.</dd>
+</dl>
+<nav aria-label="Keep reading" class="related-essays keep-reading" style="margin:48px 0 24px;padding-top:24px;border-top:1px solid rgba(196,165,116,.32)"><h2>Keep reading</h2><ul><li><a href="sample-rate-and-bit-depth-for-delivery.html">Sample rate and bit depth are delivery hygiene</a></li><li><a href="how-much-headroom-to-leave-for-mastering.html">How much headroom to leave for mastering (and why −6 dB isn’t the point)</a></li><li><a href="stems-diagnose-mixes-do-not-replace-them.html">Stems diagnose mixes — they do not replace them</a></li><li><a href="parallel-compression-sounds-thin-check-latency.html">Parallel compression sounds thin? Check the latency first</a></li><li><a href="release-checklist-that-matches-the-meter.html">A release checklist that matches the meter</a></li><li><a href="turn-the-mix-down-before-you-limit.html">Turn the mix down before you limit</a></li></ul><p class="hub-link">More in <a href="topics/true-peak-limiting-and-delivery.html">True peak, limiting &amp; delivery</a> · <a href="index.html">All essays</a></p></nav></article>
+<aside aria-label="About the publisher" class="author-box"><p class="author-k">Written and published by</p><p class="author-name"><a href="about.html">NoDAW Labs</a></p><p class="author-bio">NoDAW Labs makes local-first audio tools: CoProducer, reTUNE[432] and DeepSplit. Essays are credited to the studio, not to individual writers. <a href="methodology.html">How we test, cite and correct</a>.</p></aside>
+<section class="comments" data-comments="" data-thread="stem-export-mixer"></section>
+<script src="js/studio.js" type="module"></script>
+<script src="js/comments.js" type="module"></script>
+<footer class="site"><span>Lacquer · CoProducer Journal</span><span><a href="index.html">All essays</a> · <a href="about.html">About</a> · <a href="methodology.html">Methodology</a></span></footer>
+</body>
+</html>

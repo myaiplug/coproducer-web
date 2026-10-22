@@ -120,6 +120,66 @@
     <priority>0.7</priority>
   </url>
     <url>
+    <loc>https://myaiplug.github.io/coproducer-web/blog/pan-law-why-panned-parts-change-level.html</loc>
+    <lastmod>2026-10-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://myaiplug.github.io/coproducer-web/blog/img/essays/pan-law-why-panned-parts-change-level.jpg?v=shd</image:loc>
+      <image:title>Panned parts get quieter in mono? That’s your pan law, not your ears</image:title>
+    </image:image>
+  </url>
+      <url>
+    <loc>https://myaiplug.github.io/coproducer-web/blog/vocal-breaths-turn-them-down-dont-cut-them.html</loc>
+    <lastmod>2026-10-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://myaiplug.github.io/coproducer-web/blog/img/essays/vocal-breaths-turn-them-down-dont-cut-them.jpg?v=shd</image:loc>
+      <image:title>Loud breaths in your vocal? Turn them down before the compressor, don’t cut them</image:title>
+    </image:image>
+  </url>
+      <url>
+    <loc>https://myaiplug.github.io/coproducer-web/blog/delay-time-from-bpm-sync-your-throws.html</loc>
+    <lastmod>2026-10-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://myaiplug.github.io/coproducer-web/blog/img/essays/delay-time-from-bpm-sync-your-throws.jpg?v=shd</image:loc>
+      <image:title>Your delay sounds off the beat? Set it from the tempo, not by ear</image:title>
+    </image:image>
+  </url>
+      <url>
+    <loc>https://myaiplug.github.io/coproducer-web/blog/clicks-at-edit-points-fade-every-cut.html</loc>
+    <lastmod>2026-10-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://myaiplug.github.io/coproducer-web/blog/img/essays/clicks-at-edit-points-fade-every-cut.jpg?v=shd</image:loc>
+      <image:title>Clicks at your edit points come from cutting mid-wave. Fade every cut</image:title>
+    </image:image>
+  </url>
+      <url>
+    <loc>https://myaiplug.github.io/coproducer-web/blog/export-stems-for-a-mix-engineer.html</loc>
+    <lastmod>2026-10-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://myaiplug.github.io/coproducer-web/blog/img/essays/export-stems-for-a-mix-engineer.jpg?v=shd</image:loc>
+      <image:title>Sending stems to a mixer? Export them so they line up and add back up</image:title>
+    </image:image>
+  </url>
+      <url>
+    <loc>https://myaiplug.github.io/coproducer-web/blog/mix-sounds-better-louder-pick-one-monitor-level.html</loc>
+    <lastmod>2026-10-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://myaiplug.github.io/coproducer-web/blog/img/essays/mix-sounds-better-louder-pick-one-monitor-level.jpg?v=shd</image:loc>
+      <image:title>Your mix sounds better loud and thinner quiet. Pick one monitoring level</image:title>
+    </image:image>
+  </url>
+  <url>
     <loc>https://myaiplug.github.io/coproducer-web/blog/reverb-makes-the-mix-muddy-filter-the-return.html</loc>
     <lastmod>2026-10-19</lastmod>
     <changefreq>monthly</changefreq>
@@ -601,22 +661,22 @@
   </url>
   <url>
     <loc>https://myaiplug.github.io/coproducer-web/blog/why-three-report-formats.html</loc>
-    <lastmod>2026-08-21</lastmod>
+    <lastmod>2026-10-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.75</priority>
     <image:image>
       <image:loc>https://myaiplug.github.io/coproducer-web/blog/img/essays/why-three-report-formats.jpg?v=shd</image:loc>
-      <image:title>Why HTML, JSON, and TXT all matter</image:title>
+      <image:title>What should a loudness report include? HTML, JSON, TXT</image:title>
     </image:image>
   </url>
   <url>
     <loc>https://myaiplug.github.io/coproducer-web/blog/local-tools-beat-upload-queues.html</loc>
-    <lastmod>2026-08-21</lastmod>
+    <lastmod>2026-10-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.75</priority>
     <image:image>
       <image:loc>https://myaiplug.github.io/coproducer-web/blog/img/essays/local-tools-beat-upload-queues.jpg?v=shd</image:loc>
-      <image:title>Local tools beat upload queues</image:title>
+      <image:title>How to check LUFS without uploading your song</image:title>
     </image:image>
   </url>
   <url>

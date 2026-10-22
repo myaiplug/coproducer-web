@@ -6,7 +6,55 @@
     <atom:link href="https://myaiplug.github.io/coproducer-web/blog/rss.xml" rel="self" type="application/rss+xml"/>
     <description>Answer-first essays on loudness, true peak, repair, stems, ScrewAI, and local .bat workflows.</description>
     <language>en-us</language>
-    <lastBuildDate>Mon, 19 Oct 2026 16:00:00 GMT</lastBuildDate>
+    <lastBuildDate>Thu, 22 Oct 2026 16:00:00 GMT</lastBuildDate>
+    <item>
+      <title>Panned parts get quieter in mono? That’s your pan law, not your ears</title>
+      <link>https://myaiplug.github.io/coproducer-web/blog/pan-law-why-panned-parts-change-level.html</link>
+      <guid isPermaLink="true">https://myaiplug.github.io/coproducer-web/blog/pan-law-why-panned-parts-change-level.html</guid>
+      <pubDate>Thu, 22 Oct 2026 16:00:00 GMT</pubDate>
+      <description>What pan law is and why it matters: a centered sound is turned down on both sides so panning doesn’t change its loudness. Fold to mono and the center jumps up to 3 dB. Table and script inside.</description>
+      <enclosure url="https://myaiplug.github.io/coproducer-web/blog/img/essays/pan-law-why-panned-parts-change-level.jpg?v=shd" type="image/jpeg" length="289593"/>
+    </item>
+    <item>
+      <title>Loud breaths in your vocal? Turn them down before the compressor, don’t cut them</title>
+      <link>https://myaiplug.github.io/coproducer-web/blog/vocal-breaths-turn-them-down-dont-cut-them.html</link>
+      <guid isPermaLink="true">https://myaiplug.github.io/coproducer-web/blog/vocal-breaths-turn-them-down-dont-cut-them.html</guid>
+      <pubDate>Thu, 22 Oct 2026 16:00:00 GMT</pubDate>
+      <description>How to handle breaths in a vocal: lower them with clip gain before compression instead of deleting them. A compressor with make-up gain can shrink the gap between singing and breath from 12 dB to 3 dB.</description>
+      <enclosure url="https://myaiplug.github.io/coproducer-web/blog/img/essays/vocal-breaths-turn-them-down-dont-cut-them.jpg?v=shd" type="image/jpeg" length="361354"/>
+    </item>
+    <item>
+      <title>Your delay sounds off the beat? Set it from the tempo, not by ear</title>
+      <link>https://myaiplug.github.io/coproducer-web/blog/delay-time-from-bpm-sync-your-throws.html</link>
+      <guid isPermaLink="true">https://myaiplug.github.io/coproducer-web/blog/delay-time-from-bpm-sync-your-throws.html</guid>
+      <pubDate>Wed, 21 Oct 2026 16:00:00 GMT</pubDate>
+      <description>How to calculate delay time from BPM: 60,000 ÷ BPM is a quarter note in ms. Straight, dotted and triplet times, grid-locked pre-delay, and why &#x27;close enough&#x27; drifts.</description>
+      <enclosure url="https://myaiplug.github.io/coproducer-web/blog/img/essays/delay-time-from-bpm-sync-your-throws.jpg?v=shd" type="image/jpeg" length="326867"/>
+    </item>
+    <item>
+      <title>Clicks at your edit points come from cutting mid-wave. Fade every cut</title>
+      <link>https://myaiplug.github.io/coproducer-web/blog/clicks-at-edit-points-fade-every-cut.html</link>
+      <guid isPermaLink="true">https://myaiplug.github.io/coproducer-web/blog/clicks-at-edit-points-fade-every-cut.html</guid>
+      <pubDate>Wed, 21 Oct 2026 16:00:00 GMT</pubDate>
+      <description>Why audio edits click and pop: a cut or splice that lands mid-waveform makes an instant jump. A 5 ms fade or crossfade removes it. Includes a click-finder script.</description>
+      <enclosure url="https://myaiplug.github.io/coproducer-web/blog/img/essays/clicks-at-edit-points-fade-every-cut.jpg?v=shd" type="image/jpeg" length="340571"/>
+    </item>
+    <item>
+      <title>Sending stems to a mixer? Export them so they line up and add back up</title>
+      <link>https://myaiplug.github.io/coproducer-web/blog/export-stems-for-a-mix-engineer.html</link>
+      <guid isPermaLink="true">https://myaiplug.github.io/coproducer-web/blog/export-stems-for-a-mix-engineer.html</guid>
+      <pubDate>Tue, 20 Oct 2026 16:00:00 GMT</pubDate>
+      <description>How to export stems for a mixing engineer: same start, same length, one sample rate, no mix-bus chain, and a null test against your rough before you send the link.</description>
+      <enclosure url="https://myaiplug.github.io/coproducer-web/blog/img/essays/export-stems-for-a-mix-engineer.jpg?v=shd" type="image/jpeg" length="406670"/>
+    </item>
+    <item>
+      <title>Your mix sounds better loud and thinner quiet. Pick one monitoring level</title>
+      <link>https://myaiplug.github.io/coproducer-web/blog/mix-sounds-better-louder-pick-one-monitor-level.html</link>
+      <guid isPermaLink="true">https://myaiplug.github.io/coproducer-web/blog/mix-sounds-better-louder-pick-one-monitor-level.html</guid>
+      <pubDate>Tue, 20 Oct 2026 16:00:00 GMT</pubDate>
+      <description>Why your mix changes with the volume knob: equal-loudness, and louder always winning the A/B. Calibrate one listening level, level-match, then check loud and quiet.</description>
+      <enclosure url="https://myaiplug.github.io/coproducer-web/blog/img/essays/mix-sounds-better-louder-pick-one-monitor-level.jpg?v=shd" type="image/jpeg" length="348149"/>
+    </item>
     <item>
       <title>Reverb making the mix muddy? Filter the return, not the vocal</title>
       <link>https://myaiplug.github.io/coproducer-web/blog/reverb-makes-the-mix-muddy-filter-the-return.html</link>
@@ -392,19 +440,19 @@
       <enclosure url="https://myaiplug.github.io/coproducer-web/blog/img/essays/album-consistency-in-one-meter.jpg?v=shd" type="image/jpeg" length="0"/>
     </item>
     <item>
-      <title>Why HTML, JSON, and TXT all matter</title>
+      <title>What should a loudness report include? HTML, JSON, TXT</title>
       <link>https://myaiplug.github.io/coproducer-web/blog/why-three-report-formats.html</link>
       <guid isPermaLink="true">https://myaiplug.github.io/coproducer-web/blog/why-three-report-formats.html</guid>
       <pubDate>Thu, 21 Aug 2026 00:00:00 GMT</pubDate>
-      <description>HTML is for humans and clients. JSON is for pipelines. TXT is for quick notes and tickets. CoProducer writes all three so the same facts travel cleanly.</description>
+      <description>A loudness report should name the exact file, its hash, LUFS, true peak and LRA. Keep HTML for people, JSON for scripts and TXT for chat. Script included.</description>
       <enclosure url="https://myaiplug.github.io/coproducer-web/blog/img/essays/why-three-report-formats.jpg?v=shd" type="image/jpeg" length="0"/>
     </item>
     <item>
-      <title>Local tools beat upload queues</title>
+      <title>How to check LUFS without uploading your song</title>
       <link>https://myaiplug.github.io/coproducer-web/blog/local-tools-beat-upload-queues.html</link>
       <guid isPermaLink="true">https://myaiplug.github.io/coproducer-web/blog/local-tools-beat-upload-queues.html</guid>
       <pubDate>Thu, 21 Aug 2026 00:00:00 GMT</pubDate>
-      <description>Local .bat and desktop tools skip upload queues, retention policies, and per-track metering fees. Keep measurement, stems, and syrup renders on your machine.</description>
+      <description>You don’t need to upload a track to measure LUFS or true peak. A free meter plugin or one FFmpeg command does it in seconds, and your unreleased song stays put.</description>
       <enclosure url="https://myaiplug.github.io/coproducer-web/blog/img/essays/local-tools-beat-upload-queues.jpg?v=shd" type="image/jpeg" length="0"/>
     </item>
     <item>
