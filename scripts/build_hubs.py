@@ -52,6 +52,7 @@ TOPICS = [
             "mastering-bat-vs-opening-the-session", "how-to-read-a-coproducer-score", "what-a-70-to-90-repair-changes",
             "why-three-report-formats",
             "export-stems-for-a-mix-engineer",
+            "clean-version-of-a-song-mute-reverse-or-replace",
         ],
     },
     {
@@ -72,6 +73,7 @@ TOPICS = [
             "delay-time-from-bpm-sync-your-throws",
             "vocal-breaths-turn-them-down-dont-cut-them",
             "pan-law-why-panned-parts-change-level",
+            "tune-808-to-the-key-of-your-song",
         ],
     },
     {

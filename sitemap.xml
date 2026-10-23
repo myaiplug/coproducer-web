@@ -27,7 +27,7 @@
   </url>
   <url>
     <loc>https://myaiplug.github.io/coproducer-web/blog/index.html</loc>
-    <lastmod>2026-10-19</lastmod>
+    <lastmod>2026-10-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
     <image:image>
@@ -118,6 +118,26 @@
     <lastmod>2026-08-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+  </url>
+    <url>
+    <loc>https://myaiplug.github.io/coproducer-web/blog/tune-808-to-the-key-of-your-song.html</loc>
+    <lastmod>2026-10-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://myaiplug.github.io/coproducer-web/blog/img/essays/tune-808-to-the-key-of-your-song.jpg?v=shd</image:loc>
+      <image:title>808 sounds off-key? Find its real note, then tune it to the song</image:title>
+    </image:image>
+  </url>
+    <url>
+    <loc>https://myaiplug.github.io/coproducer-web/blog/clean-version-of-a-song-mute-reverse-or-replace.html</loc>
+    <lastmod>2026-10-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://myaiplug.github.io/coproducer-web/blog/img/essays/clean-version-of-a-song-mute-reverse-or-replace.jpg?v=shd</image:loc>
+      <image:title>Making a clean version? Edit the vocals, keep the length, then check it against the explicit</image:title>
+    </image:image>
   </url>
     <url>
     <loc>https://myaiplug.github.io/coproducer-web/blog/pan-law-why-panned-parts-change-level.html</loc>
@@ -759,13 +779,13 @@
   </url>
   <url>
     <loc>https://myaiplug.github.io/coproducer-web/blog/topics/true-peak-limiting-and-delivery.html</loc>
-    <lastmod>2026-10-19</lastmod>
+    <lastmod>2026-10-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://myaiplug.github.io/coproducer-web/blog/topics/low-end-and-mix-dynamics.html</loc>
-    <lastmod>2026-10-19</lastmod>
+    <lastmod>2026-10-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
