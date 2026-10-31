@@ -53,6 +53,9 @@ TOPICS = [
             "why-three-report-formats",
             "export-stems-for-a-mix-engineer",
             "clean-version-of-a-song-mute-reverse-or-replace",
+            "song-ending-cut-off-on-export-let-the-tail-ring",
+            "normalize-on-export-turn-it-off-for-mastering",
+            "fade-out-sounds-abrupt-curve-it-and-fade-after-the-limiter",
         ],
     },
     {
@@ -74,6 +77,12 @@ TOPICS = [
             "vocal-breaths-turn-them-down-dont-cut-them",
             "pan-law-why-panned-parts-change-level",
             "tune-808-to-the-key-of-your-song",
+            "compressor-kills-the-punch-slow-the-attack",
+            "plugin-input-level-gain-staging-minus-18-dbfs",
+            "layered-kick-sounds-thinner-check-polarity-and-timing",
+            "sidechain-pumping-out-of-time-set-release-to-tempo",
+            "copy-paste-vocal-double-sounds-mono-sing-a-real-take",
+            "vocal-buried-in-the-beat-cut-the-beat-at-3-khz",
         ],
     },
     {
@@ -92,6 +101,7 @@ TOPICS = [
             "432-vs-435-vs-442-hz-reference-pitch-guide", "concert-pitch-history-before-a440", "432-hz-conspiracy-theories-fact-check",
             "432-vs-440-blind-listening-test", "songs-that-reveal-a-432-hz-retune", "screw-tempo-still-needs-a-legal-peak",
             "halftime-still-needs-a-legal-peak", "when-to-slow-the-bounce",
+            "sample-plays-at-wrong-pitch-sample-rate-mismatch",
         ],
     },
     {

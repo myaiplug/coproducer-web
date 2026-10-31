@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1" name="viewport"/><meta content="https://myaiplug.github.io/coproducer-web/blog/img/essays/fade-out-sounds-abrupt-curve-it-and-fade-after-the-limiter.jpg?v=shd" name="twitter:image"/><meta content="Why a song fade-out seems to hang and then vanish: a straight-line fade loses only 6 dB in its first half, and a limiter after the fade eats the first few dB of it. Measured fade shapes and a limited master, with the script." name="twitter:description"/><meta content="Fade-out drops off a cliff? Curve it, and fade after the limiter" name="twitter:title"/><meta content="summary_large_image" name="twitter:card"/><meta content="2026-10-29T00:00:00Z" property="article:modified_time"/><meta content="2026-10-29T00:00:00Z" property="article:published_time"/><meta content="1440" property="og:image:height"/><meta content="2560" property="og:image:width"/><meta content="https://myaiplug.github.io/coproducer-web/blog/fade-out-sounds-abrupt-curve-it-and-fade-after-the-limiter.html" property="og:url"/><meta content="en_US" property="og:locale"/><meta content="CoProducer" property="og:site_name"/><meta content="article" property="og:type"/><link href="https://myaiplug.github.io/coproducer-web/llms.txt" rel="alternate" title="llms.txt" type="text/plain"/><meta content="NoDAW Labs" name="author"/><meta content="#050308" name="theme-color"/><meta content="index,follow,max-image-preview:large" name="robots"/><meta content="fade out sounds abrupt, how to fade out a song, fade out curve, linear vs exponential fade, fade before or after limiter, fade out mastering, song fade out sounds unnatural, fade out length, CoProducer, NoDAW" name="keywords"/>
+<title>Fade-out drops off a cliff? Curve it, and fade after the limiter | Lacquer</title>
+<meta content="Why a song fade-out seems to hang and then vanish: a straight-line fade loses only 6 dB in its first half, and a limiter after the fade eats the first few dB of it. Measured fade shapes and a limited master, with the script." name="description"/>
+<link href="https://myaiplug.github.io/coproducer-web/blog/fade-out-sounds-abrupt-curve-it-and-fade-after-the-limiter.html" rel="canonical"/>
+<link rel="alternate" type="application/rss+xml" title="Lacquer — CoProducer Journal" href="https://myaiplug.github.io/coproducer-web/blog/rss.xml"/>
+<link rel="icon" href="../favicon.ico" sizes="48x48"/>
+<link rel="icon" type="image/svg+xml" href="../assets/favicon.svg"/>
+<link rel="apple-touch-icon" href="../assets/apple-touch-icon.png"/>
+<link rel="manifest" href="../site.webmanifest"/>
+<meta content="Fade-out drops off a cliff? Curve it, and fade after the limiter" property="og:title"/>
+<meta content="Why a song fade-out seems to hang and then vanish: a straight-line fade loses only 6 dB in its first half, and a limiter after the fade eats the first few dB of it. Measured fade shapes and a limited master, with the script." property="og:description"/>
+<meta content="https://myaiplug.github.io/coproducer-web/blog/img/essays/fade-out-sounds-abrupt-curve-it-and-fade-after-the-limiter.jpg?v=shd" property="og:image"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;1,500;1,600&amp;family=Figtree:wght@400;500&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet" media="print" onload="this.media='all'"/><noscript><link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;1,500;1,600&amp;family=Figtree:wght@400;500&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/></noscript>
+<link rel="preload" as="image" type="image/webp" fetchpriority="high" imagesrcset="img/essays/w/fade-out-sounds-abrupt-curve-it-and-fade-after-the-limiter-480.webp 480w, img/essays/w/fade-out-sounds-abrupt-curve-it-and-fade-after-the-limiter-960.webp 960w, img/essays/w/fade-out-sounds-abrupt-curve-it-and-fade-after-the-limiter-1600.webp 1600w" imagesizes="(max-width: 1100px) 100vw, 1100px"/>
+<link href="css/journal.css" rel="stylesheet"/>
+
+
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Fade-out drops off a cliff? Curve it, and fade after the limiter","description":"Why a song fade-out seems to hang and then vanish: a straight-line fade loses only 6 dB in its first half, and a limiter after the fade eats the first few dB of it. Measured fade shapes and a limited master, with the script.","datePublished":"2026-10-29","dateModified":"2026-10-29","mainEntityOfPage":{"@type":"WebPage","@id":"https://myaiplug.github.io/coproducer-web/blog/fade-out-sounds-abrupt-curve-it-and-fade-after-the-limiter.html"},"image":{"@type":"ImageObject","url":"https://myaiplug.github.io/coproducer-web/blog/img/essays/fade-out-sounds-abrupt-curve-it-and-fade-after-the-limiter.jpg?v=shd","width":2560,"height":1440},"author":{"@type":"Organization","name":"NoDAW Labs","url":"https://myaiplug.github.io/coproducer-web/","logo":"https://myaiplug.github.io/coproducer-web/assets/og-default.jpg"},"publisher":{"@type":"Organization","name":"NoDAW Labs","url":"https://myaiplug.github.io/coproducer-web/","logo":"https://myaiplug.github.io/coproducer-web/assets/og-default.jpg"},"isPartOf":{"@type":"Blog","name":"Lacquer — CoProducer Journal","url":"https://myaiplug.github.io/coproducer-web/blog/index.html"},"keywords":["fade out sounds abrupt","how to fade out a song","fade out curve","linear vs exponential fade","fade before or after limiter","fade out mastering","song fade out sounds unnatural","fade out length","CoProducer","NoDAW"],"speakable":{"@type":"SpeakableSpecification","cssSelector":[".answer","h1"]}}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Why does my fade-out sound abrupt at the end?","acceptedAnswer":{"@type":"Answer","text":"A linear fade drops only 6 dB in its first half, then falls from −20 dB to silence in the last tenth. A limiter after the fade makes it worse by cancelling the first few dB. Use a curved fade and put it after the limiter."}},{"@type":"Question","name":"Should I fade out before or after the limiter?","acceptedAnswer":{"@type":"Answer","text":"After. In our test, a fade placed before a limiter working about 8 dB moved only 0.8 dB in its first three seconds, against 2.5 dB when the fade came after the limiter."}},{"@type":"Question","name":"What fade curve is best for a song fade-out?","acceptedAnswer":{"@type":"Answer","text":"One that sounds like the level falls at a steady speed, usually somewhere between linear and an even-in-decibels curve. Exponential or logarithmic presets are a good starting point. Equal-power curves are made for crossfades, not fade-outs."}},{"@type":"Question","name":"Should I fade out the song before sending it to mastering?","acceptedAnswer":{"@type":"Answer","text":"Ask your engineer. Many prefer the unfaded version with a note on where the fade starts and how long it lasts, so they can fade after their own limiter."}}]}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"CoProducer","item":"https://myaiplug.github.io/coproducer-web/"},{"@type":"ListItem","position":2,"name":"Lacquer Journal","item":"https://myaiplug.github.io/coproducer-web/blog/index.html"},{"@type":"ListItem","position":3,"name":"Fade-out drops off a cliff? Curve it, and fade after the limiter","item":"https://myaiplug.github.io/coproducer-web/blog/fade-out-sounds-abrupt-curve-it-and-fade-after-the-limiter.html"}]}</script></head>
+<body>
+<header class="top">
+<a class="mark" href="../index.html"><em>Co</em>Producer</a>
+<nav aria-label="Primary" class="nav">
+<a href="index.html">Journal</a>
+<a href="../index.html#ab">A/B</a>
+<a href="../index.html#analyzeHome">Analyze</a>
+<a href="../guides/index.html">Guides</a>
+<a href="../pricing.html">Pricing</a>
+</nav>
+<a class="cta" href="../index.html#analyzeHome">Measure a mix</a>
+</header>
+<article class="post" id="main">
+<div class="post-hero"><img alt="A brass console fader resting partway down its slot on a dark gold console over gold-veined black marble, a gold light trail curving down and fading into the dark, a studio monitor glowing cyan and magenta behind." src="img/essays/fade-out-sounds-abrupt-curve-it-and-fade-after-the-limiter.jpg?v=shd" srcset="img/essays/w/fade-out-sounds-abrupt-curve-it-and-fade-after-the-limiter-480.webp 480w, img/essays/w/fade-out-sounds-abrupt-curve-it-and-fade-after-the-limiter-960.webp 960w, img/essays/w/fade-out-sounds-abrupt-curve-it-and-fade-after-the-limiter-1600.webp 1600w" sizes="(max-width: 1100px) 100vw, 1100px" width="2560" height="1440" fetchpriority="high" decoding="async"/></div>
+<header>
+<p class="kicker">Mastering · 29 October 2026 · 7 min</p>
+<h1>Fade-out drops off a cliff? Curve it, and fade after the limiter</h1>
+<p class="meta">NoDAW Labs · Lacquer Vol. 06</p>
+</header>
+<p class="answer">A fade-out that seems to hang and then suddenly disappear is usually a straight-line fade, often with a limiter after it. A linear fade only drops 6 dB in its first half, then falls from −20 dB to silence in the last tenth. A limiter that comes after the fade cancels out the first few dB of it. Use a curved fade that falls more evenly in decibels, and put the fade after the limiter so it moves from the first second.</p>
+<p>The outro is the vibe. You draw a long fade so the song can float away. On playback it doesn’t float. For the first several seconds nothing seems to happen, then near the end it suddenly drops out like someone pulled the cable.</p>
+<p>Two things usually cause that, and they often show up together: the shape of the fade, and where it sits in the chain.</p>
+<h2>A straight line isn’t straight to your ears</h2>
+<p>Most DAWs draw a linear fade by default. It turns the volume down in equal steps of amplitude. Our ears don’t hear amplitude in equal steps. We hear something much closer to decibels, and in decibels a linear fade is lopsided. Here’s what <code>fade_check.py</code> measured for a 10-second fade in a few common shapes:</p>
+<pre><code>#!/usr/bin/env python3
+"""Fade-out shapes, and what a limiter does to a fade drawn in front of it.
+  python3 fade_check.py
+Part 1: level (dB) at each tenth of a 10-second fade for three common shapes.
+Part 2: a dense synthetic 'master' driven 8 dB into a simple peak limiter, faded linearly over 10 s
+either before the limiter or after it; short-term level per second, relative to the unfaded master."""
+import numpy as np
+
+SR = 48000
+def db(x): return 20 * np.log10(np.maximum(x, 1e-12))
+SHAPES = {"linear":        lambda p: 1 - p,
+          "equal-power":   lambda p: np.cos(p * np.pi / 2),
+          "dB to -40":     lambda p: np.where(p &lt; 1, 10 ** (-40 * p / 20), 0.0),   # even steps in dB, then cut
+          "dB to -60":     lambda p: np.where(p &lt; 1, 10 ** (-60 * p / 20), 0.0)}
+
+def limiter(x, ceiling_db=-1.0, rel_ms=100):
+    c = 10 ** (ceiling_db / 20); need = np.minimum(1, c / np.maximum(np.abs(x), 1e-12))
+    r, g, out = np.exp(-1 / (SR * rel_ms / 1000)), 1.0, np.empty_like(x)
+    for i, n in enumerate(need):
+        g = n if n &lt; g else r * g + (1 - r) * n            # instant attack (clips nothing), smooth release
+        out[i] = g
+    return x * out
+
+def master(seconds):
+    rng = np.random.default_rng(7); n = int(SR * seconds); t = np.arange(n) / SR
+    x = rng.standard_normal(n) * 0.25
+    beat = (np.sin(2 * np.pi * 2.333 * t) &gt; 0.6).astype(float)      # 140 BPM thumps on top
+    x += 0.9 * beat * np.sin(2 * np.pi * 55 * t)
+    return x / np.abs(x).max() * 10 ** (7 / 20)                      # peaks 8 dB over a −1 dBFS ceiling
+
+def rms_db(x): return 10 * np.log10((x ** 2).mean() + 1e-20)
+
+def main():
+    print("Part 1: level at each point of a 10 s fade (dB)")
+    print("  time  " + "".join(f"{k:&gt;13}" for k in SHAPES))
+    for p in np.linspace(0, 1, 11):
+        print(f"  {p * 10:4.0f} s" + "".join((f"{v:&gt;13.1f}" if v &gt; -200 else f"{'silent':&gt;13}") for v in (db(np.atleast_1d(f(p)))[0] for f in SHAPES.values())))
+    print("  share of the fade below -20 dB" + "".join(f"{(db(f(np.linspace(0, 1, 10001))) &lt; -20).mean() * 100:&gt;12.0f}%" for f in SHAPES.values()))
+
+    x = master(10); ramp = 1 - np.arange(len(x)) / len(x)
+    ref = limiter(x)
+    before, after = limiter(x * ramp), ref * ramp
+    print("\nPart 2: linear 10 s fade on a master limited ~8 dB (dB vs the unfaded master)")
+    print("  second   fade after limiter   fade before limiter")
+    for s in range(10):
+        sl = slice(s * SR, (s + 1) * SR)
+        print(f"  {s:&gt;4}-{s + 1:&lt;2} {rms_db(after[sl]) - rms_db(ref[sl]):&gt;14.1f} {rms_db(before[sl]) - rms_db(ref[sl]):&gt;20.1f}")
+
+if __name__ == "__main__":
+    main()</code></pre>
+<pre><code>$ python3 fade_check.py
+Part 1: level at each point of a 10 s fade (dB)
+  time         linear  equal-power    dB to -40    dB to -60
+     0 s          0.0          0.0          0.0          0.0
+     1 s         -0.9         -0.1         -4.0         -6.0
+     2 s         -1.9         -0.4         -8.0        -12.0
+     3 s         -3.1         -1.0        -12.0        -18.0
+     4 s         -4.4         -1.8        -16.0        -24.0
+     5 s         -6.0         -3.0        -20.0        -30.0
+     6 s         -8.0         -4.6        -24.0        -36.0
+     7 s        -10.5         -6.9        -28.0        -42.0
+     8 s        -14.0        -10.2        -32.0        -48.0
+     9 s        -20.0        -16.1        -36.0        -54.0
+    10 s       silent       silent       silent       silent
+  share of the fade below -20 dB          10%           6%          50%          67%</code></pre>
+<p>The linear fade is only 6 dB down at the halfway point. That’s about the difference between a verse and a chorus. Then it’s −14 dB at 8 seconds, −20 dB at 9, and silent at 10. In the last tenth of the fade it loses more than it lost in the first nine. That’s the cliff.</p>
+<p>Equal-power is even more top-heavy. It’s built for crossfades, where two sounds need to keep the total level steady, not for ending a song. At 7 seconds it has only dropped 6.9 dB.</p>
+<p>The curves that fall evenly in decibels sound like a steady walk away. But look at the bottom row. A fade that goes evenly to −60 dB spends 67% of its length below −20 dB. On a phone in a car, that part is basically silent, so a 10-second fade ends after about three. Going evenly to −40 spends half its length down there. A good fade-out usually lives between the straight line and those curves. Most DAWs offer exponential, logarithmic or adjustable curve shapes for exactly this.</p>
+<h2>The limiter that eats your fade</h2>
+<p>The second problem is sneakier. If the fade is drawn on the mix bus, or on the tracks, and there’s a limiter after it on the master, the limiter fights the fade. While the music is hitting the ceiling, turning it down just means the limiter does less work. The level coming out barely changes.</p>
+<p>We built a dense synthetic master, drove it about 8 dB into a simple peak limiter with a −1 dBFS ceiling, and applied the same 10-second linear fade in both places. This is the level of each second compared with the unfaded master:</p>
+<pre><code>Part 2: linear 10 s fade on a master limited ~8 dB (dB vs the unfaded master)
+  second   fade after limiter   fade before limiter
+     0-1            -0.4                 -0.1
+     1-2            -1.4                 -0.4
+     2-3            -2.5                 -0.8
+     3-4            -3.7                 -1.2
+     4-5            -5.2                 -1.8
+     5-6            -6.9                 -3.0
+     6-7            -9.1                 -4.5
+     7-8           -12.0                 -7.7
+     8-9           -16.2                -12.0
+     9-10          -24.7                -19.8</code></pre>
+<p>With the fade after the limiter, the first three seconds drop 0.4, 1.4 and 2.5 dB. With the fade before it, they drop 0.1, 0.4 and 0.8 dB. Halfway through, the faded-before version is only 3.0 dB down instead of 6.9. The limiter quietly cancelled the first few dB of the fade, then had nothing left to cancel, and the rest of the fade happened all at once.</p>
+<p>There’s a sound to it too. As the limiter lets go, the drums get some of their punch back, so the start of the fade can sound like the song opens up a bit before it gets quieter. That’s rarely what anyone wants in an outro.</p>
+<aside class="aside">Our limiter is a simple model, and a real one will give different numbers. The direction is the point: any compressor or limiter after the fade fights the first part of it, and the harder it’s working, the more it eats.</aside>
+<h2>How to fade a song so it sounds like a fade</h2>
+<ol>
+<li><strong>Put the fade last.</strong> Automate a gain plugin after the limiter on the master, or the master fader if your DAW puts it after the inserts. Then the fade starts moving the moment it starts.</li>
+<li><strong>Pick a curved shape.</strong> Start with an exponential or logarithmic fade and adjust it until the level seems to fall at the same speed the whole way. Trust your ears at a normal listening level, not the shape on screen.</li>
+<li><strong>Make the end land in silence.</strong> If your curve stops at −40 or −50 dB, add a short final fade to zero so there’s no click at the end. The same reason is covered in <a href="clicks-at-edit-points-fade-every-cut.html">clicks at your edit points</a>.</li>
+<li><strong>Let the effects fade with the music.</strong> Draw the fade in the session, so reverb and delay tails fade with everything else instead of ringing on after the music stops.</li>
+<li><strong>Sending it to mastering?</strong> Many engineers would rather get the song without the fade and do it themselves after their limiter. Send the unfaded version and note where the fade should start and how long it should be.</li>
+</ol>
+<h2>Check that the body didn’t change</h2>
+<p>Moving the fade to the end of the chain shouldn’t change anything before the fade starts. To be sure, bounce the old and new versions and drop both into the <a href="../index.html#analyzeHome">CoProducer analyzer</a>. It reads integrated LUFS and true peak on your own computer, so you can confirm the song itself still measures the same and only the outro changed. On an album, how long the fade takes also sets up the gap before the next song, which <a href="album-consistency-in-one-meter.html">album consistency is a batch problem</a> gets into.</p>
+<p>Length is taste. Some fades take four bars, some take thirty seconds. Whatever length you pick, the shape and the order decide whether people hear a fade or a cutoff.</p>
+<dl class="faq">
+<dt>Why does my fade-out sound abrupt at the end?</dt>
+<dd>A linear fade drops only 6 dB in its first half, then falls from −20 dB to silence in the last tenth. A limiter after the fade makes it worse by cancelling the first few dB. Use a curved fade and put it after the limiter.</dd>
+<dt>Should I fade out before or after the limiter?</dt>
+<dd>After. In our test, a fade placed before a limiter working about 8 dB moved only 0.8 dB in its first three seconds, against 2.5 dB when the fade came after the limiter.</dd>
+<dt>What fade curve is best for a song fade-out?</dt>
+<dd>One that sounds like the level falls at a steady speed, usually somewhere between linear and an even-in-decibels curve. Exponential or logarithmic presets are a good starting point. Equal-power curves are made for crossfades, not fade-outs.</dd>
+<dt>Should I fade out the song before sending it to mastering?</dt>
+<dd>Ask your engineer. Many prefer the unfaded version with a note on where the fade starts and how long it lasts, so they can fade after their own limiter.</dd>
+</dl>
+<nav aria-label="Keep reading" class="related-essays keep-reading" style="margin:48px 0 24px;padding-top:24px;border-top:1px solid rgba(196,165,116,.32)"><h2>Keep reading</h2><ul><li><a href="clicks-at-edit-points-fade-every-cut.html">Clicks at your edit points come from cutting mid-wave. Fade every cut</a></li><li><a href="when-not-to-reach-for-the-limiter.html">When not to reach for the limiter</a></li><li><a href="turn-the-mix-down-before-you-limit.html">Turn the mix down before you limit</a></li><li><a href="album-consistency-in-one-meter.html">Album consistency is a batch problem</a></li><li><a href="gapless-album-gaps-after-mp3-or-aac.html">Why your gapless album gets gaps after MP3 or AAC</a></li><li><a href="leading-silence-steals-integrated-lufs.html">The silence at the top of your bounce steals LUFS</a></li><li><a href="song-ending-cut-off-on-export-let-the-tail-ring.html">Song ending cut off when you export? Let the tail ring past the last bar</a></li><li><a href="normalize-on-export-turn-it-off-for-mastering.html">Should you normalize on export? Turn it off before mastering</a></li></ul><p class="hub-link">More in <a href="topics/true-peak-limiting-and-delivery.html">True peak, limiting &amp; delivery</a> · <a href="index.html">All essays</a></p></nav></article>
+<aside aria-label="About the publisher" class="author-box"><p class="author-k">Written and published by</p><p class="author-name"><a href="about.html">NoDAW Labs</a></p><p class="author-bio">NoDAW Labs makes local-first audio tools: CoProducer, reTUNE[432] and DeepSplit. Essays are credited to the studio, not to individual writers. <a href="methodology.html">How we test, cite and correct</a>.</p></aside>
+<section class="comments" data-comments="" data-thread="fade-out-curve-limiter"></section>
+<script src="js/studio.js" type="module"></script>
+<script src="js/comments.js" type="module"></script>
+<footer class="site"><span>Lacquer · CoProducer Journal</span><span><a href="index.html">All essays</a> · <a href="about.html">About</a> · <a href="methodology.html">Methodology</a></span></footer>
+</body>
+</html>

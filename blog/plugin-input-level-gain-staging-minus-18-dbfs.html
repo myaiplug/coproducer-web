@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1" name="viewport"/><meta content="https://myaiplug.github.io/coproducer-web/blog/img/essays/plugin-input-level-gain-staging-minus-18-dbfs.jpg?v=shd" name="twitter:image"/><meta content="Why the level you hit an analog-modelled plugin with changes its sound, and why −18 dBFS keeps coming up. Measured on a simple saturation model: harmonics, THD and what five plugins in a row add up to. Script inside." name="twitter:description"/><meta content="Why −18 dBFS? Gain staging into analog-style plugins" name="twitter:title"/><meta content="summary_large_image" name="twitter:card"/><meta content="2026-10-28T00:00:00Z" property="article:modified_time"/><meta content="2026-10-28T00:00:00Z" property="article:published_time"/><meta content="1440" property="og:image:height"/><meta content="2560" property="og:image:width"/><meta content="https://myaiplug.github.io/coproducer-web/blog/plugin-input-level-gain-staging-minus-18-dbfs.html" property="og:url"/><meta content="en_US" property="og:locale"/><meta content="CoProducer" property="og:site_name"/><meta content="article" property="og:type"/><link href="https://myaiplug.github.io/coproducer-web/llms.txt" rel="alternate" title="llms.txt" type="text/plain"/><meta content="NoDAW Labs" name="author"/><meta content="#050308" name="theme-color"/><meta content="index,follow,max-image-preview:large" name="robots"/><meta content="gain staging -18 dBFS, why -18 dBFS, gain staging plugins, analog plugin input level, 0 VU -18 dBFS, plugin sounds distorted, saturation input gain, does gain staging matter in a DAW, CoProducer, NoDAW" name="keywords"/>
+<title>Why −18 dBFS? Gain staging into analog-style plugins | Lacquer</title>
+<meta content="Why the level you hit an analog-modelled plugin with changes its sound, and why −18 dBFS keeps coming up. Measured on a simple saturation model: harmonics, THD and what five plugins in a row add up to. Script inside." name="description"/>
+<link href="https://myaiplug.github.io/coproducer-web/blog/plugin-input-level-gain-staging-minus-18-dbfs.html" rel="canonical"/>
+<link rel="alternate" type="application/rss+xml" title="Lacquer — CoProducer Journal" href="https://myaiplug.github.io/coproducer-web/blog/rss.xml"/>
+<link rel="icon" href="../favicon.ico" sizes="48x48"/>
+<link rel="icon" type="image/svg+xml" href="../assets/favicon.svg"/>
+<link rel="apple-touch-icon" href="../assets/apple-touch-icon.png"/>
+<link rel="manifest" href="../site.webmanifest"/>
+<meta content="Why −18 dBFS? Gain staging into analog-style plugins" property="og:title"/>
+<meta content="Why the level you hit an analog-modelled plugin with changes its sound, and why −18 dBFS keeps coming up. Measured on a simple saturation model: harmonics, THD and what five plugins in a row add up to. Script inside." property="og:description"/>
+<meta content="https://myaiplug.github.io/coproducer-web/blog/img/essays/plugin-input-level-gain-staging-minus-18-dbfs.jpg?v=shd" property="og:image"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;1,500;1,600&amp;family=Figtree:wght@400;500&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet" media="print" onload="this.media='all'"/><noscript><link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;1,500;1,600&amp;family=Figtree:wght@400;500&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/></noscript>
+<link rel="preload" as="image" type="image/webp" fetchpriority="high" imagesrcset="img/essays/w/plugin-input-level-gain-staging-minus-18-dbfs-480.webp 480w, img/essays/w/plugin-input-level-gain-staging-minus-18-dbfs-960.webp 960w, img/essays/w/plugin-input-level-gain-staging-minus-18-dbfs-1600.webp 1600w" imagesizes="(max-width: 1100px) 100vw, 1100px"/>
+<link href="css/journal.css" rel="stylesheet"/>
+
+
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Why −18 dBFS? Gain staging into analog-style plugins","description":"Why the level you hit an analog-modelled plugin with changes its sound, and why −18 dBFS keeps coming up. Measured on a simple saturation model: harmonics, THD and what five plugins in a row add up to. Script inside.","datePublished":"2026-10-28","dateModified":"2026-10-28","mainEntityOfPage":{"@type":"WebPage","@id":"https://myaiplug.github.io/coproducer-web/blog/plugin-input-level-gain-staging-minus-18-dbfs.html"},"image":{"@type":"ImageObject","url":"https://myaiplug.github.io/coproducer-web/blog/img/essays/plugin-input-level-gain-staging-minus-18-dbfs.jpg?v=shd","width":2560,"height":1440},"author":{"@type":"Organization","name":"NoDAW Labs","url":"https://myaiplug.github.io/coproducer-web/","logo":"https://myaiplug.github.io/coproducer-web/assets/og-default.jpg"},"publisher":{"@type":"Organization","name":"NoDAW Labs","url":"https://myaiplug.github.io/coproducer-web/","logo":"https://myaiplug.github.io/coproducer-web/assets/og-default.jpg"},"isPartOf":{"@type":"Blog","name":"Lacquer — CoProducer Journal","url":"https://myaiplug.github.io/coproducer-web/blog/index.html"},"keywords":["gain staging -18 dBFS","why -18 dBFS","gain staging plugins","analog plugin input level","0 VU -18 dBFS","plugin sounds distorted","saturation input gain","does gain staging matter in a DAW","CoProducer","NoDAW"],"speakable":{"@type":"SpeakableSpecification","cssSelector":[".answer","h1"]}}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Why do people say to gain stage at −18 dBFS?","acceptedAnswer":{"@type":"Answer","text":"Because many analog-modelled plugins treat a signal around −18 dBFS RMS as their nominal level, 0 VU. Feed them that and they behave like the hardware at its normal operating level. Feed them much more and they add extra distortion and compression."}},{"@type":"Question","name":"Does gain staging matter in a 32-bit float DAW?","acceptedAnswer":{"@type":"Answer","text":"For clipping, mostly not: float keeps overs and turning down recovers them. For plugins that model analog gear, yes, because their sound depends on input level. In our model, going from −18 to −6 dBFS took distortion from 0.91% to 4.62%."}},{"@type":"Question","name":"Is −18 dBFS peak or average?","acceptedAnswer":{"@type":"Answer","text":"Average. The usual meaning is a sine or an RMS level of −18 dBFS reading 0 VU. On real music, peaks will sit well above that, often somewhere around −10 to −6 dBFS."}},{"@type":"Question","name":"My plugin sounds distorted even at low settings. Why?","acceptedAnswer":{"@type":"Answer","text":"Check the level going into it. If the track averages far above the plugin’s nominal level, the model is already being driven before you touch a knob. Trim the input first, then adjust."}}]}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"CoProducer","item":"https://myaiplug.github.io/coproducer-web/"},{"@type":"ListItem","position":2,"name":"Lacquer Journal","item":"https://myaiplug.github.io/coproducer-web/blog/index.html"},{"@type":"ListItem","position":3,"name":"Why −18 dBFS? Gain staging into analog-style plugins","item":"https://myaiplug.github.io/coproducer-web/blog/plugin-input-level-gain-staging-minus-18-dbfs.html"}]}</script></head>
+<body>
+<header class="top">
+<a class="mark" href="../index.html"><em>Co</em>Producer</a>
+<nav aria-label="Primary" class="nav">
+<a href="index.html">Journal</a>
+<a href="../index.html#ab">A/B</a>
+<a href="../index.html#analyzeHome">Analyze</a>
+<a href="../guides/index.html">Guides</a>
+<a href="../pricing.html">Pricing</a>
+</nav>
+<a class="cta" href="../index.html#analyzeHome">Measure a mix</a>
+</header>
+<article class="post" id="main">
+<div class="post-hero"><img alt="A knurled brass input gain knob set near twelve o’clock beside a glowing amber VU meter on a dark gold console over black marble, with a gold sine wave floating above and cyan and magenta studio light behind." src="img/essays/plugin-input-level-gain-staging-minus-18-dbfs.jpg?v=shd" srcset="img/essays/w/plugin-input-level-gain-staging-minus-18-dbfs-480.webp 480w, img/essays/w/plugin-input-level-gain-staging-minus-18-dbfs-960.webp 960w, img/essays/w/plugin-input-level-gain-staging-minus-18-dbfs-1600.webp 1600w" sizes="(max-width: 1100px) 100vw, 1100px" width="2560" height="1440" fetchpriority="high" decoding="async"/></div>
+<header>
+<p class="kicker">Mixing · 28 October 2026 · 7 min</p>
+<h1>Why −18 dBFS? Gain staging into analog-style plugins</h1>
+<p class="meta">NoDAW Labs · Lacquer Vol. 06</p>
+</header>
+<p class="answer">Gain staging still matters in a 32-bit float DAW because analog-modelled plugins react to how hard you hit them. Most are built so a signal around −18 dBFS RMS sits at their nominal level, 0 VU. Hit them 6 or 12 dB hotter and they add more distortion, mostly odd harmonics, and the effect stacks up across every plugin in the chain. Keep the average level near −18 dBFS going into each one, and use the plugin’s own drive control when you want the colour.</p>
+<p>You load the same compressor emulation everyone raves about. On their videos it sounds thick and expensive. On your vocal it sounds a little fuzzy, a little crowded, and the meter barely moves no matter where you set the threshold. You start doubting your ears, then the plugin, then the whole mix.</p>
+<p>Before you blame either, look at the level going in. If the vocal track is peaking near 0 dBFS and averaging around −8, you’re feeding that plugin about ten dB more than it was built to expect.</p>
+<h2>Float doesn’t clip. The plugins still care</h2>
+<p>Inside a modern DAW the mix runs in floating point, so a track can go over 0 dBFS and come back down with nothing lost. That part is true, and we measured it in <a href="how-much-headroom-to-leave-for-mastering.html">how much headroom to leave for mastering</a>. It’s why people say gain staging doesn’t matter anymore.</p>
+<p>But a plugin that models a console, a tape machine or an old compressor isn’t just passing numbers along. It’s copying a circuit that behaves differently when it’s pushed. To do that, it has to decide what level counts as normal. Many of them treat a sine somewhere between −20 and −14 dBFS RMS as 0 VU, and −18 dBFS is the most common choice. The manual usually says which. Anything above that, the model starts leaning into its curve.</p>
+<p>So the question isn’t whether the file will clip. It’s whether you meant to drive the circuit.</p>
+<h2>What one stage does at each level</h2>
+<p>To see it without any brand in the way, we wrote a plain saturation stage in <code>drive_check.py</code>: a slightly lopsided soft clipper, calibrated so −18 dBFS RMS is its nominal level. It’s a model, not a copy of any real plugin, but it bends the way analog-style stages tend to. Then we fed it a 55 Hz sine, roughly a low bass note, at six levels:</p>
+<pre><code>#!/usr/bin/env python3
+"""How input level changes what an analog-style stage does to the sound.
+The 'stage' is a slightly asymmetric tanh saturator, calibrated the way many analog-modelled
+plugins are: a sine at -18 dBFS RMS is its nominal level (0 VU). It's a model, not any real plugin.
+  python3 drive_check.py     run a 55 Hz sine from -30 to -6 dBFS RMS through the stage"""
+import numpy as np
+SR, F, NOMINAL, BIAS = 48000, 55.0, -18, 0.1
+
+def stage(x):
+    g = 10 ** (-NOMINAL / 20) / 8.0               # dBFS -&gt; internal level; nominal sits low on the curve
+    return (np.tanh(x * g + BIAS) - np.tanh(BIAS)) / g
+
+def harmonics(y):
+    Y = np.abs(np.fft.rfft(y * np.hanning(len(y)))); k = int(round(F * len(y) / SR))
+    h = np.array([Y[n * k - 2:n * k + 3].max() for n in range(1, 10)])
+    return np.sqrt((h[1:] ** 2).sum()) / h[0], 20 * np.log10(h[1:5] / h[0])
+
+t = np.arange(SR * 2) / SR
+print(f"{'input':&gt;10s} {'vs 0 VU':&gt;8s} {'THD':&gt;8s} {'2nd':&gt;7s} {'3rd':&gt;7s} {'4th':&gt;7s} {'5th':&gt;7s} {'level change':&gt;13s}")
+for lvl in (-30, -24, -18, -12, -9, -6):
+    x = np.sqrt(2) * 10 ** (lvl / 20) * np.sin(2 * np.pi * F * t)
+    y = stage(x); thd, h = harmonics(y)
+    change = 10 * np.log10((y ** 2).mean() / (x ** 2).mean())
+    print(f"{lvl:+5d} dBFS {lvl - NOMINAL:+6d} dB {100 * thd:7.2f}% " + " ".join(f"{v:7.1f}" for v in h) + f" {change:+10.2f} dB")
+print("harmonics in dB below the 55 Hz fundamental; input is sine RMS")
+
+
+# Five of those stages in a row, the way a channel strip, a bus and a tape plugin stack up.
+print(f"\nfive stages in series:  {'input':&gt;10s} {'THD':&gt;8s}")
+for lvl in (-18, -12, -6):
+    y = np.sqrt(2) * 10 ** (lvl / 20) * np.sin(2 * np.pi * F * t)
+    for _ in range(5): y = stage(y)
+    print(f"{'':23s} {lvl:+5d} dBFS {100 * harmonics(y)[0]:7.2f}%")</code></pre>
+<pre><code>$ python3 drive_check.py
+     input  vs 0 VU      THD     2nd     3rd     4th     5th  level change
+  -30 dBFS    -12 dB    0.22%   -53.1   -76.0  -122.9  -150.5      -0.09 dB
+  -24 dBFS     -6 dB    0.44%   -47.1   -64.0  -104.9  -126.5      -0.10 dB
+  -18 dBFS     +0 dB    0.91%   -41.2   -52.0   -87.1  -102.6      -0.15 dB
+  -12 dBFS     +6 dB    1.94%   -35.5   -40.2   -69.5   -78.9      -0.34 dB
+   -9 dBFS     +9 dB    2.94%   -33.0   -34.4   -61.1   -67.3      -0.58 dB
+   -6 dBFS    +12 dB    4.62%   -30.7   -28.9   -53.2   -56.2      -1.02 dB
+harmonics in dB below the 55 Hz fundamental; input is sine RMS</code></pre>
+<p>At its nominal level the stage adds 0.91% total harmonic distortion. Mostly it’s the second harmonic, 41.2 dB under the note, an octave up. That’s the warmth people are paying for. It’s quiet and it’s musical.</p>
+<p>Push 6 dB harder and the distortion doubles, to 1.94%. At −6 dBFS, 12 dB over nominal, it’s 4.62%. The more telling number is the third harmonic. It climbs from −52.0 dB to −28.9 dB, 23 dB louder for 12 dB more input, and by −6 dBFS it’s louder than the second. Second harmonics tend to sound full. Third and higher sound edgier and fuzzier, and on a bass they pile up in the low mids right where the vocal lives.</p>
+<p>Look at the last column too. At nominal the stage takes 0.15 dB off the level. At −6 dBFS it takes 1.02 dB. That’s the stage squashing the top of the wave, a bit of compression you never asked for.</p>
+<h2>It adds up down the chain</h2>
+<p>One plugin running hot is rarely the problem. A track usually goes through a channel strip emulation, then an EQ, then a compressor, then a bus with a console and a tape plugin. If each stage is modelled, each one adds its own harmonics to the last one’s. Here’s the same stage five times in a row:</p>
+<pre><code>five stages in series:       input      THD
+                          -18 dBFS    4.13%
+                          -12 dBFS    7.55%
+                           -6 dBFS   13.48%</code></pre>
+<p>At −18 dBFS, five stages land at 4.13%. That’s about where one stage was when you drove it 12 dB too hard. Start 6 dB hot and it’s 7.55%. Start 12 dB hot and it’s 13.48%. That fuzz on the vocal wasn’t one bad plugin. It was a whole chain that never got a break.</p>
+<aside class="aside">A real plugin’s numbers will be different from this model. The shape is the point: more level in means more distortion out, the odd harmonics climb fastest, and it compounds stage after stage.</aside>
+<h2>How to set it up so plugins behave</h2>
+<ol>
+<li><strong>Trim at the start of the chain.</strong> Use the clip gain or a trim plugin first in the insert list so the track averages around −18 dBFS. A quick way to check: peaks on most sources land somewhere near −10 to −6 dBFS when the average is there.</li>
+<li><strong>Look at the plugin’s own meter.</strong> If it has a VU meter, aim for the needle around 0 on the loud parts, not pinned to the right.</li>
+<li><strong>Use the output knob too.</strong> If a plugin adds gain, take it back off at its output so the next one sees the same level the first one did.</li>
+<li><strong>Drive on purpose.</strong> When you want grit, turn up the plugin’s drive or input and pull its output down by the same amount. Then the extra harmonics are a choice, and you can hear them without the level fooling you.</li>
+<li><strong>Leave the master fader alone.</strong> If the mix bus is too hot, lower the tracks or the bus input, not just the last fader. Pulling the master after a console plugin doesn’t un-drive it.</li>
+</ol>
+<h2>Level-match before you decide</h2>
+<p>Here’s the trap. A hotter stage comes out louder, and louder almost always sounds better for the first few seconds. So when you A/B “clean” against “driven,” the driven one wins even when it’s worse. It’s the same thing covered in <a href="mix-sounds-better-louder-pick-one-monitor-level.html">your mix sounds better loud and thinner quiet</a>.</p>
+<p>Bounce both versions, then drop each one into the <a href="../index.html#analyzeHome">CoProducer analyzer</a>. It reads the integrated LUFS of each file, so you know exactly how much to turn the louder one down before you compare. Then listen again at the same loudness. If the driven one still sounds better, keep it. That’s taste, not volume.</p>
+<h2>When hot is right</h2>
+<p>None of this means hitting plugins hard is wrong. Lo-fi drums, distorted 808s, a vocal that’s supposed to sound like it’s coming through a broken radio: those want the curve. Some engineers push a tape emulation on the drum bus on purpose because the softened transients are exactly the sound. The difference is that they chose it, they know which stage is doing it, and they matched levels before deciding.</p>
+<p>Set every stage near its nominal level by default. Then break the rule on one plugin, on purpose, where you can hear it.</p>
+<dl class="faq">
+<dt>Why do people say to gain stage at −18 dBFS?</dt>
+<dd>Because many analog-modelled plugins treat a signal around −18 dBFS RMS as their nominal level, 0 VU. Feed them that and they behave like the hardware at its normal operating level. Feed them much more and they add extra distortion and compression.</dd>
+<dt>Does gain staging matter in a 32-bit float DAW?</dt>
+<dd>For clipping, mostly not: float keeps overs and turning down recovers them. For plugins that model analog gear, yes, because their sound depends on input level. In our model, going from −18 to −6 dBFS took distortion from 0.91% to 4.62%.</dd>
+<dt>Is −18 dBFS peak or average?</dt>
+<dd>Average. The usual meaning is a sine or an RMS level of −18 dBFS reading 0 VU. On real music, peaks will sit well above that, often somewhere around −10 to −6 dBFS.</dd>
+<dt>My plugin sounds distorted even at low settings. Why?</dt>
+<dd>Check the level going into it. If the track averages far above the plugin’s nominal level, the model is already being driven before you touch a knob. Trim the input first, then adjust.</dd>
+</dl>
+<nav aria-label="Keep reading" class="related-essays keep-reading" style="margin:48px 0 24px;padding-top:24px;border-top:1px solid rgba(196,165,116,.32)"><h2>Keep reading</h2><ul><li><a href="mix-sounds-better-louder-pick-one-monitor-level.html">Your mix sounds better loud and thinner quiet. Pick one monitoring level</a></li><li><a href="how-much-headroom-to-leave-for-mastering.html">How much headroom to leave for mastering (and why −6 dB isn’t the point)</a></li><li><a href="turn-the-mix-down-before-you-limit.html">Turn the mix down before you limit</a></li><li><a href="crest-factor-is-not-loudness.html">Crest factor is not loudness</a></li><li><a href="clipper-vs-limiter-hip-hop-delivery.html">Clipper vs limiter for hip-hop delivery — loudness isn’t the only score</a></li><li><a href="bus-compressor-pumps-on-the-808.html">Your bus compressor is pumping on the 808. High-pass the sidechain</a></li><li><a href="compressor-kills-the-punch-slow-the-attack.html">Compressor killing your drums’ punch? Slow the attack down</a></li><li><a href="layered-kick-sounds-thinner-check-polarity-and-timing.html">Layered kick sounds thinner? Check polarity and timing</a></li></ul><p class="hub-link">More in <a href="topics/low-end-and-mix-dynamics.html">Low end &amp; mix dynamics</a> · <a href="index.html">All essays</a></p></nav></article>
+<aside aria-label="About the publisher" class="author-box"><p class="author-k">Written and published by</p><p class="author-name"><a href="about.html">NoDAW Labs</a></p><p class="author-bio">NoDAW Labs makes local-first audio tools: CoProducer, reTUNE[432] and DeepSplit. Essays are credited to the studio, not to individual writers. <a href="methodology.html">How we test, cite and correct</a>.</p></aside>
+<section class="comments" data-comments="" data-thread="plugin-input-level"></section>
+<script src="js/studio.js" type="module"></script>
+<script src="js/comments.js" type="module"></script>
+<footer class="site"><span>Lacquer · CoProducer Journal</span><span><a href="index.html">All essays</a> · <a href="about.html">About</a> · <a href="methodology.html">Methodology</a></span></footer>
+</body>
+</html>

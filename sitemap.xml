@@ -27,7 +27,7 @@
   </url>
   <url>
     <loc>https://myaiplug.github.io/coproducer-web/blog/index.html</loc>
-    <lastmod>2026-10-23</lastmod>
+    <lastmod>2026-10-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
     <image:image>
@@ -118,6 +118,106 @@
     <lastmod>2026-08-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://myaiplug.github.io/coproducer-web/blog/copy-paste-vocal-double-sounds-mono-sing-a-real-take.html</loc>
+    <lastmod>2026-10-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://myaiplug.github.io/coproducer-web/blog/img/essays/copy-paste-vocal-double-sounds-mono-sing-a-real-take.jpg?v=shd</image:loc>
+      <image:title>Copy-pasted vocal double sounds mono? Sing a real second take</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://myaiplug.github.io/coproducer-web/blog/vocal-buried-in-the-beat-cut-the-beat-at-3-khz.html</loc>
+    <lastmod>2026-10-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://myaiplug.github.io/coproducer-web/blog/img/essays/vocal-buried-in-the-beat-cut-the-beat-at-3-khz.jpg?v=shd</image:loc>
+      <image:title>Vocal buried in the beat? Cut the beat where the voice lives</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://myaiplug.github.io/coproducer-web/blog/sidechain-pumping-out-of-time-set-release-to-tempo.html</loc>
+    <lastmod>2026-10-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://myaiplug.github.io/coproducer-web/blog/img/essays/sidechain-pumping-out-of-time-set-release-to-tempo.jpg?v=shd</image:loc>
+      <image:title>Sidechain pumping out of time? Set the release from the tempo</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://myaiplug.github.io/coproducer-web/blog/fade-out-sounds-abrupt-curve-it-and-fade-after-the-limiter.html</loc>
+    <lastmod>2026-10-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://myaiplug.github.io/coproducer-web/blog/img/essays/fade-out-sounds-abrupt-curve-it-and-fade-after-the-limiter.jpg?v=shd</image:loc>
+      <image:title>Fade-out drops off a cliff? Curve it, and fade after the limiter</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://myaiplug.github.io/coproducer-web/blog/plugin-input-level-gain-staging-minus-18-dbfs.html</loc>
+    <lastmod>2026-10-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://myaiplug.github.io/coproducer-web/blog/img/essays/plugin-input-level-gain-staging-minus-18-dbfs.jpg?v=shd</image:loc>
+      <image:title>Why −18 dBFS? Gain staging into analog-style plugins</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://myaiplug.github.io/coproducer-web/blog/layered-kick-sounds-thinner-check-polarity-and-timing.html</loc>
+    <lastmod>2026-10-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://myaiplug.github.io/coproducer-web/blog/img/essays/layered-kick-sounds-thinner-check-polarity-and-timing.jpg?v=shd</image:loc>
+      <image:title>Layered kick sounds thinner? Check polarity and timing</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://myaiplug.github.io/coproducer-web/blog/normalize-on-export-turn-it-off-for-mastering.html</loc>
+    <lastmod>2026-10-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://myaiplug.github.io/coproducer-web/blog/img/essays/normalize-on-export-turn-it-off-for-mastering.jpg?v=shd</image:loc>
+      <image:title>Should you normalize on export? Turn it off before mastering</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://myaiplug.github.io/coproducer-web/blog/sample-plays-at-wrong-pitch-sample-rate-mismatch.html</loc>
+    <lastmod>2026-10-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://myaiplug.github.io/coproducer-web/blog/img/essays/sample-plays-at-wrong-pitch-sample-rate-mismatch.jpg?v=shd</image:loc>
+      <image:title>Sample playing at the wrong speed or pitch? It’s a sample-rate mismatch</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://myaiplug.github.io/coproducer-web/blog/song-ending-cut-off-on-export-let-the-tail-ring.html</loc>
+    <lastmod>2026-10-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://myaiplug.github.io/coproducer-web/blog/img/essays/song-ending-cut-off-on-export-let-the-tail-ring.jpg?v=shd</image:loc>
+      <image:title>Song ending cut off when you export? Let the tail ring past the last bar</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://myaiplug.github.io/coproducer-web/blog/compressor-kills-the-punch-slow-the-attack.html</loc>
+    <lastmod>2026-10-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://myaiplug.github.io/coproducer-web/blog/img/essays/compressor-kills-the-punch-slow-the-attack.jpg?v=shd</image:loc>
+      <image:title>Compressor killing your drums’ punch? Slow the attack down</image:title>
+    </image:image>
   </url>
     <url>
     <loc>https://myaiplug.github.io/coproducer-web/blog/tune-808-to-the-key-of-your-song.html</loc>
@@ -661,22 +761,22 @@
   </url>
   <url>
     <loc>https://myaiplug.github.io/coproducer-web/blog/reference-matching-without-guesswork.html</loc>
-    <lastmod>2026-08-21</lastmod>
+    <lastmod>2026-10-30</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.75</priority>
     <image:image>
       <image:loc>https://myaiplug.github.io/coproducer-web/blog/img/essays/reference-matching-without-guesswork.jpg?v=shd</image:loc>
-      <image:title>Reference matching without guesswork</image:title>
+      <image:title>How to use a reference track when mixing: match the loudness first, then compare</image:title>
     </image:image>
   </url>
   <url>
     <loc>https://myaiplug.github.io/coproducer-web/blog/album-consistency-in-one-meter.html</loc>
-    <lastmod>2026-08-21</lastmod>
+    <lastmod>2026-10-30</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.75</priority>
     <image:image>
       <image:loc>https://myaiplug.github.io/coproducer-web/blog/img/essays/album-consistency-in-one-meter.jpg?v=shd</image:loc>
-      <image:title>Album consistency is a batch problem</image:title>
+      <image:title>How loud should each song on an album be? Measure the record as a set</image:title>
     </image:image>
   </url>
   <url>
@@ -701,12 +801,12 @@
   </url>
   <url>
     <loc>https://myaiplug.github.io/coproducer-web/blog/stems-diagnose-mixes-do-not-replace-them.html</loc>
-    <lastmod>2026-08-21</lastmod>
+    <lastmod>2026-10-30</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.75</priority>
     <image:image>
       <image:loc>https://myaiplug.github.io/coproducer-web/blog/img/essays/stems-diagnose-mixes-do-not-replace-them.jpg?v=shd</image:loc>
-      <image:title>Stems diagnose mixes — they do not replace them</image:title>
+      <image:title>Can stem separation fix a bad mix? Stems diagnose mixes, they don’t replace them</image:title>
     </image:image>
   </url>
   <url>
@@ -741,12 +841,12 @@
   </url>
   <url>
     <loc>https://myaiplug.github.io/coproducer-web/blog/how-to-read-a-coproducer-score.html</loc>
-    <lastmod>2026-08-21</lastmod>
+    <lastmod>2026-10-30</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.75</priority>
     <image:image>
       <image:loc>https://myaiplug.github.io/coproducer-web/blog/img/essays/how-to-read-a-coproducer-score.jpg?v=shd</image:loc>
-      <image:title>How to read a CoProducer score</image:title>
+      <image:title>What does a mix score mean? How to read a CoProducer score</image:title>
     </image:image>
   </url>
   <url>
@@ -773,31 +873,31 @@
   </url>
   <url>
     <loc>https://myaiplug.github.io/coproducer-web/blog/topics/loudness-and-lufs.html</loc>
-    <lastmod>2026-10-19</lastmod>
+    <lastmod>2026-10-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://myaiplug.github.io/coproducer-web/blog/topics/true-peak-limiting-and-delivery.html</loc>
-    <lastmod>2026-10-23</lastmod>
+    <lastmod>2026-10-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://myaiplug.github.io/coproducer-web/blog/topics/low-end-and-mix-dynamics.html</loc>
-    <lastmod>2026-10-23</lastmod>
+    <lastmod>2026-10-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://myaiplug.github.io/coproducer-web/blog/topics/432-hz-pitch-and-tempo.html</loc>
-    <lastmod>2026-10-19</lastmod>
+    <lastmod>2026-10-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://myaiplug.github.io/coproducer-web/blog/topics/stems-sampling-and-privacy.html</loc>
-    <lastmod>2026-10-19</lastmod>
+    <lastmod>2026-10-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>

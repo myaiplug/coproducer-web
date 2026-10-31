@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1" name="viewport"/><meta content="https://myaiplug.github.io/coproducer-web/blog/img/essays/sample-plays-at-wrong-pitch-sample-rate-mismatch.jpg?v=shd" name="twitter:image"/><meta content="Why a sample or loop plays slower and flat, or faster and sharp: it was made at one sample rate and played at another without conversion. The exact speed, semitone and BPM error for 44.1, 48, 88.2 and 96 kHz, and a script that reads the WAV header and catches mislabeled files." name="twitter:description"/><meta content="Sample playing at the wrong speed or pitch? It’s a sample-rate mismatch" name="twitter:title"/><meta content="summary_large_image" name="twitter:card"/><meta content="2026-10-27T00:00:00Z" property="article:modified_time"/><meta content="2026-10-27T00:00:00Z" property="article:published_time"/><meta content="1440" property="og:image:height"/><meta content="2560" property="og:image:width"/><meta content="https://myaiplug.github.io/coproducer-web/blog/sample-plays-at-wrong-pitch-sample-rate-mismatch.html" property="og:url"/><meta content="en_US" property="og:locale"/><meta content="CoProducer" property="og:site_name"/><meta content="article" property="og:type"/><link href="https://myaiplug.github.io/coproducer-web/llms.txt" rel="alternate" title="llms.txt" type="text/plain"/><meta content="NoDAW Labs" name="author"/><meta content="#050308" name="theme-color"/><meta content="index,follow,max-image-preview:large" name="robots"/><meta content="sample playing at wrong pitch, sample playing too slow, 44.1 vs 48 kHz pitch, sample rate mismatch, audio out of sync with video sample rate, loop wrong tempo in DAW, wav header sample rate, resample vs change sample rate, ScrewAI, NoDAW" name="keywords"/>
+<title>Sample playing at the wrong speed or pitch? It’s a sample-rate mismatch | Lacquer</title>
+<meta content="Why a sample or loop plays slower and flat, or faster and sharp: it was made at one sample rate and played at another without conversion. The exact speed, semitone and BPM error for 44.1, 48, 88.2 and 96 kHz, and a script that reads the WAV header and catches mislabeled files." name="description"/>
+<link href="https://myaiplug.github.io/coproducer-web/blog/sample-plays-at-wrong-pitch-sample-rate-mismatch.html" rel="canonical"/>
+<link rel="alternate" type="application/rss+xml" title="Lacquer — CoProducer Journal" href="https://myaiplug.github.io/coproducer-web/blog/rss.xml"/>
+<link rel="icon" href="../favicon.ico" sizes="48x48"/>
+<link rel="icon" type="image/svg+xml" href="../assets/favicon.svg"/>
+<link rel="apple-touch-icon" href="../assets/apple-touch-icon.png"/>
+<link rel="manifest" href="../site.webmanifest"/>
+<meta content="Sample playing at the wrong speed or pitch? It’s a sample-rate mismatch" property="og:title"/>
+<meta content="Why a sample or loop plays slower and flat, or faster and sharp: it was made at one sample rate and played at another without conversion. The exact speed, semitone and BPM error for 44.1, 48, 88.2 and 96 kHz, and a script that reads the WAV header and catches mislabeled files." property="og:description"/>
+<meta content="https://myaiplug.github.io/coproducer-web/blog/img/essays/sample-plays-at-wrong-pitch-sample-rate-mismatch.jpg?v=shd" property="og:image"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;1,500;1,600&amp;family=Figtree:wght@400;500&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet" media="print" onload="this.media='all'"/><noscript><link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;1,500;1,600&amp;family=Figtree:wght@400;500&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/></noscript>
+<link rel="preload" as="image" type="image/webp" fetchpriority="high" imagesrcset="img/essays/w/sample-plays-at-wrong-pitch-sample-rate-mismatch-480.webp 480w, img/essays/w/sample-plays-at-wrong-pitch-sample-rate-mismatch-960.webp 960w, img/essays/w/sample-plays-at-wrong-pitch-sample-rate-mismatch-1600.webp 1600w" imagesizes="(max-width: 1100px) 100vw, 1100px"/>
+<link href="css/journal.css" rel="stylesheet"/>
+
+
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Sample playing at the wrong speed or pitch? It’s a sample-rate mismatch","description":"Why a sample or loop plays slower and flat, or faster and sharp: it was made at one sample rate and played at another without conversion. The exact speed, semitone and BPM error for 44.1, 48, 88.2 and 96 kHz, and a script that reads the WAV header and catches mislabeled files.","datePublished":"2026-10-27","dateModified":"2026-10-27","mainEntityOfPage":{"@type":"WebPage","@id":"https://myaiplug.github.io/coproducer-web/blog/sample-plays-at-wrong-pitch-sample-rate-mismatch.html"},"image":{"@type":"ImageObject","url":"https://myaiplug.github.io/coproducer-web/blog/img/essays/sample-plays-at-wrong-pitch-sample-rate-mismatch.jpg?v=shd","width":2560,"height":1440},"author":{"@type":"Organization","name":"NoDAW Labs","url":"https://myaiplug.github.io/coproducer-web/","logo":"https://myaiplug.github.io/coproducer-web/assets/og-default.jpg"},"publisher":{"@type":"Organization","name":"NoDAW Labs","url":"https://myaiplug.github.io/coproducer-web/","logo":"https://myaiplug.github.io/coproducer-web/assets/og-default.jpg"},"isPartOf":{"@type":"Blog","name":"Lacquer — CoProducer Journal","url":"https://myaiplug.github.io/coproducer-web/blog/index.html"},"keywords":["sample playing at wrong pitch","sample playing too slow","44.1 vs 48 kHz pitch","sample rate mismatch","audio out of sync with video sample rate","loop wrong tempo in DAW","wav header sample rate","resample vs change sample rate","ScrewAI","NoDAW"],"speakable":{"@type":"SpeakableSpecification","cssSelector":[".answer","h1"]}}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Why does my sample sound slower and lower in my DAW?","acceptedAnswer":{"@type":"Answer","text":"It was made at a higher sample rate than it’s being played at, and it isn’t being converted. A 48 kHz file at 44.1 kHz plays at 0.91875x speed and 1.47 semitones flat. Convert it to the project rate on import."}},{"@type":"Question","name":"How many semitones is the difference between 44.1 and 48 kHz?","acceptedAnswer":{"@type":"Answer","text":"1.467 semitones, or 146.7 cents. The speed ratio is 1.08844 one way and 0.91875 the other, so a 140 BPM loop plays at 152.38 or 128.62 BPM."}},{"@type":"Question","name":"Should I resample the file or change the sample rate in the header?","acceptedAnswer":{"@type":"Answer","text":"Resample (convert) when the header is right and your session runs at a different rate. Change the header when the header itself is wrong. Measure a note you know: if the whole file is about 147 cents off at its own rate, the header is wrong."}},{"@type":"Question","name":"Why is my audio drifting out of sync with my video?","acceptedAnswer":{"@type":"Answer","text":"Often a sample-rate mismatch. Audio made at 48 kHz played as 44.1 kHz falls 5.31 seconds behind after one minute. Export at the video project’s rate and make sure the editor isn’t reinterpreting the file."}}]}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"CoProducer","item":"https://myaiplug.github.io/coproducer-web/"},{"@type":"ListItem","position":2,"name":"Lacquer Journal","item":"https://myaiplug.github.io/coproducer-web/blog/index.html"},{"@type":"ListItem","position":3,"name":"Sample playing at the wrong speed or pitch? It’s a sample-rate mismatch","item":"https://myaiplug.github.io/coproducer-web/blog/sample-plays-at-wrong-pitch-sample-rate-mismatch.html"}]}</script></head>
+<body>
+<header class="top">
+<a class="mark" href="../index.html"><em>Co</em>Producer</a>
+<nav aria-label="Primary" class="nav">
+<a href="index.html">Journal</a>
+<a href="../index.html#ab">A/B</a>
+<a href="../index.html#analyzeHome">Analyze</a>
+<a href="../guides/index.html">Guides</a>
+<a href="../pricing.html">Pricing</a>
+</nav>
+<a class="cta" href="../index.html#analyzeHome">Measure a mix</a>
+</header>
+<article class="post" id="main">
+<div class="post-hero"><img alt="Brass tape reels feeding a ribbon of amber tape toward a black vinyl record on black-and-gold marble, a cyan ring of light spinning around the record, studio monitors with soft cyan and magenta light behind" src="img/essays/sample-plays-at-wrong-pitch-sample-rate-mismatch.jpg?v=shd" srcset="img/essays/w/sample-plays-at-wrong-pitch-sample-rate-mismatch-480.webp 480w, img/essays/w/sample-plays-at-wrong-pitch-sample-rate-mismatch-960.webp 960w, img/essays/w/sample-plays-at-wrong-pitch-sample-rate-mismatch-1600.webp 1600w" sizes="(max-width: 1100px) 100vw, 1100px" width="2560" height="1440" fetchpriority="high" decoding="async"/></div>
+<header>
+<p class="kicker">Pitch · 27 October 2026 · 8 min</p>
+<h1>Sample playing at the wrong speed or pitch? It’s a sample-rate mismatch</h1>
+<p class="meta">NoDAW Labs · Lacquer Vol. 06</p>
+</header>
+<p class="answer">When a sample plays a little too slow and flat, or too fast and sharp, it’s almost always a sample-rate mismatch: audio made at one rate is being played back at another without being converted. A 48 kHz file played at 44.1 kHz runs at 0.91875x speed and about 1.47 semitones flat. The other way round it runs 1.088x fast and 1.47 semitones sharp. Set the project rate, let the DAW convert the file instead of just playing it, and check the rate in the file’s header.</p>
+<p>The loop sounded perfect in the pack preview. You drop it in, and something’s off. A little dark, a little lazy, not quite on the grid however you line it up. Or it’s the other way: brighter and pushier than you remember, with the vocal chop a touch chipmunky. The person who sent it swears it’s 140.</p>
+<p>Or the beat is fine in the session, and then you put it under a video and by the second chorus the drums and the picture have drifted apart.</p>
+<p>Same cause, most of the time. Nothing’s wrong with the audio. It’s being played on the wrong clock.</p>
+<h2>Why the rate changes the pitch</h2>
+<p>A WAV file is a long list of numbers plus a header that says how many of them make a second. Take one second of 48 kHz audio, 48,000 numbers, and play it at 44,100 per second, and that second takes longer to get through. Every wave is stretched, so every note is lower. Speed and pitch move together, exactly like a turntable at the wrong speed. That’s resampling-style varispeed, one of the three different jobs in <a href="resampling-vs-pitch-shift-vs-tempo.html">resampling, pitch shifting and tempo change</a>.</p>
+<p>The arithmetic is just the ratio of the two rates. Here it is for the four common ones:</p>
+<pre><code>$ python3 rate_math.py
+file rate -&gt; played at   speed      pitch        140 BPM -&gt;   3:00 song -&gt;
+   44.1 k -&gt;  48.0 k   x1.08844   +1.467 st    152.38 BPM   2:45.37 (-14.63 s)
+   44.1 k -&gt;  88.2 k   x2.00000  +12.000 st    280.00 BPM   1:30.00 (-90.00 s)
+   44.1 k -&gt;  96.0 k   x2.17687  +13.467 st    304.76 BPM   1:22.69 (-97.31 s)
+   48.0 k -&gt;  44.1 k   x0.91875   -1.467 st    128.62 BPM   3:15.92 (+15.92 s)
+   48.0 k -&gt;  88.2 k   x1.83750  +10.533 st    257.25 BPM   1:37.96 (-82.04 s)
+   48.0 k -&gt;  96.0 k   x2.00000  +12.000 st    280.00 BPM   1:30.00 (-90.00 s)
+   88.2 k -&gt;  44.1 k   x0.50000  -12.000 st     70.00 BPM   6:00.00 (+180.00 s)
+   88.2 k -&gt;  48.0 k   x0.54422  -10.533 st     76.19 BPM   5:30.75 (+150.75 s)
+   88.2 k -&gt;  96.0 k   x1.08844   +1.467 st    152.38 BPM   2:45.37 (-14.63 s)
+   96.0 k -&gt;  44.1 k   x0.45937  -13.467 st     64.31 BPM   6:31.84 (+211.84 s)
+   96.0 k -&gt;  48.0 k   x0.50000  -12.000 st     70.00 BPM   6:00.00 (+180.00 s)
+   96.0 k -&gt;  88.2 k   x0.91875   -1.467 st    128.62 BPM   3:15.92 (+15.92 s)
+
+48 k file at 44.1 k vs a video: audio is 5.31 s behind after 1 minute, 21.22 s after 4
+semitone ratio 2^(1/12) = 1.05946; 48/44.1 = 1.08844 = 146.7 cents</code></pre>
+<p>The one that bites is 44.1 against 48. The ratio is 1.08844, which is 146.7 cents, about a semitone and a half. That’s not a clean wrong key. It sits between notes, which is why it sounds “off” rather than obviously in the wrong key, and why your ear keeps trying to fix it with EQ. A 140 BPM loop turns into 128.62 or 152.38 BPM. A three-minute song gains 15.92 seconds or loses 14.63. Doubling a rate is a full octave, which nobody misses.</p>
+<p>Against video the drift is easy to spot once you know to look: at 0.91875x the audio is 5.31 seconds behind after one minute and 21.22 seconds behind after four. If the sync looks right at the start and worse by the chorus, check the sample rate before you start nudging clips.</p>
+<h2>Where the mismatch sneaks in</h2>
+<ul>
+<li><strong>Importing into a session at another rate.</strong> Some DAWs convert on import automatically, some ask, and some play the file as-is unless you tell them otherwise.</li>
+<li><strong>Samplers and older tools.</strong> Some load the raw sample data and play it at the engine’s rate, whatever the file says.</li>
+<li><strong>Mixed-rate sample packs.</strong> One folder, loops from three sources, two rates. The odd one out plays wrong next to the others.</li>
+<li><strong>The interface and the project disagree.</strong> On some setups the audio device can be set to one rate while the software expects another.</li>
+<li><strong>The header itself is wrong.</strong> A broken export or a bad edit writes the wrong number into the file. Now even a careful DAW plays it wrong, because it’s trusting the file.</li>
+</ul>
+<h2>Check what the file says</h2>
+<p>This script reads the rate straight out of the WAV header and tells you what happens if it plays in your session unconverted. Give it a note you know should be in the file, like a tuning tone, a held note or an 808 you know the key of, and it also checks whether the header is telling the truth:</p>
+<pre><code>#!/usr/bin/env python3
+"""Read the sample rate a WAV file *says* it is (straight from the RIFF fmt chunk), and what happens
+if it plays in your session without conversion. Optional: --expect-hz checks the strongest tone
+against the pitch it should be, which catches files whose header itself is wrong.
+  python3 rate_check.py --session 48000 [--bpm 140] [--expect-hz 440] *.wav"""
+import argparse, math, struct, sys, numpy as np
+
+def read_wav(path):
+    with open(path, "rb") as fh:
+        riff, _, wave_id = struct.unpack("&lt;4sI4s", fh.read(12))
+        if riff not in (b"RIFF", b"RF64") or wave_id != b"WAVE": sys.exit(f"{path}: not a WAV file")
+        fmt = data = None
+        while (hdr := fh.read(8)) and len(hdr) == 8:
+            cid, size = struct.unpack("&lt;4sI", hdr)
+            if cid == b"fmt ": fmt = fh.read(size)
+            elif cid == b"data": data = fh.read(size); break
+            else: fh.seek(size, 1)
+            if size % 2: fh.seek(1, 1)                   # chunks are word-aligned
+    tag, ch, sr, _, _, bits = struct.unpack("&lt;HHIIHH", fmt[:16])
+    if tag == 0xFFFE: tag = struct.unpack("&lt;H", fmt[24:26])[0]   # WAVE_FORMAT_EXTENSIBLE
+    if tag == 3: x = np.frombuffer(data, f"&lt;f{bits // 8}").astype(float)
+    elif bits == 24:
+        b = np.frombuffer(data[: len(data) // 3 * 3], np.uint8).reshape(-1, 3)
+        x = (np.c_[np.zeros(len(b), np.uint8), b].copy().view("&lt;i4").ravel() &gt;&gt; 8) / 2 ** 23
+    else: x = np.frombuffer(data, {16: "&lt;i2", 32: "&lt;i4"}[bits]) / 2 ** (bits - 1)
+    return sr, ch, bits, ("float" if tag == 3 else "PCM"), x.reshape(-1, ch).mean(axis=1)
+
+def strongest_hz(x, sr):                                 # FFT peak, parabolic interpolation
+    n = min(len(x), sr * 4); w = x[:n] * np.hanning(n)
+    m = np.abs(np.fft.rfft(w, 4 * n)); k = int(np.argmax(m[1:])) + 1
+    a, b, c = np.log(m[k - 1:k + 2] + 1e-20); k += 0.5 * (a - c) / (a - 2 * b + c)
+    return k * sr / (4 * n)
+
+ap = argparse.ArgumentParser(); ap.add_argument("files", nargs="+")
+ap.add_argument("--session", type=int, required=True); ap.add_argument("--bpm", type=float)
+ap.add_argument("--expect-hz", type=float); a = ap.parse_args()
+def effect(r):                                           # speed ratio -&gt; readable consequences
+    return (f"x{r:.5f} speed, {12 * math.log2(r):+.3f} semitones" +
+            (f", {a.bpm:g} BPM plays at {a.bpm * r:.2f}" if a.bpm else ""))
+
+for f in a.files:
+    sr, ch, bits, kind, x = read_wav(f)
+    print(f"{f}: header says {sr} Hz, {ch} ch, {bits}-bit {kind}, {len(x)/sr:.3f} s")
+    if a.expect_hz:
+        hz = strongest_hz(x, sr); off = 1200 * math.log2(hz / a.expect_hz)
+        print(f"  strongest tone at the header rate: {hz:.1f} Hz ({off:+.0f} cents vs {a.expect_hz:g})")
+        if abs(off) &gt; 50:                                # more than half a semitone: the header is lying
+            true = round(sr * a.expect_hz / hz)
+            print(f"  header looks wrong: the audio was made at about {true} Hz. Played by its header: "
+                  f"{effect(sr / true)}\n  fix: re-stamp the header to {true} Hz (no resampling)")
+            continue
+    if sr == a.session: print("  matches the session: plays at the right speed")
+    else:
+        print(f"  unconverted in a {a.session} Hz session: {effect(a.session / sr)}, "
+              f"lasts {len(x) / a.session:.3f} s\n  fix: convert it to {a.session} Hz (sample-rate conversion)")</code></pre>
+<p>The test files come from <code>make_loops.py</code>: two bars at 140 BPM, an A at 440 Hz with a click on every beat. One is a proper 48 kHz file, one a proper 44.1 kHz file, and one is the 48 kHz audio with a header that says 44.1:</p>
+<pre><code>$ python3 rate_check.py --session 48000 --bpm 140 --expect-hz 440 loop_48k.wav loop_44k1.wav mislabeled.wav
+loop_48k.wav: header says 48000 Hz, 2 ch, 24-bit PCM, 3.429 s
+  strongest tone at the header rate: 440.0 Hz (+0 cents vs 440)
+  matches the session: plays at the right speed
+loop_44k1.wav: header says 44100 Hz, 2 ch, 24-bit PCM, 3.429 s
+  strongest tone at the header rate: 440.0 Hz (+0 cents vs 440)
+  unconverted in a 48000 Hz session: x1.08844 speed, +1.467 semitones, 140 BPM plays at 152.38, lasts 3.150 s
+  fix: convert it to 48000 Hz (sample-rate conversion)
+mislabeled.wav: header says 44100 Hz, 2 ch, 24-bit PCM, 3.732 s
+  strongest tone at the header rate: 404.3 Hz (-147 cents vs 440)
+  header looks wrong: the audio was made at about 48000 Hz. Played by its header: x0.91875 speed, -1.467 semitones, 140 BPM plays at 128.62
+  fix: re-stamp the header to 48000 Hz (no resampling)</code></pre>
+<p>The 44.1 kHz loop is fine as a file. Its tone measures 440.0 Hz at its own rate. Unconverted in a 48 kHz session it plays at 152.38 BPM and 1.467 semitones sharp, and the fix is to convert it. The mislabeled one is different. Its header says 44.1, but the tone measures 404.3 Hz at that rate, 147 cents flat of where it should be. The header is the liar. Honoring it plays the loop at 128.62 BPM. The fix there is to re-stamp the header to 48 kHz without touching the audio. Convert it instead and you bake the wrong speed in for good.</p>
+<h2>Fixing it in the session</h2>
+<ol>
+<li><strong>Choose the project rate first.</strong> Pick it from where the song is going, 48 kHz for most video work, and set it before you import anything. Delivery rates are covered in <a href="sample-rate-and-bit-depth-for-delivery.html">sample rate and bit depth are delivery hygiene</a>.</li>
+<li><strong>Let the DAW convert on import.</strong> Look for an import option that converts the sample rate or matches the project, and turn it on.</li>
+<li><strong>Convert folders before you use them.</strong> A mixed-rate pack is easier to batch-convert once with a good converter than to catch loop by loop.</li>
+<li><strong>Match the interface.</strong> Make sure the audio device is running at the project rate.</li>
+<li><strong>Mislabeled file? Re-stamp, don’t convert.</strong> If a known note measures about 1.47 semitones off, the header is wrong. Change the rate in the header and leave the samples alone.</li>
+<li><strong>Check with your ears and a tuner.</strong> Put a tuner on a held note or the 808 tail. A whole loop that’s about 147 cents off is a rate problem. A few cents off is just tuning, as in <a href="tune-808-to-the-key-of-your-song.html">tuning an 808 to the key of your song</a>.</li>
+</ol>
+<h2>The accident is a real effect</h2>
+<p>Here’s the funny part. Playing audio slower so the pitch drops with it is the whole sound of a chopped-and-screwed slowdown. A mismatch is that effect without anyone choosing it: 0.91875x and 1.47 semitones down. If you want the drop, make it on purpose, at the amount you like, then do it properly to a fresh file. You can hear what that sounds like in the <a href="../index.html#screwDemo">ScrewAI demo</a>, and <a href="when-to-slow-the-bounce.html">when to slow the bounce</a> covers where it belongs in the workflow. Keep the session itself on one clock.</p>
+<h2>Genre notes</h2>
+<ul>
+<li><strong>Hip-hop and sampling.</strong> Rips, crate digs and old loops come at every rate. Convert to the session rate before you chop, or every chop is 1.47 semitones off the key you set.</li>
+<li><strong>Content and video.</strong> Video timelines are commonly 48 kHz. Bounce the beat at the rate of the video project so it doesn’t drift.</li>
+<li><strong>Collaborations.</strong> Agree on one rate before anyone sends stems, and say it in the file names, as in <a href="export-stems-for-a-mix-engineer.html">exporting stems for a mixer</a>.</li>
+<li><strong>High-rate sessions.</strong> 88.2 or 96 kHz files in a 44.1 or 48 kHz player come out around an octave low and half speed, so you’ll hear it at once. The near misses are the ones that hide.</li>
+</ul>
+<aside class="aside">Wrong clock, not wrong audio. Convert when the session doesn’t match the file. Re-stamp when the header is lying.</aside>
+<dl class="faq">
+<dt>Why does my sample sound slower and lower in my DAW?</dt>
+<dd>It was made at a higher sample rate than it’s being played at, and it isn’t being converted. A 48 kHz file at 44.1 kHz plays at 0.91875x speed and 1.47 semitones flat. Convert it to the project rate on import.</dd>
+<dt>How many semitones is the difference between 44.1 and 48 kHz?</dt>
+<dd>1.467 semitones, or 146.7 cents. The speed ratio is 1.08844 one way and 0.91875 the other, so a 140 BPM loop plays at 152.38 or 128.62 BPM.</dd>
+<dt>Should I resample the file or change the sample rate in the header?</dt>
+<dd>Resample (convert) when the header is right and your session runs at a different rate. Change the header when the header itself is wrong. Measure a note you know: if the whole file is about 147 cents off at its own rate, the header is wrong.</dd>
+<dt>Why is my audio drifting out of sync with my video?</dt>
+<dd>Often a sample-rate mismatch. Audio made at 48 kHz played as 44.1 kHz falls 5.31 seconds behind after one minute. Export at the video project’s rate and make sure the editor isn’t reinterpreting the file.</dd>
+</dl>
+<nav aria-label="Keep reading" class="related-essays keep-reading" style="margin:48px 0 24px;padding-top:24px;border-top:1px solid rgba(196,165,116,.32)"><h2>Keep reading</h2><ul><li><a href="resampling-vs-pitch-shift-vs-tempo.html">Resampling, pitch shifting, and tempo change are three different jobs</a></li><li><a href="sample-rate-and-bit-depth-for-delivery.html">Sample rate and bit depth are delivery hygiene</a></li><li><a href="tune-808-to-the-key-of-your-song.html">808 sounds off-key? Find its real note, then tune it to the song</a></li><li><a href="export-stems-for-a-mix-engineer.html">Sending stems to a mixer? Export them so they line up and add back up</a></li><li><a href="when-to-slow-the-bounce.html">When to slow the bounce</a></li><li><a href="screw-tempo-still-needs-a-legal-peak.html">Screw tempo still needs a legal peak</a></li><li><a href="normalize-on-export-turn-it-off-for-mastering.html">Should you normalize on export? Turn it off before mastering</a></li></ul><p class="hub-link">More in <a href="topics/432-hz-pitch-and-tempo.html">432 Hz, pitch &amp; tempo</a> · <a href="index.html">All essays</a></p></nav></article>
+<aside aria-label="About the publisher" class="author-box"><p class="author-k">Written and published by</p><p class="author-name"><a href="about.html">NoDAW Labs</a></p><p class="author-bio">NoDAW Labs makes local-first audio tools: CoProducer, reTUNE[432] and DeepSplit. Essays are credited to the studio, not to individual writers. <a href="methodology.html">How we test, cite and correct</a>.</p></aside>
+<section class="comments" data-comments="" data-thread="sample-rate-mismatch"></section>
+<script src="js/studio.js" type="module"></script>
+<script src="js/comments.js" type="module"></script>
+<footer class="site"><span>Lacquer · CoProducer Journal</span><span><a href="index.html">All essays</a> · <a href="about.html">About</a> · <a href="methodology.html">Methodology</a></span></footer>
+</body>
+</html>

@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1" name="viewport"/><meta content="https://myaiplug.github.io/coproducer-web/blog/img/essays/song-ending-cut-off-on-export-let-the-tail-ring.jpg?v=shd" name="twitter:image"/><meta content="Why the end of your song gets cut off on export and how to fix it: run the export range past the last bar until the reverb and delay tails die, check the file ends in silence, then trim the silence, not the tail. Tail math and a script inside." name="twitter:description"/><meta content="Song ending cut off when you export? Let the tail ring past the last bar" name="twitter:title"/><meta content="summary_large_image" name="twitter:card"/><meta content="2026-10-26T00:00:00Z" property="article:modified_time"/><meta content="2026-10-26T00:00:00Z" property="article:published_time"/><meta content="1440" property="og:image:height"/><meta content="2560" property="og:image:width"/><meta content="https://myaiplug.github.io/coproducer-web/blog/song-ending-cut-off-on-export-let-the-tail-ring.html" property="og:url"/><meta content="en_US" property="og:locale"/><meta content="CoProducer" property="og:site_name"/><meta content="article" property="og:type"/><link href="https://myaiplug.github.io/coproducer-web/llms.txt" rel="alternate" title="llms.txt" type="text/plain"/><meta content="NoDAW Labs" name="author"/><meta content="#050308" name="theme-color"/><meta content="index,follow,max-image-preview:large" name="robots"/><meta content="song ending cut off when exporting, reverb tail cut off on export, bounce cuts off end of song, how much silence at the end of a song, export reverb tail, delay tail cut off, render tail, song ends abruptly, ScrewAI, NoDAW" name="keywords"/>
+<title>Song ending cut off when you export? Let the tail ring past the last bar | Lacquer</title>
+<meta content="Why the end of your song gets cut off on export and how to fix it: run the export range past the last bar until the reverb and delay tails die, check the file ends in silence, then trim the silence, not the tail. Tail math and a script inside." name="description"/>
+<link href="https://myaiplug.github.io/coproducer-web/blog/song-ending-cut-off-on-export-let-the-tail-ring.html" rel="canonical"/>
+<link rel="alternate" type="application/rss+xml" title="Lacquer — CoProducer Journal" href="https://myaiplug.github.io/coproducer-web/blog/rss.xml"/>
+<link rel="icon" href="../favicon.ico" sizes="48x48"/>
+<link rel="icon" type="image/svg+xml" href="../assets/favicon.svg"/>
+<link rel="apple-touch-icon" href="../assets/apple-touch-icon.png"/>
+<link rel="manifest" href="../site.webmanifest"/>
+<meta content="Song ending cut off when you export? Let the tail ring past the last bar" property="og:title"/>
+<meta content="Why the end of your song gets cut off on export and how to fix it: run the export range past the last bar until the reverb and delay tails die, check the file ends in silence, then trim the silence, not the tail. Tail math and a script inside." property="og:description"/>
+<meta content="https://myaiplug.github.io/coproducer-web/blog/img/essays/song-ending-cut-off-on-export-let-the-tail-ring.jpg?v=shd" property="og:image"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;1,500;1,600&amp;family=Figtree:wght@400;500&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet" media="print" onload="this.media='all'"/><noscript><link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;1,500;1,600&amp;family=Figtree:wght@400;500&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/></noscript>
+<link rel="preload" as="image" type="image/webp" fetchpriority="high" imagesrcset="img/essays/w/song-ending-cut-off-on-export-let-the-tail-ring-480.webp 480w, img/essays/w/song-ending-cut-off-on-export-let-the-tail-ring-960.webp 960w, img/essays/w/song-ending-cut-off-on-export-let-the-tail-ring-1600.webp 1600w" imagesizes="(max-width: 1100px) 100vw, 1100px"/>
+<link href="css/journal.css" rel="stylesheet"/>
+
+
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Song ending cut off when you export? Let the tail ring past the last bar","description":"Why the end of your song gets cut off on export and how to fix it: run the export range past the last bar until the reverb and delay tails die, check the file ends in silence, then trim the silence, not the tail. Tail math and a script inside.","datePublished":"2026-10-26","dateModified":"2026-10-26","mainEntityOfPage":{"@type":"WebPage","@id":"https://myaiplug.github.io/coproducer-web/blog/song-ending-cut-off-on-export-let-the-tail-ring.html"},"image":{"@type":"ImageObject","url":"https://myaiplug.github.io/coproducer-web/blog/img/essays/song-ending-cut-off-on-export-let-the-tail-ring.jpg?v=shd","width":2560,"height":1440},"author":{"@type":"Organization","name":"NoDAW Labs","url":"https://myaiplug.github.io/coproducer-web/","logo":"https://myaiplug.github.io/coproducer-web/assets/og-default.jpg"},"publisher":{"@type":"Organization","name":"NoDAW Labs","url":"https://myaiplug.github.io/coproducer-web/","logo":"https://myaiplug.github.io/coproducer-web/assets/og-default.jpg"},"isPartOf":{"@type":"Blog","name":"Lacquer — CoProducer Journal","url":"https://myaiplug.github.io/coproducer-web/blog/index.html"},"keywords":["song ending cut off when exporting","reverb tail cut off on export","bounce cuts off end of song","how much silence at the end of a song","export reverb tail","delay tail cut off","render tail","song ends abruptly","ScrewAI","NoDAW"],"speakable":{"@type":"SpeakableSpecification","cssSelector":[".answer","h1"]}}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Why does my song cut off at the end when I export?","acceptedAnswer":{"@type":"Answer","text":"The export range stops at the last bar or region while reverb and delay are still ringing. Some DAWs render only the selection you give them. Extend the range two bars or more past the last note and export again."}},{"@type":"Question","name":"How much silence should be at the end of a song?","acceptedAnswer":{"@type":"Answer","text":"Enough for the tail to die away, plus a short fade. Trim a little after the tail falls below about −60 dBFS. On an album, the gap before the next song is a sequencing choice, so set it there."}},{"@type":"Question","name":"Should I fade out the end of the bounce?","acceptedAnswer":{"@type":"Answer","text":"Fade the silence after the tail, not the tail itself. If you want the song to fade out, draw the fade in the session so the effects fade with the music."}},{"@type":"Question","name":"Do stems need the reverb tail too?","acceptedAnswer":{"@type":"Answer","text":"Yes. Export every stem the same length, from the same start to a point past the last tail, so they line up and nothing gets cut short in the mix."}}]}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"CoProducer","item":"https://myaiplug.github.io/coproducer-web/"},{"@type":"ListItem","position":2,"name":"Lacquer Journal","item":"https://myaiplug.github.io/coproducer-web/blog/index.html"},{"@type":"ListItem","position":3,"name":"Song ending cut off when you export? Let the tail ring past the last bar","item":"https://myaiplug.github.io/coproducer-web/blog/song-ending-cut-off-on-export-let-the-tail-ring.html"}]}</script></head>
+<body>
+<header class="top">
+<a class="mark" href="../index.html"><em>Co</em>Producer</a>
+<nav aria-label="Primary" class="nav">
+<a href="index.html">Journal</a>
+<a href="../index.html#ab">A/B</a>
+<a href="../index.html#analyzeHome">Analyze</a>
+<a href="../guides/index.html">Guides</a>
+<a href="../pricing.html">Pricing</a>
+</nav>
+<a class="cta" href="../index.html#analyzeHome">Measure a mix</a>
+</header>
+<article class="post" id="main">
+<div class="post-hero"><img alt="A glowing gold waveform sculpture on black marble that ends in a sharp clean-cut edge, a faint cyan trail of light fading away beyond the cut, soft magenta light on studio monitors behind" src="img/essays/song-ending-cut-off-on-export-let-the-tail-ring.jpg?v=shd" srcset="img/essays/w/song-ending-cut-off-on-export-let-the-tail-ring-480.webp 480w, img/essays/w/song-ending-cut-off-on-export-let-the-tail-ring-960.webp 960w, img/essays/w/song-ending-cut-off-on-export-let-the-tail-ring-1600.webp 1600w" sizes="(max-width: 1100px) 100vw, 1100px" width="2560" height="1440" fetchpriority="high" decoding="async"/></div>
+<header>
+<p class="kicker">Delivery · 26 October 2026 · 7 min</p>
+<h1>Song ending cut off when you export? Let the tail ring past the last bar</h1>
+<p class="meta">NoDAW Labs · Lacquer Vol. 06</p>
+</header>
+<p class="answer">If the end of your song gets cut off when you export, the export range is stopping at the last bar line while the reverb and delay are still ringing. Run the range at least two bars past the last note, longer for big reverbs, high-feedback delays and slow tempos, then check that the file ends in silence and not mid-sound. Trim the extra silence afterwards. Never trim the tail.</p>
+<p>You play the bounce back and the last chord just stops. Not a fade, not a decay. A door slamming. In the session it rang out beautifully. Or the last word of the vocal had a delay throw that echoed off into the dark, and in the bounce the echoes get chopped off mid-repeat.</p>
+<p>Nothing is wrong with the mix. The export did exactly what it was told: render from here to here. The “here” at the end is usually the last bar line or the end of the last region, and the effects don’t know the song is over.</p>
+<h2>Why the bounce stops early</h2>
+<p>Reverb and delay keep making sound after the notes feeding them stop. Some DAWs have a tail or “remainder” option in the export window. Others render exactly the selection you give them, and not a sample more. Loop-brace exports, region bounces and bounce-in-place are the usual suspects, along with an end marker someone set months ago, before the outro got its big reverb.</p>
+<p>A cut ending also clicks. A sound that stops at full swing is a hard edge, the same thing we measured in <a href="clicks-at-edit-points-fade-every-cut.html">clicks at your edit points</a>. At the very end of a file it’s the worst place for one, because nothing comes after it to cover it up.</p>
+<h2>How far past the last bar?</h2>
+<p>Far enough for the slowest thing in the session to die away. Here’s the arithmetic for bar lengths, reverb decays and delay feedback:</p>
+<pre><code>$ python3 tail_math.py
+bar length (4/4):
+   70 BPM  1 bar 3.429 s   2 bars 6.857 s
+   90 BPM  1 bar 2.667 s   2 bars 5.333 s
+  120 BPM  1 bar 2.000 s   2 bars 4.000 s
+  140 BPM  1 bar 1.714 s   2 bars 3.429 s
+  160 BPM  1 bar 1.500 s   2 bars 3.000 s
+
+reverb: a 60 dB decay of N seconds is how many bars?
+  1.2 s decay  = 0.45 bars at 90 BPM, 0.70 bars at 140 BPM
+  2.4 s decay  = 0.90 bars at 90 BPM, 1.40 bars at 140 BPM
+  4.0 s decay  = 1.50 bars at 90 BPM, 2.33 bars at 140 BPM
+
+delay throw: repeats until the echo is 60 dB down (quarter note at 90 BPM = 0.667 s)
+  feedback 0.30: 10.5 dB quieter per repeat,  6 repeats,  4.00 s
+  feedback 0.45:  6.9 dB quieter per repeat,  9 repeats,  6.00 s
+  feedback 0.60:  4.4 dB quieter per repeat, 14 repeats,  9.33 s
+  feedback 0.75:  2.5 dB quieter per repeat, 25 repeats, 16.67 s
+
+this demo: tail runs 3.683 s past the last bar line = 1.38 bars -&gt; export 2 extra bars
+  slowed to 0.8x the same tail lasts 4.604 s
+  slowed to 0.75x the same tail lasts 4.911 s</code></pre>
+<p>A few things jump out. A 2.4-second reverb is under a bar at 90 BPM but 1.4 bars at 140. Delay feedback is the sneaky one. At 0.45 feedback each repeat is only 6.9 dB quieter than the last, so a quarter-note throw at 90 BPM takes 9 repeats and 6 seconds to fall 60 dB. Push the feedback to 0.75 for a dub-style throw and it’s 25 repeats and 16.67 seconds. Those are 60 dB below where each effect starts. Tails that start quieter reach silence sooner, but you can’t know that until you check.</p>
+<p>Two extra bars is a good default. For ambient outros, dub throws and slow ballads, give it four or more and trim later. If you sync your throws to the tempo, <a href="delay-time-from-bpm-sync-your-throws.html">setting delay time from the tempo</a> has the note lengths.</p>
+<h2>Check that the file actually ends</h2>
+<p>You can hear a hard stop on good speakers. It’s easy to miss on a laptop, and nobody listens to the last second of every alternate bounce. This script reads a WAV and reports how loud the last 50 ms are, when the tail drops below −60 and −80 dBFS for good, and how much silence trails it:</p>
+<pre><code>#!/usr/bin/env python3
+"""Does a bounce end, or does it get cut off? Reads a 16/24/32-bit WAV and reports how loud the last
+50 ms are, where the tail drops below -60 and -80 dBFS for good, and how much silence trails it.
+Usage: python3 tail_check.py song.wav"""
+import sys, wave, numpy as np
+
+with wave.open(sys.argv[1]) as w:
+    sr, ch, sw, nf = w.getframerate(), w.getnchannels(), w.getsampwidth(), w.getnframes()
+    raw = w.readframes(nf)
+if sw == 3:                                             # 24-bit: pad each sample to 4 bytes
+    b = np.frombuffer(raw, np.uint8).reshape(-1, 3)
+    x = (np.c_[np.zeros(len(b), np.uint8), b].copy().view("&lt;i4").ravel() &gt;&gt; 8).astype(float) / 2 ** 23
+else:
+    x = np.frombuffer(raw, {2: "&lt;i2", 4: "&lt;i4"}[sw]).astype(float) / 2 ** (8 * sw - 1)
+x = x.reshape(-1, ch)
+db = lambda v: 20 * np.log10(v + 1e-12)
+hop = int(0.05 * sr)                                    # 50 ms RMS windows
+lv = db(np.sqrt((x[: len(x) // hop * hop].reshape(-1, hop, ch) ** 2).mean(axis=(1, 2))))
+print(f"{sys.argv[1]}: {len(x)/sr:.3f} s, {sr} Hz, {ch} ch, {8*sw}-bit")
+fmt = lambda v: "digital silence" if v &lt; -200 else f"{v:.1f} dBFS"
+print(f"  last 50 ms RMS: {fmt(lv[-1])}; last sample: {fmt(db(np.abs(x[-1]).max()))}")
+for thr in (-60, -80):
+    above = np.nonzero(lv &gt; thr)[0]
+    end = (above[-1] + 1) * hop / sr if len(above) else 0.0
+    left = len(x) / sr - end
+    print(f"  below {thr} dBFS for good at {end:.3f} s" if left &gt; 0.05 else
+          f"  below {thr} dBFS: never - still above it when the file ends")
+nz = np.nonzero(np.abs(x).max(axis=1) &gt; 0)[0]
+print(f"  trailing digital silence {(len(x) - 1 - nz[-1]) / sr if len(nz) else len(x)/sr:.3f} s")
+print("  verdict: " + ("CUT OFF - the tail is still ringing when the file stops" if lv[-1] &gt; -60 else
+                       "ends cleanly - the tail has died away before the file stops"))</code></pre>
+<p>We built a 90 BPM ending with <code>make_ending.py</code>: a C minor 7 chord on the downbeat of the last bar into a reverb with a 2.4-second decay, a kick that stops a bar earlier, and a quarter-note delay throw at 0.45 feedback on the last vocal word. One export stops at the last bar line, 10.667 s. The other runs 8 seconds past it:</p>
+<pre><code>$ python3 tail_check.py ending_cut.wav
+ending_cut.wav: 10.667 s, 44100 Hz, 2 ch, 16-bit
+  last 50 ms RMS: -31.8 dBFS; last sample: -25.8 dBFS
+  below -60 dBFS: never - still above it when the file ends
+  below -80 dBFS: never - still above it when the file ends
+  trailing digital silence 0.000 s
+  verdict: CUT OFF - the tail is still ringing when the file stops
+
+$ python3 tail_check.py ending_full.wav
+ending_full.wav: 18.667 s, 44100 Hz, 2 ch, 16-bit
+  last 50 ms RMS: digital silence; last sample: digital silence
+  below -60 dBFS for good at 14.350 s
+  below -80 dBFS for good at 15.050 s
+  trailing digital silence 2.554 s
+  verdict: ends cleanly - the tail has died away before the file stops</code></pre>
+<p>The cut version’s last 50 ms sit at −31.8 dBFS and its very last sample at −25.8 dBFS. That isn’t a tail fading out. That’s the song still playing when the file stops. The long version drops below −60 dBFS for good at 14.350 s, which is 3.68 seconds or 1.38 bars past the bar line. Two extra bars would have covered it.</p>
+<h2>Export long, then trim the silence</h2>
+<ol>
+<li><strong>Export long.</strong> Two bars past the last note by default, more for the long reverbs, heavy feedback and slow tempos above.</li>
+<li><strong>Check the end.</strong> Run the script, or zoom in on the last second of the waveform with the vertical zoom up. The tail should taper into nothing, not stop at a wall.</li>
+<li><strong>Trim the extra.</strong> Cut a little after the tail falls below about −60 dBFS, or −80 if the ending is quiet and exposed, and put a short fade on the last part so the cut itself lands in silence. Our long bounce still had 2.554 seconds of digital silence after the tail was gone. You don’t need all of that.</li>
+<li><strong>Don’t fade the tail to save time.</strong> If the reverb is too long for the song, shorten the reverb in the mix. The ending should be a decision, not an export accident.</li>
+<li><strong>Do the start too.</strong> Silence before the first note has its own cost, covered in <a href="leading-silence-steals-integrated-lufs.html">the silence at the top of your bounce</a>.</li>
+</ol>
+<p>Sending it to a mastering engineer? Send the full tail with the extra silence and let them trim. It’s easy to cut silence and impossible to get back a tail that was never rendered. Stems follow the same rule: every stem runs the same length, past the last tail, as covered in <a href="export-stems-for-a-mix-engineer.html">exporting stems for a mixer</a>.</p>
+<h2>Fade-outs, albums and slowed versions</h2>
+<p>If the song fades out, draw the fade in the session so the reverb and delay fade with the music. A fade drawn on the bounced file after a hard cut still has the cut in it, just quieter.</p>
+<p>On an album where songs run into each other, the end of one track and the start of the next are a single sequencing decision, and the gap between them has its own traps once the files are encoded. That’s in <a href="gapless-album-gaps-after-mp3-or-aac.html">why gapless albums get gaps after MP3 or AAC</a>.</p>
+<p>Slowing a song down stretches everything, tail included. From the bottom of the arithmetic above, our 3.68-second tail lasts 4.60 seconds at 0.8x and 4.91 seconds at 0.75x. If you trimmed the master tight and then slow it down, there’s no extra silence for that longer tail to ring into. So if you’re slowing a song in the <a href="../index.html#screwDemo">ScrewAI demo</a>, start from the long export and trim after. More on when to slow in <a href="when-to-slow-the-bounce.html">when to slow the bounce</a>.</p>
+<h2>Genre notes</h2>
+<ul>
+<li><strong>Ballads, gospel and cinematic.</strong> The hall or plate tail is part of the ending. Give slow songs four bars or more: a 4.0-second decay is 1.5 bars at 90 BPM.</li>
+<li><strong>Hip-hop and trap.</strong> Endings often stop dead on purpose, and that’s fine. Make the stop happen in the session by muting the reverb and delay returns on the last hit, so the stop is clean, not a render cut.</li>
+<li><strong>Dub, reggae and lo-fi.</strong> High-feedback throws are the outro. At 0.75 feedback a quarter-note delay at 90 BPM runs 16.67 seconds, so export very long and decide by ear where it ends.</li>
+<li><strong>Club edits.</strong> The outro is built for DJs to mix out of, so keep the drums on the grid to the last bar and let any final effects tail run past it. Even if nobody hears the last second, the file still shouldn’t click.</li>
+</ul>
+<aside class="aside">Export long, check the end, trim the silence and never the tail.</aside>
+<dl class="faq">
+<dt>Why does my song cut off at the end when I export?</dt>
+<dd>The export range stops at the last bar or region while reverb and delay are still ringing. Some DAWs render only the selection you give them. Extend the range two bars or more past the last note and export again.</dd>
+<dt>How much silence should be at the end of a song?</dt>
+<dd>Enough for the tail to die away, plus a short fade. Trim a little after the tail falls below about −60 dBFS. On an album, the gap before the next song is a sequencing choice, so set it there.</dd>
+<dt>Should I fade out the end of the bounce?</dt>
+<dd>Fade the silence after the tail, not the tail itself. If you want the song to fade out, draw the fade in the session so the effects fade with the music.</dd>
+<dt>Do stems need the reverb tail too?</dt>
+<dd>Yes. Export every stem the same length, from the same start to a point past the last tail, so they line up and nothing gets cut short in the mix.</dd>
+</dl>
+<nav aria-label="Keep reading" class="related-essays keep-reading" style="margin:48px 0 24px;padding-top:24px;border-top:1px solid rgba(196,165,116,.32)"><h2>Keep reading</h2><ul><li><a href="clicks-at-edit-points-fade-every-cut.html">Clicks at your edit points come from cutting mid-wave. Fade every cut</a></li><li><a href="delay-time-from-bpm-sync-your-throws.html">Your delay sounds off the beat? Set it from the tempo, not by ear</a></li><li><a href="leading-silence-steals-integrated-lufs.html">The silence at the top of your bounce steals LUFS</a></li><li><a href="gapless-album-gaps-after-mp3-or-aac.html">Why your gapless album gets gaps after MP3 or AAC</a></li><li><a href="export-stems-for-a-mix-engineer.html">Sending stems to a mixer? Export them so they line up and add back up</a></li><li><a href="when-to-slow-the-bounce.html">When to slow the bounce</a></li><li><a href="fade-out-sounds-abrupt-curve-it-and-fade-after-the-limiter.html">Fade-out drops off a cliff? Curve it, and fade after the limiter</a></li><li><a href="normalize-on-export-turn-it-off-for-mastering.html">Should you normalize on export? Turn it off before mastering</a></li></ul><p class="hub-link">More in <a href="topics/true-peak-limiting-and-delivery.html">True peak, limiting &amp; delivery</a> · <a href="index.html">All essays</a></p></nav></article>
+<aside aria-label="About the publisher" class="author-box"><p class="author-k">Written and published by</p><p class="author-name"><a href="about.html">NoDAW Labs</a></p><p class="author-bio">NoDAW Labs makes local-first audio tools: CoProducer, reTUNE[432] and DeepSplit. Essays are credited to the studio, not to individual writers. <a href="methodology.html">How we test, cite and correct</a>.</p></aside>
+<section class="comments" data-comments="" data-thread="song-ending-tail"></section>
+<script src="js/studio.js" type="module"></script>
+<script src="js/comments.js" type="module"></script>
+<footer class="site"><span>Lacquer · CoProducer Journal</span><span><a href="index.html">All essays</a> · <a href="about.html">About</a> · <a href="methodology.html">Methodology</a></span></footer>
+</body>
+</html>

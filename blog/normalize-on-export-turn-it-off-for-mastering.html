@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1" name="viewport"/><meta content="https://myaiplug.github.io/coproducer-web/blog/img/essays/normalize-on-export-turn-it-off-for-mastering.jpg?v=shd" name="twitter:image"/><meta content="Why the normalize option in your DAW’s export window works against a mix headed for mastering: it fills the headroom, can push true peak over 0 dBFS and gives every version its own gain. Measured on a synthetic main mix and instrumental. Script inside." name="twitter:description"/><meta content="Should you normalize on export? Turn it off before mastering" name="twitter:title"/><meta content="summary_large_image" name="twitter:card"/><meta content="2026-10-27T00:00:00Z" property="article:modified_time"/><meta content="2026-10-27T00:00:00Z" property="article:published_time"/><meta content="1440" property="og:image:height"/><meta content="2560" property="og:image:width"/><meta content="https://myaiplug.github.io/coproducer-web/blog/normalize-on-export-turn-it-off-for-mastering.html" property="og:url"/><meta content="en_US" property="og:locale"/><meta content="CoProducer" property="og:site_name"/><meta content="article" property="og:type"/><link href="https://myaiplug.github.io/coproducer-web/llms.txt" rel="alternate" title="llms.txt" type="text/plain"/><meta content="NoDAW Labs" name="author"/><meta content="#050308" name="theme-color"/><meta content="index,follow,max-image-preview:large" name="robots"/><meta content="normalize on export, should I normalize before mastering, normalize mix before mastering, DAW export normalize, normalize to 0 dBFS, instrumental louder than main mix, true peak after normalizing, bounce settings for mastering, CoProducer, NoDAW" name="keywords"/>
+<title>Should you normalize on export? Turn it off before mastering | Lacquer</title>
+<meta content="Why the normalize option in your DAW’s export window works against a mix headed for mastering: it fills the headroom, can push true peak over 0 dBFS and gives every version its own gain. Measured on a synthetic main mix and instrumental. Script inside." name="description"/>
+<link href="https://myaiplug.github.io/coproducer-web/blog/normalize-on-export-turn-it-off-for-mastering.html" rel="canonical"/>
+<link rel="alternate" type="application/rss+xml" title="Lacquer — CoProducer Journal" href="https://myaiplug.github.io/coproducer-web/blog/rss.xml"/>
+<link rel="icon" href="../favicon.ico" sizes="48x48"/>
+<link rel="icon" type="image/svg+xml" href="../assets/favicon.svg"/>
+<link rel="apple-touch-icon" href="../assets/apple-touch-icon.png"/>
+<link rel="manifest" href="../site.webmanifest"/>
+<meta content="Should you normalize on export? Turn it off before mastering" property="og:title"/>
+<meta content="Why the normalize option in your DAW’s export window works against a mix headed for mastering: it fills the headroom, can push true peak over 0 dBFS and gives every version its own gain. Measured on a synthetic main mix and instrumental. Script inside." property="og:description"/>
+<meta content="https://myaiplug.github.io/coproducer-web/blog/img/essays/normalize-on-export-turn-it-off-for-mastering.jpg?v=shd" property="og:image"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;1,500;1,600&amp;family=Figtree:wght@400;500&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet" media="print" onload="this.media='all'"/><noscript><link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;1,500;1,600&amp;family=Figtree:wght@400;500&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/></noscript>
+<link rel="preload" as="image" type="image/webp" fetchpriority="high" imagesrcset="img/essays/w/normalize-on-export-turn-it-off-for-mastering-480.webp 480w, img/essays/w/normalize-on-export-turn-it-off-for-mastering-960.webp 960w, img/essays/w/normalize-on-export-turn-it-off-for-mastering-1600.webp 1600w" imagesizes="(max-width: 1100px) 100vw, 1100px"/>
+<link href="css/journal.css" rel="stylesheet"/>
+
+
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Should you normalize on export? Turn it off before mastering","description":"Why the normalize option in your DAW’s export window works against a mix headed for mastering: it fills the headroom, can push true peak over 0 dBFS and gives every version its own gain. Measured on a synthetic main mix and instrumental. Script inside.","datePublished":"2026-10-27","dateModified":"2026-10-27","mainEntityOfPage":{"@type":"WebPage","@id":"https://myaiplug.github.io/coproducer-web/blog/normalize-on-export-turn-it-off-for-mastering.html"},"image":{"@type":"ImageObject","url":"https://myaiplug.github.io/coproducer-web/blog/img/essays/normalize-on-export-turn-it-off-for-mastering.jpg?v=shd","width":2560,"height":1440},"author":{"@type":"Organization","name":"NoDAW Labs","url":"https://myaiplug.github.io/coproducer-web/","logo":"https://myaiplug.github.io/coproducer-web/assets/og-default.jpg"},"publisher":{"@type":"Organization","name":"NoDAW Labs","url":"https://myaiplug.github.io/coproducer-web/","logo":"https://myaiplug.github.io/coproducer-web/assets/og-default.jpg"},"isPartOf":{"@type":"Blog","name":"Lacquer — CoProducer Journal","url":"https://myaiplug.github.io/coproducer-web/blog/index.html"},"keywords":["normalize on export","should I normalize before mastering","normalize mix before mastering","DAW export normalize","normalize to 0 dBFS","instrumental louder than main mix","true peak after normalizing","bounce settings for mastering","CoProducer","NoDAW"],"speakable":{"@type":"SpeakableSpecification","cssSelector":[".answer","h1"]}}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Should I normalize my mix before sending it to mastering?","acceptedAnswer":{"@type":"Answer","text":"No. Normalize moves the loudest peak to 0 dBFS or the file to a loudness target, which removes the headroom the engineer asked for and changes the gain of each version differently. Turn it off and export at the level you mixed."}},{"@type":"Question","name":"Does normalizing reduce audio quality?","acceptedAnswer":{"@type":"Answer","text":"A gain change on its own is clean in a 24-bit or float file. The trouble is where it puts the peaks: in our test, peak-normalized files read up to +0.38 dB true peak, and loudness-normalized ones clipped in 24-bit."}},{"@type":"Question","name":"Why is my instrumental louder than my main mix?","acceptedAnswer":{"@type":"Answer","text":"Usually because each file was normalized on its own. Without the vocal, the instrumental’s peaks are lower, so normalize turns it up more. In our test that was 0.71 dB more at peak and 2.61 dB more to reach −14 LUFS."}},{"@type":"Question","name":"Is export normalize the same as Spotify normalization?","acceptedAnswer":{"@type":"Answer","text":"No. Streaming platforms adjust the volume at playback and leave your file untouched. Export normalize rewrites the file before anyone else hears it."}}]}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"CoProducer","item":"https://myaiplug.github.io/coproducer-web/"},{"@type":"ListItem","position":2,"name":"Lacquer Journal","item":"https://myaiplug.github.io/coproducer-web/blog/index.html"},{"@type":"ListItem","position":3,"name":"Should you normalize on export? Turn it off before mastering","item":"https://myaiplug.github.io/coproducer-web/blog/normalize-on-export-turn-it-off-for-mastering.html"}]}</script></head>
+<body>
+<header class="top">
+<a class="mark" href="../index.html"><em>Co</em>Producer</a>
+<nav aria-label="Primary" class="nav">
+<a href="index.html">Journal</a>
+<a href="../index.html#ab">A/B</a>
+<a href="../index.html#analyzeHome">Analyze</a>
+<a href="../guides/index.html">Guides</a>
+<a href="../pricing.html">Pricing</a>
+</nav>
+<a class="cta" href="../index.html#analyzeHome">Measure a mix</a>
+</header>
+<article class="post" id="main">
+<div class="post-hero"><img alt="A brass fader cap pushed up on a gold mixing console on black marble, a glowing gold waveform floating above it and almost touching a thin cyan line of light across the top of the frame, studio monitors with soft magenta light behind" src="img/essays/normalize-on-export-turn-it-off-for-mastering.jpg?v=shd" srcset="img/essays/w/normalize-on-export-turn-it-off-for-mastering-480.webp 480w, img/essays/w/normalize-on-export-turn-it-off-for-mastering-960.webp 960w, img/essays/w/normalize-on-export-turn-it-off-for-mastering-1600.webp 1600w" sizes="(max-width: 1100px) 100vw, 1100px" width="2560" height="1440" fetchpriority="high" decoding="async"/></div>
+<header>
+<p class="kicker">Delivery · 27 October 2026 · 8 min</p>
+<h1>Should you normalize on export? Turn it off before mastering</h1>
+<p class="meta">NoDAW Labs · Lacquer Vol. 06</p>
+</header>
+<p class="answer">Turn normalize off when you export a mix for mastering. The normalize option rescales the finished bounce, usually so the loudest sample hits 0 dBFS or the file lands on a loudness target. That throws away the headroom you left, can push the true peak over full scale, and gives every version of the song its own gain, so the main mix, the instrumental and the stems stop matching.</p>
+<p>You did everything right. Mix bus clean, no limiter, peaks sitting around −6 dBFS because that’s what the mastering engineer asked for. You bounce, open the file, and the waveform is slammed against the top of the window. Peak: 0.0.</p>
+<p>Nothing in the mix changed. Somewhere in the export window there’s a checkbox that says normalize, and it’s ticked. Maybe you ticked it once for a demo, and the DAW remembered. Maybe it was on in a preset. Either way, it quietly undid the one thing you were asked to do.</p>
+<h2>What the normalize box actually does</h2>
+<p>Normalize waits until the render is finished, measures it, and applies one gain change to the whole file. Peak normalize moves the loudest sample to a target, usually 0 dBFS or a hair under. Some DAWs also offer a loudness version that moves the whole file to a LUFS target. It isn’t compression and it doesn’t change the shape of anything. It’s a fader move you didn’t make, decided by whichever moment of the song happened to be loudest.</p>
+<p>That sounds harmless, and on one file sometimes it is. The trouble comes from three places: the headroom is gone, the peaks between the samples can end up over full scale, and every file you bounce gets a different fader move.</p>
+<p>It’s also not the same thing as streaming normalization. Platforms turn songs up or down at playback and leave your file alone, which is covered in <a href="why-streaming-turns-loud-masters-down.html">why streaming platforms turn loud masters down</a>. Export normalize changes the file itself.</p>
+<h2>We bounced one song three ways</h2>
+<p>To see it in numbers, we built a four-bar song at 120 BPM in <code>make_versions.py</code>: kick, snare, hats, a bass and chords, plus a vocal that comes in on bar 2. It renders a main mix, an instrumental with the vocal muted, and an a cappella, all through the same mix-bus gain, with the main mix peaking at −6 dBFS. Then it runs the main mix and the instrumental through both kinds of normalize:</p>
+<pre><code>$ python3 make_versions.py
+main         peak-normalize gain  +6.00 dB   -14 LUFS gain  +6.42 dB (1 sample past full scale, clipped in 24-bit)
+instrumental peak-normalize gain  +6.71 dB   -14 LUFS gain  +9.03 dB (82 samples past full scale, clipped in 24-bit)</code></pre>
+<p>Here’s the script that measures them: sample peak, true peak by 4x oversampling, and integrated loudness with a BS.1770 meter. It also does a null test, which we’ll get to:</p>
+<pre><code>#!/usr/bin/env python3
+"""Peak, true peak and loudness for one or more bounces, plus an optional null test.
+  python3 export_check.py a.wav b.wav ...           sample peak, 4x true peak, integrated LUFS
+  python3 export_check.py --null a.wav b.wav 0 2    residual of a - b between 0 and 2 seconds
+True peak is estimated by 4x oversampling (polyphase FIR), as in ITU-R BS.1770; LUFS is BS.1770
+K-weighting with the -70 LUFS absolute and -10 LU relative gates."""
+import sys, numpy as np, soundfile as sf
+from scipy.signal import lfilter, resample_poly
+
+db = lambda v: 20 * np.log10(max(v, 1e-12))
+
+def k_weight(x, sr):                                     # BS.1770 pre-filter + RLB high-pass at any rate
+    K = np.tan(np.pi * 1681.974450955532 / sr); Vh = 10 ** (3.99984385397 / 20); Vb = Vh ** 0.4996667741545416
+    Q = 0.7071752369554196; a0 = 1 + K / Q + K * K
+    x = lfilter([(Vh + Vb * K / Q + K * K) / a0, 2 * (K * K - Vh) / a0, (Vh - Vb * K / Q + K * K) / a0],
+                [1, 2 * (K * K - 1) / a0, (1 - K / Q + K * K) / a0], x, axis=0)
+    K = np.tan(np.pi * 38.13547087602444 / sr); Q = 0.5003270373238773; a0 = 1 + K / Q + K * K
+    return lfilter([1, -2, 1], [1, 2 * (K * K - 1) / a0, (1 - K / Q + K * K) / a0], x, axis=0)
+
+def lufs(x, sr):
+    y = k_weight(x.reshape(len(x), -1), sr); blk, hop = int(0.4 * sr), int(0.1 * sr)
+    z = np.array([(y[i:i + blk] ** 2).mean(axis=0).sum() for i in range(0, len(y) - blk + 1, hop)])
+    lk = -0.691 + 10 * np.log10(z + 1e-20)
+    z = z[lk &gt; -70]; rel = -0.691 + 10 * np.log10(z.mean()) - 10
+    return -0.691 + 10 * np.log10(z[-0.691 + 10 * np.log10(z) &gt; rel].mean())
+
+def true_peak(x):
+    return np.abs(resample_poly(x.reshape(len(x), -1), 4, 1, axis=0)).max()
+
+def main():
+    if sys.argv[1] == "--null":
+        (a, sr), (b, _) = sf.read(sys.argv[2]), sf.read(sys.argv[3])
+        i, j = int(float(sys.argv[4]) * sr), int(float(sys.argv[5]) * sr)
+        r = a[i:j] - b[i:j]; rms = np.sqrt((r ** 2).mean())
+        print(f"null {sys.argv[2]} - {sys.argv[3]}, {sys.argv[4]}-{sys.argv[5]} s: " +
+              ("digital silence - identical" if rms == 0 else f"residual RMS {db(rms):.1f} dBFS, peak {db(np.abs(r).max()):.1f} dBFS"))
+    else:
+        print(f"{'file':24s} {'peak':&gt;9s} {'true peak':&gt;10s} {'LUFS-I':&gt;7s}  full-scale samples")
+        for f in sys.argv[1:]:
+            x, sr = sf.read(f)
+            print(f"{f:24s} {db(np.abs(x).max()):+6.2f} dB {db(true_peak(x)):+7.2f} dB {lufs(x, sr):7.2f}  "
+                  f"{int((np.abs(x) &gt;= 1 - 2 ** -22).sum())}")
+
+if __name__ == "__main__":
+    main()</code></pre>
+<pre><code>$ python3 export_check.py main.wav instrumental.wav main_norm0.wav instrumental_norm0.wav main_norm14.wav instrumental_norm14.wav
+file                          peak  true peak  LUFS-I  full-scale samples
+main.wav                  -6.00 dB   -5.99 dB  -20.42  0
+instrumental.wav          -6.71 dB   -6.33 dB  -23.03  0
+main_norm0.wav            -0.00 dB   +0.01 dB  -14.42  1
+instrumental_norm0.wav    -0.00 dB   +0.38 dB  -16.32  1
+main_norm14.wav           -0.00 dB   +0.25 dB  -14.00  1
+instrumental_norm14.wav   +0.00 dB   +1.38 dB  -14.01  82</code></pre>
+<p>Look at the gains first. To reach 0 dBFS, the main mix needed +6.00 dB and the instrumental +6.71 dB. Without the vocal on top, the instrumental’s loudest moment is quieter, so normalize pushes it harder. To reach −14 LUFS the gap is bigger: +6.42 dB against +9.03 dB, 2.61 dB apart.</p>
+<p>Now the true-peak column. Peak normalize put both files’ loudest sample at 0 dBFS, but the waveform between samples kept going: the instrumental reads +0.38 dB true peak, and the main mix sits right at full scale. The loudness version is worse, because −14 LUFS needed more gain than the headroom allowed. Those samples got clipped flat when the 24-bit file was written: one in the main mix, 82 in the instrumental, which still reads +1.38 dB true peak. A float export can carry overs without clipping, but whatever opens the file next might not, and lossy encoders are where they hurt, as in <a href="true-peak-is-what-codecs-clip.html">true peak is what codecs clip</a>.</p>
+<h2>Versions that don’t line up anymore</h2>
+<p>Bar 1 has no vocal, so the main mix and the instrumental should be identical there. A null test subtracts one file from the other. If they match, what’s left is digital silence:</p>
+<pre><code>$ python3 export_check.py --null main.wav instrumental.wav 0 2
+null main.wav - instrumental.wav, 0-2 s: digital silence - identical
+$ python3 export_check.py --null main_norm0.wav instrumental_norm0.wav 0 2
+null main_norm0.wav - instrumental_norm0.wav, 0-2 s: residual RMS -39.2 dBFS, peak -22.1 dBFS
+$ python3 export_check.py --null main_norm14.wav instrumental_norm14.wav 0 2
+null main_norm14.wav - instrumental_norm14.wav, 0-2 s: residual RMS -26.5 dBFS, peak -11.7 dBFS</code></pre>
+<p>Before normalizing, the intro nulls perfectly. After peak normalize, the leftover is −39.2 dBFS RMS. After loudness normalize it’s −26.5 dBFS, with peaks at −11.7. That’s the beat at two different levels, all the way through the song.</p>
+<p>This matters more than it looks. A mastering engineer usually runs the main, the instrumental, the clean and the TV mix through the same chain at the same settings, so they come back matching. Feed that chain files at different levels and the limiter works harder on some than others. The instrumental comes back louder and flatter than the beat under the vocal, and nobody can tell why. The same goes for stems that are supposed to add back up to the mix, covered in <a href="export-stems-for-a-mix-engineer.html">exporting stems for a mixer</a>, and for a clean version that’s meant to match the explicit one, as in <a href="clean-version-of-a-song-mute-reverse-or-replace.html">making a clean version</a>.</p>
+<h2>The headroom was the point</h2>
+<p>Mastering engineers ask for room below 0 dBFS so the first thing in their chain, often an EQ that adds a few dB somewhere, isn’t starting already at the ceiling. Peak normalize fills that room on purpose. How much to leave, and why the exact number matters less than you’d think, is in <a href="how-much-headroom-to-leave-for-mastering.html">how much headroom to leave for mastering</a>. The same reasoning is behind <a href="turn-the-mix-down-before-you-limit.html">turning the mix down before you limit</a>: gain staging is a decision, not something a checkbox does after the fact.</p>
+<h2>Export settings that keep versions honest</h2>
+<ol>
+<li><strong>Turn normalize off everywhere.</strong> Check the main export dialog, every saved preset, the stem or multitrack export, and bounce-in-place. Some DAWs keep a separate setting for each.</li>
+<li><strong>One mix-bus gain for every version.</strong> Main, instrumental, a cappella, clean and stems all come from the same session with the same master fader. Mute parts. Don’t rebalance.</li>
+<li><strong>Export 24-bit or 32-bit float at the session’s sample rate.</strong> No limiter on the bus unless the engineer asked for your print through it.</li>
+<li><strong>Null the intro.</strong> Pull the main and the instrumental into a session, flip one’s polarity and play a section where the vocal is silent. It should disappear. If it doesn’t, something changed the gain.</li>
+<li><strong>Read the numbers.</strong> Peak and true peak should be where you left them, not at zero.</li>
+</ol>
+<p>For that last step you don’t need a script. Bounce the same mix once with normalize on and once with it off and drop both into <a href="../index.html#analyzeHome">CoProducer</a>. It reads LUFS, true peak and clips for each file, so the normalized bounce gives itself away: true peak at or over zero, and several dB more loudness than the mix you actually left. In our test that was 6.00 dB, the whole of the headroom.</p>
+<h2>When normalize is fine</h2>
+<p>A rough mix for your phone, a reference for the car, a quick bounce for a friend: if nobody will process the file further, normalizing it is just a volume knob. The rule is narrower than “never.” Don’t normalize anything that’s headed into mastering, anything that has to match another file, or anything that’s already been through a limiter, where it will raise the ceiling and the true peak with it.</p>
+<h2>Genre notes</h2>
+<ul>
+<li><strong>Hip-hop and trap.</strong> Instrumentals and performance tracks get used on stage and for features. If yours was normalized, the beat jumps in level the moment the vocal comes out.</li>
+<li><strong>Beat sellers.</strong> Tagged and untagged versions, MP3 and WAV, should come from one bus gain. Our instrumental took 0.71 dB more than the main at peak and 2.61 dB more at loudness.</li>
+<li><strong>Film, TV and sync.</strong> Alternate mixes and stems get swapped mid-scene. They have to cut together without a level jump, so nothing in the set can be normalized on its own.</li>
+<li><strong>Pop and R&amp;B.</strong> Clean, explicit and a cappella versions get mastered as a set. Send them at the same gain and let the engineer decide the loudness once.</li>
+</ul>
+<aside class="aside">Leave the gain where you mixed it. Normalize nothing that’s headed for mastering.</aside>
+<dl class="faq">
+<dt>Should I normalize my mix before sending it to mastering?</dt>
+<dd>No. Normalize moves the loudest peak to 0 dBFS or the file to a loudness target, which removes the headroom the engineer asked for and changes the gain of each version differently. Turn it off and export at the level you mixed.</dd>
+<dt>Does normalizing reduce audio quality?</dt>
+<dd>A gain change on its own is clean in a 24-bit or float file. The trouble is where it puts the peaks: in our test, peak-normalized files read up to +0.38 dB true peak, and loudness-normalized ones clipped in 24-bit.</dd>
+<dt>Why is my instrumental louder than my main mix?</dt>
+<dd>Usually because each file was normalized on its own. Without the vocal, the instrumental’s peaks are lower, so normalize turns it up more. In our test that was 0.71 dB more at peak and 2.61 dB more to reach −14 LUFS.</dd>
+<dt>Is export normalize the same as Spotify normalization?</dt>
+<dd>No. Streaming platforms adjust the volume at playback and leave your file untouched. Export normalize rewrites the file before anyone else hears it.</dd>
+</dl>
+<nav aria-label="Keep reading" class="related-essays keep-reading" style="margin:48px 0 24px;padding-top:24px;border-top:1px solid rgba(196,165,116,.32)"><h2>Keep reading</h2><ul><li><a href="how-much-headroom-to-leave-for-mastering.html">How much headroom to leave for mastering (and why −6 dB isn’t the point)</a></li><li><a href="true-peak-is-what-codecs-clip.html">True peak is what codecs clip</a></li><li><a href="turn-the-mix-down-before-you-limit.html">Turn the mix down before you limit</a></li><li><a href="export-stems-for-a-mix-engineer.html">Sending stems to a mixer? Export them so they line up and add back up</a></li><li><a href="clean-version-of-a-song-mute-reverse-or-replace.html">Making a clean version? Edit the vocals, keep the length, then check it against the explicit</a></li><li><a href="why-streaming-turns-loud-masters-down.html">Why streaming platforms turn loud masters down</a></li><li><a href="song-ending-cut-off-on-export-let-the-tail-ring.html">Song ending cut off when you export? Let the tail ring past the last bar</a></li><li><a href="fade-out-sounds-abrupt-curve-it-and-fade-after-the-limiter.html">Fade-out drops off a cliff? Curve it, and fade after the limiter</a></li></ul><p class="hub-link">More in <a href="topics/true-peak-limiting-and-delivery.html">True peak, limiting &amp; delivery</a> · <a href="index.html">All essays</a></p></nav></article>
+<aside aria-label="About the publisher" class="author-box"><p class="author-k">Written and published by</p><p class="author-name"><a href="about.html">NoDAW Labs</a></p><p class="author-bio">NoDAW Labs makes local-first audio tools: CoProducer, reTUNE[432] and DeepSplit. Essays are credited to the studio, not to individual writers. <a href="methodology.html">How we test, cite and correct</a>.</p></aside>
+<section class="comments" data-comments="" data-thread="normalize-on-export"></section>
+<script src="js/studio.js" type="module"></script>
+<script src="js/comments.js" type="module"></script>
+<footer class="site"><span>Lacquer · CoProducer Journal</span><span><a href="index.html">All essays</a> · <a href="about.html">About</a> · <a href="methodology.html">Methodology</a></span></footer>
+</body>
+</html>

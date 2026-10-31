@@ -6,7 +6,87 @@
     <atom:link href="https://myaiplug.github.io/coproducer-web/blog/rss.xml" rel="self" type="application/rss+xml"/>
     <description>Answer-first essays on loudness, true peak, repair, stems, ScrewAI, and local .bat workflows.</description>
     <language>en-us</language>
-    <lastBuildDate>Fri, 23 Oct 2026 16:00:00 GMT</lastBuildDate>
+    <lastBuildDate>Sat, 31 Oct 2026 02:00:00 GMT</lastBuildDate>
+    <item>
+      <title>Copy-pasted vocal double sounds mono? Sing a real second take</title>
+      <link>https://myaiplug.github.io/coproducer-web/blog/copy-paste-vocal-double-sounds-mono-sing-a-real-take.html</link>
+      <guid isPermaLink="true">https://myaiplug.github.io/coproducer-web/blog/copy-paste-vocal-double-sounds-mono-sing-a-real-take.html</guid>
+      <pubDate>Fri, 30 Oct 2026 16:00:00 GMT</pubDate>
+      <description>Why duplicating a vocal and panning it hard left and right doesn’t make it wide: an identical copy is just a louder center, and nudging it a few ms turns it into a comb filter. Measured correlation, mono sum and tone damage, with the script.</description>
+      <enclosure url="https://myaiplug.github.io/coproducer-web/blog/img/essays/copy-paste-vocal-double-sounds-mono-sing-a-real-take.jpg?v=shd" type="image/jpeg" length="397494"/>
+    </item>
+    <item>
+      <title>Vocal buried in the beat? Cut the beat where the voice lives</title>
+      <link>https://myaiplug.github.io/coproducer-web/blog/vocal-buried-in-the-beat-cut-the-beat-at-3-khz.html</link>
+      <guid isPermaLink="true">https://myaiplug.github.io/coproducer-web/blog/vocal-buried-in-the-beat-cut-the-beat-at-3-khz.html</guid>
+      <pubDate>Fri, 30 Oct 2026 16:00:00 GMT</pubDate>
+      <description>Why turning the vocal up doesn’t get it out of the beat, and why a small cut on the beat around 3 kHz does. Measured per-band vocal-to-beat levels, LUFS before and after, and a sidechained dynamic EQ, with the script.</description>
+      <enclosure url="https://myaiplug.github.io/coproducer-web/blog/img/essays/vocal-buried-in-the-beat-cut-the-beat-at-3-khz.jpg?v=shd" type="image/jpeg" length="390131"/>
+    </item>
+    <item>
+      <title>Sidechain pumping out of time? Set the release from the tempo</title>
+      <link>https://myaiplug.github.io/coproducer-web/blog/sidechain-pumping-out-of-time-set-release-to-tempo.html</link>
+      <guid isPermaLink="true">https://myaiplug.github.io/coproducer-web/blog/sidechain-pumping-out-of-time-set-release-to-tempo.html</guid>
+      <pubDate>Thu, 29 Oct 2026 16:00:00 GMT</pubDate>
+      <description>Why a sidechain duck feels late or makes the bass vanish: the release doesn’t fit the tempo, so the bass is still ducked when the next kick hits. Measured at 140 and 90 BPM, with a script that shows how much each release time leaves behind.</description>
+      <enclosure url="https://myaiplug.github.io/coproducer-web/blog/img/essays/sidechain-pumping-out-of-time-set-release-to-tempo.jpg?v=shd" type="image/jpeg" length="386124"/>
+    </item>
+    <item>
+      <title>Fade-out drops off a cliff? Curve it, and fade after the limiter</title>
+      <link>https://myaiplug.github.io/coproducer-web/blog/fade-out-sounds-abrupt-curve-it-and-fade-after-the-limiter.html</link>
+      <guid isPermaLink="true">https://myaiplug.github.io/coproducer-web/blog/fade-out-sounds-abrupt-curve-it-and-fade-after-the-limiter.html</guid>
+      <pubDate>Thu, 29 Oct 2026 16:00:00 GMT</pubDate>
+      <description>Why a song fade-out seems to hang and then vanish: a straight-line fade loses only 6 dB in its first half, and a limiter after the fade eats the first few dB of it. Measured fade shapes and a limited master, with the script.</description>
+      <enclosure url="https://myaiplug.github.io/coproducer-web/blog/img/essays/fade-out-sounds-abrupt-curve-it-and-fade-after-the-limiter.jpg?v=shd" type="image/jpeg" length="280370"/>
+    </item>
+    <item>
+      <title>Why −18 dBFS? Gain staging into analog-style plugins</title>
+      <link>https://myaiplug.github.io/coproducer-web/blog/plugin-input-level-gain-staging-minus-18-dbfs.html</link>
+      <guid isPermaLink="true">https://myaiplug.github.io/coproducer-web/blog/plugin-input-level-gain-staging-minus-18-dbfs.html</guid>
+      <pubDate>Wed, 28 Oct 2026 16:00:00 GMT</pubDate>
+      <description>Why the level you hit an analog-modelled plugin with changes its sound, and why −18 dBFS keeps coming up. Measured on a simple saturation model: harmonics, THD and what five plugins in a row add up to. Script inside.</description>
+      <enclosure url="https://myaiplug.github.io/coproducer-web/blog/img/essays/plugin-input-level-gain-staging-minus-18-dbfs.jpg?v=shd" type="image/jpeg" length="366953"/>
+    </item>
+    <item>
+      <title>Layered kick sounds thinner? Check polarity and timing</title>
+      <link>https://myaiplug.github.io/coproducer-web/blog/layered-kick-sounds-thinner-check-polarity-and-timing.html</link>
+      <guid isPermaLink="true">https://myaiplug.github.io/coproducer-web/blog/layered-kick-sounds-thinner-check-polarity-and-timing.html</guid>
+      <pubDate>Wed, 28 Oct 2026 16:00:00 GMT</pubDate>
+      <description>Why adding a sub or a second kick sample can make the low end weaker: the layers are out of polarity or a millisecond or two apart, so they cancel. Measured on a synthetic kick and sub layer, with a script that finds the right offset and flip.</description>
+      <enclosure url="https://myaiplug.github.io/coproducer-web/blog/img/essays/layered-kick-sounds-thinner-check-polarity-and-timing.jpg?v=shd" type="image/jpeg" length="373638"/>
+    </item>
+    <item>
+      <title>Should you normalize on export? Turn it off before mastering</title>
+      <link>https://myaiplug.github.io/coproducer-web/blog/normalize-on-export-turn-it-off-for-mastering.html</link>
+      <guid isPermaLink="true">https://myaiplug.github.io/coproducer-web/blog/normalize-on-export-turn-it-off-for-mastering.html</guid>
+      <pubDate>Tue, 27 Oct 2026 16:00:00 GMT</pubDate>
+      <description>Why the normalize option in your DAW’s export window works against a mix headed for mastering: it fills the headroom, can push true peak over 0 dBFS and gives every version its own gain. Measured on a synthetic main mix and instrumental. Script inside.</description>
+      <enclosure url="https://myaiplug.github.io/coproducer-web/blog/img/essays/normalize-on-export-turn-it-off-for-mastering.jpg?v=shd" type="image/jpeg" length="356220"/>
+    </item>
+    <item>
+      <title>Sample playing at the wrong speed or pitch? It’s a sample-rate mismatch</title>
+      <link>https://myaiplug.github.io/coproducer-web/blog/sample-plays-at-wrong-pitch-sample-rate-mismatch.html</link>
+      <guid isPermaLink="true">https://myaiplug.github.io/coproducer-web/blog/sample-plays-at-wrong-pitch-sample-rate-mismatch.html</guid>
+      <pubDate>Tue, 27 Oct 2026 16:00:00 GMT</pubDate>
+      <description>Why a sample or loop plays slower and flat, or faster and sharp: it was made at one sample rate and played at another without conversion. The exact speed, semitone and BPM error for 44.1, 48, 88.2 and 96 kHz, and a script that reads the WAV header and catches mislabeled files.</description>
+      <enclosure url="https://myaiplug.github.io/coproducer-web/blog/img/essays/sample-plays-at-wrong-pitch-sample-rate-mismatch.jpg?v=shd" type="image/jpeg" length="400235"/>
+    </item>
+    <item>
+      <title>Song ending cut off when you export? Let the tail ring past the last bar</title>
+      <link>https://myaiplug.github.io/coproducer-web/blog/song-ending-cut-off-on-export-let-the-tail-ring.html</link>
+      <guid isPermaLink="true">https://myaiplug.github.io/coproducer-web/blog/song-ending-cut-off-on-export-let-the-tail-ring.html</guid>
+      <pubDate>Mon, 26 Oct 2026 16:00:00 GMT</pubDate>
+      <description>Why the end of your song gets cut off on export and how to fix it: run the export range past the last bar until the reverb and delay tails die, check the file ends in silence, then trim the silence, not the tail. Tail math and a script inside.</description>
+      <enclosure url="https://myaiplug.github.io/coproducer-web/blog/img/essays/song-ending-cut-off-on-export-let-the-tail-ring.jpg?v=shd" type="image/jpeg" length="330880"/>
+    </item>
+    <item>
+      <title>Compressor killing your drums’ punch? Slow the attack down</title>
+      <link>https://myaiplug.github.io/coproducer-web/blog/compressor-kills-the-punch-slow-the-attack.html</link>
+      <guid isPermaLink="true">https://myaiplug.github.io/coproducer-web/blog/compressor-kills-the-punch-slow-the-attack.html</guid>
+      <pubDate>Mon, 26 Oct 2026 16:00:00 GMT</pubDate>
+      <description>Why compression makes drums lose their punch and how to set attack and release so the crack gets through: measured on a synthetic snare at 0.1, 1, 10 and 30 ms attack, plus what a long release does to a 16th-note roll. Script inside.</description>
+      <enclosure url="https://myaiplug.github.io/coproducer-web/blog/img/essays/compressor-kills-the-punch-slow-the-attack.jpg?v=shd" type="image/jpeg" length="394856"/>
+    </item>
     <item>
       <title>808 sounds off-key? Find its real note, then tune it to the song</title>
       <link>https://myaiplug.github.io/coproducer-web/blog/tune-808-to-the-key-of-your-song.html</link>
@@ -440,19 +520,19 @@
       <enclosure url="https://myaiplug.github.io/coproducer-web/blog/img/essays/sample-rate-and-bit-depth-for-delivery.jpg?v=sr2" type="image/jpeg" length="0"/>
     </item>
     <item>
-      <title>Reference matching without guesswork</title>
+      <title>How to use a reference track when mixing: match the loudness first, then compare</title>
       <link>https://myaiplug.github.io/coproducer-web/blog/reference-matching-without-guesswork.html</link>
       <guid isPermaLink="true">https://myaiplug.github.io/coproducer-web/blog/reference-matching-without-guesswork.html</guid>
       <pubDate>Thu, 21 Aug 2026 00:00:00 GMT</pubDate>
-      <description>Reference matching means comparing meters, not vibes. CoProducer’s divergence table shows where your bounce sits versus a reference on real gates.</description>
+      <description>Turn the louder track down before you compare, or you’ll pick it every time. Then compare tonal balance and true peak, and copy the balance, not the peak.</description>
       <enclosure url="https://myaiplug.github.io/coproducer-web/blog/img/essays/reference-matching-without-guesswork.jpg?v=shd" type="image/jpeg" length="0"/>
     </item>
     <item>
-      <title>Album consistency is a batch problem</title>
+      <title>How loud should each song on an album be? Measure the record as a set</title>
       <link>https://myaiplug.github.io/coproducer-web/blog/album-consistency-in-one-meter.html</link>
       <guid isPermaLink="true">https://myaiplug.github.io/coproducer-web/blog/album-consistency-in-one-meter.html</guid>
       <pubDate>Thu, 21 Aug 2026 00:00:00 GMT</pubDate>
-      <description>Album consistency means every track clears the same delivery gates and sits in a similar loudness lane — a batch measurement problem, not one “final” bounce.</description>
+      <description>Album tracks don’t all need −14 LUFS. Measure the record as a set, keep loud songs close, let quiet ones sit lower on purpose, and keep every true peak legal.</description>
       <enclosure url="https://myaiplug.github.io/coproducer-web/blog/img/essays/album-consistency-in-one-meter.jpg?v=shd" type="image/jpeg" length="0"/>
     </item>
     <item>
@@ -472,11 +552,11 @@
       <enclosure url="https://myaiplug.github.io/coproducer-web/blog/img/essays/local-tools-beat-upload-queues.jpg?v=shd" type="image/jpeg" length="0"/>
     </item>
     <item>
-      <title>Stems diagnose mixes — they do not replace them</title>
+      <title>Can stem separation fix a bad mix? Stems diagnose mixes, they don’t replace them</title>
       <link>https://myaiplug.github.io/coproducer-web/blog/stems-diagnose-mixes-do-not-replace-them.html</link>
       <guid isPermaLink="true">https://myaiplug.github.io/coproducer-web/blog/stems-diagnose-mixes-do-not-replace-them.html</guid>
       <pubDate>Thu, 21 Aug 2026 00:00:00 GMT</pubDate>
-      <description>Stem separation isolates parts so you can hear collisions. It does not invent a better arrangement. Use stems to diagnose, then fix the mix.</description>
+      <description>Stem separation can’t fix a bad mix, but it shows what’s wrong. Mute or lower one stem at a time to find what eats your headroom, then fix it in the session.</description>
       <enclosure url="https://myaiplug.github.io/coproducer-web/blog/img/essays/stems-diagnose-mixes-do-not-replace-them.jpg?v=shd" type="image/jpeg" length="0"/>
     </item>
     <item>
@@ -504,11 +584,11 @@
       <enclosure url="https://myaiplug.github.io/coproducer-web/blog/img/essays/mastering-bat-vs-opening-the-session.jpg?v=shd" type="image/jpeg" length="0"/>
     </item>
     <item>
-      <title>How to read a CoProducer score</title>
+      <title>What does a mix score mean? How to read a CoProducer score</title>
       <link>https://myaiplug.github.io/coproducer-web/blog/how-to-read-a-coproducer-score.html</link>
       <guid isPermaLink="true">https://myaiplug.github.io/coproducer-web/blog/how-to-read-a-coproducer-score.html</guid>
       <pubDate>Thu, 21 Aug 2026 00:00:00 GMT</pubDate>
-      <description>A CoProducer score ≥ 90 means release-ready against the tool’s gates — not a Grammy. Read the findings: a 70 with 831 clips is a different emergency than a 77.</description>
+      <description>A CoProducer score is 100 minus points lost for loudness, true peak, clipping, phase and sample rate. 90+ means release ready. Here’s how to read the findings.</description>
       <enclosure url="https://myaiplug.github.io/coproducer-web/blog/img/essays/how-to-read-a-coproducer-score.jpg?v=shd" type="image/jpeg" length="0"/>
     </item>
     <item>
