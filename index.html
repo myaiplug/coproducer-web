@@ -423,7 +423,7 @@ footer { width: 100%; display: flex; justify-content: center; border-top: 1px so
 </div>
 <div class="buttons">
 <a class="btn" href="#analyzeHome">Analyze your track</a>
-<a class="btn alt" href="#stemDemo">Hear StemSplit</a>
+<a class="btn alt" href="#browserSplit">Split stems in the browser</a>
 </div>
 </div>
 <div class="hero-art">
@@ -690,14 +690,15 @@ footer { width: 100%; display: flex; justify-content: center; border-top: 1px so
 <div class="product-body" style="display:grid; grid-template-columns:1.05fr 0.95fr; gap:18px; align-items:center;">
 <div>
 <h3>NoDAW Liminal StemSplit</h3>
-<p>Isolate vocals, drums, bass, and more — 100% local. Hear stems on this page, split your own tracks in the desktop app.</p>
+<p>Isolate vocals, drums, bass, and more. 100% local. Split a random 20 second stretch in the browser, or hear the finished stem demo on this page.</p>
 <ul>
-<li>Drag-drop friendly local workflow</li>
-<li>Solo / mute stem proof in the browser</li>
-<li>No uploads · no subscription</li>
+<li>In-browser RoFormer on a 20 second stretch. Nothing uploaded.</li>
+<li>Then cut lead, backup, 808, kick, snare, hats, crash, and perk from those stems.</li>
+<li>Solo / mute proof of a finished split, plus HalfScrew and ScrewAI on this page.</li>
 </ul>
 <div class="product-price">LOCAL · UNLIMITED AFTER LICENSE</div>
 <div class="product-actions">
+<a class="btn" href="#browserSplit">Split 20 seconds</a>
 <a class="btn" href="#stemDemo">Hear stems</a>
 <a class="btn" href="#seeTheMix">See the mix</a>
 <a class="btn alt" href="https://liminal-stemsplit.onrender.com/" rel="noopener" target="_blank">StemSplit site</a>
@@ -726,10 +727,27 @@ footer { width: 100%; display: flex; justify-content: center; border-top: 1px so
 
 <section id="halfscrewDemo" style="padding:48px 0 28px; border-bottom:1px solid var(--line); width:100%; display:flex; justify-content:center; background:#040405;">
 <div style="width:100%; max-width:1120px; margin:0 auto; padding:0 12px;">
-<iframe title="HalfScrew" src="halfscrew/index.html" id="halfscrewFrame" loading="lazy" style="width:100%; height:640px; border:0; background:#040405; display:block;"></iframe>
+<iframe title="HalfScrew" src="halfscrew/index.html?v=44" id="halfscrewFrame" loading="lazy" style="width:100%; height:860px; border:0; background:#040405; display:block;"></iframe>
 <p style="text-align:center; margin:8px 0 0; font:700 11px 'JetBrains Mono',monospace; color:#9b8aad;">
-Same desk: <a href="https://myaiplug.github.io/halfscrew/" rel="noopener" style="color:#e879f9;" target="_blank">myaiplug.github.io/halfscrew</a>
+Today's HalfScrew: 8-band EQ with Q, EQ presets, color syrup strains, $4 unlimited export.
+<a href="https://myaiplug.github.io/halfscrew/" rel="noopener" style="color:#e879f9;" target="_blank">myaiplug.github.io/halfscrew</a>
 · <a href="blog/halftime-still-needs-a-legal-peak.html" style="color:#e879f9;">Halftime still needs a legal peak</a>
+</p>
+</div>
+</section>
+
+<section id="browserSplit" style="padding:64px 0 28px; border-bottom:1px solid var(--line); width:100%; display:flex; justify-content:center; background:#05060d;">
+<div style="width:100%; max-width:980px; margin:0 auto; padding:0 16px;">
+<p style="text-align:center; font:700 11px 'JetBrains Mono',monospace; letter-spacing:.14em; text-transform:uppercase; color:#22d3ee; margin:0 0 8px;">Browser stem split</p>
+<h2 style="text-align:center; font:800 36px 'Barlow Condensed'; text-transform:uppercase; margin:0 0 8px;">Split <span style="color:#e84cff">20 seconds</span> here</h2>
+<p style="text-align:center; color:var(--muted); font-size:15px; max-width:640px; margin:0 auto 16px;">Same engine as the Liminal page. Drop a song, a random 20 second stretch with several parts in it is selected, and the RoFormer splits that stretch in your browser. Then cut lead, backup, 808, kick, snare/clap, hats, crash, and perk from those stems. The first run downloads the fast model into the browser. Nothing is uploaded.</p>
+<iframe title="Liminal 20 second stem preview" src="https://liminal-stemsplit.onrender.com/preview.html" style="width:100%; height:980px; border:1px solid rgba(255,255,255,.08); border-radius:16px; background:#020617; display:block;"></iframe>
+<p style="text-align:center; margin:10px 0 0; font:700 11px 'JetBrains Mono',monospace; color:#9b8aad;">
+<a href="https://liminal-stemsplit.onrender.com/preview.html" rel="noopener" style="color:#e879f9;" target="_blank">Open the preview</a>
+· <a href="https://liminal-stemsplit.onrender.com/browser-split.html" rel="noopener" style="color:#e879f9;" target="_blank">Full-length browser split</a>
+· <a href="#stemDemo" style="color:#e879f9;">Hear a finished demo</a>
+· <a href="#halfscrewDemo" style="color:#e879f9;">HalfScrew</a>
+· <a href="#screwDemo" style="color:#e879f9;">ScrewAI</a>
 </p>
 </div>
 </section>
@@ -738,7 +756,7 @@ Same desk: <a href="https://myaiplug.github.io/halfscrew/" rel="noopener" style=
 <div class="max-w-4xl mx-auto text-center mb-8 reveal visible" style="text-align:center; margin-bottom:30px;">
 <span class="inline-block px-3 py-1 rounded-full" style="background:rgba(232,76,255,0.1); border:1px solid rgba(232,76,255,0.2); color:var(--m); font-family:'JetBrains Mono'; font-size:11px; text-transform:uppercase; padding:6px 12px; border-radius:99px;">Live Interactive Demo</span>
 <h2 style="font:800 36px 'Barlow Condensed'; text-transform:uppercase; margin:12px 0 6px;">NoDAW <span style="color:var(--m)">StemSplit</span></h2>
-<p style="color:var(--muted); font-size:15px; max-width:550px; margin:0 auto;">NoDAW StemSplit isolates vocals, drums, bass, and more — 100% local. Solo each stem below, then split your own tracks in the desktop app.</p>
+<p style="color:var(--muted); font-size:15px; max-width:550px; margin:0 auto;">Finished stems you can solo. To split your own file, use the 20 second browser preview above.</p>
 <div style="margin-top:14px; display:flex; gap:10px; justify-content:center; flex-wrap:wrap;">
 <button class="btn alt" onclick="loadStemTrack('tantric-breakdown', 'Acoustic session')" style="font-size:9px; padding:8px 14px;" type="button">Acoustic</button>
 <button class="btn alt" onclick="loadStemTrack('gamma', 'Session B')" style="font-size:9px; padding:8px 14px;" type="button">Session B</button>
