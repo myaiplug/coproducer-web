@@ -1,0 +1,36 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "cleanUrls": false,
+  "trailingSlash": false,
+  "redirects": [
+    { "source": "/", "destination": "/stems.html", "permanent": false },
+    { "source": "/index.html", "destination": "https://myaiplug.github.io/coproducer-web/index.html", "permanent": false },
+    { "source": "/analyze.html", "destination": "https://myaiplug.github.io/coproducer-web/analyze.html", "permanent": false },
+    { "source": "/pricing.html", "destination": "https://myaiplug.github.io/coproducer-web/pricing.html", "permanent": false },
+    { "source": "/guides/:path*", "destination": "https://myaiplug.github.io/coproducer-web/guides/:path*", "permanent": false },
+    { "source": "/blog/:path*", "destination": "https://myaiplug.github.io/coproducer-web/blog/:path*", "permanent": false },
+    { "source": "/comparisons/:path*", "destination": "https://myaiplug.github.io/coproducer-web/comparisons/:path*", "permanent": false }
+  ],
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        { "key": "Cross-Origin-Opener-Policy", "value": "same-origin" },
+        { "key": "Cross-Origin-Embedder-Policy", "value": "credentialless" },
+        { "key": "X-Robots-Tag", "value": "noindex" },
+        { "key": "Cache-Control", "value": "public, max-age=0, must-revalidate" }
+      ]
+    },
+    {
+      "source": "/js/roformer-web/vendor/(.*)",
+      "headers": [{ "key": "Cache-Control", "value": "public, max-age=86400, stale-while-revalidate=604800" }]
+    },
+    {
+      "source": "/stems-sw.js",
+      "headers": [
+        { "key": "Cache-Control", "value": "no-cache" },
+        { "key": "Service-Worker-Allowed", "value": "/" }
+      ]
+    }
+  ]
+}

@@ -23,7 +23,7 @@
  * Edit CONFIG per site. Bump VERSION when the precache list changes.
  */
 const CONFIG = {
-  VERSION: 'a5e5f3a82b',
+  VERSION: 'c32df3b249',
   COI: true,
   PAGES: ['stems.html'],
   MODULE_DIR: 'js/roformer-web/',
