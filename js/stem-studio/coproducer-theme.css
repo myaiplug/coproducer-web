@@ -1,0 +1,15 @@
+/* CoProducer skin for Stem Studio (loaded after studio.css; only variables, the page background and the site nav). */
+:root{--cyan:#e84cff;--purple:#9632d6;--navy:#07050a;--text:#f6efe8;--muted:#b7a8b4;--faint:#a99ba6;--border:rgba(232,76,255,.22)}
+body{background:#07050a;font-family:Inter,system-ui,sans-serif}
+body::before{background:radial-gradient(900px 420px at 50% -10%,rgba(232,76,255,.16),transparent 60%),radial-gradient(700px 400px at 100% 0,rgba(150,50,214,.12),transparent 60%)}
+h1{font-family:"Barlow Condensed",Inter,sans-serif;text-transform:uppercase;font-weight:800;letter-spacing:0;line-height:.95;font-size:clamp(2.4rem,6vw,3.6rem)}
+.cp-nav{position:sticky;top:0;z-index:20;background:rgba(5,3,8,.92);backdrop-filter:blur(18px);border-bottom:1px solid rgba(232,76,255,.28)}
+.cp-nav .in{min-height:64px;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;width:min(1320px,calc(100% - 28px));margin:0 auto;padding:8px 0}
+.cp-nav .brand{font:italic 800 28px "Barlow Condensed",sans-serif;color:#f6efe8;text-decoration:none;white-space:nowrap}
+.cp-nav .brand i{color:#e84cff}
+.cp-nav .links{display:flex;gap:16px;flex-wrap:wrap;font:700 10px "JetBrains Mono",monospace;text-transform:uppercase;letter-spacing:.06em}
+.cp-nav .links a{color:#b9aebb;text-decoration:none}
+.cp-nav .links a:hover,.cp-nav .links a.on,.cp-nav .links a:focus-visible{color:#e84cff}
+.cp-nav .cta{padding:12px 16px;border:1px solid #9d3cdb;border-radius:6px;background:linear-gradient(#9632d6,#58148a);font:800 10px "JetBrains Mono",monospace;text-transform:uppercase;color:#fff;text-decoration:none;white-space:nowrap}
+.wrap{padding-top:1.25rem}
+#studio-root .rf-root { --rf-accent:#e84cff; --rf-accent2:#9632d6; --rf-accent-ink:#1a0b16; --rf-bg:#100910; --rf-panel:#100910; --rf-border:rgba(232,76,255,.28); --rf-text:#f6efe8; --rf-muted:#b7a8b4; --rf-ok:#d7ffb8; --rf-warn:#f0c27a; --rf-bad:#ff8a8a; --rf-radius:12px; --rf-font:Inter,sans-serif; --rf-mono:"JetBrains Mono",monospace; --rf-head:"Barlow Condensed",sans-serif; }

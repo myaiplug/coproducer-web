@@ -10,12 +10,15 @@ fs.rmSync(out, { recursive: true, force: true });
 fs.mkdirSync(out, { recursive: true });
 
 const FILES = ['stems.html', 'stems-sw.js', 'js/roformer-web', 'favicon.ico', 'assets/favicon.svg', 'assets/apple-touch-icon.png', 'site.webmanifest'];
+// Stem Studio (static): staged when present. Model weights (*.onnx) are NEVER staged; host them separately.
+FILES.push(...['stem-studio.html', 'js/stem-studio'].filter((r) => fs.existsSync(path.join(root, r))));
+const skip = (src) => !/\.onnx$/i.test(src) && !src.includes(`${path.sep}test${path.sep}`);
 for (const rel of FILES) {
   const src = path.join(root, rel);
   if (!fs.existsSync(src)) { console.error(`missing: ${rel}`); process.exit(1); }
   const dst = path.join(out, rel);
   fs.mkdirSync(path.dirname(dst), { recursive: true });
-  fs.cpSync(src, dst, { recursive: true });
+  fs.cpSync(src, dst, { recursive: true, filter: skip });
 }
 // On this preview host '/' shows the stem page: let the offline cache answer '/' too.
 const swPath = path.join(out, 'stems-sw.js');

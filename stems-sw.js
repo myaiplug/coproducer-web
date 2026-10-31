@@ -23,10 +23,11 @@
  * Edit CONFIG per site. Bump VERSION when the precache list changes.
  */
 const CONFIG = {
-  VERSION: 'c32df3b249',
+  VERSION: 'c32df3b249-studio1',
   COI: true,
-  PAGES: ['stems.html'],
+  PAGES: ['stems.html', 'stem-studio.html'],
   MODULE_DIR: 'js/roformer-web/',
+  EXTRA_DIRS: ['js/stem-studio/'], // Stem Studio modules/workers: same isolation headers, no precache
   SHELL: ['js/roformer-web/adapters.js','js/roformer-web/client.js','js/roformer-web/dsp.js','js/roformer-web/engine.js','js/roformer-web/model-store.js','js/roformer-web/models.js','js/roformer-web/progress.js','js/roformer-web/register-sw.js','js/roformer-web/rf.css','js/roformer-web/separator.js','js/roformer-web/sinks.js','js/roformer-web/tips.js','js/roformer-web/ui.js','js/roformer-web/wav.js','js/roformer-web/worker.js'],
   ROOT_FALLBACK: false,
 };
@@ -39,6 +40,7 @@ const PAGE_PATHS = new Set(CONFIG.PAGES.flatMap((p) => {
   const u = new URL(p, BASE).pathname;
   return [u, u.replace(/\.html$/, '')]; // GitHub Pages also serves /stems
 }));
+const EXTRA_BASES = (CONFIG.EXTRA_DIRS || []).map(abs);
 const IMMUTABLE = `${MODULE_BASE}vendor/`; // pinned third-party builds: cache-first
 
 self.addEventListener('install', (event) => {
@@ -74,7 +76,7 @@ self.addEventListener('activate', (event) => {
 
 function isOurs(url) {
   if (url.origin !== self.location.origin) return false;
-  return PAGE_PATHS.has(url.pathname) || url.href.startsWith(MODULE_BASE);
+  return PAGE_PATHS.has(url.pathname) || url.href.startsWith(MODULE_BASE) || EXTRA_BASES.some((b) => url.href.startsWith(b));
 }
 
 function withIsolation(res) {
