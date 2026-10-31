@@ -100,7 +100,15 @@ button[disabled] { opacity:.45; cursor:default; }
   const sw = await registerStemSW({ url: './stems-sw.js', coi: true });
   if (!sw.reloading) {
     const { mountStemSplit } = await import('./js/roformer-web/ui.js');
-    mountStemSplit(document.getElementById('app'));
+    mountStemSplit(document.getElementById('app'), {
+      appTitle: 'CoProducer · Stem Splitter',
+      tipLinks: {
+        breaths: { href: 'blog/vocal-breaths-turn-them-down-dont-cut-them.html', label: 'Lacquer: turn breaths down, don’t cut them →' },
+        tune808: { href: 'blog/tune-808-to-the-key-of-your-song.html', label: 'Lacquer: tune an 808 to your song →' },
+        clean: { href: 'blog/clean-version-of-a-song-mute-reverse-or-replace.html', label: 'Lacquer: making a clean version →' },
+        panlaw: { href: 'blog/pan-law-why-panned-parts-change-level.html', label: 'Lacquer: pan law explained →' },
+      },
+    });
   }
 </script>
 </body>
