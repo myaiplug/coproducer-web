@@ -87,15 +87,21 @@ button[disabled] { opacity:.45; cursor:default; }
   <p class="lede">RoFormer separation models run inside this tab with WebGPU. Nothing is uploaded and no server is involved. Pick a model, drop a bounce, play each stem and download it as WAV.</p>
   <div id="app"><noscript>This tool needs JavaScript.</noscript></div>
   <ul class="facts">
-    <li>Models download directly from Hugging Face on first use, are checked against a pinned SHA-256, and are cached in this browser. You can clear them at any time.</li>
-    <li>Best on desktop Chrome or Edge with a dedicated GPU. Without WebGPU it falls back to the CPU (single-threaded here), which is slow. Use the Fast preview model in that case.</li>
+    <li>Models download directly from Hugging Face on first use, are checked against a pinned SHA-256, and are saved in this browser (resumable if interrupted). After the first run the tool works offline. You can clear the models at any time.</li>
+    <li>Best on desktop Chrome or Edge with a dedicated GPU. Without WebGPU it falls back to the CPU (multi-threaded where your browser allows it), which is slower. Use the Fast preview model in that case.</li>
     <li>Licenses: Mini-BS-RoFormer (MIT), Mel-Band RoFormer Duality (Apache-2.0), BS-RoFormer-SW (MIT; upstream weight provenance unstated). See <a href="js/roformer-web/NOTICE.md" style="color:var(--m)">NOTICE</a>.</li>
   </ul>
   <p class="foot">Looking for loudness, balance and spectral analysis instead? Open the <a href="analyze.html">Lacquer analyze desk</a>.</p>
 </div>
 <script type="module">
-  import { mountStemSplit } from './js/roformer-web/ui.js';
-  mountStemSplit(document.getElementById('app'));
+  // GitHub Pages can't send COOP/COEP headers, so one small service worker adds them for this page only
+  // (-> multi-threaded WASM) and keeps the tool + runtime available offline. First visit reloads once.
+  import { registerStemSW } from './js/roformer-web/register-sw.js';
+  const sw = await registerStemSW({ url: './stems-sw.js', coi: true });
+  if (!sw.reloading) {
+    const { mountStemSplit } = await import('./js/roformer-web/ui.js');
+    mountStemSplit(document.getElementById('app'));
+  }
 </script>
 </body>
 </html>
