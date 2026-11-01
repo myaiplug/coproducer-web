@@ -18,3 +18,22 @@ three upstream bugs were patched (Apache-2.0 §4(b) notice of modification): `st
 `power_spectrum` returned |X|/N instead of |X|²/N, and the MFCC DCT scaling depended on track length. The patch is
 shipped next to the binary. The Apache License 2.0 text is in `js/vendor/wavey/mfcc/LICENSE`.
 
+
+## In-browser stem separation (`stems.html`, `js/roformer-web/`)
+
+Runs RoFormer ONNX models fully client-side (WebGPU, WASM fallback) in a Web Worker. **No model weights are stored in
+this repository**: they are fetched at runtime from Hugging Face at pinned commits, verified by SHA-256 and stored in
+the visitor's browser (OPFS). All URLs, hashes and license metadata live in `js/roformer-web/models.js`.
+
+| Component | Source | Version / commit | License | Location |
+| --- | --- | --- | --- | --- |
+| onnxruntime-web (vendored, unmodified npm build; jsDelivr only as fallback) | https://github.com/microsoft/onnxruntime | 1.30.0 | MIT | `js/roformer-web/vendor/ort/` |
+| fflate (ZIP export) | https://github.com/101arrowz/fflate | 0.8.x | MIT, Copyright (c) 2023 Arjun Barrett | `js/roformer-web/vendor/fflate/` |
+| coi-serviceworker (header-injection approach adapted for `stems-sw.js`) | https://github.com/gzuidhof/coi-serviceworker | v0.1.7 | MIT, Copyright (c) 2021 Guido Zuidhof | `js/roformer-web/vendor/coi-serviceworker/LICENSE`, `stems-sw.js` |
+| BS-RoFormer-SW 6-stem fp16 ONNX (weights, runtime download) | https://huggingface.co/Acapellas/bs-roformer-sw-6stem-FP16-FP32-onnx | `3a8d965`, sha256 `d3d2bac7…c36444` | MIT (model card). **Weights are a re-host without a stated upstream license or provenance — review before commercial reliance** | not in repo |
+| Mel-Band RoFormer Duality student ONNX (weights, runtime download) | https://huggingface.co/musetric/mel-band-roformer-duality-student-onnx | `0e04989` | Apache-2.0 | not in repo |
+| Mini-BS-RoFormer V2.5 46.2M ONNX (weights, runtime download) | https://huggingface.co/HiDolen/Mini-BS-RoFormer-V2.5-46.2M | `38dafc7` | MIT | not in repo |
+| Design/conventions reference: bs-roformer-web (STFT layout, chunking) | https://github.com/elicwhite/bs-roformer-web | n/a (no code copied verbatim) | MIT, Copyright (c) 2026 Eli White | `js/roformer-web/` |
+| Design reference: musetric (Duality graph geometry, WebGPU option) | https://github.com/musetric/musetric | n/a | MIT, Copyright (c) 2020-2026 Vladlen Popelenkov | `js/roformer-web/` |
+
+Full notice with SHA-256 digests, citations and license texts: `js/roformer-web/NOTICE.md`.

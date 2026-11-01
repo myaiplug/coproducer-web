@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Stem Split in Your Browser | CoProducer</title>
+<meta name="description" content="High-quality RoFormer stem separation that runs on your own GPU in the browser. No upload, no server. Pick a model, drop a bounce, download the stems."/>
+<link rel="canonical" href="https://myaiplug.github.io/coproducer-web/stems.html"/>
+<link rel="alternate" type="application/rss+xml" title="Lacquer — CoProducer Journal" href="https://myaiplug.github.io/coproducer-web/blog/rss.xml"/>
+<link rel="icon" href="favicon.ico" sizes="48x48"/>
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg"/>
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png"/>
+<link rel="manifest" href="site.webmanifest"/>
+<meta property="og:type" content="website"/>
+<meta property="og:site_name" content="CoProducer"/>
+<meta property="og:locale" content="en_US"/>
+<meta property="og:title" content="Stem Split in Your Browser | CoProducer"/>
+<meta property="og:description" content="High-quality RoFormer stem separation that runs on your own GPU in the browser. No upload, no server."/>
+<meta property="og:url" content="https://myaiplug.github.io/coproducer-web/stems.html"/>
+<meta property="og:image" content="https://myaiplug.github.io/coproducer-web/assets/og-default.jpg"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:title" content="Stem Split in Your Browser | CoProducer"/>
+<meta name="twitter:description" content="High-quality RoFormer stem separation that runs on your own GPU in the browser. No upload, no server."/>
+<meta name="twitter:image" content="https://myaiplug.github.io/coproducer-web/assets/og-default.jpg"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" media="print" onload="this.media='all'"/><noscript><link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet"/></noscript>
+<link rel="stylesheet" href="js/roformer-web/rf.css"/>
+<style>
+:root { --ink:#f6efe8; --muted:#b7a8b4; --m:#e84cff; --line:rgba(232,76,255,.28); --bg:#07050a; }
+* { box-sizing:border-box; }
+[hidden]{display:none !important}
+body { margin:0; background:radial-gradient(900px 420px at 50% -10%, rgba(232,76,255,.16), transparent 60%), var(--bg); color:var(--ink); font-family:Inter,sans-serif; }
+.wrap { width:min(880px, calc(100% - 28px)); margin:0 auto; padding:28px 0 72px; }
+@media (max-width:900px){ .nav-inner{height:auto; padding:12px 0; align-items:flex-start; flex-wrap:wrap;} .cta{margin-left:auto;} }
+nav { position:sticky; top:0; z-index:20; background:rgba(5,3,8,.92); backdrop-filter:blur(18px); border-bottom:1px solid var(--line); }
+.nav-inner { height:72px; display:flex; align-items:center; justify-content:space-between; gap:16px; width:min(1320px, calc(100% - 28px)); margin:0 auto; }
+.brand { font:italic 800 30px "Barlow Condensed",sans-serif; color:var(--ink); text-decoration:none; white-space:nowrap; }
+.brand i { color:var(--m); font-style:italic; }
+.links { display:flex; gap:18px; flex-wrap:wrap; font:700 10px "JetBrains Mono",monospace; text-transform:uppercase; letter-spacing:.06em; }
+.links a { color:#aaa0b0; text-decoration:none; }
+.links a:hover, .links a.on { color:var(--m); }
+.cta { padding:13px 16px; border:1px solid #9d3cdb; border-radius:6px; background:linear-gradient(#9632d6,#58148a); font:800 10px "JetBrains Mono",monospace; text-transform:uppercase; color:#fff; text-decoration:none; box-shadow:0 0 28px rgba(174,54,255,.22); white-space:nowrap; }
+.kicker { margin:34px 0 8px; font:600 11px "JetBrains Mono",monospace; letter-spacing:.28em; color:var(--m); }
+h1 { font:800 58px "Barlow Condensed",sans-serif; text-transform:uppercase; line-height:.88; margin:0 0 12px; }
+h1 span { color:var(--m); }
+.lede { color:var(--muted); max-width:62ch; line-height:1.55; }
+.row { display:flex; gap:10px; flex-wrap:wrap; align-items:center; margin-top:10px; }
+button, .btn { font:700 12px "JetBrains Mono",monospace; letter-spacing:.12em; text-transform:uppercase; color:#1a0b16; background:linear-gradient(180deg,#f3c6ff,#e84cff); border:0; border-radius:999px; padding:10px 14px; cursor:pointer; }
+button[disabled] { opacity:.45; cursor:default; }
+.ghost { background:transparent; color:var(--ink); border:1px solid var(--line); }
+.ghost.on { color:#1a0b16; background:#e84cff; }
+.note.credit { font-size:10px; opacity:.75; }
+.note.credit a { color:inherit; }
+@media (max-width:640px) {
+  h1 { font-size:40px; }
+  nav { gap:10px; }
+}
+
+#app .rf-root { --rf-accent:#e84cff; --rf-accent2:#9632d6; --rf-accent-ink:#1a0b16; --rf-bg:#100910; --rf-panel:#100910; --rf-border:rgba(232,76,255,.28); --rf-text:#f6efe8; --rf-muted:#b7a8b4; --rf-ok:#d7ffb8; --rf-warn:#f0c27a; --rf-bad:#ff8a8a; --rf-radius:12px; --rf-font:Inter,sans-serif; --rf-mono:"JetBrains Mono",monospace; --rf-head:"Barlow Condensed",sans-serif; }
+.facts { color:var(--muted); line-height:1.6; font-size:14px; padding-left:18px; }
+.facts li { margin:6px 0; }
+.foot { margin-top:48px; padding-top:18px; border-top:1px solid var(--line); color:var(--muted); font-size:12px; }
+.foot a { color:var(--m); }
+#app { margin-top:22px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <nav>
+    <div class="nav-inner">
+      <a class="brand" href="index.html"><i>Co</i>Producer</a>
+      <div class="links">
+        <a href="index.html">Overview</a>
+        <a href="index.html#ab">A/B</a>
+        <a href="analyze.html">Analyze</a>
+        <a class="on" href="stems.html">Stems</a>
+        <a href="guides/index.html">Guides</a>
+        <a href="blog/index.html">Journal</a>
+        <a href="comparisons/vs-landr.html">Compare</a>
+        <a href="pricing.html">Pricing</a>
+      </div>
+      <a class="cta" href="stems.html">Split Stems</a>
+    </div>
+  </nav>
+  <p class="kicker">STEM DESK</p>
+  <h1>Split stems.<br><span>On your GPU.</span></h1>
+  <p class="lede">RoFormer separation models run inside this tab with WebGPU. Nothing is uploaded and no server is involved. Pick a model, drop a bounce, play each stem and download it as WAV.</p>
+  <div id="app"><noscript>This tool needs JavaScript.</noscript></div>
+  <ul class="facts">
+    <li>Models download directly from Hugging Face on first use, are checked against a pinned SHA-256, and are saved in this browser (resumable if interrupted). After the first run the tool works offline. You can clear the models at any time.</li>
+    <li>Best on desktop Chrome or Edge with a dedicated GPU. Without WebGPU it falls back to the CPU (multi-threaded where your browser allows it), which is slower. Use the Fast preview model in that case.</li>
+    <li>Licenses: Mini-BS-RoFormer (MIT), Mel-Band RoFormer Duality (Apache-2.0), BS-RoFormer-SW (MIT; upstream weight provenance unstated). See <a href="js/roformer-web/NOTICE.md" style="color:var(--m)">NOTICE</a>.</li>
+  </ul>
+  <p class="foot">Looking for loudness, balance and spectral analysis instead? Open the <a href="analyze.html">Lacquer analyze desk</a>.</p>
+</div>
+<script type="module">
+  // GitHub Pages can't send COOP/COEP headers, so one small service worker adds them for this page only
+  // (-> multi-threaded WASM) and keeps the tool + runtime available offline. First visit reloads once.
+  import { registerStemSW } from './js/roformer-web/register-sw.js';
+  const sw = await registerStemSW({ url: './stems-sw.js', coi: true });
+  if (!sw.reloading) {
+    const { mountStemSplit } = await import('./js/roformer-web/ui.js');
+    mountStemSplit(document.getElementById('app'), {
+      appTitle: 'CoProducer · Stem Splitter',
+      tipLinks: {
+        breaths: { href: 'blog/vocal-breaths-turn-them-down-dont-cut-them.html', label: 'Lacquer: turn breaths down, don’t cut them →' },
+        tune808: { href: 'blog/tune-808-to-the-key-of-your-song.html', label: 'Lacquer: tune an 808 to your song →' },
+        clean: { href: 'blog/clean-version-of-a-song-mute-reverse-or-replace.html', label: 'Lacquer: making a clean version →' },
+        panlaw: { href: 'blog/pan-law-why-panned-parts-change-level.html', label: 'Lacquer: pan law explained →' },
+      },
+    });
+  }
+</script>
+</body>
+</html>
