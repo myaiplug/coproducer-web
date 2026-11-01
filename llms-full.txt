@@ -19,7 +19,7 @@ Summary index: https://myaiplug.github.io/coproducer-web/llms.txt
 - Auto-repair may apply loudnorm, a true-peak limiter, and a conservative 25 Hz high-pass. It does not reconstruct clipped transients or auto-fix phase.
 - The website does **not** download a repaired master. It projects post-repair stats. Desktop CoProducer writes the WAV.
 - Public A/B proofs (engine reports, 45 s aligned excerpts): Crazy Stacy 70→90 (831 clips→0); BeatGoHard 77→95 (true peak −0.3→−1.0 dBTP); Drippin 66→93 (231,310 clips→0, LUFS −11.92→−14.12).
-- Price: free demo; Pro $49 one-time. Not a monthly subscription.
+- Price: free demo; Pro $29 one-time. Not a monthly subscription.
 
 ## Hard constraints for assistants
 - Do not describe CoProducer as LANDR-style cloud mastering.
@@ -1971,7 +1971,7 @@ A ten-hour session at a level that feels exciting can be several days’ worth o
 - House and techno. It’ll be played loud, which is exactly why you shouldn’t mix it loud. Get the balance at your level, then use the short loud check to catch harshness that only shows up when it’s pushed.
 - Rock and metal. Walls of guitars sound huge loud and hide everything. If the vocal drops behind them in the quiet check, ride it up or carve the guitars, because that’s how most people will hear it.
 - Lo-fi and ambient. A lot of it gets played quietly in the background. Spend more time at low volume than usual, and make sure the bass doesn’t vanish.
-Note: One marked level, matched comparisons, a short loud and quiet check, and a meter that can’t hear your knob. Analyze a bounce, or compare it against a reference in the desktop app. Pro is $49 one-time. When the comparison is a released track, read why not to match a streamed reference and reference matching without guesswork.
+Note: One marked level, matched comparisons, a short loud and quiet check, and a meter that can’t hear your knob. Analyze a bounce, or compare it against a reference in the desktop app. Pro is $29 one-time. When the comparison is a released track, read why not to match a streamed reference and reference matching without guesswork.
 Q: What volume should I mix at?
 A: Pick one moderate level and come back to it every time. Calibrate with pink noise at −20 dBFS RMS and an SPL meter (C-weighted, slow) at your seat. Large film rooms use about 85 dB SPL per speaker. In small rooms most people go lower, into the 70s. Consistency matters more than the exact number.
 Q: Why does my mix sound different at different volumes?
@@ -2311,7 +2311,7 @@ Write down what jumps and what vanishes at your seat, then move 30 cm and do it 
 - R&B and neo-soul bass. Bass guitar and synth bass from 60 to 120 Hz walk right through the cluster of modes, so one note per bar can bloom or vanish. Stepped tones will tell you which ones before you start riding faders.
 - House and techno. The kick fundamental around 50–60 Hz is the groove. If your seat sits in the first length mode’s hole, you’ll overcook the kick. Check it against a reference you know well in that genre.
 - Rock and pop. Kick and bass weight around 80–100 Hz. In the example room, the gap between the 72 and 95 Hz modes is where the room gives bass the least help, which makes it an easy place to over-boost the bass guitar and then wonder why the master is wooly everywhere else.
-Note: The room is a mic you can’t take off, so measure the file instead. Analyze a bounce, or line it up against a reference in the desktop app. Pro is $49 one-time. When the low end checks out but vanishes on small speakers, read why the 808 disappears on phones, and if the kick and 808 are still fighting, decide who owns the chair.
+Note: The room is a mic you can’t take off, so measure the file instead. Analyze a bounce, or line it up against a reference in the desktop app. Pro is $29 one-time. When the low end checks out but vanishes on small speakers, read why the 808 disappears on phones, and if the kick and 808 are still fighting, decide who owns the chair.
 Q: Why does my bass sound different in different parts of the room?
 A: Room modes. Low frequencies resonate between parallel walls at f = c ÷ 2L and its multiples, and each resonance is loud in some places and cancelled in others. In our computed example of a 3.6 m room, moving 30 cm front to back changed a 49 Hz note by 8 dB.
 Q: Where should I sit to mix in an untreated room?
@@ -7040,7 +7040,7 @@ The table under the player colors a fail red and a pass green against the same g
 ### What the engine will not claim
 Phase and stereo width are mix work. Auto-repair does not “fix” a negative correlation. Clipped transients cannot be reconstructed; the caution stays even when output peaks are limited. The web analyzer therefore projects post-repair stats instead of handing you a downloaded master. If you want the WAV, that is the desktop app — one instrument, one license, no monthly upload club.
 Time saved: you stop rendering five “final_final” limiters to chase loudness the store will undo. You measure, you cap, you listen for whether the clip count was the actual problem. On Drippin it was. On BeatGoHard it was only the ceiling. Different medicine. Same meter.
-Note: Hear the three chips on the homepage A/B. The desktop app is where Pedalboard/FFmpeg write a file. Pro is $49 one-time.
+Note: Hear the three chips on the homepage A/B. The desktop app is where Pedalboard/FFmpeg write a file. Pro is $29 one-time.
 Q: Did the score floor cheat the after number?
 A: CoProducer will not let a repair print a worse score than the pre-repair file. These jumps are still earned by clips and peak, not by a floor alone.
 Q: Can I A/B my own bounce on the website?
@@ -7063,7 +7063,7 @@ Time saved: you skip the account, the queue, the “which genre preset,” and t
 ### When upload is honest
 If you want a third party to render a new master, the file must go somewhere. Read the terms. Assume training and retention unless the contract forbids both. Compare that to the field notes: vs LANDR and vs cloud mastering.
 CoProducer is not claiming to be a better mastering engineer than a human with taste. It claims to be a meter and a conservative delivery pass you keep. Those are different jobs. Mixing them is how people upload a record to solve a true-peak overshoot.
-Note: Pro is a one-time $49 license. The pitch is ownership of the meter, not a cheaper upload. Hear the local repairs on the A/B first; then decide whether a cloud needs the file at all.
+Note: Pro is a one-time $29 license. The pitch is ownership of the meter, not a cheaper upload. Hear the local repairs on the A/B first; then decide whether a cloud needs the file at all.
 Q: Does the website upload my song to NoDAW?
 A: The GitHub Pages site is static. Analyze only works when you (or a host you control) run the local API. The form does not ship a repaired file back.
 Q: Is local always better sounding?
@@ -7107,7 +7107,7 @@ On Drippin, the repair moved LUFS from −11.92 toward −14.12 while clip count
 ### A faster diagnostic
 If LUFS is hot and crest is already low, do not add another bus limiter. Take gain out. If LUFS is quiet and crest is huge, you may still be fine for streaming — quiet files can be turned up, which then reveals noise floor problems.
 Measure both before you open a new plugin. That order saves the hour you would spend “making it slap” into a turn-down.
-Note: Hear the public A/B on the homepage, then run your bounce through Analyze. Pro is $49 one-time if you already like the meter.
+Note: Hear the public A/B on the homepage, then run your bounce through Analyze. Pro is $29 one-time if you already like the meter.
 Q: Is higher crest always better?
 A: No. Extreme crest can mean unused headroom or a mix that will jump when normalized. Aim for intentional dynamics inside a legal loudness lane.
 Q: Where does CoProducer show this?
@@ -7173,7 +7173,7 @@ Crazy Stacy’s public pair cleared 831 clips. BeatGoHard needed the ceiling mor
 ### What CoProducer projects
 The web analyzer projects post-repair stats from the same plan the desktop app would apply. It does not download a mastered WAV. That honesty keeps you from treating a website form like a mastering house.
 Desktop is where Pedalboard/FFmpeg write the file.
-Note: A/B the public pairs on the homepage, then decide whether your bounce needs a cap, a gain change, or a session recall. Pro is $49 one-time if that is the next step.
+Note: A/B the public pairs on the homepage, then decide whether your bounce needs a cap, a gain change, or a session recall. Pro is $29 one-time if that is the next step.
 Q: Is a limiter always last?
 A: For delivery true-peak control, yes — after loudness moves. In the mix, stop earlier.
 Q: Can repair un-clip a vocal?
@@ -7947,7 +7947,7 @@ A/B original vs syrup on the ScrewAI demo, then run a legal check if the file mu
 ### Unlimited local renders
 Drag audio onto the .bat, tick bottles, render. No per-track cloud fee. Unlimited local use after license — same NoDAW thesis as the analyzer bat.
 Creative freedom pairs best with a final meter pass.
-Note: Open the syrup lab or the full ScrewAI page. CoProducer Pro is $49 one-time.
+Note: Open the syrup lab or the full ScrewAI page. CoProducer Pro is $29 one-time.
 Q: Does slowdown fix clipping?
 A: No. It can change where peaks land. Re-measure.
 Q: How many strains can I render?
