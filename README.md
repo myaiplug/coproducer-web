@@ -20,6 +20,10 @@ on first use (pinned, SHA-256 verified, Range-resumable) and are kept in the bro
 * Code: `js/roformer-web/` (config in `models.js`). Notices: `THIRD_PARTY_NOTICES.md`.
 * Test it: `python3 -m http.server 5505`, open http://localhost:5505/stems.html in Chrome/Edge (no special headers needed). Unit tests: `node --test js/roformer-web.test.mjs`.
 
+## Stem Studio (per-stem effects, loudness, artifact repair, deeper drum split)
+
+`stem-studio.html` + `js/stem-studio/`: split a track in the browser, then give every stem its own effect chain (156 presets over 15 stem types, extracted from the Liminal desktop app), BS.1770-4 LUFS / true-peak metering, artifact detection and one-click repair, a deeper drum split (kick / snare / toms / hats / crash-ride / 808) and 24-bit/float WAV, MP3 or ZIP export tagged "Made with NoDAW CoProducer". Everything runs on-device. Docs: `docs/stem-studio-presets.md`, `docs/stem-studio-drums.md`. Unit tests: `node --test js/stem-studio/test/*.test.mjs`. Browser tests live in the Liminal repo (`scripts/e2e-stem-studio`).
+
 ## Try in-browser stem splitting (live preview)
 
 **https://coproducer-stems.vercel.app/stems.html** — a separate Vercel preview project built from this branch (static files only; the production GitHub Pages site is untouched, `main` is unchanged).

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Stem Studio: split, clean and mix stems in your browser | CoProducer</title>
+<meta name="description" content="Split a song into stems, then give each stem its own effects, loudness metering, artifact clean-up and a deeper drum split. All in your browser: nothing is uploaded."/>
+<link rel="canonical" href="https://myaiplug.github.io/coproducer-web/stem-studio.html"/>
+<link rel="alternate" type="application/rss+xml" title="Lacquer — CoProducer Journal" href="https://myaiplug.github.io/coproducer-web/blog/rss.xml"/>
+<link rel="icon" href="favicon.ico" sizes="48x48"/>
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg"/>
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png"/>
+<link rel="manifest" href="site.webmanifest"/>
+<meta property="og:type" content="website"/>
+<meta property="og:site_name" content="CoProducer"/>
+<meta property="og:locale" content="en_US"/>
+<meta property="og:title" content="Stem Studio: split, clean and mix stems in your browser | CoProducer"/>
+<meta property="og:description" content="Split a song into stems, then give each stem its own effects, loudness metering, artifact clean-up and a deeper drum split. All in your browser."/>
+<meta property="og:url" content="https://myaiplug.github.io/coproducer-web/stem-studio.html"/>
+<meta property="og:image" content="https://myaiplug.github.io/coproducer-web/assets/og-default.jpg"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:title" content="Stem Studio: split, clean and mix stems in your browser | CoProducer"/>
+<meta name="twitter:description" content="Split a song into stems, then give each stem its own effects, loudness metering, artifact clean-up and a deeper drum split. All in your browser."/>
+<meta name="twitter:image" content="https://myaiplug.github.io/coproducer-web/assets/og-default.jpg"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" media="print" onload="this.media='all'"/><noscript><link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet"/></noscript>
+<link rel="stylesheet" href="js/roformer-web/rf.css"/>
+<link rel="stylesheet" href="js/stem-studio/studio.css"/>
+<link rel="stylesheet" href="js/stem-studio/coproducer-theme.css"/>
+</head>
+<body>
+<nav class="cp-nav" aria-label="Site">
+    <div class="in">
+      <a class="brand" href="index.html"><i>Co</i>Producer</a>
+      <div class="links">
+        <a href="index.html">Overview</a>
+        <a href="index.html#ab">A/B</a>
+        <a href="analyze.html">Analyze</a>
+        <a href="stems.html">Stems</a>
+        <a class="on" href="stem-studio.html" aria-current="page">Stem Studio</a>
+        <a href="guides/index.html">Guides</a>
+        <a href="blog/index.html">Journal</a>
+        <a href="comparisons/vs-landr.html">Compare</a>
+        <a href="pricing.html">Pricing</a>
+      </div>
+      <a class="cta" href="stem-studio.html">Stem Studio</a>
+    </div>
+  </nav>
+<div class="wrap">
+  <header>
+  <nav class="top" aria-label="Breadcrumb"><a href="index.html">CoProducer</a><span class="sep">/</span><a href="stems.html">Stem splitter</a><span class="sep">/</span><span aria-current="page">Stem Studio</span></nav>
+  <span class="tag">Beta · runs on your device</span>
+  <h1>Stem <span>Studio</span></h1>
+  <p class="sub">Split a track, then shape every stem on its own: effect chains with the Liminal desktop presets, LUFS and true-peak metering, artifact detection and repair, and a deeper drum split. Nothing is uploaded. Best on desktop Chrome or Edge.</p>
+  </header>
+  <main id="studio-root"><noscript>Stem Studio needs JavaScript.</noscript></main>
+  <footer role="contentinfo">CoProducer Stem Studio · audio stays on your device · <a href="stems.html">Just need stems? Use the splitter</a> ·  <a href="js/stem-studio/NOTICE.md">Notices</a><div class="foot-more">More from NoDAW: <a href="https://nodaw.gumroad.com/l/LiminalPro" target="_blank" rel="noopener">NoDAW Liminal (Windows desktop)</a> · <a href="https://nodawlabs.com/products/nodaw-coproducer-audio-quality-analyzer-repair-tool?utm_source=stem-studio&amp;utm_medium=referral&amp;utm_campaign=footer" target="_blank" rel="noopener">NoDAW CoProducer Pro</a></div></footer>
+</div>
+<script type="module">
+  // GitHub Pages can't send COOP/COEP headers: the one stem service worker adds them for this page (-> multi-threaded WASM)
+  // and keeps the tool available offline. First visit reloads once.
+  import { registerStemSW } from './js/roformer-web/register-sw.js';
+  const sw = await registerStemSW({ url: './stems-sw.js', coi: true });
+  if (!sw.reloading) {
+    const { mountStudio } = await import('./js/stem-studio/ui.js');
+    const { BRAND_COPRODUCER } = await import('./js/stem-studio/export.js');
+    mountStudio(document.getElementById('studio-root'), { brand: BRAND_COPRODUCER, appName: 'CoProducer Stem Studio' });
+  }
+</script>
+</body>
+</html>

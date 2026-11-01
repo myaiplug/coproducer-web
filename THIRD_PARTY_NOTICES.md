@@ -37,3 +37,13 @@ the visitor's browser (OPFS). All URLs, hashes and license metadata live in `js/
 | Design reference: musetric (Duality graph geometry, WebGPU option) | https://github.com/musetric/musetric | n/a | MIT, Copyright (c) 2020-2026 Vladlen Popelenkov | `js/roformer-web/` |
 
 Full notice with SHA-256 digests, citations and license texts: `js/roformer-web/NOTICE.md`.
+
+## Stem Studio (`js/stem-studio/`, `stem-studio.html`)
+
+| Component | License | Notes |
+| --- | --- | --- |
+| lamejs 1.2.1 (`js/stem-studio/vendor/lamejs`, unmodified) | LGPL-3.0 | lazy-loaded only for MP3 export; delete the folder to drop it |
+| DrumSep v2 drum separator (HDemucs; fine-tune of inagoy/drumsep), 10 s-window fp16 browser build, 168,050,967 B, sha256 `b05779ea…32839a` | MIT | **training-data provenance not independently verified**; not in repo and not hosted yet (see `docs/stem-studio-drums.md`) |
+| onnxruntime-web, fflate | MIT | reused from `js/roformer-web/vendor` |
+
+Details: `js/stem-studio/NOTICE.md`, `docs/stem-studio-presets.md`, `docs/stem-studio-drums.md`.
