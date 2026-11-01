@@ -23,12 +23,12 @@
  * Edit CONFIG per site. Bump VERSION when the precache list changes.
  */
 const CONFIG = {
-  VERSION: 'c32df3b249-studio2',
+  VERSION: 'c32df3b249-studio3',
   COI: true,
   PAGES: ['stems.html', 'stem-studio.html'],
   MODULE_DIR: 'js/roformer-web/',
   EXTRA_DIRS: ['js/stem-studio/'], // Stem Studio modules/workers: same isolation headers, no precache
-  SHELL: ['js/roformer-web/adapters.js','js/roformer-web/client.js','js/roformer-web/dsp.js','js/roformer-web/engine.js','js/roformer-web/model-store.js','js/roformer-web/models.js','js/roformer-web/progress.js','js/roformer-web/register-sw.js','js/roformer-web/rf.css','js/roformer-web/separator.js','js/roformer-web/sinks.js','js/roformer-web/tips.js','js/roformer-web/ui.js','js/roformer-web/wav.js','js/roformer-web/worker.js'],
+  SHELL: ['js/roformer-web/adapters.js','js/roformer-web/client.js','js/roformer-web/dsp.js','js/roformer-web/engine.js','js/roformer-web/fidelity.js','js/roformer-web/model-store.js','js/roformer-web/models.js','js/roformer-web/progress.js','js/roformer-web/register-sw.js','js/roformer-web/rf.css','js/roformer-web/separator.js','js/roformer-web/sinks.js','js/roformer-web/tips.js','js/roformer-web/ui.js','js/roformer-web/wav.js','js/roformer-web/worker.js'],
   ROOT_FALLBACK: false,
 };
 

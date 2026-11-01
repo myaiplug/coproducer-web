@@ -47,3 +47,11 @@ Full notice with SHA-256 digests, citations and license texts: `js/roformer-web/
 | onnxruntime-web, fflate | MIT | reused from `js/roformer-web/vendor` |
 
 Details: `js/stem-studio/NOTICE.md`, `docs/stem-studio-presets.md`, `docs/stem-studio-drums.md`.
+
+## Stem fidelity (residual stem, null test)
+
+* **badwolf-ro/stemsep** (MIT) — https://github.com/badwolf-ro/stemsep. Idea credit only; no code copied.
+  The "residual stem" rule (the catch-all stem is `mix - (all other stems)`) and the "null test" readout
+  (dB of `mix - sum(stems)` relative to the mix) are used in `fidelity.js`, which is an independent implementation.
+* **TramEFX stem-separator** (MIT) and **Stavion-Colquitt/nussl modernized fork** (MIT) — reviewed for model
+  lineup and SDR benchmarking ideas. Nothing from either is included in this repository or shipped.

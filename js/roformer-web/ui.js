@@ -10,6 +10,7 @@
 import { MODELS, MODEL_ORDER, formatBytes } from './models.js';
 import { StemSeparator, detectCapabilities, decodeToStereo44k } from './client.js';
 import { createProgressPanel, computePeaks, fmtEta } from './progress.js';
+import { describeNull } from './fidelity.js';
 import { cachedModelIds, clearModelCache, partialModelBytes, storageInfo, requestPersistence } from './model-store.js';
 
 const el = (tag, cls, text) => {
@@ -204,7 +205,7 @@ export function mountStemSplit(root, { workerUrl, tips, tipLinks, appTitle } = {
       resList.append(row);
     }
     state.stems = info.stems;
-    resNote.textContent = `Separated with ${model.short} on ${info.backend === 'webgpu' ? 'WebGPU' : 'CPU (WASM)'} in ${fmtTime(info.ms)}.${info.storeNote ? ' ' + info.storeNote : ''}`;
+    resNote.textContent = `Separated with ${model.short} on ${info.backend === 'webgpu' ? 'WebGPU' : 'CPU (WASM)'} in ${fmtTime(info.ms)}.${info.nullDb != null ? ' ' + describeNull(info.nullDb) : ''}${info.storeNote ? ' ' + info.storeNote : ''}`;
     results.hidden = false;
   }
 
