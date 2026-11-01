@@ -43,6 +43,11 @@ SHA-256 of the vendored ORT files (npm `onnxruntime-web@1.30.0`, unmodified):
   and the pinned onnxruntime-web version known to run it. Copyright (c) 2020-2026 Vladlen Popelenkov — MIT License.
 * **HiDolen/Mini-BS-RoFormer-V2.5-46.2M `onnx/ex.py`** (MIT) — reference pre/post-processing for the Mini model
   (4096-pt STFT input, mask applied to a 2048-pt STFT, overlap-add chunking).
+* **badwolf-ro/stemsep** (MIT) — https://github.com/badwolf-ro/stemsep. Idea credit only; no code copied.
+  The "residual stem" rule (the catch-all stem is `mix - (all other stems)`) and the "null test" readout
+  (dB of `mix - sum(stems)` relative to the mix) are used in `fidelity.js`, which is an independent implementation.
+* **TramEFX stem-separator** (MIT) and **Stavion-Colquitt/nussl modernized fork** (MIT) — reviewed for model
+  lineup and SDR benchmarking ideas. Nothing from either is included in this repository or shipped.
 
 No GPL/AGPL code is used.
 

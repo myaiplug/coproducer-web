@@ -18,7 +18,7 @@ on first use (pinned, SHA-256 verified, Range-resumable) and are kept in the bro
   GitHub Pages serves cross-origin-isolated (multi-threaded WASM; the first visit reloads once), and it caches the page + runtime so the tool works offline after first use.
   It does not touch any other page, third-party request, font or embed. Safari (no `COEP: credentialless`) falls back to single-threaded WASM.
 * Code: `js/roformer-web/` (config in `models.js`). Notices: `THIRD_PARTY_NOTICES.md`.
-* Test it: `python3 -m http.server 5505`, open http://localhost:5505/stems.html in Chrome/Edge (no special headers needed). Unit tests: `node --test js/roformer-web.test.mjs`.
+* Test it: `python3 -m http.server 5505`, open http://localhost:5505/stems.html in Chrome/Edge (no special headers needed). Unit tests: `node --test js/roformer-web.test.mjs js/fidelity.test.mjs`.
 
 ## Stem Studio (per-stem effects, loudness, artifact repair, deeper drum split)
 
