@@ -949,12 +949,12 @@ URL: https://myaiplug.github.io/coproducer-web/blog/sidechain-pumping-out-of-tim
 Section: Low end · 29 October 2026 · 7 min
 Summary: Why a sidechain duck feels late or makes the bass vanish: the release doesn’t fit the tempo, so the bass is still ducked when the next kick hits. Measured at 140 and 90 BPM, with a script that shows how much each release time leaves behind.
 
-If your sidechain pump feels late, sloppy, or like the bass never quite comes back, the release time doesn’t fit the tempo. The duck should be fully recovered just before the next kick lands. At 140 BPM one beat lasts 428.6 ms. In our test a 100 to 150 ms release let the bass come back in time, while 250 ms or more left it still ducked when the next kick hit, so the ducks stacked up and the bass just sat quieter.
+If a sidechain pump sounds late rather than just long, check latency first: lookahead, plug-in delay compensation and a key signal that arrives behind the kick will all shift the duck, whatever the release is. Once the timing lines up, work the release from the tempo: one beat is 60,000 ÷ BPM milliseconds (428.6 ms at 140 BPM), the bass should be fully back before the next kick, and in our test that took a release of roughly a quarter to a third of a beat.
 You key the bass off the kick, set a few dB of gain reduction, and the groove should start breathing. Instead it does something strange. The bass seems smaller overall, the pump feels smeared, and on some beats it feels like the duck is happening a little behind the kick instead of with it.
 Nine times out of ten that’s the release. Attack decides how fast the bass gets out of the way. Release decides when it comes back. If it comes back too slowly, the next kick shows up while the bass is still on its way up, and the compressor ducks it again from wherever it was.
 
 ### The beat sets the deadline
-A beat lasts 60,000 divided by the BPM, in milliseconds. At 140 BPM that’s 428.6 ms. At 90 BPM it’s 666.7 ms. On a four-on-the-floor kick, that’s the whole window the bass has to duck and come all the way back. Same math as setting a delay from the tempo in your delay sounds off the beat, just pointed at a compressor.
+A beat lasts 60,000 divided by the BPM, in milliseconds. At 140 BPM that’s 428.6 ms. At 90 BPM it’s 666.7 ms. On a four-on-the-floor kick, that’s the whole window the bass has to duck and come all the way back. Same math as setting a delay from the tempo in your delay sounds off the beat, just pointed at a compressor. There is a table of starting release times from 80 to 160 BPM further down.
 To see what different release times leave behind, we wrote duck_check.py. It keys a plain compressor from a kick on every beat, ducks 6 dB at the hit with a 1 ms attack, and tries a range of release times. For each one it prints how much the bass is still ducked right before the next kick, and how much of each beat the bass spends back within 1 dB of full level:
 #!/usr/bin/env python3
 """How much is the bass still ducked when the next kick lands? Sidechain release vs tempo.
@@ -1026,6 +1026,21 @@ At 90 BPM, a 250 ms release leaves 0.43 dB and gives the bass about a third of e
 ### Too fast is a problem too
 At 25 to 50 ms, the bass is back for 71 to 79% of the beat at 140 BPM. That sounds like the answer, but the duck is so short it feels more like a gap than a pump. On low notes it can also get grainy. A 55 Hz bass cycle takes about 18 ms, so a release that short moves the gain within a cycle or two, and that bends the waveform. If the bass gets a little fuzzy when the sidechain is on, try a longer release before you blame the bass sound.
 
+### Release time by BPM: a starting table
+One beat is 60,000 ÷ BPM in milliseconds, and an eighth note is half of that. The last two columns are where we would start: a quarter to a third of the gap between kicks, which is where the bass came back in time in the 140 and 90 BPM runs above. They are starting points to check against the gain reduction meter, not rules.
+BPM | Quarter note (kick every beat) | Eighth note (kick every half beat) | Start release, kick every beat | Start release, kick on eighths
+80 | 750.0 ms | 375.0 ms | 188 to 250 ms | 94 to 125 ms
+90 | 666.7 ms | 333.3 ms | 167 to 222 ms | 83 to 111 ms
+100 | 600.0 ms | 300.0 ms | 150 to 200 ms | 75 to 100 ms
+110 | 545.5 ms | 272.7 ms | 136 to 182 ms | 68 to 91 ms
+120 | 500.0 ms | 250.0 ms | 125 to 167 ms | 62 to 83 ms
+128 | 468.8 ms | 234.4 ms | 117 to 156 ms | 59 to 78 ms
+130 | 461.5 ms | 230.8 ms | 115 to 154 ms | 58 to 77 ms
+140 | 428.6 ms | 214.3 ms | 107 to 143 ms | 54 to 71 ms
+150 | 400.0 ms | 200.0 ms | 100 to 133 ms | 50 to 67 ms
+160 | 375.0 ms | 187.5 ms | 94 to 125 ms | 47 to 62 ms
+Plugins label release differently, so the same number can behave differently in two compressors. Loop a bar and watch the meter reach zero just before each kick, then adjust by ear.
+
 ### How to set it in your session
 1. Work out the beat. 60,000 ÷ BPM. If the kick plays every half beat, halve it. That’s the deadline.
 2. Start around a quarter to a third of the beat. In our model that was the range where the bass came back right before the next hit: about 100 to 150 ms at 140 BPM, 150 to 250 ms at 90.
@@ -1045,6 +1060,10 @@ Q: How do I calculate the beat length from BPM?
 A: Divide 60,000 by the BPM to get one beat in milliseconds. 140 BPM is 428.6 ms and 90 BPM is 666.7 ms. Halve it if the kick plays on every eighth note.
 Q: Can a sidechain release be too fast?
 A: Yes. A very short release makes the duck feel like a gap instead of a pump, and on low notes it can add distortion because the gain moves within a cycle or two of the bass.
+Q: What sidechain release time should I use at 120 BPM?
+A: One beat at 120 BPM is 500 ms, so start with a release of about 125 to 167 ms if the kick plays on every beat, and about 62 to 83 ms if it plays on every eighth note. Then watch the gain reduction meter and shorten the release if it does not reach zero before the next kick.
+Q: Why does my sidechain feel late even with a short release?
+A: Check latency first. Lookahead, plug-in delay compensation and the way the key signal is routed can all shift the duck behind the kick, and a release time cannot fix that. Once the duck lands on the kick, set the release from the tempo: 60,000 ÷ BPM is the length of one beat in milliseconds.
 
 ---
 
@@ -2358,7 +2377,7 @@ The eighth goes from 214.3 ms to 267.9 ms. Re-use the old number on the slowed v
 - Rock and indie. A slapback around 80 to 140 ms is usually set for feel rather than the grid, and that’s fine because it has no feedback to drift.
 - House and techno. Dotted eighths on a stab or vocal chop are the default for a reason. Sync it, and automate the feedback for builds.
 - Reggae and dub. Long, high-feedback tails are the instrument. That’s exactly when the number has to be right, because you’re going to hear every repeat.
-Note: Tempo in, milliseconds out, and the throw stays in the pocket. If you’re making a slowed version, hear the ScrewAI demo, then measure the bounce before it ships.
+Note: Tempo in, milliseconds out, and the throw stays in the pocket. The same maths sets a compressor’s release: see starting release times by BPM for a sidechain. If you’re making a slowed version, hear the ScrewAI demo, then measure the bounce before it ships.
 Q: How do I calculate delay time from BPM?
 A: Divide 60,000 by the tempo to get a quarter note in milliseconds. At 140 BPM that’s 428.6 ms. Halve it for an eighth (214.3 ms), multiply by 1.5 for a dotted note and by 2/3 for a triplet.
 Q: What is a dotted eighth delay in milliseconds?
@@ -8242,6 +8261,16 @@ Section: Reports · 21 August 2026 · 7 min
 Summary: A loudness report should name the exact file, its hash, LUFS, true peak and LRA. Keep HTML for people, JSON for scripts and TXT for chat. Script included.
 
 A useful loudness report names the exact file it measured (its name plus a hash of the audio), says when it was measured, and lists the numbers delivery cares about: integrated loudness in LUFS, true peak in dBTP, loudness range, sample rate, channels and length. Keep it in three forms because it has three kinds of reader. HTML is for people, JSON is for scripts, and a one-line TXT is for chat and tickets. They hold the same facts, written once by the meter, so nobody has to retype a number.
+
+### Loudness report checklist
+Before you trust a loudness report, check that it carries these. Each one is a measurement the standards define, so any decent meter can produce it.
+1. Integrated loudness (LUFS) for the whole file, gated as ITU-R BS.1770 describes.
+2. Loudness range (LRA, in LU), as defined in EBU Tech 3342.
+3. Maximum momentary and maximum short-term loudness, the loudest 0.4 s and 3 s windows (EBU Tech 3341). The integrated number can hide a section that is far louder than the rest.
+4. True peak per channel, in dBTP, not one number for the pair. A single figure hides which side is closer to the limit.
+5. Meter and settings: the tool and its version, the standard it follows, the channel layout, and whether it measured the whole file or a selection.
+6. The target and a pass or fail against it, with the target written down. EBU R 128 uses −23 LUFS integrated with −1 dBTP as the maximum true peak for broadcast; streaming platforms use their own numbers.
+The file name, a hash of the audio and the measurement date, covered below, tie the numbers to one exact file. Sources: EBU R 128, ITU-R BS.1770, EBU Tech 3341 and EBU Tech 3342.
 Here’s the situation it prevents. Someone in the group chat asks “is the single legal yet?” You’ve got single_master_v3.wav, single_master_v3_FINAL.wav and a screenshot of your meter from Tuesday. Which file did the screenshot measure? Was that before or after you pulled the limiter back? Nobody can say for sure, so somebody re-checks it, and somebody else asks again tomorrow. A report that travels with the file answers the question once.
 
 ### What should a loudness report include?
@@ -8341,6 +8370,42 @@ A few things worth reading out of that:
 - The hashes are different (65c5ad9b… and 4cca0dba…), so nobody can confuse the reports even if the files get renamed.
 - The loudness range is tiny (0.3 LU) because the test beat is a short loop that never changes. A real song with a verse and a chorus usually reads several LU. Don’t copy that number as a target.
 
+### What a fuller report looks like
+This is a fuller version of the report above, for a synthetic 30-second stereo test file we made and measured with FFmpeg. It is not a real song, and the target is an example, not a recommendation. The short script in this essay writes the core fields; the per-channel peaks and maximum momentary and short-term values come from the same meter and are added here.
+{
+  "file": "demo_master.wav",
+  "sha256": "cb73442ce914098e9cebe5fc627ac44f11f6f6cc3b62177e448887c1db39630b",
+  "measured_at": "2026-11-04T19:48:00-05:00",
+  "duration_s": 30.0,
+  "sample_rate_hz": 48000,
+  "channels": 2,
+  "meter": {
+    "tool": "ffmpeg 7.1 ebur128",
+    "standard": "ITU-R BS.1770 / EBU R 128",
+    "gating": "-70 LUFS absolute, -10 LU relative",
+    "true_peak": "peak=true"
+  },
+  "integrated_lufs": -10.9,
+  "loudness_range_lu": 1.9,
+  "max_momentary_lufs": -9.2,
+  "max_short_term_lufs": -10.0,
+  "true_peak_dbtp": {
+    "L": -0.7,
+    "R": -2.2
+  },
+  "target": {
+    "integrated_lufs": -14.0,
+    "tolerance_lu": 1.0,
+    "true_peak_max_dbtp": -1.0
+  },
+  "verdict": {
+    "integrated": "fail (3.1 LU above target)",
+    "true_peak": "fail (L channel 0.3 dB over)",
+    "overall": "fail"
+  }
+}
+The right channel is quieter than the left, so a single combined true-peak figure would show only the louder side and hide the difference. In this example the file fails on both integrated loudness and left-channel true peak, and the report says why.
+
 ### How do I compare two versions of a master?
 This is where JSON pays for itself. A second tiny script reads two reports and prints only what changed:
 #!/usr/bin/env python3
@@ -8393,7 +8458,7 @@ URL: https://myaiplug.github.io/coproducer-web/blog/local-tools-beat-upload-queu
 Section: Local-first · 21 August 2026 · 7 min
 Summary: You don’t need to upload a track to measure LUFS or true peak. A free meter plugin or one FFmpeg command does it in seconds, and your unreleased song stays put.
 
-You don’t need to upload a song to check its loudness. Integrated LUFS and true peak are calculated with a public method, ITU-R BS.1770, that any laptop can run. A free meter plugin in your DAW or one FFmpeg command measures a track in well under a second, with no account, no queue and no copy of your unreleased song on somebody else’s server. Upload when you’ve chosen a service to do real work you can’t do yourself, not just to read a number.
+Use a meter that runs in your browser or your DAW, and nothing leaves your computer. Integrated LUFS and true peak come from a published method (ITU-R BS.1770) that any laptop can run, so a free meter plug-in, one FFmpeg command or the CoProducer analyzer in your browser will read a finished bounce in seconds, with no queue, no account and no copy of your unreleased song on someone else’s server.
 It’s an easy habit to fall into. You finish a bounce at 1 a.m., you want to know if it’s too loud for Spotify, and the first search result is a site that asks you to upload. So you sign up, wait for the progress bar, wait in a queue, and get back a number your own computer could have worked out before the upload finished. Meanwhile a song nobody has heard yet is now sitting on a disk you don’t control, under terms you probably didn’t read.
 
 ### Why would I avoid uploading a song just to check its loudness?
@@ -8500,6 +8565,10 @@ Q: Is local always higher quality?
 A: Not automatically. A local tool isn’t smarter, it’s just better defined: you keep the original WAV, you know which settings ran, and you can run it again tomorrow and get the same answer.
 Q: Does the CoProducer site upload my song when I analyze it?
 A: No. The analyzer on the CoProducer page sends your file to an engine running on your own computer (at 127.0.0.1) if you’ve started one. If that engine isn’t running, the page measures the file in your browser, so it stays on your device either way.
+Q: Which free LUFS meters run locally?
+A: Youlean Loudness Meter 2 has a free plug-in and standalone app, FFmpeg’s ebur128 filter is free on the command line, and many DAWs include a meter, such as Logic Pro’s Loudness Meter or REAPER’s JS: Loudness Meter. The CoProducer analyzer reads a file in your browser. Whichever you pick, measure the exported file and use the same meter for every version.
+Q: Can I check LUFS without uploading my song?
+A: Yes. A loudness meter in your DAW, a free plug-in, an FFmpeg command or a browser-based analyzer measures integrated LUFS and true peak on your own computer, so the file never leaves it.
 
 ---
 
