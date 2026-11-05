@@ -100,6 +100,10 @@ def section(md: str, head: str) -> str:
 
 
 def main() -> None:
+    # Domain-move guard: essays are published by older build scripts that still
+    # carry the github.io URL. Normalise them to this domain before anything else.
+    import subprocess
+    subprocess.run([sys.executable, str(Path(__file__).with_name("domain_move.py")), "--no-rebuild"], check=True)
     # Signup block + analyzer CTA go on every essay and the index (idempotent). See publish/JOURNAL_BLOCKS_RULE.md.
     import journal_blocks
     done = journal_blocks.inject_all()

@@ -1,9 +1,8 @@
 #!/usr/bin/env python3
 """Submit every URL in sitemap.xml to IndexNow (Bing, Yandex, Seznam, Naver, ...).
 
-The site lives under https://coproducer.nodawlabs.com/, so the key file
-cannot sit at the host root. It is published at /coproducer-web/<key>.txt and
-passed as keyLocation; IndexNow then accepts URLs under that path.
+The site lives at https://coproducer.nodawlabs.com/. The key file is published at the host
+root (/<key>.txt) and also passed as keyLocation.
 
 Usage:
   python3 scripts/indexnow_submit.py            # submit all sitemap URLs
