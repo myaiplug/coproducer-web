@@ -16,7 +16,7 @@ BASE = "https://myaiplug.github.io/coproducer-web"
 sys.path.insert(0, str(ROOT / "scripts"))
 from check_publish import essays  # noqa: E402
 
-SKIP_CLASSES = {"post-hero", "related-essays", "comments"}
+SKIP_CLASSES = {"post-hero", "related-essays", "comments", "check-cta", "signup"}
 
 
 def inline(node: Tag) -> str:
@@ -100,6 +100,11 @@ def section(md: str, head: str) -> str:
 
 
 def main() -> None:
+    # Signup block + analyzer CTA go on every essay and the index (idempotent). See publish/JOURNAL_BLOCKS_RULE.md.
+    import journal_blocks
+    done = journal_blocks.inject_all()
+    if done:
+        print(f"journal blocks: updated {len(done)} file(s)")
     llms = (ROOT / "llms.txt").read_text(encoding="utf-8")
     posts = order()
     head = [

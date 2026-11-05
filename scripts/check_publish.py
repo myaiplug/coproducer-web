@@ -74,6 +74,15 @@ def main() -> int:
         print("No essays found.")
         return 1
 
+    # Signup block on every essay + the index; analyzer CTA on every essay not in analyzer_focus.json "none".
+    sys.path.insert(0, str(ROOT / "scripts"))
+    import journal_blocks
+    for msg in journal_blocks.problems():
+        err(msg)
+    for page in ("pre-release-master-checklist.html", "checklist-thanks.html", "unsubscribe.html"):
+        if not (BLOG / page).exists():
+            err(f"blog/{page}: missing")
+
     # Sitemap
     try:
         sm = ET.parse(ROOT / "sitemap.xml")

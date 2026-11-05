@@ -686,3 +686,139 @@ footer.site {
 .lq-topics-label { color: var(--mute); margin-right: 6px; }
 .lq-topics a { color: var(--ivory); text-decoration: none; padding: 7px 12px; border: 1px solid var(--hair); border-radius: 999px; transition: border-color .2s, color .2s; }
 .lq-topics a:hover, .lq-topics a:focus-visible { color: var(--magenta); border-color: var(--magenta); }
+
+/* ── Journal blocks: signup, analyzer CTA, checklist page (scripts/journal_blocks.py, build_checklist.py) ── */
+.signup {
+  max-width: 740px;
+  margin: 0 auto;
+  padding: 44px 24px 12px;
+  border-top: 1px solid var(--hair);
+}
+.signup-k, .check-k, .ck-more {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin: 0 0 10px;
+}
+.signup h2 {
+  font-family: var(--display);
+  font-style: italic;
+  font-weight: 500;
+  font-size: clamp(26px, 4vw, 34px);
+  line-height: 1.12;
+  margin: 0 0 10px;
+  color: var(--ivory);
+}
+.signup-p { margin: 0 0 18px; color: var(--ink); font-size: 16px; max-width: 58ch; }
+.signup-p a, .signup-consent a { color: var(--gold); }
+.signup-form { display: flex; flex-wrap: wrap; gap: 10px; align-items: stretch; }
+.signup-form input[type="email"] {
+  flex: 1 1 240px;
+  min-width: 0;
+  background: #100c12;
+  border: 1px solid var(--hair);
+  color: var(--ivory);
+  font-family: var(--mono);
+  font-size: 13px;
+  padding: 12px 14px;
+  border-radius: 0;
+}
+.signup-form input[type="email"]:focus-visible { outline: 1px solid var(--gold); outline-offset: 2px; }
+.signup-form button {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  padding: 12px 18px;
+  border: 1px solid var(--gold);
+  background: transparent;
+  color: var(--gold);
+  cursor: pointer;
+  white-space: nowrap;
+}
+.signup-form button:hover, .signup-form button:focus-visible { background: var(--gold); color: var(--lacquer); }
+.signup-consent { margin: 12px 0 0; font-family: var(--mono); font-size: 10.5px; line-height: 1.6; color: var(--mute); max-width: 64ch; }
+.cmt-hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+.signup-index { margin-top: 0; }
+
+.post .check-cta, .check-cta {
+  margin: 44px 0 8px;
+  padding: 20px 22px;
+  border: 1px solid var(--hair);
+  border-left: 2px solid var(--gold);
+  background: rgba(196, 165, 116, 0.05);
+}
+.check-cta p { margin: 0; }
+.post .check-cta .check-p, .check-p { color: var(--ink); font-size: 16px; margin: 0 0 12px; }
+.post .check-cta a.check-btn, a.check-btn {
+  display: inline-block;
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  padding: 10px 16px;
+  border: 1px solid var(--gold);
+  color: var(--gold);
+  text-decoration: none;
+}
+.post .check-cta a.check-btn:hover, a.check-btn:hover { background: var(--gold); color: var(--lacquer); }
+
+.checklist-page, .notice-page { max-width: 740px; margin: 0 auto; padding: 36px 24px 110px; }
+.ck-head .kicker { margin: 0 0 6px; }
+.checklist-page h1, .notice-page h1 {
+  font-family: var(--display);
+  font-style: italic;
+  font-weight: 500;
+  font-size: clamp(38px, 7vw, 62px);
+  line-height: 1.02;
+  letter-spacing: -0.015em;
+  margin: 0 0 10px;
+}
+.ck-head .meta { font-family: var(--mono); font-size: 11px; letter-spacing: 0.1em; color: var(--mute); margin: 0 0 24px; }
+.ck-dl { display: flex; flex-wrap: wrap; gap: 14px; align-items: center; margin: 22px 0 8px; }
+.ck-dl span { color: var(--mute); font-size: 14px; }
+a.ck-btn {
+  display: inline-block;
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  padding: 12px 20px;
+  background: var(--gold);
+  color: var(--lacquer);
+  text-decoration: none;
+  border: 1px solid var(--gold);
+}
+a.ck-btn:hover { background: transparent; color: var(--gold); }
+.ck-gates-h { font-family: var(--display); font-style: italic; font-weight: 500; font-size: 28px; margin: 40px 0 8px; }
+table.gates { width: 100%; border-collapse: collapse; font-size: 15px; margin: 6px 0 4px; }
+table.gates th { text-align: left; font-family: var(--mono); font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--mute); padding: 10px 8px; border-bottom: 1px solid var(--gold); }
+table.gates td { padding: 10px 8px; border-bottom: 1px solid rgba(196, 165, 116, 0.18); color: var(--ink); }
+table.gates td:nth-child(2) { font-family: var(--mono); color: var(--ivory); white-space: nowrap; }
+.ck { margin-top: 42px; padding-top: 22px; border-top: 1px solid var(--hair); }
+.ck h2 { font-family: var(--display); font-style: italic; font-weight: 500; font-size: 32px; margin: 0 0 6px; }
+.ck-n { font-family: var(--mono); font-style: normal; font-size: 11px; letter-spacing: 0.14em; color: var(--magenta); margin-right: 12px; }
+.ck-lede { color: var(--mute); font-style: italic; margin: 0 0 14px; }
+.ck-list, .ck-reads { list-style: none; padding: 0; margin: 0; }
+.ck-list li { display: flex; gap: 12px; padding: 7px 0; color: var(--ink); font-size: 16px; line-height: 1.55; }
+.ck-list strong { color: var(--ivory); font-weight: 500; }
+.ck-list code { font-family: var(--mono); font-size: 0.86em; color: var(--gold); }
+.ck-list .box { flex: 0 0 14px; height: 14px; border: 1px solid var(--gold); margin-top: 5px; }
+.ck-more { margin: 16px 0 4px; }
+.ck-reads li { padding: 2px 0; font-size: 15px; }
+.ck-reads a, .checklist-page .src a, .ck-contact a, .notice-page a { color: var(--gold); }
+.checklist-page .src, .ck-contact { color: var(--mute); font-size: 13px; line-height: 1.6; margin: 34px 0 0; }
+.checklist-page .answer { margin-top: 0; }
+.notice-page p { color: var(--ink); font-size: 17px; max-width: 58ch; }
+.notice-status { font-family: var(--mono); font-size: 12px; letter-spacing: 0.04em; color: var(--ivory); border: 1px solid var(--hair); padding: 12px 14px; margin: 0 0 26px; }
+.notice-status[hidden] { display: none; }
+.notice-status.is-bad { border-color: #e24b4b; color: #f2b5b5; }
+.notice-form { margin-top: 22px; }
+.notice-form label.opt { display: flex; gap: 10px; align-items: flex-start; color: var(--ink); font-size: 15px; margin: 0 0 16px; }
+.notice-form button {
+  font-family: var(--mono); font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase;
+  padding: 12px 18px; border: 1px solid var(--gold); background: transparent; color: var(--gold); cursor: pointer;
+}
+.notice-form button:hover { background: var(--gold); color: var(--lacquer); }

@@ -1,0 +1,64 @@
+{
+  "_readme": "Maps each Journal essay to the analyzer focus its 'Check your own mix for this' CTA opens (analyze.html?check=<focus>). Resolution order: none -> overrides -> keywords (first match on the slug) -> hub_default -> fallback. Foci are implemented in js/analyze-focus.js and must exist there. Add a slug to 'none' only when the essay is not about something the analyzer measures (history, listening tests, pure workflow). Future essays need no edit: keywords and the hub default cover them.",
+  "foci": {
+    "lufs":   {"line": "Drop a bounce into the analyzer and read its integrated LUFS next to the −14 lane. It stays on your device.", "button": "Check my LUFS"},
+    "tp":     {"line": "Drop a bounce into the analyzer and read its true peak and clipped samples against the −1.0 dBTP ceiling. It stays on your device.", "button": "Check my true peak"},
+    "mono":   {"line": "Drop a bounce into the analyzer and read its phase correlation, then audition the fold-down yourself. It stays on your device.", "button": "Check my mono"},
+    "lowend": {"line": "Drop a bounce, then a finished track you trust, and compare where the low end sits. It stays on your device.", "button": "Check my low end"},
+    "tails":  {"line": "Drop the exported file and check its length and loudness the way a store will hear them, head and tail included. It stays on your device.", "button": "Check my export"},
+    "format": {"line": "Drop the exported file and confirm its sample rate and channels before you upload it. It stays on your device.", "button": "Check my file"},
+    "clips":  {"line": "Drop a bounce into the analyzer and count its clipped samples. It stays on your device.", "button": "Check my clips"},
+    "punch":  {"line": "Drop a bounce into the analyzer and read crest factor beside LUFS to see how much punch is left. It stays on your device.", "button": "Check my punch"}
+  },
+  "lines": {
+    "local-tools-beat-upload-queues": "Measure a file without uploading it: drop a bounce into the analyzer and it is read on your device.",
+    "local-audio-processing-for-unreleased-masters": "Measure an unreleased file without uploading it: drop a bounce into the analyzer and it is read on your device.",
+    "should-you-upload-an-unreleased-master": "Measure an unreleased file without uploading it: drop a bounce into the analyzer and it is read on your device.",
+    "cloud-stem-splitter-privacy-unreleased-music": "Measure an unreleased file without uploading it: drop a bounce into the analyzer and it is read on your device."
+  },
+  "none": [
+    "432-hz-conspiracy-theories-fact-check",
+    "432-vs-435-vs-442-hz-reference-pitch-guide",
+    "432-vs-440-blind-listening-test",
+    "concert-pitch-history-before-a440",
+    "demucs-vs-mdx-net-stem-separation-compared",
+    "split-stems-from-youtube-audio-you-own",
+    "sampling-from-separated-stems-workflow"
+  ],
+  "overrides": {
+    "sidechain-pumping-out-of-time-set-release-to-tempo": "punch",
+    "parallel-compression-sounds-thin-check-latency": "punch",
+    "delay-time-from-bpm-sync-your-throws": "lufs",
+    "linear-phase-eq-smears-the-kick-watch-the-pre-ring": "lowend",
+    "layered-kick-sounds-thinner-check-polarity-and-timing": "mono",
+    "vocal-breaths-turn-them-down-dont-cut-them": "lufs",
+    "how-loud-should-the-vocal-sit": "lufs",
+    "plugin-input-level-gain-staging-minus-18-dbfs": "tp",
+    "mix-sounds-better-louder-pick-one-monitor-level": "lufs",
+    "export-stems-for-a-mix-engineer": "format",
+    "mastering-bat-vs-opening-the-session": "lufs",
+    "when-to-slow-the-bounce": "tp",
+    "what-a-70-to-90-repair-changes": "lufs",
+    "clean-version-of-a-song-mute-reverse-or-replace": "lufs",
+    "release-checklist-that-matches-the-meter": "lufs",
+    "how-to-read-a-coproducer-score": "lufs",
+    "why-three-report-formats": "lufs"
+  },
+  "keywords": [
+    ["silence|tail|fade|clicks|gapless|ending|cut-off|gate", "tails"],
+    ["phase|mono|wide|pan-law|polarity|vocal-double|leans|balance", "mono"],
+    ["true-peak|clipper|limit|oversampl|reencod|headroom|subsonic|clip", "tp"],
+    ["punch|crest|compress|attack|harsh-esses|pump", "punch"],
+    ["808|bass|kick|low-end|rumble|chair|muddy|reverb|hum-in", "lowend"],
+    ["sample-rate|bit-depth|normalize|resampl|wrong-pitch|batch|format", "format"],
+    ["lufs|loud|streaming|album|quiet|reference|vertical|score|report|checklist|repair", "lufs"]
+  ],
+  "hub_default": {
+    "loudness-and-lufs": "lufs",
+    "true-peak-limiting-and-delivery": "tp",
+    "low-end-and-mix-dynamics": "lowend",
+    "432-hz-pitch-and-tempo": "tp",
+    "stems-sampling-and-privacy": "lufs"
+  },
+  "fallback": "lufs"
+}

@@ -8,6 +8,7 @@ Summary index: https://myaiplug.github.io/coproducer-web/llms.txt
 - Product: CoProducer (Windows desktop + local web analyze projection)
 - Publisher: NoDAW Labs
 - Journal: Lacquer — https://myaiplug.github.io/coproducer-web/blog/index.html
+- Free pre-release master checklist (page + PDF): https://myaiplug.github.io/coproducer-web/blog/pre-release-master-checklist.html
 - Site: https://myaiplug.github.io/coproducer-web/
 - Sibling: NoDAW StemSplit (local stem separation)
 - Related: ScrewAI syrup / chopped-and-screwed .bat renders

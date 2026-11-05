@@ -42,6 +42,12 @@
     </image:image>
   </url>
   <url>
+    <loc>https://myaiplug.github.io/coproducer-web/blog/pre-release-master-checklist.html</loc>
+    <lastmod>2026-11-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://myaiplug.github.io/coproducer-web/guides/index.html</loc>
     <lastmod>2026-08-21</lastmod>
     <changefreq>monthly</changefreq>

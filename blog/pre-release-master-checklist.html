@@ -1,0 +1,198 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<title>Pre-release master checklist: LUFS, true peak, mono, export and ISRC | Lacquer</title>
+<meta content="A free one-page pre-release master checklist: loudness and LUFS targets, true peak, mono and phase, tails and fades, sample rate, dither and export settings, ISRC and metadata basics. Download the PDF." name="description"/>
+<meta content="NoDAW Labs" name="author"/>
+<meta content="#050308" name="theme-color"/>
+<meta content="index,follow,max-image-preview:large" name="robots"/>
+<link href="https://myaiplug.github.io/coproducer-web/blog/pre-release-master-checklist.html" rel="canonical"/>
+<link rel="alternate" type="application/rss+xml" title="Lacquer — CoProducer Journal" href="https://myaiplug.github.io/coproducer-web/blog/rss.xml"/>
+<link rel="icon" href="../favicon.ico" sizes="48x48"/>
+<link rel="icon" type="image/svg+xml" href="../assets/favicon.svg"/>
+<link rel="apple-touch-icon" href="../assets/apple-touch-icon.png"/>
+<link rel="manifest" href="../site.webmanifest"/>
+<link href="https://myaiplug.github.io/coproducer-web/llms.txt" rel="alternate" title="llms.txt" type="text/plain"/>
+<meta content="article" property="og:type"/>
+<meta content="Pre-release master checklist: LUFS, true peak, mono, export and ISRC" property="og:title"/>
+<meta content="A free one-page pre-release master checklist: loudness and LUFS targets, true peak, mono and phase, tails and fades, sample rate, dither and export settings, ISRC and metadata basics. Download the PDF." property="og:description"/>
+<meta content="https://myaiplug.github.io/coproducer-web/blog/pre-release-master-checklist.html" property="og:url"/>
+<meta content="https://myaiplug.github.io/coproducer-web/blog/img/brand/lacquer-og.jpg" property="og:image"/>
+<meta content="Lacquer — CoProducer Journal" property="og:site_name"/>
+<meta content="summary_large_image" name="twitter:card"/>
+<meta content="Pre-release master checklist: LUFS, true peak, mono, export and ISRC" name="twitter:title"/>
+<meta content="A free one-page pre-release master checklist: loudness and LUFS targets, true peak, mono and phase, tails and fades, sample rate, dither and export settings, ISRC and metadata basics. Download the PDF." name="twitter:description"/>
+<meta content="https://myaiplug.github.io/coproducer-web/blog/img/brand/lacquer-og.jpg" name="twitter:image"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;1,500;1,600&amp;family=Figtree:wght@400;500&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet" media="print" onload="this.media='all'"/><noscript><link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;1,500;1,600&amp;family=Figtree:wght@400;500&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/></noscript>
+<link href="css/journal.css" rel="stylesheet"/>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Pre-release master checklist: LUFS, true peak, mono, export and ISRC","description":"A free one-page pre-release master checklist: loudness and LUFS targets, true peak, mono and phase, tails and fades, sample rate, dither and export settings, ISRC and metadata basics. Download the PDF.","datePublished":"2026-11-04","dateModified":"2026-11-04","mainEntityOfPage":{"@type":"WebPage","@id":"https://myaiplug.github.io/coproducer-web/blog/pre-release-master-checklist.html"},"image":{"@type":"ImageObject","url":"https://myaiplug.github.io/coproducer-web/blog/img/brand/lacquer-og.jpg","width":1200,"height":630},"author":{"@type":"Organization","name":"NoDAW Labs","url":"https://myaiplug.github.io/coproducer-web/","logo":"https://myaiplug.github.io/coproducer-web/assets/og-default.jpg"},"publisher":{"@type":"Organization","name":"NoDAW Labs","url":"https://myaiplug.github.io/coproducer-web/","logo":"https://myaiplug.github.io/coproducer-web/assets/og-default.jpg"},"isPartOf":{"@type":"Blog","name":"Lacquer — CoProducer Journal","url":"https://myaiplug.github.io/coproducer-web/blog/index.html"},"keywords":["pre-release checklist","master checklist","LUFS","true peak","ISRC","export settings"],"speakable":{"@type":"SpeakableSpecification","cssSelector":[".answer","h1"]}}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"CoProducer","item":"https://myaiplug.github.io/coproducer-web/"},{"@type":"ListItem","position":2,"name":"Lacquer Journal","item":"https://myaiplug.github.io/coproducer-web/blog/index.html"},{"@type":"ListItem","position":3,"name":"Pre-release master checklist","item":"https://myaiplug.github.io/coproducer-web/blog/pre-release-master-checklist.html"}]}</script>
+</head>
+<body>
+<header class="top">
+<a class="mark" href="../index.html"><em>Co</em>Producer</a>
+<nav aria-label="Primary" class="nav">
+<a href="index.html">Journal</a>
+<a href="../index.html#ab">A/B</a>
+<a href="../analyze.html">Analyze</a>
+</nav>
+<a class="cta" href="../analyze.html">Check a mix</a>
+</header>
+<main class="checklist-page" id="main">
+<header class="ck-head">
+<p class="kicker">Free checklist · Updated 4 November 2026</p>
+<h1>Pre-release master checklist</h1>
+<p class="meta">NoDAW Labs · Lacquer</p>
+</header>
+<p class="answer">Before you upload a master, measure the exported file and confirm five things: integrated LUFS inside −14 ± 1.5, true peak at or below −1.0 dBTP, zero clipped samples, a sample rate of at least 44.1 kHz, and phase correlation of at least 0.2. Then check the tails, the export settings and the metadata below.</p>
+<p class="ck-dl"><a class="ck-btn" href="downloads/Lacquer-Pre-release-Master-Checklist.pdf" download>Download the PDF</a><span>One tidy file you can keep next to the bounce folder.</span></p>
+<h2 class="ck-gates-h">The five measured gates</h2>
+<table class="gates"><thead><tr><th>Gate</th><th>Pass</th><th>If it fails</th></tr></thead><tbody>
+<tr><td>Integrated LUFS</td><td>−14 ± 1.5</td><td>Gain first, not another limiter</td></tr>
+<tr><td>True peak</td><td>≤ −1.0 dBTP</td><td>True-peak limiter last, re-measure</td></tr>
+<tr><td>Clipped samples</td><td>0</td><td>Back to the unclipped mix</td></tr>
+<tr><td>Sample rate</td><td>≥ 44.1 kHz</td><td>Re-export at a legal rate</td></tr>
+<tr><td>Phase correlation</td><td>≥ 0.2</td><td>Mix work, not mastering work</td></tr>
+</tbody></table>
+<section class="ck" id="loudness">
+<h2><span class="ck-n">01</span>Loudness</h2>
+<p class="ck-lede">The store measures the whole file, not the chorus. Measure the exported file the way a store would, then decide.</p>
+<ul class="ck-list">
+<li><span class="box" aria-hidden="true"></span><span>Measure <strong>integrated LUFS on the exported file</strong>, not the session. Whole song, edges included.</span></li>
+<li><span class="box" aria-hidden="true"></span><span>Aim inside <strong>−14 LUFS ± 1.5 LU</strong>. That is the lane CoProducer scores against. Spotify normalizes to −14 by default; Apple Music is commonly reported near −16, and YouTube, TIDAL and Amazon Music near −14.</span></li>
+<li><span class="box" aria-hidden="true"></span><span>Too hot? <strong>Turn the mix down before the limiter</strong>, not after another squash. A louder master is turned down on playback, not played louder.</span></li>
+<li><span class="box" aria-hidden="true"></span><span>Too quiet? Fine for dynamic music, but some services turn quiet files up, and the noise floor comes with them.</span></li>
+<li><span class="box" aria-hidden="true"></span><span>Read <strong>short-term LUFS beside integrated</strong> to see what the chorus does. Integrated is the contract; short-term is the diagnostic.</span></li>
+<li><span class="box" aria-hidden="true"></span><span>Releasing a set? <strong>Measure the album as a group</strong> so no song jumps out of the run.</span></li>
+<li><span class="box" aria-hidden="true"></span><span>Match a reference <strong>as a local file</strong>, never a streamed copy that the store has already re-leveled.</span></li>
+</ul>
+<p class="ck-more">Go deeper</p>
+<ul class="ck-reads">
+<li><a href="why-streaming-turns-loud-masters-down.html">Why streaming platforms turn loud masters down</a></li>
+<li><a href="leading-silence-steals-integrated-lufs.html">The silence at the top of your bounce steals LUFS</a></li>
+<li><a href="integrated-lufs-hides-the-chorus.html">Integrated LUFS hides how loud the chorus is</a></li>
+<li><a href="short-term-lufs-is-not-your-target.html">Short-term LUFS is not your target</a></li>
+<li><a href="album-consistency-in-one-meter.html">Album consistency in one meter</a></li>
+<li><a href="turn-the-mix-down-before-you-limit.html">Turn the mix down before you limit</a></li>
+</ul>
+</section>
+<section class="ck" id="true-peak">
+<h2><span class="ck-n">02</span>True peak</h2>
+<p class="ck-lede">A WAV that never touches 0 dBFS can still clip after MP3 or AAC. True peak is the number that belongs on the release sheet.</p>
+<ul class="ck-list">
+<li><span class="box" aria-hidden="true"></span><span>Final file at <strong>−1.0 dBTP or lower</strong> true peak. Spotify asks for below −1 dBTP, and below −2 dBTP when a master is louder than −14 LUFS. Amazon Music is often reported stricter.</span></li>
+<li><span class="box" aria-hidden="true"></span><span><strong>Zero clipped samples.</strong> Clipping baked into a fixed-point file cannot be undone.</span></li>
+<li><span class="box" aria-hidden="true"></span><span>The <strong>true-peak limiter goes last</strong>, after any gain, fade or loudness change. Re-measure after every move.</span></li>
+<li><span class="box" aria-hidden="true"></span><span>Turn on <strong>oversampling</strong> on saturators and clippers that sit before the limiter.</span></li>
+<li><span class="box" aria-hidden="true"></span><span>Encode once to AAC or MP3, then <strong>listen and re-measure the encode</strong>. That is closer to what the store plays.</span></li>
+</ul>
+<p class="ck-more">Go deeper</p>
+<ul class="ck-reads">
+<li><a href="true-peak-is-what-codecs-clip.html">True peak is what codecs clip</a></li>
+<li><a href="reencoding-eats-true-peak-headroom.html">Why does my master clip after MP3 or AAC?</a></li>
+<li><a href="when-not-to-reach-for-the-limiter.html">When not to reach for the limiter</a></li>
+<li><a href="saturator-sounds-harsh-turn-on-oversampling.html">Saturator making the highs harsh? Turn on oversampling</a></li>
+</ul>
+</section>
+<section class="ck" id="mono-phase">
+<h2><span class="ck-n">03</span>Mono and phase</h2>
+<p class="ck-lede">Phones, clubs and smart speakers collapse stereo. A wide chorus that vanishes in mono is a delivery risk, not a creative choice.</p>
+<ul class="ck-list">
+<li><span class="box" aria-hidden="true"></span><span>Phase correlation stays <strong>at or above about 0.2</strong> (CoProducer fails lower). Fully mono sits near 1.0; you do not need that.</span></li>
+<li><span class="box" aria-hidden="true"></span><span><strong>Fold to mono and listen</strong>: vocal, kick, bass and snare should all still be there, only narrower.</span></li>
+<li><span class="box" aria-hidden="true"></span><span>Keep the lowest octaves <strong>mostly centered</strong>. Check the polarity and timing of layered kicks and 808s.</span></li>
+<li><span class="box" aria-hidden="true"></span><span>Check <strong>left versus right balance</strong>, band by band, if the mix leans.</span></li>
+<li><span class="box" aria-hidden="true"></span><span>Audition mono <strong>after every width move</strong>: wideners, copy-pasted doubles, mid/side tricks.</span></li>
+</ul>
+<p class="ck-more">Go deeper</p>
+<ul class="ck-reads">
+<li><a href="phase-correlation-and-mono.html">Phase correlation is a mono audition</a></li>
+<li><a href="wide-mixes-fail-in-mono.html">Wide mixes fail in mono</a></li>
+<li><a href="mix-leans-to-one-side-check-the-balance-band-by-band.html">Mix leans to one side? Check the balance band by band</a></li>
+<li><a href="808-disappears-on-phone-speakers.html">Why your 808 disappears on phone speakers</a></li>
+</ul>
+</section>
+<section class="ck" id="tails-fades">
+<h2><span class="ck-n">04</span>Tails, fades and edges</h2>
+<p class="ck-lede">Most last-minute export disasters are at the first and last second of the file.</p>
+<ul class="ck-list">
+<li><span class="box" aria-hidden="true"></span><span><strong>Let the tail ring.</strong> Export past the last note so reverb and delay decay to silence instead of getting chopped.</span></li>
+<li><span class="box" aria-hidden="true"></span><span>Put the <strong>fade-out after the limiter</strong> and curve it, so the limiter does not pump the fade.</span></li>
+<li><span class="box" aria-hidden="true"></span><span><strong>Open and close cleanly</strong>: no click at the first sample, no stray seconds of silence. Trim the head, then measure again.</span></li>
+<li><span class="box" aria-hidden="true"></span><span><strong>Fade every edit</strong>. A cut mid-wave is a click.</span></li>
+<li><span class="box" aria-hidden="true"></span><span>Releasing a gapless album? <strong>Encode it and check the joins</strong>, because MP3 and AAC can add gaps.</span></li>
+<li><span class="box" aria-hidden="true"></span><span>Listen to the <strong>first three and last ten seconds</strong> of the exported file on speakers.</span></li>
+</ul>
+<p class="ck-more">Go deeper</p>
+<ul class="ck-reads">
+<li><a href="song-ending-cut-off-on-export-let-the-tail-ring.html">Song ending cut off when you export? Let the tail ring</a></li>
+<li><a href="fade-out-sounds-abrupt-curve-it-and-fade-after-the-limiter.html">Fade-out sounds abrupt? Curve it and fade after the limiter</a></li>
+<li><a href="clicks-at-edit-points-fade-every-cut.html">Clicks at your edit points? Fade every cut</a></li>
+<li><a href="gapless-album-gaps-after-mp3-or-aac.html">Why your gapless album gets gaps after MP3 or AAC</a></li>
+</ul>
+</section>
+<section class="ck" id="export">
+<h2><span class="ck-n">05</span>Sample rate, bit depth and export</h2>
+<p class="ck-lede">Boring, visible, non-negotiable. These are the settings a distributor checks before it ever hears the song.</p>
+<ul class="ck-list">
+<li><span class="box" aria-hidden="true"></span><span>Export at your <strong>session sample rate, never below 44.1 kHz</strong>. Do not upsample a lower-rate file to look better.</span></li>
+<li><span class="box" aria-hidden="true"></span><span>If the portal needs a different rate, <strong>convert once</strong> with a high-quality sample-rate converter on the final bounce.</span></li>
+<li><span class="box" aria-hidden="true"></span><span><strong>24-bit WAV or FLAC</strong> unless the distributor asks for 16-bit. Going down to 16-bit? <strong>Dither once</strong>, at the very last step. No dither is needed at 24-bit.</span></li>
+<li><span class="box" aria-hidden="true"></span><span><strong>Normalize-on-export off</strong>, along with any export-time loudness or gain adjustment.</span></li>
+<li><span class="box" aria-hidden="true"></span><span>A real master, not an <strong>MP3 renamed MASTER</strong>. One interleaved stereo file unless the portal asks for split mono.</span></li>
+<li><span class="box" aria-hidden="true"></span><span>Name it so nobody has to guess: <code>Title_master_48k_24b.wav</code>.</span></li>
+<li><span class="box" aria-hidden="true"></span><span><strong>Re-open the exported file</strong> and measure that, not the session.</span></li>
+</ul>
+<p class="ck-more">Go deeper</p>
+<ul class="ck-reads">
+<li><a href="sample-rate-and-bit-depth-for-delivery.html">Sample rate and bit depth are delivery hygiene</a></li>
+<li><a href="normalize-on-export-turn-it-off-for-mastering.html">Should you normalize on export? Turn it off</a></li>
+<li><a href="sample-plays-at-wrong-pitch-sample-rate-mismatch.html">Sample playing at the wrong speed or pitch?</a></li>
+<li><a href="how-much-headroom-to-leave-for-mastering.html">How much headroom to leave for mastering</a></li>
+</ul>
+</section>
+<section class="ck" id="metadata">
+<h2><span class="ck-n">06</span>Metadata and ISRC basics</h2>
+<p class="ck-lede">Metadata is how a recording gets paid and found. Fix it before upload, because changing it afterwards is slow.</p>
+<ul class="ck-list">
+<li><span class="box" aria-hidden="true"></span><span><strong>ISRC</strong> is a 12-character code for one recording: country (2), registrant (3), year (2), then a 5-digit designation. Hyphens are for human display only. Your distributor can assign one if you do not have your own.</span></li>
+<li><span class="box" aria-hidden="true"></span><span><strong>One ISRC per recording.</strong> The same recording re-released or put on a compilation keeps its code. A whole-file level change, EQ, dither or sample-rate change does not need a new one. A remix or an edited (for example, clean) version does.</span></li>
+<li><span class="box" aria-hidden="true"></span><span><strong>UPC/EAN identifies the release</strong> (single, EP or album), not the track. Distributors normally issue it.</span></li>
+<li><span class="box" aria-hidden="true"></span><span>Spell <strong>title, artist and featured artists</strong> identically everywhere. Tag versions consistently: (Clean), (Instrumental), (Radio Edit).</span></li>
+<li><span class="box" aria-hidden="true"></span><span>Writers and <strong>splits agreed in writing</strong> before release. Set the explicit flag honestly.</span></li>
+<li><span class="box" aria-hidden="true"></span><span><strong>Cover art</strong>: square, high-resolution (3000 × 3000 px is a common request, so check your distributor), and free of URLs, prices or storefront logos.</span></li>
+<li><span class="box" aria-hidden="true"></span><span>Keep a <strong>one-row release log</strong>: title, ISRC, UPC, file name, LUFS, true peak, date sent.</span></li>
+</ul>
+<p class="ck-more">Go deeper</p>
+<ul class="ck-reads">
+<li><a href="clean-version-of-a-song-mute-reverse-or-replace.html">Making a clean version? Edit the vocals, keep the length</a></li>
+<li><a href="432-hz-release-checklist.html">Before a 432 version ships: the release checklist</a></li>
+</ul>
+</section>
+<section class="ck" id="final-proof">
+<h2><span class="ck-n">07</span>The final proof</h2>
+<p class="ck-lede">The last ten minutes before you press send.</p>
+<ul class="ck-list">
+<li><span class="box" aria-hidden="true"></span><span><strong>Measure the file you will upload</strong>, then save the report next to it. HTML, JSON or TXT: whichever you will actually find in a year.</span></li>
+<li><span class="box" aria-hidden="true"></span><span>All six gates green: <strong>LUFS in lane, true peak ≤ −1.0, clips 0, sample rate ≥ 44.1 kHz, phase ≥ 0.2</strong>, and a score you trust.</span></li>
+<li><span class="box" aria-hidden="true"></span><span>Listen once on a <strong>phone speaker, in earbuds, and in mono</strong>. If it still feels right, it is.</span></li>
+<li><span class="box" aria-hidden="true"></span><span>Archive the <strong>session, stems and the exact file you sent</strong>, with the date.</span></li>
+<li><span class="box" aria-hidden="true"></span><span>Upload with <strong>time to spare</strong>. A rejected file late on a Friday is a rough way to find a typo.</span></li>
+</ul>
+<p class="ck-more">Go deeper</p>
+<ul class="ck-reads">
+<li><a href="release-checklist-that-matches-the-meter.html">A release checklist that matches the meter</a></li>
+<li><a href="why-three-report-formats.html">What should a loudness report include?</a></li>
+<li><a href="how-to-read-a-coproducer-score.html">What does a mix score mean?</a></li>
+</ul>
+</section>
+<aside class="check-cta ck-check" data-lq-check="lufs"><p class="check-k">Check your own mix</p><p class="check-p">Drop a bounce into the analyzer and read it against these gates. It runs on your device.</p><p><a class="check-btn" href="../analyze.html?check=lufs&utm_source=journal&utm_medium=checklist&utm_campaign=pre-release-master-checklist">Open the analyzer →</a></p></aside>
+<p class="src">Sources: <a href="https://www.itu.int/rec/R-REC-BS.1770">ITU-R BS.1770</a> (loudness and true-peak measurement); <a href="https://tech.ebu.ch/docs/r/r128.pdf">EBU R 128</a>; <a href="https://support.spotify.com/us/artists/article/loudness-normalization/">Spotify for Artists, loudness normalization</a>; <a href="https://aes.org/community/technical-council/technical-document-aestd1008/">AES TD1008</a>; <a href="https://isrc.ifpi.org/images/downloads/ISRC_Handbook.pdf">IFPI ISRC Handbook</a>. Platform figures for Apple Music, YouTube, TIDAL, Amazon Music and Deezer are commonly reported values, not numbers those services publish, and services change them. Treat the lane as a safe default, not a law.</p>
+<p class="ck-contact">Spotted a number that has moved, or a step we missed? Write to <a href="mailto:NoDAW@nodawlabs.com">NoDAW@nodawlabs.com</a>. <a href="methodology.html">How we test, cite and correct</a>.</p>
+</main>
+<footer class="site"><span>Lacquer · CoProducer Journal</span><span><a href="index.html">All essays</a> · <a href="about.html">About</a> · <a href="methodology.html">Methodology</a></span></footer>
+</body>
+</html>
