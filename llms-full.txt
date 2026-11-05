@@ -8545,6 +8545,17 @@ It’s the same math. Any meter that follows BS.1770 (and the EBU’s R 128 reco
 The bigger source of disagreement is usually not the meter at all. It’s measuring a different file: the MP3 preview instead of the WAV, the version before the last limiter tweak, or 30 seconds instead of the whole song. Measuring locally, on the exact file you’ll deliver, removes most of that.
 And remember what the number is for. Spotify’s loudness normalization plays tracks at around −14 LUFS by default and turns louder masters down, so the target isn’t “as loud as possible”. It’s knowing where you are, and keeping true peak below −1 dBTP (−2 dBTP if the master is louder than −14 LUFS).
 
+### Which local LUFS meters are worth trying?
+All of these read a file you already have, on your machine. Features and free tiers change, so check the vendor page before you rely on one. We make the CoProducer analyzer, so weigh that row accordingly.
+Meter | Where it runs | Cost | What it shows | The catch
+Youlean Loudness Meter 2 | Plug-in (VST, AU, AAX) or standalone app | Free version; paid Pro adds more (free vs Pro) | Momentary, short-term and integrated loudness, loudness range, true peak | Check which features sit behind Pro before you plan a workflow around it
+FFmpeg ebur128 filter | Command line | Free | Integrated loudness, loudness range and, with peak=true, true peak | No graphs, and you read the numbers out of a text log
+Logic Pro Loudness Meter | Inside Logic Pro | Included with Logic | Momentary, short-term and integrated loudness, LU range, EBU R128 mode | It is not a true-peak meter; use MultiMeter in true-peak mode for that
+REAPER JS: Loudness Meter and render statistics | Inside REAPER | Included with REAPER | Momentary, short-term and integrated LUFS, loudness range, true peak | You get numbers, not a report you can hand to someone
+Klangfreund LUFS Meter | Plug-in (VST, AU, AAX) | Paid; the free demo is limited to under a minute per measurement and non-commercial use | Loudness and true peak | The demo cannot measure a whole song
+CoProducer analyzer | In your browser | Free to use on the web | LUFS, true peak, clipped samples and phase against a target | One file at a time on the web; batch and album passes are in CoProducer PRO
+Whichever you choose, measure the exported file rather than the session, and use the same meter for every version so the numbers are comparable.
+
 ### What about stem separation and other heavy jobs?
 This is where the trade gets real. Measuring loudness is light work. Splitting a song into vocals, drums and bass with a neural network is heavy, and it runs much faster on a decent graphics card. Open-source separators such as Demucs run locally (its repository is archived now, but the code still works), and on an older laptop without a GPU a split can take a few minutes per song rather than seconds.
 So the honest question is whether a few minutes of your own computer’s time is worth keeping the song at home. For an unreleased record, it usually is. For a public song you just want to study, a cloud tool you trust can be fine. Either way, it’s your decision to make on purpose, not the default because a website asked first.
