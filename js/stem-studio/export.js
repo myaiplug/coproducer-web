@@ -19,7 +19,7 @@ export const BRAND_LIMINAL = {
 };
 /** Same studio on the CoProducer site: the credit says CoProducer; the upsell offers both products. */
 export const BRAND_COPRODUCER = {
-  name: 'NoDAW CoProducer', credit: 'Made with NoDAW CoProducer', url: 'https://myaiplug.github.io/coproducer-web/',
+  name: 'NoDAW CoProducer', credit: 'Made with NoDAW CoProducer', url: 'https://coproducer.nodawlabs.com/',
   upgradeUrl: OFFERS[0].url, offers: OFFERS,
 };
 

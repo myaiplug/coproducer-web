@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Submit every URL in sitemap.xml to IndexNow (Bing, Yandex, Seznam, Naver, ...).
 
-The site lives under https://myaiplug.github.io/coproducer-web/, so the key file
+The site lives under https://coproducer.nodawlabs.com/, so the key file
 cannot sit at the host root. It is published at /coproducer-web/<key>.txt and
 passed as keyLocation; IndexNow then accepts URLs under that path.
 
@@ -24,8 +24,8 @@ import xml.etree.ElementTree as ET
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-HOST = "myaiplug.github.io"
-BASE = f"https://{HOST}/coproducer-web"
+HOST = "coproducer.nodawlabs.com"
+BASE = f"https://{HOST}"
 ENDPOINT = "https://api.indexnow.org/indexnow"
 NS = {"sm": "http://www.sitemaps.org/schemas/sitemap/0.9"}
 

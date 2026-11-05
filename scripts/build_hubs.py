@@ -12,7 +12,7 @@ from pathlib import Path
 from bs4 import BeautifulSoup
 
 ROOT = Path(__file__).resolve().parents[1]
-BASE = "https://myaiplug.github.io/coproducer-web"
+BASE = "https://coproducer.nodawlabs.com"
 BLOG = ROOT / "blog"
 TODAY = "2026-10-19"
 

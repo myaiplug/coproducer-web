@@ -10,7 +10,7 @@ from pathlib import Path
 from bs4 import BeautifulSoup, NavigableString
 
 ROOT = Path(__file__).resolve().parents[1]
-BASE = "https://myaiplug.github.io/coproducer-web"
+BASE = "https://coproducer.nodawlabs.com"
 TODAY = "2026-08-21"
 ORG = {
     "@type": "Organization",

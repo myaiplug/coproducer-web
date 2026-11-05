@@ -2,650 +2,650 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Lacquer — CoProducer Journal</title>
-    <link>https://myaiplug.github.io/coproducer-web/blog/index.html</link>
-    <atom:link href="https://myaiplug.github.io/coproducer-web/blog/rss.xml" rel="self" type="application/rss+xml"/>
+    <link>https://coproducer.nodawlabs.com/blog/index.html</link>
+    <atom:link href="https://coproducer.nodawlabs.com/blog/rss.xml" rel="self" type="application/rss+xml"/>
     <description>Answer-first essays on loudness, true peak, repair, stems, ScrewAI, and local .bat workflows.</description>
     <language>en-us</language>
     <lastBuildDate>Thu, 05 Nov 2026 00:30:00 GMT</lastBuildDate>
     <item>
       <title>Hum in your recording? Notch 60 Hz and its harmonics, not just the low end</title>
-      <link>https://myaiplug.github.io/coproducer-web/blog/hum-in-your-recording-notch-60-hz-and-its-harmonics.html</link>
-      <guid isPermaLink="true">https://myaiplug.github.io/coproducer-web/blog/hum-in-your-recording-notch-60-hz-and-its-harmonics.html</guid>
+      <link>https://coproducer.nodawlabs.com/blog/hum-in-your-recording-notch-60-hz-and-its-harmonics.html</link>
+      <guid isPermaLink="true">https://coproducer.nodawlabs.com/blog/hum-in-your-recording-notch-60-hz-and-its-harmonics.html</guid>
       <pubDate>Wed, 04 Nov 2026 16:00:00 GMT</pubDate>
       <description>Why a high-pass filter barely touches mains hum: most of a hum's energy sits in its harmonics, not at 60 or 50 Hz. Measured how much hum a high-pass, one notch and a full set of narrow notches remove, and what each costs the vocal, with the script.</description>
-      <enclosure url="https://myaiplug.github.io/coproducer-web/blog/img/essays/hum-in-your-recording-notch-60-hz-and-its-harmonics.jpg?v=shd" type="image/jpeg" length="262601"/>
+      <enclosure url="https://coproducer.nodawlabs.com/blog/img/essays/hum-in-your-recording-notch-60-hz-and-its-harmonics.jpg?v=shd" type="image/jpeg" length="262601"/>
     </item>
     <item>
       <title>Noise gate cutting off the ends of words? Set the hold and a lower close</title>
-      <link>https://myaiplug.github.io/coproducer-web/blog/noise-gate-cuts-off-vocal-tails-set-the-hold.html</link>
-      <guid isPermaLink="true">https://myaiplug.github.io/coproducer-web/blog/noise-gate-cuts-off-vocal-tails-set-the-hold.html</guid>
+      <link>https://coproducer.nodawlabs.com/blog/noise-gate-cuts-off-vocal-tails-set-the-hold.html</link>
+      <guid isPermaLink="true">https://coproducer.nodawlabs.com/blog/noise-gate-cuts-off-vocal-tails-set-the-hold.html</guid>
       <pubDate>Wed, 04 Nov 2026 16:00:00 GMT</pubDate>
       <description>Why a noise gate chops vocal tails and chatters: the tail wobbles around the threshold. Measured how hold, release, a lower close threshold and a limited range change where the gate closes and what the gaps sound like, with the script.</description>
-      <enclosure url="https://myaiplug.github.io/coproducer-web/blog/img/essays/noise-gate-cuts-off-vocal-tails-set-the-hold.jpg?v=shd" type="image/jpeg" length="268415"/>
+      <enclosure url="https://coproducer.nodawlabs.com/blog/img/essays/noise-gate-cuts-off-vocal-tails-set-the-hold.jpg?v=shd" type="image/jpeg" length="268415"/>
     </item>
     <item>
       <title>Saturator making the highs harsh? Turn on oversampling</title>
-      <link>https://myaiplug.github.io/coproducer-web/blog/saturator-sounds-harsh-turn-on-oversampling.html</link>
-      <guid isPermaLink="true">https://myaiplug.github.io/coproducer-web/blog/saturator-sounds-harsh-turn-on-oversampling.html</guid>
+      <link>https://coproducer.nodawlabs.com/blog/saturator-sounds-harsh-turn-on-oversampling.html</link>
+      <guid isPermaLink="true">https://coproducer.nodawlabs.com/blog/saturator-sounds-harsh-turn-on-oversampling.html</guid>
       <pubDate>Tue, 03 Nov 2026 16:00:00 GMT</pubDate>
       <description>Why a saturator or clipper makes hats and vocals grainy: distortion creates harmonics above the sample rate's limit and they fold back down as off-key tones. Measured fold-back at 1x, 2x, 4x and 8x oversampling, with the script.</description>
-      <enclosure url="https://myaiplug.github.io/coproducer-web/blog/img/essays/saturator-sounds-harsh-turn-on-oversampling.jpg?v=shd" type="image/jpeg" length="250495"/>
+      <enclosure url="https://coproducer.nodawlabs.com/blog/img/essays/saturator-sounds-harsh-turn-on-oversampling.jpg?v=shd" type="image/jpeg" length="250495"/>
     </item>
     <item>
       <title>Linear-phase EQ softening your kick? Listen before the hit</title>
-      <link>https://myaiplug.github.io/coproducer-web/blog/linear-phase-eq-smears-the-kick-watch-the-pre-ring.html</link>
-      <guid isPermaLink="true">https://myaiplug.github.io/coproducer-web/blog/linear-phase-eq-smears-the-kick-watch-the-pre-ring.html</guid>
+      <link>https://coproducer.nodawlabs.com/blog/linear-phase-eq-smears-the-kick-watch-the-pre-ring.html</link>
+      <guid isPermaLink="true">https://coproducer.nodawlabs.com/blog/linear-phase-eq-smears-the-kick-watch-the-pre-ring.html</guid>
       <pubDate>Tue, 03 Nov 2026 16:00:00 GMT</pubDate>
       <description>Why a linear-phase low cut can blur a kick: it spreads part of the removed bass ahead of the hit as pre-ringing. Measured on a synthetic kick at 30, 60 and 100 Hz and three slopes against a normal EQ, with the script.</description>
-      <enclosure url="https://myaiplug.github.io/coproducer-web/blog/img/essays/linear-phase-eq-smears-the-kick-watch-the-pre-ring.jpg?v=shd" type="image/jpeg" length="270486"/>
+      <enclosure url="https://coproducer.nodawlabs.com/blog/img/essays/linear-phase-eq-smears-the-kick-watch-the-pre-ring.jpg?v=shd" type="image/jpeg" length="270486"/>
     </item>
     <item>
       <title>Limiter distorting the bass? Slow the release</title>
-      <link>https://myaiplug.github.io/coproducer-web/blog/limiter-distorts-the-bass-slow-the-release.html</link>
-      <guid isPermaLink="true">https://myaiplug.github.io/coproducer-web/blog/limiter-distorts-the-bass-slow-the-release.html</guid>
+      <link>https://coproducer.nodawlabs.com/blog/limiter-distorts-the-bass-slow-the-release.html</link>
+      <guid isPermaLink="true">https://coproducer.nodawlabs.com/blog/limiter-distorts-the-bass-slow-the-release.html</guid>
       <pubDate>Mon, 02 Nov 2026 16:00:00 GMT</pubDate>
       <description>Why a fast limiter release makes 808s and bass fuzz and crackle: it recovers inside a single bass cycle and reshapes the waveform. Measured distortion at 1 to 150 ms release, what a short hold does, and what it costs in loudness, with the script.</description>
-      <enclosure url="https://myaiplug.github.io/coproducer-web/blog/img/essays/limiter-distorts-the-bass-slow-the-release.jpg?v=shd" type="image/jpeg" length="232552"/>
+      <enclosure url="https://coproducer.nodawlabs.com/blog/img/essays/limiter-distorts-the-bass-slow-the-release.jpg?v=shd" type="image/jpeg" length="232552"/>
     </item>
     <item>
       <title>Mix leans to one side? Check the balance band by band</title>
-      <link>https://myaiplug.github.io/coproducer-web/blog/mix-leans-to-one-side-check-the-balance-band-by-band.html</link>
-      <guid isPermaLink="true">https://myaiplug.github.io/coproducer-web/blog/mix-leans-to-one-side-check-the-balance-band-by-band.html</guid>
+      <link>https://coproducer.nodawlabs.com/blog/mix-leans-to-one-side-check-the-balance-band-by-band.html</link>
+      <guid isPermaLink="true">https://coproducer.nodawlabs.com/blog/mix-leans-to-one-side-check-the-balance-band-by-band.html</guid>
       <pubDate>Mon, 02 Nov 2026 16:00:00 GMT</pubDate>
       <description>Why a mix can pull left even when the meters look close: the lean usually lives in the top end, from hats and bright parts panned the same way. Measured left-minus-right per octave band, why the master balance knob makes it worse, and how to fix it in the mix, with the script.</description>
-      <enclosure url="https://myaiplug.github.io/coproducer-web/blog/img/essays/mix-leans-to-one-side-check-the-balance-band-by-band.jpg?v=shd" type="image/jpeg" length="219888"/>
+      <enclosure url="https://coproducer.nodawlabs.com/blog/img/essays/mix-leans-to-one-side-check-the-balance-band-by-band.jpg?v=shd" type="image/jpeg" length="219888"/>
     </item>
     <item>
       <title>Copy-pasted vocal double sounds mono? Sing a real second take</title>
-      <link>https://myaiplug.github.io/coproducer-web/blog/copy-paste-vocal-double-sounds-mono-sing-a-real-take.html</link>
-      <guid isPermaLink="true">https://myaiplug.github.io/coproducer-web/blog/copy-paste-vocal-double-sounds-mono-sing-a-real-take.html</guid>
+      <link>https://coproducer.nodawlabs.com/blog/copy-paste-vocal-double-sounds-mono-sing-a-real-take.html</link>
+      <guid isPermaLink="true">https://coproducer.nodawlabs.com/blog/copy-paste-vocal-double-sounds-mono-sing-a-real-take.html</guid>
       <pubDate>Fri, 30 Oct 2026 16:00:00 GMT</pubDate>
       <description>Why duplicating a vocal and panning it hard left and right doesn’t make it wide: an identical copy is just a louder center, and nudging it a few ms turns it into a comb filter. Measured correlation, mono sum and tone damage, with the script.</description>
-      <enclosure url="https://myaiplug.github.io/coproducer-web/blog/img/essays/copy-paste-vocal-double-sounds-mono-sing-a-real-take.jpg?v=shd" type="image/jpeg" length="397494"/>
+      <enclosure url="https://coproducer.nodawlabs.com/blog/img/essays/copy-paste-vocal-double-sounds-mono-sing-a-real-take.jpg?v=shd" type="image/jpeg" length="397494"/>
     </item>
     <item>
       <title>Vocal buried in the beat? Cut the beat where the voice lives</title>
-      <link>https://myaiplug.github.io/coproducer-web/blog/vocal-buried-in-the-beat-cut-the-beat-at-3-khz.html</link>
-      <guid isPermaLink="true">https://myaiplug.github.io/coproducer-web/blog/vocal-buried-in-the-beat-cut-the-beat-at-3-khz.html</guid>
+      <link>https://coproducer.nodawlabs.com/blog/vocal-buried-in-the-beat-cut-the-beat-at-3-khz.html</link>
+      <guid isPermaLink="true">https://coproducer.nodawlabs.com/blog/vocal-buried-in-the-beat-cut-the-beat-at-3-khz.html</guid>
       <pubDate>Fri, 30 Oct 2026 16:00:00 GMT</pubDate>
       <description>Why turning the vocal up doesn’t get it out of the beat, and why a small cut on the beat around 3 kHz does. Measured per-band vocal-to-beat levels, LUFS before and after, and a sidechained dynamic EQ, with the script.</description>
-      <enclosure url="https://myaiplug.github.io/coproducer-web/blog/img/essays/vocal-buried-in-the-beat-cut-the-beat-at-3-khz.jpg?v=shd" type="image/jpeg" length="390131"/>
+      <enclosure url="https://coproducer.nodawlabs.com/blog/img/essays/vocal-buried-in-the-beat-cut-the-beat-at-3-khz.jpg?v=shd" type="image/jpeg" length="390131"/>
     </item>
     <item>
       <title>Sidechain pumping out of time? Set the release from the tempo</title>
-      <link>https://myaiplug.github.io/coproducer-web/blog/sidechain-pumping-out-of-time-set-release-to-tempo.html</link>
-      <guid isPermaLink="true">https://myaiplug.github.io/coproducer-web/blog/sidechain-pumping-out-of-time-set-release-to-tempo.html</guid>
+      <link>https://coproducer.nodawlabs.com/blog/sidechain-pumping-out-of-time-set-release-to-tempo.html</link>
+      <guid isPermaLink="true">https://coproducer.nodawlabs.com/blog/sidechain-pumping-out-of-time-set-release-to-tempo.html</guid>
       <pubDate>Thu, 29 Oct 2026 16:00:00 GMT</pubDate>
       <description>Why a sidechain duck feels late or makes the bass vanish: the release doesn’t fit the tempo, so the bass is still ducked when the next kick hits. Measured at 140 and 90 BPM, with a script that shows how much each release time leaves behind.</description>
-      <enclosure url="https://myaiplug.github.io/coproducer-web/blog/img/essays/sidechain-pumping-out-of-time-set-release-to-tempo.jpg?v=shd" type="image/jpeg" length="386124"/>
+      <enclosure url="https://coproducer.nodawlabs.com/blog/img/essays/sidechain-pumping-out-of-time-set-release-to-tempo.jpg?v=shd" type="image/jpeg" length="386124"/>
     </item>
     <item>
       <title>Fade-out drops off a cliff? Curve it, and fade after the limiter</title>
-      <link>https://myaiplug.github.io/coproducer-web/blog/fade-out-sounds-abrupt-curve-it-and-fade-after-the-limiter.html</link>
-      <guid isPermaLink="true">https://myaiplug.github.io/coproducer-web/blog/fade-out-sounds-abrupt-curve-it-and-fade-after-the-limiter.html</guid>
+      <link>https://coproducer.nodawlabs.com/blog/fade-out-sounds-abrupt-curve-it-and-fade-after-the-limiter.html</link>
+      <guid isPermaLink="true">https://coproducer.nodawlabs.com/blog/fade-out-sounds-abrupt-curve-it-and-fade-after-the-limiter.html</guid>
       <pubDate>Thu, 29 Oct 2026 16:00:00 GMT</pubDate>
       <description>Why a song fade-out seems to hang and then vanish: a straight-line fade loses only 6 dB in its first half, and a limiter after the fade eats the first few dB of it. Measured fade shapes and a limited master, with the script.</description>
-      <enclosure url="https://myaiplug.github.io/coproducer-web/blog/img/essays/fade-out-sounds-abrupt-curve-it-and-fade-after-the-limiter.jpg?v=shd" type="image/jpeg" length="280370"/>
+      <enclosure url="https://coproducer.nodawlabs.com/blog/img/essays/fade-out-sounds-abrupt-curve-it-and-fade-after-the-limiter.jpg?v=shd" type="image/jpeg" length="280370"/>
     </item>
     <item>
       <title>Why −18 dBFS? Gain staging into analog-style plugins</title>
-      <link>https://myaiplug.github.io/coproducer-web/blog/plugin-input-level-gain-staging-minus-18-dbfs.html</link>
-      <guid isPermaLink="true">https://myaiplug.github.io/coproducer-web/blog/plugin-input-level-gain-staging-minus-18-dbfs.html</guid>
+      <link>https://coproducer.nodawlabs.com/blog/plugin-input-level-gain-staging-minus-18-dbfs.html</link>
+      <guid isPermaLink="true">https://coproducer.nodawlabs.com/blog/plugin-input-level-gain-staging-minus-18-dbfs.html</guid>
       <pubDate>Wed, 28 Oct 2026 16:00:00 GMT</pubDate>
       <description>Why the level you hit an analog-modelled plugin with changes its sound, and why −18 dBFS keeps coming up. Measured on a simple saturation model: harmonics, THD and what five plugins in a row add up to. Script inside.</description>
-      <enclosure url="https://myaiplug.github.io/coproducer-web/blog/img/essays/plugin-input-level-gain-staging-minus-18-dbfs.jpg?v=shd" type="image/jpeg" length="366953"/>
+      <enclosure url="https://coproducer.nodawlabs.com/blog/img/essays/plugin-input-level-gain-staging-minus-18-dbfs.jpg?v=shd" type="image/jpeg" length="366953"/>
     </item>
     <item>
       <title>Layered kick sounds thinner? Check polarity and timing</title>
-      <link>https://myaiplug.github.io/coproducer-web/blog/layered-kick-sounds-thinner-check-polarity-and-timing.html</link>
-      <guid isPermaLink="true">https://myaiplug.github.io/coproducer-web/blog/layered-kick-sounds-thinner-check-polarity-and-timing.html</guid>
+      <link>https://coproducer.nodawlabs.com/blog/layered-kick-sounds-thinner-check-polarity-and-timing.html</link>
+      <guid isPermaLink="true">https://coproducer.nodawlabs.com/blog/layered-kick-sounds-thinner-check-polarity-and-timing.html</guid>
       <pubDate>Wed, 28 Oct 2026 16:00:00 GMT</pubDate>
       <description>Why adding a sub or a second kick sample can make the low end weaker: the layers are out of polarity or a millisecond or two apart, so they cancel. Measured on a synthetic kick and sub layer, with a script that finds the right offset and flip.</description>
-      <enclosure url="https://myaiplug.github.io/coproducer-web/blog/img/essays/layered-kick-sounds-thinner-check-polarity-and-timing.jpg?v=shd" type="image/jpeg" length="373638"/>
+      <enclosure url="https://coproducer.nodawlabs.com/blog/img/essays/layered-kick-sounds-thinner-check-polarity-and-timing.jpg?v=shd" type="image/jpeg" length="373638"/>
     </item>
     <item>
       <title>Should you normalize on export? Turn it off before mastering</title>
-      <link>https://myaiplug.github.io/coproducer-web/blog/normalize-on-export-turn-it-off-for-mastering.html</link>
-      <guid isPermaLink="true">https://myaiplug.github.io/coproducer-web/blog/normalize-on-export-turn-it-off-for-mastering.html</guid>
+      <link>https://coproducer.nodawlabs.com/blog/normalize-on-export-turn-it-off-for-mastering.html</link>
+      <guid isPermaLink="true">https://coproducer.nodawlabs.com/blog/normalize-on-export-turn-it-off-for-mastering.html</guid>
       <pubDate>Tue, 27 Oct 2026 16:00:00 GMT</pubDate>
       <description>Why the normalize option in your DAW’s export window works against a mix headed for mastering: it fills the headroom, can push true peak over 0 dBFS and gives every version its own gain. Measured on a synthetic main mix and instrumental. Script inside.</description>
-      <enclosure url="https://myaiplug.github.io/coproducer-web/blog/img/essays/normalize-on-export-turn-it-off-for-mastering.jpg?v=shd" type="image/jpeg" length="356220"/>
+      <enclosure url="https://coproducer.nodawlabs.com/blog/img/essays/normalize-on-export-turn-it-off-for-mastering.jpg?v=shd" type="image/jpeg" length="356220"/>
     </item>
     <item>
       <title>Sample playing at the wrong speed or pitch? It’s a sample-rate mismatch</title>
-      <link>https://myaiplug.github.io/coproducer-web/blog/sample-plays-at-wrong-pitch-sample-rate-mismatch.html</link>
-      <guid isPermaLink="true">https://myaiplug.github.io/coproducer-web/blog/sample-plays-at-wrong-pitch-sample-rate-mismatch.html</guid>
+      <link>https://coproducer.nodawlabs.com/blog/sample-plays-at-wrong-pitch-sample-rate-mismatch.html</link>
+      <guid isPermaLink="true">https://coproducer.nodawlabs.com/blog/sample-plays-at-wrong-pitch-sample-rate-mismatch.html</guid>
       <pubDate>Tue, 27 Oct 2026 16:00:00 GMT</pubDate>
       <description>Why a sample or loop plays slower and flat, or faster and sharp: it was made at one sample rate and played at another without conversion. The exact speed, semitone and BPM error for 44.1, 48, 88.2 and 96 kHz, and a script that reads the WAV header and catches mislabeled files.</description>
-      <enclosure url="https://myaiplug.github.io/coproducer-web/blog/img/essays/sample-plays-at-wrong-pitch-sample-rate-mismatch.jpg?v=shd" type="image/jpeg" length="400235"/>
+      <enclosure url="https://coproducer.nodawlabs.com/blog/img/essays/sample-plays-at-wrong-pitch-sample-rate-mismatch.jpg?v=shd" type="image/jpeg" length="400235"/>
     </item>
     <item>
       <title>Song ending cut off when you export? Let the tail ring past the last bar</title>
-      <link>https://myaiplug.github.io/coproducer-web/blog/song-ending-cut-off-on-export-let-the-tail-ring.html</link>
-      <guid isPermaLink="true">https://myaiplug.github.io/coproducer-web/blog/song-ending-cut-off-on-export-let-the-tail-ring.html</guid>
+      <link>https://coproducer.nodawlabs.com/blog/song-ending-cut-off-on-export-let-the-tail-ring.html</link>
+      <guid isPermaLink="true">https://coproducer.nodawlabs.com/blog/song-ending-cut-off-on-export-let-the-tail-ring.html</guid>
       <pubDate>Mon, 26 Oct 2026 16:00:00 GMT</pubDate>
       <description>Why the end of your song gets cut off on export and how to fix it: run the export range past the last bar until the reverb and delay tails die, check the file ends in silence, then trim the silence, not the tail. Tail math and a script inside.</description>
-      <enclosure url="https://myaiplug.github.io/coproducer-web/blog/img/essays/song-ending-cut-off-on-export-let-the-tail-ring.jpg?v=shd" type="image/jpeg" length="330880"/>
+      <enclosure url="https://coproducer.nodawlabs.com/blog/img/essays/song-ending-cut-off-on-export-let-the-tail-ring.jpg?v=shd" type="image/jpeg" length="330880"/>
     </item>
     <item>
       <title>Compressor killing your drums’ punch? Slow the attack down</title>
-      <link>https://myaiplug.github.io/coproducer-web/blog/compressor-kills-the-punch-slow-the-attack.html</link>
-      <guid isPermaLink="true">https://myaiplug.github.io/coproducer-web/blog/compressor-kills-the-punch-slow-the-attack.html</guid>
+      <link>https://coproducer.nodawlabs.com/blog/compressor-kills-the-punch-slow-the-attack.html</link>
+      <guid isPermaLink="true">https://coproducer.nodawlabs.com/blog/compressor-kills-the-punch-slow-the-attack.html</guid>
       <pubDate>Mon, 26 Oct 2026 16:00:00 GMT</pubDate>
       <description>Why compression makes drums lose their punch and how to set attack and release so the crack gets through: measured on a synthetic snare at 0.1, 1, 10 and 30 ms attack, plus what a long release does to a 16th-note roll. Script inside.</description>
-      <enclosure url="https://myaiplug.github.io/coproducer-web/blog/img/essays/compressor-kills-the-punch-slow-the-attack.jpg?v=shd" type="image/jpeg" length="394856"/>
+      <enclosure url="https://coproducer.nodawlabs.com/blog/img/essays/compressor-kills-the-punch-slow-the-attack.jpg?v=shd" type="image/jpeg" length="394856"/>
     </item>
     <item>
       <title>808 sounds off-key? Find its real note, then tune it to the song</title>
-      <link>https://myaiplug.github.io/coproducer-web/blog/tune-808-to-the-key-of-your-song.html</link>
-      <guid isPermaLink="true">https://myaiplug.github.io/coproducer-web/blog/tune-808-to-the-key-of-your-song.html</guid>
+      <link>https://coproducer.nodawlabs.com/blog/tune-808-to-the-key-of-your-song.html</link>
+      <guid isPermaLink="true">https://coproducer.nodawlabs.com/blog/tune-808-to-the-key-of-your-song.html</guid>
       <pubDate>Fri, 23 Oct 2026 16:00:00 GMT</pubDate>
       <description>How to tune an 808 to the key of your song: measure the note of the sustained tail, not the punch or the filename, then set coarse and fine tune so it lands on the root. Note table and script inside.</description>
-      <enclosure url="https://myaiplug.github.io/coproducer-web/blog/img/essays/tune-808-to-the-key-of-your-song.jpg?v=shd" type="image/jpeg" length="371410"/>
+      <enclosure url="https://coproducer.nodawlabs.com/blog/img/essays/tune-808-to-the-key-of-your-song.jpg?v=shd" type="image/jpeg" length="371410"/>
     </item>
     <item>
       <title>Making a clean version? Edit the vocals, keep the length, then check it against the explicit</title>
-      <link>https://myaiplug.github.io/coproducer-web/blog/clean-version-of-a-song-mute-reverse-or-replace.html</link>
-      <guid isPermaLink="true">https://myaiplug.github.io/coproducer-web/blog/clean-version-of-a-song-mute-reverse-or-replace.html</guid>
+      <link>https://coproducer.nodawlabs.com/blog/clean-version-of-a-song-mute-reverse-or-replace.html</link>
+      <guid isPermaLink="true">https://coproducer.nodawlabs.com/blog/clean-version-of-a-song-mute-reverse-or-replace.html</guid>
       <pubDate>Fri, 23 Oct 2026 16:00:00 GMT</pubDate>
       <description>How to make a clean version of a song: mute, reverse or replace the words on the vocal tracks, chase the reverb and delay tails, bounce through the same master at the same length, then compare it to the explicit. Script inside.</description>
-      <enclosure url="https://myaiplug.github.io/coproducer-web/blog/img/essays/clean-version-of-a-song-mute-reverse-or-replace.jpg?v=shd" type="image/jpeg" length="391686"/>
+      <enclosure url="https://coproducer.nodawlabs.com/blog/img/essays/clean-version-of-a-song-mute-reverse-or-replace.jpg?v=shd" type="image/jpeg" length="391686"/>
     </item>
     <item>
       <title>Panned parts get quieter in mono? That’s your pan law, not your ears</title>
-      <link>https://myaiplug.github.io/coproducer-web/blog/pan-law-why-panned-parts-change-level.html</link>
-      <guid isPermaLink="true">https://myaiplug.github.io/coproducer-web/blog/pan-law-why-panned-parts-change-level.html</guid>
+      <link>https://coproducer.nodawlabs.com/blog/pan-law-why-panned-parts-change-level.html</link>
+      <guid isPermaLink="true">https://coproducer.nodawlabs.com/blog/pan-law-why-panned-parts-change-level.html</guid>
       <pubDate>Thu, 22 Oct 2026 16:00:00 GMT</pubDate>
       <description>What pan law is and why it matters: a centered sound is turned down on both sides so panning doesn’t change its loudness. Fold to mono and the center jumps up to 3 dB. Table and script inside.</description>
-      <enclosure url="https://myaiplug.github.io/coproducer-web/blog/img/essays/pan-law-why-panned-parts-change-level.jpg?v=shd" type="image/jpeg" length="289593"/>
+      <enclosure url="https://coproducer.nodawlabs.com/blog/img/essays/pan-law-why-panned-parts-change-level.jpg?v=shd" type="image/jpeg" length="289593"/>
     </item>
     <item>
       <title>Loud breaths in your vocal? Turn them down before the compressor, don’t cut them</title>
-      <link>https://myaiplug.github.io/coproducer-web/blog/vocal-breaths-turn-them-down-dont-cut-them.html</link>
-      <guid isPermaLink="true">https://myaiplug.github.io/coproducer-web/blog/vocal-breaths-turn-them-down-dont-cut-them.html</guid>
+      <link>https://coproducer.nodawlabs.com/blog/vocal-breaths-turn-them-down-dont-cut-them.html</link>
+      <guid isPermaLink="true">https://coproducer.nodawlabs.com/blog/vocal-breaths-turn-them-down-dont-cut-them.html</guid>
       <pubDate>Thu, 22 Oct 2026 16:00:00 GMT</pubDate>
       <description>How to handle breaths in a vocal: lower them with clip gain before compression instead of deleting them. A compressor with make-up gain can shrink the gap between singing and breath from 12 dB to 3 dB.</description>
-      <enclosure url="https://myaiplug.github.io/coproducer-web/blog/img/essays/vocal-breaths-turn-them-down-dont-cut-them.jpg?v=shd" type="image/jpeg" length="361354"/>
+      <enclosure url="https://coproducer.nodawlabs.com/blog/img/essays/vocal-breaths-turn-them-down-dont-cut-them.jpg?v=shd" type="image/jpeg" length="361354"/>
     </item>
     <item>
       <title>Your delay sounds off the beat? Set it from the tempo, not by ear</title>
-      <link>https://myaiplug.github.io/coproducer-web/blog/delay-time-from-bpm-sync-your-throws.html</link>
-      <guid isPermaLink="true">https://myaiplug.github.io/coproducer-web/blog/delay-time-from-bpm-sync-your-throws.html</guid>
+      <link>https://coproducer.nodawlabs.com/blog/delay-time-from-bpm-sync-your-throws.html</link>
+      <guid isPermaLink="true">https://coproducer.nodawlabs.com/blog/delay-time-from-bpm-sync-your-throws.html</guid>
       <pubDate>Wed, 21 Oct 2026 16:00:00 GMT</pubDate>
       <description>How to calculate delay time from BPM: 60,000 ÷ BPM is a quarter note in ms. Straight, dotted and triplet times, grid-locked pre-delay, and why &#x27;close enough&#x27; drifts.</description>
-      <enclosure url="https://myaiplug.github.io/coproducer-web/blog/img/essays/delay-time-from-bpm-sync-your-throws.jpg?v=shd" type="image/jpeg" length="326867"/>
+      <enclosure url="https://coproducer.nodawlabs.com/blog/img/essays/delay-time-from-bpm-sync-your-throws.jpg?v=shd" type="image/jpeg" length="326867"/>
     </item>
     <item>
       <title>Clicks at your edit points come from cutting mid-wave. Fade every cut</title>
-      <link>https://myaiplug.github.io/coproducer-web/blog/clicks-at-edit-points-fade-every-cut.html</link>
-      <guid isPermaLink="true">https://myaiplug.github.io/coproducer-web/blog/clicks-at-edit-points-fade-every-cut.html</guid>
+      <link>https://coproducer.nodawlabs.com/blog/clicks-at-edit-points-fade-every-cut.html</link>
+      <guid isPermaLink="true">https://coproducer.nodawlabs.com/blog/clicks-at-edit-points-fade-every-cut.html</guid>
       <pubDate>Wed, 21 Oct 2026 16:00:00 GMT</pubDate>
       <description>Why audio edits click and pop: a cut or splice that lands mid-waveform makes an instant jump. A 5 ms fade or crossfade removes it. Includes a click-finder script.</description>
-      <enclosure url="https://myaiplug.github.io/coproducer-web/blog/img/essays/clicks-at-edit-points-fade-every-cut.jpg?v=shd" type="image/jpeg" length="340571"/>
+      <enclosure url="https://coproducer.nodawlabs.com/blog/img/essays/clicks-at-edit-points-fade-every-cut.jpg?v=shd" type="image/jpeg" length="340571"/>
     </item>
     <item>
       <title>Sending stems to a mixer? Export them so they line up and add back up</title>
-      <link>https://myaiplug.github.io/coproducer-web/blog/export-stems-for-a-mix-engineer.html</link>
-      <guid isPermaLink="true">https://myaiplug.github.io/coproducer-web/blog/export-stems-for-a-mix-engineer.html</guid>
+      <link>https://coproducer.nodawlabs.com/blog/export-stems-for-a-mix-engineer.html</link>
+      <guid isPermaLink="true">https://coproducer.nodawlabs.com/blog/export-stems-for-a-mix-engineer.html</guid>
       <pubDate>Tue, 20 Oct 2026 16:00:00 GMT</pubDate>
       <description>How to export stems for a mixing engineer: same start, same length, one sample rate, no mix-bus chain, and a null test against your rough before you send the link.</description>
-      <enclosure url="https://myaiplug.github.io/coproducer-web/blog/img/essays/export-stems-for-a-mix-engineer.jpg?v=shd" type="image/jpeg" length="406670"/>
+      <enclosure url="https://coproducer.nodawlabs.com/blog/img/essays/export-stems-for-a-mix-engineer.jpg?v=shd" type="image/jpeg" length="406670"/>
     </item>
     <item>
       <title>Your mix sounds better loud and thinner quiet. Pick one monitoring level</title>
-      <link>https://myaiplug.github.io/coproducer-web/blog/mix-sounds-better-louder-pick-one-monitor-level.html</link>
-      <guid isPermaLink="true">https://myaiplug.github.io/coproducer-web/blog/mix-sounds-better-louder-pick-one-monitor-level.html</guid>
+      <link>https://coproducer.nodawlabs.com/blog/mix-sounds-better-louder-pick-one-monitor-level.html</link>
+      <guid isPermaLink="true">https://coproducer.nodawlabs.com/blog/mix-sounds-better-louder-pick-one-monitor-level.html</guid>
       <pubDate>Tue, 20 Oct 2026 16:00:00 GMT</pubDate>
       <description>Why your mix changes with the volume knob: equal-loudness, and louder always winning the A/B. Calibrate one listening level, level-match, then check loud and quiet.</description>
-      <enclosure url="https://myaiplug.github.io/coproducer-web/blog/img/essays/mix-sounds-better-louder-pick-one-monitor-level.jpg?v=shd" type="image/jpeg" length="348149"/>
+      <enclosure url="https://coproducer.nodawlabs.com/blog/img/essays/mix-sounds-better-louder-pick-one-monitor-level.jpg?v=shd" type="image/jpeg" length="348149"/>
     </item>
     <item>
       <title>Reverb making the mix muddy? Filter the return, not the vocal</title>
-      <link>https://myaiplug.github.io/coproducer-web/blog/reverb-makes-the-mix-muddy-filter-the-return.html</link>
-      <guid isPermaLink="true">https://myaiplug.github.io/coproducer-web/blog/reverb-makes-the-mix-muddy-filter-the-return.html</guid>
+      <link>https://coproducer.nodawlabs.com/blog/reverb-makes-the-mix-muddy-filter-the-return.html</link>
+      <guid isPermaLink="true">https://coproducer.nodawlabs.com/blog/reverb-makes-the-mix-muddy-filter-the-return.html</guid>
       <pubDate>Mon, 19 Oct 2026 16:00:00 GMT</pubDate>
       <description>Reverb muddying the mix? Most of a return’s energy sits in low-mids you don’t hear as space. High-pass the return, add pre-delay, duck it and time the decay.</description>
-      <enclosure url="https://myaiplug.github.io/coproducer-web/blog/img/essays/reverb-makes-the-mix-muddy-filter-the-return.jpg?v=shd" type="image/jpeg" length="720317"/>
+      <enclosure url="https://coproducer.nodawlabs.com/blog/img/essays/reverb-makes-the-mix-muddy-filter-the-return.jpg?v=shd" type="image/jpeg" length="720317"/>
     </item>
     <item>
       <title>Your low end changes when you move your chair. That’s the room, not the mix</title>
-      <link>https://myaiplug.github.io/coproducer-web/blog/low-end-changes-when-you-move-your-chair.html</link>
-      <guid isPermaLink="true">https://myaiplug.github.io/coproducer-web/blog/low-end-changes-when-you-move-your-chair.html</guid>
+      <link>https://coproducer.nodawlabs.com/blog/low-end-changes-when-you-move-your-chair.html</link>
+      <guid isPermaLink="true">https://coproducer.nodawlabs.com/blog/low-end-changes-when-you-move-your-chair.html</guid>
       <pubDate>Mon, 19 Oct 2026 16:00:00 GMT</pubDate>
       <description>Bass booms in one spot and vanishes a foot away? That’s room modes. Work out your room’s modes, find a better seat and check low end without treatment.</description>
-      <enclosure url="https://myaiplug.github.io/coproducer-web/blog/img/essays/low-end-changes-when-you-move-your-chair.jpg?v=shd" type="image/jpeg" length="591316"/>
+      <enclosure url="https://coproducer.nodawlabs.com/blog/img/essays/low-end-changes-when-you-move-your-chair.jpg?v=shd" type="image/jpeg" length="591316"/>
     </item>
     <item>
       <title>Parallel compression sounds thin? Check the latency first</title>
-      <link>https://myaiplug.github.io/coproducer-web/blog/parallel-compression-sounds-thin-check-latency.html</link>
-      <guid isPermaLink="true">https://myaiplug.github.io/coproducer-web/blog/parallel-compression-sounds-thin-check-latency.html</guid>
+      <link>https://coproducer.nodawlabs.com/blog/parallel-compression-sounds-thin-check-latency.html</link>
+      <guid isPermaLink="true">https://coproducer.nodawlabs.com/blog/parallel-compression-sounds-thin-check-latency.html</guid>
       <pubDate>Fri, 16 Oct 2026 16:00:00 GMT</pubDate>
       <description>Parallel compression making drums or vocals thinner? The parallel bus is probably arriving late. Find the offset, fix the timing, then dial it in.</description>
-      <enclosure url="https://myaiplug.github.io/coproducer-web/blog/img/essays/parallel-compression-sounds-thin-check-latency.jpg?v=shd" type="image/jpeg" length="956721"/>
+      <enclosure url="https://coproducer.nodawlabs.com/blog/img/essays/parallel-compression-sounds-thin-check-latency.jpg?v=shd" type="image/jpeg" length="956721"/>
     </item>
     <item>
       <title>Why your gapless album gets gaps after MP3 or AAC</title>
-      <link>https://myaiplug.github.io/coproducer-web/blog/gapless-album-gaps-after-mp3-or-aac.html</link>
-      <guid isPermaLink="true">https://myaiplug.github.io/coproducer-web/blog/gapless-album-gaps-after-mp3-or-aac.html</guid>
+      <link>https://coproducer.nodawlabs.com/blog/gapless-album-gaps-after-mp3-or-aac.html</link>
+      <guid isPermaLink="true">https://coproducer.nodawlabs.com/blog/gapless-album-gaps-after-mp3-or-aac.html</guid>
       <pubDate>Fri, 16 Oct 2026 16:00:00 GMT</pubDate>
       <description>MP3 and AAC encoders add silence at the start and padding at the end of every file. Why segues break, what we measured, and how to stay seamless.</description>
-      <enclosure url="https://myaiplug.github.io/coproducer-web/blog/img/essays/gapless-album-gaps-after-mp3-or-aac.jpg?v=shd" type="image/jpeg" length="1097354"/>
+      <enclosure url="https://coproducer.nodawlabs.com/blog/img/essays/gapless-album-gaps-after-mp3-or-aac.jpg?v=shd" type="image/jpeg" length="1097354"/>
     </item>
     <item>
       <title>Why your 808 disappears on phone speakers</title>
-      <link>https://myaiplug.github.io/coproducer-web/blog/808-disappears-on-phone-speakers.html</link>
-      <guid isPermaLink="true">https://myaiplug.github.io/coproducer-web/blog/808-disappears-on-phone-speakers.html</guid>
+      <link>https://coproducer.nodawlabs.com/blog/808-disappears-on-phone-speakers.html</link>
+      <guid isPermaLink="true">https://coproducer.nodawlabs.com/blog/808-disappears-on-phone-speakers.html</guid>
       <pubDate>Thu, 15 Oct 2026 16:00:00 GMT</pubDate>
       <description>Phone speakers barely play below 200–300 Hz, so a clean 808 vanishes. Add a parallel harmonic layer, then check it through a phone filter.</description>
-      <enclosure url="https://myaiplug.github.io/coproducer-web/blog/img/essays/808-disappears-on-phone-speakers.jpg?v=shd" type="image/jpeg" length="890946"/>
+      <enclosure url="https://coproducer.nodawlabs.com/blog/img/essays/808-disappears-on-phone-speakers.jpg?v=shd" type="image/jpeg" length="890946"/>
     </item>
     <item>
       <title>How much headroom to leave for mastering (and why −6 dB isn’t the point)</title>
-      <link>https://myaiplug.github.io/coproducer-web/blog/how-much-headroom-to-leave-for-mastering.html</link>
-      <guid isPermaLink="true">https://myaiplug.github.io/coproducer-web/blog/how-much-headroom-to-leave-for-mastering.html</guid>
+      <link>https://coproducer.nodawlabs.com/blog/how-much-headroom-to-leave-for-mastering.html</link>
+      <guid isPermaLink="true">https://coproducer.nodawlabs.com/blog/how-much-headroom-to-leave-for-mastering.html</guid>
       <pubDate>Thu, 15 Oct 2026 16:00:00 GMT</pubDate>
       <description>Headroom for mastering means no clipping and no mix-bus limiter. Peaks near −6 to −3 dBFS in 24-bit or float is convention; clipping can’t be undone.</description>
-      <enclosure url="https://myaiplug.github.io/coproducer-web/blog/img/essays/how-much-headroom-to-leave-for-mastering.jpg?v=shd" type="image/jpeg" length="1354322"/>
+      <enclosure url="https://coproducer.nodawlabs.com/blog/img/essays/how-much-headroom-to-leave-for-mastering.jpg?v=shd" type="image/jpeg" length="1354322"/>
     </item>
     <item>
       <title>Integrated LUFS hides how loud the chorus actually is</title>
-      <link>https://myaiplug.github.io/coproducer-web/blog/integrated-lufs-hides-the-chorus.html</link>
-      <guid isPermaLink="true">https://myaiplug.github.io/coproducer-web/blog/integrated-lufs-hides-the-chorus.html</guid>
+      <link>https://coproducer.nodawlabs.com/blog/integrated-lufs-hides-the-chorus.html</link>
+      <guid isPermaLink="true">https://coproducer.nodawlabs.com/blog/integrated-lufs-hides-the-chorus.html</guid>
       <pubDate>Wed, 14 Oct 2026 16:00:00 GMT</pubDate>
       <description>A master can read −14 LUFS integrated while its chorus runs 3–4 LU hotter. Measure integrated, short-term and momentary on one bounce first.</description>
-      <enclosure url="https://myaiplug.github.io/coproducer-web/blog/img/essays/integrated-lufs-hides-the-chorus.jpg?v=shd" type="image/jpeg" length="410133"/>
+      <enclosure url="https://coproducer.nodawlabs.com/blog/img/essays/integrated-lufs-hides-the-chorus.jpg?v=shd" type="image/jpeg" length="410133"/>
     </item>
     <item>
       <title>Don’t match a streamed reference</title>
-      <link>https://myaiplug.github.io/coproducer-web/blog/dont-match-a-streamed-reference.html</link>
-      <guid isPermaLink="true">https://myaiplug.github.io/coproducer-web/blog/dont-match-a-streamed-reference.html</guid>
+      <link>https://coproducer.nodawlabs.com/blog/dont-match-a-streamed-reference.html</link>
+      <guid isPermaLink="true">https://coproducer.nodawlabs.com/blog/dont-match-a-streamed-reference.html</guid>
       <pubDate>Wed, 14 Oct 2026 16:00:00 GMT</pubDate>
       <description>A streamed reference was already turned down or up by the platform. Match it and you inherit an offset you never measured. Compare lossless files.</description>
-      <enclosure url="https://myaiplug.github.io/coproducer-web/blog/img/essays/dont-match-a-streamed-reference.jpg?v=shd" type="image/jpeg" length="685144"/>
+      <enclosure url="https://coproducer.nodawlabs.com/blog/img/essays/dont-match-a-streamed-reference.jpg?v=shd" type="image/jpeg" length="685144"/>
     </item>
     <item>
       <title>Short-term LUFS is not your target</title>
-      <link>https://myaiplug.github.io/coproducer-web/blog/short-term-lufs-is-not-your-target.html</link>
-      <guid isPermaLink="true">https://myaiplug.github.io/coproducer-web/blog/short-term-lufs-is-not-your-target.html</guid>
+      <link>https://coproducer.nodawlabs.com/blog/short-term-lufs-is-not-your-target.html</link>
+      <guid isPermaLink="true">https://coproducer.nodawlabs.com/blog/short-term-lufs-is-not-your-target.html</guid>
       <pubDate>Mon, 12 Oct 2026 16:00:00 GMT</pubDate>
       <description>Stores use integrated LUFS over the whole file. A hook at −9 short-term can still miss −14 integrated. Read both meters, then decide.</description>
-      <enclosure url="https://myaiplug.github.io/coproducer-web/blog/img/essays/short-term-lufs-is-not-your-target.jpg?v=shd" type="image/jpeg" length="502626"/>
+      <enclosure url="https://coproducer.nodawlabs.com/blog/img/essays/short-term-lufs-is-not-your-target.jpg?v=shd" type="image/jpeg" length="502626"/>
     </item>
     <item>
       <title>Turn the mix down before you limit</title>
-      <link>https://myaiplug.github.io/coproducer-web/blog/turn-the-mix-down-before-you-limit.html</link>
-      <guid isPermaLink="true">https://myaiplug.github.io/coproducer-web/blog/turn-the-mix-down-before-you-limit.html</guid>
+      <link>https://coproducer.nodawlabs.com/blog/turn-the-mix-down-before-you-limit.html</link>
+      <guid isPermaLink="true">https://coproducer.nodawlabs.com/blog/turn-the-mix-down-before-you-limit.html</guid>
       <pubDate>Mon, 12 Oct 2026 16:00:00 GMT</pubDate>
       <description>If the mix already hits 0 dBFS into the limiter, extra loudness is distortion you can’t take back. Pull the bus down 3–6 dB, then limit.</description>
-      <enclosure url="https://myaiplug.github.io/coproducer-web/blog/img/essays/turn-the-mix-down-before-you-limit.jpg?v=shd" type="image/jpeg" length="675745"/>
+      <enclosure url="https://coproducer.nodawlabs.com/blog/img/essays/turn-the-mix-down-before-you-limit.jpg?v=shd" type="image/jpeg" length="675745"/>
     </item>
     <item>
       <title>What 432 Hz actually changes in a finished master</title>
-      <link>https://myaiplug.github.io/coproducer-web/blog/what-432-hz-actually-changes-in-a-master.html</link>
-      <guid isPermaLink="true">https://myaiplug.github.io/coproducer-web/blog/what-432-hz-actually-changes-in-a-master.html</guid>
+      <link>https://coproducer.nodawlabs.com/blog/what-432-hz-actually-changes-in-a-master.html</link>
+      <guid isPermaLink="true">https://coproducer.nodawlabs.com/blog/what-432-hz-actually-changes-in-a-master.html</guid>
       <pubDate>Thu, 08 Oct 2026 16:00:00 GMT</pubDate>
       <description>Retuning a master from 440 to 432 Hz scales every frequency by 0.981818 (−31.77 cents) and, with resampling, adds 1.85% length. Measured on real renders.</description>
-      <enclosure url="https://myaiplug.github.io/coproducer-web/blog/img/essays/what-432-hz-actually-changes-in-a-master.jpg?v=r432" type="image/jpeg" length="409764"/>
+      <enclosure url="https://coproducer.nodawlabs.com/blog/img/essays/what-432-hz-actually-changes-in-a-master.jpg?v=r432" type="image/jpeg" length="409764"/>
     </item>
     <item>
       <title>Resampling, pitch shifting, and tempo change are three different jobs</title>
-      <link>https://myaiplug.github.io/coproducer-web/blog/resampling-vs-pitch-shift-vs-tempo.html</link>
-      <guid isPermaLink="true">https://myaiplug.github.io/coproducer-web/blog/resampling-vs-pitch-shift-vs-tempo.html</guid>
+      <link>https://coproducer.nodawlabs.com/blog/resampling-vs-pitch-shift-vs-tempo.html</link>
+      <guid isPermaLink="true">https://coproducer.nodawlabs.com/blog/resampling-vs-pitch-shift-vs-tempo.html</guid>
       <pubDate>Thu, 08 Oct 2026 16:00:00 GMT</pubDate>
       <description>Resampling moves pitch and time together, pitch shifting rebuilds time, tempo change keeps pitch. Seven FFmpeg renders measured for pitch, BPM, and smearing.</description>
-      <enclosure url="https://myaiplug.github.io/coproducer-web/blog/img/essays/resampling-vs-pitch-shift-vs-tempo.jpg?v=r432" type="image/jpeg" length="480024"/>
+      <enclosure url="https://coproducer.nodawlabs.com/blog/img/essays/resampling-vs-pitch-shift-vs-tempo.jpg?v=r432" type="image/jpeg" length="480024"/>
     </item>
     <item>
       <title>Concert pitch before A=440: a history that never stood still</title>
-      <link>https://myaiplug.github.io/coproducer-web/blog/concert-pitch-history-before-a440.html</link>
-      <guid isPermaLink="true">https://myaiplug.github.io/coproducer-web/blog/concert-pitch-history-before-a440.html</guid>
+      <link>https://coproducer.nodawlabs.com/blog/concert-pitch-history-before-a440.html</link>
+      <guid isPermaLink="true">https://coproducer.nodawlabs.com/blog/concert-pitch-history-before-a440.html</guid>
       <pubDate>Thu, 08 Oct 2026 16:00:00 GMT</pubDate>
       <description>Before A=440, concert pitch ran from about 415 to 457 Hz. The dated record from Shore's 1711 fork to ISO 16, the temperature fights, and the 432 math.</description>
-      <enclosure url="https://myaiplug.github.io/coproducer-web/blog/img/essays/concert-pitch-history-before-a440.jpg?v=r432" type="image/jpeg" length="597602"/>
+      <enclosure url="https://coproducer.nodawlabs.com/blog/img/essays/concert-pitch-history-before-a440.jpg?v=r432" type="image/jpeg" length="597602"/>
     </item>
     <item>
       <title>The 432 Hz conspiracy theories, checked against the record</title>
-      <link>https://myaiplug.github.io/coproducer-web/blog/432-hz-conspiracy-theories-fact-check.html</link>
-      <guid isPermaLink="true">https://myaiplug.github.io/coproducer-web/blog/432-hz-conspiracy-theories-fact-check.html</guid>
+      <link>https://coproducer.nodawlabs.com/blog/432-hz-conspiracy-theories-fact-check.html</link>
+      <guid isPermaLink="true">https://coproducer.nodawlabs.com/blog/432-hz-conspiracy-theories-fact-check.html</guid>
       <pubDate>Thu, 08 Oct 2026 16:00:00 GMT</pubDate>
       <description>Did the Nazis or the Rockefellers change music from 432 to 440 Hz? Where each 432 rumor started, what the dated record shows, and how to read health studies.</description>
-      <enclosure url="https://myaiplug.github.io/coproducer-web/blog/img/essays/432-hz-conspiracy-theories-fact-check.jpg?v=r432" type="image/jpeg" length="389349"/>
+      <enclosure url="https://coproducer.nodawlabs.com/blog/img/essays/432-hz-conspiracy-theories-fact-check.jpg?v=r432" type="image/jpeg" length="389349"/>
     </item>
     <item>
       <title>How to run a 432 vs 440 listening test you can trust</title>
-      <link>https://myaiplug.github.io/coproducer-web/blog/432-vs-440-blind-listening-test.html</link>
-      <guid isPermaLink="true">https://myaiplug.github.io/coproducer-web/blog/432-vs-440-blind-listening-test.html</guid>
+      <link>https://coproducer.nodawlabs.com/blog/432-vs-440-blind-listening-test.html</link>
+      <guid isPermaLink="true">https://coproducer.nodawlabs.com/blog/432-vs-440-blind-listening-test.html</guid>
       <pubDate>Thu, 08 Oct 2026 16:00:00 GMT</pubDate>
       <description>432 Hz vs 440 Hz, tested fairly: level-match within 0.1 LU, switch at the same note, run a blind ABX round, and score it so placebo and loudness can't win.</description>
-      <enclosure url="https://myaiplug.github.io/coproducer-web/blog/img/essays/432-vs-440-blind-listening-test.jpg?v=r432" type="image/jpeg" length="352923"/>
+      <enclosure url="https://coproducer.nodawlabs.com/blog/img/essays/432-vs-440-blind-listening-test.jpg?v=r432" type="image/jpeg" length="352923"/>
     </item>
     <item>
       <title>Which songs reveal a 432 Hz retune, and which hide it</title>
-      <link>https://myaiplug.github.io/coproducer-web/blog/songs-that-reveal-a-432-hz-retune.html</link>
-      <guid isPermaLink="true">https://myaiplug.github.io/coproducer-web/blog/songs-that-reveal-a-432-hz-retune.html</guid>
+      <link>https://coproducer.nodawlabs.com/blog/songs-that-reveal-a-432-hz-retune.html</link>
+      <guid isPermaLink="true">https://coproducer.nodawlabs.com/blog/songs-that-reveal-a-432-hz-retune.html</guid>
       <pubDate>Thu, 08 Oct 2026 16:00:00 GMT</pubDate>
       <description>The best songs to test 432 Hz have exposed vocals, sustained chords and piano tails. Dense mixes and drums hide it. A measured way to build a test set.</description>
-      <enclosure url="https://myaiplug.github.io/coproducer-web/blog/img/essays/songs-that-reveal-a-432-hz-retune.jpg?v=r432" type="image/jpeg" length="396193"/>
+      <enclosure url="https://coproducer.nodawlabs.com/blog/img/essays/songs-that-reveal-a-432-hz-retune.jpg?v=r432" type="image/jpeg" length="396193"/>
     </item>
     <item>
       <title>432 Hz mastering: LUFS and true peak after a retune</title>
-      <link>https://myaiplug.github.io/coproducer-web/blog/lufs-and-true-peak-after-432-retune.html</link>
-      <guid isPermaLink="true">https://myaiplug.github.io/coproducer-web/blog/lufs-and-true-peak-after-432-retune.html</guid>
+      <link>https://coproducer.nodawlabs.com/blog/lufs-and-true-peak-after-432-retune.html</link>
+      <guid isPermaLink="true">https://coproducer.nodawlabs.com/blog/lufs-and-true-peak-after-432-retune.html</guid>
       <pubDate>Thu, 08 Oct 2026 16:00:00 GMT</pubDate>
       <description>A 432 retune barely moves LUFS, but resampling can turn hidden inter-sample peaks into real overs. Render in float, measure, then normalize in two passes.</description>
-      <enclosure url="https://myaiplug.github.io/coproducer-web/blog/img/essays/lufs-and-true-peak-after-432-retune.jpg?v=r432" type="image/jpeg" length="385801"/>
+      <enclosure url="https://coproducer.nodawlabs.com/blog/img/essays/lufs-and-true-peak-after-432-retune.jpg?v=r432" type="image/jpeg" length="385801"/>
     </item>
     <item>
       <title>A 432 alternate master should never cost you the original</title>
-      <link>https://myaiplug.github.io/coproducer-web/blog/how-to-make-a-432-hz-alternate-master.html</link>
-      <guid isPermaLink="true">https://myaiplug.github.io/coproducer-web/blog/how-to-make-a-432-hz-alternate-master.html</guid>
+      <link>https://coproducer.nodawlabs.com/blog/how-to-make-a-432-hz-alternate-master.html</link>
+      <guid isPermaLink="true">https://coproducer.nodawlabs.com/blog/how-to-make-a-432-hz-alternate-master.html</guid>
       <pubDate>Thu, 08 Oct 2026 16:00:00 GMT</pubDate>
       <description>Build a 432 Hz alternate master beside the approved 440 file: read-only source, exact-ratio render, names, notes, runtime and ISRC checks, and full-file QC.</description>
-      <enclosure url="https://myaiplug.github.io/coproducer-web/blog/img/essays/how-to-make-a-432-hz-alternate-master.jpg?v=r432" type="image/jpeg" length="411789"/>
+      <enclosure url="https://coproducer.nodawlabs.com/blog/img/essays/how-to-make-a-432-hz-alternate-master.jpg?v=r432" type="image/jpeg" length="411789"/>
     </item>
     <item>
       <title>Batch retune a folder to 432 Hz without damaging a master</title>
-      <link>https://myaiplug.github.io/coproducer-web/blog/batch-retune-a-folder-to-432-hz-safely.html</link>
-      <guid isPermaLink="true">https://myaiplug.github.io/coproducer-web/blog/batch-retune-a-folder-to-432-hz-safely.html</guid>
+      <link>https://coproducer.nodawlabs.com/blog/batch-retune-a-folder-to-432-hz-safely.html</link>
+      <guid isPermaLink="true">https://coproducer.nodawlabs.com/blog/batch-retune-a-folder-to-432-hz-safely.html</guid>
       <pubDate>Thu, 08 Oct 2026 16:00:00 GMT</pubDate>
       <description>A safe batch workflow for retuning a folder to 432 Hz: preflight, read-only inputs, temp-file renders, exact per-source ratios, error logs, restartable runs.</description>
-      <enclosure url="https://myaiplug.github.io/coproducer-web/blog/img/essays/batch-retune-a-folder-to-432-hz-safely.jpg?v=r432" type="image/jpeg" length="358473"/>
+      <enclosure url="https://coproducer.nodawlabs.com/blog/img/essays/batch-retune-a-folder-to-432-hz-safely.jpg?v=r432" type="image/jpeg" length="358473"/>
     </item>
     <item>
       <title>432, 435, 442 and the reference pitch you actually started from</title>
-      <link>https://myaiplug.github.io/coproducer-web/blog/432-vs-435-vs-442-hz-reference-pitch-guide.html</link>
-      <guid isPermaLink="true">https://myaiplug.github.io/coproducer-web/blog/432-vs-435-vs-442-hz-reference-pitch-guide.html</guid>
+      <link>https://coproducer.nodawlabs.com/blog/432-vs-435-vs-442-hz-reference-pitch-guide.html</link>
+      <guid isPermaLink="true">https://coproducer.nodawlabs.com/blog/432-vs-435-vs-442-hz-reference-pitch-guide.html</guid>
       <pubDate>Thu, 08 Oct 2026 16:00:00 GMT</pubDate>
       <description>432, 435, 438, 442, and custom A4 references compared: exact ratios, cents, runtime and BPM changes, documented history, and why the source reference matters.</description>
-      <enclosure url="https://myaiplug.github.io/coproducer-web/blog/img/essays/432-vs-435-vs-442-hz-reference-pitch-guide.jpg?v=r432" type="image/jpeg" length="457837"/>
+      <enclosure url="https://coproducer.nodawlabs.com/blog/img/essays/432-vs-435-vs-442-hz-reference-pitch-guide.jpg?v=r432" type="image/jpeg" length="457837"/>
     </item>
     <item>
       <title>Keeping an unreleased master on your own machine, honestly</title>
-      <link>https://myaiplug.github.io/coproducer-web/blog/local-audio-processing-for-unreleased-masters.html</link>
-      <guid isPermaLink="true">https://myaiplug.github.io/coproducer-web/blog/local-audio-processing-for-unreleased-masters.html</guid>
+      <link>https://coproducer.nodawlabs.com/blog/local-audio-processing-for-unreleased-masters.html</link>
+      <guid isPermaLink="true">https://coproducer.nodawlabs.com/blog/local-audio-processing-for-unreleased-masters.html</guid>
       <pubDate>Thu, 08 Oct 2026 16:00:00 GMT</pubDate>
       <description>What browser-local and offline audio processing protect for unreleased music, what they don't, the metadata that leaks anyway, and privacy claims to defend.</description>
-      <enclosure url="https://myaiplug.github.io/coproducer-web/blog/img/essays/local-audio-processing-for-unreleased-masters.jpg?v=r432" type="image/jpeg" length="523382"/>
+      <enclosure url="https://coproducer.nodawlabs.com/blog/img/essays/local-audio-processing-for-unreleased-masters.jpg?v=r432" type="image/jpeg" length="523382"/>
     </item>
     <item>
       <title>Before a 432 version ships: the release checklist</title>
-      <link>https://myaiplug.github.io/coproducer-web/blog/432-hz-release-checklist.html</link>
-      <guid isPermaLink="true">https://myaiplug.github.io/coproducer-web/blog/432-hz-release-checklist.html</guid>
+      <link>https://coproducer.nodawlabs.com/blog/432-hz-release-checklist.html</link>
+      <guid isPermaLink="true">https://coproducer.nodawlabs.com/blog/432-hz-release-checklist.html</guid>
       <pubDate>Thu, 08 Oct 2026 16:00:00 GMT</pubDate>
       <description>Before releasing a 432 Hz version: rights, the right source reference, a QC gate for clipping and true peak, runtime fixes, honest copy, an archive.</description>
-      <enclosure url="https://myaiplug.github.io/coproducer-web/blog/img/essays/432-hz-release-checklist.jpg?v=r432" type="image/jpeg" length="469086"/>
+      <enclosure url="https://coproducer.nodawlabs.com/blog/img/essays/432-hz-release-checklist.jpg?v=r432" type="image/jpeg" length="469086"/>
     </item>
     <item>
       <title>Splitting stems from YouTube audio you own starts with the cleanest copy</title>
-      <link>https://myaiplug.github.io/coproducer-web/blog/split-stems-from-youtube-audio-you-own.html</link>
-      <guid isPermaLink="true">https://myaiplug.github.io/coproducer-web/blog/split-stems-from-youtube-audio-you-own.html</guid>
+      <link>https://coproducer.nodawlabs.com/blog/split-stems-from-youtube-audio-you-own.html</link>
+      <guid isPermaLink="true">https://coproducer.nodawlabs.com/blog/split-stems-from-youtube-audio-you-own.html</guid>
       <pubDate>Thu, 08 Oct 2026 16:00:00 GMT</pubDate>
       <description>Want stems from a song you uploaded to YouTube? The copy you feed the separator sets the ceiling. Find the first-generation file, then split locally.</description>
-      <enclosure url="https://myaiplug.github.io/coproducer-web/blog/img/essays/split-stems-from-youtube-audio-you-own.jpg?v=r432" type="image/jpeg" length="379298"/>
+      <enclosure url="https://coproducer.nodawlabs.com/blog/img/essays/split-stems-from-youtube-audio-you-own.jpg?v=r432" type="image/jpeg" length="379298"/>
     </item>
     <item>
       <title>Demucs vs MDX-Net: what each separator gets wrong, and why</title>
-      <link>https://myaiplug.github.io/coproducer-web/blog/demucs-vs-mdx-net-stem-separation-compared.html</link>
-      <guid isPermaLink="true">https://myaiplug.github.io/coproducer-web/blog/demucs-vs-mdx-net-stem-separation-compared.html</guid>
+      <link>https://coproducer.nodawlabs.com/blog/demucs-vs-mdx-net-stem-separation-compared.html</link>
+      <guid isPermaLink="true">https://coproducer.nodawlabs.com/blog/demucs-vs-mdx-net-stem-separation-compared.html</guid>
       <pubDate>Thu, 08 Oct 2026 16:00:00 GMT</pubDate>
       <description>Demucs vs MDX-Net from the published benchmarks and a runnable window test: who wins drums and bass, who wins vocals, and how to hear it.</description>
-      <enclosure url="https://myaiplug.github.io/coproducer-web/blog/img/essays/demucs-vs-mdx-net-stem-separation-compared.jpg?v=r432" type="image/jpeg" length="362926"/>
+      <enclosure url="https://coproducer.nodawlabs.com/blog/img/essays/demucs-vs-mdx-net-stem-separation-compared.jpg?v=r432" type="image/jpeg" length="362926"/>
     </item>
     <item>
       <title>Before a cloud stem splitter gets your unreleased song, read four clauses</title>
-      <link>https://myaiplug.github.io/coproducer-web/blog/cloud-stem-splitter-privacy-unreleased-music.html</link>
-      <guid isPermaLink="true">https://myaiplug.github.io/coproducer-web/blog/cloud-stem-splitter-privacy-unreleased-music.html</guid>
+      <link>https://coproducer.nodawlabs.com/blog/cloud-stem-splitter-privacy-unreleased-music.html</link>
+      <guid isPermaLink="true">https://coproducer.nodawlabs.com/blog/cloud-stem-splitter-privacy-unreleased-music.html</guid>
       <pubDate>Thu, 08 Oct 2026 16:00:00 GMT</pubDate>
       <description>Uploading an unreleased track to a cloud stem splitter is a rights decision. Four terms clauses to read, and how to prove a split stays local.</description>
-      <enclosure url="https://myaiplug.github.io/coproducer-web/blog/img/essays/cloud-stem-splitter-privacy-unreleased-music.jpg?v=r432" type="image/jpeg" length="377896"/>
+      <enclosure url="https://coproducer.nodawlabs.com/blog/img/essays/cloud-stem-splitter-privacy-unreleased-music.jpg?v=r432" type="image/jpeg" length="377896"/>
     </item>
     <item>
       <title>Sampling from separated stems: chop around the bleed, not through it</title>
-      <link>https://myaiplug.github.io/coproducer-web/blog/sampling-from-separated-stems-workflow.html</link>
-      <guid isPermaLink="true">https://myaiplug.github.io/coproducer-web/blog/sampling-from-separated-stems-workflow.html</guid>
+      <link>https://coproducer.nodawlabs.com/blog/sampling-from-separated-stems-workflow.html</link>
+      <guid isPermaLink="true">https://coproducer.nodawlabs.com/blog/sampling-from-separated-stems-workflow.html</guid>
       <pubDate>Thu, 08 Oct 2026 16:00:00 GMT</pubDate>
       <description>A producer’s workflow for sampling from AI-separated stems: audit the bleed, restore the attack, null-test, match key, clear what you don’t own.</description>
-      <enclosure url="https://myaiplug.github.io/coproducer-web/blog/img/essays/sampling-from-separated-stems-workflow.jpg?v=r432" type="image/jpeg" length="368130"/>
+      <enclosure url="https://coproducer.nodawlabs.com/blog/img/essays/sampling-from-separated-stems-workflow.jpg?v=r432" type="image/jpeg" length="368130"/>
     </item>
     <item>
       <title>Rumble you can’t hear is eating your limiter</title>
-      <link>https://myaiplug.github.io/coproducer-web/blog/subsonic-rumble-steals-limiter-headroom.html</link>
-      <guid isPermaLink="true">https://myaiplug.github.io/coproducer-web/blog/subsonic-rumble-steals-limiter-headroom.html</guid>
+      <link>https://coproducer.nodawlabs.com/blog/subsonic-rumble-steals-limiter-headroom.html</link>
+      <guid isPermaLink="true">https://coproducer.nodawlabs.com/blog/subsonic-rumble-steals-limiter-headroom.html</guid>
       <pubDate>Wed, 07 Oct 2026 16:00:00 GMT</pubDate>
       <description>Subsonic rumble and DC offset barely move LUFS but still count toward peaks. Check under 20–30 Hz and filter gently before the limiter to win headroom back.</description>
-      <enclosure url="https://myaiplug.github.io/coproducer-web/blog/img/essays/subsonic-rumble-steals-limiter-headroom.jpg?v=shd" type="image/jpeg" length="305758"/>
+      <enclosure url="https://coproducer.nodawlabs.com/blog/img/essays/subsonic-rumble-steals-limiter-headroom.jpg?v=shd" type="image/jpeg" length="305758"/>
     </item>
     <item>
       <title>Your bus compressor is pumping on the 808. High-pass the sidechain</title>
-      <link>https://myaiplug.github.io/coproducer-web/blog/bus-compressor-pumps-on-the-808.html</link>
-      <guid isPermaLink="true">https://myaiplug.github.io/coproducer-web/blog/bus-compressor-pumps-on-the-808.html</guid>
+      <link>https://coproducer.nodawlabs.com/blog/bus-compressor-pumps-on-the-808.html</link>
+      <guid isPermaLink="true">https://coproducer.nodawlabs.com/blog/bus-compressor-pumps-on-the-808.html</guid>
       <pubDate>Wed, 07 Oct 2026 16:00:00 GMT</pubDate>
       <description>Hats and vocal air ducking on every 808 note means the low end is driving your bus compressor. A 60–150 Hz sidechain high-pass keeps the glue and stops the pump.</description>
-      <enclosure url="https://myaiplug.github.io/coproducer-web/blog/img/essays/bus-compressor-pumps-on-the-808.jpg?v=shd" type="image/jpeg" length="347357"/>
+      <enclosure url="https://coproducer.nodawlabs.com/blog/img/essays/bus-compressor-pumps-on-the-808.jpg?v=shd" type="image/jpeg" length="347357"/>
     </item>
     <item>
       <title>Wide mixes fail in mono. Check mid/side before you bounce</title>
-      <link>https://myaiplug.github.io/coproducer-web/blog/wide-mixes-fail-in-mono.html</link>
-      <guid isPermaLink="true">https://myaiplug.github.io/coproducer-web/blog/wide-mixes-fail-in-mono.html</guid>
+      <link>https://coproducer.nodawlabs.com/blog/wide-mixes-fail-in-mono.html</link>
+      <guid isPermaLink="true">https://coproducer.nodawlabs.com/blog/wide-mixes-fail-in-mono.html</guid>
       <pubDate>Tue, 06 Oct 2026 16:00:00 GMT</pubDate>
       <description>Stereo width that sounds huge on headphones can cancel on a phone. Measure mid/side balance, L/R correlation, and mono fold-down before you bounce.</description>
-      <enclosure url="https://myaiplug.github.io/coproducer-web/blog/img/essays/wide-mixes-fail-in-mono.jpg?v=shd" type="image/jpeg" length="482142"/>
+      <enclosure url="https://coproducer.nodawlabs.com/blog/img/essays/wide-mixes-fail-in-mono.jpg?v=shd" type="image/jpeg" length="482142"/>
     </item>
     <item>
       <title>Clipper vs limiter for hip-hop delivery — loudness isn’t the only score</title>
-      <link>https://myaiplug.github.io/coproducer-web/blog/clipper-vs-limiter-hip-hop-delivery.html</link>
-      <guid isPermaLink="true">https://myaiplug.github.io/coproducer-web/blog/clipper-vs-limiter-hip-hop-delivery.html</guid>
+      <link>https://coproducer.nodawlabs.com/blog/clipper-vs-limiter-hip-hop-delivery.html</link>
+      <guid isPermaLink="true">https://coproducer.nodawlabs.com/blog/clipper-vs-limiter-hip-hop-delivery.html</guid>
       <pubDate>Tue, 06 Oct 2026 16:00:00 GMT</pubDate>
       <description>Soft clipper vs brickwall limiter on the same drive: compare LUFS, true peak, and crest. Sample peak −1.0 dBFS is not true-peak safe.</description>
-      <enclosure url="https://myaiplug.github.io/coproducer-web/blog/img/essays/clipper-vs-limiter-hip-hop-delivery.jpg?v=shd" type="image/jpeg" length="441199"/>
+      <enclosure url="https://coproducer.nodawlabs.com/blog/img/essays/clipper-vs-limiter-hip-hop-delivery.jpg?v=shd" type="image/jpeg" length="441199"/>
     </item>
     <item>
       <title>Halftime still needs a legal peak</title>
-      <link>https://myaiplug.github.io/coproducer-web/blog/halftime-still-needs-a-legal-peak.html</link>
-      <guid isPermaLink="true">https://myaiplug.github.io/coproducer-web/blog/halftime-still-needs-a-legal-peak.html</guid>
+      <link>https://coproducer.nodawlabs.com/blog/halftime-still-needs-a-legal-peak.html</link>
+      <guid isPermaLink="true">https://coproducer.nodawlabs.com/blog/halftime-still-needs-a-legal-peak.html</guid>
       <pubDate>Tue, 06 Oct 2026 16:00:00 GMT</pubDate>
       <description>A half-time slowdown changes length and weight, not the true-peak ceiling. Meter the screwed file before it goes anywhere public.</description>
-      <enclosure url="https://myaiplug.github.io/coproducer-web/blog/img/essays/screw-tempo-still-needs-a-legal-peak.jpg?v=shd" type="image/jpeg" length="425362"/>
+      <enclosure url="https://coproducer.nodawlabs.com/blog/img/essays/screw-tempo-still-needs-a-legal-peak.jpg?v=shd" type="image/jpeg" length="425362"/>
     </item>
     <item>
       <title>When to slow the bounce</title>
-      <link>https://myaiplug.github.io/coproducer-web/blog/when-to-slow-the-bounce.html</link>
-      <guid isPermaLink="true">https://myaiplug.github.io/coproducer-web/blog/when-to-slow-the-bounce.html</guid>
+      <link>https://coproducer.nodawlabs.com/blog/when-to-slow-the-bounce.html</link>
+      <guid isPermaLink="true">https://coproducer.nodawlabs.com/blog/when-to-slow-the-bounce.html</guid>
       <pubDate>Tue, 06 Oct 2026 16:00:00 GMT</pubDate>
       <description>Slow the print when the record wants weight, not when the mix is unfinished. A halftime desk is for the bounce, then the meter.</description>
-      <enclosure url="https://myaiplug.github.io/coproducer-web/blog/img/essays/screw-tempo-still-needs-a-legal-peak.jpg?v=shd" type="image/jpeg" length="425362"/>
+      <enclosure url="https://coproducer.nodawlabs.com/blog/img/essays/screw-tempo-still-needs-a-legal-peak.jpg?v=shd" type="image/jpeg" length="425362"/>
     </item>
     <item>
       <title>The silence at the top of your bounce steals LUFS</title>
-      <link>https://myaiplug.github.io/coproducer-web/blog/leading-silence-steals-integrated-lufs.html</link>
-      <guid isPermaLink="true">https://myaiplug.github.io/coproducer-web/blog/leading-silence-steals-integrated-lufs.html</guid>
+      <link>https://coproducer.nodawlabs.com/blog/leading-silence-steals-integrated-lufs.html</link>
+      <guid isPermaLink="true">https://coproducer.nodawlabs.com/blog/leading-silence-steals-integrated-lufs.html</guid>
       <pubDate>Mon, 05 Oct 2026 00:00:00 GMT</pubDate>
       <description>Digital silence is gated out of integrated LUFS, but quiet intros, long fades and ungated meters still pull the number down. Trim the edges, then measure.</description>
-      <enclosure url="https://myaiplug.github.io/coproducer-web/blog/img/essays/leading-silence-steals-integrated-lufs.jpg?v=shd" type="image/jpeg" length="169979"/>
+      <enclosure url="https://coproducer.nodawlabs.com/blog/img/essays/leading-silence-steals-integrated-lufs.jpg?v=shd" type="image/jpeg" length="169979"/>
     </item>
     <item>
       <title>Your kick and 808 are arguing in the same chair</title>
-      <link>https://myaiplug.github.io/coproducer-web/blog/kick-and-808-same-chair.html</link>
-      <guid isPermaLink="true">https://myaiplug.github.io/coproducer-web/blog/kick-and-808-same-chair.html</guid>
+      <link>https://coproducer.nodawlabs.com/blog/kick-and-808-same-chair.html</link>
+      <guid isPermaLink="true">https://coproducer.nodawlabs.com/blog/kick-and-808-same-chair.html</guid>
       <pubDate>Mon, 05 Oct 2026 00:00:00 GMT</pubDate>
       <description>Kick and 808 fighting for 40–80 Hz? Decide who owns each hit with arrangement, carving or sidechain, then measure loudness so repair isn't hiding mud.</description>
-      <enclosure url="https://myaiplug.github.io/coproducer-web/blog/img/essays/kick-and-808-same-chair.jpg?v=shd" type="image/jpeg" length="235825"/>
+      <enclosure url="https://coproducer.nodawlabs.com/blog/img/essays/kick-and-808-same-chair.jpg?v=shd" type="image/jpeg" length="235825"/>
     </item>
     <item>
       <title>How loud should the vocal sit? Measure it against the beat</title>
-      <link>https://myaiplug.github.io/coproducer-web/blog/how-loud-should-the-vocal-sit.html</link>
-      <guid isPermaLink="true">https://myaiplug.github.io/coproducer-web/blog/how-loud-should-the-vocal-sit.html</guid>
+      <link>https://coproducer.nodawlabs.com/blog/how-loud-should-the-vocal-sit.html</link>
+      <guid isPermaLink="true">https://coproducer.nodawlabs.com/blog/how-loud-should-the-vocal-sit.html</guid>
       <pubDate>Tue, 06 Oct 2026 00:00:00 GMT</pubDate>
       <description>There’s no single right vocal level, but the vocal-to-beat loudness gap in LU is measurable. Match it to a reference, then fix only the buried bars.</description>
-      <enclosure url="https://myaiplug.github.io/coproducer-web/blog/img/essays/how-loud-should-the-vocal-sit.jpg?v=shd" type="image/jpeg" length="365432"/>
+      <enclosure url="https://coproducer.nodawlabs.com/blog/img/essays/how-loud-should-the-vocal-sit.jpg?v=shd" type="image/jpeg" length="365432"/>
     </item>
     <item>
       <title>Harsh S’s get louder after mastering. De-ess before the limiter</title>
-      <link>https://myaiplug.github.io/coproducer-web/blog/harsh-esses-get-louder-after-mastering.html</link>
-      <guid isPermaLink="true">https://myaiplug.github.io/coproducer-web/blog/harsh-esses-get-louder-after-mastering.html</guid>
+      <link>https://coproducer.nodawlabs.com/blog/harsh-esses-get-louder-after-mastering.html</link>
+      <guid isPermaLink="true">https://coproducer.nodawlabs.com/blog/harsh-esses-get-louder-after-mastering.html</guid>
       <pubDate>Tue, 06 Oct 2026 00:00:00 GMT</pubDate>
       <description>Vocals harsh after mastering? The master lifts level and top end, so borderline sibilance pops and eats true-peak headroom. Find the worst S’s and fix them in the mix.</description>
-      <enclosure url="https://myaiplug.github.io/coproducer-web/blog/img/essays/harsh-esses-get-louder-after-mastering.jpg?v=shd" type="image/jpeg" length="355656"/>
+      <enclosure url="https://coproducer.nodawlabs.com/blog/img/essays/harsh-esses-get-louder-after-mastering.jpg?v=shd" type="image/jpeg" length="355656"/>
     </item>
         <item>
       <title>Why streaming platforms turn loud masters down</title>
-      <link>https://myaiplug.github.io/coproducer-web/blog/why-streaming-turns-loud-masters-down.html</link>
-      <guid isPermaLink="true">https://myaiplug.github.io/coproducer-web/blog/why-streaming-turns-loud-masters-down.html</guid>
+      <link>https://coproducer.nodawlabs.com/blog/why-streaming-turns-loud-masters-down.html</link>
+      <guid isPermaLink="true">https://coproducer.nodawlabs.com/blog/why-streaming-turns-loud-masters-down.html</guid>
       <pubDate>Thu, 21 Aug 2026 00:00:00 GMT</pubDate>
       <description>Streaming services normalize toward −14 LUFS (Apple closer to −16). A hotter master is turned down, not played louder. Measure integrated LUFS before you limit again.</description>
-      <enclosure url="https://myaiplug.github.io/coproducer-web/blog/img/essays/why-streaming-turns-loud-masters-down.jpg?v=shd" type="image/jpeg" length="0"/>
+      <enclosure url="https://coproducer.nodawlabs.com/blog/img/essays/why-streaming-turns-loud-masters-down.jpg?v=shd" type="image/jpeg" length="0"/>
     </item>
     <item>
       <title>True peak is what codecs clip</title>
-      <link>https://myaiplug.github.io/coproducer-web/blog/true-peak-is-what-codecs-clip.html</link>
-      <guid isPermaLink="true">https://myaiplug.github.io/coproducer-web/blog/true-peak-is-what-codecs-clip.html</guid>
+      <link>https://coproducer.nodawlabs.com/blog/true-peak-is-what-codecs-clip.html</link>
+      <guid isPermaLink="true">https://coproducer.nodawlabs.com/blog/true-peak-is-what-codecs-clip.html</guid>
       <pubDate>Thu, 21 Aug 2026 00:00:00 GMT</pubDate>
       <description>True peak (dBTP) estimates inter-sample peaks. Streaming wants about −1.0 dBTP. A legal sample peak can still clip after AAC or Opus reconstruction.</description>
-      <enclosure url="https://myaiplug.github.io/coproducer-web/blog/img/essays/true-peak-is-what-codecs-clip.jpg?v=shd" type="image/jpeg" length="0"/>
+      <enclosure url="https://coproducer.nodawlabs.com/blog/img/essays/true-peak-is-what-codecs-clip.jpg?v=shd" type="image/jpeg" length="0"/>
     </item>
     <item>
       <title>What a 70-to-90 CoProducer repair actually changes</title>
-      <link>https://myaiplug.github.io/coproducer-web/blog/what-a-70-to-90-repair-changes.html</link>
-      <guid isPermaLink="true">https://myaiplug.github.io/coproducer-web/blog/what-a-70-to-90-repair-changes.html</guid>
+      <link>https://coproducer.nodawlabs.com/blog/what-a-70-to-90-repair-changes.html</link>
+      <guid isPermaLink="true">https://coproducer.nodawlabs.com/blog/what-a-70-to-90-repair-changes.html</guid>
       <pubDate>Thu, 21 Aug 2026 00:00:00 GMT</pubDate>
       <description>Public A/B proofs: Crazy Stacy 70→90 (831 clips→0), BeatGoHard 77→95, Drippin 66→93. A delivery pass — not a remix or taste rewrite.</description>
-      <enclosure url="https://myaiplug.github.io/coproducer-web/blog/img/essays/what-a-70-to-90-repair-changes.jpg?v=shd" type="image/jpeg" length="0"/>
+      <enclosure url="https://coproducer.nodawlabs.com/blog/img/essays/what-a-70-to-90-repair-changes.jpg?v=shd" type="image/jpeg" length="0"/>
     </item>
     <item>
       <title>Should you upload an unreleased master to the cloud?</title>
-      <link>https://myaiplug.github.io/coproducer-web/blog/should-you-upload-an-unreleased-master.html</link>
-      <guid isPermaLink="true">https://myaiplug.github.io/coproducer-web/blog/should-you-upload-an-unreleased-master.html</guid>
+      <link>https://coproducer.nodawlabs.com/blog/should-you-upload-an-unreleased-master.html</link>
+      <guid isPermaLink="true">https://coproducer.nodawlabs.com/blog/should-you-upload-an-unreleased-master.html</guid>
       <pubDate>Thu, 21 Aug 2026 00:00:00 GMT</pubDate>
       <description>Upload an unreleased master only if you accept a vendor holding the file. Loudness, true peak, and clip checks can stay fully local with CoProducer.</description>
-      <enclosure url="https://myaiplug.github.io/coproducer-web/blog/img/essays/should-you-upload-an-unreleased-master.jpg?v=shd" type="image/jpeg" length="0"/>
+      <enclosure url="https://coproducer.nodawlabs.com/blog/img/essays/should-you-upload-an-unreleased-master.jpg?v=shd" type="image/jpeg" length="0"/>
     </item>
     <item>
       <title>A release checklist that matches the meter</title>
-      <link>https://myaiplug.github.io/coproducer-web/blog/release-checklist-that-matches-the-meter.html</link>
-      <guid isPermaLink="true">https://myaiplug.github.io/coproducer-web/blog/release-checklist-that-matches-the-meter.html</guid>
+      <link>https://coproducer.nodawlabs.com/blog/release-checklist-that-matches-the-meter.html</link>
+      <guid isPermaLink="true">https://coproducer.nodawlabs.com/blog/release-checklist-that-matches-the-meter.html</guid>
       <pubDate>Thu, 21 Aug 2026 00:00:00 GMT</pubDate>
       <description>Release checklist: −14 LUFS ±1.5, true peak ≤ −1.0 dBTP, 0 clipped samples, ≥44.1 kHz, phase ≥ 0.2, score ≥ 90. Same gates CoProducer scores.</description>
-      <enclosure url="https://myaiplug.github.io/coproducer-web/blog/img/essays/release-checklist-that-matches-the-meter.jpg?v=shd" type="image/jpeg" length="0"/>
+      <enclosure url="https://coproducer.nodawlabs.com/blog/img/essays/release-checklist-that-matches-the-meter.jpg?v=shd" type="image/jpeg" length="0"/>
     </item>
     <item>
       <title>Crest factor is not loudness</title>
-      <link>https://myaiplug.github.io/coproducer-web/blog/crest-factor-is-not-loudness.html</link>
-      <guid isPermaLink="true">https://myaiplug.github.io/coproducer-web/blog/crest-factor-is-not-loudness.html</guid>
+      <link>https://coproducer.nodawlabs.com/blog/crest-factor-is-not-loudness.html</link>
+      <guid isPermaLink="true">https://coproducer.nodawlabs.com/blog/crest-factor-is-not-loudness.html</guid>
       <pubDate>Thu, 21 Aug 2026 00:00:00 GMT</pubDate>
       <description>Crest factor is peak-to-RMS height. LUFS is perceived loudness over time. You can raise crest and still miss −14 LUFS — or hit −14 with a crushed crest.</description>
-      <enclosure url="https://myaiplug.github.io/coproducer-web/blog/img/essays/crest-factor-is-not-loudness.jpg?v=shd" type="image/jpeg" length="0"/>
+      <enclosure url="https://coproducer.nodawlabs.com/blog/img/essays/crest-factor-is-not-loudness.jpg?v=shd" type="image/jpeg" length="0"/>
     </item>
     <item>
       <title>Phase correlation is a mono audition</title>
-      <link>https://myaiplug.github.io/coproducer-web/blog/phase-correlation-and-mono.html</link>
-      <guid isPermaLink="true">https://myaiplug.github.io/coproducer-web/blog/phase-correlation-and-mono.html</guid>
+      <link>https://coproducer.nodawlabs.com/blog/phase-correlation-and-mono.html</link>
+      <guid isPermaLink="true">https://coproducer.nodawlabs.com/blog/phase-correlation-and-mono.html</guid>
       <pubDate>Thu, 21 Aug 2026 00:00:00 GMT</pubDate>
       <description>Phase near 0 or negative means the mix thins or cancels in mono. CoProducer fails values under about 0.2. Auto-repair will not flip polarity for you.</description>
-      <enclosure url="https://myaiplug.github.io/coproducer-web/blog/img/essays/phase-correlation-and-mono.jpg?v=shd" type="image/jpeg" length="0"/>
+      <enclosure url="https://coproducer.nodawlabs.com/blog/img/essays/phase-correlation-and-mono.jpg?v=shd" type="image/jpeg" length="0"/>
     </item>
     <item>
       <title>Quiet masters get turned up — and so does the noise</title>
-      <link>https://myaiplug.github.io/coproducer-web/blog/quiet-masters-and-noise-floor.html</link>
-      <guid isPermaLink="true">https://myaiplug.github.io/coproducer-web/blog/quiet-masters-and-noise-floor.html</guid>
+      <link>https://coproducer.nodawlabs.com/blog/quiet-masters-and-noise-floor.html</link>
+      <guid isPermaLink="true">https://coproducer.nodawlabs.com/blog/quiet-masters-and-noise-floor.html</guid>
       <pubDate>Thu, 21 Aug 2026 00:00:00 GMT</pubDate>
       <description>Streaming turn-up lifts quiet files. A −20 LUFS master may be gained up, which also lifts hiss, rumble, and room tone. Quiet is not a free pass.</description>
-      <enclosure url="https://myaiplug.github.io/coproducer-web/blog/img/essays/quiet-masters-and-noise-floor.jpg?v=shd" type="image/jpeg" length="0"/>
+      <enclosure url="https://coproducer.nodawlabs.com/blog/img/essays/quiet-masters-and-noise-floor.jpg?v=shd" type="image/jpeg" length="0"/>
     </item>
     <item>
       <title>When not to reach for the limiter</title>
-      <link>https://myaiplug.github.io/coproducer-web/blog/when-not-to-reach-for-the-limiter.html</link>
-      <guid isPermaLink="true">https://myaiplug.github.io/coproducer-web/blog/when-not-to-reach-for-the-limiter.html</guid>
+      <link>https://coproducer.nodawlabs.com/blog/when-not-to-reach-for-the-limiter.html</link>
+      <guid isPermaLink="true">https://coproducer.nodawlabs.com/blog/when-not-to-reach-for-the-limiter.html</guid>
       <pubDate>Thu, 21 Aug 2026 00:00:00 GMT</pubDate>
       <description>Skip another limiter when clips are already non-zero, LUFS is only slightly hot, or the real problem is arrangement, noise, or a bad edit — not peak height.</description>
-      <enclosure url="https://myaiplug.github.io/coproducer-web/blog/img/essays/when-not-to-reach-for-the-limiter.jpg?v=shd" type="image/jpeg" length="0"/>
+      <enclosure url="https://coproducer.nodawlabs.com/blog/img/essays/when-not-to-reach-for-the-limiter.jpg?v=shd" type="image/jpeg" length="0"/>
     </item>
     <item>
       <title>Sample rate and bit depth are delivery hygiene</title>
-      <link>https://myaiplug.github.io/coproducer-web/blog/sample-rate-and-bit-depth-for-delivery.html</link>
-      <guid isPermaLink="true">https://myaiplug.github.io/coproducer-web/blog/sample-rate-and-bit-depth-for-delivery.html</guid>
+      <link>https://coproducer.nodawlabs.com/blog/sample-rate-and-bit-depth-for-delivery.html</link>
+      <guid isPermaLink="true">https://coproducer.nodawlabs.com/blog/sample-rate-and-bit-depth-for-delivery.html</guid>
       <pubDate>Thu, 21 Aug 2026 00:00:00 GMT</pubDate>
       <description>CoProducer fails sample rates under 44.1 kHz. Why 32 kHz fails delivery, when 44.1/48/96 are fine, what bit depth distributors want, and how to verify the bounce.</description>
-      <enclosure url="https://myaiplug.github.io/coproducer-web/blog/img/essays/sample-rate-and-bit-depth-for-delivery.jpg?v=sr2" type="image/jpeg" length="0"/>
+      <enclosure url="https://coproducer.nodawlabs.com/blog/img/essays/sample-rate-and-bit-depth-for-delivery.jpg?v=sr2" type="image/jpeg" length="0"/>
     </item>
     <item>
       <title>How to use a reference track when mixing: match the loudness first, then compare</title>
-      <link>https://myaiplug.github.io/coproducer-web/blog/reference-matching-without-guesswork.html</link>
-      <guid isPermaLink="true">https://myaiplug.github.io/coproducer-web/blog/reference-matching-without-guesswork.html</guid>
+      <link>https://coproducer.nodawlabs.com/blog/reference-matching-without-guesswork.html</link>
+      <guid isPermaLink="true">https://coproducer.nodawlabs.com/blog/reference-matching-without-guesswork.html</guid>
       <pubDate>Thu, 21 Aug 2026 00:00:00 GMT</pubDate>
       <description>Turn the louder track down before you compare, or you’ll pick it every time. Then compare tonal balance and true peak, and copy the balance, not the peak.</description>
-      <enclosure url="https://myaiplug.github.io/coproducer-web/blog/img/essays/reference-matching-without-guesswork.jpg?v=shd" type="image/jpeg" length="0"/>
+      <enclosure url="https://coproducer.nodawlabs.com/blog/img/essays/reference-matching-without-guesswork.jpg?v=shd" type="image/jpeg" length="0"/>
     </item>
     <item>
       <title>How loud should each song on an album be? Measure the record as a set</title>
-      <link>https://myaiplug.github.io/coproducer-web/blog/album-consistency-in-one-meter.html</link>
-      <guid isPermaLink="true">https://myaiplug.github.io/coproducer-web/blog/album-consistency-in-one-meter.html</guid>
+      <link>https://coproducer.nodawlabs.com/blog/album-consistency-in-one-meter.html</link>
+      <guid isPermaLink="true">https://coproducer.nodawlabs.com/blog/album-consistency-in-one-meter.html</guid>
       <pubDate>Thu, 21 Aug 2026 00:00:00 GMT</pubDate>
       <description>Album tracks don’t all need −14 LUFS. Measure the record as a set, keep loud songs close, let quiet ones sit lower on purpose, and keep every true peak legal.</description>
-      <enclosure url="https://myaiplug.github.io/coproducer-web/blog/img/essays/album-consistency-in-one-meter.jpg?v=shd" type="image/jpeg" length="0"/>
+      <enclosure url="https://coproducer.nodawlabs.com/blog/img/essays/album-consistency-in-one-meter.jpg?v=shd" type="image/jpeg" length="0"/>
     </item>
     <item>
       <title>What should a loudness report include? HTML, JSON, TXT</title>
-      <link>https://myaiplug.github.io/coproducer-web/blog/why-three-report-formats.html</link>
-      <guid isPermaLink="true">https://myaiplug.github.io/coproducer-web/blog/why-three-report-formats.html</guid>
+      <link>https://coproducer.nodawlabs.com/blog/why-three-report-formats.html</link>
+      <guid isPermaLink="true">https://coproducer.nodawlabs.com/blog/why-three-report-formats.html</guid>
       <pubDate>Thu, 21 Aug 2026 00:00:00 GMT</pubDate>
       <description>A loudness report should name the exact file, its hash, LUFS, true peak and LRA. Keep HTML for people, JSON for scripts and TXT for chat. Script included.</description>
-      <enclosure url="https://myaiplug.github.io/coproducer-web/blog/img/essays/why-three-report-formats.jpg?v=shd" type="image/jpeg" length="0"/>
+      <enclosure url="https://coproducer.nodawlabs.com/blog/img/essays/why-three-report-formats.jpg?v=shd" type="image/jpeg" length="0"/>
     </item>
     <item>
       <title>How to check LUFS without uploading your song</title>
-      <link>https://myaiplug.github.io/coproducer-web/blog/local-tools-beat-upload-queues.html</link>
-      <guid isPermaLink="true">https://myaiplug.github.io/coproducer-web/blog/local-tools-beat-upload-queues.html</guid>
+      <link>https://coproducer.nodawlabs.com/blog/local-tools-beat-upload-queues.html</link>
+      <guid isPermaLink="true">https://coproducer.nodawlabs.com/blog/local-tools-beat-upload-queues.html</guid>
       <pubDate>Thu, 21 Aug 2026 00:00:00 GMT</pubDate>
       <description>You don’t need to upload a track to measure LUFS or true peak. A free meter plugin or one FFmpeg command does it in seconds, and your unreleased song stays put.</description>
-      <enclosure url="https://myaiplug.github.io/coproducer-web/blog/img/essays/local-tools-beat-upload-queues.jpg?v=shd" type="image/jpeg" length="0"/>
+      <enclosure url="https://coproducer.nodawlabs.com/blog/img/essays/local-tools-beat-upload-queues.jpg?v=shd" type="image/jpeg" length="0"/>
     </item>
     <item>
       <title>Can stem separation fix a bad mix? Stems diagnose mixes, they don’t replace them</title>
-      <link>https://myaiplug.github.io/coproducer-web/blog/stems-diagnose-mixes-do-not-replace-them.html</link>
-      <guid isPermaLink="true">https://myaiplug.github.io/coproducer-web/blog/stems-diagnose-mixes-do-not-replace-them.html</guid>
+      <link>https://coproducer.nodawlabs.com/blog/stems-diagnose-mixes-do-not-replace-them.html</link>
+      <guid isPermaLink="true">https://coproducer.nodawlabs.com/blog/stems-diagnose-mixes-do-not-replace-them.html</guid>
       <pubDate>Thu, 21 Aug 2026 00:00:00 GMT</pubDate>
       <description>Stem separation can’t fix a bad mix, but it shows what’s wrong. Mute or lower one stem at a time to find what eats your headroom, then fix it in the session.</description>
-      <enclosure url="https://myaiplug.github.io/coproducer-web/blog/img/essays/stems-diagnose-mixes-do-not-replace-them.jpg?v=shd" type="image/jpeg" length="0"/>
+      <enclosure url="https://coproducer.nodawlabs.com/blog/img/essays/stems-diagnose-mixes-do-not-replace-them.jpg?v=shd" type="image/jpeg" length="0"/>
     </item>
     <item>
       <title>Does a slowed or screwed version need its own master? Measure the peak again</title>
-      <link>https://myaiplug.github.io/coproducer-web/blog/screw-tempo-still-needs-a-legal-peak.html</link>
-      <guid isPermaLink="true">https://myaiplug.github.io/coproducer-web/blog/screw-tempo-still-needs-a-legal-peak.html</guid>
+      <link>https://coproducer.nodawlabs.com/blog/screw-tempo-still-needs-a-legal-peak.html</link>
+      <guid isPermaLink="true">https://coproducer.nodawlabs.com/blog/screw-tempo-still-needs-a-legal-peak.html</guid>
       <pubDate>Thu, 21 Aug 2026 00:00:00 GMT</pubDate>
       <description>Slowing a song doesn’t make its peaks safe. Varispeed can turn hidden overs into real ones and reverb adds new peaks, so measure the slowed file before upload.</description>
-      <enclosure url="https://myaiplug.github.io/coproducer-web/blog/img/essays/screw-tempo-still-needs-a-legal-peak.jpg?v=shd" type="image/jpeg" length="0"/>
+      <enclosure url="https://coproducer.nodawlabs.com/blog/img/essays/screw-tempo-still-needs-a-legal-peak.jpg?v=shd" type="image/jpeg" length="0"/>
     </item>
     <item>
       <title>What LUFS for Reels, TikTok and Shorts?</title>
-      <link>https://myaiplug.github.io/coproducer-web/blog/vertical-video-is-a-loudness-trap.html</link>
-      <guid isPermaLink="true">https://myaiplug.github.io/coproducer-web/blog/vertical-video-is-a-loudness-trap.html</guid>
+      <link>https://coproducer.nodawlabs.com/blog/vertical-video-is-a-loudness-trap.html</link>
+      <guid isPermaLink="true">https://coproducer.nodawlabs.com/blog/vertical-video-is-a-loudness-trap.html</guid>
       <pubDate>Thu, 21 Aug 2026 00:00:00 GMT</pubDate>
       <description>Reels, TikTok and Shorts don’t publish a LUFS target. Check the exported clip instead: true peak under −1 dBTP, a strong first 3 seconds, a mono check.</description>
-      <enclosure url="https://myaiplug.github.io/coproducer-web/blog/img/essays/vertical-video-is-a-loudness-trap.jpg?v=shd" type="image/jpeg" length="0"/>
+      <enclosure url="https://coproducer.nodawlabs.com/blog/img/essays/vertical-video-is-a-loudness-trap.jpg?v=shd" type="image/jpeg" length="0"/>
     </item>
     <item>
       <title>Can mastering fix a bad mix? When a mastering pass is enough and when to reopen the session</title>
-      <link>https://myaiplug.github.io/coproducer-web/blog/mastering-bat-vs-opening-the-session.html</link>
-      <guid isPermaLink="true">https://myaiplug.github.io/coproducer-web/blog/mastering-bat-vs-opening-the-session.html</guid>
+      <link>https://coproducer.nodawlabs.com/blog/mastering-bat-vs-opening-the-session.html</link>
+      <guid isPermaLink="true">https://coproducer.nodawlabs.com/blog/mastering-bat-vs-opening-the-session.html</guid>
       <pubDate>Thu, 21 Aug 2026 00:00:00 GMT</pubDate>
       <description>Mastering fixes whole-file problems like loudness, ceiling and broad tone. Clipped vocals, bad edits and mono cancellation live in the mix. Here’s how to tell.</description>
-      <enclosure url="https://myaiplug.github.io/coproducer-web/blog/img/essays/mastering-bat-vs-opening-the-session.jpg?v=shd" type="image/jpeg" length="0"/>
+      <enclosure url="https://coproducer.nodawlabs.com/blog/img/essays/mastering-bat-vs-opening-the-session.jpg?v=shd" type="image/jpeg" length="0"/>
     </item>
     <item>
       <title>What does a mix score mean? How to read a CoProducer score</title>
-      <link>https://myaiplug.github.io/coproducer-web/blog/how-to-read-a-coproducer-score.html</link>
-      <guid isPermaLink="true">https://myaiplug.github.io/coproducer-web/blog/how-to-read-a-coproducer-score.html</guid>
+      <link>https://coproducer.nodawlabs.com/blog/how-to-read-a-coproducer-score.html</link>
+      <guid isPermaLink="true">https://coproducer.nodawlabs.com/blog/how-to-read-a-coproducer-score.html</guid>
       <pubDate>Thu, 21 Aug 2026 00:00:00 GMT</pubDate>
       <description>A CoProducer score is 100 minus points lost for loudness, true peak, clipping, phase and sample rate. 90+ means release ready. Here’s how to read the findings.</description>
-      <enclosure url="https://myaiplug.github.io/coproducer-web/blog/img/essays/how-to-read-a-coproducer-score.jpg?v=shd" type="image/jpeg" length="0"/>
+      <enclosure url="https://coproducer.nodawlabs.com/blog/img/essays/how-to-read-a-coproducer-score.jpg?v=shd" type="image/jpeg" length="0"/>
     </item>
     <item>
       <title>Why does my master clip after MP3 or AAC?</title>
-      <link>https://myaiplug.github.io/coproducer-web/blog/reencoding-eats-true-peak-headroom.html</link>
-      <guid isPermaLink="true">https://myaiplug.github.io/coproducer-web/blog/reencoding-eats-true-peak-headroom.html</guid>
+      <link>https://coproducer.nodawlabs.com/blog/reencoding-eats-true-peak-headroom.html</link>
+      <guid isPermaLink="true">https://coproducer.nodawlabs.com/blog/reencoding-eats-true-peak-headroom.html</guid>
       <pubDate>Thu, 21 Aug 2026 00:00:00 GMT</pubDate>
       <description>A WAV peaking at −0.1 dBFS can clip once it’s encoded to AAC or MP3. Why it happens, how much true-peak headroom to leave, and a script to test it.</description>
-      <enclosure url="https://myaiplug.github.io/coproducer-web/blog/img/essays/reencoding-eats-true-peak-headroom.jpg?v=shd" type="image/jpeg" length="0"/>
+      <enclosure url="https://coproducer.nodawlabs.com/blog/img/essays/reencoding-eats-true-peak-headroom.jpg?v=shd" type="image/jpeg" length="0"/>
     </item>
   </channel>
 </rss>

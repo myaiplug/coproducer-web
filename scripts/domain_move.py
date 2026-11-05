@@ -38,6 +38,9 @@ def tracked_files() -> list[Path]:
 
 
 def rewrite(text: str, new_base: str, new_host: str, rel: str) -> str:
+    if rel == "scripts/indexnow_submit.py":
+        text = re.sub(r"The site lives under .*?then accepts URLs under that path\.",
+                      f"The site lives at {new_base}/. The key file is published at the host\nroot (/<key>.txt) and also passed as keyLocation.", text, flags=re.S)
     # 1. full URLs with the repo path segment
     text = text.replace(OLD_BASE, new_base)
     # 2. scheme-less mentions of the same place (docs, README prose)
@@ -48,8 +51,6 @@ def rewrite(text: str, new_base: str, new_host: str, rel: str) -> str:
     if rel == "scripts/indexnow_submit.py":
         text = text.replace(f'HOST = "{OLD_HOST}"', f'HOST = "{new_host}"')
         text = text.replace('BASE = f"https://{HOST}/coproducer-web"', 'BASE = f"https://{HOST}"')
-        text = text.replace("The site lives under https://myaiplug.github.io/coproducer-web/, so the key file\ncannot sit at the host root. It is published at /coproducer-web/<key>.txt and\npassed as keyLocation; IndexNow then accepts URLs under that path.",
-                            f"The site lives at {new_base}/. The key file is published at the host\nroot (/<key>.txt) and also passed as keyLocation.")
     return text
 
 

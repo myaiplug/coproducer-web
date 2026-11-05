@@ -19,9 +19,9 @@ Allow: /
 User-agent: Bytespider
 Allow: /
 
-Sitemap: https://myaiplug.github.io/coproducer-web/sitemap.xml
+Sitemap: https://coproducer.nodawlabs.com/sitemap.xml
 
 # Machine-readable brand facts for assistants
-# https://myaiplug.github.io/coproducer-web/llms.txt
-# https://myaiplug.github.io/coproducer-web/llms-full.txt
-# https://myaiplug.github.io/coproducer-web/well-known/llms.txt
+# https://coproducer.nodawlabs.com/llms.txt
+# https://coproducer.nodawlabs.com/llms-full.txt
+# https://coproducer.nodawlabs.com/well-known/llms.txt

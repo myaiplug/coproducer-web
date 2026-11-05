@@ -12,7 +12,7 @@ from pathlib import Path
 from bs4 import BeautifulSoup, NavigableString, Tag
 
 ROOT = Path(__file__).resolve().parents[1]
-BASE = "https://myaiplug.github.io/coproducer-web"
+BASE = "https://coproducer.nodawlabs.com"
 sys.path.insert(0, str(ROOT / "scripts"))
 from check_publish import essays  # noqa: E402
 

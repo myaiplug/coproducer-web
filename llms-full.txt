@@ -1,15 +1,15 @@
 # CoProducer and Lacquer — full text for assistants
-Base: https://myaiplug.github.io/coproducer-web/
+Base: https://coproducer.nodawlabs.com/
 Updated: 2026-11-04
 Essays: full plain-text bodies, in journal order
-Summary index: https://myaiplug.github.io/coproducer-web/llms.txt
+Summary index: https://coproducer.nodawlabs.com/llms.txt
 
 ## Identity
 - Product: CoProducer (Windows desktop + local web analyze projection)
 - Publisher: NoDAW Labs
-- Journal: Lacquer — https://myaiplug.github.io/coproducer-web/blog/index.html
-- Free pre-release master checklist (page + PDF): https://myaiplug.github.io/coproducer-web/blog/pre-release-master-checklist.html
-- Site: https://myaiplug.github.io/coproducer-web/
+- Journal: Lacquer — https://coproducer.nodawlabs.com/blog/index.html
+- Free pre-release master checklist (page + PDF): https://coproducer.nodawlabs.com/blog/pre-release-master-checklist.html
+- Site: https://coproducer.nodawlabs.com/
 - Sibling: NoDAW StemSplit (local stem separation)
 - Related: ScrewAI syrup / chopped-and-screwed .bat renders
 
@@ -30,7 +30,7 @@ Summary index: https://myaiplug.github.io/coproducer-web/llms.txt
 # Lacquer essays
 
 ## Hum in your recording? Notch 60 Hz and its harmonics, not just the low end
-URL: https://myaiplug.github.io/coproducer-web/blog/hum-in-your-recording-notch-60-hz-and-its-harmonics.html
+URL: https://coproducer.nodawlabs.com/blog/hum-in-your-recording-notch-60-hz-and-its-harmonics.html
 Section: Mixing · 4 November 2026 · 6 min
 Summary: Why a high-pass filter barely touches mains hum: most of a hum's energy sits in its harmonics, not at 60 or 50 Hz. Measured how much hum a high-pass, one notch and a full set of narrow notches remove, and what each costs the vocal, with the script.
 
@@ -146,7 +146,7 @@ A: Avoid it if you can. Bass and 808s share the same range, so notches on the ma
 ---
 
 ## Noise gate cutting off the ends of words? Set the hold and a lower close
-URL: https://myaiplug.github.io/coproducer-web/blog/noise-gate-cuts-off-vocal-tails-set-the-hold.html
+URL: https://coproducer.nodawlabs.com/blog/noise-gate-cuts-off-vocal-tails-set-the-hold.html
 Section: Mixing · 4 November 2026 · 6 min
 Summary: Why a noise gate chops vocal tails and chatters: the tail wobbles around the threshold. Measured how hold, release, a lower close threshold and a limited range change where the gate closes and what the gaps sound like, with the script.
 
@@ -283,7 +283,7 @@ A: Usually not on vocals. Full silence makes room tone snap in and out with ever
 ---
 
 ## Saturator making the highs harsh? Turn on oversampling
-URL: https://myaiplug.github.io/coproducer-web/blog/saturator-sounds-harsh-turn-on-oversampling.html
+URL: https://coproducer.nodawlabs.com/blog/saturator-sounds-harsh-turn-on-oversampling.html
 Section: Mastering · 3 November 2026 · 7 min
 Summary: Why a saturator or clipper makes hats and vocals grainy: distortion creates harmonics above the sample rate's limit and they fold back down as off-key tones. Measured fold-back at 1x, 2x, 4x and 8x oversampling, with the script.
 
@@ -402,7 +402,7 @@ A: Rarely. A 997 Hz tone through the soft saturator had no folded tones above �
 ---
 
 ## Linear-phase EQ softening your kick? Listen before the hit
-URL: https://myaiplug.github.io/coproducer-web/blog/linear-phase-eq-smears-the-kick-watch-the-pre-ring.html
+URL: https://coproducer.nodawlabs.com/blog/linear-phase-eq-smears-the-kick-watch-the-pre-ring.html
 Section: Mixing · 3 November 2026 · 7 min
 Summary: Why a linear-phase low cut can blur a kick: it spreads part of the removed bass ahead of the hit as pre-ringing. Measured on a synthetic kick at 30, 60 and 100 Hz and three slopes against a normal EQ, with the script.
 
@@ -521,7 +521,7 @@ A: Yes, and so does a lower cutoff. At 30 Hz, linear-phase pre-ring started 22.5
 ---
 
 ## Limiter distorting the bass? Slow the release
-URL: https://myaiplug.github.io/coproducer-web/blog/limiter-distorts-the-bass-slow-the-release.html
+URL: https://coproducer.nodawlabs.com/blog/limiter-distorts-the-bass-slow-the-release.html
 Section: Mastering · 2 November 2026 · 7 min
 Summary: Why a fast limiter release makes 808s and bass fuzz and crackle: it recovers inside a single bass cycle and reshapes the waveform. Measured distortion at 1 to 150 ms release, what a short hold does, and what it costs in loudness, with the script.
 
@@ -635,7 +635,7 @@ A: Slowing the song lowers the bass, so each cycle is longer and the same limite
 ---
 
 ## Mix leans to one side? Check the balance band by band
-URL: https://myaiplug.github.io/coproducer-web/blog/mix-leans-to-one-side-check-the-balance-band-by-band.html
+URL: https://coproducer.nodawlabs.com/blog/mix-leans-to-one-side-check-the-balance-band-by-band.html
 Section: Mixing · 2 November 2026 · 7 min
 Summary: Why a mix can pull left even when the meters look close: the lean usually lives in the top end, from hats and bright parts panned the same way. Measured left-minus-right per octave band, why the master balance knob makes it worse, and how to fix it in the mix, with the script.
 
@@ -743,7 +743,7 @@ A: Swap the headphones around. If the lean moves with them, it’s the headphone
 ---
 
 ## Copy-pasted vocal double sounds mono? Sing a real second take
-URL: https://myaiplug.github.io/coproducer-web/blog/copy-paste-vocal-double-sounds-mono-sing-a-real-take.html
+URL: https://coproducer.nodawlabs.com/blog/copy-paste-vocal-double-sounds-mono-sing-a-real-take.html
 Section: Vocals · 30 October 2026 · 7 min
 Summary: Why duplicating a vocal and panning it hard left and right doesn’t make it wide: an identical copy is just a louder center, and nudging it a few ms turns it into a comb filter. Measured correlation, mono sum and tone damage, with the script.
 
@@ -833,7 +833,7 @@ A: Hit the mono button or watch a correlation meter. A good double sums about 3 
 ---
 
 ## Vocal buried in the beat? Cut the beat where the voice lives
-URL: https://myaiplug.github.io/coproducer-web/blog/vocal-buried-in-the-beat-cut-the-beat-at-3-khz.html
+URL: https://coproducer.nodawlabs.com/blog/vocal-buried-in-the-beat-cut-the-beat-at-3-khz.html
 Section: Vocals · 30 October 2026 · 7 min
 Summary: Why turning the vocal up doesn’t get it out of the beat, and why a small cut on the beat around 3 kHz does. Measured per-band vocal-to-beat levels, LUFS before and after, and a sidechained dynamic EQ, with the script.
 
@@ -945,7 +945,7 @@ A: An EQ band on the beat that only cuts when the vocal is playing, triggered by
 ---
 
 ## Sidechain pumping out of time? Set the release from the tempo
-URL: https://myaiplug.github.io/coproducer-web/blog/sidechain-pumping-out-of-time-set-release-to-tempo.html
+URL: https://coproducer.nodawlabs.com/blog/sidechain-pumping-out-of-time-set-release-to-tempo.html
 Section: Low end · 29 October 2026 · 7 min
 Summary: Why a sidechain duck feels late or makes the bass vanish: the release doesn’t fit the tempo, so the bass is still ducked when the next kick hits. Measured at 140 and 90 BPM, with a script that shows how much each release time leaves behind.
 
@@ -1068,7 +1068,7 @@ A: Check latency first. Lookahead, plug-in delay compensation and the way the ke
 ---
 
 ## Fade-out drops off a cliff? Curve it, and fade after the limiter
-URL: https://myaiplug.github.io/coproducer-web/blog/fade-out-sounds-abrupt-curve-it-and-fade-after-the-limiter.html
+URL: https://coproducer.nodawlabs.com/blog/fade-out-sounds-abrupt-curve-it-and-fade-after-the-limiter.html
 Section: Mastering · 29 October 2026 · 7 min
 Summary: Why a song fade-out seems to hang and then vanish: a straight-line fade loses only 6 dB in its first half, and a limiter after the fade eats the first few dB of it. Measured fade shapes and a limited master, with the script.
 
@@ -1188,7 +1188,7 @@ A: Ask your engineer. Many prefer the unfaded version with a note on where the f
 ---
 
 ## Why −18 dBFS? Gain staging into analog-style plugins
-URL: https://myaiplug.github.io/coproducer-web/blog/plugin-input-level-gain-staging-minus-18-dbfs.html
+URL: https://coproducer.nodawlabs.com/blog/plugin-input-level-gain-staging-minus-18-dbfs.html
 Section: Mixing · 28 October 2026 · 7 min
 Summary: Why the level you hit an analog-modelled plugin with changes its sound, and why −18 dBFS keeps coming up. Measured on a simple saturation model: harmonics, THD and what five plugins in a row add up to. Script inside.
 
@@ -1284,7 +1284,7 @@ A: Check the level going into it. If the track averages far above the plugin’s
 ---
 
 ## Layered kick sounds thinner? Check polarity and timing
-URL: https://myaiplug.github.io/coproducer-web/blog/layered-kick-sounds-thinner-check-polarity-and-timing.html
+URL: https://coproducer.nodawlabs.com/blog/layered-kick-sounds-thinner-check-polarity-and-timing.html
 Section: Low end · 28 October 2026 · 7 min
 Summary: Why adding a sub or a second kick sample can make the low end weaker: the layers are out of polarity or a millisecond or two apart, so they cancel. Measured on a synthetic kick and sub layer, with a script that finds the right offset and flip.
 
@@ -1370,7 +1370,7 @@ A: Not quite. Flipping polarity turns the whole wave upside down. A phase or tim
 ---
 
 ## Should you normalize on export? Turn it off before mastering
-URL: https://myaiplug.github.io/coproducer-web/blog/normalize-on-export-turn-it-off-for-mastering.html
+URL: https://coproducer.nodawlabs.com/blog/normalize-on-export-turn-it-off-for-mastering.html
 Section: Delivery · 27 October 2026 · 8 min
 Summary: Why the normalize option in your DAW’s export window works against a mix headed for mastering: it fills the headroom, can push true peak over 0 dBFS and gives every version its own gain. Measured on a synthetic main mix and instrumental. Script inside.
 
@@ -1488,7 +1488,7 @@ A: No. Streaming platforms adjust the volume at playback and leave your file unt
 ---
 
 ## Sample playing at the wrong speed or pitch? It’s a sample-rate mismatch
-URL: https://myaiplug.github.io/coproducer-web/blog/sample-plays-at-wrong-pitch-sample-rate-mismatch.html
+URL: https://coproducer.nodawlabs.com/blog/sample-plays-at-wrong-pitch-sample-rate-mismatch.html
 Section: Pitch · 27 October 2026 · 8 min
 Summary: Why a sample or loop plays slower and flat, or faster and sharp: it was made at one sample rate and played at another without conversion. The exact speed, semitone and BPM error for 44.1, 48, 88.2 and 96 kHz, and a script that reads the WAV header and catches mislabeled files.
 
@@ -1628,7 +1628,7 @@ A: Often a sample-rate mismatch. Audio made at 48 kHz played as 44.1 kHz falls 5
 ---
 
 ## Song ending cut off when you export? Let the tail ring past the last bar
-URL: https://myaiplug.github.io/coproducer-web/blog/song-ending-cut-off-on-export-let-the-tail-ring.html
+URL: https://coproducer.nodawlabs.com/blog/song-ending-cut-off-on-export-let-the-tail-ring.html
 Section: Delivery · 26 October 2026 · 7 min
 Summary: Why the end of your song gets cut off on export and how to fix it: run the export range past the last bar until the reverb and delay tails die, check the file ends in silence, then trim the silence, not the tail. Tail math and a script inside.
 
@@ -1749,7 +1749,7 @@ A: Yes. Export every stem the same length, from the same start to a point past t
 ---
 
 ## Compressor killing your drums’ punch? Slow the attack down
-URL: https://myaiplug.github.io/coproducer-web/blog/compressor-kills-the-punch-slow-the-attack.html
+URL: https://coproducer.nodawlabs.com/blog/compressor-kills-the-punch-slow-the-attack.html
 Section: Dynamics · 26 October 2026 · 8 min
 Summary: Why compression makes drums lose their punch and how to set attack and release so the crack gets through: measured on a synthetic snare at 0.1, 1, 10 and 30 ms attack, plus what a long release does to a 16th-note roll. Script inside.
 
@@ -1870,7 +1870,7 @@ A: It makes the peaks stick out further above the body, so drums hit harder at t
 ---
 
 ## 808 sounds off-key? Find its real note, then tune it to the song
-URL: https://myaiplug.github.io/coproducer-web/blog/tune-808-to-the-key-of-your-song.html
+URL: https://coproducer.nodawlabs.com/blog/tune-808-to-the-key-of-your-song.html
 Section: Low end · 23 October 2026 · 7 min
 Summary: How to tune an 808 to the key of your song: measure the note of the sustained tail, not the punch or the filename, then set coarse and fine tune so it lands on the root. Note table and script inside.
 
@@ -2007,7 +2007,7 @@ A: Yes. Tape-style slowing lowers the pitch by 12 × log2(speed) semitones. At 0
 ---
 
 ## Making a clean version? Edit the vocals, keep the length, then check it against the explicit
-URL: https://myaiplug.github.io/coproducer-web/blog/clean-version-of-a-song-mute-reverse-or-replace.html
+URL: https://coproducer.nodawlabs.com/blog/clean-version-of-a-song-mute-reverse-or-replace.html
 Section: Delivery · 23 October 2026 · 8 min
 Summary: How to make a clean version of a song: mute, reverse or replace the words on the vocal tracks, chase the reverb and delay tails, bounce through the same master at the same length, then compare it to the explicit. Script inside.
 
@@ -2113,7 +2113,7 @@ A: Yes. The clean is a separate recording version, so it gets its own ISRC, and 
 ---
 
 ## Panned parts get quieter in mono? That’s your pan law, not your ears
-URL: https://myaiplug.github.io/coproducer-web/blog/pan-law-why-panned-parts-change-level.html
+URL: https://coproducer.nodawlabs.com/blog/pan-law-why-panned-parts-change-level.html
 Section: Mix · 22 October 2026 · 7 min
 Summary: What pan law is and why it matters: a centered sound is turned down on both sides so panning doesn’t change its loudness. Fold to mono and the center jumps up to 3 dB. Table and script inside.
 
@@ -2208,7 +2208,7 @@ A: In many DAWs it’s a balance control. Turning it left lowers the right chann
 ---
 
 ## Loud breaths in your vocal? Turn them down before the compressor, don’t cut them
-URL: https://myaiplug.github.io/coproducer-web/blog/vocal-breaths-turn-them-down-dont-cut-them.html
+URL: https://coproducer.nodawlabs.com/blog/vocal-breaths-turn-them-down-dont-cut-them.html
 Section: Vocals · 22 October 2026 · 7 min
 Summary: How to handle breaths in a vocal: lower them with clip gain before compression instead of deleting them. A compressor with make-up gain can shrink the gap between singing and breath from 12 dB to 3 dB.
 
@@ -2298,7 +2298,7 @@ A: Start around 6 dB and adjust by ear. Breaths that are part of the phrasing ma
 ---
 
 ## Your delay sounds off the beat? Set it from the tempo, not by ear
-URL: https://myaiplug.github.io/coproducer-web/blog/delay-time-from-bpm-sync-your-throws.html
+URL: https://coproducer.nodawlabs.com/blog/delay-time-from-bpm-sync-your-throws.html
 Section: Mix · 21 October 2026 · 7 min
 Summary: How to calculate delay time from BPM: 60,000 ÷ BPM is a quarter note in ms. Straight, dotted and triplet times, grid-locked pre-delay, and why 'close enough' drifts.
 
@@ -2390,7 +2390,7 @@ A: It doesn’t have to be, but a value that’s a clean division of the beat te
 ---
 
 ## Clicks at your edit points come from cutting mid-wave. Fade every cut
-URL: https://myaiplug.github.io/coproducer-web/blog/clicks-at-edit-points-fade-every-cut.html
+URL: https://coproducer.nodawlabs.com/blog/clicks-at-edit-points-fade-every-cut.html
 Section: Editing · 21 October 2026 · 7 min
 Summary: Why audio edits click and pop: a cut or splice that lands mid-waveform makes an instant jump. A 5 ms fade or crossfade removes it. Includes a click-finder script.
 
@@ -2468,7 +2468,7 @@ A: In our test on a −6 dBFS 55 Hz note, the content above 2 kHz at an unfaded 
 ---
 
 ## Sending stems to a mixer? Export them so they line up and add back up
-URL: https://myaiplug.github.io/coproducer-web/blog/export-stems-for-a-mix-engineer.html
+URL: https://coproducer.nodawlabs.com/blog/export-stems-for-a-mix-engineer.html
 Section: Delivery · 20 October 2026 · 8 min
 Summary: How to export stems for a mixing engineer: same start, same length, one sample rate, no mix-bus chain, and a null test against your rough before you send the link.
 
@@ -2602,7 +2602,7 @@ A: Drop them all at zero with your rough bounce, flip the bounce’s polarity an
 ---
 
 ## Your mix sounds better loud and thinner quiet. Pick one monitoring level
-URL: https://myaiplug.github.io/coproducer-web/blog/mix-sounds-better-louder-pick-one-monitor-level.html
+URL: https://coproducer.nodawlabs.com/blog/mix-sounds-better-louder-pick-one-monitor-level.html
 Section: Monitoring · 20 October 2026 · 7 min
 Summary: Why your mix changes with the volume knob: equal-loudness, and louder always winning the A/B. Calibrate one listening level, level-match, then check loud and quiet.
 
@@ -2717,7 +2717,7 @@ A: A phone SPL app is fine for consistency even if it’s a few dB off. With not
 ---
 
 ## Reverb making the mix muddy? Filter the return, not the vocal
-URL: https://myaiplug.github.io/coproducer-web/blog/reverb-makes-the-mix-muddy-filter-the-return.html
+URL: https://coproducer.nodawlabs.com/blog/reverb-makes-the-mix-muddy-filter-the-return.html
 Section: Mix craft · 19 October 2026 · 8 min
 Summary: Reverb muddying the mix? Most of a return’s energy sits in low-mids you don’t hear as space. High-pass the return, add pre-delay, duck it and time the decay.
 
@@ -2886,7 +2886,7 @@ A: A plain stereo reverb gets quieter in mono, not muddier. Our return was almos
 ---
 
 ## Your low end changes when you move your chair. That’s the room, not the mix
-URL: https://myaiplug.github.io/coproducer-web/blog/low-end-changes-when-you-move-your-chair.html
+URL: https://coproducer.nodawlabs.com/blog/low-end-changes-when-you-move-your-chair.html
 Section: Monitoring · 19 October 2026 · 8 min
 Summary: Bass booms in one spot and vanishes a foot away? That’s room modes. Work out your room’s modes, find a better seat and check low end without treatment.
 
@@ -3057,7 +3057,7 @@ A: Use them to check it. Headphones skip the room, so the level of each 808 note
 ---
 
 ## Parallel compression sounds thin? Check the latency first
-URL: https://myaiplug.github.io/coproducer-web/blog/parallel-compression-sounds-thin-check-latency.html
+URL: https://coproducer.nodawlabs.com/blog/parallel-compression-sounds-thin-check-latency.html
 Section: Mix craft · 16 October 2026 · 8 min
 Summary: Parallel compression making drums or vocals thinner? The parallel bus is probably arriving late. Find the offset, fix the timing, then dial it in.
 
@@ -3166,7 +3166,7 @@ A: No. Both channels comb-filter the same way, so left/right correlation barely 
 ---
 
 ## Why your gapless album gets gaps after MP3 or AAC
-URL: https://myaiplug.github.io/coproducer-web/blog/gapless-album-gaps-after-mp3-or-aac.html
+URL: https://coproducer.nodawlabs.com/blog/gapless-album-gaps-after-mp3-or-aac.html
 Section: Delivery · 16 October 2026 · 7 min
 Summary: MP3 and AAC encoders add silence at the start and padding at the end of every file. Why segues break, what we measured, and how to stay seamless.
 
@@ -3257,7 +3257,7 @@ A: Decode it and compare its sample count with the WAV it came from. A tagged LA
 ---
 
 ## Why your 808 disappears on phone speakers
-URL: https://myaiplug.github.io/coproducer-web/blog/808-disappears-on-phone-speakers.html
+URL: https://coproducer.nodawlabs.com/blog/808-disappears-on-phone-speakers.html
 Section: Low end · 15 October 2026 · 8 min
 Summary: Phone speakers barely play below 200–300 Hz, so a clean 808 vanishes. Add a parallel harmonic layer, then check it through a phone filter.
 
@@ -3335,7 +3335,7 @@ A: Not in the test. A parallel layer blended at −12 dB added 0.7 dB of sample 
 ---
 
 ## How much headroom to leave for mastering (and why −6 dB isn’t the point)
-URL: https://myaiplug.github.io/coproducer-web/blog/how-much-headroom-to-leave-for-mastering.html
+URL: https://coproducer.nodawlabs.com/blog/how-much-headroom-to-leave-for-mastering.html
 Section: Delivery · 15 October 2026 · 8 min
 Summary: Headroom for mastering means no clipping and no mix-bus limiter. Peaks near −6 to −3 dBFS in 24-bit or float is convention; clipping can’t be undone.
 
@@ -3440,7 +3440,7 @@ A: Without, as the main file. If the limiter is part of the sound you’ve been 
 ---
 
 ## Integrated LUFS hides how loud the chorus actually is
-URL: https://myaiplug.github.io/coproducer-web/blog/integrated-lufs-hides-the-chorus.html
+URL: https://coproducer.nodawlabs.com/blog/integrated-lufs-hides-the-chorus.html
 Section: Meters · 14 October 2026 · 7 min
 Summary: A master can read −14 LUFS integrated while its chorus runs 3–4 LU hotter. Measure integrated, short-term and momentary on one bounce first.
 
@@ -3516,7 +3516,7 @@ A: No. Stores normalize on integrated, so a chorus at −14 short-term usually l
 ---
 
 ## Don’t match a streamed reference
-URL: https://myaiplug.github.io/coproducer-web/blog/dont-match-a-streamed-reference.html
+URL: https://coproducer.nodawlabs.com/blog/dont-match-a-streamed-reference.html
 Section: Workflow · 14 October 2026 · 7 min
 Summary: A streamed reference was already turned down or up by the platform. Match it and you inherit an offset you never measured. Compare lossless files.
 
@@ -3591,7 +3591,7 @@ A: Measure the integrated LUFS of both lossless files on the same meter, then tu
 ---
 
 ## Short-term LUFS is not your target
-URL: https://myaiplug.github.io/coproducer-web/blog/short-term-lufs-is-not-your-target.html
+URL: https://coproducer.nodawlabs.com/blog/short-term-lufs-is-not-your-target.html
 Section: Loudness · 12 October 2026 · 8 min
 Summary: Stores use integrated LUFS over the whole file. A hook at −9 short-term can still miss −14 integrated. Read both meters, then decide.
 
@@ -3672,7 +3672,7 @@ A: The store averages the gated whole file. A hot chorus over quieter verses, lo
 ---
 
 ## Turn the mix down before you limit
-URL: https://myaiplug.github.io/coproducer-web/blog/turn-the-mix-down-before-you-limit.html
+URL: https://coproducer.nodawlabs.com/blog/turn-the-mix-down-before-you-limit.html
 Section: Mastering · 12 October 2026 · 8 min
 Summary: If the mix already hits 0 dBFS into the limiter, extra loudness is distortion you can’t take back. Pull the bus down 3–6 dB, then limit.
 
@@ -3772,7 +3772,7 @@ A: No. It can stop new overs past its ceiling. Flattened peaks stay flattened. P
 ---
 
 ## What 432 Hz actually changes in a finished master
-URL: https://myaiplug.github.io/coproducer-web/blog/what-432-hz-actually-changes-in-a-master.html
+URL: https://coproducer.nodawlabs.com/blog/what-432-hz-actually-changes-in-a-master.html
 Section: Pitch · 8 October 2026 · 12 min
 Summary: Retuning a master from 440 to 432 Hz scales every frequency by 0.981818 (−31.77 cents) and, with resampling, adds 1.85% length. Measured on real renders.
 
@@ -3963,7 +3963,7 @@ A: 432/440 = 0.981818, which is exactly 54/55. That works out to −31.77 cents.
 ---
 
 ## Resampling, pitch shifting, and tempo change are three different jobs
-URL: https://myaiplug.github.io/coproducer-web/blog/resampling-vs-pitch-shift-vs-tempo.html
+URL: https://coproducer.nodawlabs.com/blog/resampling-vs-pitch-shift-vs-tempo.html
 Section: Pitch · 8 October 2026 · 14 min
 Summary: Resampling moves pitch and time together, pitch shifting rebuilds time, tempo change keeps pitch. Seven FFmpeg renders measured for pitch, BPM, and smearing.
 
@@ -4165,7 +4165,7 @@ A: Yes. At 48 kHz, use aresample=52800,asetrate=51840,aresample=48000, which is 
 ---
 
 ## Concert pitch before A=440: a history that never stood still
-URL: https://myaiplug.github.io/coproducer-web/blog/concert-pitch-history-before-a440.html
+URL: https://coproducer.nodawlabs.com/blog/concert-pitch-history-before-a440.html
 Section: History · 8 October 2026 · 12 min
 Summary: Before A=440, concert pitch ran from about 415 to 457 Hz. The dated record from Shore's 1711 fork to ISO 16, the temperature fights, and the 432 math.
 
@@ -4354,7 +4354,7 @@ A: Yes for wind instruments and organ pipes, whose pitch follows the speed of so
 ---
 
 ## The 432 Hz conspiracy theories, checked against the record
-URL: https://myaiplug.github.io/coproducer-web/blog/432-hz-conspiracy-theories-fact-check.html
+URL: https://coproducer.nodawlabs.com/blog/432-hz-conspiracy-theories-fact-check.html
 Section: Rumor file · 8 October 2026 · 13 min
 Summary: Did the Nazis or the Rockefellers change music from 432 to 440 Hz? Where each 432 rumor started, what the dated record shows, and how to read health studies.
 
@@ -4530,7 +4530,7 @@ A: Not at all. Preferring a lower, slightly slower version of a song is a legiti
 ---
 
 ## How to run a 432 vs 440 listening test you can trust
-URL: https://myaiplug.github.io/coproducer-web/blog/432-vs-440-blind-listening-test.html
+URL: https://coproducer.nodawlabs.com/blog/432-vs-440-blind-listening-test.html
 Section: Listening lab · 8 October 2026 · 12 min
 Summary: 432 Hz vs 440 Hz, tested fairly: level-match within 0.1 LU, switch at the same note, run a blind ABX round, and score it so placebo and loudness can't win.
 
@@ -4763,7 +4763,7 @@ A: That's a valid result. Keep the original master. A preference that doesn't su
 ---
 
 ## Which songs reveal a 432 Hz retune, and which hide it
-URL: https://myaiplug.github.io/coproducer-web/blog/songs-that-reveal-a-432-hz-retune.html
+URL: https://coproducer.nodawlabs.com/blog/songs-that-reveal-a-432-hz-retune.html
 Section: Listening list · 8 October 2026 · 12 min
 Summary: The best songs to test 432 Hz have exposed vocals, sustained chords and piano tails. Dense mixes and drums hide it. A measured way to build a test set.
 
@@ -4939,7 +4939,7 @@ A: Ten deliberately different tracks is a good start: vocals, piano or acoustic,
 ---
 
 ## 432 Hz mastering: LUFS and true peak after a retune
-URL: https://myaiplug.github.io/coproducer-web/blog/lufs-and-true-peak-after-432-retune.html
+URL: https://coproducer.nodawlabs.com/blog/lufs-and-true-peak-after-432-retune.html
 Section: Mastering · 8 October 2026 · 12 min
 Summary: A 432 retune barely moves LUFS, but resampling can turn hidden inter-sample peaks into real overs. Render in float, measure, then normalize in two passes.
 
@@ -5139,7 +5139,7 @@ A: No. Gain changes and limiters can't restore waveform detail that clipping fla
 ---
 
 ## A 432 alternate master should never cost you the original
-URL: https://myaiplug.github.io/coproducer-web/blog/how-to-make-a-432-hz-alternate-master.html
+URL: https://coproducer.nodawlabs.com/blog/how-to-make-a-432-hz-alternate-master.html
 Section: Workflow · 8 October 2026 · 10 min
 Summary: Build a 432 Hz alternate master beside the approved 440 file: read-only source, exact-ratio render, names, notes, runtime and ISRC checks, and full-file QC.
 
@@ -5367,7 +5367,7 @@ A: A clean resample should land within a few tenths of a LU and a similar true p
 ---
 
 ## Batch retune a folder to 432 Hz without damaging a master
-URL: https://myaiplug.github.io/coproducer-web/blog/batch-retune-a-folder-to-432-hz-safely.html
+URL: https://coproducer.nodawlabs.com/blog/batch-retune-a-folder-to-432-hz-safely.html
 Section: Batch · 8 October 2026 · 11 min
 Summary: A safe batch workflow for retuning a folder to 432 Hz: preflight, read-only inputs, temp-file renders, exact per-source ratios, error logs, restartable runs.
 
@@ -5596,7 +5596,7 @@ A: It is if every render writes to a temporary file and is renamed only after it
 ---
 
 ## 432, 435, 442 and the reference pitch you actually started from
-URL: https://myaiplug.github.io/coproducer-web/blog/432-vs-435-vs-442-hz-reference-pitch-guide.html
+URL: https://coproducer.nodawlabs.com/blog/432-vs-435-vs-442-hz-reference-pitch-guide.html
 Section: Reference · 8 October 2026 · 10 min
 Summary: 432, 435, 438, 442, and custom A4 references compared: exact ratios, cents, runtime and BPM changes, documented history, and why the source reference matters.
 
@@ -5788,7 +5788,7 @@ A: There is no universally correct one. 440 is the current ISO standard, 435 and
 ---
 
 ## Keeping an unreleased master on your own machine, honestly
-URL: https://myaiplug.github.io/coproducer-web/blog/local-audio-processing-for-unreleased-masters.html
+URL: https://coproducer.nodawlabs.com/blog/local-audio-processing-for-unreleased-masters.html
 Section: Privacy · 8 October 2026 · 10 min
 Summary: What browser-local and offline audio processing protect for unreleased music, what they don't, the metadata that leaks anyway, and privacy claims to defend.
 
@@ -5956,7 +5956,7 @@ A: Yes. A 432 conversion is a resample by 432/440 and needs no server. Our demo 
 ---
 
 ## Before a 432 version ships: the release checklist
-URL: https://myaiplug.github.io/coproducer-web/blog/432-hz-release-checklist.html
+URL: https://coproducer.nodawlabs.com/blog/432-hz-release-checklist.html
 Section: Checklist · 8 October 2026 · 10 min
 Summary: Before releasing a 432 Hz version: rights, the right source reference, a QC gate for clipping and true peak, runtime fixes, honest copy, an archive.
 
@@ -6155,7 +6155,7 @@ A: Yes, if it was made with classic resampling. It runs about 1.85% longer, so s
 ---
 
 ## Splitting stems from YouTube audio you own starts with the cleanest copy
-URL: https://myaiplug.github.io/coproducer-web/blog/split-stems-from-youtube-audio-you-own.html
+URL: https://coproducer.nodawlabs.com/blog/split-stems-from-youtube-audio-you-own.html
 Section: Stems · 8 October 2026 · 11 min
 Summary: Want stems from a song you uploaded to YouTube? The copy you feed the separator sets the ceiling. Find the first-generation file, then split locally.
 
@@ -6352,7 +6352,7 @@ A: Ask for the fewest that do the job. Four stems (vocals, drums, bass, other) a
 ---
 
 ## Demucs vs MDX-Net: what each separator gets wrong, and why
-URL: https://myaiplug.github.io/coproducer-web/blog/demucs-vs-mdx-net-stem-separation-compared.html
+URL: https://coproducer.nodawlabs.com/blog/demucs-vs-mdx-net-stem-separation-compared.html
 Section: Stems · 8 October 2026 · 11 min
 Summary: Demucs vs MDX-Net from the published benchmarks and a runnable window test: who wins drums and bass, who wins vocals, and how to hear it.
 
@@ -6500,7 +6500,7 @@ A: Blending is a sound idea, and it’s what KUIELab-MDX-Net itself does with De
 ---
 
 ## Before a cloud stem splitter gets your unreleased song, read four clauses
-URL: https://myaiplug.github.io/coproducer-web/blog/cloud-stem-splitter-privacy-unreleased-music.html
+URL: https://coproducer.nodawlabs.com/blog/cloud-stem-splitter-privacy-unreleased-music.html
 Section: Local-first · 8 October 2026 · 10 min
 Summary: Uploading an unreleased track to a cloud stem splitter is a rights decision. Four terms clauses to read, and how to prove a split stays local.
 
@@ -6665,7 +6665,7 @@ A: Yes, for released material, for a machine that can’t run the models, or whe
 ---
 
 ## Sampling from separated stems: chop around the bleed, not through it
-URL: https://myaiplug.github.io/coproducer-web/blog/sampling-from-separated-stems-workflow.html
+URL: https://coproducer.nodawlabs.com/blog/sampling-from-separated-stems-workflow.html
 Section: Sampling · 8 October 2026 · 11 min
 Summary: A producer’s workflow for sampling from AI-separated stems: audit the bleed, restore the attack, null-test, match key, clear what you don’t own.
 
@@ -6853,7 +6853,7 @@ A: Shift by a ratio of 2^(n/12) for n semitones, with a formant-aware pitch shif
 ---
 
 ## Rumble you can’t hear is eating your limiter
-URL: https://myaiplug.github.io/coproducer-web/blog/subsonic-rumble-steals-limiter-headroom.html
+URL: https://coproducer.nodawlabs.com/blog/subsonic-rumble-steals-limiter-headroom.html
 Section: Low end · 7 October 2026 · 8 min
 Summary: Subsonic rumble and DC offset barely move LUFS but still count toward peaks. Check under 20–30 Hz and filter gently before the limiter to win headroom back.
 
@@ -6963,7 +6963,7 @@ A: It shifts the whole waveform off center, so one side of it reaches the ceilin
 ---
 
 ## Your bus compressor is pumping on the 808. High-pass the sidechain
-URL: https://myaiplug.github.io/coproducer-web/blog/bus-compressor-pumps-on-the-808.html
+URL: https://coproducer.nodawlabs.com/blog/bus-compressor-pumps-on-the-808.html
 Section: Dynamics · 7 October 2026 · 8 min
 Summary: Hats and vocal air ducking on every 808 note means the low end is driving your bus compressor. A 60–150 Hz sidechain high-pass keeps the glue and stops the pump.
 
@@ -7062,7 +7062,7 @@ A: Start around 100 Hz for 808-heavy records and 60–90 Hz for pop, R&B, and li
 ---
 
 ## Halftime still needs a legal peak
-URL: https://myaiplug.github.io/coproducer-web/blog/halftime-still-needs-a-legal-peak.html
+URL: https://coproducer.nodawlabs.com/blog/halftime-still-needs-a-legal-peak.html
 Section: Tempo · 6 October 2026 · 5 min
 Summary: A half-time slowdown changes length and weight, not the true-peak ceiling. Meter the screwed file before it goes anywhere public.
 
@@ -7083,7 +7083,7 @@ A: Only if a platform will turn it up or down. Creative syrup can sit hotter. De
 ---
 
 ## When to slow the bounce
-URL: https://myaiplug.github.io/coproducer-web/blog/when-to-slow-the-bounce.html
+URL: https://coproducer.nodawlabs.com/blog/when-to-slow-the-bounce.html
 Section: Workflow · 6 October 2026 · 4 min
 Summary: Slow the print when the record wants weight, not when the mix is unfinished. A halftime desk is for the bounce, then the meter.
 
@@ -7104,7 +7104,7 @@ A: Yes. Keep the original bounce and the export, then flip them in the analyzer 
 ---
 
 ## Wide mixes fail in mono. Check mid/side before you bounce
-URL: https://myaiplug.github.io/coproducer-web/blog/wide-mixes-fail-in-mono.html
+URL: https://coproducer.nodawlabs.com/blog/wide-mixes-fail-in-mono.html
 Section: Stereo · 6 October 2026 · 8 min
 Summary: Stereo width that sounds huge on headphones can cancel on a phone. Measure mid/side balance, L/R correlation, and mono fold-down before you bounce.
 
@@ -7210,7 +7210,7 @@ A: There isn’t one magic width. Correlation above about 0.3 and a mono fold th
 ---
 
 ## Clipper vs limiter for hip-hop delivery — loudness isn’t the only score
-URL: https://myaiplug.github.io/coproducer-web/blog/clipper-vs-limiter-hip-hop-delivery.html
+URL: https://coproducer.nodawlabs.com/blog/clipper-vs-limiter-hip-hop-delivery.html
 Section: Delivery · 6 October 2026 · 9 min
 Summary: Soft clipper vs brickwall limiter on the same drive: compare LUFS, true peak, and crest. Sample peak −1.0 dBFS is not true-peak safe.
 
@@ -7403,7 +7403,7 @@ A: Sample peak isn’t true peak. Codecs reconstruct between samples. Aim ≤ �
 ---
 
 ## The silence at the top of your bounce steals LUFS
-URL: https://myaiplug.github.io/coproducer-web/blog/leading-silence-steals-integrated-lufs.html
+URL: https://coproducer.nodawlabs.com/blog/leading-silence-steals-integrated-lufs.html
 Section: Meters · 5 October 2026 · 7 min
 Summary: Digital silence is gated out of integrated LUFS, but quiet intros, long fades and ungated meters still pull the number down. Trim the edges, then measure.
 
@@ -7454,7 +7454,7 @@ A: No. If the intro is part of the record, keep it and accept a slightly lower r
 ---
 
 ## Your kick and 808 are arguing in the same chair
-URL: https://myaiplug.github.io/coproducer-web/blog/kick-and-808-same-chair.html
+URL: https://coproducer.nodawlabs.com/blog/kick-and-808-same-chair.html
 Section: Mix · 5 October 2026 · 8 min
 Summary: Kick and 808 fighting for 40–80 Hz? Decide who owns each hit with arrangement, carving or sidechain, then measure loudness so repair isn't hiding mud.
 
@@ -7530,7 +7530,7 @@ A: Only a little, and not cleanly. A master sees one low end. Deciding who owns 
 ---
 
 ## How loud should the vocal sit? Measure it against the beat
-URL: https://myaiplug.github.io/coproducer-web/blog/how-loud-should-the-vocal-sit.html
+URL: https://coproducer.nodawlabs.com/blog/how-loud-should-the-vocal-sit.html
 Section: Mix · 6 October 2026 · 8 min
 Summary: There’s no single right vocal level, but the vocal-to-beat loudness gap in LU is measurable. Match it to a reference, then fix only the buried bars.
 
@@ -7617,7 +7617,7 @@ A: No. The master moves everything together. If the vocal gets buried in certain
 ---
 
 ## Harsh S’s get louder after mastering. De-ess before the limiter
-URL: https://myaiplug.github.io/coproducer-web/blog/harsh-esses-get-louder-after-mastering.html
+URL: https://coproducer.nodawlabs.com/blog/harsh-esses-get-louder-after-mastering.html
 Section: Vocals · 6 October 2026 · 7 min
 Summary: Vocals harsh after mastering? The master lifts level and top end, so borderline sibilance pops and eats true-peak headroom. Find the worst S’s and fix them in the mix.
 
@@ -7699,7 +7699,7 @@ A: Only as a last resort when there’s no session. It catches hats and cymbals 
 ---
 
 ## Why streaming platforms turn loud masters down
-URL: https://myaiplug.github.io/coproducer-web/blog/why-streaming-turns-loud-masters-down.html
+URL: https://coproducer.nodawlabs.com/blog/why-streaming-turns-loud-masters-down.html
 Section: Cover · 20 August 2026 · 8 min
 Summary: Streaming services normalize toward −14 LUFS (Apple closer to −16). A hotter master is turned down, not played louder. Measure integrated LUFS before you limit again.
 
@@ -7733,7 +7733,7 @@ A: No. It is the playback lane. Hotter files are turned down. Quieter files may 
 ---
 
 ## True peak is what codecs clip
-URL: https://myaiplug.github.io/coproducer-web/blog/true-peak-is-what-codecs-clip.html
+URL: https://coproducer.nodawlabs.com/blog/true-peak-is-what-codecs-clip.html
 Section: Meters · 20 August 2026 · 7 min
 Summary: True peak (dBTP) estimates inter-sample peaks. Streaming wants about −1.0 dBTP. A legal sample peak can still clip after AAC or Opus reconstruction.
 
@@ -7756,7 +7756,7 @@ A: No. It can stop new overs. Flattened peaks stay flattened. CoProducer’s rep
 ---
 
 ## What a 70-to-90 repair actually changes
-URL: https://myaiplug.github.io/coproducer-web/blog/what-a-70-to-90-repair-changes.html
+URL: https://coproducer.nodawlabs.com/blog/what-a-70-to-90-repair-changes.html
 Section: Proof · 20 August 2026 · 9 min
 Summary: Public A/B proofs: Crazy Stacy 70→90 (831 clips→0), BeatGoHard 77→95, Drippin 66→93. A delivery pass — not a remix or taste rewrite.
 
@@ -7782,7 +7782,7 @@ A: You can upload for measurement and a projected repair column. You cannot down
 ---
 
 ## Should you upload an unreleased master to the cloud?
-URL: https://myaiplug.github.io/coproducer-web/blog/should-you-upload-an-unreleased-master.html
+URL: https://coproducer.nodawlabs.com/blog/should-you-upload-an-unreleased-master.html
 Section: Practice · 20 August 2026 · 7 min
 Summary: Upload an unreleased master only if you accept a vendor holding the file. Loudness, true peak, and clip checks can stay fully local with CoProducer.
 
@@ -7805,7 +7805,7 @@ A: Not automatically. It is better defined: you keep the WAV, you see the plan, 
 ---
 
 ## A release checklist that matches the meter
-URL: https://myaiplug.github.io/coproducer-web/blog/release-checklist-that-matches-the-meter.html
+URL: https://coproducer.nodawlabs.com/blog/release-checklist-that-matches-the-meter.html
 Section: Checklist · 20 August 2026 · 6 min
 Summary: Release checklist: −14 LUFS ±1.5, true peak ≤ −1.0 dBTP, 0 clipped samples, ≥44.1 kHz, phase ≥ 0.2, score ≥ 90. Same gates CoProducer scores.
 
@@ -7827,7 +7827,7 @@ Note: Handbook version: audio quality checklist. Same gates, less prose. Run the
 ---
 
 ## Crest factor is not loudness
-URL: https://myaiplug.github.io/coproducer-web/blog/crest-factor-is-not-loudness.html
+URL: https://coproducer.nodawlabs.com/blog/crest-factor-is-not-loudness.html
 Section: Dynamics · 21 August 2026 · 7 min
 Summary: Crest factor is peak-to-RMS height. LUFS is perceived loudness over time. You can raise crest and still miss −14 LUFS — or hit −14 with a crushed crest.
 
@@ -7849,7 +7849,7 @@ A: Dynamic range and related crest-style readouts sit beside LUFS and true peak 
 ---
 
 ## Phase correlation is a mono audition
-URL: https://myaiplug.github.io/coproducer-web/blog/phase-correlation-and-mono.html
+URL: https://coproducer.nodawlabs.com/blog/phase-correlation-and-mono.html
 Section: Stereo · 21 August 2026 · 7 min
 Summary: Phase near 0 or negative means the mix thins or cancels in mono. CoProducer fails values under about 0.2. Auto-repair will not flip polarity for you.
 
@@ -7871,7 +7871,7 @@ A: No. Fully correlated mono sits near 1.0. Most finished stereo records sit com
 ---
 
 ## Quiet masters get turned up — and so does the noise
-URL: https://myaiplug.github.io/coproducer-web/blog/quiet-masters-and-noise-floor.html
+URL: https://coproducer.nodawlabs.com/blog/quiet-masters-and-noise-floor.html
 Section: Noise · 21 August 2026 · 6 min
 Summary: Streaming turn-up lifts quiet files. A −20 LUFS master may be gained up, which also lifts hiss, rumble, and room tone. Quiet is not a free pass.
 
@@ -7893,7 +7893,7 @@ A: Raise intentional signal, not noise. Fix the floor first.
 ---
 
 ## When not to reach for the limiter
-URL: https://myaiplug.github.io/coproducer-web/blog/when-not-to-reach-for-the-limiter.html
+URL: https://coproducer.nodawlabs.com/blog/when-not-to-reach-for-the-limiter.html
 Section: Limiting · 21 August 2026 · 8 min
 Summary: Skip another limiter when clips are already non-zero, LUFS is only slightly hot, or the real problem is arrangement, noise, or a bad edit — not peak height.
 
@@ -7915,7 +7915,7 @@ A: No. It can stop new overs. Flattened peaks stay flattened.
 ---
 
 ## Sample rate and bit depth are delivery hygiene
-URL: https://myaiplug.github.io/coproducer-web/blog/sample-rate-and-bit-depth-for-delivery.html
+URL: https://coproducer.nodawlabs.com/blog/sample-rate-and-bit-depth-for-delivery.html
 Section: Delivery · 21 August 2026 · 8 min
 Summary: CoProducer fails sample rates under 44.1 kHz. Why 32 kHz fails delivery, when 44.1/48/96 are fine, what bit depth distributors want, and how to verify the bounce.
 
@@ -7973,7 +7973,7 @@ A: Because most storefronts reject or silently upsample junk rates. A 32 kHz fil
 ---
 
 ## How to use a reference track when mixing: match the loudness first, then compare
-URL: https://myaiplug.github.io/coproducer-web/blog/reference-matching-without-guesswork.html
+URL: https://coproducer.nodawlabs.com/blog/reference-matching-without-guesswork.html
 Section: Reference · 21 August 2026 · 7 min
 Summary: Turn the louder track down before you compare, or you’ll pick it every time. Then compare tonal balance and true peak, and copy the balance, not the peak.
 
@@ -8101,7 +8101,7 @@ A: It works for rough balance, but the levels are wrong. A streamed or ripped fi
 ---
 
 ## How loud should each song on an album be? Measure the record as a set
-URL: https://myaiplug.github.io/coproducer-web/blog/album-consistency-in-one-meter.html
+URL: https://coproducer.nodawlabs.com/blog/album-consistency-in-one-meter.html
 Section: Albums · 21 August 2026 · 6 min
 Summary: Album tracks don’t all need −14 LUFS. Measure the record as a set, keep loud songs close, let quiet ones sit lower on purpose, and keep every true peak legal.
 
@@ -8256,7 +8256,7 @@ A: Measure every track with the same meter and put the numbers side by side: int
 ---
 
 ## What should a loudness report include? Why HTML, JSON and TXT all matter
-URL: https://myaiplug.github.io/coproducer-web/blog/why-three-report-formats.html
+URL: https://coproducer.nodawlabs.com/blog/why-three-report-formats.html
 Section: Reports · 21 August 2026 · 7 min
 Summary: A loudness report should name the exact file, its hash, LUFS, true peak and LRA. Keep HTML for people, JSON for scripts and TXT for chat. Script included.
 
@@ -8454,7 +8454,7 @@ A: Measure both with the same meter and compare the JSON reports field by field.
 ---
 
 ## How to check LUFS without uploading your song: local tools beat upload queues
-URL: https://myaiplug.github.io/coproducer-web/blog/local-tools-beat-upload-queues.html
+URL: https://coproducer.nodawlabs.com/blog/local-tools-beat-upload-queues.html
 Section: Local-first · 21 August 2026 · 7 min
 Summary: You don’t need to upload a track to measure LUFS or true peak. A free meter plugin or one FFmpeg command does it in seconds, and your unreleased song stays put.
 
@@ -8584,7 +8584,7 @@ A: Yes. A loudness meter in your DAW, a free plug-in, an FFmpeg command or a bro
 ---
 
 ## Can stem separation fix a bad mix? Stems diagnose mixes, they don’t replace them
-URL: https://myaiplug.github.io/coproducer-web/blog/stems-diagnose-mixes-do-not-replace-them.html
+URL: https://coproducer.nodawlabs.com/blog/stems-diagnose-mixes-do-not-replace-them.html
 Section: Stems · 21 August 2026 · 7 min
 Summary: Stem separation can’t fix a bad mix, but it shows what’s wrong. Mute or lower one stem at a time to find what eats your headroom, then fix it in the session.
 
@@ -8728,7 +8728,7 @@ A: Mute one stem at a time and re-measure the true peak of what’s left. When m
 ---
 
 ## Does a slowed or screwed version need its own master? Measure the peak again
-URL: https://myaiplug.github.io/coproducer-web/blog/screw-tempo-still-needs-a-legal-peak.html
+URL: https://coproducer.nodawlabs.com/blog/screw-tempo-still-needs-a-legal-peak.html
 Section: ScrewAI · 21 August 2026 · 7 min
 Summary: Slowing a song doesn’t make its peaks safe. Varispeed can turn hidden overs into real ones and reverb adds new peaks, so measure the slowed file before upload.
 
@@ -8852,7 +8852,7 @@ A: If you have the session, slow the mix before the limiter and master the slowe
 ---
 
 ## What LUFS for Reels, TikTok and Shorts? Why vertical video is a loudness trap
-URL: https://myaiplug.github.io/coproducer-web/blog/vertical-video-is-a-loudness-trap.html
+URL: https://coproducer.nodawlabs.com/blog/vertical-video-is-a-loudness-trap.html
 Section: Social · 21 August 2026 · 8 min
 Summary: Reels, TikTok and Shorts don’t publish a LUFS target. Check the exported clip instead: true peak under −1 dBTP, a strong first 3 seconds, a mono check.
 
@@ -8975,7 +8975,7 @@ A: Keep them separate. Fix the sound first, export one hero clip, measure the ex
 ---
 
 ## Can mastering fix a bad mix? When a mastering pass is enough and when to reopen the session
-URL: https://myaiplug.github.io/coproducer-web/blog/mastering-bat-vs-opening-the-session.html
+URL: https://coproducer.nodawlabs.com/blog/mastering-bat-vs-opening-the-session.html
 Section: Mastering · 21 August 2026 · 6 min
 Summary: Mastering fixes whole-file problems like loudness, ceiling and broad tone. Clipped vocals, bad edits and mono cancellation live in the mix. Here’s how to tell.
 
@@ -9104,7 +9104,7 @@ A: Yes. Measure the exact file you’ll upload: integrated loudness, true peak, 
 ---
 
 ## What does a mix score mean? How to read a CoProducer score
-URL: https://myaiplug.github.io/coproducer-web/blog/how-to-read-a-coproducer-score.html
+URL: https://coproducer.nodawlabs.com/blog/how-to-read-a-coproducer-score.html
 Section: Scoring · 21 August 2026 · 7 min
 Summary: A CoProducer score is 100 minus points lost for loudness, true peak, clipping, phase and sample rate. 90+ means release ready. Here’s how to read the findings.
 
@@ -9261,7 +9261,7 @@ A: When no local engine is running, the analyzer page estimates in your browser.
 ---
 
 ## Why does my master clip after MP3 or AAC? Re-encoding eats true-peak headroom
-URL: https://myaiplug.github.io/coproducer-web/blog/reencoding-eats-true-peak-headroom.html
+URL: https://coproducer.nodawlabs.com/blog/reencoding-eats-true-peak-headroom.html
 Section: Codecs · 21 August 2026 · 7 min
 Summary: A WAV peaking at −0.1 dBFS can clip once it’s encoded to AAC or MP3. Why it happens, how much true-peak headroom to leave, and a script to test it.
 

@@ -23,7 +23,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 BLOG = ROOT / "blog"
-BASE = "https://myaiplug.github.io/coproducer-web"           # rewritten by the domain-move script
+BASE = "https://coproducer.nodawlabs.com"           # rewritten by the domain-move script
 API = "https://coproducer-comments.netlify.app/api/subscribe"
 CONSENT = "Send me the free pre-release checklist and the occasional Lacquer note. Unsubscribe any time."  # == CONSENT_TEXT_V1 in the API
 MAP = json.loads((Path(__file__).with_name("analyzer_focus.json")).read_text(encoding="utf-8"))
