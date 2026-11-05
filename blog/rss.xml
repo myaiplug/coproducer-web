@@ -6,7 +6,55 @@
     <atom:link href="https://myaiplug.github.io/coproducer-web/blog/rss.xml" rel="self" type="application/rss+xml"/>
     <description>Answer-first essays on loudness, true peak, repair, stems, ScrewAI, and local .bat workflows.</description>
     <language>en-us</language>
-    <lastBuildDate>Sat, 31 Oct 2026 02:00:00 GMT</lastBuildDate>
+    <lastBuildDate>Thu, 05 Nov 2026 00:30:00 GMT</lastBuildDate>
+    <item>
+      <title>Hum in your recording? Notch 60 Hz and its harmonics, not just the low end</title>
+      <link>https://myaiplug.github.io/coproducer-web/blog/hum-in-your-recording-notch-60-hz-and-its-harmonics.html</link>
+      <guid isPermaLink="true">https://myaiplug.github.io/coproducer-web/blog/hum-in-your-recording-notch-60-hz-and-its-harmonics.html</guid>
+      <pubDate>Wed, 04 Nov 2026 16:00:00 GMT</pubDate>
+      <description>Why a high-pass filter barely touches mains hum: most of a hum's energy sits in its harmonics, not at 60 or 50 Hz. Measured how much hum a high-pass, one notch and a full set of narrow notches remove, and what each costs the vocal, with the script.</description>
+      <enclosure url="https://myaiplug.github.io/coproducer-web/blog/img/essays/hum-in-your-recording-notch-60-hz-and-its-harmonics.jpg?v=shd" type="image/jpeg" length="262601"/>
+    </item>
+    <item>
+      <title>Noise gate cutting off the ends of words? Set the hold and a lower close</title>
+      <link>https://myaiplug.github.io/coproducer-web/blog/noise-gate-cuts-off-vocal-tails-set-the-hold.html</link>
+      <guid isPermaLink="true">https://myaiplug.github.io/coproducer-web/blog/noise-gate-cuts-off-vocal-tails-set-the-hold.html</guid>
+      <pubDate>Wed, 04 Nov 2026 16:00:00 GMT</pubDate>
+      <description>Why a noise gate chops vocal tails and chatters: the tail wobbles around the threshold. Measured how hold, release, a lower close threshold and a limited range change where the gate closes and what the gaps sound like, with the script.</description>
+      <enclosure url="https://myaiplug.github.io/coproducer-web/blog/img/essays/noise-gate-cuts-off-vocal-tails-set-the-hold.jpg?v=shd" type="image/jpeg" length="268415"/>
+    </item>
+    <item>
+      <title>Saturator making the highs harsh? Turn on oversampling</title>
+      <link>https://myaiplug.github.io/coproducer-web/blog/saturator-sounds-harsh-turn-on-oversampling.html</link>
+      <guid isPermaLink="true">https://myaiplug.github.io/coproducer-web/blog/saturator-sounds-harsh-turn-on-oversampling.html</guid>
+      <pubDate>Tue, 03 Nov 2026 16:00:00 GMT</pubDate>
+      <description>Why a saturator or clipper makes hats and vocals grainy: distortion creates harmonics above the sample rate's limit and they fold back down as off-key tones. Measured fold-back at 1x, 2x, 4x and 8x oversampling, with the script.</description>
+      <enclosure url="https://myaiplug.github.io/coproducer-web/blog/img/essays/saturator-sounds-harsh-turn-on-oversampling.jpg?v=shd" type="image/jpeg" length="250495"/>
+    </item>
+    <item>
+      <title>Linear-phase EQ softening your kick? Listen before the hit</title>
+      <link>https://myaiplug.github.io/coproducer-web/blog/linear-phase-eq-smears-the-kick-watch-the-pre-ring.html</link>
+      <guid isPermaLink="true">https://myaiplug.github.io/coproducer-web/blog/linear-phase-eq-smears-the-kick-watch-the-pre-ring.html</guid>
+      <pubDate>Tue, 03 Nov 2026 16:00:00 GMT</pubDate>
+      <description>Why a linear-phase low cut can blur a kick: it spreads part of the removed bass ahead of the hit as pre-ringing. Measured on a synthetic kick at 30, 60 and 100 Hz and three slopes against a normal EQ, with the script.</description>
+      <enclosure url="https://myaiplug.github.io/coproducer-web/blog/img/essays/linear-phase-eq-smears-the-kick-watch-the-pre-ring.jpg?v=shd" type="image/jpeg" length="270486"/>
+    </item>
+    <item>
+      <title>Limiter distorting the bass? Slow the release</title>
+      <link>https://myaiplug.github.io/coproducer-web/blog/limiter-distorts-the-bass-slow-the-release.html</link>
+      <guid isPermaLink="true">https://myaiplug.github.io/coproducer-web/blog/limiter-distorts-the-bass-slow-the-release.html</guid>
+      <pubDate>Mon, 02 Nov 2026 16:00:00 GMT</pubDate>
+      <description>Why a fast limiter release makes 808s and bass fuzz and crackle: it recovers inside a single bass cycle and reshapes the waveform. Measured distortion at 1 to 150 ms release, what a short hold does, and what it costs in loudness, with the script.</description>
+      <enclosure url="https://myaiplug.github.io/coproducer-web/blog/img/essays/limiter-distorts-the-bass-slow-the-release.jpg?v=shd" type="image/jpeg" length="232552"/>
+    </item>
+    <item>
+      <title>Mix leans to one side? Check the balance band by band</title>
+      <link>https://myaiplug.github.io/coproducer-web/blog/mix-leans-to-one-side-check-the-balance-band-by-band.html</link>
+      <guid isPermaLink="true">https://myaiplug.github.io/coproducer-web/blog/mix-leans-to-one-side-check-the-balance-band-by-band.html</guid>
+      <pubDate>Mon, 02 Nov 2026 16:00:00 GMT</pubDate>
+      <description>Why a mix can pull left even when the meters look close: the lean usually lives in the top end, from hats and bright parts panned the same way. Measured left-minus-right per octave band, why the master balance knob makes it worse, and how to fix it in the mix, with the script.</description>
+      <enclosure url="https://myaiplug.github.io/coproducer-web/blog/img/essays/mix-leans-to-one-side-check-the-balance-band-by-band.jpg?v=shd" type="image/jpeg" length="219888"/>
+    </item>
     <item>
       <title>Copy-pasted vocal double sounds mono? Sing a real second take</title>
       <link>https://myaiplug.github.io/coproducer-web/blog/copy-paste-vocal-double-sounds-mono-sing-a-real-take.html</link>
@@ -560,11 +608,11 @@
       <enclosure url="https://myaiplug.github.io/coproducer-web/blog/img/essays/stems-diagnose-mixes-do-not-replace-them.jpg?v=shd" type="image/jpeg" length="0"/>
     </item>
     <item>
-      <title>Screw tempo still needs a legal peak</title>
+      <title>Does a slowed or screwed version need its own master? Measure the peak again</title>
       <link>https://myaiplug.github.io/coproducer-web/blog/screw-tempo-still-needs-a-legal-peak.html</link>
       <guid isPermaLink="true">https://myaiplug.github.io/coproducer-web/blog/screw-tempo-still-needs-a-legal-peak.html</guid>
       <pubDate>Thu, 21 Aug 2026 00:00:00 GMT</pubDate>
-      <description>Slowing a track for syrup aesthetics changes duration and crest, not true-peak law. A screwed render still needs ≤ −1.0 dBTP before upload.</description>
+      <description>Slowing a song doesn’t make its peaks safe. Varispeed can turn hidden overs into real ones and reverb adds new peaks, so measure the slowed file before upload.</description>
       <enclosure url="https://myaiplug.github.io/coproducer-web/blog/img/essays/screw-tempo-still-needs-a-legal-peak.jpg?v=shd" type="image/jpeg" length="0"/>
     </item>
     <item>
@@ -576,11 +624,11 @@
       <enclosure url="https://myaiplug.github.io/coproducer-web/blog/img/essays/vertical-video-is-a-loudness-trap.jpg?v=shd" type="image/jpeg" length="0"/>
     </item>
     <item>
-      <title>Mastering .bat versus opening the session</title>
+      <title>Can mastering fix a bad mix? When a mastering pass is enough and when to reopen the session</title>
       <link>https://myaiplug.github.io/coproducer-web/blog/mastering-bat-vs-opening-the-session.html</link>
       <guid isPermaLink="true">https://myaiplug.github.io/coproducer-web/blog/mastering-bat-vs-opening-the-session.html</guid>
       <pubDate>Thu, 21 Aug 2026 00:00:00 GMT</pubDate>
-      <description>A mastering .bat is for trusted delivery passes on finished mixes. Open the session when arrangement, bad edits, or clipped vocals need real surgery.</description>
+      <description>Mastering fixes whole-file problems like loudness, ceiling and broad tone. Clipped vocals, bad edits and mono cancellation live in the mix. Here’s how to tell.</description>
       <enclosure url="https://myaiplug.github.io/coproducer-web/blog/img/essays/mastering-bat-vs-opening-the-session.jpg?v=shd" type="image/jpeg" length="0"/>
     </item>
     <item>

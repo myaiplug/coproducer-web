@@ -1,7 +1,7 @@
 # CoProducer and Lacquer — full text for assistants
 Base: https://myaiplug.github.io/coproducer-web/
-Updated: 2026-10-30
-Essays: 74 (full plain-text bodies, in journal order)
+Updated: 2026-11-04
+Essays: 80 (full plain-text bodies, in journal order)
 Summary index: https://myaiplug.github.io/coproducer-web/llms.txt
 
 ## Identity
@@ -27,6 +27,719 @@ Summary index: https://myaiplug.github.io/coproducer-web/llms.txt
 - Booth / journal comments on Lacquer pages are real reader notes posted through a public comment form (no seeded or sample comments). Notes with links are held for review before they appear.
 
 # Lacquer essays
+
+## Hum in your recording? Notch 60 Hz and its harmonics, not just the low end
+URL: https://myaiplug.github.io/coproducer-web/blog/hum-in-your-recording-notch-60-hz-and-its-harmonics.html
+Section: Mixing · 4 November 2026 · 6 min
+Summary: Why a high-pass filter barely touches mains hum: most of a hum's energy sits in its harmonics, not at 60 or 50 Hz. Measured how much hum a high-pass, one notch and a full set of narrow notches remove, and what each costs the vocal, with the script.
+
+Mains hum isn’t just a 60 Hz tone (50 Hz in Europe and much of the world). It’s a buzz with harmonics at 120, 180, 240 Hz and up, and in our test two-thirds of its energy sat above the fundamental. That’s why a high-pass filter barely helps. Find the exact hum frequency, put a narrow notch on it and on each harmonic you can see, and the hum drops a long way while the voice hardly changes.
+You bring up the vocal or the DI guitar on its own and there it is: a low drone under everything, louder in the gaps. The reflex is a high-pass filter. You sweep it up to 80, then 100, then 150 Hz, and the hum is somehow still there, just thinner and more nasal. Meanwhile the voice is starting to sound small.
+That isn’t you doing it wrong. It’s what hum is made of.
+
+### Hum is a buzz, not a tone
+Wall power alternates at 60 Hz in North America and parts of South America and Asia, and at 50 Hz across Europe, the UK, Africa, Australia and most of Asia. Japan has both, depending on the region. When that leaks into a recording through a ground loop, a cheap power brick or a single-coil pickup, it rarely arrives as a clean sine. It comes in distorted, with harmonics at every multiple: 120, 180, 240, 300 Hz and up. The odd ones are often stronger, which is why it sounds like a buzz rather than a low note.
+Those harmonics land right in the range where vocals, guitars and snares live. A high-pass at 80 Hz only takes the fundamental. Everything above stays.
+We wrote hum_check.py to put numbers on it. It builds a synthetic hum with 15 harmonics up to 900 Hz (falling 3 dB per harmonic, odd ones 6 dB hotter) and a separate sung A3, 220 Hz with vibrato. Every fix here is a plain filter, so the script runs the hum and the voice through each one on their own and reports how much of each is left.
+#!/usr/bin/env python3
+"""How much hum does each fix remove, and how much of the take does it cost?
+  python3 hum_check.py [mains_hz]
+Builds a synthetic mains hum (fundamental plus harmonics up to 900 Hz, falling 3 dB per harmonic,
+odd harmonics 6 dB hotter: a buzz, not a pure tone) and a separate synthetic sung note (A3, 220 Hz,
+with vibrato). Every fix is a linear filter, so we run hum and voice through it separately and
+report what's left of each, in dB relative to before the fix.
+"""
+import sys
+import numpy as np
+from scipy import signal
+
+SR, DUR = 48000, 4.0
+MAINS = float(sys.argv[1]) if len(sys.argv) > 1 else 60.0
+t = np.arange(int(SR * DUR)) / SR
+
+def hum(f0):
+    x = np.zeros_like(t)
+    for k in range(1, int(900 // f0) + 1):
+        gain_db = -3.0 * (k - 1) + (6.0 if k % 2 else 0.0)
+        x += 10 ** (gain_db / 20) * np.sin(2 * np.pi * k * f0 * t + 0.7 * k)
+    return x
+
+def voice():
+    f = 220 * 2 ** ((0.35 * np.sin(2 * np.pi * 5.5 * t)) / 12)        # ±35 cent vibrato
+    ph = 2 * np.pi * np.cumsum(f) / SR
+    return sum((1 / k) * np.sin(k * ph) for k in range(1, 25))
+
+def db(x, ref): return 10 * np.log10(np.mean(x ** 2) / np.mean(ref ** 2) + 1e-30)
+
+def notch_chain(freqs, q):
+    def run(x):
+        for fc in freqs:
+            b, a = signal.iirnotch(fc, q, SR)
+            x = signal.filtfilt(b, a, x)
+        return x
+    return run
+
+def highpass(fc, order):
+    sos = signal.butter(order, fc, "highpass", fs=SR, output="sos")
+    return lambda x: signal.sosfilt(sos, x)
+
+H, V = hum(MAINS), voice()
+harm = [MAINS * k for k in range(1, int(900 // MAINS) + 1)]
+fixes = [
+    ("high-pass 80 Hz, 24 dB/oct", highpass(80, 4)),
+    ("high-pass 150 Hz, 24 dB/oct", highpass(150, 4)),
+    (f"one notch at {MAINS:g} Hz, Q 30", notch_chain([MAINS], 30)),
+    (f"notches {MAINS:g}-{harm[3]:g} Hz (4), Q 30", notch_chain(harm[:4], 30)),
+    (f"notches {MAINS:g}-{harm[-1]:g} Hz ({len(harm)}), Q 30", notch_chain(harm, 30)),
+    (f"notches {MAINS:g}-{harm[-1]:g} Hz ({len(harm)}), Q 8", notch_chain(harm, 8)),
+    (f"wrong mains: notches at 50 Hz multiples, Q 30", notch_chain([50 * k for k in range(1, 19)], 30)),
+]
+skip = slice(SR // 2, -SR // 2)                                       # ignore filter edges
+above = sum(10 ** ((-3.0 * (k - 1) + (6.0 if k % 2 else 0.0)) / 10) for k in range(2, len(harm) + 1))
+total = above + 1.0
+print(f"Mains {MAINS:g} Hz hum, {len(harm)} harmonics to {harm[-1]:g} Hz; "
+      f"{100 * above / total:.0f}% of the hum's energy is above the fundamental.")
+print(f"{'fix':44s} {'hum left':>9s} {'voice change':>13s}")
+for name, f in fixes:
+    print(f"{name:44s} {db(f(H)[skip], H[skip]):8.1f}  {db(f(V)[skip], V[skip]):11.2f} dB")
+$ python3 hum_check.py
+Mains 60 Hz hum, 15 harmonics to 900 Hz; 67% of the hum's energy is above the fundamental.
+fix                                           hum left  voice change
+high-pass 80 Hz, 24 dB/oct                       -4.1        -0.00 dB
+high-pass 150 Hz, 24 dB/oct                      -6.4        -0.12 dB
+one notch at 60 Hz, Q 30                         -4.8        -0.00 dB
+notches 60-240 Hz (4), Q 30                     -12.0        -0.25 dB
+notches 60-900 Hz (15), Q 30                    -50.5        -1.01 dB
+notches 60-900 Hz (15), Q 8                    -130.5        -5.44 dB
+wrong mains: notches at 50 Hz multiples, Q 30     -0.4        -1.34 dB
+
+### Reading the numbers
+Two-thirds of the hum isn’t at 60 Hz. That one line explains the rest. Removing the fundamental perfectly can only ever take about 4.8 dB off, which is what a single notch at 60 Hz does, and the 80 Hz high-pass lands nearby at 4.1 dB. Pushing the high-pass to 150 Hz only gets 6.4 dB, because the loud odd harmonics at 180 and 300 Hz are still there.
+Notching the harmonics is what works. Four narrow notches (60 to 240 Hz) take 12 dB off. Notching all 15 harmonics up to 900 Hz takes 50.5 dB off, which turns an obvious buzz into nothing you’ll hear in a mix, and the voice changes by about 1 dB.
+That 1 dB has a reason. The note’s third harmonic is 660 Hz, which is exactly 11 × 60. When a sung note lands on a hum harmonic, that notch takes a bite out of the note too. Narrow notches keep that bite small. Wide ones don’t: the same 15 notches at Q 8 wipe out the hum completely but take 5.4 dB out of the voice, which you’ll hear as a hollow, phasey tone.
+The wrong mains frequency does nothing useful. Notches on 50 Hz multiples moved our 60 Hz hum by 0.4 dB and still cost the voice 1.3 dB. Measure first. Don’t assume.
+Real hum drifts a little and real voices move around more than one note, so read these as a model, not a promise. The pattern holds though: the harmonics carry the hum, and narrow beats wide.
+
+### How to do it in your session
+1. Find a gap with only hum. Loop a second or two before the first word, or between lines, and open a spectrum analyzer on it.
+2. Read the spacing. Hum shows up as a row of evenly spaced spikes. If they’re 60 Hz apart, it’s 60 Hz mains. If they’re 50 apart, it’s 50. Zoom in on the lowest one to get the exact frequency, since it can sit at 59.9 or 60.1.
+3. Notch the fundamental and every harmonic that pokes up. Use a narrow bell cut, Q 20 to 40, as deep as it needs to be. Work up the row until the spikes stop rising above the noise. That’s often somewhere between 300 Hz and 1 kHz.
+4. Keep the high-pass for what it’s good at. A gentle high-pass under the voice still cleans up rumble. It just isn’t a hum fix. Rumble you can’t hear is eating your limiter covers that side.
+5. If the hum is quiet, stop there. If it’s loud, a dedicated de-hum plugin does the same comb of notches but follows the hum as it drifts. Whatever you use, solo the vocal, then listen in the full mix. That’s the version people hear.
+
+### Check what you lost
+Bounce the vocal before and after, and flip between them level-matched in an A/B such as CoProducer’s. Listen to the words, not the gaps. The gaps will obviously be better. What you’re checking is that sustained notes don’t sound hollow. If one note goes thin, it’s probably sitting on a harmonic. Narrow that notch, or automate it shallower through that phrase.
+
+### Fix it at the source next time
+Notches clean up a take you can’t redo. If you can redo it, ten minutes of troubleshooting beats an hour of EQ. Plug the interface, computer and amp into the same power strip. Use a DI box with a ground lift for keyboards and laptops. Keep audio cables away from power bricks. Turn single-coil guitars to face away from the monitor or the computer. Unplugging the laptop charger is a classic quick test: if the buzz stops, you’ve found it.
+And clean it on the track, not the master. A hum on one vocal track is easy to notch on that track. Once it’s summed with a bass and an 808 that also live around 60 to 180 Hz, every notch on the master cuts the music too. If the gaps still sound noisy after the hum is gone, why quiet masters bring the noise up with them is the next read.
+Q: Why doesn’t a high-pass filter remove hum?
+A: Because most of the hum isn’t at 60 or 50 Hz. It’s in the harmonics above. In our test two-thirds of the hum’s energy sat above the fundamental, so an 80 Hz high-pass only removed 4.1 dB and a 150 Hz one only 6.4 dB.
+Q: Is hum 50 Hz or 60 Hz?
+A: It matches the local wall power: 60 Hz in North America and some of South America and Asia, 50 Hz in Europe, the UK, Africa, Australia and most of Asia. Check a spectrum analyzer. The spikes will be spaced 50 or 60 Hz apart.
+Q: What Q should a hum notch be?
+A: Narrow, roughly Q 20 to 40. In our test 15 notches at Q 30 removed 50.5 dB of hum and changed the voice by about 1 dB. The same notches at Q 8 removed all the hum but took 5.4 dB from the voice.
+Q: Should I remove hum on the master?
+A: Avoid it if you can. Bass and 808s share the same range, so notches on the master cut the music too. Fix the individual track that has the hum.
+
+---
+
+## Noise gate cutting off the ends of words? Set the hold and a lower close
+URL: https://myaiplug.github.io/coproducer-web/blog/noise-gate-cuts-off-vocal-tails-set-the-hold.html
+Section: Mixing · 4 November 2026 · 6 min
+Summary: Why a noise gate chops vocal tails and chatters: the tail wobbles around the threshold. Measured how hold, release, a lower close threshold and a limited range change where the gate closes and what the gaps sound like, with the script.
+
+A noise gate cuts off the ends of words when it closes as soon as the fading tail dips under the threshold. Tails wobble, so it also flutters open and shut. Add 50 to 100 ms of hold, a release around 150 ms, and a close threshold about 6 dB under the open one (hysteresis), and the gate waits for the word to really finish. Then set the range to about −15 dB instead of full silence so the gaps don’t sound like holes.
+You recorded vocals in a bedroom, so there’s a little room noise and some headphone bleed between lines. A gate seems like the obvious fix. Then you play it back and the last letter of every word is missing. “Night” turns into “nigh.” Held notes stop a beat early, and sometimes the end of a word flickers, like someone tapping the mute button.
+The gate’s doing exactly what you told it. The problem is that a word doesn’t end in a straight line.
+
+### Why gates chop tails
+A gate opens when the signal goes above a threshold and closes when it falls back under. The start of a word is easy: it jumps up fast. The end is the hard part. A fading voice doesn’t slide smoothly down to silence. It wobbles, with vibrato, a bit of breath and the room. So it dips under the threshold, the gate starts closing, then the tail pops back up and the gate opens again. That’s the flutter. And the quiet last part of the word, which often carries the consonant, sits below the threshold, so it’s gone.
+Gates have three controls for this. Hold keeps the gate open for a set time after the signal drops, so a short dip doesn’t close it. Release sets how slowly it fades shut. Hysteresis, sometimes called a separate close threshold, means it opens at one level and only closes at a lower one.
+We wrote gate_check.py to see what each one does. It builds six synthetic sung words (a buzzy 200 Hz tone, 350 ms long, with a tail that fades and wobbles) over a steady noise floor at −60 dBFS. Then it runs a basic gate that opens at −40 dBFS and measures how many times it opens per word, how long after the word it starts closing (the point where it’s 6 dB down), and how far it pushes down the noise between words.
+#!/usr/bin/env python3
+"""Does the noise gate eat the ends of your words?
+  python3 gate_check.py
+A synthetic vocal line: six 'words' (a 200 Hz voiced tone, 350 ms at about -14 dBFS RMS) whose
+tails decay exponentially (tau 90 ms) with a slight wobble, over a constant noise floor at -60 dBFS
+RMS (room tone, headphone bleed). A plain gate opens at -40 dBFS, holds, then fades over the
+release. For each setting we report how often it opened per word (1 is ideal; more is chatter),
+how long after the word the gate starts closing (gain 6 dB down), and how far it pushed down the noise between words.
+"""
+import numpy as np
+
+SR = 48000
+rng = np.random.default_rng(7)
+
+def take():
+    word, gap = int(0.35 * SR), int(0.9 * SR)
+    n = 6 * (word + gap)
+    t = np.arange(n) / SR
+    env = np.zeros(n)
+    tail_mask = np.zeros(n, bool)
+    starts = []
+    for w in range(6):
+        s = w * (word + gap) + int(0.3 * SR); starts.append(s)
+        a = np.minimum(1, np.arange(word) / (0.015 * SR))
+        env[s:s + word] = a
+        k = np.arange(gap - int(0.3 * SR))
+        wob = 1 + 0.35 * np.sin(2 * np.pi * 9 * k / SR)               # tails are never smooth
+        env[s + word:s + word + k.size] = np.exp(-k / (0.09 * SR)) * wob
+        tail_mask[s + word:s + word + int(0.4 * SR)] = True
+    ends = [s + word for s in starts]
+    voice = 0.28 * env * np.sign(np.sin(2 * np.pi * 200 * t)) * 0.7   # buzzy, like a voice
+    noise = 10 ** (-60 / 20) * rng.standard_normal(n)
+    return voice, noise, tail_mask, starts, ends
+
+def gate(x, open_db=-40, close_db=None, hold_ms=0, release_ms=20, range_db=-80):
+    close_db = open_db if close_db is None else close_db
+    det = np.abs(x)
+    a_r = np.exp(-1 / (0.010 * SR))                                   # 10 ms peak detector
+    env = np.empty_like(det); e = 0.0
+    for i, v in enumerate(det):
+        e = v if v > e else a_r * e + (1 - a_r) * v; env[i] = e
+    env_db = 20 * np.log10(env + 1e-12)
+    g_floor = 10 ** (range_db / 20)
+    step_up = 1 / (0.001 * SR)                                        # 1 ms attack
+    rel = np.exp(np.log(g_floor) / max(1, release_ms * SR / 1000))
+    g, is_open, held, opens = g_floor, False, 0, []
+    out, gain = np.empty_like(x), np.empty_like(x)
+    for i in range(x.size):
+        if not is_open and env_db[i] > open_db:
+            is_open, held = True, 0; opens.append(i)
+        elif is_open and env_db[i] < close_db:
+            held += 1
+            if held > hold_ms * SR / 1000: is_open = False
+        elif is_open:
+            held = 0
+        g = min(1.0, g + step_up) if is_open else max(g_floor, g * rel)
+        out[i] = x[i] * g; gain[i] = g
+    return out, gain, opens
+
+voice, noise, tail, starts, ends = take()
+x = voice + noise
+between = np.ones(x.size, bool)
+for s in starts: between[s - int(0.05 * SR):s + int(1.0 * SR)] = False
+settings = [
+    ("hold 0, release 20 ms", dict()),
+    ("hold 0, release 150 ms", dict(release_ms=150)),
+    ("hold 80 ms, release 150 ms", dict(hold_ms=80, release_ms=150)),
+    ("hold 80, release 150, close at -46", dict(hold_ms=80, release_ms=150, close_db=-46)),
+    ("same, range -15 dB instead of off", dict(hold_ms=80, release_ms=150, close_db=-46, range_db=-15)),
+]
+rms = lambda v: np.sqrt(np.mean(v ** 2))
+print(f"{'setting':38s} {'opens/word':>10s} {'closing at':>11s} {'noise between':>14s}")
+for name, kw in settings:
+    y, g, opens = gate(x, **kw)
+    cut = []
+    for e in ends:                                                    # first sample after the word at -6 dB
+        below = np.nonzero(g[e:e + int(0.8 * SR)] < 0.5)[0]
+        cut.append(below[0] / SR * 1000 if below.size else np.nan)
+    nb = 20 * np.log10(rms(y[between]) / rms(x[between]))
+    c = np.nanmean(cut) if not np.all(np.isnan(cut)) else float("nan")
+    print(f"{name:38s} {len(opens) / 6:10.1f} {c:8.0f} ms {nb:11.1f} dB")
+win = int(0.02 * SR); sm = lambda v: np.sqrt(np.convolve(v ** 2, np.ones(win) / win, "same"))
+vt, nf = sm(voice), rms(noise)
+sink = [np.nonzero(vt[e:e + int(0.8 * SR)] < nf)[0][0] / SR * 1000 for e in ends]
+print(f"(for reference, the tail itself sinks under the noise floor {np.mean(sink):.0f} ms after the word)")
+$ python3 gate_check.py
+setting                                opens/word  closing at  noise between
+hold 0, release 20 ms                         1.5      287 ms       -80.0 dB
+hold 0, release 150 ms                        1.5      297 ms       -80.0 dB
+hold 80 ms, release 150 ms                    1.0      377 ms       -80.0 dB
+hold 80, release 150, close at -46            1.0      508 ms       -76.4 dB
+same, range -15 dB instead of off             1.0      547 ms       -14.9 dB
+(for reference, the tail itself sinks under the noise floor 491 ms after the word)
+
+### Reading the numbers
+The tail lasts 491 ms. That’s how long after each word our tail stays above the noise floor, the part you’d actually hear. It’s the number to compare against.
+A default gate cuts it at 287 ms, so about 200 ms of every tail is gone. It also opens 1.5 times per word on average, so some words flutter. Making the release slower alone (150 ms) barely helps: 297 ms, and the same flutter. The release only shapes how it closes, not when.
+Hold stops the flutter. Adding 80 ms of hold brings it to exactly one open per word and moves the close out to 377 ms. Better, but still early.
+A lower close threshold keeps the whole tail. Opening at −40 and closing at −46 moves the close to 508 ms, just past where the tail sinks under the noise. Nothing audible gets cut.
+Full silence in the gaps is its own problem. With the gate shutting all the way, the noise between words drops by about 76 to 80 dB, which is complete silence. Then it snaps back in with every word. That on-off room tone is easy to hear on headphones. With the range set to −15 dB, the gaps come down 14.9 dB instead. That’s enough to clean them up while a little room stays underneath, so nothing jumps. (The −6 dB point also moves to 547 ms, because the fade covers only 15 dB.)
+This is a simple model of a voice and a basic gate, so treat the exact milliseconds as a guide. Real words end differently, and an S or a T is quieter and shorter than a held vowel.
+
+### Settings to start from
+1. Threshold: loop a gap, watch the meter, and set the open threshold 6 to 10 dB above the noise. Not higher.
+2. Hysteresis or close threshold: about 6 dB below the open threshold. If your gate has no hysteresis control, give it more hold instead.
+3. Hold: 50 to 100 ms for vocals. More for slow, held singing, less for fast rap.
+4. Release: 100 to 200 ms, so the tail fades instead of snapping off.
+5. Range: −10 to −20 dB rather than off. You want the gaps quieter, not dead.
+6. Attack: fast, about 1 ms, but if the first letter clicks, slow it a little or use the gate’s lookahead.
+
+### When a gate is the wrong tool
+If the noise is almost as loud as the quiet parts of the words, no threshold will separate them. The gate will either let the noise through or eat the words. For a vocal, it’s often cleaner to skip the gate and just turn down or clip-gain the gaps by hand. The essay on loud breaths walks through the same move for breaths. When the bleed is the beat itself, leaking out of loud headphones, try running the take through a stem splitter such as StemSplit. It separates the voice from the music, which is something no gate can do while the word is still going.
+Gate before compression, too. A compressor raises the noise between words, which makes the gate’s job harder if it comes after. And if you edited the gaps by hand instead, fade every cut, as clicks at edit points explains, or you’ll swap noise for clicks.
+Q: Why does my noise gate cut off the ends of words?
+A: Because the fading tail drops under the threshold before the word is really over. In our test a basic gate started closing 287 ms after the word, while the tail stayed audible for 491 ms.
+Q: What does hold do on a noise gate?
+A: It keeps the gate open for a set time after the signal drops under the threshold, so short dips don’t close it. In our test 80 ms of hold stopped the gate fluttering open and shut on the tails.
+Q: What is hysteresis on a gate?
+A: A lower close threshold than the open one. Opening at −40 dBFS and closing at −46 in our test let the gate stay open through the whole tail.
+Q: Should a noise gate close all the way?
+A: Usually not on vocals. Full silence makes room tone snap in and out with every word. A range of about −15 dB keeps the gaps cleaner without holes.
+
+---
+
+## Saturator making the highs harsh? Turn on oversampling
+URL: https://myaiplug.github.io/coproducer-web/blog/saturator-sounds-harsh-turn-on-oversampling.html
+Section: Mastering · 3 November 2026 · 7 min
+Summary: Why a saturator or clipper makes hats and vocals grainy: distortion creates harmonics above the sample rate's limit and they fold back down as off-key tones. Measured fold-back at 1x, 2x, 4x and 8x oversampling, with the script.
+
+If a saturator or clipper makes your hats, vocals or synths sound grainy and harsh, it’s probably aliasing: the distortion makes harmonics above the top of the sample rate, and they fold back down as tones that aren’t in tune with anything. Turn on the plugin’s oversampling, 4x for most jobs, and those folded tones drop out while the warmth you wanted stays.
+You put a clipper on the drum bus or a bit of saturation on the master, and the low end gets that nice weight. Then you listen to the top. The hats sound like sand, the vocal’s S’s have a metallic edge, and the bright synth sounds a little out of tune in a way you can’t put a finger on.
+It isn’t your ears and it isn’t the saturation itself. It’s where the saturation’s harmonics go.
+
+### Where the harsh tones come from
+Saturation and clipping add harmonics, copies of the note at 2x, 3x, 5x its frequency and up. On a bass note that’s the whole point: a 50 Hz note gets 150 Hz and 250 Hz, which is why saturated bass reads on small speakers.
+On a bright sound the harmonics land way up high. A 9 kHz partial in a hi-hat makes harmonics at 27 kHz, 45 kHz and so on. A 48 kHz session can only hold frequencies up to 24 kHz. Anything the plugin creates above that doesn’t disappear. It folds back down, mirrored off the limit. The 27 kHz harmonic lands at 21 kHz. The 45 kHz one lands at 48 − 45 = 3 kHz, right in the middle of the range your ears care about most, and it has nothing to do with the note that made it. That’s aliasing.
+Real harmonics move with the note and sound like tone. Aliased ones move the wrong way and sound like grit, a ringing, or a faint second pitch underneath. Oversampling fixes it by running the distortion at 2, 4 or 8 times the sample rate, where there’s room for those harmonics, then filtering them out before coming back down.
+We wrote alias_check.py to measure it. It drives three steady tones (997 Hz, 4,987 Hz and 8,999 Hz) 12 dB into a soft saturator (tanh) and a hard clipper at a 48 kHz session rate. It runs each one with no oversampling and at 2x, 4x and 8x, and splits the result into real harmonics and folded tones below 16 kHz, all relative to the note.
+#!/usr/bin/env python3
+"""Does a saturator alias? Measure the tones a soft (tanh) and hard clipper fold back below Nyquist.
+  python3 alias_check.py [drive_db]
+A sine is driven `drive_db` into a waveshaper at 48 kHz, either directly (1x) or upsampled 2x/4x/8x
+first and filtered back down (scipy resample_poly, Kaiser windowed FIR), the way plugin oversampling works.
+Middle 1 s of a 3 s render, integer-Hz tones, rectangular window, so every tone sits on its own FFT bin.
+"Harmonics" = energy at k*f0 below 24 kHz (what a real tube or tape does). "Aliases" = every other bin
+below 16 kHz: tones that are not in the harmonic series, in the range you can hear. Both in dB
+relative to the fundamental. (Folds that land between 16 and 24 kHz are left out of both columns.)"""
+import sys, numpy as np
+from scipy.signal import resample_poly
+
+SR = 48000
+shapers = {"soft (tanh)": np.tanh, "hard clip": lambda x: np.clip(x, -1, 1)}
+def saturate(x, shape, os):
+    if os == 1: return shape(x)
+    k = ('kaiser', 10.0)                                 # steep anti-alias filter, both ways
+    return resample_poly(shape(resample_poly(x, os, 1, window=k)), 1, os, window=k)
+def analyse(y, f0):
+    P = np.abs(np.fft.rfft(y)) ** 2; P[0] = 0          # bin k = k Hz (1 s, rectangular)
+    harm = np.zeros_like(P, bool); harm[np.arange(f0, SR // 2, f0)] = True
+    band = np.arange(len(P)) < 16000
+    fund = P[f0]; h = P[harm].sum() - fund; a = P[~harm & band].sum()
+    alias = np.where(~harm & band, P, 0); top = int(np.argmax(alias))
+    db = lambda v: 10 * np.log10(max(v, 1e-30) / fund)
+    return db(h), db(a), top, db(alias[top])
+
+def main():
+    drive = float(sys.argv[1]) if len(sys.argv) > 1 else 12.0
+    t = np.arange(3 * SR) / SR; amp = 10 ** (drive / 20) * 0.5          # 0.5 = -6 dBFS before the drive
+    print(f"Sine at -6 dBFS, +{drive:g} dB drive into the shaper, 48 kHz session")
+    for name, shape in shapers.items():
+        print(f"\n{name}")
+        print(f"{'tone':>8}{'oversample':>12}{'harmonics':>11}{'aliases':>10}   loudest alias (<16 kHz)")
+        for f0 in (997, 4987, 8999):
+            for os in (1, 2, 4, 8):
+                h, a, top, topdb = analyse(saturate(amp * np.sin(2 * np.pi * f0 * t), shape, os)[SR:2 * SR], f0)   # middle second, past filter edges
+                f = lambda v, w: f"{v:>{w}.1f} dB" if v > -120 else f"{'< -120':>{w}} dB"   # below -120 dB = numeric floor
+                print(f"{f0:>6} Hz{os:>10}x{f(h, 8)}{f(a, 7)}   " + (f"{top:>5} Hz at {topdb:6.1f} dB" if topdb > -120 else "none above -120 dB"))
+
+if __name__ == "__main__": main()
+$ python3 alias_check.py
+Sine at -6 dBFS, +12 dB drive into the shaper, 48 kHz session
+
+soft (tanh)
+    tone  oversample  harmonics   aliases   loudest alias (<16 kHz)
+   997 Hz         1x   -15.3 dB < -120 dB   none above -120 dB
+   997 Hz         2x   -15.3 dB < -120 dB   none above -120 dB
+   997 Hz         4x   -15.3 dB < -120 dB   none above -120 dB
+   997 Hz         8x   -15.3 dB < -120 dB   none above -120 dB
+  4987 Hz         1x   -15.5 dB  -40.8 dB   13091 Hz at  -41.0 dB
+  4987 Hz         2x   -15.5 dB -103.7 dB   11221 Hz at -103.9 dB
+  4987 Hz         4x   -15.5 dB < -120 dB   none above -120 dB
+  4987 Hz         8x   -15.5 dB < -120 dB   none above -120 dB
+  8999 Hz         1x  < -120 dB  -28.1 dB    3005 Hz at  -28.4 dB
+  8999 Hz         2x  < -120 dB  -53.4 dB   15009 Hz at  -53.6 dB
+  8999 Hz         4x  < -120 dB < -120 dB   none above -120 dB
+  8999 Hz         8x  < -120 dB < -120 dB   none above -120 dB
+
+hard clip
+    tone  oversample  harmonics   aliases   loudest alias (<16 kHz)
+   997 Hz         1x   -12.7 dB  -50.7 dB   15099 Hz at  -55.6 dB
+   997 Hz         2x   -12.7 dB  -64.2 dB   15243 Hz at  -71.4 dB
+   997 Hz         4x   -12.7 dB  -76.7 dB   15531 Hz at  -85.9 dB
+   997 Hz         8x   -12.7 dB  -89.1 dB   12119 Hz at  -97.8 dB
+  4987 Hz         1x   -12.9 dB  -30.5 dB    3117 Hz at  -32.9 dB
+  4987 Hz         2x   -12.9 dB  -44.5 dB    8727 Hz at  -47.8 dB
+  4987 Hz         4x   -12.9 dB  -56.3 dB    2493 Hz at  -58.6 dB
+  4987 Hz         8x   -12.9 dB  -68.0 dB    9975 Hz at  -70.1 dB
+  8999 Hz         1x  < -120 dB  -25.4 dB    3005 Hz at  -27.1 dB
+  8999 Hz         2x  < -120 dB  -32.3 dB   15009 Hz at  -32.9 dB
+  8999 Hz         4x  < -120 dB  -47.0 dB    3021 Hz at  -47.8 dB
+  8999 Hz         8x  < -120 dB  -62.0 dB    2957 Hz at  -64.8 dB
+
+### Reading the numbers
+Low notes are fine. The 997 Hz tone through the soft saturator has no folded tones above −120 dB at any setting. Its harmonics run out of energy long before they reach 24 kHz. That’s why saturation on bass and low mids rarely needs oversampling.
+High notes are where it bites. The 8,999 Hz tone through the soft saturator at 1x puts a tone at 3,005 Hz only 28.4 dB under the note. That’s the folded 5th harmonic (5 × 8,999 = 44,995 Hz, mirrored to 3,005). At 2x the loudest fold is 53.6 dB down, and at 4x there’s nothing left above −120 dB. Also notice the harmonics column for that tone: every real harmonic is above 24 kHz, so at 1x everything the saturator adds to it is aliasing.
+Hard clipping is worse, and needs more. A clipper’s harmonics fall off slowly, so there are a lot of them to fold. The 8,999 Hz tone at 1x has a fold at 3,005 Hz just 27.1 dB down. Oversampling helps step by step: −32.9 dB at 2x, −47.8 at 4x, −64.8 at 8x. The 4,987 Hz tone goes from a 3,117 Hz fold at −32.9 dB to −70.1 dB at 8x. Even the 997 Hz tone gets a fold at −55.6 dB with no oversampling.
+These are single steady tones and textbook shapers, so treat the levels as a model. A real hi-hat is hundreds of partials at once, and each one folds somewhere different. That’s why aliasing on a real mix sounds like a haze of grit rather than one clear wrong note.
+
+### How to set it in your session
+1. Find the plugin’s oversampling switch. It might say 2x, 4x, HQ, or “high quality.” Some plugins have a separate setting for playback and for render. Make sure the render one is on.
+2. Start at 4x for saturation on full mixes, buses and bright sources. For a soft saturator on a 48 kHz session, the test above was clean at 4x. For a hard clipper on a drum bus or master, try 8x if the plugin offers it.
+3. Skip it where it doesn’t matter. Gentle warmth on a bass or a kick doesn’t need oversampling, and you save the CPU for where it counts.
+4. Mix at 1x if you need to, bounce at 4x. Oversampling costs CPU and adds a little latency. If your session is struggling, work with it off and turn it on before the final bounce. Then listen once more, because the tone can shift slightly.
+5. Don’t drive harder to make up for it. If the clipper is doing 6 dB of work on the master, aliasing isn’t the only problem. Turn the mix down before you limit walks through getting level earlier.
+
+### How to hear the difference
+Bounce the bus or the master twice, once with oversampling off and once at 4x, and line them up. Flip between them in a level-matched A/B such as the one in CoProducer, and listen only to the hats and the vocal top end. On bright material the oversampled version usually sounds smoother up top, not duller. If you can’t hear a difference on that material, keep the cheaper setting.
+Running the whole session at 96 kHz does something similar for every plugin at once, since the limit moves up to 48 kHz. It works like 2x oversampling, at the price of double the CPU on everything. Most engineers just oversample the few plugins that distort.
+
+### Genre habits that cause this
+In trap and drill, it’s the hard clipper on the drum bus or the master, pushed for loudness, with crisp hats running through it. In EDM, it’s distortion on supersaws and leads, which are full of high partials. In rock, most amp sims oversample on their own, but a bus saturator after them may not. In lo-fi, the grit can be the sound you want. A bitcrusher is aliasing on purpose. That’s fine if you choose it, not if it sneaks in from a clipper.
+Clippers also push true peak around, and aliasing can add peaks between samples on top of that. Check the final file against −1 dBTP, which true peak is what codecs clip explains, and compare clipping against limiting in clipper vs limiter for hip-hop delivery.
+Q: Why does saturation make my mix sound harsh?
+A: Usually aliasing. Harmonics above half the sample rate fold back down as tones that aren’t related to the note. In our test, a 9 kHz tone through a saturator at 1x made a 3 kHz tone only 28.4 dB under it.
+Q: What does oversampling do on a plugin?
+A: It runs the distortion at 2, 4 or 8 times the session’s sample rate, so the new harmonics have room, then filters them out before coming back down. In our test, 4x removed the folded tones from a soft saturator.
+Q: Is 2x oversampling enough?
+A: For gentle saturation it often helps a lot, but our 9 kHz test tone still had a fold 53.6 dB down at 2x. 4x cleared it for the soft saturator. A hard clipper still had folds 47.8 dB down at 4x and 64.8 dB at 8x.
+Q: Do I need oversampling on bass?
+A: Rarely. A 997 Hz tone through the soft saturator had no folded tones above −120 dB even at 1x. The problem lives in bright sources: hats, cymbals, vocals, bright synths.
+
+---
+
+## Linear-phase EQ softening your kick? Listen before the hit
+URL: https://myaiplug.github.io/coproducer-web/blog/linear-phase-eq-smears-the-kick-watch-the-pre-ring.html
+Section: Mixing · 3 November 2026 · 7 min
+Summary: Why a linear-phase low cut can blur a kick: it spreads part of the removed bass ahead of the hit as pre-ringing. Measured on a synthetic kick at 30, 60 and 100 Hz and three slopes against a normal EQ, with the script.
+
+A linear-phase low cut doesn’t only take bass away, it moves some of it in front of the hit. In our test, a 60 Hz, 48 dB/oct linear-phase high-pass on a kick put a soft swell ahead of the transient that started 41.6 ms early and peaked 19.6 dB under the kick, while a normal minimum-phase filter with the same curve put nothing before the hit. Use minimum phase on kicks, 808s and anything with a sharp attack, and keep linear phase for jobs where it really earns its place.
+You switch your EQ to linear phase because it sounds like the clean, professional option. You high-pass the kick or the drum bus, and something about the punch changes. The hit feels a little soft, like it’s leaning in instead of landing. Solo it and you might hear it: a faint whoomp just before every kick.
+That’s pre-ringing, and it’s the price of linear phase.
+
+### What linear phase actually trades
+A normal EQ, called minimum phase, changes the tone and shifts the timing of frequencies near the cut by a little. Everything it does happens after the sound arrives. A linear-phase EQ keeps every frequency in time with every other, which sounds like a pure win. To do that it has to look ahead and spread its filtering both ways in time, half before the sound and half after.
+On a sustained pad you can’t hear it. On a kick, the part of the low end the filter removes gets smeared forward into the silence before the hit. The steeper the slope and the lower the cutoff, the longer that smear, because low frequencies and sharp filters both take longer to ring.
+We wrote prering_check.py to measure it. It builds a synthetic kick (a pitch drop from 160 Hz down to 50 Hz, a 300 ms decay and a 2 ms click) with a second of silence before it. Then it high-passes it at 30, 60 and 100 Hz with slopes of 12, 24 and 48 dB/oct, once as a normal minimum-phase filter and once as a linear-phase filter with the exact same curve. It reports how early the pre-ring rises above −60 dB relative to the peak, how loud it gets, and what happens to the kick’s peak.
+#!/usr/bin/env python3
+"""Linear-phase vs minimum-phase low cut on a kick: how much sound arrives before the hit?
+  python3 prering_check.py
+A synthetic kick (pitch drop 160 -> 50 Hz, 300 ms decay, 2 ms click) is high-passed at 30, 60 and 100 Hz
+with Butterworth slopes of 12, 24 and 48 dB/oct. "Minimum phase" = the plain IIR filter (what a normal EQ
+does). "Linear phase" = the exact same magnitude response with zero phase, built from the IIR's
+frequency response (what a linear-phase EQ does, minus its fixed latency, which DAWs compensate).
+Pre-ring = output before the kick starts. Reported: how far ahead it becomes audible-ish (first sample
+above -60 dB re the output peak), its peak (dB re the output peak), and the change in the kick's sample peak.
+Last block: the linear-phase 60 Hz / 48 dB result slowed to 0.7x by resampling (a slowed edit)."""
+import numpy as np
+from scipy.signal import butter, sosfilt, sosfreqz, resample_poly
+
+SR, PAD = 48000, 48000                                  # 1 s of silence before the hit
+def kick():
+    t = np.arange(int(0.6 * SR)) / SR
+    f = 50 + 110 * np.exp(-t / 0.03)                    # 160 Hz falling to 50 Hz
+    body = np.sin(2 * np.pi * np.cumsum(f) / SR) * np.exp(-t / 0.3)
+    click = np.random.default_rng(1).standard_normal(len(t)) * np.exp(-t / 0.002) * 0.3
+    x = np.concatenate([np.zeros(PAD), body + click, np.zeros(SR)])
+    return 0.5 * x / np.abs(x).max()
+def minphase(x, fc, order): return sosfilt(butter(order, fc, "highpass", fs=SR, output="sos"), x)
+def linphase(x, fc, order):
+    n = len(x); _, H = sosfreqz(butter(order, fc, "highpass", fs=SR, output="sos"), worN=n // 2 + 1, whole=False)
+    return np.fft.irfft(np.fft.rfft(x) * np.abs(H), n)  # same magnitude, zero phase (latency already removed)
+def report(y, ref_peak, onset=PAD, sr=SR):
+    pk = np.abs(y).max(); pre = np.abs(y[:onset])
+    over = np.nonzero(pre > pk * 10 ** (-60 / 20))[0]
+    ms = (onset - over[0]) / sr * 1000 if len(over) else 0.0
+    pre_db = 20 * np.log10(max(pre.max(), 1e-12) / pk)
+    return ms, pre_db, 20 * np.log10(pk / ref_peak)
+
+def main():
+    x = kick(); ref = np.abs(x).max()
+    print("Synthetic kick, high-pass filter, 48 kHz")
+    print(f"{'filter':>16}{'phase':>8}{'pre-ring starts':>17}{'pre-ring peak':>15}{'kick peak':>11}")
+    for fc in (30, 60, 100):
+        for order, slope in ((2, 12), (4, 24), (8, 48)):
+            for name, fn in (("min", minphase), ("linear", linphase)):
+                ms, pdb, dpk = report(fn(x, fc, order), ref)
+                pre = f"{ms:6.1f} ms early" if ms else "      none"
+                pdb_s = f"{pdb:8.1f} dB" if ms else "        --"
+                print(f"{fc:>4} Hz {slope:>2} dB/oct{name:>8}{pre:>17}{pdb_s:>15}{dpk:>+8.2f} dB")
+    y = linphase(x, 60, 8); ms, pdb, _ = report(y, ref)
+    s = resample_poly(y, 10, 7)                         # play 0.7x: 10/7 as many samples at the same rate
+    ms_s, pdb_s, _ = report(s, ref, onset=int(round(PAD * 10 / 7)))
+    print(f"\nLinear-phase 60 Hz 48 dB/oct, then slowed to 0.7x: pre-ring {ms:.1f} ms -> {ms_s:.1f} ms early "
+          f"(peak {pdb:.1f} -> {pdb_s:.1f} dB)")
+
+if __name__ == "__main__": main()
+$ python3 prering_check.py
+Synthetic kick, high-pass filter, 48 kHz
+          filter   phase  pre-ring starts  pre-ring peak  kick peak
+  30 Hz 12 dB/oct     min             none             --   -0.36 dB
+  30 Hz 12 dB/oct  linear    22.5 ms early       -27.0 dB   -0.37 dB
+  30 Hz 24 dB/oct     min             none             --   -0.12 dB
+  30 Hz 24 dB/oct  linear    35.9 ms early       -26.8 dB   -0.38 dB
+  30 Hz 48 dB/oct     min             none             --   -0.56 dB
+  30 Hz 48 dB/oct  linear    65.9 ms early       -26.3 dB   -0.40 dB
+  60 Hz 12 dB/oct     min             none             --   -0.54 dB
+  60 Hz 12 dB/oct  linear    11.6 ms early       -19.9 dB   -0.79 dB
+  60 Hz 24 dB/oct     min             none             --   -0.75 dB
+  60 Hz 24 dB/oct  linear    25.6 ms early       -20.1 dB   -0.61 dB
+  60 Hz 48 dB/oct     min             none             --   -0.98 dB
+  60 Hz 48 dB/oct  linear    41.6 ms early       -19.6 dB   -0.59 dB
+ 100 Hz 12 dB/oct     min             none             --   -2.19 dB
+ 100 Hz 12 dB/oct  linear    11.0 ms early       -13.7 dB   -1.62 dB
+ 100 Hz 24 dB/oct     min             none             --   -2.09 dB
+ 100 Hz 24 dB/oct  linear    19.1 ms early       -13.8 dB   -1.20 dB
+ 100 Hz 48 dB/oct     min             none             --   -2.38 dB
+ 100 Hz 48 dB/oct  linear    30.6 ms early       -15.2 dB   -0.72 dB
+
+Linear-phase 60 Hz 48 dB/oct, then slowed to 0.7x: pre-ring 41.6 ms -> 59.5 ms early (peak -19.6 -> -18.5 dB)
+
+### Reading the numbers
+Minimum phase never rings early. Every minimum-phase row says “none.” Nothing comes out before the kick starts, no matter how steep the filter.
+Linear phase always does, and the steep low ones are long. At 30 Hz the pre-ring starts 22.5 ms early with a 12 dB/oct slope, 35.9 ms with 24 dB/oct and 65.9 ms with 48 dB/oct. At 30 Hz it stays around 26 to 27 dB under the kick peak, because there isn’t much kick energy that low to smear.
+Higher cutoffs make it louder but shorter. At 60 Hz, 48 dB/oct, it starts 41.6 ms early and peaks at −19.6 dB. At 100 Hz, which takes a real bite out of this kick, it’s 30.6 ms early and up at −15.2 dB, or −13.7 dB with the 12 dB/oct slope. That’s a lot of low thump arriving before the hit.
+The trade is real, though. Look at the kick peak column. At 100 Hz, 48 dB/oct, the minimum-phase filter drops the kick’s peak by 2.38 dB, the linear-phase one only 0.72. The phase shift of a normal filter changes the shape of the waveform, and that’s exactly what linear phase avoids. That’s why mastering engineers reach for it.
+This is one synthetic kick in solo, so treat the numbers as a model. In a dense mix, the previous bar often hides the pre-ring. It’s most obvious on intros, breakdowns, sparse beats and anything where the kick lands after silence.
+
+### When to use which
+- Kick, 808, snare, plucks, anything with a sharp start: minimum phase. If you’re high-passing these at all, a normal EQ keeps the attack clean.
+- A gentle low cut on the master or mix bus: either can work. Keep it low and shallow, like 20 Hz at 12 to 24 dB/oct, and listen to the kick in a sparse section. Rumble you can’t hear is eating your limiter covers why that filter is worth having.
+- Parallel paths and multi-mic drums: linear phase helps when the same sound runs through two chains and they need to stay lined up. Make sure the delay is compensated, which parallel compression sounds thin? Check the latency first covers.
+- Broad tone moves and the top end: a wide, gentle shelf has short, quiet pre-ring, and higher frequencies ring for less time. Linear phase is fine there.
+
+### How to check it in your session
+1. Solo the kick in a sparse part and flip the EQ’s phase mode. Listen just before the hit, not to the hit. If you hear a swell or a softer front edge in linear phase, switch back.
+2. Look at it. Bounce one kick with each mode and zoom in on the waveform. Any ripple in the silence before the transient is pre-ring.
+3. If you need linear phase, lower the resolution or the slope. Many linear-phase EQs have a low, medium or high setting. Lower resolution means a shorter filter and less pre-ring, at some cost to accuracy in the lows. Some EQs also have a “natural” or mixed phase mode in between.
+4. Ask whether the kick needs the cut at all. Often the low cut belongs on everything except the kick and bass. If the kick and 808 are fighting, that’s an arrangement call more than a filter, as your kick and 808 are arguing in the same chair lays out.
+
+### Slowed versions stretch it too
+If you print a slowed edit from the master, say through ScrewAI, the pre-ring slows with everything else. The test file’s 60 Hz linear-phase pre-ring went from 41.6 ms to 59.5 ms early at 0.7x and drops lower in pitch along with the rest of the song. Fix the EQ on the master before you make the slowed version, rather than hoping it hides.
+Q: What is pre-ringing on a linear-phase EQ?
+A: Sound that comes out before the original. A linear-phase filter spreads its work both ways in time, so part of what it removes shows up ahead of a transient. In our test, a 60 Hz, 48 dB/oct high-pass on a kick started ringing 41.6 ms early.
+Q: Should I use linear-phase EQ on a kick?
+A: Usually not for a low cut. A minimum-phase filter with the same curve put nothing before the hit in our test, while linear phase put a swell up to 19.6 dB under the kick peak in front of it.
+Q: When is linear-phase EQ better?
+A: When phase between parallel or multi-mic paths matters, and for gentle broad moves where pre-ring is short and quiet. It also keeps the waveform shape: at 100 Hz, 48 dB/oct, it lowered our kick’s peak by 0.72 dB vs 2.38 dB for minimum phase.
+Q: Does a steeper filter mean more pre-ring?
+A: Yes, and so does a lower cutoff. At 30 Hz, linear-phase pre-ring started 22.5 ms early at 12 dB/oct and 65.9 ms early at 48 dB/oct.
+
+---
+
+## Limiter distorting the bass? Slow the release
+URL: https://myaiplug.github.io/coproducer-web/blog/limiter-distorts-the-bass-slow-the-release.html
+Section: Mastering · 2 November 2026 · 7 min
+Summary: Why a fast limiter release makes 808s and bass fuzz and crackle: it recovers inside a single bass cycle and reshapes the waveform. Measured distortion at 1 to 150 ms release, what a short hold does, and what it costs in loudness, with the script.
+
+If your limiter makes the 808 or bass fuzz, buzz or crackle, the release is probably faster than one cycle of the bass note. A 50 Hz note takes 20 ms per cycle, so a limiter that recovers in 1 to 5 ms is turning the gain up and down inside every wave and bending its shape. Slow the release to 50 ms or more, or add a hold or lookahead of at least half a cycle, and the distortion mostly goes away.
+The low end sounds huge, then you put a limiter on the master. The kick and vocal are fine, but the 808 suddenly has a fizz around it, like a blown speaker, worst on the long notes.
+Nothing is clipping on the meter. The limiter is doing what it was told. The problem is how fast it lets go.
+
+### Why fast release eats bass
+A limiter turns the gain down when a peak goes over the ceiling, then lets it come back up. That recovery is the release. On snares and vocals a fast release is a decent way to get loudness, because the limiter lets go between hits.
+Bass is different because the waves are slow. A 50 Hz note does one full cycle every 20 ms, with a peak every 10 ms (one positive, one negative). If the limiter recovers in a couple of milliseconds, the gain is going down on every peak and back up in between, a hundred times a second. That isn’t level control anymore. It’s the limiter redrawing the waveform, flattening the top of each wave. That reshaping is distortion: new harmonics at 100 Hz, 150 Hz and up, the fizz you hear.
+To put numbers on it, we wrote limiter_check.py. It makes a steady 50 Hz sine, like the sustain of an 808, and pushes it 6 dB into a simple limiter with a −1 dBFS ceiling and instant attack. It measures total harmonic distortion (THD), the added harmonics compared with the note itself, for each release time. It also runs the note slowed to 0.7x (35 Hz) and an 808 pattern to see what each setting costs in loudness.
+#!/usr/bin/env python3
+"""Does a fast limiter release distort the bass? THD of a steady bass note through a simple peak limiter.
+  python3 limiter_check.py [drive_db]
+A 50 Hz sine (an 808 sustain) is pushed into a -1 dBFS ceiling with instant attack and an exponential
+release. THD = energy in harmonics 2-10 vs the fundamental, measured over whole cycles after it settles.
+"Hold" keeps the gain at its deepest over a short centred window (half before, half after: lookahead + hold).
+The 35 Hz column is the same note slowed to 0.7x (a slowed edit), so each cycle lasts longer.
+The 808 pattern row: 1 s notes, 0.5 s decay, loudness after limiting (BS.1770 K-weighted, ungated)."""
+import sys, numpy as np
+from scipy.signal import lfilter
+from scipy.ndimage import minimum_filter1d
+
+SR = 48000
+def limit(x, rel_ms, hold_ms=0.0, ceil_db=-1.0):
+    need = np.minimum(1.0, 10 ** (ceil_db / 20) / np.maximum(np.abs(x), 1e-12))
+    if hold_ms: need = minimum_filter1d(need, int(hold_ms * SR / 1000) + 1)   # deepest gain over a centred window (hold + lookahead)
+    a = np.exp(-1.0 / (rel_ms / 1000 * SR)); g = np.empty_like(x); gl = 1.0
+    for i, n in enumerate(need):
+        gl = n if n < gl else n + (gl - n) * a
+        g[i] = gl
+    return x * g
+def thd(y, f0):
+    seg = y[SR:SR + int(round(SR / f0 * round(f0)))]                    # one second of whole cycles, after settling
+    X = np.abs(np.fft.rfft(seg * np.hanning(len(seg)))); f = np.fft.rfftfreq(len(seg), 1 / SR)
+    amp = lambda h: X[np.argmin(np.abs(f - h * f0)) - 2: np.argmin(np.abs(f - h * f0)) + 3].max()
+    return 100 * np.sqrt(sum(amp(h) ** 2 for h in range(2, 11))) / amp(1)
+def lufs(x):
+    y = lfilter([1.53512485958697, -2.69169618940638, 1.19839281085285], [1, -1.69065929318241, 0.73248077421585], x)
+    y = lfilter([1, -2, 1], [1, -1.99004745483398, 0.99007225036621], y)
+    return -0.691 + 10 * np.log10(np.mean(y ** 2))
+
+def main():
+    drive = float(sys.argv[1]) if len(sys.argv) > 1 else 6.0
+    t = np.arange(SR * 3) / SR; amp = 10 ** ((drive - 1) / 20)     # peaks hit the ceiling `drive` dB too hot
+    print(f"Steady bass note pushed {drive:g} dB into a -1 dBFS ceiling (instant attack)")
+    print(f"{'release':>20}{'50 Hz THD':>10}{'35 Hz THD':>10}")
+    rows = [(1, 0), (5, 0), (20, 0), (50, 0), (150, 0), (20, 3), (20, 6), (20, 10)]
+    for rel, hold in rows:
+        name = f"{rel} ms" + (f" + {hold} ms hold" if hold else "")
+        r50, r35 = (thd(limit(amp * np.sin(2 * np.pi * f * t), rel, hold), f) for f in (50, 35))
+        print(f"{name:>20}{r50:>8.1f} %{r35:>8.1f} %")
+    pat = np.zeros(SR * 8)
+    for s in range(0, len(pat), SR):
+        k = np.arange(SR) / SR; pat[s:s + SR] += amp * np.sin(2 * np.pi * 50 * k) * np.exp(-k / 0.5)
+    print("\n808 pattern (1 s notes, 0.5 s decay), loudness after the limiter:")
+    for rel, hold in ((5, 0), (20, 10), (50, 0), (150, 0), (500, 0)):
+        y = limit(pat, rel, hold); name = f"{rel} ms" + (f" + {hold} ms hold" if hold else "")
+        print(f"{name:>20}: {lufs(y):6.2f} LUFS, peak {20*np.log10(np.abs(y).max()):.2f} dBFS")
+
+if __name__ == "__main__": main()
+$ python3 limiter_check.py
+Steady bass note pushed 6 dB into a -1 dBFS ceiling (instant attack)
+             release 50 Hz THD 35 Hz THD
+                1 ms    19.5 %    20.5 %
+                5 ms    12.4 %    14.2 %
+               20 ms     5.9 %     7.4 %
+               50 ms     3.0 %     4.0 %
+              150 ms     1.1 %     1.6 %
+   20 ms + 3 ms hold     2.0 %     3.9 %
+   20 ms + 6 ms hold     0.2 %     1.1 %
+  20 ms + 10 ms hold     0.0 %     0.1 %
+
+808 pattern (1 s notes, 0.5 s decay), loudness after the limiter:
+                5 ms: -10.64 LUFS, peak -1.00 dBFS
+  20 ms + 10 ms hold: -11.23 LUFS, peak -1.00 dBFS
+               50 ms: -10.99 LUFS, peak -1.00 dBFS
+              150 ms: -11.30 LUFS, peak -1.00 dBFS
+              500 ms: -12.63 LUFS, peak -1.00 dBFS
+
+### Reading the numbers
+At 1 ms release the 50 Hz note comes out with 19.5% THD. That’s heavy distortion, close to what you’d get from hard clipping. At 5 ms, a pretty common setting on a loud master, it’s still 12.4%.
+Each step slower cleans it up: 5.9% at 20 ms, 3.0% at 50 ms, 1.1% at 150 ms. Once the release is much longer than one cycle, the gain mostly holds still across the wave.
+The hold rows are the more interesting fix. Hold keeps the gain at its lowest point for a short window, half before the peak and half after, before the release starts. With a 20 ms release and just 6 ms of hold, the 50 Hz note drops to 0.2% THD. With 10 ms of hold, half of one cycle, it reads 0.0%. The gain stops moving between peaks, so the wave keeps its shape.
+Now look at the 35 Hz column. Everything gets worse on the lower note, because each cycle is longer. The 6 ms hold that was clean at 50 Hz gives 1.1% at 35 Hz. Settings that were fine on the original can fuzz on a slowed version of the same song.
+
+### The catch: slower release costs loudness
+Look at the 808 pattern at the bottom. Every setting hits the same −1.00 dBFS peak, but the loudness isn’t the same. The 5 ms release comes out at −10.64 LUFS. A 50 ms release is −10.99, 150 ms is −11.30, and 500 ms falls to −12.63. A slow release keeps the gain down longer after each hit. The 20 ms release with 10 ms hold lands at −11.23, about 0.6 LU under the fast setting, and it’s clean.
+So the fast release isn’t free loudness. You pay for it with distortion. If the master needs that extra half a dB, get it earlier, from a cleaner low end and room under the limiter, which turn the mix down before you limit walks through.
+These are synthetic signals and a simple limiter, so treat the percentages as a model. Real limiters have smarter release curves, but the pattern holds: release time against the length of one bass cycle decides whether the limiter controls level or changes the waveform.
+
+### How to set it in your session
+1. Loop the problem. Find the longest, loudest 808 note and loop it through the limiter. Fizz is easier to hear on a held note.
+2. Slow the release until the fizz stops. Start around 50 ms and go up. For bass-heavy music, 100 to 300 ms is a normal range. If your limiter has auto release, try it, then compare against a fixed slow setting.
+3. Use hold or lookahead if you have it. Aim for at least half a cycle of your lowest note. Half a cycle at 50 Hz is 10 ms. At 35 Hz it’s about 14 ms.
+4. Back off the input. 6 dB into a limiter is a lot for bass-heavy material, and 2 dB less drive often helps more than any release setting. If you want the 808 to cut through on phones, distort it on purpose before the master, as in why your 808 disappears on phone speakers.
+5. Compare at matched loudness. The slower setting will be a bit quieter, and quieter usually sounds worse for a few seconds. Match levels before you pick, the same trap as in your mix sounding better loud.
+Trap, drill and dubstep live on long sub notes, so they show this first. A clipper before the limiter can shave peaks with a sound you choose, as in clipper vs limiter for hip-hop delivery. Rock and pop with a busy bass guitar usually get away with a medium release. And if you bus-compress the mix, a fast release there can fuzz the same way, which high-passing the sidechain helps with.
+
+### Slowed versions need their own check
+The 35 Hz column is the one to remember if you make slowed or chopped versions. Slowing the song drops the bass, and the limiter settings that were clean at the original speed can start to fizz. If you make the slowed edit in ScrewAI or anywhere else, treat it as a new master. Run it through the limiter again, loop a long 808 note, and slow the release or add hold until it’s clean. It also needs its own peak check, which screw tempo still needs a legal peak explains.
+Q: Why does my limiter distort the bass?
+A: Usually because the release is shorter than one cycle of the bass note. A 50 Hz cycle lasts 20 ms. In our test a 1 ms release gave 19.5% distortion on a 50 Hz note and a 5 ms release gave 12.4%.
+Q: What release time should I use on a limiter for bass-heavy music?
+A: Long enough that the fizz on a held 808 note stops. In our test 50 ms brought distortion down to 3.0% and 150 ms to 1.1%. A 20 ms release with 10 ms of hold measured 0.0%.
+Q: Does a slower release make the master quieter?
+A: A little. At the same −1 dBFS peak, our 808 pattern measured −10.64 LUFS with a 5 ms release, −10.99 at 50 ms and −12.63 at 500 ms.
+Q: Why does my slowed version distort when the original didn’t?
+A: Slowing the song lowers the bass, so each cycle is longer and the same limiter settings fit inside it. A 6 ms hold gave 0.2% distortion at 50 Hz and 1.1% on the same note at 35 Hz.
+
+---
+
+## Mix leans to one side? Check the balance band by band
+URL: https://myaiplug.github.io/coproducer-web/blog/mix-leans-to-one-side-check-the-balance-band-by-band.html
+Section: Mixing · 2 November 2026 · 7 min
+Summary: Why a mix can pull left even when the meters look close: the lean usually lives in the top end, from hats and bright parts panned the same way. Measured left-minus-right per octave band, why the master balance knob makes it worse, and how to fix it in the mix, with the script.
+
+If your mix feels like it leans to one side but the meters look nearly even, measure left against right in separate frequency bands. The lean usually lives in the top end, where hi-hats, shakers and bright guitars are often all panned the same way. Fix it by re-panning or counterweighting those parts, not with the master balance knob, which shifts the whole mix, kick and 808 included, to cover a problem that’s only in the highs.
+You’re listening back on headphones and something feels off. The vocal’s in the middle, the 808 is in the middle, but the whole song seems to pull a little to the left. You check the meters and the two channels are close, maybe a dB or two apart. So is it the mix, the headphones, or your ears?
+It can be any of the three, and it’s worth ruling out the last two first. Swap the headphones around, so left goes on your right ear. If the lean moves with the headphones, it’s the headphones or your hearing. If it stays on the same side of the song, it’s the mix. On speakers, move your chair first, because the room can tilt things too, as in your low end changing when you move your chair.
+
+### Why the meter looks fine
+A level meter adds up the whole spectrum, and most of a mix’s energy sits in the low end and the low mids. The kick, the 808, the bass and the body of the vocal are almost always in the center, so they put the same level in both channels and drag the reading toward even. A bright part panned left can be far louder on one side up top and barely move the overall number.
+Your ears don’t work that way. You place sounds by the highs a lot more than the lows, so a hat or a shaker that’s all on one side pulls the whole picture over, even when the meter says the channels are close.
+To show it, we wrote balance_check.py. It builds a synthetic mix with a kick and 808 and a vocal-range part in the center, hi-hats panned 70% left, a bright rhythm guitar 60% left, and a darker pad 50% right. Then it prints left minus right, overall and in each octave band. Positive numbers mean the left is louder.
+#!/usr/bin/env python3
+"""Does the mix lean to one side? Left-minus-right level, overall and per octave band.
+  python3 balance_check.py [hat_pan]
+Synthetic 8 s mix, constant-power pan law (-3 dB centre): kick + 808 and a vocal-range tone in the
+centre, hi-hats and a bright rhythm guitar on the left, a darker pad on the right. Pan runs -1 (hard left)
+to +1 (hard right). Overall level is BS.1770 K-weighted per channel; bands are octave-wide (63 Hz..8 kHz).
+Positive numbers = louder on the left."""
+import sys, numpy as np
+from scipy.signal import lfilter, butter, sosfilt
+
+SR = 48000; N = SR * 8; t = np.arange(N) / SR; rng = np.random.default_rng(7)
+def bp(x, lo, hi): return sosfilt(butter(2, [lo, hi], "bandpass", fs=SR, output="sos"), x)
+def pan(x, p):                                               # constant power
+    a = (p + 1) * np.pi / 4; return np.cos(a) * x, np.sin(a) * x
+def kw(x):
+    y = lfilter([1.53512485958697, -2.69169618940638, 1.19839281085285], [1, -1.69065929318241, 0.73248077421585], x)
+    return lfilter([1, -2, 1], [1, -1.99004745483398, 0.99007225036621], y)
+db = lambda x: 10 * np.log10(np.mean(x ** 2) + 1e-20)
+
+def parts():
+    k = np.arange(int(.35 * SR)) / SR; low = np.zeros(N)
+    for s in range(0, N - len(k), SR // 2):
+        low[s:s + len(k)] += np.sin(2 * np.pi * (48 + 90 * np.exp(-k / .02)) * k) * np.exp(-k / .2)
+    low += 0.5 * np.sin(2 * np.pi * 49 * t) * (0.6 + 0.4 * np.sin(2 * np.pi * 0.5 * t))          # 808 sustain
+    f0 = 220 * 2 ** (np.round(2 * np.sin(2 * np.pi * .25 * t)) / 12); ph = 2 * np.pi * np.cumsum(f0) / SR
+    voc = bp(sum(np.sin(k * ph) / k for k in range(1, 30)), 150, 5000) * 0.6
+    hats = bp(rng.standard_normal(N), 6000, 16000) * (np.sin(2 * np.pi * 8 * t) > 0.3) * 0.5
+    gtr = bp(sum(np.sin(2 * np.pi * h * 196 * t) / h for h in range(1, 30)), 800, 6000) * (np.sin(2 * np.pi * 2 * t) > 0) * 0.5
+    pad = bp(rng.standard_normal(N), 200, 900) * 0.5
+    return low, voc, hats, gtr, pad
+
+def mix(hat_pan, gtr_pan=-0.6, pad_pan=0.5, shaker=False):
+    low, voc, hats, gtr, pad = parts(); L = np.zeros(N); R = np.zeros(N)
+    for x, p in ((low, 0), (voc, 0), (hats, hat_pan), (gtr, gtr_pan), (pad, pad_pan)):
+        l, r = pan(x, p); L += l; R += r
+    if shaker:
+        sh = bp(np.random.default_rng(3).standard_normal(N), 5000, 14000) * (np.sin(2 * np.pi * 8 * t + 1.5) > 0.3) * 0.35
+        l, r = pan(sh, 0.6); L += l; R += r
+    return L, R
+
+def report(name, L, R):
+    bands = [63 * 2 ** i for i in range(8)]
+    d = [db(bp(L, fc / 2 ** .5, min(fc * 2 ** .5, 23000))) - db(bp(R, fc / 2 ** .5, min(fc * 2 ** .5, 23000))) for fc in bands]
+    print(f"{name:<34}{db(kw(L)) - db(kw(R)):+6.1f}  " + " ".join(f"{v:+5.1f}" for v in d))
+
+def main():
+    hp = float(sys.argv[1]) if len(sys.argv) > 1 else -0.7
+    print("Left minus right, dB (positive = leans left)")
+    print(f"{'':<34}{'overall':>7}  " + " ".join(f"{n:>5}" for n in ("63", "125", "250", "500", "1k", "2k", "4k", "8k")))
+    L, R = mix(hp); report(f"As mixed (hats at {hp:+g})", L, R)
+    g = 10 ** ((db(kw(L)) - db(kw(R))) / 20); report("Master balance knob (R matched)", L, R * g)
+    report("Hats moved to -0.3", *mix(-0.3))
+    report("Hats -0.3 + shaker at +0.6", *mix(-0.3, shaker=True))
+    report("Hats -0.3, shaker +0.6, gtr -0.4", *mix(-0.3, gtr_pan=-0.4, shaker=True))
+
+if __name__ == "__main__": main()
+$ python3 balance_check.py
+Left minus right, dB (positive = leans left)
+                                  overall     63   125   250   500    1k    2k    4k    8k
+As mixed (hats at -0.7)             +2.0   +0.0  +0.0  -0.0  -0.2  +0.7  +1.6  +3.5 +11.5
+Master balance knob (R matched)     +0.0   -2.0  -2.0  -2.1  -2.2  -1.3  -0.5  +1.5  +9.5
+Hats moved to -0.3                  +1.1   -0.0  -0.0  -0.0  -0.2  +0.7  +1.6  +2.4  +4.2
+Hats -0.3 + shaker at +0.6          +0.4   +0.0  -0.0  -0.0  -0.2  +0.7  +1.5  +0.7  +0.2
+Hats -0.3, shaker +0.6, gtr -0.4    +0.3   +0.0  -0.0  -0.1  -0.2  +0.4  +1.0  +0.3  +0.2
+
+### Reading the table
+As mixed, the whole song is 2.0 dB louder on the left. But look where that comes from. From 63 to 500 Hz it’s even, within 0.2 dB. At 2 kHz the left is up 1.6 dB, at 4 kHz 3.5 dB, and at 8 kHz it’s 11.5 dB louder. The lean is almost all hats and guitar.
+The master balance knob is the tempting fix. Turn the right side up 2 dB and the overall reading goes to 0.0. But now the bottom of the mix leans right by 2.0 dB from 63 to 250 Hz, 2.2 dB at 500 Hz, and the 8 kHz band still leans left by 9.5 dB. You moved the kick, 808 and vocal off center to hide a problem that only lived in the highs. That’s worse than where you started.
+Moving the hats from 70% to 30% left halves the overall lean to 1.1 dB and takes the 8 kHz band from 11.5 down to 4.2 dB. Adding a shaker 60% right as a counterweight brings 8 kHz to 0.2 dB and the whole mix to 0.4. Pulling the guitar in to 40% left finishes it: 0.3 dB overall, and no band more than 1.0 dB off.
+These are synthetic parts, so take the exact numbers as a model. On a real song the problem band might be 3 kHz or 10 kHz. The idea holds: balance is a per-band question, and the fix goes on the parts that cause it.
+
+### How to check your own mix
+1. Rule out your gear first. Swap the headphones, or on speakers move a little and listen again. If the lean moves with you, it isn’t the mix.
+2. Look at the highs on their own. Put an analyzer that can show left and right separately on the master, or high-pass the master at around 3 kHz just for listening. Bright parts are where a lean hides.
+3. Make a list of what’s panned where. It’s common to have hats, shaker, ride, guitar and a vocal ad-lib all drifting the same way because each one felt right on its own.
+4. Counterweight instead of centering. You don’t need everything in the middle. Pair the hat with something of similar brightness on the other side: a shaker, a second guitar, a tambourine, a delay throw. Wide mixes still need to hold up in mono, which wide mixes fail in mono covers.
+5. Leave the low end in the center. If anything below about 150 Hz is off center, fix that first. A lopsided 808 shifts the whole mix and eats headroom on one channel.
+
+### Genre habits that cause this
+In hip-hop and trap, it’s usually the hats and the percussion loop, panned to one side to make room for the vocal. In rock and indie, it’s often one rhythm guitar with no partner, or a ride cymbal miked close on one side. In house and techno, an off-beat open hat or a top loop on one side does it. Live recordings lean when the drummer’s kit is panned from the audience view on some tracks and the drummer’s view on others.
+Panning also changes level in ways that are easy to miss. A part panned hard sits a few dB differently than it does in the center depending on the pan law, which pan law explains.
+
+### When you only have the stereo file
+If you’re mastering a song someone else mixed, you can’t re-pan the hats. You can still find out what’s leaning, though. Split the bounce into drums, bass, vocals and other with StemSplit and check each stem left against right. That tells you whether the lean is the drums or a guitar, and you can send a specific note back to the mixer instead of reaching for the balance knob. That’s the kind of thing stems are good for, the same idea as in stems diagnose mixes, they don’t replace them.
+Q: Why does my mix sound like it leans to one side?
+A: Usually because bright parts like hi-hats, shakers and guitars are panned the same way. In our test the overall difference was 2.0 dB, but the 8 kHz band was 11.5 dB louder on the left.
+Q: Should I use the balance knob on the master to fix a lopsided mix?
+A: No. It moves everything, including the kick and 808. In our test it zeroed the overall reading but pushed the low end 2.0 dB to the right and left the 8 kHz band 9.5 dB off.
+Q: How do I fix a mix that leans left?
+A: Re-pan or counterweight the bright parts. Moving the hats from 70% to 30% left and adding a shaker at 60% right brought our test mix from 2.0 dB to 0.4 dB overall.
+Q: Is it my headphones or my mix?
+A: Swap the headphones around. If the lean moves with them, it’s the headphones or your ears. If it stays on the same side of the song, it’s the mix.
+
+---
 
 ## Copy-pasted vocal double sounds mono? Sing a real second take
 URL: https://myaiplug.github.io/coproducer-web/blog/copy-paste-vocal-double-sounds-mono-sing-a-real-take.html
@@ -7933,25 +8646,127 @@ A: Mute one stem at a time and re-measure the true peak of what’s left. When m
 
 ---
 
-## Screw tempo still needs a legal peak
+## Does a slowed or screwed version need its own master? Measure the peak again
 URL: https://myaiplug.github.io/coproducer-web/blog/screw-tempo-still-needs-a-legal-peak.html
-Section: ScrewAI · 21 August 2026 · 6 min
-Summary: Slowing a track for syrup aesthetics changes duration and crest, not true-peak law. A screwed render still needs ≤ −1.0 dBTP before upload.
+Section: ScrewAI · 21 August 2026 · 7 min
+Summary: Slowing a song doesn’t make its peaks safe. Varispeed can turn hidden overs into real ones and reverb adds new peaks, so measure the slowed file before upload.
 
-Slowing a track for syrup aesthetics changes duration and crest, not the laws of true peak. A screwed render can still fail −1.0 dBTP. Measure after the strain, not only before.
+Yes, a slowed or screwed version needs its own peak check, and often a light re-master. Slowing a song changes its length, pitch and tone, and it can turn peaks that were hiding between samples into real ones. Adding reverb or echo stacks new peaks on top. Measure the slowed render, and keep its true peak under −1 dBTP before it goes to a store or a streaming service.
+Slowed versions are everywhere now: the official “slowed + reverb” cut next to the original, the screwed tape a DJ makes for the car, the half-speed edit for a video. They feel like a creative bonus, so they tend to skip the checks the main master got. That’s where the trouble starts. The slowed file is a new render, and the meter doesn’t care how good it sounds.
 
-### Flavor is not a free pass
-ScrewAI’s .bat lets you select multiple codeine flavors and render locally. That is creative tooling. Delivery gates still apply if the file hits a storefront or a loudness-normalized playlist.
-A/B original vs syrup on the ScrewAI demo, then run a legal check if the file must ship clean.
+### What actually changes when you slow a song down?
+The classic screw sound comes from slowing the whole record, the way a turntable or tape machine does when you drop the speed. Tempo and pitch go down together. The Houston style that DJ Screw pioneered pulled songs down to roughly 60 to 70 BPM and then chopped, skipped and repeated parts on top. Digital tools call this varispeed: play the samples back at a lower rate, then resample to a normal rate like 44.1 or 48 kHz.
+Three things move when you do that:
+- Length. At 80% speed a three-minute song runs three minutes and 45 seconds.
+- Pitch and tone. Everything drops, by about four semitones at 80%. Energy moves toward the low end, so the song feels heavier.
+- Measured loudness. Loudness meters built on ITU-R BS.1770 weight the upper mids more than the deep lows. When the song’s energy slides down, the reading usually drops a little, about a LU in our test below, even though nobody turned anything down.
+What doesn’t change is the rulebook at the other end. A store or streaming service measures the slowed file exactly as it measures any other master.
 
-### Unlimited local renders
-Drag audio onto the .bat, tick bottles, render. No per-track cloud fee. Unlimited local use after license — same NoDAW thesis as the analyzer bat.
-Creative freedom pairs best with a final meter pass.
-Note: Open the syrup lab or the full ScrewAI page. CoProducer Pro is $29 one-time.
-Q: Does slowdown fix clipping?
-A: No. It can change where peaks land. Re-measure.
-Q: How many strains can I render?
-A: In the product workflow: multiple selections per drop. In the browser demo: preview one strain at a time.
+### Why can a slowed version clip when the original didn’t?
+There are two common reasons, and they stack.
+The first is peaks between samples. A loud master often has a sample peak of −0.1 dBFS but a true peak over 0 dBTP, because the smooth wave the samples describe rises higher between them. Those are the overs that codecs and converters run into. When you slow the song and resample it, the new samples land in new places on that same wave, and some land right on top of those hidden peaks. The over that only a true-peak meter could see becomes a real sample value over full scale. If anything downstream works in fixed point, that’s hard clipping.
+The second is what you add. Slowed versions almost always get extra processing: reverb, echo, a bass boost, a bit of saturation. Reverb and echo are delayed copies of the song mixed back in. On a sustained pad they mostly add a wash. On a kick, a snare or a hard vocal consonant, the delayed copy can land on the next hit and the two add together. A master with a perfectly legal peak can come out of a reverb plugin a dB or two over.
+There’s also a quieter third reason: people slow the loud master, the one that was already squeezed to the ceiling, because it’s the file they have. That master had no headroom to begin with.
+
+### How do you check a slowed render?
+Measure it like any other master: integrated loudness plus true peak. Here’s a small script that does the slowdown and the before/after check in one go. It uses FFmpeg’s asetrate, aresample and ebur128 filters, so the only things you need are Python and FFmpeg. It writes a 32-bit float file, so nothing is clipped on disk while you look at the numbers.
+#!/usr/bin/env python3
+"""screw_check.py: slow a finished master the way a screw/varispeed render does, then check it again.
+Usage: python3 screw_check.py MASTER [SPEED] [--reverb]
+SPEED 0.8 = 80% speed (pitch drops with tempo, like slowing a record). --reverb adds a simple echo tail
+like the "slowed + reverb" style. Prints integrated loudness and true peak (FFmpeg ebur128, ITU-R BS.1770)
+before and after, and the gain that puts the slowed render back under -1.0 dBTP.
+Writes slowed.wav (32-bit float, so nothing is clipped on disk). Your master is only read.
+Needs: Python 3, FFmpeg on PATH."""
+import re, subprocess, sys
+
+def meter(path):
+    err = subprocess.run(["ffmpeg", "-hide_banner", "-nostats", "-i", path, "-af", "ebur128=peak=true+sample",
+                          "-f", "null", "-"], capture_output=True, text=True).stderr
+    peaks = re.findall(r"Peak:\s+(-?[\d.inf]+) dBFS", err)
+    return dict(I=float(re.findall(r"I:\s+(-?[\d.]+) LUFS", err)[-1]),
+                SP=float(peaks[-2]), TP=float(peaks[-1]))
+
+def render(src, dst, speed, reverb):
+    rate = int(re.search(r"(\d+) Hz", subprocess.run(["ffmpeg", "-hide_banner", "-i", src],
+               capture_output=True, text=True).stderr).group(1))
+    chain = f"asetrate={rate * speed:.0f},aresample={rate}"      # varispeed: tempo and pitch together
+    if reverb:
+        chain += ",volume=-12dB,aecho=1.0:1.0:60|130|210:0.35|0.25|0.15,volume=12dB"  # echo tail added to dry (run 12 dB down: aecho clips at full scale)
+    subprocess.run(["ffmpeg", "-v", "error", "-y", "-i", src, "-af", chain, "-c:a", "pcm_f32le", dst], check=True)
+
+def main(src, speed=0.8, reverb=False):
+    a = meter(src); render(src, "slowed.wav", speed, reverb); b = meter("slowed.wav")
+    label = f"slowed {speed:.0%}" + (" + reverb" if reverb else "")
+    print(f"{'':20}{'LUFS':>8}{'sample pk':>11}{'true pk':>9}")
+    for name, d in (("original", a), (label, b)):
+        ok = "ok" if d["TP"] <= -1.0 else "OVER -1 dBTP"
+        print(f"{name:20}{d['I']:8.1f}{d['SP']:+11.1f}{d['TP']:+9.1f}  {ok}")
+    if b["TP"] > -1.0:
+        g = -1.0 - b["TP"] - 0.1
+        print(f"\nturn the slowed render down {-g:.1f} dB (or re-limit it with true-peak mode) before upload")
+    else:
+        print("\nslowed render is under -1.0 dBTP")
+
+if __name__ == "__main__":
+    args = [x for x in sys.argv[1:] if not x.startswith("--")]
+    main(args[0], float(args[1]) if len(args) > 1 else 0.8, "--reverb" in sys.argv)
+We ran it on synthetic test material, not a real song: a 30-second generated beat with a kick, a snare, hats, bass and chords. One copy is a typical loud bounce, pushed 6 dB into a sample-peak limiter at −0.1 dBFS. The other is the same master turned down so its true peak sits at a legal −1.2 dBTP.
+$ python3 screw_check.py master.wav 0.8
+                        LUFS  sample pk  true pk
+original                -7.6       -0.1     +1.2  OVER -1 dBTP
+slowed 80%              -8.7       +1.1     +1.1  OVER -1 dBTP
+
+turn the slowed render down 2.2 dB (or re-limit it with true-peak mode) before upload
+
+$ python3 screw_check.py master_legal.wav 0.8
+                        LUFS  sample pk  true pk
+original               -10.0       -2.5     -1.2  ok
+slowed 80%             -11.1       -1.3     -1.3  ok
+
+slowed render is under -1.0 dBTP
+
+$ python3 screw_check.py master_legal.wav 0.8 --reverb
+                        LUFS  sample pk  true pk
+original               -10.0       -2.5     -1.2  ok
+slowed 80% + reverb    -10.5       +0.9     +0.9  OVER -1 dBTP
+
+turn the slowed render down 2.0 dB (or re-limit it with true-peak mode) before upload
+Here’s what those three runs show, still on synthetic audio:
+- The loud master was already illegal (+1.2 dBTP) even though its sample peak read −0.1 dBFS. Slowing it barely moved the true peak, but the sample peak jumped from −0.1 to +1.1 dBFS. The hidden over became a real one.
+- The legal master stayed legal when we only slowed it (−1.3 dBTP). Slowing on its own is not the villain.
+- Add a simple three-tap echo tail and the same legal master came out at +0.9 dBTP, about 2 dB over the line.
+Your song will give different numbers. That’s the point: you can’t predict them, so you measure them.
+
+### What should you do when the slowed version is over?
+You have three fixes. Pick the highest one you can.
+1. Slow the mix, then master it. If you have the session or a pre-limiter bounce, slow that and add your reverb, then put the limiter last. The limiter then sees the peaks it actually has to catch. This sounds best, because the limiter isn’t fighting a file that was already limited once.
+2. Run a true-peak limiter on the slowed render. Set its ceiling to −1 dBTP (or −2 dBTP for a loud master) and turn on its true-peak or oversampling mode. Keep the gain reduction small. If it’s working hard, go back to fix 1.
+3. Turn it down. Plain gain is the cleanest fix of all. The script prints how much it takes. A slowed version a couple of dB quieter is usually fine, for the reason in the next section.
+Then measure again. Every fix is a new render, and the only number that counts is the one from the file you upload.
+
+### Should a slowed version be as loud as the original?
+It doesn’t have to be. Most streaming services turn tracks up or down to a common level when people play them. Spotify’s loudness normalization page says it adjusts tracks to −14 LUFS by ITU 1770, asks for true peak below −1 dBTP, and asks for below −2 dBTP when a master is louder than −14 LUFS, because loud tracks pick up more distortion when they’re encoded. It also says it only turns a quiet track up as far as its true peak allows, leaving 1 dB of headroom for lossy formats.
+So a slowed version that lands at −11 LUFS instead of −9 doesn’t lose anything on a normalized playlist. It just gets turned down less. Chasing the original’s loudness by pushing the limiter harder buys you nothing there and costs you punch. The essay on why streaming turns loud masters down walks through that trade.
+The exception is a slowed version that will sit in a DJ set or a mixtape next to other tracks with no normalization. There, match it by ear against its neighbours at the same level, and still keep the true peak legal.
+
+### A quick checklist for slowed and screwed releases
+- Start from the mix, or the quietest master you have, not the loudest.
+- Slow it, add the reverb or chops, then limit last with true-peak mode on.
+- Measure the exact file you’ll upload: integrated LUFS and true peak.
+- Keep true peak under −1 dBTP, or under −2 dBTP if it’s louder than −14 LUFS.
+- Listen to the low end on small speakers. Dropping the pitch moves bass notes down, and a sub that worked at full speed can turn into a rumble you can’t hear on a phone.
+- If you also make an MP3 or AAC for socials, check that too. Why does my master clip after MP3 or AAC? on its own.
+Note: If you make slowed versions often, the ScrewAI page and the syrup lab demo let you preview the sound locally. Whatever renders the file, the final step is the same: measure it. CoProducer’s analyzer reads true peak and loudness on your own machine, without uploading the song.
+Slowed doesn’t mean exempt. Treat the slowed version as its own master and it’ll survive the trip to the store just as well as the original.
+Q: Does slowing a song down fix clipping?
+A: No. Slowing it moves the peaks around and can lower them a little, but a master that was over the ceiling usually stays over. In our synthetic test, a master at +1.2 dBTP was still at +1.1 dBTP after slowing to 80%. Measure the slowed file, not the original.
+Q: Why does my slowed and reverb version clip when the original didn’t?
+A: Usually because of what you added. Reverb and echo add delayed copies of the song on top of itself, and when those copies line up with a kick or a vocal hit the peaks add up. Slowing can also turn peaks that sat between samples into real sample values. Either way the file needs a fresh peak check.
+Q: What LUFS should a slowed version be?
+A: The same delivery rules apply as for any master. Spotify normalizes to about −14 LUFS and asks for true peak under −1 dBTP, or under −2 dBTP if the master is louder than −14 LUFS. A slowed version can be a bit quieter than the original without anyone noticing, because playback normalization evens it out.
+Q: Should I slow the master or the mix?
+A: If you have the session, slow the mix before the limiter and master the slowed version, so the limiter sees the final peaks. If you only have the finished master, slow it, then turn it down or run a true-peak limiter on the slowed render, and measure the result.
 
 ---
 
@@ -8078,25 +8893,132 @@ A: Keep them separate. Fix the sound first, export one hero clip, measure the ex
 
 ---
 
-## Mastering .bat versus opening the session
+## Can mastering fix a bad mix? When a mastering pass is enough and when to reopen the session
 URL: https://myaiplug.github.io/coproducer-web/blog/mastering-bat-vs-opening-the-session.html
-Section: Mastering · 21 August 2026 · 7 min
-Summary: A mastering .bat is for trusted delivery passes on finished mixes. Open the session when arrangement, bad edits, or clipped vocals need real surgery.
+Section: Mastering · 21 August 2026 · 6 min
+Summary: Mastering fixes whole-file problems like loudness, ceiling and broad tone. Clipped vocals, bad edits and mono cancellation live in the mix. Here’s how to tell.
 
-A mastering .bat is for trusted delivery passes on finished mixes. Opening the session is for problems the bat cannot see: arrangement, bad edits, clipped vocal comping. Use the bat when the mix is honest.
+Mastering can fix problems that affect the whole song the same way: overall loudness, the peak ceiling, and broad tone. It can’t fix problems that live inside the mix, like a vocal that clipped, a bad edit, a buried snare or a widener that cancels in mono. If the mix is honest, a quick mastering pass, even an automatic one, is a real time saver. If it isn’t, reopen the session first.
+There’s a reason this question keeps coming up. One-click mastering is cheap and fast, and the mix is the part that takes forever. It’s tempting to bounce, drop the file on a mastering tool and hope it smooths everything out. Sometimes that works fine. Sometimes it makes a bad mix louder, which mostly makes its problems easier to hear.
 
-### Honest inputs
-If clipped samples are endemic, the session still owns the fix. If the mix is clean and only the ceiling or loudness lane is off, a local mastering FX bat is a time saver.
-Before/after demos belong on the site when you supply pairs — until then, trust the analyzer gates first.
+### What can a mastering pass actually fix?
+Think of mastering as processing that treats the stereo file as one thing. It works on everything at once, so it’s good at problems that are everywhere at once:
+- Overall loudness. A mix sitting at −19 LUFS can be brought up toward a delivery level with gain and a limiter.
+- The ceiling. A true-peak limiter keeps the loudest moments under −1 dBTP so encoders and converters don’t clip them.
+- Broad tone. A mix that’s a little dull or a touch heavy in the low mids can take a gentle EQ tilt.
+- Consistency. Several songs that need to sit together can be lined up in loudness and tone.
+Notice what those have in common: if you turn the whole song up 2 dB, every instrument goes up 2 dB. That’s fine when the balance inside the mix is already right.
 
-### Drag-drop forever tooling
-Cheap one-time payment, unlimited local renders, no subscription — the same sentence as the rest of the NoDAW suite.
-Convenience is not a substitute for judgment. It is how judgment ships faster.
-Note: Product art and positioning live in Audio Mix & Mastering .bat. Pair it with Analyze when you need numbers first.
-Q: Will the bat replace an engineer?
-A: It replaces waiting. It does not replace taste on a broken mix.
-Q: Should I analyze after the bat?
-A: Yes. Measure the render you will upload.
+### What can’t mastering fix?
+Anything that happens to one part and not the others. A mastering EQ that tames a harsh vocal also dulls the cymbals sitting at the same frequencies. A limiter that catches a clipped snare also squashes the kick. The usual suspects:
+- Clipping that happened before the bounce. If a channel, a bus or a fixed-point bounce clipped, the tops of the wave are gone. Turning the file down afterwards doesn’t bring them back.
+- Balance. A vocal that’s too quiet in the chorus, a bass that disappears on one note. Those are fader and automation moves.
+- Edits and timing. Clicks at comp joins, a late double, a breath cut in half.
+- Mono cancellation. A widener or a flipped polarity on one side can make a part vanish when the song plays in mono, on a phone speaker or a club system. The phase correlation essay covers how to hear it.
+- DC offset. A constant offset from a faulty plugin or a bad recording chain eats headroom. You can high-pass it out at mastering, but the plugin that caused it is still in the session waiting to do it again.
+
+### How do you tell which problem you have?
+Ears first, but numbers help, especially for the problems you can’t hear on your monitors. Here’s a small triage script. It reads a bounce and sorts what it finds into two piles: things a mastering pass can handle, and things that send you back to the session. Loudness and true peak come from FFmpeg’s ebur128 filter, which follows ITU-R BS.1770. The rest is a few lines of NumPy.
+#!/usr/bin/env python3
+"""mix_triage.py: should this mix go through a mastering pass, or back into the session?
+Usage: python3 mix_triage.py MIX.wav [MIX2.wav ...]
+Reads each file and sorts what it finds into two piles:
+  MASTER CAN FIX   whole-file gain and ceiling: integrated loudness, true peak
+  OPEN THE SESSION problems baked into the mix: flat-topped (clipped) runs, a big DC offset,
+                   left/right that cancel in mono (more than 4.5 dB lost when folded to mono;
+                   identical channels lose 0 dB, unrelated ones about 3 dB)
+Loudness and true peak come from FFmpeg ebur128 (ITU-R BS.1770). The clip check counts runs of 4+
+consecutive samples within 0.01 dB of the file's own peak, which catches audio that was clipped
+upstream and turned down afterwards. Your files are only read. Needs: Python 3, NumPy, FFmpeg."""
+import re, subprocess, sys
+import numpy as np
+
+def meter(path):
+    err = subprocess.run(["ffmpeg", "-hide_banner", "-nostats", "-i", path, "-af", "ebur128=peak=true",
+                          "-f", "null", "-"], capture_output=True, text=True).stderr
+    return float(re.findall(r"I:\s+(-?[\d.]+) LUFS", err)[-1]), float(re.findall(r"Peak:\s+(-?[\d.]+) dBFS", err)[-1])
+
+def samples(path):
+    raw = subprocess.run(["ffmpeg", "-v", "error", "-i", path, "-f", "f32le", "-ac", "2", "-"], capture_output=True, check=True).stdout
+    return np.frombuffer(raw, np.float32).reshape(-1, 2).astype(np.float64)
+
+def clip_runs(ch, min_run=4):
+    top = np.abs(ch).max() * 10 ** (-0.01 / 20)
+    hot = np.abs(ch) >= top
+    edges = np.diff(np.concatenate([[0], hot.astype(int), [0]]))
+    starts, ends = np.where(edges == 1)[0], np.where(edges == -1)[0]
+    return int(np.sum(ends - starts >= min_run))
+
+def triage(path, target=-14.0):
+    I, TP = meter(path); x = samples(path)
+    runs = sum(clip_runs(x[:, c]) for c in range(2))
+    dc = 20 * np.log10(np.abs(x.mean(0)).max() + 1e-12)
+    mono = 10 * np.log10(np.mean(((x[:, 0] + x[:, 1]) / 2) ** 2) / np.mean((x ** 2).mean(1)) + 1e-12)
+    fix, session = [], []
+    gain = min(target - I, -1.0 - TP)          # loudest it can go by gain alone without breaking -1 dBTP
+    if target - I <= -1.0 - TP:
+        fix.append(f"{I:.1f} LUFS, true peak {TP:+.1f} dBTP: {target - I:+.1f} dB of plain gain reaches {target:.0f} LUFS"
+                   f" with true peak at {TP + target - I:+.1f} dBTP")
+    elif gain >= 0:
+        fix.append(f"{I:.1f} LUFS, true peak {TP:+.1f} dBTP: gain can add {gain:.1f} dB before -1 dBTP;"
+                   f" {target:.0f} LUFS needs a true-peak limiter")
+    else:
+        fix.append(f"{I:.1f} LUFS, true peak {TP:+.1f} dBTP: needs {-gain:.1f} dB less, or a true-peak limiter")
+    if runs >= 3: session.append(f"{runs} flat-topped runs: something clipped before the bounce. Find it and fix it there")
+    if dc > -40: session.append(f"DC offset {dc:.0f} dBFS: find the track or plugin causing it")
+    if mono < -4.5: session.append(f"mono fold-down loses {-mono:.1f} dB: parts cancel in mono. Check wideners and polarity")
+    print(f"== {path}")
+    for s in fix: print("  MASTER CAN FIX   " + s)
+    for s in session: print("  OPEN THE SESSION " + s)
+    print("  verdict: " + ("open the session first" if session else "honest mix, a mastering pass is fine") + "\n")
+
+if __name__ == "__main__":
+    for p in sys.argv[1:]: triage(p)
+We ran it on three synthetic files, made from a generated beat and a speech-like test voice, not a real song. The first is an honest mix that’s simply quiet. The second is the same mix where a 6-second chorus flat-topped in a fixed-point bounce and then the whole file was turned down 3 dB. The third adds a pad whose left and right channels are opposite polarity, the kind of thing a careless stereo widener does.
+$ python3 mix_triage.py mix_quiet.wav mix_clipped.wav mix_wide.wav
+== mix_quiet.wav
+  MASTER CAN FIX   -19.0 LUFS, true peak -3.3 dBTP: gain can add 2.3 dB before -1 dBTP; -14 LUFS needs a true-peak limiter
+  verdict: honest mix, a mastering pass is fine
+
+== mix_clipped.wav
+  MASTER CAN FIX   -13.8 LUFS, true peak -0.1 dBTP: needs 0.9 dB less, or a true-peak limiter
+  OPEN THE SESSION 547 flat-topped runs: something clipped before the bounce. Find it and fix it there
+  verdict: open the session first
+
+== mix_wide.wav
+  MASTER CAN FIX   -19.0 LUFS, true peak -6.7 dBTP: +5.0 dB of plain gain reaches -14 LUFS with true peak at -1.7 dBTP
+  OPEN THE SESSION mono fold-down loses 4.9 dB: parts cancel in mono. Check wideners and polarity
+  verdict: open the session first
+Reading those, still on synthetic audio:
+- The quiet mix is a mastering job. Plain gain gets it 2.3 dB louder before true peak hits −1 dBTP. Going further toward −14 LUFS needs a true-peak limiter, which is exactly what a mastering pass does.
+- The clipped mix is louder than the quiet one and its peak reads below full scale, so a quick look says it’s fine. It has 547 flat-topped runs. No limiter can put those tops back.
+- The wide mix measures well: −19 LUFS, lots of peak headroom. But it loses 4.9 dB when folded to mono, where an ordinary stereo mix loses well under 3 dB. A mastering pass would make it louder and leave the pad vanishing on phones.
+Treat the thresholds as starting points, not rules. Some genres clip on purpose, and some wide ambient music is meant to be wide. The script only tells you where to look.
+
+### Why does a clipped mix look fine on a peak meter?
+Because a peak meter only tells you the highest value in the file, not how it got there. If a bounce clips at full scale and someone later turns the file down 3 dB, the peak reads −3 dBFS and looks like a sensible, careful mix. The flat tops are still there, just 3 dB lower. That’s why the script looks for runs of several identical samples at the file’s own maximum, instead of checking for 0 dBFS.
+You can see it by eye, too. Zoom into the loudest moment of the waveform. A healthy wave is rounded at its peaks. A clipped one has a flat lid on it, often for several samples in a row.
+
+### When is a one-click mastering pass the right call?
+More often than purists admit. If the triage comes back clean and the mix sounds right on two or three systems, an automatic pass that brings it to a sensible level with a legal peak is a perfectly good master for a lot of releases: demos, beat tapes, socials, a single you need out by Friday. The reason to use a local tool for that is speed and privacy. Your unreleased song stays on your machine, and you can rerun it as often as you like.
+It’s the wrong call when you’re hoping it will fix something you already suspect is wrong. If you’re reaching for the mastering tool because the vocal feels buried, the vocal fader is the faster fix. The essay on when not to reach for the limiter makes the same point from the other side, and splitting stems can help you find which part is causing trouble when you only have the bounce.
+
+### What should you check after the master?
+A master is a new render, so check it like one:
+1. Measure the file you’ll upload. Integrated LUFS and true peak. Under −1 dBTP for most services; Spotify’s own guidance asks for under −2 dBTP when a master is louder than −14 LUFS.
+2. Compare at matched loudness. Turn the master down to the mix’s level and switch between them. If the master only sounds better when it’s louder, it isn’t better.
+3. Listen in mono and on a small speaker. That’s where widener problems and lost bass show up.
+4. Keep the mix file. If you need a different master later, start from the mix, not from the master.
+Note: If you do want a quick local pass for honest mixes, the Audio Mix & Mastering .bat runs on your own machine. Pair it with CoProducer’s analyzer before and after, so you know whether the mix was ready and whether the render is legal.
+The short version: master the mix you have when it’s honest, and reopen the session when it isn’t. Ten minutes of fixing a clipped bus beats an hour of trying to hide it.
+Q: Can mastering fix a bad mix?
+A: Only the parts of it that affect the whole file the same way: overall loudness, the peak ceiling, and broad tone like a mix that’s a little dark. Anything inside one part of the mix, like a clipped vocal, a buried snare, a bad edit or a widener that cancels in mono, has to be fixed in the session.
+Q: Will an automatic mastering tool replace a mastering engineer?
+A: It replaces waiting on simple jobs: turning an honest mix up to a sensible level with a legal peak. It doesn’t replace judgment on a mix with real problems, and it can’t tell you that the problem is in the mix. That’s still your call, or an engineer’s.
+Q: How can I tell if my mix clipped before I bounced it?
+A: Look for flat tops: runs of several samples in a row sitting at the file’s highest level. A peak meter won’t show it if the file was turned down afterwards, because the peak then reads below 0 dBFS. A clip detector, or zooming in on the loudest part of the waveform, will.
+Q: Should I check the file again after mastering?
+A: Yes. Measure the exact file you’ll upload: integrated loudness, true peak, and a quick mono listen. Any processing, including a one-click master, is a new render with new peaks.
 
 ---
 

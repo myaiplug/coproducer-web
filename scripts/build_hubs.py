@@ -56,6 +56,8 @@ TOPICS = [
             "song-ending-cut-off-on-export-let-the-tail-ring",
             "normalize-on-export-turn-it-off-for-mastering",
             "fade-out-sounds-abrupt-curve-it-and-fade-after-the-limiter",
+            "saturator-sounds-harsh-turn-on-oversampling",
+            "limiter-distorts-the-bass-slow-the-release",
         ],
     },
     {
@@ -83,6 +85,10 @@ TOPICS = [
             "sidechain-pumping-out-of-time-set-release-to-tempo",
             "copy-paste-vocal-double-sounds-mono-sing-a-real-take",
             "vocal-buried-in-the-beat-cut-the-beat-at-3-khz",
+            "mix-leans-to-one-side-check-the-balance-band-by-band",
+            "linear-phase-eq-smears-the-kick-watch-the-pre-ring",
+            "hum-in-your-recording-notch-60-hz-and-its-harmonics",
+            "noise-gate-cuts-off-vocal-tails-set-the-hold",
         ],
     },
     {

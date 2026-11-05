@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1" name="viewport"/><meta content="https://myaiplug.github.io/coproducer-web/blog/img/essays/noise-gate-cuts-off-vocal-tails-set-the-hold.jpg?v=shd" name="twitter:image"/><meta content="Why a noise gate chops vocal tails and chatters: the tail wobbles around the threshold. Measured how hold, release, a lower close threshold and a limited range change where the gate closes and what the gaps sound like, with the script." name="twitter:description"/><meta content="Noise gate cutting off the ends of words? Set the hold and a lower close" name="twitter:title"/><meta content="summary_large_image" name="twitter:card"/><meta content="2026-11-04T00:00:00Z" property="article:modified_time"/><meta content="2026-11-04T00:00:00Z" property="article:published_time"/><meta content="1440" property="og:image:height"/><meta content="2560" property="og:image:width"/><meta content="https://myaiplug.github.io/coproducer-web/blog/noise-gate-cuts-off-vocal-tails-set-the-hold.html" property="og:url"/><meta content="en_US" property="og:locale"/><meta content="CoProducer" property="og:site_name"/><meta content="article" property="og:type"/><link href="https://myaiplug.github.io/coproducer-web/llms.txt" rel="alternate" title="llms.txt" type="text/plain"/><meta content="NoDAW Labs" name="author"/><meta content="#050308" name="theme-color"/><meta content="index,follow,max-image-preview:large" name="robots"/><meta content="noise gate cutting off vocals, noise gate settings for vocals, noise gate hold release, gate hysteresis, noise gate chattering, noise gate range, vocal tail cut off, how to set a noise gate, NoDAW StemSplit, NoDAW" name="keywords"/>
+<title>Noise gate cutting off the ends of words? Set the hold and a lower close | Lacquer</title>
+<meta content="Why a noise gate chops vocal tails and chatters: the tail wobbles around the threshold. Measured how hold, release, a lower close threshold and a limited range change where the gate closes and what the gaps sound like, with the script." name="description"/>
+<link href="https://myaiplug.github.io/coproducer-web/blog/noise-gate-cuts-off-vocal-tails-set-the-hold.html" rel="canonical"/>
+<link rel="alternate" type="application/rss+xml" title="Lacquer — CoProducer Journal" href="https://myaiplug.github.io/coproducer-web/blog/rss.xml"/>
+<link rel="icon" href="../favicon.ico" sizes="48x48"/>
+<link rel="icon" type="image/svg+xml" href="../assets/favicon.svg"/>
+<link rel="apple-touch-icon" href="../assets/apple-touch-icon.png"/>
+<link rel="manifest" href="../site.webmanifest"/>
+<meta content="Noise gate cutting off the ends of words? Set the hold and a lower close" property="og:title"/>
+<meta content="Why a noise gate chops vocal tails and chatters: the tail wobbles around the threshold. Measured how hold, release, a lower close threshold and a limited range change where the gate closes and what the gaps sound like, with the script." property="og:description"/>
+<meta content="https://myaiplug.github.io/coproducer-web/blog/img/essays/noise-gate-cuts-off-vocal-tails-set-the-hold.jpg?v=shd" property="og:image"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;1,500;1,600&amp;family=Figtree:wght@400;500&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet" media="print" onload="this.media='all'"/><noscript><link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;1,500;1,600&amp;family=Figtree:wght@400;500&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/></noscript>
+<link rel="preload" as="image" type="image/webp" fetchpriority="high" imagesrcset="img/essays/w/noise-gate-cuts-off-vocal-tails-set-the-hold-480.webp 480w, img/essays/w/noise-gate-cuts-off-vocal-tails-set-the-hold-960.webp 960w, img/essays/w/noise-gate-cuts-off-vocal-tails-set-the-hold-1600.webp 1600w" imagesizes="(max-width: 1100px) 100vw, 1100px"/>
+<link href="css/journal.css" rel="stylesheet"/>
+
+
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Noise gate cutting off the ends of words? Set the hold and a lower close","description":"Why a noise gate chops vocal tails and chatters: the tail wobbles around the threshold. Measured how hold, release, a lower close threshold and a limited range change where the gate closes and what the gaps sound like, with the script.","datePublished":"2026-11-04","dateModified":"2026-11-04","mainEntityOfPage":{"@type":"WebPage","@id":"https://myaiplug.github.io/coproducer-web/blog/noise-gate-cuts-off-vocal-tails-set-the-hold.html"},"image":{"@type":"ImageObject","url":"https://myaiplug.github.io/coproducer-web/blog/img/essays/noise-gate-cuts-off-vocal-tails-set-the-hold.jpg?v=shd","width":2560,"height":1440},"author":{"@type":"Organization","name":"NoDAW Labs","url":"https://myaiplug.github.io/coproducer-web/","logo":"https://myaiplug.github.io/coproducer-web/assets/og-default.jpg"},"publisher":{"@type":"Organization","name":"NoDAW Labs","url":"https://myaiplug.github.io/coproducer-web/","logo":"https://myaiplug.github.io/coproducer-web/assets/og-default.jpg"},"isPartOf":{"@type":"Blog","name":"Lacquer — CoProducer Journal","url":"https://myaiplug.github.io/coproducer-web/blog/index.html"},"keywords":["noise gate cutting off vocals","noise gate settings for vocals","noise gate hold release","gate hysteresis","noise gate chattering","noise gate range","vocal tail cut off","how to set a noise gate","NoDAW StemSplit","NoDAW"],"speakable":{"@type":"SpeakableSpecification","cssSelector":[".answer","h1"]}}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Why does my noise gate cut off the ends of words?","acceptedAnswer":{"@type":"Answer","text":"Because the fading tail drops under the threshold before the word is really over. In our test a basic gate started closing 287 ms after the word, while the tail stayed audible for 491 ms."}},{"@type":"Question","name":"What does hold do on a noise gate?","acceptedAnswer":{"@type":"Answer","text":"It keeps the gate open for a set time after the signal drops under the threshold, so short dips don’t close it. In our test 80 ms of hold stopped the gate fluttering open and shut on the tails."}},{"@type":"Question","name":"What is hysteresis on a gate?","acceptedAnswer":{"@type":"Answer","text":"A lower close threshold than the open one. Opening at −40 dBFS and closing at −46 in our test let the gate stay open through the whole tail."}},{"@type":"Question","name":"Should a noise gate close all the way?","acceptedAnswer":{"@type":"Answer","text":"Usually not on vocals. Full silence makes room tone snap in and out with every word. A range of about −15 dB keeps the gaps cleaner without holes."}}]}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"CoProducer","item":"https://myaiplug.github.io/coproducer-web/"},{"@type":"ListItem","position":2,"name":"Lacquer Journal","item":"https://myaiplug.github.io/coproducer-web/blog/index.html"},{"@type":"ListItem","position":3,"name":"Noise gate cutting off the ends of words? Set the hold and a lower close","item":"https://myaiplug.github.io/coproducer-web/blog/noise-gate-cuts-off-vocal-tails-set-the-hold.html"}]}</script></head>
+<body>
+<header class="top">
+<a class="mark" href="../index.html"><em>Co</em>Producer</a>
+<nav aria-label="Primary" class="nav">
+<a href="index.html">Journal</a>
+<a href="../index.html#ab">A/B</a>
+<a href="../index.html#analyzeHome">Analyze</a>
+<a href="../guides/index.html">Guides</a>
+<a href="../pricing.html">Pricing</a>
+</nav>
+<a class="cta" href="../index.html#analyzeHome">Measure a mix</a>
+</header>
+<article class="post" id="main">
+<div class="post-hero"><img alt="A sleek black audio unit with two brass knobs and a glowing amber LED strip on gold-veined black marble beside a vocal microphone with a pop filter, a gold waveform of a sung word floating above it with its fading tail sliced off by a thin cyan line." src="img/essays/noise-gate-cuts-off-vocal-tails-set-the-hold.jpg?v=shd" srcset="img/essays/w/noise-gate-cuts-off-vocal-tails-set-the-hold-480.webp 480w, img/essays/w/noise-gate-cuts-off-vocal-tails-set-the-hold-960.webp 960w, img/essays/w/noise-gate-cuts-off-vocal-tails-set-the-hold-1600.webp 1600w" sizes="(max-width: 1100px) 100vw, 1100px" width="2560" height="1440" fetchpriority="high" decoding="async"/></div>
+<header>
+<p class="kicker">Mixing · 4 November 2026 · 6 min</p>
+<h1>Noise gate cutting off the ends of words? Set the hold and a lower close</h1>
+<p class="meta">NoDAW Labs · Lacquer Vol. 06</p>
+</header>
+<p class="answer">A noise gate cuts off the ends of words when it closes as soon as the fading tail dips under the threshold. Tails wobble, so it also flutters open and shut. Add 50 to 100 ms of hold, a release around 150 ms, and a close threshold about 6 dB under the open one (hysteresis), and the gate waits for the word to really finish. Then set the range to about −15 dB instead of full silence so the gaps don’t sound like holes.</p>
+<p>You recorded vocals in a bedroom, so there’s a little room noise and some headphone bleed between lines. A gate seems like the obvious fix. Then you play it back and the last letter of every word is missing. “Night” turns into “nigh.” Held notes stop a beat early, and sometimes the end of a word flickers, like someone tapping the mute button.</p>
+<p>The gate’s doing exactly what you told it. The problem is that a word doesn’t end in a straight line.</p>
+<h2>Why gates chop tails</h2>
+<p>A gate opens when the signal goes above a threshold and closes when it falls back under. The start of a word is easy: it jumps up fast. The end is the hard part. A fading voice doesn’t slide smoothly down to silence. It wobbles, with vibrato, a bit of breath and the room. So it dips under the threshold, the gate starts closing, then the tail pops back up and the gate opens again. That’s the flutter. And the quiet last part of the word, which often carries the consonant, sits below the threshold, so it’s gone.</p>
+<p>Gates have three controls for this. <strong>Hold</strong> keeps the gate open for a set time after the signal drops, so a short dip doesn’t close it. <strong>Release</strong> sets how slowly it fades shut. <strong>Hysteresis</strong>, sometimes called a separate close threshold, means it opens at one level and only closes at a lower one.</p>
+<p>We wrote <code>gate_check.py</code> to see what each one does. It builds six synthetic sung words (a buzzy 200 Hz tone, 350 ms long, with a tail that fades and wobbles) over a steady noise floor at −60 dBFS. Then it runs a basic gate that opens at −40 dBFS and measures how many times it opens per word, how long after the word it starts closing (the point where it’s 6 dB down), and how far it pushes down the noise between words.</p>
+<pre><code>#!/usr/bin/env python3
+"""Does the noise gate eat the ends of your words?
+  python3 gate_check.py
+A synthetic vocal line: six 'words' (a 200 Hz voiced tone, 350 ms at about -14 dBFS RMS) whose
+tails decay exponentially (tau 90 ms) with a slight wobble, over a constant noise floor at -60 dBFS
+RMS (room tone, headphone bleed). A plain gate opens at -40 dBFS, holds, then fades over the
+release. For each setting we report how often it opened per word (1 is ideal; more is chatter),
+how long after the word the gate starts closing (gain 6 dB down), and how far it pushed down the noise between words.
+"""
+import numpy as np
+
+SR = 48000
+rng = np.random.default_rng(7)
+
+def take():
+    word, gap = int(0.35 * SR), int(0.9 * SR)
+    n = 6 * (word + gap)
+    t = np.arange(n) / SR
+    env = np.zeros(n)
+    tail_mask = np.zeros(n, bool)
+    starts = []
+    for w in range(6):
+        s = w * (word + gap) + int(0.3 * SR); starts.append(s)
+        a = np.minimum(1, np.arange(word) / (0.015 * SR))
+        env[s:s + word] = a
+        k = np.arange(gap - int(0.3 * SR))
+        wob = 1 + 0.35 * np.sin(2 * np.pi * 9 * k / SR)               # tails are never smooth
+        env[s + word:s + word + k.size] = np.exp(-k / (0.09 * SR)) * wob
+        tail_mask[s + word:s + word + int(0.4 * SR)] = True
+    ends = [s + word for s in starts]
+    voice = 0.28 * env * np.sign(np.sin(2 * np.pi * 200 * t)) * 0.7   # buzzy, like a voice
+    noise = 10 ** (-60 / 20) * rng.standard_normal(n)
+    return voice, noise, tail_mask, starts, ends
+
+def gate(x, open_db=-40, close_db=None, hold_ms=0, release_ms=20, range_db=-80):
+    close_db = open_db if close_db is None else close_db
+    det = np.abs(x)
+    a_r = np.exp(-1 / (0.010 * SR))                                   # 10 ms peak detector
+    env = np.empty_like(det); e = 0.0
+    for i, v in enumerate(det):
+        e = v if v &gt; e else a_r * e + (1 - a_r) * v; env[i] = e
+    env_db = 20 * np.log10(env + 1e-12)
+    g_floor = 10 ** (range_db / 20)
+    step_up = 1 / (0.001 * SR)                                        # 1 ms attack
+    rel = np.exp(np.log(g_floor) / max(1, release_ms * SR / 1000))
+    g, is_open, held, opens = g_floor, False, 0, []
+    out, gain = np.empty_like(x), np.empty_like(x)
+    for i in range(x.size):
+        if not is_open and env_db[i] &gt; open_db:
+            is_open, held = True, 0; opens.append(i)
+        elif is_open and env_db[i] &lt; close_db:
+            held += 1
+            if held &gt; hold_ms * SR / 1000: is_open = False
+        elif is_open:
+            held = 0
+        g = min(1.0, g + step_up) if is_open else max(g_floor, g * rel)
+        out[i] = x[i] * g; gain[i] = g
+    return out, gain, opens
+
+voice, noise, tail, starts, ends = take()
+x = voice + noise
+between = np.ones(x.size, bool)
+for s in starts: between[s - int(0.05 * SR):s + int(1.0 * SR)] = False
+settings = [
+    ("hold 0, release 20 ms", dict()),
+    ("hold 0, release 150 ms", dict(release_ms=150)),
+    ("hold 80 ms, release 150 ms", dict(hold_ms=80, release_ms=150)),
+    ("hold 80, release 150, close at -46", dict(hold_ms=80, release_ms=150, close_db=-46)),
+    ("same, range -15 dB instead of off", dict(hold_ms=80, release_ms=150, close_db=-46, range_db=-15)),
+]
+rms = lambda v: np.sqrt(np.mean(v ** 2))
+print(f"{'setting':38s} {'opens/word':&gt;10s} {'closing at':&gt;11s} {'noise between':&gt;14s}")
+for name, kw in settings:
+    y, g, opens = gate(x, **kw)
+    cut = []
+    for e in ends:                                                    # first sample after the word at -6 dB
+        below = np.nonzero(g[e:e + int(0.8 * SR)] &lt; 0.5)[0]
+        cut.append(below[0] / SR * 1000 if below.size else np.nan)
+    nb = 20 * np.log10(rms(y[between]) / rms(x[between]))
+    c = np.nanmean(cut) if not np.all(np.isnan(cut)) else float("nan")
+    print(f"{name:38s} {len(opens) / 6:10.1f} {c:8.0f} ms {nb:11.1f} dB")
+win = int(0.02 * SR); sm = lambda v: np.sqrt(np.convolve(v ** 2, np.ones(win) / win, "same"))
+vt, nf = sm(voice), rms(noise)
+sink = [np.nonzero(vt[e:e + int(0.8 * SR)] &lt; nf)[0][0] / SR * 1000 for e in ends]
+print(f"(for reference, the tail itself sinks under the noise floor {np.mean(sink):.0f} ms after the word)")</code></pre>
+<pre><code>$ python3 gate_check.py
+setting                                opens/word  closing at  noise between
+hold 0, release 20 ms                         1.5      287 ms       -80.0 dB
+hold 0, release 150 ms                        1.5      297 ms       -80.0 dB
+hold 80 ms, release 150 ms                    1.0      377 ms       -80.0 dB
+hold 80, release 150, close at -46            1.0      508 ms       -76.4 dB
+same, range -15 dB instead of off             1.0      547 ms       -14.9 dB
+(for reference, the tail itself sinks under the noise floor 491 ms after the word)</code></pre>
+<h2>Reading the numbers</h2>
+<p><strong>The tail lasts 491 ms.</strong> That’s how long after each word our tail stays above the noise floor, the part you’d actually hear. It’s the number to compare against.</p>
+<p><strong>A default gate cuts it at 287 ms</strong>, so about 200 ms of every tail is gone. It also opens 1.5 times per word on average, so some words flutter. Making the release slower alone (150 ms) barely helps: 297 ms, and the same flutter. The release only shapes how it closes, not when.</p>
+<p><strong>Hold stops the flutter.</strong> Adding 80 ms of hold brings it to exactly one open per word and moves the close out to 377 ms. Better, but still early.</p>
+<p><strong>A lower close threshold keeps the whole tail.</strong> Opening at −40 and closing at −46 moves the close to 508 ms, just past where the tail sinks under the noise. Nothing audible gets cut.</p>
+<p><strong>Full silence in the gaps is its own problem.</strong> With the gate shutting all the way, the noise between words drops by about 76 to 80 dB, which is complete silence. Then it snaps back in with every word. That on-off room tone is easy to hear on headphones. With the range set to −15 dB, the gaps come down 14.9 dB instead. That’s enough to clean them up while a little room stays underneath, so nothing jumps. (The −6 dB point also moves to 547 ms, because the fade covers only 15 dB.)</p>
+<p>This is a simple model of a voice and a basic gate, so treat the exact milliseconds as a guide. Real words end differently, and an S or a T is quieter and shorter than a held vowel.</p>
+<h2>Settings to start from</h2>
+<ol>
+<li><strong>Threshold:</strong> loop a gap, watch the meter, and set the open threshold 6 to 10 dB above the noise. Not higher.</li>
+<li><strong>Hysteresis or close threshold:</strong> about 6 dB below the open threshold. If your gate has no hysteresis control, give it more hold instead.</li>
+<li><strong>Hold:</strong> 50 to 100 ms for vocals. More for slow, held singing, less for fast rap.</li>
+<li><strong>Release:</strong> 100 to 200 ms, so the tail fades instead of snapping off.</li>
+<li><strong>Range:</strong> −10 to −20 dB rather than off. You want the gaps quieter, not dead.</li>
+<li><strong>Attack:</strong> fast, about 1 ms, but if the first letter clicks, slow it a little or use the gate’s lookahead.</li>
+</ol>
+<h2>When a gate is the wrong tool</h2>
+<p>If the noise is almost as loud as the quiet parts of the words, no threshold will separate them. The gate will either let the noise through or eat the words. For a vocal, it’s often cleaner to skip the gate and just turn down or clip-gain the gaps by hand. <a href="vocal-breaths-turn-them-down-dont-cut-them.html">The essay on loud breaths</a> walks through the same move for breaths. When the bleed is the beat itself, leaking out of loud headphones, try running the take through a stem splitter such as <a href="../index.html#stemDemo">StemSplit</a>. It separates the voice from the music, which is something no gate can do while the word is still going.</p>
+<p>Gate before compression, too. A compressor raises the noise between words, which makes the gate’s job harder if it comes after. And if you edited the gaps by hand instead, fade every cut, as <a href="clicks-at-edit-points-fade-every-cut.html">clicks at edit points</a> explains, or you’ll swap noise for clicks.</p>
+<dl class="faq">
+<dt>Why does my noise gate cut off the ends of words?</dt>
+<dd>Because the fading tail drops under the threshold before the word is really over. In our test a basic gate started closing 287 ms after the word, while the tail stayed audible for 491 ms.</dd>
+<dt>What does hold do on a noise gate?</dt>
+<dd>It keeps the gate open for a set time after the signal drops under the threshold, so short dips don’t close it. In our test 80 ms of hold stopped the gate fluttering open and shut on the tails.</dd>
+<dt>What is hysteresis on a gate?</dt>
+<dd>A lower close threshold than the open one. Opening at −40 dBFS and closing at −46 in our test let the gate stay open through the whole tail.</dd>
+<dt>Should a noise gate close all the way?</dt>
+<dd>Usually not on vocals. Full silence makes room tone snap in and out with every word. A range of about −15 dB keeps the gaps cleaner without holes.</dd>
+</dl>
+<nav aria-label="Keep reading" class="related-essays keep-reading" style="margin:48px 0 24px;padding-top:24px;border-top:1px solid rgba(196,165,116,.32)"><h2>Keep reading</h2><ul><li><a href="vocal-breaths-turn-them-down-dont-cut-them.html">Loud breaths in your vocal? Turn them down before the compressor, don’t cut them</a></li><li><a href="clicks-at-edit-points-fade-every-cut.html">Clicks at your edit points come from cutting mid-wave. Fade every cut</a></li><li><a href="compressor-kills-the-punch-slow-the-attack.html">Compressor killing your drums’ punch? Slow the attack down</a></li><li><a href="quiet-masters-and-noise-floor.html">Quiet masters get turned up — and so does the noise</a></li><li><a href="song-ending-cut-off-on-export-let-the-tail-ring.html">Song ending cut off when you export? Let the tail ring past the last bar</a></li><li><a href="how-loud-should-the-vocal-sit.html">How loud should the vocal sit? Measure it against the beat</a></li><li><a href="hum-in-your-recording-notch-60-hz-and-its-harmonics.html">Hum in your recording? Notch 60 Hz and its harmonics, not just the low end</a></li></ul><p class="hub-link">More in <a href="topics/low-end-and-mix-dynamics.html">Low end &amp; mix dynamics</a> · <a href="index.html">All essays</a></p></nav></article>
+<aside aria-label="About the publisher" class="author-box"><p class="author-k">Written and published by</p><p class="author-name"><a href="about.html">NoDAW Labs</a></p><p class="author-bio">NoDAW Labs makes local-first audio tools: CoProducer, reTUNE[432] and DeepSplit. Essays are credited to the studio, not to individual writers. <a href="methodology.html">How we test, cite and correct</a>.</p></aside>
+<section class="comments" data-comments="" data-thread="noise-gate-hold-hysteresis"></section>
+<script src="js/studio.js" type="module"></script>
+<script src="js/comments.js" type="module"></script>
+<footer class="site"><span>Lacquer · CoProducer Journal</span><span><a href="index.html">All essays</a> · <a href="about.html">About</a> · <a href="methodology.html">Methodology</a></span></footer>
+</body>
+</html>

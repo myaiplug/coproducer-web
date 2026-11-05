@@ -173,8 +173,8 @@ ESSAY_META = {
         "date": "2026-08-21",
     },
     "screw-tempo-still-needs-a-legal-peak": {
-        "title": "Screw tempo still needs a legal peak | Lacquer",
-        "description": "Slowing a track for syrup aesthetics changes duration and crest, not true-peak law. A screwed render still needs ≤ −1.0 dBTP before upload.",
+        "title": "Do slowed songs need re-mastering? Slowed + reverb and true peak | Lacquer",
+        "description": "Slowing a song doesn’t make its peaks safe. Varispeed can turn hidden overs into real ones and reverb adds new peaks, so measure the slowed file before upload.",
         "keywords": ["ScrewAI", "chopped and screwed", "true peak", "syrup"],
         "related": ["true-peak-is-what-codecs-clip", "vertical-video-is-a-loudness-trap", "reencoding-eats-true-peak-headroom"],
         "date": "2026-08-21",
@@ -187,8 +187,8 @@ ESSAY_META = {
         "date": "2026-08-21",
     },
     "mastering-bat-vs-opening-the-session": {
-        "title": "Mastering .bat versus opening the session | Lacquer",
-        "description": "A mastering .bat is for trusted delivery passes on finished mixes. Open the session when arrangement, bad edits, or clipped vocals need real surgery.",
+        "title": "Can mastering fix a bad mix? When to reopen the session instead | Lacquer",
+        "description": "Mastering fixes whole-file problems like loudness, ceiling and broad tone. Clipped vocals, bad edits and mono cancellation live in the mix. Here’s how to tell.",
         "keywords": ["mastering bat", "batch mastering", "NoDAW", "workflow"],
         "related": ["local-tools-beat-upload-queues", "what-a-70-to-90-repair-changes", "album-consistency-in-one-meter"],
         "date": "2026-08-21",

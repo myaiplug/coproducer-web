@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1" name="viewport"/><meta content="https://myaiplug.github.io/coproducer-web/blog/img/essays/saturator-sounds-harsh-turn-on-oversampling.jpg?v=shd" name="twitter:image"/><meta content="Why a saturator or clipper makes hats and vocals grainy: distortion creates harmonics above the sample rate&#x27;s limit and they fold back down as off-key tones. Measured fold-back at 1x, 2x, 4x and 8x oversampling, with the script." name="twitter:description"/><meta content="Saturator making the highs harsh? Turn on oversampling" name="twitter:title"/><meta content="summary_large_image" name="twitter:card"/><meta content="2026-11-03T00:00:00Z" property="article:modified_time"/><meta content="2026-11-03T00:00:00Z" property="article:published_time"/><meta content="1440" property="og:image:height"/><meta content="2560" property="og:image:width"/><meta content="https://myaiplug.github.io/coproducer-web/blog/saturator-sounds-harsh-turn-on-oversampling.html" property="og:url"/><meta content="en_US" property="og:locale"/><meta content="CoProducer" property="og:site_name"/><meta content="article" property="og:type"/><link href="https://myaiplug.github.io/coproducer-web/llms.txt" rel="alternate" title="llms.txt" type="text/plain"/><meta content="NoDAW Labs" name="author"/><meta content="#050308" name="theme-color"/><meta content="index,follow,max-image-preview:large" name="robots"/><meta content="saturator sounds harsh, oversampling saturation, aliasing distortion plugin, clipper aliasing, what does oversampling do, oversampling 2x 4x 8x, grainy hi hats saturation, soft clipper oversampling, NoDAW CoProducer, NoDAW" name="keywords"/>
+<title>Saturator making the highs harsh? Turn on oversampling | Lacquer</title>
+<meta content="Why a saturator or clipper makes hats and vocals grainy: distortion creates harmonics above the sample rate&#x27;s limit and they fold back down as off-key tones. Measured fold-back at 1x, 2x, 4x and 8x oversampling, with the script." name="description"/>
+<link href="https://myaiplug.github.io/coproducer-web/blog/saturator-sounds-harsh-turn-on-oversampling.html" rel="canonical"/>
+<link rel="alternate" type="application/rss+xml" title="Lacquer — CoProducer Journal" href="https://myaiplug.github.io/coproducer-web/blog/rss.xml"/>
+<link rel="icon" href="../favicon.ico" sizes="48x48"/>
+<link rel="icon" type="image/svg+xml" href="../assets/favicon.svg"/>
+<link rel="apple-touch-icon" href="../assets/apple-touch-icon.png"/>
+<link rel="manifest" href="../site.webmanifest"/>
+<meta content="Saturator making the highs harsh? Turn on oversampling" property="og:title"/>
+<meta content="Why a saturator or clipper makes hats and vocals grainy: distortion creates harmonics above the sample rate&#x27;s limit and they fold back down as off-key tones. Measured fold-back at 1x, 2x, 4x and 8x oversampling, with the script." property="og:description"/>
+<meta content="https://myaiplug.github.io/coproducer-web/blog/img/essays/saturator-sounds-harsh-turn-on-oversampling.jpg?v=shd" property="og:image"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;1,500;1,600&amp;family=Figtree:wght@400;500&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet" media="print" onload="this.media='all'"/><noscript><link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;1,500;1,600&amp;family=Figtree:wght@400;500&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/></noscript>
+<link rel="preload" as="image" type="image/webp" fetchpriority="high" imagesrcset="img/essays/w/saturator-sounds-harsh-turn-on-oversampling-480.webp 480w, img/essays/w/saturator-sounds-harsh-turn-on-oversampling-960.webp 960w, img/essays/w/saturator-sounds-harsh-turn-on-oversampling-1600.webp 1600w" imagesizes="(max-width: 1100px) 100vw, 1100px"/>
+<link href="css/journal.css" rel="stylesheet"/>
+
+
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Saturator making the highs harsh? Turn on oversampling","description":"Why a saturator or clipper makes hats and vocals grainy: distortion creates harmonics above the sample rate's limit and they fold back down as off-key tones. Measured fold-back at 1x, 2x, 4x and 8x oversampling, with the script.","datePublished":"2026-11-03","dateModified":"2026-11-03","mainEntityOfPage":{"@type":"WebPage","@id":"https://myaiplug.github.io/coproducer-web/blog/saturator-sounds-harsh-turn-on-oversampling.html"},"image":{"@type":"ImageObject","url":"https://myaiplug.github.io/coproducer-web/blog/img/essays/saturator-sounds-harsh-turn-on-oversampling.jpg?v=shd","width":2560,"height":1440},"author":{"@type":"Organization","name":"NoDAW Labs","url":"https://myaiplug.github.io/coproducer-web/","logo":"https://myaiplug.github.io/coproducer-web/assets/og-default.jpg"},"publisher":{"@type":"Organization","name":"NoDAW Labs","url":"https://myaiplug.github.io/coproducer-web/","logo":"https://myaiplug.github.io/coproducer-web/assets/og-default.jpg"},"isPartOf":{"@type":"Blog","name":"Lacquer — CoProducer Journal","url":"https://myaiplug.github.io/coproducer-web/blog/index.html"},"keywords":["saturator sounds harsh","oversampling saturation","aliasing distortion plugin","clipper aliasing","what does oversampling do","oversampling 2x 4x 8x","grainy hi hats saturation","soft clipper oversampling","NoDAW CoProducer","NoDAW"],"speakable":{"@type":"SpeakableSpecification","cssSelector":[".answer","h1"]}}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Why does saturation make my mix sound harsh?","acceptedAnswer":{"@type":"Answer","text":"Usually aliasing. Harmonics above half the sample rate fold back down as tones that aren’t related to the note. In our test, a 9 kHz tone through a saturator at 1x made a 3 kHz tone only 28.4 dB under it."}},{"@type":"Question","name":"What does oversampling do on a plugin?","acceptedAnswer":{"@type":"Answer","text":"It runs the distortion at 2, 4 or 8 times the session’s sample rate, so the new harmonics have room, then filters them out before coming back down. In our test, 4x removed the folded tones from a soft saturator."}},{"@type":"Question","name":"Is 2x oversampling enough?","acceptedAnswer":{"@type":"Answer","text":"For gentle saturation it often helps a lot, but our 9 kHz test tone still had a fold 53.6 dB down at 2x. 4x cleared it for the soft saturator. A hard clipper still had folds 47.8 dB down at 4x and 64.8 dB at 8x."}},{"@type":"Question","name":"Do I need oversampling on bass?","acceptedAnswer":{"@type":"Answer","text":"Rarely. A 997 Hz tone through the soft saturator had no folded tones above −120 dB even at 1x. The problem lives in bright sources: hats, cymbals, vocals, bright synths."}}]}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"CoProducer","item":"https://myaiplug.github.io/coproducer-web/"},{"@type":"ListItem","position":2,"name":"Lacquer Journal","item":"https://myaiplug.github.io/coproducer-web/blog/index.html"},{"@type":"ListItem","position":3,"name":"Saturator making the highs harsh? Turn on oversampling","item":"https://myaiplug.github.io/coproducer-web/blog/saturator-sounds-harsh-turn-on-oversampling.html"}]}</script></head>
+<body>
+<header class="top">
+<a class="mark" href="../index.html"><em>Co</em>Producer</a>
+<nav aria-label="Primary" class="nav">
+<a href="index.html">Journal</a>
+<a href="../index.html#ab">A/B</a>
+<a href="../index.html#analyzeHome">Analyze</a>
+<a href="../guides/index.html">Guides</a>
+<a href="../pricing.html">Pricing</a>
+</nav>
+<a class="cta" href="../index.html#analyzeHome">Measure a mix</a>
+</header>
+<article class="post" id="main">
+<div class="post-hero"><img alt="A black analog saturator with glowing amber tubes and a brass drive knob on gold-veined black marble, a smooth gold waveform across its front that breaks into jagged cyan and magenta shards on the right, studio monitors behind." src="img/essays/saturator-sounds-harsh-turn-on-oversampling.jpg?v=shd" srcset="img/essays/w/saturator-sounds-harsh-turn-on-oversampling-480.webp 480w, img/essays/w/saturator-sounds-harsh-turn-on-oversampling-960.webp 960w, img/essays/w/saturator-sounds-harsh-turn-on-oversampling-1600.webp 1600w" sizes="(max-width: 1100px) 100vw, 1100px" width="2560" height="1440" fetchpriority="high" decoding="async"/></div>
+<header>
+<p class="kicker">Mastering · 3 November 2026 · 7 min</p>
+<h1>Saturator making the highs harsh? Turn on oversampling</h1>
+<p class="meta">NoDAW Labs · Lacquer Vol. 06</p>
+</header>
+<p class="answer">If a saturator or clipper makes your hats, vocals or synths sound grainy and harsh, it’s probably aliasing: the distortion makes harmonics above the top of the sample rate, and they fold back down as tones that aren’t in tune with anything. Turn on the plugin’s oversampling, 4x for most jobs, and those folded tones drop out while the warmth you wanted stays.</p>
+<p>You put a clipper on the drum bus or a bit of saturation on the master, and the low end gets that nice weight. Then you listen to the top. The hats sound like sand, the vocal’s S’s have a metallic edge, and the bright synth sounds a little out of tune in a way you can’t put a finger on.</p>
+<p>It isn’t your ears and it isn’t the saturation itself. It’s where the saturation’s harmonics go.</p>
+<h2>Where the harsh tones come from</h2>
+<p>Saturation and clipping add harmonics, copies of the note at 2x, 3x, 5x its frequency and up. On a bass note that’s the whole point: a 50 Hz note gets 150 Hz and 250 Hz, which is why saturated bass reads on small speakers.</p>
+<p>On a bright sound the harmonics land way up high. A 9 kHz partial in a hi-hat makes harmonics at 27 kHz, 45 kHz and so on. A 48 kHz session can only hold frequencies up to 24 kHz. Anything the plugin creates above that doesn’t disappear. It folds back down, mirrored off the limit. The 27 kHz harmonic lands at 21 kHz. The 45 kHz one lands at 48 − 45 = 3 kHz, right in the middle of the range your ears care about most, and it has nothing to do with the note that made it. That’s aliasing.</p>
+<p>Real harmonics move with the note and sound like tone. Aliased ones move the wrong way and sound like grit, a ringing, or a faint second pitch underneath. Oversampling fixes it by running the distortion at 2, 4 or 8 times the sample rate, where there’s room for those harmonics, then filtering them out before coming back down.</p>
+<p>We wrote <code>alias_check.py</code> to measure it. It drives three steady tones (997 Hz, 4,987 Hz and 8,999 Hz) 12 dB into a soft saturator (tanh) and a hard clipper at a 48 kHz session rate. It runs each one with no oversampling and at 2x, 4x and 8x, and splits the result into real harmonics and folded tones below 16 kHz, all relative to the note.</p>
+<pre><code>#!/usr/bin/env python3
+"""Does a saturator alias? Measure the tones a soft (tanh) and hard clipper fold back below Nyquist.
+  python3 alias_check.py [drive_db]
+A sine is driven `drive_db` into a waveshaper at 48 kHz, either directly (1x) or upsampled 2x/4x/8x
+first and filtered back down (scipy resample_poly, Kaiser windowed FIR), the way plugin oversampling works.
+Middle 1 s of a 3 s render, integer-Hz tones, rectangular window, so every tone sits on its own FFT bin.
+"Harmonics" = energy at k*f0 below 24 kHz (what a real tube or tape does). "Aliases" = every other bin
+below 16 kHz: tones that are not in the harmonic series, in the range you can hear. Both in dB
+relative to the fundamental. (Folds that land between 16 and 24 kHz are left out of both columns.)"""
+import sys, numpy as np
+from scipy.signal import resample_poly
+
+SR = 48000
+shapers = {"soft (tanh)": np.tanh, "hard clip": lambda x: np.clip(x, -1, 1)}
+def saturate(x, shape, os):
+    if os == 1: return shape(x)
+    k = ('kaiser', 10.0)                                 # steep anti-alias filter, both ways
+    return resample_poly(shape(resample_poly(x, os, 1, window=k)), 1, os, window=k)
+def analyse(y, f0):
+    P = np.abs(np.fft.rfft(y)) ** 2; P[0] = 0          # bin k = k Hz (1 s, rectangular)
+    harm = np.zeros_like(P, bool); harm[np.arange(f0, SR // 2, f0)] = True
+    band = np.arange(len(P)) &lt; 16000
+    fund = P[f0]; h = P[harm].sum() - fund; a = P[~harm &amp; band].sum()
+    alias = np.where(~harm &amp; band, P, 0); top = int(np.argmax(alias))
+    db = lambda v: 10 * np.log10(max(v, 1e-30) / fund)
+    return db(h), db(a), top, db(alias[top])
+
+def main():
+    drive = float(sys.argv[1]) if len(sys.argv) &gt; 1 else 12.0
+    t = np.arange(3 * SR) / SR; amp = 10 ** (drive / 20) * 0.5          # 0.5 = -6 dBFS before the drive
+    print(f"Sine at -6 dBFS, +{drive:g} dB drive into the shaper, 48 kHz session")
+    for name, shape in shapers.items():
+        print(f"\n{name}")
+        print(f"{'tone':&gt;8}{'oversample':&gt;12}{'harmonics':&gt;11}{'aliases':&gt;10}   loudest alias (&lt;16 kHz)")
+        for f0 in (997, 4987, 8999):
+            for os in (1, 2, 4, 8):
+                h, a, top, topdb = analyse(saturate(amp * np.sin(2 * np.pi * f0 * t), shape, os)[SR:2 * SR], f0)   # middle second, past filter edges
+                f = lambda v, w: f"{v:&gt;{w}.1f} dB" if v &gt; -120 else f"{'&lt; -120':&gt;{w}} dB"   # below -120 dB = numeric floor
+                print(f"{f0:&gt;6} Hz{os:&gt;10}x{f(h, 8)}{f(a, 7)}   " + (f"{top:&gt;5} Hz at {topdb:6.1f} dB" if topdb &gt; -120 else "none above -120 dB"))
+
+if __name__ == "__main__": main()</code></pre>
+<pre><code>$ python3 alias_check.py
+Sine at -6 dBFS, +12 dB drive into the shaper, 48 kHz session
+
+soft (tanh)
+    tone  oversample  harmonics   aliases   loudest alias (&lt;16 kHz)
+   997 Hz         1x   -15.3 dB &lt; -120 dB   none above -120 dB
+   997 Hz         2x   -15.3 dB &lt; -120 dB   none above -120 dB
+   997 Hz         4x   -15.3 dB &lt; -120 dB   none above -120 dB
+   997 Hz         8x   -15.3 dB &lt; -120 dB   none above -120 dB
+  4987 Hz         1x   -15.5 dB  -40.8 dB   13091 Hz at  -41.0 dB
+  4987 Hz         2x   -15.5 dB -103.7 dB   11221 Hz at -103.9 dB
+  4987 Hz         4x   -15.5 dB &lt; -120 dB   none above -120 dB
+  4987 Hz         8x   -15.5 dB &lt; -120 dB   none above -120 dB
+  8999 Hz         1x  &lt; -120 dB  -28.1 dB    3005 Hz at  -28.4 dB
+  8999 Hz         2x  &lt; -120 dB  -53.4 dB   15009 Hz at  -53.6 dB
+  8999 Hz         4x  &lt; -120 dB &lt; -120 dB   none above -120 dB
+  8999 Hz         8x  &lt; -120 dB &lt; -120 dB   none above -120 dB
+
+hard clip
+    tone  oversample  harmonics   aliases   loudest alias (&lt;16 kHz)
+   997 Hz         1x   -12.7 dB  -50.7 dB   15099 Hz at  -55.6 dB
+   997 Hz         2x   -12.7 dB  -64.2 dB   15243 Hz at  -71.4 dB
+   997 Hz         4x   -12.7 dB  -76.7 dB   15531 Hz at  -85.9 dB
+   997 Hz         8x   -12.7 dB  -89.1 dB   12119 Hz at  -97.8 dB
+  4987 Hz         1x   -12.9 dB  -30.5 dB    3117 Hz at  -32.9 dB
+  4987 Hz         2x   -12.9 dB  -44.5 dB    8727 Hz at  -47.8 dB
+  4987 Hz         4x   -12.9 dB  -56.3 dB    2493 Hz at  -58.6 dB
+  4987 Hz         8x   -12.9 dB  -68.0 dB    9975 Hz at  -70.1 dB
+  8999 Hz         1x  &lt; -120 dB  -25.4 dB    3005 Hz at  -27.1 dB
+  8999 Hz         2x  &lt; -120 dB  -32.3 dB   15009 Hz at  -32.9 dB
+  8999 Hz         4x  &lt; -120 dB  -47.0 dB    3021 Hz at  -47.8 dB
+  8999 Hz         8x  &lt; -120 dB  -62.0 dB    2957 Hz at  -64.8 dB</code></pre>
+<h2>Reading the numbers</h2>
+<p><strong>Low notes are fine.</strong> The 997 Hz tone through the soft saturator has no folded tones above −120 dB at any setting. Its harmonics run out of energy long before they reach 24 kHz. That’s why saturation on bass and low mids rarely needs oversampling.</p>
+<p><strong>High notes are where it bites.</strong> The 8,999 Hz tone through the soft saturator at 1x puts a tone at 3,005 Hz only 28.4 dB under the note. That’s the folded 5th harmonic (5 × 8,999 = 44,995 Hz, mirrored to 3,005). At 2x the loudest fold is 53.6 dB down, and at 4x there’s nothing left above −120 dB. Also notice the harmonics column for that tone: every real harmonic is above 24 kHz, so at 1x everything the saturator adds to it is aliasing.</p>
+<p><strong>Hard clipping is worse, and needs more.</strong> A clipper’s harmonics fall off slowly, so there are a lot of them to fold. The 8,999 Hz tone at 1x has a fold at 3,005 Hz just 27.1 dB down. Oversampling helps step by step: −32.9 dB at 2x, −47.8 at 4x, −64.8 at 8x. The 4,987 Hz tone goes from a 3,117 Hz fold at −32.9 dB to −70.1 dB at 8x. Even the 997 Hz tone gets a fold at −55.6 dB with no oversampling.</p>
+<p>These are single steady tones and textbook shapers, so treat the levels as a model. A real hi-hat is hundreds of partials at once, and each one folds somewhere different. That’s why aliasing on a real mix sounds like a haze of grit rather than one clear wrong note.</p>
+<h2>How to set it in your session</h2>
+<ol>
+<li><strong>Find the plugin’s oversampling switch.</strong> It might say 2x, 4x, HQ, or “high quality.” Some plugins have a separate setting for playback and for render. Make sure the render one is on.</li>
+<li><strong>Start at 4x for saturation on full mixes, buses and bright sources.</strong> For a soft saturator on a 48 kHz session, the test above was clean at 4x. For a hard clipper on a drum bus or master, try 8x if the plugin offers it.</li>
+<li><strong>Skip it where it doesn’t matter.</strong> Gentle warmth on a bass or a kick doesn’t need oversampling, and you save the CPU for where it counts.</li>
+<li><strong>Mix at 1x if you need to, bounce at 4x.</strong> Oversampling costs CPU and adds a little latency. If your session is struggling, work with it off and turn it on before the final bounce. Then listen once more, because the tone can shift slightly.</li>
+<li><strong>Don’t drive harder to make up for it.</strong> If the clipper is doing 6 dB of work on the master, aliasing isn’t the only problem. <a href="turn-the-mix-down-before-you-limit.html">Turn the mix down before you limit</a> walks through getting level earlier.</li>
+</ol>
+<h2>How to hear the difference</h2>
+<p>Bounce the bus or the master twice, once with oversampling off and once at 4x, and line them up. Flip between them in a level-matched A/B such as <a href="../index.html#ab">the one in CoProducer</a>, and listen only to the hats and the vocal top end. On bright material the oversampled version usually sounds smoother up top, not duller. If you can’t hear a difference on that material, keep the cheaper setting.</p>
+<p>Running the whole session at 96 kHz does something similar for every plugin at once, since the limit moves up to 48 kHz. It works like 2x oversampling, at the price of double the CPU on everything. Most engineers just oversample the few plugins that distort.</p>
+<h2>Genre habits that cause this</h2>
+<p>In trap and drill, it’s the hard clipper on the drum bus or the master, pushed for loudness, with crisp hats running through it. In EDM, it’s distortion on supersaws and leads, which are full of high partials. In rock, most amp sims oversample on their own, but a bus saturator after them may not. In lo-fi, the grit can be the sound you want. A bitcrusher is aliasing on purpose. That’s fine if you choose it, not if it sneaks in from a clipper.</p>
+<p>Clippers also push true peak around, and aliasing can add peaks between samples on top of that. Check the final file against −1 dBTP, which <a href="true-peak-is-what-codecs-clip.html">true peak is what codecs clip</a> explains, and compare clipping against limiting in <a href="clipper-vs-limiter-hip-hop-delivery.html">clipper vs limiter for hip-hop delivery</a>.</p>
+<dl class="faq">
+<dt>Why does saturation make my mix sound harsh?</dt>
+<dd>Usually aliasing. Harmonics above half the sample rate fold back down as tones that aren’t related to the note. In our test, a 9 kHz tone through a saturator at 1x made a 3 kHz tone only 28.4 dB under it.</dd>
+<dt>What does oversampling do on a plugin?</dt>
+<dd>It runs the distortion at 2, 4 or 8 times the session’s sample rate, so the new harmonics have room, then filters them out before coming back down. In our test, 4x removed the folded tones from a soft saturator.</dd>
+<dt>Is 2x oversampling enough?</dt>
+<dd>For gentle saturation it often helps a lot, but our 9 kHz test tone still had a fold 53.6 dB down at 2x. 4x cleared it for the soft saturator. A hard clipper still had folds 47.8 dB down at 4x and 64.8 dB at 8x.</dd>
+<dt>Do I need oversampling on bass?</dt>
+<dd>Rarely. A 997 Hz tone through the soft saturator had no folded tones above −120 dB even at 1x. The problem lives in bright sources: hats, cymbals, vocals, bright synths.</dd>
+</dl>
+<nav aria-label="Keep reading" class="related-essays keep-reading" style="margin:48px 0 24px;padding-top:24px;border-top:1px solid rgba(196,165,116,.32)"><h2>Keep reading</h2><ul><li><a href="clipper-vs-limiter-hip-hop-delivery.html">Clipper vs limiter for hip-hop delivery — loudness isn’t the only score</a></li><li><a href="true-peak-is-what-codecs-clip.html">True peak is what codecs clip</a></li><li><a href="turn-the-mix-down-before-you-limit.html">Turn the mix down before you limit</a></li><li><a href="plugin-input-level-gain-staging-minus-18-dbfs.html">Why −18 dBFS? Gain staging into analog-style plugins</a></li><li><a href="harsh-esses-get-louder-after-mastering.html">Harsh S’s get louder after mastering. De-ess before the limiter</a></li><li><a href="sample-rate-and-bit-depth-for-delivery.html">Sample rate and bit depth are delivery hygiene</a></li><li><a href="limiter-distorts-the-bass-slow-the-release.html">Limiter distorting the bass? Slow the release</a></li></ul><p class="hub-link">More in <a href="topics/true-peak-limiting-and-delivery.html">True peak, limiting &amp; delivery</a> · <a href="index.html">All essays</a></p></nav></article>
+<aside aria-label="About the publisher" class="author-box"><p class="author-k">Written and published by</p><p class="author-name"><a href="about.html">NoDAW Labs</a></p><p class="author-bio">NoDAW Labs makes local-first audio tools: CoProducer, reTUNE[432] and DeepSplit. Essays are credited to the studio, not to individual writers. <a href="methodology.html">How we test, cite and correct</a>.</p></aside>
+<section class="comments" data-comments="" data-thread="saturator-oversampling-aliasing"></section>
+<script src="js/studio.js" type="module"></script>
+<script src="js/comments.js" type="module"></script>
+<footer class="site"><span>Lacquer · CoProducer Journal</span><span><a href="index.html">All essays</a> · <a href="about.html">About</a> · <a href="methodology.html">Methodology</a></span></footer>
+</body>
+</html>
