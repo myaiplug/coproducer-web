@@ -33,7 +33,7 @@ SKIP_PREFIXES = ("docs/superpowers/", ".git/", "scripts/domain_move.py")
 
 
 def tracked_files() -> list[Path]:
-    out = subprocess.check_output(["git", "ls-files"], cwd=ROOT, text=True)
+    out = subprocess.check_output(["git", "ls-files", "--cached", "--others", "--exclude-standard"], cwd=ROOT, text=True)
     return [ROOT / p for p in out.splitlines() if p and not p.startswith(SKIP_PREFIXES)]
 
 
