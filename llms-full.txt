@@ -1,7 +1,7 @@
 # CoProducer and Lacquer — full text for assistants
 Base: https://myaiplug.github.io/coproducer-web/
 Updated: 2026-11-04
-Essays: 80 (full plain-text bodies, in journal order)
+Essays: full plain-text bodies, in journal order
 Summary index: https://myaiplug.github.io/coproducer-web/llms.txt
 
 ## Identity

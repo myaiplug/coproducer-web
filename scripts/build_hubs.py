@@ -184,7 +184,7 @@ def hub_page(t: dict, items: list[dict]) -> str:
         "name": t["title"], "description": t["description"], "inLanguage": "en-US",
         "isPartOf": {"@id": f"{BASE}/#website"}, "publisher": {"@id": f"{BASE}/#organization"},
         "about": t["name"],
-        "mainEntity": {"@type": "ItemList", "numberOfItems": len(items), "itemListOrder": "https://schema.org/ItemListOrderAscending",
+        "mainEntity": {"@type": "ItemList", "itemListOrder": "https://schema.org/ItemListOrderAscending",
                         "itemListElement": [{"@type": "ListItem", "position": i + 1, "url": f"{BASE}/blog/{m['slug']}.html", "name": m["title"]} for i, m in enumerate(items)]},
     }
     crumbs = {"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [
@@ -246,7 +246,7 @@ def hub_page(t: dict, items: list[dict]) -> str:
 <a class="cta" href="../../index.html#analyzeHome">Measure a mix</a>
 </header>
 <main class="hub" id="main">
-<p class="kicker"><a href="../index.html">Lacquer</a> · Topic · {len(items)} essays</p>
+<p class="kicker"><a href="../index.html">Lacquer</a> · Topic</p>
 <h1>{E(t['name'])}</h1>
 <p class="lede">{E(t['lede'])}</p>
 <div class="intro">
@@ -326,7 +326,7 @@ def main() -> None:
     if add:
         s = s.replace("</urlset>", add + "</urlset>")
         sm.write_text(s, encoding="utf-8")
-    print(f"build_hubs: {len(TOPICS)} hubs, {sum(len(t['essays']) for t in TOPICS)} essays")
+    print("build_hubs: hubs rebuilt")
 
 
 if __name__ == "__main__":

@@ -106,7 +106,7 @@ def main() -> None:
         "# CoProducer and Lacquer — full text for assistants",
         f"Base: {BASE}/",
         f"Updated: {date.today().isoformat()}",
-        f"Essays: {len(posts)} (full plain-text bodies, in journal order)",
+        "Essays: full plain-text bodies, in journal order",
         "Summary index: " + f"{BASE}/llms.txt",
         "",
     ]
@@ -118,7 +118,7 @@ def main() -> None:
     for d in (".well-known", "well-known"):
         (ROOT / d).mkdir(exist_ok=True)
         (ROOT / d / "llms.txt").write_text(llms, encoding="utf-8")
-    print(f"llms-full.txt: {len(posts)} essays, {len(body.split())} words, {len(body.encode())//1024} KB")
+    print("llms-full.txt: written")
 
 
 if __name__ == "__main__":

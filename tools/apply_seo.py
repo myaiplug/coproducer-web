@@ -47,8 +47,8 @@ META = {
         "type": "screwai",
     },
     "blog/index.html": {
-        "title": "Lacquer — CoProducer Journal | 20 Audio Essays",
-        "description": "Lacquer is CoProducer’s luxury audio journal: twenty answer-first essays on LUFS, true peak, repair, stems, ScrewAI, and local .bat workflows for mix engineers.",
+        "title": "Lacquer — CoProducer Journal | Audio Essays",
+        "description": "Lacquer is CoProducer’s luxury audio journal: answer-first essays on LUFS, true peak, repair, stems, ScrewAI, and local .bat workflows for mix engineers.",
         "og_image": f"{BASE}/blog/img/cover.jpg?v=shd",
         "type": "blog_index",
     },

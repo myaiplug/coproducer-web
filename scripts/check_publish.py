@@ -179,11 +179,11 @@ def main() -> int:
             err(f"{mirror}: missing or out of sync with llms.txt (run scripts/build_llms_full.py)")
 
     if errors:
-        print(f"check_publish: {len(errors)} problem(s) across {len(posts)} essays")
+        print(f"check_publish: {len(errors)} problem(s)")
         for e in errors:
             print("  -", e)
         return 1
-    print(f"check_publish: OK — {len(posts)} essays complete in sitemap, RSS, index, ItemList, llms.txt, llms-full.txt")
+    print("check_publish: OK — all essays complete in sitemap, RSS, index, ItemList, llms.txt, llms-full.txt")
     return 0
 
 
