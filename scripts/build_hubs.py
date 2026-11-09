@@ -89,6 +89,8 @@ TOPICS = [
             "linear-phase-eq-smears-the-kick-watch-the-pre-ring",
             "hum-in-your-recording-notch-60-hz-and-its-harmonics",
             "noise-gate-cuts-off-vocal-tails-set-the-hold",
+            "autotune-sounds-robotic-slow-the-retune-speed",
+            "vocal-sounds-thin-high-pass-too-high",
         ],
     },
     {

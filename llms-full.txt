@@ -1,6 +1,6 @@
 # CoProducer and Lacquer — full text for assistants
 Base: https://coproducer.nodawlabs.com/
-Updated: 2026-11-04
+Updated: 2026-11-09
 Essays: full plain-text bodies, in journal order
 Summary index: https://coproducer.nodawlabs.com/llms.txt
 
@@ -28,6 +28,241 @@ Summary index: https://coproducer.nodawlabs.com/llms.txt
 - Booth / journal comments on Lacquer pages are real reader notes posted through a public comment form (no seeded or sample comments). Notes with links are held for review before they appear.
 
 # Lacquer essays
+
+## Auto-Tune sounding robotic? Slow the retune speed and keep the vibrato
+URL: https://coproducer.nodawlabs.com/blog/autotune-sounds-robotic-slow-the-retune-speed.html
+Section: Mixing · 9 November 2026 · 6 min
+Summary: Why pitch correction sounds robotic: a fast retune speed flattens vibrato and turns slides into semitone steps. Measured how retune speed and center-only correction change pitch accuracy, vibrato and glides on a sung line, with the script.
+
+Pitch correction sounds robotic when it moves the note faster than a person can. At a 0 ms retune speed our test vocal lost all of its vibrato, and every slide between notes turned into a staircase of full-semitone jumps. Slow it to 50 ms and the held notes still land within about 3 cents while most of the vibrato survives. Or correct only the center of each note, and keep all of it.
+You tune the vocal, it’s finally in key, and now it sounds like a ringtone. The long notes sit dead flat, the slides between words click from one note to the next, and the singer you recorded has turned into a plug-in preset.
+Nothing is broken. The tuner is doing exactly what you asked, just faster than any throat moves.
+
+### What retune speed actually controls
+Every automatic tuner does the same two things. It decides which note you meant, usually the nearest note in the key you set, and then it pulls the pitch toward that note. Retune speed is how quickly it pulls. At 0 ms it snaps: the moment you drift, you’re back on the grid. At 100 or 200 ms it eases you over, and anything faster than that, like vibrato or a scoop into a word, mostly gets through.
+That’s the whole trade. Vibrato is a fast wobble, five or six times a second. A slide between notes is a fast move too. A fast tuner treats both as mistakes.
+We wrote tune_check.py to see how big the trade is. It isn’t audio, it’s a pitch track: four held notes (A3, C4, D4, C4), each sung 15 cents flat with ±30 cents of vibrato, joined by 90 ms slides. It runs the usual tuner model at different speeds, plus a center-only mode that corrects each note’s average and leaves the wobble alone, the way you’d move a note’s center in a graphical editor.
+#!/usr/bin/env python3
+"""What does retune speed do to a sung line?
+  python3 tune_check.py
+Model of a pitch track, not audio. A synthetic sung phrase of four held notes (A3 C4 D4 C4),
+each sung 15 cents flat on average with 5.5 Hz vibrato of +/-30 cents, joined by 90 ms glides.
+Pitch correction is modelled the usual way: find the nearest semitone and pull the pitch toward
+it through a smoother whose time constant is the retune speed (0 ms = instant snap).
+Mode "center only" corrects the note's average (a one-vibrato-period moving average, like moving a
+note's center in a graphical editor) and leaves the vibrato alone.
+Reports, on the held parts: how far the note's average sits from the written note (cents),
+vibrato depth left (peak-to-peak, % of the sung vibrato), and how long each note change takes
+(10-90 %, measured on the same phrase sung without vibrato so the wobble can't trip the marks),
+plus the biggest pitch jump inside one millisecond of a glide (a hard step sounds robotic).
+"""
+import numpy as np
+
+FS = 1000                                   # pitch-track rate, 1 sample = 1 ms
+NOTES = [57, 60, 62, 60]                    # MIDI: A3 C4 D4 C4
+HOLD, GLIDE, FLAT, VIB_C, VIB_HZ = 600, 90, -15.0, 30.0, 5.5
+n_total = len(NOTES) * HOLD + (len(NOTES) - 1) * GLIDE
+t = np.arange(n_total) / FS
+
+# sung pitch in cents (MIDI*100)
+base = np.zeros(n_total); held = np.zeros(n_total, bool); pos = 0; starts = []
+for i, m in enumerate(NOTES):
+    base[pos:pos + HOLD] = m * 100 + FLAT; held[pos + 120:pos + HOLD - 40] = True
+    pos += HOLD
+    if i < len(NOTES) - 1:
+        a, b = m * 100 + FLAT, NOTES[i + 1] * 100 + FLAT
+        s = 0.5 - 0.5 * np.cos(np.linspace(0, np.pi, GLIDE))
+        base[pos:pos + GLIDE] = a + (b - a) * s; starts.append(pos); pos += GLIDE
+vib_env = np.clip((t % ((HOLD + GLIDE) / FS)) / 0.25, 0, 1)          # vibrato fades in over 250 ms
+sung = base + VIB_C * np.sin(2 * np.pi * VIB_HZ * t) * vib_env
+
+def smooth(x, ms):
+    if ms <= 0: return x.copy()
+    a = np.exp(-1.0 / ms); y = np.empty_like(x); y[0] = x[0]
+    for i in range(1, len(x)): y[i] = a * y[i - 1] + (1 - a) * x[i]
+    return y
+
+def correct(x, speed_ms, center_only=False):
+    if center_only:                                          # one vibrato period moving average kills the wobble
+        k = int(round(FS / VIB_HZ)); ref = np.convolve(np.pad(x, (k // 2, k - k // 2 - 1), mode="edge"), np.ones(k) / k, "valid")
+    else:
+        ref = x                                              # what the tuner listens to
+    target = np.round(ref / 100.0) * 100.0
+    return x + smooth(target - ref, speed_ms)
+
+intended = np.zeros(n_total); pos = 0
+for m in NOTES: intended[pos:pos + HOLD + GLIDE] = m * 100; pos += HOLD + GLIDE
+
+def segs(y):
+    out, pos = [], 0
+    for m in NOTES: out.append((y[pos + 250:pos + HOLD - 40], m * 100)); pos += HOLD + GLIDE
+    return out
+
+SUNG_PP = np.mean([seg.max() - seg.min() for seg, _ in segs(sung)])
+
+def stats(y, y_plain):
+    center = np.mean([abs(seg.mean() - m) for seg, m in segs(y)])
+    vib = 100.0 * np.mean([seg.max() - seg.min() for seg, _ in segs(y)]) / SUNG_PP
+    tr, jump = [], 0.0
+    for i, s0 in enumerate(starts):
+        a, b = NOTES[i] * 100 + FLAT, NOTES[i + 1] * 100 + FLAT
+        w = y_plain[s0 - 300:s0 + GLIDE + 400]
+        f = (w - a) / (b - a)
+        tr.append(np.argmax(f >= 0.9) - np.argmax(f >= 0.1)); jump = max(jump, np.abs(np.diff(w)).max())
+    return center, vib, np.mean(tr), jump
+
+print("Sung phrase: A3 C4 D4 C4, 15 cents flat on average, vibrato +/-30 cents at 5.5 Hz, 90 ms glides")
+print(f"{'version':34s} {'note center':>12s} {'vibrato left':>13s} {'note change':>12s} {'biggest 1 ms jump':>18s}")
+c, v, tr, j = stats(sung, base)
+print(f"{'as sung (no correction)':34s} {c:8.1f} c off {v:10.0f} % {tr:9.0f} ms {j:13.0f} c")
+for sp in (0, 10, 25, 50, 100, 200):
+    c, v, tr, j = stats(correct(sung, sp), correct(base, sp))
+    print(f"{'retune ' + str(sp) + ' ms':34s} {c:8.1f} c off {v:10.0f} % {tr:9.0f} ms {j:13.0f} c")
+for sp in (25, 50):
+    c, v, tr, j = stats(correct(sung, sp, True), correct(base, sp, True))
+    print(f"{'retune ' + str(sp) + ' ms, center only':34s} {c:8.1f} c off {v:10.0f} % {tr:9.0f} ms {j:13.0f} c")
+$ python3 tune_check.py
+Sung phrase: A3 C4 D4 C4, 15 cents flat on average, vibrato +/-30 cents at 5.5 Hz, 90 ms glides
+version                             note center  vibrato left  note change  biggest 1 ms jump
+as sung (no correction)                14.5 c off        100 %        52 ms             5 c
+retune 0 ms                             0.0 c off          0 %        34 ms           100 c
+retune 10 ms                            0.8 c off         31 %        52 ms            11 c
+retune 25 ms                            2.0 c off         64 %        54 ms             7 c
+retune 50 ms                            3.0 c off         86 %        54 ms             6 c
+retune 100 ms                           3.3 c off         96 %        55 ms             6 c
+retune 200 ms                           3.4 c off         99 %        55 ms             5 c
+retune 25 ms, center only               3.2 c off        100 %        56 ms             8 c
+retune 50 ms, center only               3.2 c off        100 %        54 ms             6 c
+
+### Reading the numbers
+0 ms is the effect, not a setting. The note center is perfect, 0.0 cents off, but the vibrato is gone, 0 % left, and the biggest jump inside one millisecond is 100 cents. That’s a whole semitone in an instant: the three-semitone slide from A3 up to C4 becomes three steps. If you want that sound, great, it’s a style. If you didn’t, that’s where the robot lives.
+10 ms still flattens most of the life out. Only 31 % of the vibrato is left. It’s in tune, it just doesn’t sound sung.
+Somewhere around 25 to 50 ms is the natural zone. At 25 ms the notes sit 2.0 cents off and 64 % of the vibrato is left. At 50 ms it’s 3.0 cents and 86 %. A singer who was 14.5 cents flat now lands within a few cents, and still sounds like a person.
+Center-only keeps everything. Correcting each note’s average instead of every wiggle got the notes to 3.2 cents off with 100 % of the vibrato. That’s the idea behind Melodyne’s pitch center tool, and behind the humanize-style controls some automatic tuners have that go easy on held notes.
+This is a model of a pitch track with a tidy tuner, not a recording, and every plug-in’s speed knob is scaled a little differently. Read it for the shape of the trade, not exact settings.
+
+### How to tune so it doesn’t sound tuned
+1. Set the key and scale first. A chromatic tuner will happily pull a flat note to the wrong semitone. Telling it the key removes the wrong targets.
+2. Start slow and speed up. Begin around 50 ms and lower it only until the sour notes stop bothering you. The first speed that sounds in tune is usually the right one.
+3. Use the humanize or held-note control if it has one. It lets the fast moves through and corrects the long notes, which is where pitch problems are most obvious anyway.
+4. Fix the bad notes by hand, leave the good ones. In a graphical editor, move the centers of the notes that are actually off and leave the vibrato and slides as sung.
+5. Tune before compression and saturation. They add harmonics that make pitch detection less sure of itself, which shows up as warble.
+6. Check it in the mix, not solo. A little drift you hear soloed often disappears under the beat. A robotic slide doesn’t.
+
+### Hear how much your references are tuned
+Most of us guess at how hard the records we like are tuned. You don’t have to. Pull the vocal out of a reference with StemSplit and solo it. It won’t be studio clean, but you can hear whether the long notes sit flat and dead or wobble a little, and whether the slides step or glide. Then tune yours to match that, not a number.
+Note: If the vocal sounds robotic only in a few spots, look for the slides. A scoop into a word that crosses a couple of semitones is where a fast tuner steps, and it’s usually the fix: slow the speed there, or draw it in by hand.
+Q: Why does my Auto-Tune sound robotic?
+A: Because the retune speed is fast enough to remove the vibrato and snap slides into steps. In our test 0 ms left 0 % of the vibrato and made one-semitone jumps inside a millisecond.
+Q: What retune speed sounds natural?
+A: Usually somewhere around 25 to 50 ms, then adjust by ear. In our model 50 ms put held notes within 3.0 cents and kept 86 % of the vibrato.
+Q: Does pitch correction remove vibrato?
+A: A fast one does. At 10 ms our test vocal kept only 31 % of its vibrato. Correcting each note’s center instead of every wobble kept 100 %.
+Q: Should I tune vocals before or after compression?
+A: Before. Compression and saturation add harmonics and noise that make pitch detection less certain, which can show up as warble.
+
+---
+
+## Vocal sounding thin? Your high-pass filter is probably set too high
+URL: https://coproducer.nodawlabs.com/blog/vocal-sounds-thin-high-pass-too-high.html
+Section: Mixing · 9 November 2026 · 6 min
+Summary: Where to high-pass a vocal: just under the singer's lowest note, not at a fixed number. Measured how much rumble and pop each high-pass removes and how much of a low and a high voice it costs, with the script.
+
+A high-pass on a vocal is there for rumble and pops, not for the voice, so set it just under the singer’s lowest note instead of at a number you read somewhere. In our test a steep 80 Hz high-pass took 15.7 dB of junk off a low male line and cost its fundamentals 0.3 dB. Move it to 150 Hz and the same line lost 6.9 dB of its fundamentals. That’s the thin, phone-call sound.
+Everybody learns the same first move: high-pass everything that isn’t kick or bass. So the vocal gets one. Maybe at 100 Hz, maybe higher because the preset said so, maybe a second one inside the channel strip you forgot about. Then the vocal sounds small next to the beat and you start boosting low mids to get it back.
+Often the fix is to undo the first move, at least partly.
+
+### What the high-pass is actually for
+A close vocal mic picks up stuff that isn’t singing: the mic stand thumping when someone taps the desk, traffic and air handling, and the “P” and “B” pops that hit the capsule as a burst of air. Almost all of that lives below about 60 to 80 Hz. A singer’s lowest notes don’t. A low male voice bottoms out somewhere around 100 Hz, and a higher voice sits up around 200 Hz and above.
+So the right high-pass depends on who’s singing. It’s set from the voice, not from a rule.
+We wrote hpf_check.py to put numbers on it. It builds two synthetic sung lines as harmonic tones, a low one from G2 to D3 (98 to 147 Hz) and a high one from G3 to D4 (196 to 294 Hz), plus the junk: rumble under 60 Hz and four 30 Hz pops. Each filter is a plain Butterworth high-pass, so the script runs the voice and the junk through it separately and reports what’s left of each.
+#!/usr/bin/env python3
+"""Where should the high-pass on a vocal go?
+  python3 hpf_check.py
+Synthetic signals, not a real take. Two sung lines as harmonic tones (12 harmonics, falling 4 dB
+each): a low male line G2-A2-C3-D3 (98-147 Hz) and a higher line G3-A3-C4-D4 (196-294 Hz).
+Plus the low junk a home vocal picks up: mic-stand rumble (noise under 60 Hz) and "P" pops
+(30 Hz-centred thumps, 120 ms each). Every high-pass is a Butterworth, so we run the parts
+through it separately and report what's left of each, in dB relative to before.
+"body" = the 100-300 Hz band of the line (where a voice gets its weight).
+"""
+import numpy as np
+from scipy import signal
+
+SR = 48000
+rng = np.random.default_rng(7)
+
+def line(f0s, note_s=1.0):
+    t = np.arange(int(SR * note_s)) / SR; out = []
+    for f0 in f0s:
+        x = sum(10 ** (-4 * (k - 1) / 20) * np.sin(2 * np.pi * k * f0 * t + k) for k in range(1, 13))
+        out.append(x * np.hanning(len(t)) ** 0.2)
+    return np.concatenate(out)
+
+LOW = line([98.0, 110.0, 130.81, 146.83])
+HIGH = line([196.0, 220.0, 261.63, 293.66])
+N = len(LOW)
+rumble = signal.sosfilt(signal.butter(4, 60, "low", fs=SR, output="sos"), rng.standard_normal(N))
+pops = np.zeros(N)
+for c in (0.3, 1.4, 2.6, 3.5):
+    i = int(c * SR); L = int(0.12 * SR); tt = np.arange(L) / SR
+    pops[i:i + L] += np.sin(2 * np.pi * 30 * tt) * np.exp(-tt / 0.03)
+junk = rumble / np.std(rumble) * 0.05 + pops * 0.5
+
+def db(a, b): return 10 * np.log10(np.sum(a ** 2) / np.sum(b ** 2))
+def band(x, lo, hi): return signal.sosfiltfilt(signal.butter(4, [lo, hi], "bandpass", fs=SR, output="sos"), x)
+def fund(x, f0s):
+    # level of the fundamentals only (narrow band around each note's f0)
+    seg = N // 4; return np.concatenate([band(x[i * seg:(i + 1) * seg], f * 0.94, f * 1.06) for i, f in enumerate(f0s)])
+
+LF, HF = [98.0, 110.0, 130.81, 146.83], [196.0, 220.0, 261.63, 293.66]
+print("Low line G2-D3 (98-147 Hz), high line G3-D4 (196-294 Hz); junk = stand rumble + P pops")
+print(f"{'high-pass':22s} {'junk left':>10s} {'pop peak':>9s} {'low: fund':>10s} {'low: body':>10s} {'high: fund':>11s} {'high: body':>11s}")
+for fc, order in ((60, 2), (80, 2), (80, 4), (100, 4), (120, 2), (150, 4), (200, 4)):
+    sos = signal.butter(order, fc, "high", fs=SR, output="sos")
+    f = lambda x: signal.sosfilt(sos, x)
+    j, l, h, p = f(junk), f(LOW), f(HIGH), f(pops * 0.5)
+    pk = 20 * np.log10(np.max(np.abs(p)) / np.max(np.abs(pops * 0.5)))
+    print(f"{fc:4d} Hz, {6*order:2d} dB/oct    {db(j, junk):8.1f} dB {pk:6.1f} dB {db(fund(l, LF), fund(LOW, LF)):7.1f} dB "
+          f"{db(band(l, 100, 300), band(LOW, 100, 300)):7.1f} dB {db(fund(h, HF), fund(HIGH, HF)):8.1f} dB {db(band(h, 100, 300), band(HIGH, 100, 300)):8.1f} dB")
+$ python3 hpf_check.py
+Low line G2-D3 (98-147 Hz), high line G3-D4 (196-294 Hz); junk = stand rumble + P pops
+high-pass               junk left  pop peak  low: fund  low: body  high: fund  high: body
+  60 Hz, 12 dB/oct        -8.8 dB  -12.1 dB    -0.3 dB    -0.2 dB     -0.0 dB     -0.0 dB
+  80 Hz, 12 dB/oct       -12.2 dB  -14.2 dB    -0.9 dB    -0.5 dB     -0.1 dB     -0.1 dB
+  80 Hz, 24 dB/oct       -15.7 dB  -17.9 dB    -0.3 dB    -0.1 dB     -0.0 dB     -0.0 dB
+ 100 Hz, 24 dB/oct       -20.7 dB  -20.1 dB    -1.3 dB    -0.5 dB     -0.0 dB     -0.0 dB
+ 120 Hz, 12 dB/oct       -17.9 dB  -17.3 dB    -3.0 dB    -1.7 dB     -0.3 dB     -0.4 dB
+ 150 Hz, 24 dB/oct       -30.2 dB  -24.1 dB    -6.9 dB    -3.2 dB     -0.2 dB     -0.2 dB
+ 200 Hz, 24 dB/oct       -36.1 dB  -26.8 dB   -15.1 dB    -6.0 dB     -1.3 dB     -1.6 dB
+
+### Reading the numbers
+A steep filter at 80 Hz is nearly free. 24 dB per octave at 80 Hz took 15.7 dB of junk off and knocked the pop peaks down 17.9 dB, and the low line’s fundamentals moved 0.3 dB. You won’t hear that.
+Gentle and higher is worse than steep and low. A 12 dB per octave filter at 120 Hz removes about the same junk, 17.9 dB, but costs the low voice 3.0 dB of fundamental. Even at 80 Hz, the gentle slope costs 0.9 dB where the steep one costs 0.3, because a gentle filter starts cutting further up.
+150 Hz is where a low voice gets thin. The low line lost 6.9 dB of fundamental and 3.2 dB in the 100 to 300 Hz band where a voice gets its weight. At 200 Hz that’s 15.1 dB of fundamental. That’s the phone-call vocal.
+A higher voice can take a higher filter. The same 150 Hz filter cost the high line 0.2 dB. Push it to 200 Hz and it starts to cost there too, 1.3 dB.
+These are synthetic voices and synthetic junk, not a real take, so read it for the shape. Real voices have breath and chest resonance under the notes too. But the pattern is the point: set the filter from the lowest note, and use a steeper slope rather than a higher frequency.
+
+### How to set it in your session
+1. Find the lowest note. Loop the lowest line in the song and look at an analyzer, or work it out from the note: G2 is 98 Hz, A2 is 110 Hz, C3 is about 131 Hz.
+2. Set the high-pass under it. Start somewhere below that fundamental, with a steep slope, 18 or 24 dB per octave.
+3. Sweep up until you hear the voice change, then back off. Do it with the beat playing. Soloed, a vocal can lose a lot of low end before you notice.
+4. Look for a second filter. The mic’s low-cut switch, the interface, the channel strip and a preset can all stack. Two gentle filters at 100 Hz add up to a steep one.
+5. Fix pops at the source if they’re still there. A pop filter and a little angle off the mic beat any EQ. For a few leftover pops, clip-gain or a dynamic EQ on that one word beats raising the filter for the whole song.
+
+### Check what you gave back
+The test that matters is the vocal against the beat. Bounce a version with your old filter and one with the new one, level-match them, and flip between them in CoProducer’s A/B. If the new one sounds fuller without getting muddy, keep it. If the low end of the mix gets cloudy, the beat probably needs room, not the vocal less body.
+Note: Reverb returns are a different story. There you can filter much higher, because the reverb doesn’t need to carry the voice’s weight. The dry vocal does.
+Q: Where should I high-pass vocals?
+A: Just under the singer’s lowest note, with a steep slope. In our test a 24 dB/oct high-pass at 80 Hz removed 15.7 dB of rumble and pops and cost a low male line 0.3 dB of fundamental.
+Q: Why does my vocal sound thin?
+A: Often because the high-pass is too high or there are two of them. A 150 Hz high-pass cost our low test voice 6.9 dB of its fundamentals.
+Q: Is 100 Hz too high for a vocal high-pass?
+A: For a low voice it’s close to the edge: a steep filter at 100 Hz cost our low line 1.3 dB. For a higher voice it’s fine. Set it from the lowest note, not a fixed number.
+Q: Should I use a steep or gentle high-pass on vocals?
+A: Steep and lower usually beats gentle and higher. A 12 dB/oct filter at 120 Hz removed about the same junk as a steep 80 Hz one but cost the low voice 3.0 dB instead of 0.3.
+
+---
 
 ## Hum in your recording? Notch 60 Hz and its harmonics, not just the low end
 URL: https://coproducer.nodawlabs.com/blog/hum-in-your-recording-notch-60-hz-and-its-harmonics.html

@@ -23,7 +23,7 @@
     "concert-pitch-history-before-a440",
     "demucs-vs-mdx-net-stem-separation-compared",
     "split-stems-from-youtube-audio-you-own",
-    "sampling-from-separated-stems-workflow"
+    "sampling-from-separated-stems-workflow", "autotune-sounds-robotic-slow-the-retune-speed"
   ],
   "overrides": {
     "sidechain-pumping-out-of-time-set-release-to-tempo": "punch",

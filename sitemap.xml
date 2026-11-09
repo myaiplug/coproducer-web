@@ -33,7 +33,7 @@
   </url>
   <url>
     <loc>https://coproducer.nodawlabs.com/blog/index.html</loc>
-    <lastmod>2026-11-04</lastmod>
+    <lastmod>2026-11-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
     <image:image>
@@ -132,8 +132,28 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://coproducer.nodawlabs.com/blog/autotune-sounds-robotic-slow-the-retune-speed.html</loc>
+    <lastmod>2026-11-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://coproducer.nodawlabs.com/blog/img/essays/autotune-sounds-robotic-slow-the-retune-speed.jpg?v=shd</image:loc>
+      <image:title>Auto-Tune sounding robotic? Slow the retune speed and keep the vibrato</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://coproducer.nodawlabs.com/blog/vocal-sounds-thin-high-pass-too-high.html</loc>
+    <lastmod>2026-11-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://coproducer.nodawlabs.com/blog/img/essays/vocal-sounds-thin-high-pass-too-high.jpg?v=shd</image:loc>
+      <image:title>Vocal sounding thin? Your high-pass filter is probably set too high</image:title>
+    </image:image>
+  </url>
+  <url>
     <loc>https://coproducer.nodawlabs.com/blog/hum-in-your-recording-notch-60-hz-and-its-harmonics.html</loc>
-    <lastmod>2026-11-04</lastmod>
+    <lastmod>2026-11-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <image:image>
@@ -143,7 +163,7 @@
   </url>
   <url>
     <loc>https://coproducer.nodawlabs.com/blog/noise-gate-cuts-off-vocal-tails-set-the-hold.html</loc>
-    <lastmod>2026-11-04</lastmod>
+    <lastmod>2026-11-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <image:image>
@@ -193,7 +213,7 @@
   </url>
   <url>
     <loc>https://coproducer.nodawlabs.com/blog/copy-paste-vocal-double-sounds-mono-sing-a-real-take.html</loc>
-    <lastmod>2026-10-30</lastmod>
+    <lastmod>2026-11-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <image:image>
@@ -203,7 +223,7 @@
   </url>
   <url>
     <loc>https://coproducer.nodawlabs.com/blog/vocal-buried-in-the-beat-cut-the-beat-at-3-khz.html</loc>
-    <lastmod>2026-10-30</lastmod>
+    <lastmod>2026-11-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <image:image>
@@ -293,7 +313,7 @@
   </url>
     <url>
     <loc>https://coproducer.nodawlabs.com/blog/tune-808-to-the-key-of-your-song.html</loc>
-    <lastmod>2026-10-23</lastmod>
+    <lastmod>2026-11-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <image:image>
@@ -323,7 +343,7 @@
   </url>
       <url>
     <loc>https://coproducer.nodawlabs.com/blog/vocal-breaths-turn-them-down-dont-cut-them.html</loc>
-    <lastmod>2026-10-22</lastmod>
+    <lastmod>2026-11-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <image:image>
@@ -373,7 +393,7 @@
   </url>
   <url>
     <loc>https://coproducer.nodawlabs.com/blog/reverb-makes-the-mix-muddy-filter-the-return.html</loc>
-    <lastmod>2026-10-19</lastmod>
+    <lastmod>2026-11-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <image:image>
@@ -633,7 +653,7 @@
   </url>
   <url>
     <loc>https://coproducer.nodawlabs.com/blog/subsonic-rumble-steals-limiter-headroom.html</loc>
-    <lastmod>2026-10-07</lastmod>
+    <lastmod>2026-11-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <image:image>
@@ -713,7 +733,7 @@
   </url>
   <url>
     <loc>https://coproducer.nodawlabs.com/blog/how-loud-should-the-vocal-sit.html</loc>
-    <lastmod>2026-10-06</lastmod>
+    <lastmod>2026-11-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.75</priority>
     <image:image>
@@ -957,7 +977,7 @@
   </url>
   <url>
     <loc>https://coproducer.nodawlabs.com/blog/topics/low-end-and-mix-dynamics.html</loc>
-    <lastmod>2026-11-04</lastmod>
+    <lastmod>2026-11-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
