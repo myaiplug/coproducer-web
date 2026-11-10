@@ -3604,7 +3604,7 @@ A match score under 1.00 is expected here, since one side is compressed. The lag
 4. Only now dial the compressor. You’ll probably need less of the parallel fader than before, because the blend is finally adding up.
 Once it’s aligned, the genre moves behave the way the tutorials promise. Rock and pop drum busses take a fast, hard-ratio parallel tucked well under the dry and get density without losing the snare’s crack. On R&B and pop vocals, a parallel tucked a few dB under the lead thickens the low-level detail without that papery phasiness. On trap 808s with parallel saturation, alignment protects the fundamental. Remember the 512-sample row: it cost the kick 3.8 dB.
 And if you want two hits, do it on purpose. A parallel slap delayed 20 ms or more is a legitimate effect. The trouble is the 0.1–10 ms zone nobody chose.
-Note: Plugins with a built-in mix knob usually avoid all this, because the dry and wet signals share the same internal latency. When a mix knob sounds fuller than the same compressor on an aux, the aux is probably late. For the stereo side of phase, read Phase correlation is a mono audition. If the bus is pumping rather than thinning, the sidechain filter essay is the one you want.
+Note: Plugins with a built-in mix knob usually avoid all this, because the dry and wet signals share the same internal latency. When a mix knob sounds fuller than the same compressor on an aux, the aux is probably late. For the stereo side of phase, read What does a phase correlation meter show? How to read −1 to +1. If the bus is pumping rather than thinning, the sidechain filter essay is the one you want.
 Q: Why does parallel compression make my drums sound thin?
 A: Usually because the parallel bus arrives a few samples to a few milliseconds after the dry signal. The two copies comb-filter, cancelling some frequencies and losing top-end coherence, so the blend gets hollower instead of bigger. Null-test the paths and fix the latency before changing compressor settings.
 Q: How much delay causes phasing in parallel compression?
@@ -4033,7 +4033,7 @@ reference minus yours: +6.1 LU
 wrote ref_loud_listen.wav (-6.1 dB). A/B it against the other file at one monitor level.
 Six LU is the real distance between the two files, the number the Spotify capture hid by reading −14.0. Now A/B the listening copy against your master at one monitor level. If yours still sounds smaller at matched loudness, that’s a real mix note: low-mid density, transient shape, width. If it sounds the same or better, the gap you heard in the app was the app.
 When you want more than loudness, CoProducer’s reference table does this same comparison on two local bounces, with loudness, peak, balance and the delivery gates side by side, so you’re reading divergence on files you control instead of on a stream. Meters only mean something when both sides came through the same door.
-Note: If the divergence table is new to you, Reference matching without guesswork walks through it. For the turn-up side of this story, read Quiet masters get turned up — and so does the noise. Then measure your bounce before you reach for the limiter. The web form tells you the distance and doesn’t write a master.
+Note: If the divergence table is new to you, Reference matching without guesswork walks through it. For the turn-up side of this story, read Does Spotify turn up quiet songs? What happens to the hiss. Then measure your bounce before you reach for the limiter. The web form tells you the distance and doesn’t write a master.
 Q: Can I use a Spotify or YouTube stream as a mix reference?
 A: For arrangement and vibe, sure. For loudness or peaks, no: the stream has already been turned down or up by the platform and passed through a codec. Use a lossless file, or measure the stream’s offset and compensate for it.
 Q: How do I loudness-match a reference track properly?
@@ -7896,7 +7896,7 @@ afade=t=in:d=0.005" -c:a pcm_s24le "$out"
 echo "after:  $(meas "$out")  ($(ffprobe -v error -show_entries format=duration -of csv=p=0 "$out") s)"
 If “before” and “after” match and only the duration changed, the gate was already doing its job, and any gap you were chasing is in the intro or the fade. That’s a call about the arrangement, not about loudness. If they differ, the window was lying to you. Either way you now have a number that describes the song.
 Then run the trimmed file through CoProducer’s analyze table and read the LUFS row against the −14 window. Usually the “quiet master” goes away without anyone touching the limiter.
-Note: The gate math lives in the LUFS guide. If the turn-up worries you, read Quiet masters get turned up. Then measure the trimmed file. The web form tells you the distance and doesn’t write a master.
+Note: The gate math lives in the LUFS guide. If the turn-up worries you, read Does Spotify turn up quiet songs? What happens to the hiss. Then measure the trimmed file. The web form tells you the distance and doesn’t write a master.
 Q: Does silence at the start of a song lower integrated LUFS?
 A: Pure digital silence is mostly gated out. Quiet intros, long fades, and ungated meters like RMS are what pull the reading down. Trim the dead air anyway so every tool agrees.
 Q: Should I cut my quiet intro to raise the number?
@@ -8299,47 +8299,253 @@ A: Dynamic range and related crest-style readouts sit beside LUFS and true peak 
 
 ---
 
-## Phase correlation is a mono audition
+## How to read a phase correlation meter, and what a negative reading means for mono
 URL: https://coproducer.nodawlabs.com/blog/phase-correlation-and-mono.html
 Section: Stereo · 21 August 2026 · 7 min
-Summary: Phase near 0 or negative means the mix thins or cancels in mono. CoProducer fails values under about 0.2. Auto-repair will not flip polarity for you.
+Summary: A phase correlation meter shows how alike your left and right channels are. Near +1 is safe, near 0 is wide, and below 0 means parts cancel in mono.
 
-Phase correlation near 0 or negative means the mix will thin or cancel in mono. CoProducer treats values under about 0.2 as a fail. Auto-repair will not flip polarity for you — that is mix work.
+A phase correlation meter shows how alike your left and right channels are, from −1 to +1. Near +1 means they’re nearly the same and the mix holds up in mono. Around 0 means they’re unrelated, which is wide but usually fine. Below 0 means parts of the mix are fighting each other and will thin out or cancel in mono. CoProducer treats readings under about 0.2 as a caution, and it won’t flip polarity for you, because that’s mix work.
+The meter sits at the bottom of a lot of plugin windows and most people glance past it. That’s a shame, because it’s one of the cheapest checks you can run on a mix. It tells you, without switching anything, whether your song will survive being played through one speaker.
 
-### Why stores still care
-Phones, clubs, and some smart speakers collapse channels. A wide chorus that disappears in mono is not “creative stereo.” It is a delivery risk. Correlation is a cheap proxy for that audition.
-If correlation fails, check doubled vocals, misaligned layers, and mid/side tricks that emptied the mid. Do not buy a loudness tool to fix a polarity problem.
+### What does phase correlation actually measure?
+Take the left and right channels and ask how much they move together. If they rise and fall at the same time, the reading is high. If they’re doing unrelated things, it’s around 0. If one goes up exactly when the other goes down, it’s negative. Mathematically it’s close to a correlation coefficient between the two channels, worked out over a short, moving window.
+Here’s what the main readings mean in practice:
+- +1. Left and right are identical. That’s a mono signal, like a centred vocal or kick on its own.
+- +0.3 to +0.9. A normal stereo mix: a strong centre with some width from panning, stereo reverb and doubled parts.
+- Around 0. The two sides have little in common. Very wide reverbs, unrelated left and right takes and some stereo synths live here.
+- Below 0. The sides are working against each other. Something is out of phase or flipped in polarity, and adding them together will cancel it.
 
-### Order of operations
-Fix phase in the session. Then print. Then measure LUFS and true peak. Reversing that order wastes renders.
-CoProducer will caution on phase and leave it alone in the automatic plan. That restraint is intentional.
-Note: The release checklist keeps phase ≥ 0.2 next to the loudness gates. Read it beside the meter checklist.
-Q: Can a stereo widener pass correlation?
-A: Sometimes on the meter, rarely in a real mono fold. Audition mono after every width move.
-Q: Is 1.0 required?
-A: No. Fully correlated mono sits near 1.0. Most finished stereo records sit comfortably above 0.2 without being mono.
+### Why does a negative reading matter for mono?
+Because a lot of playback is still mono. Phone speakers, many smart speakers, club systems and venue PAs often add the two channels together. When they do, anything that was the same on both sides gets louder, anything unrelated stays about the same, and anything that was opposite on the two sides cancels.
+So a negative reading is a preview. A wide chorus that reads below 0 isn’t “creative stereo” when it vanishes on a phone. It’s a delivery problem, and the correlation meter is the quickest way to spot it without leaving stereo.
+
+### How do you read the meter while the song plays?
+Watch it through the whole song, not just the loudest part. The average can look healthy while one section is in trouble, and a meter only helps if you see it during that section. To show what that looks like, here’s a small script that reads a bounce the way a correlation meter does. It gives the whole-file number, then the same number over 400 ms slices, the mono fold-down loss, and the correlation in three frequency bands.
+#!/usr/bin/env python3
+"""mono_check.py: read a stereo bounce the way a phase correlation meter does, plus a mono fold-down.
+Usage: python3 mono_check.py mix.wav [more.wav ...]      (pip install numpy soundfile)
+- correlation = Pearson correlation of left and right: +1 identical, 0 unrelated, -1 opposite polarity.
+- windows: the same number over 400 ms slices, because a meter moves and one bad section hides
+  inside a decent average. 'below 0.2' uses CoProducer's caution line; treat it as a starting point.
+- bands: correlation below 150 Hz, 150 Hz-2 kHz and above 2 kHz, to show where the trouble lives.
+- mono loss: level of (L+R)/2 against the average stereo channel level. About 0 dB for a centred
+  mono source, about -3 dB for fully unrelated channels, and much lower when things cancel."""
+import sys
+import numpy as np, soundfile as sf
+
+def corr(l, r):
+    d = np.sqrt((l * l).sum() * (r * r).sum())
+    return float((l * r).sum() / d) if d > 0 else 1.0
+
+def band(x, fs, lo, hi):
+    X = np.fft.rfft(x, axis=0); f = np.fft.rfftfreq(len(x), 1 / fs)
+    X[(f < lo) | (f >= hi)] = 0
+    return np.fft.irfft(X, len(x), axis=0)
+
+def mono_loss_db(x):
+    m = (x[:, 0] + x[:, 1]) / 2
+    return 10 * np.log10((m * m).mean() / ((x * x).mean() + 1e-20) + 1e-20)
+
+for path in sys.argv[1:]:
+    x, fs = sf.read(path, always_2d=True)
+    l, r = x[:, 0], x[:, 1]
+    n = int(0.4 * fs); k = len(x) // n
+    w = np.array([corr(l[i*n:(i+1)*n], r[i*n:(i+1)*n]) for i in range(k)])
+    worst = int(np.argmin(w))
+    wl = mono_loss_db(x[worst*n:(worst+1)*n])
+    bands = [(name, corr(*band(x, fs, lo, hi).T)) for name, lo, hi in
+             (("low <150", 0, 150), ("mid 150-2k", 150, 2000), ("high >2k", 2000, fs))]
+    print(path)
+    print(f"  correlation {corr(l, r):+.2f}   mono loss {mono_loss_db(x):+.1f} dB")
+    print(f"  400 ms windows: lowest {w.min():+.2f} at {worst*0.4:.1f} s, "
+          f"{(w < 0.2).mean()*100:.0f}% below 0.2, {(w < 0).mean()*100:.0f}% below 0")
+    print("  mono loss in that window " + (f"{wl:+.1f} dB" if wl > -60 else "below -60 dB (it cancels)"))
+    print("  bands: " + "   ".join(f"{a} {c:+.2f}" for a, c in bands))
+We ran it on three synthetic mixes made from a generated beat and a speech-like test voice, not real songs. The first is an ordinary stereo mix. The second is the same mix, but a 4-second breakdown is carried by a pad with one side polarity-flipped, the way a careless widener can leave it. In the third, the whole right channel is flipped, which is what a wiring mistake or a stray polarity button does.
+$ python3 mono_check.py mix_normal.wav mix_wide_breakdown.wav mix_flip_all.wav
+mix_normal.wav
+  correlation +0.95   mono loss -0.1 dB
+  400 ms windows: lowest +0.92 at 14.8 s, 0% below 0.2, 0% below 0
+  mono loss in that window -0.2 dB
+  bands: low <150 +1.00   mid 150-2k +0.59   high >2k +0.70
+mix_wide_breakdown.wav
+  correlation +0.80   mono loss -0.5 dB
+  400 ms windows: lowest -1.00 at 8.4 s, 20% below 0.2, 20% below 0
+  mono loss in that window below -60 dB (it cancels)
+  bands: low <150 +0.87   mid 150-2k +0.40   high >2k +0.16
+mix_flip_all.wav
+  correlation -0.95   mono loss -16.2 dB
+  400 ms windows: lowest -0.96 at 5.2 s, 100% below 0.2, 100% below 0
+  mono loss in that window -17.4 dB
+  bands: low <150 -1.00   mid 150-2k -0.59   high >2k -0.70
+Reading those, still on synthetic audio:
+- The normal mix is fine everywhere. +0.95 overall, never below +0.9, and it loses almost nothing in mono.
+- The breakdown mix hides its problem in the average. Overall it reads +0.80 and loses only 0.5 dB in mono, so a quick glance says it’s fine. But for the whole breakdown it reads −1.00, and in mono that section cancels completely. On a phone, the breakdown would be silence.
+- The flipped mix is unmistakable. −0.95 from start to finish, and the mono fold loses about 16 dB. The low band reads −1.00, so the kick and bass are the first things to go.
+The band readings are worth a look on real mixes too. Low end should read close to +1, because bass and kick are almost always centred. If the low band drops well below the others, check the bass for a stereo effect or a phase problem before you check anything else.
+
+### What usually causes a low or negative reading?
+A few things come up again and again:
+- Stereo wideners and mid/side tricks. Pushing the side signal up, or a widener that delays or flips one side, can leave a part with almost nothing in the middle. The mid/side view makes this obvious, and the essay on wide mixes failing in mono covers how to fix it without losing the width.
+- Short delays between copies. A double copied to one side and nudged a few milliseconds late makes a comb filter when the sides are summed, so the part sounds hollow in mono. The vocal double essay explains why a real second take works better.
+- Layered sounds out of alignment. Two kicks or two bass layers that are slightly out of time, or one flipped, can cancel each other in the low end. The layered kick essay walks through checking polarity and timing.
+- A flipped channel. A polarity button left on in a plugin, a cable wired the wrong way, or a sample that came that way. The meter sits near −1 for the whole song.
+- Spaced stereo mics. Two mics at different distances catch the same sound at slightly different times, which is normal for room and overhead recordings and usually reads low but positive.
+
+### How do you fix it without losing the width?
+Do it in the session, in this order:
+1. Find the part. Solo tracks in the section where the meter dips. Watch which one drags the reading down.
+2. Check polarity and timing first. If a layer is flipped or late, flip it back or line it up. That’s a one-button fix and it often restores the low end.
+3. Turn down the width on that part. Pull the widener back or lower the side signal until the meter stays above 0 in that section, then listen in mono. Width that survives mono is width you keep.
+4. Keep the low end centred. Anything below about 150 Hz rarely benefits from width, and it’s where cancellation costs you the most.
+5. Then bounce and measure. Fix phase, then print, then measure LUFS and true peak. Doing it the other way round means re-rendering your master after the fix.
+Don’t reach for a loudness tool to fix a polarity problem. A limiter or mastering chain makes the whole song louder, including the part that cancels, and the cancellation is still there when the song hits a mono speaker.
+
+### Why won’t an automatic repair fix phase for you?
+Because the right fix depends on which part is causing it, and a stereo master doesn’t tell you that. Flipping one side of the whole file would fix a wiring mistake and wreck a mix where only the pad was wide. CoProducer reports phase correlation and cautions on low readings, then leaves it out of the automatic plan. That restraint is intentional. The fix belongs to whoever has the session.
+Note: The release checklist keeps phase correlation ≥ 0.2 next to the loudness gates. Read it beside the meter checklist, and drop a bounce into CoProducer’s analyzer to see the reading for your own mix.
+A good habit: leave the correlation meter open while you mix, glance at it every time you add width, and listen in mono before you bounce. It takes ten seconds and saves the version of your song that plays on someone’s phone.
+Q: What does a phase correlation meter show?
+A: It shows how similar the left and right channels are at that moment, on a scale from −1 to +1. +1 means they’re identical, which is mono. 0 means they’re unrelated, like two different recordings. −1 means one side is the other flipped upside down, which cancels completely when the two are added for mono.
+Q: What is a good phase correlation value?
+A: Most finished stereo mixes spend nearly all their time between about +0.3 and +0.9. Short dips toward 0 on wide reverbs or effects are normal. CoProducer treats readings under about 0.2 as a caution, and anything that sits below 0 for more than a moment is worth a mono listen.
+Q: Is negative phase correlation always bad?
+A: A brief flicker below 0 on a reverb tail or a stereo effect usually isn’t a problem. A reading that stays negative for a whole section means something is cancelling when the song is played in mono, and that part will get thinner or disappear on mono speakers.
+Q: Can a stereo widener pass the correlation meter?
+A: Sometimes on the meter, rarely in a real mono fold. Some wideners keep the average reading healthy while one part still cancels. Check the meter during the section where the widener is working, and listen in mono after every width move.
+Q: Is a correlation of 1.0 required?
+A: No. 1.0 means the mix is mono. Most good stereo records sit comfortably above 0.2 without being mono, and some width is what makes stereo worth having.
 
 ---
 
-## Quiet masters get turned up — and so does the noise
+## Does Spotify turn up quiet songs? Yes, up to a point, and the hiss comes up too
 URL: https://coproducer.nodawlabs.com/blog/quiet-masters-and-noise-floor.html
-Section: Noise · 21 August 2026 · 6 min
-Summary: Streaming turn-up lifts quiet files. A −20 LUFS master may be gained up, which also lifts hiss, rumble, and room tone. Quiet is not a free pass.
+Section: Noise · 21 August 2026 · 8 min
+Summary: Spotify lifts quiet masters toward −14 LUFS as far as true peak allows, and Loud mode goes further. The hiss comes up too, so check your noise floor first.
 
-Streaming turn-up applies to quiet files as well as turn-down to hot ones. A −20 LUFS master may be gained up, which lifts hiss, rumble, and room tone with it. Measure noise floor before you celebrate “dynamic.”
+Yes, Spotify turns quiet songs up, and the noise floor comes up with them. A master below −14 LUFS gets positive gain during playback, but only as far as its true peak allows, with 1 dB of headroom left over. On the Loud setting it goes to −11 LUFS regardless. Either way, the hiss, rumble and room tone in your quiet parts get the same lift as the music, so check them before you release.
+Most of the loudness talk online is about the other direction: masters that are too hot getting turned down. That side is real, and the essay on why streaming turns loud masters down covers it. But plenty of producers now bounce quieter on purpose, because they’ve heard that dynamics survive normalization better. That’s a fair choice. It just comes with a catch that’s easy to miss on studio monitors: a quiet master is a master that will probably be turned up.
 
-### Both directions of normalization
-Engineers obsess over hot masters getting turned down. The other side matters: sparse, quiet prints get lifted. If your noise floor sits near −40 dBFS in a sparse verse, turn-up makes it obvious on earbuds.
-CoProducer reports noise floor beside LUFS. Use it when the arrangement has long gaps.
+### Does Spotify actually turn up quiet songs?
+It does, and Spotify’s loudness normalization page spells out the rule. Tracks are adjusted toward −14 LUFS, measured with the ITU-R BS.1770 method. Loud masters get negative gain. Softer masters get positive gain, but Spotify considers the track’s headroom and leaves 1 dB for lossy encoding. Their own example is a −20 LUFS track with a true peak of −5 dBFS: it only gets lifted to −16 LUFS, because 4 dB of gain puts its peak at −1.
+Two other details from the same page matter for quiet songs:
+- The Loud setting ignores peaks. Premium listeners can choose Loud, which targets −11 LUFS regardless of true peak and uses a limiter that engages at −1 dB. A −20 LUFS master gets 9 dB of gain there.
+- Albums are normalized as a whole. When someone plays the album, the gain doesn’t change from track to track, so your quiet interlude stays quiet relative to the singles. On a playlist or on shuffle, each track is adjusted on its own.
+The page also notes that the web player and some third-party devices don’t normalize at all. So the same file can play at its mastered level in one place and several dB louder in another.
 
-### What auto-repair will try
-A cautious high-pass may appear when rumble or DC evidence is strong. It will not invent a denoiser for air hiss. That is still mix or restoration work.
-If the floor is the story, clean the session before you chase −14.
-Note: Upload a quiet bounce to Analyze and read noise floor next to LUFS before you ship.
+### Why does the hiss come up with the music?
+Because playback gain is just a volume knob. It doesn’t know which part of the file is your vocal and which part is the preamp hiss under it. If the song goes up 4 dB, the noise floor goes up 4 dB.
+In a dense mix that rarely matters, because the music covers the noise from start to finish. In a sparse song it does. The places to worry about are the ones where the music thins out:
+- a quiet intro before the beat drops,
+- a breakdown that’s down to one pad or a dry vocal,
+- a long reverb tail or fade-out,
+- gaps between phrases in an acoustic or spoken-word piece.
+Earbuds make it worse. They sit right at your ears, they block the room, and people often listen in a quiet bedroom at night. That’s exactly when a hiss you never noticed on monitors becomes the loudest thing in the breakdown.
+
+### How do you check your noise floor before release?
+Listening is the real test, but a quick measurement tells you where to listen and how much gain to expect. The script below does three things. It reads integrated loudness and true peak with FFmpeg’s ebur128 filter. It works out the gain each Spotify setting would apply, using the rule from their page. Then it finds the quietest moments of the song and measures what’s in them: full-band, above 4 kHz where hiss lives, and below 32 Hz where rumble lives.
+#!/usr/bin/env python3
+"""noise_floor_check.py: how loud will the quiet parts (and the hiss) be after streaming turn-up?
+Usage: python3 noise_floor_check.py song.wav [more.wav ...]
+Needs FFmpeg on PATH plus numpy and soundfile (pip install numpy soundfile).
+- Integrated loudness and true peak come from FFmpeg's ebur128 filter (ITU-R BS.1770).
+- 'Normal' turn-up follows Spotify's published rule: lift toward -14 LUFS, but stop where
+  true peak would pass -1 dBTP. 'Loud' is Spotify's -11 LUFS setting, which applies the gain
+  regardless and lets a limiter catch the peaks.
+- Floors = the 5th-percentile level of 50 ms windows (the quietest real moments, digital silence
+  ignored), measured full-band, above 4 kHz (hiss) and below 32 Hz (rumble).
+- The -70 dBFS warning line is our starting point for earbud listening, not a standard."""
+import sys, re, subprocess
+import numpy as np, soundfile as sf
+
+def ebur128(path):
+    err = subprocess.run(["ffmpeg", "-hide_banner", "-nostats", "-i", path, "-af", "ebur128=peak=true",
+                          "-f", "null", "-"], capture_output=True, text=True).stderr
+    I = float(re.findall(r"I:\s+(-?[\d.]+) LUFS", err)[-1])
+    tp = float(re.findall(r"Peak:\s+(-?[\d.]+) dBFS", err)[-1])
+    return I, tp
+
+def band(x, fs, lo, hi):
+    X = np.fft.rfft(x, axis=0); f = np.fft.rfftfreq(len(x), 1 / fs)
+    X[(f < lo) | (f > hi)] = 0
+    return np.fft.irfft(X, len(x), axis=0)
+
+def floor_db(x, fs, win_ms=50):
+    n = int(fs * win_ms / 1000); k = len(x) // n
+    rms = np.sqrt((x[:k*n].reshape(k, n, -1) ** 2).mean(axis=1)).max(axis=1)   # louder channel per window
+    db = 20 * np.log10(rms[rms > 1e-6])                                     # ignore digital silence
+    return np.percentile(db, 5)
+
+for path in sys.argv[1:]:
+    I, tp = ebur128(path)
+    x, fs = sf.read(path, always_2d=True)
+    quiet = floor_db(x, fs)                       # whole band: the quietest moments, music and noise together
+    hiss = floor_db(band(x, fs, 4000, 20000), fs) # above 4 kHz in those moments: mostly hiss in a sparse song
+    rumble = floor_db(band(x, fs, 0, 32), fs)     # below 32 Hz: rumble, HVAC, handling noise
+    normal = max(0.0, min(-14 - I, -1 - tp)) if I < -14 else -14 - I
+    loud = -11 - I
+    print(f"{path}")
+    print(f"  integrated {I:6.1f} LUFS   true peak {tp:5.1f} dBTP")
+    print(f"  quietest moments {quiet:6.1f} dBFS   hiss band {hiss:6.1f} dBFS   rumble band {rumble:6.1f} dBFS")
+    for name, g in (("normal (-14)", normal), ("loud (-11)", loud)):
+        h, r = hiss + g, rumble + g
+        flags = [w for w, v in (("hiss", h), ("rumble", r)) if v > -70]
+        note = "  <- check " + " and ".join(flags) + " on earbuds" if flags else ""
+        print(f"  {name:13s} gain {g:+5.1f} dB -> hiss {h:6.1f}, rumble {r:6.1f} dBFS{note}")
+We ran it on three synthetic files, built from a generated slow beat, a speech-like test voice and a soft pad, with a near-empty breakdown in the middle. None of it is a real song. The first is clean. The second has broadband hiss and a 22 Hz rumble sitting under everything. The third is the clean version plus one loud rim hit.
+$ python3 noise_floor_check.py quiet_clean.wav quiet_hissy.wav quiet_peaky.wav
+quiet_clean.wav
+  integrated  -20.0 LUFS   true peak  -4.4 dBTP
+  quietest moments  -43.9 dBFS   hiss band  -91.2 dBFS   rumble band  -82.1 dBFS
+  normal (-14)  gain  +3.4 dB -> hiss  -87.8, rumble  -78.7 dBFS
+  loud (-11)    gain  +9.0 dB -> hiss  -82.2, rumble  -73.1 dBFS
+quiet_hissy.wav
+  integrated  -20.0 LUFS   true peak  -4.4 dBTP
+  quietest moments  -43.8 dBFS   hiss band  -63.7 dBFS   rumble band  -63.7 dBFS
+  normal (-14)  gain  +3.4 dB -> hiss  -60.3, rumble  -60.3 dBFS  <- check hiss and rumble on earbuds
+  loud (-11)    gain  +9.0 dB -> hiss  -54.7, rumble  -54.7 dBFS  <- check hiss and rumble on earbuds
+quiet_peaky.wav
+  integrated  -20.0 LUFS   true peak  -1.4 dBTP
+  quietest moments  -43.9 dBFS   hiss band  -91.5 dBFS   rumble band  -82.1 dBFS
+  normal (-14)  gain  +0.4 dB -> hiss  -91.1, rumble  -81.7 dBFS
+  loud (-11)    gain  +9.0 dB -> hiss  -82.5, rumble  -73.1 dBFS
+Here’s what those numbers say, still on synthetic audio:
+- The full-band floor barely moved. All three files read about −44 dBFS in their quietest moments, because the faint pad in the breakdown is louder than the noise. A single “noise floor” number can miss hiss hiding under quiet music. Splitting the measurement into bands is what found it.
+- The hissy version gets lifted into earshot. Its hiss and rumble sit around −64 dBFS in the file. After the normal turn-up that’s about −60, and on the Loud setting about −55. In a quiet room on earbuds, that’s a hiss you hear in the breakdown.
+- One peak changes the whole picture. The rim hit pushes true peak to −1.4 dBTP, so the normal setting can only add 0.4 dB. That’s why two −20 LUFS masters can play back at different levels. The Loud setting still adds 9 dB, because it doesn’t look at peaks.
+The −70 dBFS line in the script is our starting point, not a standard. Use it to decide which sections to audition, then trust your ears.
+
+### How do you lower the noise floor without wrecking the mix?
+Work from the source outward. The fixes that happen earliest are the ones that cost the least:
+1. Find the track that’s making it. Solo the quiet section and mute tracks one by one. Hiss usually comes from one or two places: a noisy preamp on a vocal, an amp sim, a lo-fi plugin with its noise knob up, or a sample with tape noise baked in.
+2. Clean it on that track. A gentle noise reduction pass on the one noisy track is far safer than denoising the master. Clip-gain the gaps down, or use a gate with a slow close, and set the hold so it doesn’t chop the ends of words. The noise gate essay walks through the settings.
+3. High-pass what you don’t need. Rumble below the lowest note in the song is wasted energy. A high-pass on the tracks that don’t carry bass, and a careful one on the master, removes it. If it’s a steady buzz rather than rumble, it’s probably mains hum, and the hum essay covers notching it.
+4. Fade the edges. Fade intros in from true silence and fade the tail out fully instead of cutting to a noisy room.
+5. Dither once, at the end. When you bounce to 16-bit, dither adds a tiny, even noise that’s far quieter than the hiss we’re talking about here. It isn’t the problem, so don’t skip it to chase a cleaner floor.
+Some noise is part of the sound. Vinyl crackle, tape hiss and room tone are deliberate choices in plenty of records. The goal isn’t zero noise. It’s noise you chose, at a level you’ve heard on the playback systems your listeners use.
+
+### What will an automatic repair do about it?
+Not much, and that’s on purpose. CoProducer’s auto-repair may add a cautious high-pass when the rumble or DC evidence is strong. It won’t invent a denoiser for broadband hiss, because guessing at denoising on a finished master tends to smear cymbals, reverb tails and breaths. That’s still mix or restoration work, done on the track that made the noise.
+What a meter can do is tell you that the noise is there before you upload. CoProducer reports noise floor next to LUFS in its analysis, which is useful exactly when a song has long gaps.
+
+### Should you just master louder to avoid the turn-up?
+It doesn’t solve the problem. If you raise the master 6 dB with a limiter, the hiss goes up 6 dB in the file instead of 6 dB at playback, and it ends up in the same place relative to the music. You’ve also given up some of the dynamics you kept the master quiet for.
+Pick the loudness the song wants, then make the quiet parts clean enough to survive being turned up. A good check before release:
+- Measure integrated LUFS and true peak, and work out how much gain normal playback will add.
+- Add that gain to a copy and listen to the intro, the breakdown and the fade on earbuds in a quiet room.
+- Then add 9 dB to a −20 LUFS master, or whatever brings it to −11, and listen again, because that’s the Loud setting.
+- If you hear hiss or rumble you didn’t choose, fix it on the track that made it and bounce again.
+Quiet masters are a good choice for a lot of music. Just remember they’re usually heard louder than you bounced them, and so is everything hiding in the gaps.
+Q: Does Spotify turn up quiet songs?
+A: Yes. Spotify applies positive gain to masters below −14 LUFS, but only as far as the track’s true peak allows, leaving 1 dB of headroom. Its own example: a −20 LUFS track with a −5 dBFS true peak is lifted to −16 LUFS, not all the way to −14. On the Loud setting it lifts to −11 LUFS regardless and uses a limiter to catch the peaks.
+Q: Will normalization make the hiss in my song louder?
+A: Yes. Playback gain is the same for everything in the file, so if your song is lifted 4 dB, the hiss, rumble and room tone under it are lifted 4 dB as well. It matters most in sparse songs with quiet intros, breakdowns and fade-outs, where there’s little music to cover the noise.
 Q: Is −14 always louder than −16 after normalization?
-A: Not in the way people mean. Playback gain aims for a similar lane; crest and spectrum still decide punch.
-Q: Should I raise the master to avoid turn-up?
-A: Raise intentional signal, not noise. Fix the floor first.
+A: Not in the way people mean. Normalization brings tracks into a similar lane, so the difference you hear afterwards comes from crest factor, tone and arrangement, not from the number on the meter. A −16 master with healthy peaks can sound as full as a −14 one.
+Q: Should I master louder so Spotify doesn’t turn my song up?
+A: Only if louder suits the song. Mastering louder raises the noise along with the music, so the hiss ends up in the same place relative to everything else. Clean the noise in the session first, then pick the loudness the song wants.
+Q: What noise floor is acceptable for a release?
+A: There isn’t one official number. As a starting point, we flag hiss or rumble that would play back above about −70 dBFS after turn-up and then listen to the quiet parts on earbuds. If you can hear it there, so will listeners.
 
 ---
 

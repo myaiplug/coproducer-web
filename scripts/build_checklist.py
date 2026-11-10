@@ -81,7 +81,7 @@ SECTIONS = [
             "Audition mono <strong>after every width move</strong>: wideners, copy-pasted doubles, mid/side tricks.",
         ],
         "essays": [
-            ("phase-correlation-and-mono", "Phase correlation is a mono audition"),
+            ("phase-correlation-and-mono", "What does a phase correlation meter show? How to read −1 to +1"),
             ("wide-mixes-fail-in-mono", "Wide mixes fail in mono"),
             ("mix-leans-to-one-side-check-the-balance-band-by-band", "Mix leans to one side? Check the balance band by band"),
             ("808-disappears-on-phone-speakers", "Why your 808 disappears on phone speakers"),

@@ -568,19 +568,19 @@
       <enclosure url="https://coproducer.nodawlabs.com/blog/img/essays/crest-factor-is-not-loudness.jpg?v=shd" type="image/jpeg" length="0"/>
     </item>
     <item>
-      <title>Phase correlation is a mono audition</title>
+      <title>What does a phase correlation meter show? How to read −1 to +1</title>
       <link>https://coproducer.nodawlabs.com/blog/phase-correlation-and-mono.html</link>
       <guid isPermaLink="true">https://coproducer.nodawlabs.com/blog/phase-correlation-and-mono.html</guid>
       <pubDate>Thu, 21 Aug 2026 00:00:00 GMT</pubDate>
-      <description>Phase near 0 or negative means the mix thins or cancels in mono. CoProducer fails values under about 0.2. Auto-repair will not flip polarity for you.</description>
+      <description>A phase correlation meter shows how alike your left and right channels are. Near +1 is safe, near 0 is wide, and below 0 means parts cancel in mono.</description>
       <enclosure url="https://coproducer.nodawlabs.com/blog/img/essays/phase-correlation-and-mono.jpg?v=shd" type="image/jpeg" length="0"/>
     </item>
     <item>
-      <title>Quiet masters get turned up — and so does the noise</title>
+      <title>Does Spotify turn up quiet songs? What happens to the hiss</title>
       <link>https://coproducer.nodawlabs.com/blog/quiet-masters-and-noise-floor.html</link>
       <guid isPermaLink="true">https://coproducer.nodawlabs.com/blog/quiet-masters-and-noise-floor.html</guid>
       <pubDate>Thu, 21 Aug 2026 00:00:00 GMT</pubDate>
-      <description>Streaming turn-up lifts quiet files. A −20 LUFS master may be gained up, which also lifts hiss, rumble, and room tone. Quiet is not a free pass.</description>
+      <description>Spotify lifts quiet masters toward −14 LUFS as far as true peak allows, and Loud mode goes further. The hiss comes up too, so check your noise floor first.</description>
       <enclosure url="https://coproducer.nodawlabs.com/blog/img/essays/quiet-masters-and-noise-floor.jpg?v=shd" type="image/jpeg" length="0"/>
     </item>
     <item>
