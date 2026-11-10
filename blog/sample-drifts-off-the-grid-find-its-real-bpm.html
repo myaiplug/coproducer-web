@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1" name="viewport"/><meta content="https://coproducer.nodawlabs.com/blog/img/essays/sample-drifts-off-the-grid-find-its-real-bpm.jpg?v=shd" name="twitter:image"/><meta content="Why a looped sample lines up at first and then slides off your drums: its tempo isn&#x27;t a whole number. How far a rounded BPM drifts, and how to get the exact tempo from the loop length, a detector or tap tempo, with the script." name="twitter:description"/><meta content="Sample drifting off the grid? Find its real BPM, decimals included" name="twitter:title"/><meta content="summary_large_image" name="twitter:card"/><meta content="2026-11-10T00:00:00Z" property="article:modified_time"/><meta content="2026-11-10T00:00:00Z" property="article:published_time"/><meta content="1440" property="og:image:height"/><meta content="2560" property="og:image:width"/><meta content="https://coproducer.nodawlabs.com/blog/sample-drifts-off-the-grid-find-its-real-bpm.html" property="og:url"/><meta content="en_US" property="og:locale"/><meta content="CoProducer" property="og:site_name"/><meta content="article" property="og:type"/><link href="https://coproducer.nodawlabs.com/llms.txt" rel="alternate" title="llms.txt" type="text/plain"/><meta content="NoDAW Labs" name="author"/><meta content="#050308" name="theme-color"/><meta content="index,follow,max-image-preview:large" name="robots"/><meta content="sample off beat, sample drifting out of time, find bpm of a sample, sample not lining up with grid, decimal bpm, how to find the tempo of a loop, tap tempo accuracy, sample bpm 93.6, NoDAW StemSplit, NoDAW" name="keywords"/>
+<title>Sample drifting off the grid? Find its real BPM, decimals included | Lacquer</title>
+<meta content="Why a looped sample lines up at first and then slides off your drums: its tempo isn&#x27;t a whole number. How far a rounded BPM drifts, and how to get the exact tempo from the loop length, a detector or tap tempo, with the script." name="description"/>
+<link href="https://coproducer.nodawlabs.com/blog/sample-drifts-off-the-grid-find-its-real-bpm.html" rel="canonical"/>
+<link rel="alternate" type="application/rss+xml" title="Lacquer — CoProducer Journal" href="https://coproducer.nodawlabs.com/blog/rss.xml"/>
+<link rel="icon" href="../favicon.ico" sizes="48x48"/>
+<link rel="icon" type="image/svg+xml" href="../assets/favicon.svg"/>
+<link rel="apple-touch-icon" href="../assets/apple-touch-icon.png"/>
+<link rel="manifest" href="../site.webmanifest"/>
+<meta content="Sample drifting off the grid? Find its real BPM, decimals included" property="og:title"/>
+<meta content="Why a looped sample lines up at first and then slides off your drums: its tempo isn&#x27;t a whole number. How far a rounded BPM drifts, and how to get the exact tempo from the loop length, a detector or tap tempo, with the script." property="og:description"/>
+<meta content="https://coproducer.nodawlabs.com/blog/img/essays/sample-drifts-off-the-grid-find-its-real-bpm.jpg?v=shd" property="og:image"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;1,500;1,600&amp;family=Figtree:wght@400;500&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet" media="print" onload="this.media='all'"/><noscript><link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;1,500;1,600&amp;family=Figtree:wght@400;500&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/></noscript>
+<link rel="preload" as="image" type="image/webp" fetchpriority="high" imagesrcset="img/essays/w/sample-drifts-off-the-grid-find-its-real-bpm-480.webp 480w, img/essays/w/sample-drifts-off-the-grid-find-its-real-bpm-960.webp 960w, img/essays/w/sample-drifts-off-the-grid-find-its-real-bpm-1600.webp 1600w" imagesizes="(max-width: 1100px) 100vw, 1100px"/>
+<link href="css/journal.css" rel="stylesheet"/>
+
+
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Sample drifting off the grid? Find its real BPM, decimals included","description":"Why a looped sample lines up at first and then slides off your drums: its tempo isn't a whole number. How far a rounded BPM drifts, and how to get the exact tempo from the loop length, a detector or tap tempo, with the script.","datePublished":"2026-11-10","dateModified":"2026-11-10","mainEntityOfPage":{"@type":"WebPage","@id":"https://coproducer.nodawlabs.com/blog/sample-drifts-off-the-grid-find-its-real-bpm.html"},"image":{"@type":"ImageObject","url":"https://coproducer.nodawlabs.com/blog/img/essays/sample-drifts-off-the-grid-find-its-real-bpm.jpg?v=shd","width":2560,"height":1440},"author":{"@type":"Organization","name":"NoDAW Labs","url":"https://coproducer.nodawlabs.com/","logo":"https://coproducer.nodawlabs.com/assets/og-default.jpg"},"publisher":{"@type":"Organization","name":"NoDAW Labs","url":"https://coproducer.nodawlabs.com/","logo":"https://coproducer.nodawlabs.com/assets/og-default.jpg"},"isPartOf":{"@type":"Blog","name":"Lacquer — CoProducer Journal","url":"https://coproducer.nodawlabs.com/blog/index.html"},"keywords":["sample off beat","sample drifting out of time","find bpm of a sample","sample not lining up with grid","decimal bpm","how to find the tempo of a loop","tap tempo accuracy","sample bpm 93.6","NoDAW StemSplit","NoDAW"],"speakable":{"@type":"SpeakableSpecification","cssSelector":[".answer","h1"]}}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Why does my sample drift off beat?","acceptedAnswer":{"@type":"Answer","text":"Because its real tempo has a decimal and your session is rounded. A 93.6 BPM loop in a 94 BPM session was 43.6 ms late after four bars and 174.6 ms after sixteen in our test."}},{"@type":"Question","name":"How do I find the exact BPM of a sample?","acceptedAnswer":{"@type":"Answer","text":"Trim it to whole bars and divide: bars × 4 × 60 × sample rate ÷ length in samples. Our four-bar test loop came out at exactly 93.600 BPM."}},{"@type":"Question","name":"Is a BPM detector accurate enough?","acceptedAnswer":{"@type":"Answer","text":"For a ballpark. Our onset detector picked 93.8 for a 93.6 loop and also offered 187.5, double time. Confirm the number with the loop length."}},{"@type":"Question","name":"How many taps do I need for tap tempo?","acceptedAnswer":{"@type":"Answer","text":"More than you think. With 15 ms of timing slop, 8 taps typically missed by 0.25 BPM and 32 taps by 0.03."}}]}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"CoProducer","item":"https://coproducer.nodawlabs.com/"},{"@type":"ListItem","position":2,"name":"Lacquer Journal","item":"https://coproducer.nodawlabs.com/blog/index.html"},{"@type":"ListItem","position":3,"name":"Sample drifting off the grid? Find its real BPM, decimals included","item":"https://coproducer.nodawlabs.com/blog/sample-drifts-off-the-grid-find-its-real-bpm.html"}]}</script></head>
+<body>
+<header class="top">
+<a class="mark" href="../index.html"><em>Co</em>Producer</a>
+<nav aria-label="Primary" class="nav">
+<a href="index.html">Journal</a>
+<a href="../index.html#ab">A/B</a>
+<a href="../index.html#analyzeHome">Analyze</a>
+<a href="../guides/index.html">Guides</a>
+<a href="../pricing.html">Pricing</a>
+</nav>
+<a class="cta" href="../index.html#analyzeHome">Measure a mix</a>
+</header>
+<article class="post" id="main">
+<div class="post-hero"><img alt="A black drum-pad sampler with blank pads on gold-veined black marble next to a turntable, evenly spaced cyan light lines floating above it and a row of amber light points that start on the lines and slowly drift away to the right." src="img/essays/sample-drifts-off-the-grid-find-its-real-bpm.jpg?v=shd" srcset="img/essays/w/sample-drifts-off-the-grid-find-its-real-bpm-480.webp 480w, img/essays/w/sample-drifts-off-the-grid-find-its-real-bpm-960.webp 960w, img/essays/w/sample-drifts-off-the-grid-find-its-real-bpm-1600.webp 1600w" sizes="(max-width: 1100px) 100vw, 1100px" width="2560" height="1440" fetchpriority="high" decoding="async"/></div>
+<header>
+<p class="kicker">Sampling · 10 November 2026 · 6 min</p>
+<h1>Sample drifting off the grid? Find its real BPM, decimals included</h1>
+<p class="meta">NoDAW Labs · Lacquer Vol. 06</p>
+</header>
+<p class="answer">A sample that starts on the grid and slowly slides off it almost always has a tempo with a decimal in it, and your session is set to the nearest whole number. In our test a loop at 93.6 BPM in a 94 BPM session was 43.6 ms late after four bars and 174.6 ms late after sixteen, more than a 16th note. Trim the loop to whole bars and work out the tempo from its length: that gave back 93.600 exactly.</p>
+<p>You chop a loop, drop it in, and the first bar sounds perfect. By the second time around the kick is flamming against your drums. By the hook it’s plainly behind. You nudge it, it’s fine for a bit, then it drifts again.</p>
+<p>That isn’t a timing problem in the sample. Records were played by people, or programmed at whatever tempo the producer liked, and plenty of them land between whole numbers. Your session can’t be 93.6 if you typed 94.</p>
+<h2>How fast a rounded tempo drifts</h2>
+<p>The error is tiny per beat and it never resets, so it adds up across the song. We wrote <code>bpm_check.py</code> to show how much. It works out where a 93.6 BPM loop’s beats land against a grid set to 94, 93 and 93.5, then builds a four-bar synthetic drum loop at 93.6 and tries three ways to find its tempo: the loop’s length, an onset detector, and tap tempo.</p>
+<pre><code>#!/usr/bin/env python3
+"""A sample that drifts off the grid: how far a rounded BPM drifts, and three ways to find the real tempo.
+The loop is synthetic: a 4-bar drum pattern at 93.6 BPM, 44.1 kHz. Needs numpy."""
+import numpy as np
+SR, TRUE_BPM, BARS = 44100, 93.6, 4
+
+def bpm_from_length(n_samples, sr, bars, beats_per_bar=4):
+    """Exact tempo of a loop you trimmed to whole bars."""
+    return bars * beats_per_bar * 60 * sr / n_samples
+
+# --- 1. Drift: put the loop in a session set to a rounded tempo
+print(f"Loop really at {TRUE_BPM} BPM. Where its beats land vs a grid at the rounded tempo:")
+for grid in (94, 93, 93.5):
+    row = []
+    for bars in (1, 4, 16, 32):
+        beats = bars * 4
+        drift = beats * 60 / TRUE_BPM - beats * 60 / grid          # seconds; + = loop late
+        row.append(f"{bars:2d} bars {drift * 1000:+6.1f} ms")
+    print(f"  grid {grid:&gt;5} BPM: " + " | ".join(row))
+print(f"  (a 16th note at {TRUE_BPM} BPM is {60 / TRUE_BPM / 4 * 1000:.0f} ms)")
+
+# --- 2. Build the loop: kick on 1 and 3, snare on 2 and 4, closed hat on 8ths
+beat = 60 / TRUE_BPM
+n = int(round(BARS * 4 * beat * SR))
+x = np.zeros(n); rng = np.random.default_rng(7)
+def hit(at, kind):
+    i = int(round(at * SR)); L = min(int(0.25 * SR), n - i); tt = np.arange(L) / SR
+    if kind == "kick":  s = np.sin(2 * np.pi * 55 * tt) * np.exp(-tt * 12)
+    elif kind == "snare": s = rng.normal(0, 0.5, L) * np.exp(-tt * 25)
+    else: s = rng.normal(0, 0.15, L) * np.exp(-tt * 80)
+    x[i:i + L] += s
+for b in range(BARS * 4):
+    hit(b * beat, "kick" if b % 2 == 0 else "snare")
+    hit(b * beat, "hat"); hit((b + 0.5) * beat, "hat")
+print(f"\nSynthetic loop: {BARS} bars, {n} samples = {n / SR:.4f} s")
+
+# Method A: length of the trimmed loop
+print(f"  A) from the length ({BARS} bars): {bpm_from_length(n, SR, BARS):.3f} BPM")
+# Same loop trimmed 10 ms long at the end (a sloppy edit)
+print(f"     same loop trimmed 10 ms long: {bpm_from_length(n + int(0.010 * SR), SR, BARS):.3f} BPM")
+
+# Method B: onset autocorrelation (what a tempo detector roughly does), 10 ms frames
+hop = int(0.010 * SR)
+env = np.array([np.sum(x[i:i + hop] ** 2) for i in range(0, n - hop, hop)])
+flux = np.maximum(np.diff(env), 0)
+ac = np.correlate(flux, flux, "full")[len(flux) - 1:]
+lags = np.arange(len(ac)); bpms = 60 / (lags[1:] * hop / SR)
+ok = (bpms &gt;= 60) &amp; (bpms &lt;= 200)
+cand = sorted(zip(ac[1:][ok], bpms[ok]), reverse=True)[:3]
+print("  B) onset autocorrelation, 10 ms frames, top picks 60-200 BPM: " + ", ".join(f"{b:.1f}" for _, b in cand))
+
+# Method C: tap tempo with human timing error (15 ms standard deviation), tempo = slope of a line through the taps
+for k in (8, 32, 64):
+    errs = []
+    for trial in range(200):
+        taps = np.arange(k) * beat + rng.normal(0, 0.015, k)
+        errs.append(abs(60 / np.polyfit(np.arange(k), taps, 1)[0] - TRUE_BPM))
+    print(f"  C) {k:2d} taps, 15 ms timing error: typical miss {np.median(errs):.2f} BPM, worst of 200 tries {max(errs):.2f} BPM")</code></pre>
+<pre><code>$ python3 bpm_check.py
+Loop really at 93.6 BPM. Where its beats land vs a grid at the rounded tempo:
+  grid    94 BPM:  1 bars  +10.9 ms |  4 bars  +43.6 ms | 16 bars +174.6 ms | 32 bars +349.2 ms
+  grid    93 BPM:  1 bars  -16.5 ms |  4 bars  -66.2 ms | 16 bars -264.7 ms | 32 bars -529.4 ms
+  grid  93.5 BPM:  1 bars   -2.7 ms |  4 bars  -11.0 ms | 16 bars  -43.9 ms | 32 bars  -87.8 ms
+  (a 16th note at 93.6 BPM is 160 ms)
+
+Synthetic loop: 4 bars, 452308 samples = 10.2564 s
+  A) from the length (4 bars): 93.600 BPM
+     same loop trimmed 10 ms long: 93.509 BPM
+  B) onset autocorrelation, 10 ms frames, top picks 60-200 BPM: 93.8, 92.3, 187.5
+  C)  8 taps, 15 ms timing error: typical miss 0.25 BPM, worst of 200 tries 0.98 BPM
+  C) 32 taps, 15 ms timing error: typical miss 0.03 BPM, worst of 200 tries 0.11 BPM
+  C) 64 taps, 15 ms timing error: typical miss 0.01 BPM, worst of 200 tries 0.03 BPM</code></pre>
+<h2>Reading the numbers</h2>
+<p><strong>Rounding up to 94 costs about 11 ms a bar.</strong> 10.9 ms after one bar, 43.6 after four, 174.6 after sixteen. A 16th note at this tempo is 160 ms, so by bar sixteen the sample is more than a whole 16th behind. Rounding down to 93 is worse, 16.5 ms a bar the other way. Even 93.5 is 43.9 ms off after sixteen bars, which you can hear as a flam on the kick.</p>
+<p><strong>The loop’s length is the most exact clock you have.</strong> Our four bars came out at 452,308 samples, and bars × 4 × 60 × sample rate ÷ samples gives 93.600 BPM, spot on. The catch is the trim. Leave the end 10 ms long and the same math says 93.509. Cut at the start of the downbeat and the start of the next downbeat after it, on whole bars, and zoom in to do it.</p>
+<p><strong>Tempo detectors get you close, not exact.</strong> The onset detector’s top pick was 93.8, limited by its 10 ms frames, with 92.3 next and 187.5, double time, third. Every detector has some version of this: good for a ballpark, often unsure between half and double time. Use it to know you’re near 93.6, then confirm with the length.</p>
+<p><strong>Tap tempo works if you tap for a while.</strong> With 15 ms of human slop per tap, eight taps typically missed by 0.25 BPM and once by 0.98. Thirty-two taps typically missed by 0.03, and 64 by 0.01. Tap a couple of bars and you’re guessing. Tap through a whole section and you’re close.</p>
+<h2>How to lock a sample in your session</h2>
+<ol>
+<li><strong>Trim the loop to whole bars.</strong> Start on a downbeat, end right before the next downbeat after one, two or four bars. Snap off, zoom in, and cut on the hit, not on the waveform before it.</li>
+<li><strong>Do the math.</strong> Tempo = bars × 4 × 60 × sample rate ÷ length in samples, for 4/4. Your DAW shows the length in samples, or the script’s <code>bpm_from_length</code> will do it.</li>
+<li><strong>Set the session to that tempo, decimals included.</strong> Most DAWs take decimals in the tempo field. Then your drums, delays and sidechain follow the sample instead of fighting it.</li>
+<li><strong>Or stretch the sample to your tempo on purpose.</strong> If the song has to be 94, warp the sample to 94 and check it didn’t change pitch. If it did, that’s a resample, not a stretch.</li>
+<li><strong>If it still drifts, the sample itself moves.</strong> Live records speed up and slow down. Then you’re warping to the beats, or chopping it into pieces that each start on the grid, not hunting for one number.</li>
+</ol>
+<h2>When the drums are buried</h2>
+<p>Finding the downbeat is the hard part when the drums sit under strings and vocals. Pull the drums out with <a href="../index.html#stemDemo">StemSplit</a> first, trim on the kick in the drum stem, and use that length for the math. Then go back to the full sample with the tempo in hand.</p>
+<aside class="aside">If the sample came off a slowed or sped-up copy, the tempo you measure is that copy’s tempo, not the record’s. That’s fine for your session. Just don’t expect it to match the tempo listed online.</aside>
+<dl class="faq">
+<dt>Why does my sample drift off beat?</dt>
+<dd>Because its real tempo has a decimal and your session is rounded. A 93.6 BPM loop in a 94 BPM session was 43.6 ms late after four bars and 174.6 ms after sixteen in our test.</dd>
+<dt>How do I find the exact BPM of a sample?</dt>
+<dd>Trim it to whole bars and divide: bars × 4 × 60 × sample rate ÷ length in samples. Our four-bar test loop came out at exactly 93.600 BPM.</dd>
+<dt>Is a BPM detector accurate enough?</dt>
+<dd>For a ballpark. Our onset detector picked 93.8 for a 93.6 loop and also offered 187.5, double time. Confirm the number with the loop length.</dd>
+<dt>How many taps do I need for tap tempo?</dt>
+<dd>More than you think. With 15 ms of timing slop, 8 taps typically missed by 0.25 BPM and 32 taps by 0.03.</dd>
+</dl>
+<nav aria-label="Keep reading" class="related-essays keep-reading" style="margin:48px 0 24px;padding-top:24px;border-top:1px solid rgba(196,165,116,.32)"><h2>Keep reading</h2><ul><li><a href="sample-plays-at-wrong-pitch-sample-rate-mismatch.html">Sample playing at the wrong speed or pitch? It’s a sample-rate mismatch</a></li><li><a href="resampling-vs-pitch-shift-vs-tempo.html">Resampling, pitch shifting, and tempo change are three different jobs</a></li><li><a href="sampling-from-separated-stems-workflow.html">Sampling from separated stems: chop around the bleed, not through it</a></li><li><a href="sidechain-pumping-out-of-time-set-release-to-tempo.html">Sidechain pumping out of time? Set the release from the tempo</a></li><li><a href="clicks-at-edit-points-fade-every-cut.html">Clicks at your edit points come from cutting mid-wave. Fade every cut</a></li><li><a href="mix-sounds-muddy-find-the-low-mid-pileup.html">Mix sounds muddy? It’s the low-mid pile-up, not one bad track</a></li></ul><p class="hub-link">More in <a href="topics/432-hz-pitch-and-tempo.html">432 Hz, pitch &amp; tempo</a> · <a href="index.html">All essays</a></p></nav></article>
+<aside aria-label="About the publisher" class="author-box"><p class="author-k">Written and published by</p><p class="author-name"><a href="about.html">NoDAW Labs</a></p><p class="author-bio">NoDAW Labs makes local-first audio tools: CoProducer, reTUNE[432] and DeepSplit. Essays are credited to the studio, not to individual writers. <a href="methodology.html">How we test, cite and correct</a>.</p></aside>
+<!--lq:signup--><section class="signup" aria-labelledby="signup-h" data-signup="sample-drifts-off-the-grid-find-its-real-bpm"><p class="signup-k">A free one-pager</p><h2 id="signup-h">The checklist we run before every release.</h2><p class="signup-p">Loudness, true peak, mono, tails, export settings and the metadata basics, on one page. Leave your email and it opens straight away, or <a href="pre-release-master-checklist.html">read it here first</a>. No email needed for that.</p><form class="signup-form" method="post" action="https://coproducer-comments.netlify.app/api/subscribe"><label class="cmt-sr" for="su-email">Email address</label><input id="su-email" name="email" type="email" inputmode="email" autocomplete="email" required maxlength="254" placeholder="you@studio.com"/><div class="cmt-hp" aria-hidden="true"><label>Leave this empty<input name="website" tabindex="-1" autocomplete="off"/></label></div><input type="hidden" name="source" value="sample-drifts-off-the-grid-find-its-real-bpm"/><input type="hidden" name="consent" value="yes"/><input type="hidden" name="return" value="https://coproducer.nodawlabs.com/blog/checklist-thanks.html"/><button type="submit">Send me the checklist</button></form><p class="signup-consent">Send me the free pre-release checklist and the occasional Lacquer note. Unsubscribe any time. We never sell your address.</p></section><!--/lq:signup-->
+<section class="comments" data-comments="" data-thread="sample-bpm-drift"></section>
+<script src="js/studio.js" type="module"></script>
+<script src="js/comments.js" type="module"></script>
+<footer class="site"><span>Lacquer · CoProducer Journal</span><span><a href="index.html">All essays</a> · <a href="about.html">About</a> · <a href="methodology.html">Methodology</a></span></footer>
+</body>
+</html>

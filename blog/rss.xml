@@ -6,7 +6,23 @@
     <atom:link href="https://coproducer.nodawlabs.com/blog/rss.xml" rel="self" type="application/rss+xml"/>
     <description>Answer-first essays on loudness, true peak, repair, stems, ScrewAI, and local .bat workflows.</description>
     <language>en-us</language>
-    <lastBuildDate>Mon, 09 Nov 2026 16:00:00 GMT</lastBuildDate>
+    <lastBuildDate>Tue, 10 Nov 2026 16:00:00 GMT</lastBuildDate>
+    <item>
+      <title>Mix sounds muddy? It’s the low-mid pile-up, not one bad track</title>
+      <link>https://coproducer.nodawlabs.com/blog/mix-sounds-muddy-find-the-low-mid-pileup.html</link>
+      <guid isPermaLink="true">https://coproducer.nodawlabs.com/blog/mix-sounds-muddy-find-the-low-mid-pileup.html</guid>
+      <pubDate>Tue, 10 Nov 2026 16:00:00 GMT</pubDate>
+      <description>Why a mix sounds muddy when no single track does: the 200 to 500 Hz band piles up across keys, guitar, snare and vocal. Measured a master-bus cut against small cuts on the tracks that don't need the band, with the script.</description>
+      <enclosure url="https://coproducer.nodawlabs.com/blog/img/essays/mix-sounds-muddy-find-the-low-mid-pileup.jpg?v=shd" type="image/jpeg" length="203687"/>
+    </item>
+    <item>
+      <title>Sample drifting off the grid? Find its real BPM, decimals included</title>
+      <link>https://coproducer.nodawlabs.com/blog/sample-drifts-off-the-grid-find-its-real-bpm.html</link>
+      <guid isPermaLink="true">https://coproducer.nodawlabs.com/blog/sample-drifts-off-the-grid-find-its-real-bpm.html</guid>
+      <pubDate>Tue, 10 Nov 2026 16:00:00 GMT</pubDate>
+      <description>Why a looped sample lines up at first and then slides off your drums: its tempo isn't a whole number. How far a rounded BPM drifts, and how to get the exact tempo from the loop length, a detector or tap tempo, with the script.</description>
+      <enclosure url="https://coproducer.nodawlabs.com/blog/img/essays/sample-drifts-off-the-grid-find-its-real-bpm.jpg?v=shd" type="image/jpeg" length="215661"/>
+    </item>
     <item>
       <title>Auto-Tune sounding robotic? Slow the retune speed and keep the vibrato</title>
       <link>https://coproducer.nodawlabs.com/blog/autotune-sounds-robotic-slow-the-retune-speed.html</link>

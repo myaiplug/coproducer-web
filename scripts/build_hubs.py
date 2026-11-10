@@ -91,6 +91,7 @@ TOPICS = [
             "noise-gate-cuts-off-vocal-tails-set-the-hold",
             "autotune-sounds-robotic-slow-the-retune-speed",
             "vocal-sounds-thin-high-pass-too-high",
+            "mix-sounds-muddy-find-the-low-mid-pileup",
         ],
     },
     {
@@ -110,6 +111,7 @@ TOPICS = [
             "432-vs-440-blind-listening-test", "songs-that-reveal-a-432-hz-retune", "screw-tempo-still-needs-a-legal-peak",
             "halftime-still-needs-a-legal-peak", "when-to-slow-the-bounce",
             "sample-plays-at-wrong-pitch-sample-rate-mismatch",
+            "sample-drifts-off-the-grid-find-its-real-bpm",
         ],
     },
     {

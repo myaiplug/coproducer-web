@@ -1,6 +1,6 @@
 # CoProducer and Lacquer — full text for assistants
 Base: https://coproducer.nodawlabs.com/
-Updated: 2026-11-09
+Updated: 2026-11-10
 Essays: full plain-text bodies, in journal order
 Summary index: https://coproducer.nodawlabs.com/llms.txt
 
@@ -28,6 +28,222 @@ Summary index: https://coproducer.nodawlabs.com/llms.txt
 - Booth / journal comments on Lacquer pages are real reader notes posted through a public comment form (no seeded or sample comments). Notes with links are held for review before they appear.
 
 # Lacquer essays
+
+## Mix sounds muddy? It’s the low-mid pile-up, not one bad track
+URL: https://coproducer.nodawlabs.com/blog/mix-sounds-muddy-find-the-low-mid-pileup.html
+Section: Mixing · 10 November 2026 · 6 min
+Summary: Why a mix sounds muddy when no single track does: the 200 to 500 Hz band piles up across keys, guitar, snare and vocal. Measured a master-bus cut against small cuts on the tracks that don't need the band, with the script.
+
+A mix usually sounds muddy because several tracks each put a little energy between 200 and 500 Hz, and it adds up, not because one track is wrong. In our test the low mids on the bus came out 4.9 dB louder than on any single track. A cut on the master bus lowered the mud but took the vocal down with it. Small cuts on the keys and guitar, the parts that didn’t need that band, gave the vocal 2.5 dB more room without touching it.
+You solo the keys and they sound great. The guitar sample, great. The vocal, warm. Then you play everything together and the middle turns into soup. Nothing is clearly too loud, the words are a little harder to follow, and the whole thing sounds like it’s behind a blanket.
+So you reach for the master bus EQ, scoop some low mids, and it gets cleaner and smaller at the same time. That’s the clue. The mud isn’t in one place, so a fix in one place can’t really get it out.
+
+### Why nothing sounds muddy on its own
+The low mids are where most instruments keep their body. Chords played in the middle of a keyboard, a guitar’s lower strings, a snare’s shell, the bottom of a voice. Each part on its own needs some of that band to sound full. Stack five of them in the same key and they’re all sitting on the same few notes.
+We wrote mud_check.py to put numbers on that. It builds a small arrangement out of plain harmonic tones: an 808 on G1, a keys pad on a C chord, a guitar-style sample on a G chord, a snare body and a three-note vocal line. Then it measures how much of each track lands between 200 and 500 Hz, on its own and summed, and tries a few EQ moves, each a 300 Hz bell with a Q of 1.
+#!/usr/bin/env python3
+"""Where low-mid mud comes from: five synthetic tracks, the 200-500 Hz band, and two ways to cut it.
+Every track is a plain harmonic tone (no real audio). Needs numpy + scipy."""
+import numpy as np
+from scipy.signal import lfilter
+SR, DUR = 48000, 4.0
+t = np.arange(int(SR * DUR)) / SR
+hz = lambda m: 440 * 2 ** ((m - 69) / 12)            # MIDI note -> Hz
+
+def tone(notes, n_harm, tilt, gain_db):
+    """Sum of harmonic tones; harmonic k at 1/k**tilt. Normalised to the same RMS, then gain_db."""
+    x = sum(sum(np.sin(2 * np.pi * hz(m) * k * t) / k ** tilt for k in range(1, n_harm + 1)
+                if hz(m) * k < SR / 2) for m in notes)
+    return x / np.sqrt(np.mean(x ** 2)) * 10 ** (gain_db / 20)
+
+def bell(x, f0, gain_db, q=1.0):                     # RBJ peaking EQ
+    A, w = 10 ** (gain_db / 40), 2 * np.pi * f0 / SR
+    al = np.sin(w) / (2 * q)
+    b = [1 + al * A, -2 * np.cos(w), 1 - al * A]; a = [1 + al / A, -2 * np.cos(w), 1 - al / A]
+    return lfilter(np.array(b) / a[0], np.array(a) / a[0], x)
+
+def band_db(x, lo=200, hi=500):
+    X = np.abs(np.fft.rfft(x)) ** 2; f = np.fft.rfftfreq(len(x), 1 / SR)
+    return 10 * np.log10(X[(f >= lo) & (f < hi)].sum() / X.sum() * np.mean(x ** 2) + 1e-20)
+
+tracks = {                                           # (notes, harmonics, tilt, level dB)
+    "808":    tone([31], 12, 1.6, -6),                # G1 with some saturation harmonics
+    "keys":   tone([48, 52, 55, 60], 10, 1.2, -12),   # C3 E3 G3 C4 pad
+    "guitar": tone([50, 55, 59, 62], 8, 1.0, -14),    # D3 G3 B3 D4 sample
+    "snare":  tone([50], 20, 0.7, -16),               # body near 147 Hz plus overtones
+    "vocal":  tone([55, 57, 59], 14, 0.9, -10),       # G3 A3 B3 lead
+}
+print("Low-mid band = 200-500 Hz. Level of each track's energy in that band:")
+for n, x in tracks.items(): print(f"  {n:7s} {band_db(x):6.1f} dB")
+bus = sum(tracks.values()); loudest = max(band_db(x) for x in tracks.values())
+print(f"  bus     {band_db(bus):6.1f} dB  ({band_db(bus) - loudest:+.1f} dB over the loudest single track)")
+
+def rest(tr, skip="vocal"): return sum(x for n, x in tr.items() if n != skip)
+def report(name, tr):
+    b = sum(tr.values())
+    vr = band_db(tr["vocal"]) - band_db(rest(tr)) - V0
+    print(f"  {name:32s} bus {band_db(b) - band_db(bus):+5.1f} dB | vocal {band_db(tr['vocal']) - band_db(tracks['vocal']):+5.1f} dB | vocal vs rest {vr:+5.1f} dB")
+V0 = band_db(tracks["vocal"]) - band_db(rest(tracks))
+print(f"  vocal vs everything else in the band: {V0:+.1f} dB")
+print("\nMoves (bell at 300 Hz, Q 1). Changes in the 200-500 Hz band vs doing nothing:")
+report("-4 dB on the master bus", {n: bell(x, 300, -4) for n, x in tracks.items()})
+report("-4 dB on keys + guitar only", {n: (bell(x, 300, -4) if n in ("keys", "guitar") else x) for n, x in tracks.items()})
+report("-4 dB on keys + guitar + snare", {n: (bell(x, 300, -4) if n in ("keys", "guitar", "snare") else x) for n, x in tracks.items()})
+report("-8 dB on keys only", {n: (bell(x, 300, -8) if n == "keys" else x) for n, x in tracks.items()})
+$ python3 mud_check.py
+Low-mid band = 200-500 Hz. Level of each track's energy in that band:
+  808      -25.3 dB
+  keys     -16.1 dB
+  guitar   -16.9 dB
+  snare    -22.0 dB
+  vocal    -12.6 dB
+  bus       -7.7 dB  (+4.9 dB over the loudest single track)
+  vocal vs everything else in the band: -1.5 dB
+
+Moves (bell at 300 Hz, Q 1). Changes in the 200-500 Hz band vs doing nothing:
+  -4 dB on the master bus          bus  -3.2 dB | vocal  -2.9 dB | vocal vs rest  +0.6 dB
+  -4 dB on keys + guitar only      bus  -1.3 dB | vocal  +0.0 dB | vocal vs rest  +2.5 dB
+  -4 dB on keys + guitar + snare   bus  -1.6 dB | vocal  +0.0 dB | vocal vs rest  +3.3 dB
+  -8 dB on keys only               bus  -0.7 dB | vocal  +0.0 dB | vocal vs rest  +1.5 dB
+
+### Reading the numbers
+The bus is louder in the low mids than any track. The vocal has the most energy in the band of any single part, −12.6 dB. The bus has −7.7 dB, 4.9 dB more. That’s the pile-up. And even before any EQ, the vocal is 1.5 dB under everything else in that band. It isn’t buried because it’s quiet. It’s buried because four other parts are standing in the same spot.
+The master bus cut lowers the mud and the vocal together. Four dB off at 300 Hz on the bus took the band down 3.2 dB, the biggest drop on the list. It also took the vocal down 2.9 dB, so the vocal only gained 0.6 dB against the rest. Cleaner, smaller, and the words are still fighting.
+Cutting the parts that don’t need the band clears room. The same 4 dB cut on just the keys and guitar only lowered the bus by 1.3 dB, but the vocal didn’t move at all and gained 2.5 dB against the rest. Add the snare and it’s 3.3 dB. Less mud removed, more clarity. That’s the trade you want.
+Several small cuts beat one big one. An 8 dB cut on the keys alone gave the vocal 1.5 dB. Two 4 dB cuts on keys and guitar gave it 2.5. A big scoop on one part also tends to make that part sound hollow when you solo it, so spreading it out is kinder to everything.
+These are synthetic tones in one key, not a real session, and real instruments move around more than this. Read it for the shape: mud is a sum, and you clear it by deciding who gets the band, not by turning the band down for everybody.
+
+### How to clear it in your session
+1. Decide who owns the low mids in each section. Usually the vocal in a verse, maybe the keys in an intro. One or two parts, not five.
+2. Cut the others a few dB, not a lot. A wide bell somewhere in the low mids on each part that isn’t the owner. Sweep it with the full mix playing and stop where the vocal steps forward, not where the soloed track sounds best.
+3. Check the parts you forgot. Pads, doubled chords, a sample with its own bass in it, and room mics are common culprits. A high-pass on parts with no business down there helps the band above it too.
+4. Change notes before you change EQ. If the keys and guitar play the same chord in the same octave, moving one of them up an octave clears more mud than any filter.
+5. Leave the master bus for the end. Once the parts are sorted, a small bus move is polish. Before that, it just turns everything down at once.
+
+### Check it the honest way
+Clearing mud makes a mix a little quieter, and quieter sounds worse for a second. So bounce the before and after, match their loudness, and flip between them in CoProducer’s A/B. If the words come forward and the low end still feels full, keep it. If it just sounds thinner, you cut the owner too, or cut too much.
+Note: If the mud only shows up in the chorus, look at what gets added there. Extra layers stacked for a bigger chorus are the usual cause, and they’re the first parts to cut in the low mids.
+Q: Why does my mix sound muddy?
+A: Usually because several tracks each put energy in the low mids, roughly 200 to 500 Hz, and it adds up. In our test the bus was 4.9 dB louder in that band than any single track.
+Q: Should I cut low mids on the master bus?
+A: Not as the main fix. A 4 dB cut at 300 Hz on the bus lowered the band 3.2 dB but also took the vocal down 2.9 dB, so it only gained 0.6 dB of room.
+Q: What frequency causes mud in a mix?
+A: It’s a band, not one frequency: the low mids, roughly 200 to 500 Hz, where most instruments keep their body. Find where it piles up in your song by sweeping with the full mix playing.
+Q: How do I make the vocal clearer in a muddy mix?
+A: Cut the low mids a few dB on the parts that don’t need them. Cutting just the keys and guitar gave our test vocal 2.5 dB more room without touching the vocal.
+
+---
+
+## Sample drifting off the grid? Find its real BPM, decimals included
+URL: https://coproducer.nodawlabs.com/blog/sample-drifts-off-the-grid-find-its-real-bpm.html
+Section: Sampling · 10 November 2026 · 6 min
+Summary: Why a looped sample lines up at first and then slides off your drums: its tempo isn't a whole number. How far a rounded BPM drifts, and how to get the exact tempo from the loop length, a detector or tap tempo, with the script.
+
+A sample that starts on the grid and slowly slides off it almost always has a tempo with a decimal in it, and your session is set to the nearest whole number. In our test a loop at 93.6 BPM in a 94 BPM session was 43.6 ms late after four bars and 174.6 ms late after sixteen, more than a 16th note. Trim the loop to whole bars and work out the tempo from its length: that gave back 93.600 exactly.
+You chop a loop, drop it in, and the first bar sounds perfect. By the second time around the kick is flamming against your drums. By the hook it’s plainly behind. You nudge it, it’s fine for a bit, then it drifts again.
+That isn’t a timing problem in the sample. Records were played by people, or programmed at whatever tempo the producer liked, and plenty of them land between whole numbers. Your session can’t be 93.6 if you typed 94.
+
+### How fast a rounded tempo drifts
+The error is tiny per beat and it never resets, so it adds up across the song. We wrote bpm_check.py to show how much. It works out where a 93.6 BPM loop’s beats land against a grid set to 94, 93 and 93.5, then builds a four-bar synthetic drum loop at 93.6 and tries three ways to find its tempo: the loop’s length, an onset detector, and tap tempo.
+#!/usr/bin/env python3
+"""A sample that drifts off the grid: how far a rounded BPM drifts, and three ways to find the real tempo.
+The loop is synthetic: a 4-bar drum pattern at 93.6 BPM, 44.1 kHz. Needs numpy."""
+import numpy as np
+SR, TRUE_BPM, BARS = 44100, 93.6, 4
+
+def bpm_from_length(n_samples, sr, bars, beats_per_bar=4):
+    """Exact tempo of a loop you trimmed to whole bars."""
+    return bars * beats_per_bar * 60 * sr / n_samples
+
+# --- 1. Drift: put the loop in a session set to a rounded tempo
+print(f"Loop really at {TRUE_BPM} BPM. Where its beats land vs a grid at the rounded tempo:")
+for grid in (94, 93, 93.5):
+    row = []
+    for bars in (1, 4, 16, 32):
+        beats = bars * 4
+        drift = beats * 60 / TRUE_BPM - beats * 60 / grid          # seconds; + = loop late
+        row.append(f"{bars:2d} bars {drift * 1000:+6.1f} ms")
+    print(f"  grid {grid:>5} BPM: " + " | ".join(row))
+print(f"  (a 16th note at {TRUE_BPM} BPM is {60 / TRUE_BPM / 4 * 1000:.0f} ms)")
+
+# --- 2. Build the loop: kick on 1 and 3, snare on 2 and 4, closed hat on 8ths
+beat = 60 / TRUE_BPM
+n = int(round(BARS * 4 * beat * SR))
+x = np.zeros(n); rng = np.random.default_rng(7)
+def hit(at, kind):
+    i = int(round(at * SR)); L = min(int(0.25 * SR), n - i); tt = np.arange(L) / SR
+    if kind == "kick":  s = np.sin(2 * np.pi * 55 * tt) * np.exp(-tt * 12)
+    elif kind == "snare": s = rng.normal(0, 0.5, L) * np.exp(-tt * 25)
+    else: s = rng.normal(0, 0.15, L) * np.exp(-tt * 80)
+    x[i:i + L] += s
+for b in range(BARS * 4):
+    hit(b * beat, "kick" if b % 2 == 0 else "snare")
+    hit(b * beat, "hat"); hit((b + 0.5) * beat, "hat")
+print(f"\nSynthetic loop: {BARS} bars, {n} samples = {n / SR:.4f} s")
+
+# Method A: length of the trimmed loop
+print(f"  A) from the length ({BARS} bars): {bpm_from_length(n, SR, BARS):.3f} BPM")
+# Same loop trimmed 10 ms long at the end (a sloppy edit)
+print(f"     same loop trimmed 10 ms long: {bpm_from_length(n + int(0.010 * SR), SR, BARS):.3f} BPM")
+
+# Method B: onset autocorrelation (what a tempo detector roughly does), 10 ms frames
+hop = int(0.010 * SR)
+env = np.array([np.sum(x[i:i + hop] ** 2) for i in range(0, n - hop, hop)])
+flux = np.maximum(np.diff(env), 0)
+ac = np.correlate(flux, flux, "full")[len(flux) - 1:]
+lags = np.arange(len(ac)); bpms = 60 / (lags[1:] * hop / SR)
+ok = (bpms >= 60) & (bpms <= 200)
+cand = sorted(zip(ac[1:][ok], bpms[ok]), reverse=True)[:3]
+print("  B) onset autocorrelation, 10 ms frames, top picks 60-200 BPM: " + ", ".join(f"{b:.1f}" for _, b in cand))
+
+# Method C: tap tempo with human timing error (15 ms standard deviation), tempo = slope of a line through the taps
+for k in (8, 32, 64):
+    errs = []
+    for trial in range(200):
+        taps = np.arange(k) * beat + rng.normal(0, 0.015, k)
+        errs.append(abs(60 / np.polyfit(np.arange(k), taps, 1)[0] - TRUE_BPM))
+    print(f"  C) {k:2d} taps, 15 ms timing error: typical miss {np.median(errs):.2f} BPM, worst of 200 tries {max(errs):.2f} BPM")
+$ python3 bpm_check.py
+Loop really at 93.6 BPM. Where its beats land vs a grid at the rounded tempo:
+  grid    94 BPM:  1 bars  +10.9 ms |  4 bars  +43.6 ms | 16 bars +174.6 ms | 32 bars +349.2 ms
+  grid    93 BPM:  1 bars  -16.5 ms |  4 bars  -66.2 ms | 16 bars -264.7 ms | 32 bars -529.4 ms
+  grid  93.5 BPM:  1 bars   -2.7 ms |  4 bars  -11.0 ms | 16 bars  -43.9 ms | 32 bars  -87.8 ms
+  (a 16th note at 93.6 BPM is 160 ms)
+
+Synthetic loop: 4 bars, 452308 samples = 10.2564 s
+  A) from the length (4 bars): 93.600 BPM
+     same loop trimmed 10 ms long: 93.509 BPM
+  B) onset autocorrelation, 10 ms frames, top picks 60-200 BPM: 93.8, 92.3, 187.5
+  C)  8 taps, 15 ms timing error: typical miss 0.25 BPM, worst of 200 tries 0.98 BPM
+  C) 32 taps, 15 ms timing error: typical miss 0.03 BPM, worst of 200 tries 0.11 BPM
+  C) 64 taps, 15 ms timing error: typical miss 0.01 BPM, worst of 200 tries 0.03 BPM
+
+### Reading the numbers
+Rounding up to 94 costs about 11 ms a bar. 10.9 ms after one bar, 43.6 after four, 174.6 after sixteen. A 16th note at this tempo is 160 ms, so by bar sixteen the sample is more than a whole 16th behind. Rounding down to 93 is worse, 16.5 ms a bar the other way. Even 93.5 is 43.9 ms off after sixteen bars, which you can hear as a flam on the kick.
+The loop’s length is the most exact clock you have. Our four bars came out at 452,308 samples, and bars × 4 × 60 × sample rate ÷ samples gives 93.600 BPM, spot on. The catch is the trim. Leave the end 10 ms long and the same math says 93.509. Cut at the start of the downbeat and the start of the next downbeat after it, on whole bars, and zoom in to do it.
+Tempo detectors get you close, not exact. The onset detector’s top pick was 93.8, limited by its 10 ms frames, with 92.3 next and 187.5, double time, third. Every detector has some version of this: good for a ballpark, often unsure between half and double time. Use it to know you’re near 93.6, then confirm with the length.
+Tap tempo works if you tap for a while. With 15 ms of human slop per tap, eight taps typically missed by 0.25 BPM and once by 0.98. Thirty-two taps typically missed by 0.03, and 64 by 0.01. Tap a couple of bars and you’re guessing. Tap through a whole section and you’re close.
+
+### How to lock a sample in your session
+1. Trim the loop to whole bars. Start on a downbeat, end right before the next downbeat after one, two or four bars. Snap off, zoom in, and cut on the hit, not on the waveform before it.
+2. Do the math. Tempo = bars × 4 × 60 × sample rate ÷ length in samples, for 4/4. Your DAW shows the length in samples, or the script’s bpm_from_length will do it.
+3. Set the session to that tempo, decimals included. Most DAWs take decimals in the tempo field. Then your drums, delays and sidechain follow the sample instead of fighting it.
+4. Or stretch the sample to your tempo on purpose. If the song has to be 94, warp the sample to 94 and check it didn’t change pitch. If it did, that’s a resample, not a stretch.
+5. If it still drifts, the sample itself moves. Live records speed up and slow down. Then you’re warping to the beats, or chopping it into pieces that each start on the grid, not hunting for one number.
+
+### When the drums are buried
+Finding the downbeat is the hard part when the drums sit under strings and vocals. Pull the drums out with StemSplit first, trim on the kick in the drum stem, and use that length for the math. Then go back to the full sample with the tempo in hand.
+Note: If the sample came off a slowed or sped-up copy, the tempo you measure is that copy’s tempo, not the record’s. That’s fine for your session. Just don’t expect it to match the tempo listed online.
+Q: Why does my sample drift off beat?
+A: Because its real tempo has a decimal and your session is rounded. A 93.6 BPM loop in a 94 BPM session was 43.6 ms late after four bars and 174.6 ms after sixteen in our test.
+Q: How do I find the exact BPM of a sample?
+A: Trim it to whole bars and divide: bars × 4 × 60 × sample rate ÷ length in samples. Our four-bar test loop came out at exactly 93.600 BPM.
+Q: Is a BPM detector accurate enough?
+A: For a ballpark. Our onset detector picked 93.8 for a 93.6 loop and also offered 187.5, double time. Confirm the number with the loop length.
+Q: How many taps do I need for tap tempo?
+A: More than you think. With 15 ms of timing slop, 8 taps typically missed by 0.25 BPM and 32 taps by 0.03.
+
+---
 
 ## Auto-Tune sounding robotic? Slow the retune speed and keep the vibrato
 URL: https://coproducer.nodawlabs.com/blog/autotune-sounds-robotic-slow-the-retune-speed.html

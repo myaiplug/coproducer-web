@@ -33,7 +33,7 @@
   </url>
   <url>
     <loc>https://coproducer.nodawlabs.com/blog/index.html</loc>
-    <lastmod>2026-11-09</lastmod>
+    <lastmod>2026-11-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
     <image:image>
@@ -132,6 +132,26 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://coproducer.nodawlabs.com/blog/mix-sounds-muddy-find-the-low-mid-pileup.html</loc>
+    <lastmod>2026-11-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://coproducer.nodawlabs.com/blog/img/essays/mix-sounds-muddy-find-the-low-mid-pileup.jpg?v=shd</image:loc>
+      <image:title>Mix sounds muddy? It’s the low-mid pile-up, not one bad track</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://coproducer.nodawlabs.com/blog/sample-drifts-off-the-grid-find-its-real-bpm.html</loc>
+    <lastmod>2026-11-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://coproducer.nodawlabs.com/blog/img/essays/sample-drifts-off-the-grid-find-its-real-bpm.jpg?v=shd</image:loc>
+      <image:title>Sample drifting off the grid? Find its real BPM, decimals included</image:title>
+    </image:image>
+  </url>
+  <url>
     <loc>https://coproducer.nodawlabs.com/blog/autotune-sounds-robotic-slow-the-retune-speed.html</loc>
     <lastmod>2026-11-09</lastmod>
     <changefreq>monthly</changefreq>
@@ -143,7 +163,7 @@
   </url>
   <url>
     <loc>https://coproducer.nodawlabs.com/blog/vocal-sounds-thin-high-pass-too-high.html</loc>
-    <lastmod>2026-11-09</lastmod>
+    <lastmod>2026-11-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <image:image>
@@ -203,7 +223,7 @@
   </url>
   <url>
     <loc>https://coproducer.nodawlabs.com/blog/mix-leans-to-one-side-check-the-balance-band-by-band.html</loc>
-    <lastmod>2026-11-04</lastmod>
+    <lastmod>2026-11-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <image:image>
@@ -223,7 +243,7 @@
   </url>
   <url>
     <loc>https://coproducer.nodawlabs.com/blog/vocal-buried-in-the-beat-cut-the-beat-at-3-khz.html</loc>
-    <lastmod>2026-11-09</lastmod>
+    <lastmod>2026-11-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <image:image>
@@ -233,7 +253,7 @@
   </url>
   <url>
     <loc>https://coproducer.nodawlabs.com/blog/sidechain-pumping-out-of-time-set-release-to-tempo.html</loc>
-    <lastmod>2026-11-04</lastmod>
+    <lastmod>2026-11-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <image:image>
@@ -283,7 +303,7 @@
   </url>
   <url>
     <loc>https://coproducer.nodawlabs.com/blog/sample-plays-at-wrong-pitch-sample-rate-mismatch.html</loc>
-    <lastmod>2026-10-30</lastmod>
+    <lastmod>2026-11-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <image:image>
@@ -353,7 +373,7 @@
   </url>
       <url>
     <loc>https://coproducer.nodawlabs.com/blog/delay-time-from-bpm-sync-your-throws.html</loc>
-    <lastmod>2026-11-04</lastmod>
+    <lastmod>2026-11-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <image:image>
@@ -393,7 +413,7 @@
   </url>
   <url>
     <loc>https://coproducer.nodawlabs.com/blog/reverb-makes-the-mix-muddy-filter-the-return.html</loc>
-    <lastmod>2026-11-09</lastmod>
+    <lastmod>2026-11-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <image:image>
@@ -503,7 +523,7 @@
   </url>
   <url>
     <loc>https://coproducer.nodawlabs.com/blog/resampling-vs-pitch-shift-vs-tempo.html</loc>
-    <lastmod>2026-10-08</lastmod>
+    <lastmod>2026-11-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <image:image>
@@ -643,7 +663,7 @@
   </url>
   <url>
     <loc>https://coproducer.nodawlabs.com/blog/sampling-from-separated-stems-workflow.html</loc>
-    <lastmod>2026-10-08</lastmod>
+    <lastmod>2026-11-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <image:image>
@@ -723,7 +743,7 @@
   </url>
   <url>
     <loc>https://coproducer.nodawlabs.com/blog/kick-and-808-same-chair.html</loc>
-    <lastmod>2026-10-05</lastmod>
+    <lastmod>2026-11-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.75</priority>
     <image:image>
@@ -977,13 +997,13 @@
   </url>
   <url>
     <loc>https://coproducer.nodawlabs.com/blog/topics/low-end-and-mix-dynamics.html</loc>
-    <lastmod>2026-11-09</lastmod>
+    <lastmod>2026-11-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://coproducer.nodawlabs.com/blog/topics/432-hz-pitch-and-tempo.html</loc>
-    <lastmod>2026-11-04</lastmod>
+    <lastmod>2026-11-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
