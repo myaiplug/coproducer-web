@@ -8,7 +8,7 @@ import re
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-BASE = "https://coproducer.nodawlabs.com"
+BASE = "https://myaiplug.github.io/coproducer-web"
 SKIP_DIRS = {".git", "node_modules", "demo", "docs", "tools"}
 NO_ICONS = {"halfscrew/index.html"}  # separate HalfScrew app brand
 

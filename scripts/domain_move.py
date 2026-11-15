@@ -1,15 +1,15 @@
 #!/usr/bin/env python3
 """Rewrite the site from https://myaiplug.github.io/coproducer-web to a custom domain.
 
-Prepared for https://coproducer.nodawlabs.com (see funnel/DOMAIN_MOVE.md). Nothing
-here runs automatically and nothing here touches DNS or GitHub Pages settings.
+Nothing here runs automatically and nothing here touches DNS or GitHub Pages settings.
+The live site is the GitHub Pages project URL. A prior custom-domain rewrite was
+reverted because DNS for that hostname was never added.
 
-  python3 scripts/domain_move.py --dry-run     # list what would change
-  python3 scripts/domain_move.py               # apply, rebuild, run check_publish
+  python3 scripts/domain_move.py --dry-run --new-base https://example.org
   python3 scripts/domain_move.py --new-base https://example.org
 
 Why this is more than a find-and-replace: a project page that gets a custom domain
-is served from the domain ROOT (https://coproducer.nodawlabs.com/blog/...), not from
+is served from the domain ROOT (https://example.org/blog/...), not from
 /coproducer-web/. So the path segment goes away along with the host.
 
 Only the CoProducer site is rewritten. Links to other repos on the same
@@ -56,7 +56,7 @@ def rewrite(text: str, new_base: str, new_host: str, rel: str) -> str:
 
 def main() -> int:
     ap = argparse.ArgumentParser()
-    ap.add_argument("--new-base", default="https://coproducer.nodawlabs.com")
+    ap.add_argument("--new-base", required=True, help="Custom-domain origin, e.g. https://example.org")
     ap.add_argument("--dry-run", action="store_true")
     ap.add_argument("--no-rebuild", action="store_true")
     a = ap.parse_args()

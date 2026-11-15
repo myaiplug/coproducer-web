@@ -18,7 +18,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 BLOG = ROOT / "blog"
-BASE = "https://coproducer.nodawlabs.com"
+BASE = "https://myaiplug.github.io/coproducer-web"
 PAGE = "pre-release-master-checklist.html"
 PDF = "downloads/Lacquer-Pre-release-Master-Checklist.pdf"
 UPDATED = "2026-11-04"
