@@ -22,7 +22,9 @@ on first use (pinned, SHA-256 verified, Range-resumable) and are kept in the bro
 
 ## Stem Studio (per-stem effects, loudness, artifact repair, deeper drum split)
 
-`stem-studio.html` + `js/stem-studio/`: split a track in the browser, then give every stem its own effect chain (156 presets over 15 stem types, extracted from the Liminal desktop app), BS.1770-4 LUFS / true-peak metering, artifact detection and one-click repair, a deeper drum split (kick / snare / toms / hats / crash-ride / 808) and 24-bit/float WAV, MP3 or ZIP export tagged "Made with NoDAW CoProducer". Everything runs on-device. Docs: `docs/stem-studio-presets.md`, `docs/stem-studio-drums.md`. Unit tests: `node --test js/stem-studio/test/*.test.mjs`. Browser tests live in the Liminal repo (`scripts/e2e-stem-studio`).
+`stem-studio.html` + `js/stem-studio/`: split a track in the browser, then give every stem its own effect chain (156 presets over 15 stem types, extracted from the Liminal desktop app), BS.1770-4 LUFS / true-peak metering, artifact detection and one-click repair, a deeper drum split (kick / snare / toms / hats / crash-ride / 808) and 24-bit/float WAV, MP3 or ZIP export tagged "Made with NoDAW CoProducer". Everything runs on-device. Docs: `docs/stem-studio-presets.md`, `docs/stem-studio-drums.md`. Unit tests: `node --test js/stem-studio/test/*.test.mjs`. Browser tests live in the Liminal repo (`scripts/e2e-stem-studio`). The Drums tab can also use the 6-stem HT-RoFormer model (disabled until it is hosted with the author's permission), and the **Vocals** tab splits a vocal stem into lead and backing vocals (Mel-Band RoFormer Karaoke).
+
+`voice-tags.html` + `js/voice-tags/`: type a producer tag and hear it spoken, then download a trimmed, peak-normalised WAV. Engines: ZONOS3 Mini in the browser (WebGPU, about 1 GB on first use), ZONOS3 on a local `zonos3-server` (for example the CUDA build at `http://127.0.0.1:1919`), and tiny-voca on the CPU (about 27 MB). Unit tests: `node --test js/voice-tags/test/*.test.mjs`.
 
 ## Try in-browser stem splitting (live preview)
 
