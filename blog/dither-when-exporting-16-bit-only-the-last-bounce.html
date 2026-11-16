@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1" name="viewport"/><meta content="https://myaiplug.github.io/coproducer-web/blog/img/essays/dither-when-exporting-16-bit-only-the-last-bounce.jpg?v=shd" name="twitter:image"/><meta content="Do you need dither when exporting? Yes for the final 16-bit file, once. We measured truncation vs TPDF dither on a quiet tone and a fade, plus 24-bit and double dither, with the script." name="twitter:description"/><meta content="Exporting to 16-bit? Dither the last bounce, and only that one" name="twitter:title"/><meta content="summary_large_image" name="twitter:card"/><meta content="2026-11-16T00:00:00Z" property="article:modified_time"/><meta content="2026-11-16T00:00:00Z" property="article:published_time"/><meta content="1440" property="og:image:height"/><meta content="2560" property="og:image:width"/><meta content="https://myaiplug.github.io/coproducer-web/blog/dither-when-exporting-16-bit-only-the-last-bounce.html" property="og:url"/><meta content="en_US" property="og:locale"/><meta content="CoProducer" property="og:site_name"/><meta content="article" property="og:type"/><link href="https://myaiplug.github.io/coproducer-web/llms.txt" rel="alternate" title="llms.txt" type="text/plain"/><meta content="NoDAW Labs" name="author"/><meta content="#050308" name="theme-color"/><meta content="index,follow,max-image-preview:large" name="robots"/><meta content="do I need dither, dither when exporting 16 bit, what does dither do, dither 24 bit, dither twice, tpdf dither, truncation distortion, dither fade out, NoDAW CoProducer, NoDAW" name="keywords"/>
+<title>Exporting to 16-bit? Dither the last bounce, and only that one | Lacquer</title>
+<meta content="Do you need dither when exporting? Yes for the final 16-bit file, once. We measured truncation vs TPDF dither on a quiet tone and a fade, plus 24-bit and double dither, with the script." name="description"/>
+<link href="https://myaiplug.github.io/coproducer-web/blog/dither-when-exporting-16-bit-only-the-last-bounce.html" rel="canonical"/>
+<link rel="alternate" type="application/rss+xml" title="Lacquer — CoProducer Journal" href="https://myaiplug.github.io/coproducer-web/blog/rss.xml"/>
+<link rel="icon" href="../favicon.ico" sizes="48x48"/>
+<link rel="icon" type="image/svg+xml" href="../assets/favicon.svg"/>
+<link rel="apple-touch-icon" href="../assets/apple-touch-icon.png"/>
+<link rel="manifest" href="../site.webmanifest"/>
+<meta content="Exporting to 16-bit? Dither the last bounce, and only that one" property="og:title"/>
+<meta content="Do you need dither when exporting? Yes for the final 16-bit file, once. We measured truncation vs TPDF dither on a quiet tone and a fade, plus 24-bit and double dither, with the script." property="og:description"/>
+<meta content="https://myaiplug.github.io/coproducer-web/blog/img/essays/dither-when-exporting-16-bit-only-the-last-bounce.jpg?v=shd" property="og:image"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;1,500;1,600&amp;family=Figtree:wght@400;500&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet" media="print" onload="this.media='all'"/><noscript><link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;1,500;1,600&amp;family=Figtree:wght@400;500&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/></noscript>
+<link rel="preload" as="image" type="image/webp" fetchpriority="high" imagesrcset="img/essays/w/dither-when-exporting-16-bit-only-the-last-bounce-480.webp 480w, img/essays/w/dither-when-exporting-16-bit-only-the-last-bounce-960.webp 960w, img/essays/w/dither-when-exporting-16-bit-only-the-last-bounce-1600.webp 1600w" imagesizes="(max-width: 1100px) 100vw, 1100px"/>
+<link href="css/journal.css" rel="stylesheet"/>
+
+
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Exporting to 16-bit? Dither the last bounce, and only that one","description":"Do you need dither when exporting? Yes for the final 16-bit file, once. We measured truncation vs TPDF dither on a quiet tone and a fade, plus 24-bit and double dither, with the script.","datePublished":"2026-11-16","dateModified":"2026-11-16","mainEntityOfPage":{"@type":"WebPage","@id":"https://myaiplug.github.io/coproducer-web/blog/dither-when-exporting-16-bit-only-the-last-bounce.html"},"image":{"@type":"ImageObject","url":"https://myaiplug.github.io/coproducer-web/blog/img/essays/dither-when-exporting-16-bit-only-the-last-bounce.jpg?v=shd","width":2560,"height":1440},"author":{"@type":"Organization","name":"NoDAW Labs","url":"https://myaiplug.github.io/coproducer-web/","logo":"https://myaiplug.github.io/coproducer-web/assets/og-default.jpg"},"publisher":{"@type":"Organization","name":"NoDAW Labs","url":"https://myaiplug.github.io/coproducer-web/","logo":"https://myaiplug.github.io/coproducer-web/assets/og-default.jpg"},"isPartOf":{"@type":"Blog","name":"Lacquer — CoProducer Journal","url":"https://myaiplug.github.io/coproducer-web/blog/index.html"},"keywords":["do I need dither","dither when exporting 16 bit","what does dither do","dither 24 bit","dither twice","tpdf dither","truncation distortion","dither fade out","NoDAW CoProducer","NoDAW"],"speakable":{"@type":"SpeakableSpecification","cssSelector":[".answer","h1"]}}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Do I need dither when exporting to 16-bit?","acceptedAnswer":{"@type":"Answer","text":"Yes, once, on the final export. Without it a quiet tone in our test picked up a harmonic 30.8 dB under it. With TPDF dither that dropped to 56.2 dB under."}},{"@type":"Question","name":"Should I dither when exporting to 24-bit?","acceptedAnswer":{"@type":"Answer","text":"You can, but you won’t hear it. Our 24-bit rounding error sat at −149.3 dBFS with no dither at all."}},{"@type":"Question","name":"What happens if you dither twice?","acceptedAnswer":{"@type":"Answer","text":"The hiss adds up. A second 16-bit dither pass raised the noise floor 3.0 dB in our test, from −96.3 to −93.3 dBFS."}},{"@type":"Question","name":"Should I dither a 32-bit float file?","acceptedAnswer":{"@type":"Answer","text":"No. Float isn’t a fixed grid of steps, so there’s no rounding for dither to smooth out."}},{"@type":"Question","name":"Which type of dither should I use?","acceptedAnswer":{"@type":"Answer","text":"Plain TPDF is a safe default for a final 16-bit file. Noise-shaped dither moves the hiss up where it’s harder to hear; use it only on files that won’t be processed again."}}]}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"CoProducer","item":"https://myaiplug.github.io/coproducer-web/"},{"@type":"ListItem","position":2,"name":"Lacquer Journal","item":"https://myaiplug.github.io/coproducer-web/blog/index.html"},{"@type":"ListItem","position":3,"name":"Exporting to 16-bit? Dither the last bounce, and only that one","item":"https://myaiplug.github.io/coproducer-web/blog/dither-when-exporting-16-bit-only-the-last-bounce.html"}]}</script></head>
+<body>
+<header class="top">
+<a class="mark" href="../index.html"><em>Co</em>Producer</a>
+<nav aria-label="Primary" class="nav">
+<a href="index.html">Journal</a>
+<a href="../index.html#ab">A/B</a>
+<a href="../index.html#analyzeHome">Analyze</a>
+<a href="../guides/index.html">Guides</a>
+<a href="../pricing.html">Pricing</a>
+</nav>
+<a class="cta" href="../index.html#analyzeHome">Measure a mix</a>
+</header>
+<article class="post" id="main">
+<div class="post-hero"><img alt="A sheet of frosted glass standing on gold-veined black marble, warm amber light fading across it, a thin cyan glow along its bottom edge, studio lights out of focus behind." src="img/essays/dither-when-exporting-16-bit-only-the-last-bounce.jpg?v=shd" srcset="img/essays/w/dither-when-exporting-16-bit-only-the-last-bounce-480.webp 480w, img/essays/w/dither-when-exporting-16-bit-only-the-last-bounce-960.webp 960w, img/essays/w/dither-when-exporting-16-bit-only-the-last-bounce-1600.webp 1600w" sizes="(max-width: 1100px) 100vw, 1100px" width="2560" height="1440" fetchpriority="high" decoding="async"/></div>
+<header>
+<p class="kicker">Mastering · 16 November 2026 · 6 min</p>
+<h1>Exporting to 16-bit? Dither the last bounce, and only that one</h1>
+<p class="meta">NoDAW Labs · Lacquer Vol. 06</p>
+</header>
+<p class="answer">Dither when you turn a mix into a 16-bit file, once, as the very last step, and skip it for 24-bit and 32-bit float bounces. In our test a quiet tone cut to 16 bits without dither picked up a harmonic only 30.8 dB under it, the grainy buzz you hear at the end of fades. With dither that harmonic dropped to 56.2 dB under the tone, traded for a steady hiss at −96.3 dBFS. Dithering a second time raised that hiss 3.0 dB.</p>
+<p>You finish the master, go to export a 16-bit WAV for the distributor or the CD plant, and the export window has a checkbox: dither. Sometimes a dropdown with three kinds of noise shaping under it. Most people either always tick it or never do, and both habits are half right.</p>
+<h2>What dither actually fixes</h2>
+<p>A 16-bit file can only store 65,536 levels. Your session works in floating point with far more than that. When the export rounds every sample to the nearest level, the rounding error on quiet material isn’t random. It follows the waveform, so it turns into distortion locked to the music: extra harmonics, a fizzy grain on a reverb tail, a fade that gets crunchy right before it disappears.</p>
+<p>Dither adds a tiny bit of noise before the rounding, about one step either way, so the error stops following the music and becomes plain, steady hiss. We wrote <code>dither_check.py</code> to put numbers on it. It makes a 997 Hz tone, rounds it to 16 bits with and without TPDF dither (the flat kind almost every DAW offers) and to 24 bits, then reads the tone and its loudest harmonic off a spectrum.</p>
+<pre><code># Truncation vs TPDF dither when a float mix becomes a 16-bit file. Synthetic tones, fixed seed.
+import numpy as np
+fs = 44100; rng = np.random.default_rng(16)
+t = np.arange(fs * 4) / fs
+db = lambda x: 20 * np.log10(max(x, 1e-12))
+rms = lambda x: np.sqrt(np.mean(x ** 2))
+
+def to_int(x, bits, dither):
+    q = 2.0 ** (bits - 1)
+    d = (rng.random(x.size) - rng.random(x.size)) if dither else 0.0   # TPDF, +/-1 LSB
+    return np.round(x * q + d) / q
+
+def harmonics(y, f0):
+    w = np.hanning(y.size); Y = np.abs(np.fft.rfft(y * w)) * 2 / w.sum()
+    f = np.fft.rfftfreq(y.size, 1 / fs)
+    lvl = lambda fr: db(Y[np.argmin(abs(f - fr))])
+    return lvl(f0), max(lvl(k * f0) for k in range(2, 10))
+
+f0 = 997.0
+print("1) A quiet 997 Hz tone at -80 dBFS, like the end of a fade or a reverb tail")
+x = 10 ** (-80 / 20) * np.sin(2 * np.pi * f0 * t)
+for name, bits, dith in [("16-bit, no dither", 16, False), ("16-bit, TPDF dither", 16, True), ("24-bit, no dither", 24, False)]:
+    y = to_int(x, bits, dith); err = y - x
+    fund, harm = harmonics(y, f0)
+    print(f"   {name:20s} error {db(rms(err)):7.1f} dBFS RMS | tone {fund:6.1f} dBFS | loudest harmonic {harm:6.1f} dBFS ({harm - fund:+.1f} dB vs tone)")
+
+print("2) A 4 s fade from -50 to -110 dBFS, 16-bit: what's left of the tone in each second")
+env = 10 ** (np.linspace(-50, -110, t.size) / 20)
+x = env * np.sin(2 * np.pi * f0 * t)
+for name, dith in [("no dither", False), ("TPDF dither", True)]:
+    y = to_int(x, 16, dith); row = []
+    for s in range(4):
+        seg = y[s * fs:(s + 1) * fs]; fund, harm = harmonics(seg, f0)
+        row.append(f"{fund:6.1f}/{harm - fund:+5.1f}" if np.any(seg) else "  silent   ")
+    print(f"   {name:12s} tone dBFS / worst harmonic vs tone, seconds 1-4: " + " | ".join(row))
+print(f"   (the clean tone itself averages {', '.join(f'{-50 - 15*s - 7.5:.1f}' for s in range(4))} dBFS in those seconds)")
+print("3) Dithering twice (dithered to 16-bit, nudged 0.01 dB, dithered to 16-bit again)")
+x = 10 ** (-80 / 20) * np.sin(2 * np.pi * f0 * t)
+once = to_int(x, 16, True); twice = to_int(once * 0.999, 16, True)
+print(f"   once  noise {db(rms(once - x)):.1f} dBFS RMS")
+print(f"   twice noise {db(rms(twice - x * 0.999)):.1f} dBFS RMS ({db(rms(twice - x*0.999)) - db(rms(once - x)):+.1f} dB)")
+
+print("4) Same thing on a loud song section, peak -1 dBFS (997 Hz tone at -4 dBFS RMS)")
+x = 10 ** (-1 / 20) * np.sin(2 * np.pi * f0 * t)
+for name, dith in [("no dither", False), ("TPDF dither", True)]:
+    y = to_int(x, 16, dith); fund, harm = harmonics(y, f0)
+    print(f"   {name:12s} loudest harmonic {harm - fund:+.1f} dB vs tone | error {db(rms(y - x)):.1f} dBFS RMS")</code></pre>
+<pre><code>$ python3 dither_check.py
+1) A quiet 997 Hz tone at -80 dBFS, like the end of a fade or a reverb tail
+   16-bit, no dither    error  -101.8 dBFS RMS | tone  -80.2 dBFS | loudest harmonic -110.9 dBFS (-30.8 dB vs tone)
+   16-bit, TPDF dither  error   -96.3 dBFS RMS | tone  -80.0 dBFS | loudest harmonic -136.2 dBFS (-56.2 dB vs tone)
+   24-bit, no dither    error  -149.3 dBFS RMS | tone  -80.0 dBFS | loudest harmonic -183.2 dBFS (-103.2 dB vs tone)
+2) A 4 s fade from -50 to -110 dBFS, 16-bit: what's left of the tone in each second
+   no dither    tone dBFS / worst harmonic vs tone, seconds 1-4:  -57.1/-81.3 |  -72.1/-77.1 |  -87.0/-24.0 | -147.3/ -1.2
+   TPDF dither  tone dBFS / worst harmonic vs tone, seconds 1-4:  -57.1/-76.0 |  -72.1/-61.7 |  -87.0/-45.1 | -102.3/-29.8
+   (the clean tone itself averages -57.5, -72.5, -87.5, -102.5 dBFS in those seconds)
+3) Dithering twice (dithered to 16-bit, nudged 0.01 dB, dithered to 16-bit again)
+   once  noise -96.3 dBFS RMS
+   twice noise -93.3 dBFS RMS (+3.0 dB)
+4) Same thing on a loud song section, peak -1 dBFS (997 Hz tone at -4 dBFS RMS)
+   no dither    loudest harmonic -134.0 dB vs tone | error -101.1 dBFS RMS
+   TPDF dither  loudest harmonic -135.9 dB vs tone | error -96.3 dBFS RMS</code></pre>
+<h2>Reading the numbers</h2>
+<p><strong>On quiet material, rounding without dither is distortion.</strong> At −80 dBFS, about where a reverb tail or the last seconds of a fade live, the undithered 16-bit tone grew a harmonic only 30.8 dB under it. With dither the worst harmonic fell to 56.2 dB under the tone. The total error actually got louder, from −101.8 to −96.3 dBFS, because dither is noise. You’re trading a buzz that tracks the music for a hiss that doesn’t, and ears forgive hiss much more easily.</p>
+<p><strong>Fades show it best.</strong> Over the four-second fade, the first two seconds look about the same either way. In the third second, around −87 dBFS, the undithered version had a harmonic just 24.0 dB under the tone, against 45.1 dB with dither. By the fourth second the undithered tone was basically gone, −147.3 dBFS, while the dithered one was still there at −102.3 dBFS, right where the clean fade put it (−102.5). Dither lets a fade keep fading below the last bit instead of falling off a step.</p>
+<p><strong>24-bit makes the question moot.</strong> Rounding to 24 bits left an error at −149.3 dBFS, far below the noise of any room, mic or converter. Dither on a 24-bit bounce won’t hurt, but you won’t hear it do anything either.</p>
+<p><strong>On loud material it barely matters.</strong> With the tone peaking at −1 dBFS, the undithered harmonic sat 134.0 dB under it. The rounding error is still there, just buried under the music. That’s why people who never dither get away with it on a loud hook and then hear grit on the outro.</p>
+<p><strong>Dither once.</strong> Dithering to 16 bits, nudging the gain a hair and dithering again put the hiss at −93.3 dBFS, 3.0 dB up. Every extra 16-bit pass stacks more noise. So keep the session, the mix bounce and the master at 24-bit or 32-bit float, and let dither happen only on the final 16-bit file.</p>
+<h2>What to do in your session</h2>
+<ol>
+<li>Bounce mixes and stems at 24-bit or 32-bit float. No dither needed, nothing to undo later.</li>
+<li>Leave dither off on anything that will be processed again: a mix going to mastering, stems going to a mixer, a file headed into another plugin chain.</li>
+<li>On the final 16-bit export, turn dither on. Plain TPDF is a safe default. Noise-shaped options push the hiss toward the top octave where it’s harder to hear; they’re fine on a true final file, just not on one that will be processed again.</li>
+<li>Make sure it happens once. If your limiter has a dither switch and your export window does too, pick one. Both on is the extra 3 dB of hiss above.</li>
+<li>Don’t dither a 32-bit float file. Float isn’t a fixed grid of steps, so there’s nothing for dither to smooth out.</li>
+</ol>
+<p>Want to hear it instead of taking our word for it? Export just the outro both ways, bring the monitor level up more than usual (carefully, and back down before you play anything else) and listen to the last couple of seconds. Then load both files into <a href="../index.html#ab">CoProducer’s A/B</a> and flip between them. The difference lives right at the very end.</p>
+<aside class="aside">Streaming services re-encode whatever you upload, and the encoder adds its own changes on top. Dither still matters when the 16-bit file is your master, because that file is the one that gets archived, pressed or sold as a download.</aside>
+<dl class="faq">
+<dt>Do I need dither when exporting to 16-bit?</dt>
+<dd>Yes, once, on the final export. Without it a quiet tone in our test picked up a harmonic 30.8 dB under it. With TPDF dither that dropped to 56.2 dB under.</dd>
+<dt>Should I dither when exporting to 24-bit?</dt>
+<dd>You can, but you won’t hear it. Our 24-bit rounding error sat at −149.3 dBFS with no dither at all.</dd>
+<dt>What happens if you dither twice?</dt>
+<dd>The hiss adds up. A second 16-bit dither pass raised the noise floor 3.0 dB in our test, from −96.3 to −93.3 dBFS.</dd>
+<dt>Should I dither a 32-bit float file?</dt>
+<dd>No. Float isn’t a fixed grid of steps, so there’s no rounding for dither to smooth out.</dd>
+<dt>Which type of dither should I use?</dt>
+<dd>Plain TPDF is a safe default for a final 16-bit file. Noise-shaped dither moves the hiss up where it’s harder to hear; use it only on files that won’t be processed again.</dd>
+</dl>
+<!--lq:check--><aside class="check-cta" aria-label="Check your own mix" data-lq-check="format"><p class="check-k">Check your own mix for this</p><p class="check-p">Drop the exported file and confirm its sample rate and channels before you upload it. It stays on your device.</p><p><a class="check-btn" href="../analyze.html?check=format&amp;utm_source=journal&amp;utm_medium=essay&amp;utm_campaign=dither-when-exporting-16-bit-only-the-last-bounce&amp;utm_content=end">Check my file →</a></p></aside><!--/lq:check-->
+<nav aria-label="Keep reading" class="related-essays keep-reading" style="margin:48px 0 24px;padding-top:24px;border-top:1px solid rgba(196,165,116,.32)"><h2>Keep reading</h2><ul><li><a href="sample-rate-and-bit-depth-for-delivery.html">Sample rate and bit depth are delivery hygiene</a></li><li><a href="fade-out-sounds-abrupt-curve-it-and-fade-after-the-limiter.html">Fade-out drops off a cliff? Curve it, and fade after the limiter</a></li><li><a href="quiet-masters-and-noise-floor.html">Does Spotify turn up quiet songs? Yes, up to a point, and the hiss comes up too</a></li><li><a href="normalize-on-export-turn-it-off-for-mastering.html">Should you normalize on export? Turn it off before mastering</a></li><li><a href="export-stems-for-a-mix-engineer.html">Sending stems to a mixer? Export them so they line up and add back up</a></li></ul><p class="hub-link">More in <a href="topics/true-peak-limiting-and-delivery.html">True peak, limiting &amp; delivery</a> · <a href="index.html">All essays</a></p></nav></article>
+<aside aria-label="About the publisher" class="author-box"><p class="author-k">Written and published by</p><p class="author-name"><a href="about.html">NoDAW Labs</a></p><p class="author-bio">NoDAW Labs makes local-first audio tools: CoProducer, reTUNE[432] and DeepSplit. Essays are credited to the studio, not to individual writers. <a href="methodology.html">How we test, cite and correct</a>.</p></aside>
+<!--lq:signup--><section class="signup" aria-labelledby="signup-h" data-signup="dither-when-exporting-16-bit-only-the-last-bounce"><p class="signup-k">A free one-pager</p><h2 id="signup-h">The checklist we run before every release.</h2><p class="signup-p">Loudness, true peak, mono, tails, export settings and the metadata basics, on one page. Leave your email and it opens straight away, or <a href="pre-release-master-checklist.html">read it here first</a>. No email needed for that.</p><form class="signup-form" method="post" action="https://coproducer-comments.netlify.app/api/subscribe"><label class="cmt-sr" for="su-email">Email address</label><input id="su-email" name="email" type="email" inputmode="email" autocomplete="email" required maxlength="254" placeholder="you@studio.com"/><div class="cmt-hp" aria-hidden="true"><label>Leave this empty<input name="website" tabindex="-1" autocomplete="off"/></label></div><input type="hidden" name="source" value="dither-when-exporting-16-bit-only-the-last-bounce"/><input type="hidden" name="consent" value="yes"/><input type="hidden" name="return" value="https://myaiplug.github.io/coproducer-web/blog/checklist-thanks.html"/><button type="submit">Send me the checklist</button></form><p class="signup-consent">Send me the free pre-release checklist and the occasional Lacquer note. Unsubscribe any time. We never sell your address.</p></section><!--/lq:signup-->
+<section class="comments" data-comments="" data-thread="dither-16-bit-last-bounce"></section>
+<script src="js/studio.js" type="module"></script>
+<script src="js/comments.js" type="module"></script>
+<footer class="site"><span>Lacquer · CoProducer Journal</span><span><a href="index.html">All essays</a> · <a href="about.html">About</a> · <a href="methodology.html">Methodology</a></span></footer>
+</body>
+</html>

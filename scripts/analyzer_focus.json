@@ -23,9 +23,10 @@
     "concert-pitch-history-before-a440",
     "demucs-vs-mdx-net-stem-separation-compared",
     "split-stems-from-youtube-audio-you-own",
-    "sampling-from-separated-stems-workflow", "autotune-sounds-robotic-slow-the-retune-speed", "sample-drifts-off-the-grid-find-its-real-bpm"
+    "sampling-from-separated-stems-workflow", "autotune-sounds-robotic-slow-the-retune-speed", "sample-drifts-off-the-grid-find-its-real-bpm", "what-key-is-this-sample-treat-the-detector-as-a-shortlist"
   ],
   "overrides": {
+    "dither-when-exporting-16-bit-only-the-last-bounce": "format",
     "sidechain-pumping-out-of-time-set-release-to-tempo": "punch",
     "parallel-compression-sounds-thin-check-latency": "punch",
     "delay-time-from-bpm-sync-your-throws": "lufs",

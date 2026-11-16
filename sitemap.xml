@@ -33,7 +33,7 @@
   </url>
   <url>
     <loc>https://myaiplug.github.io/coproducer-web/blog/index.html</loc>
-    <lastmod>2026-11-10</lastmod>
+    <lastmod>2026-11-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
     <image:image>
@@ -132,6 +132,26 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://myaiplug.github.io/coproducer-web/blog/dither-when-exporting-16-bit-only-the-last-bounce.html</loc>
+    <lastmod>2026-11-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://myaiplug.github.io/coproducer-web/blog/img/essays/dither-when-exporting-16-bit-only-the-last-bounce.jpg?v=shd</image:loc>
+      <image:title>Exporting to 16-bit? Dither the last bounce, and only that one</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://myaiplug.github.io/coproducer-web/blog/what-key-is-this-sample-treat-the-detector-as-a-shortlist.html</loc>
+    <lastmod>2026-11-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://myaiplug.github.io/coproducer-web/blog/img/essays/what-key-is-this-sample-treat-the-detector-as-a-shortlist.jpg?v=shd</image:loc>
+      <image:title>What key is this sample in? Treat the key detector as a shortlist</image:title>
+    </image:image>
+  </url>
+  <url>
     <loc>https://myaiplug.github.io/coproducer-web/blog/mix-sounds-muddy-find-the-low-mid-pileup.html</loc>
     <lastmod>2026-11-10</lastmod>
     <changefreq>monthly</changefreq>
@@ -143,7 +163,7 @@
   </url>
   <url>
     <loc>https://myaiplug.github.io/coproducer-web/blog/sample-drifts-off-the-grid-find-its-real-bpm.html</loc>
-    <lastmod>2026-11-10</lastmod>
+    <lastmod>2026-11-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <image:image>
@@ -263,7 +283,7 @@
   </url>
   <url>
     <loc>https://myaiplug.github.io/coproducer-web/blog/fade-out-sounds-abrupt-curve-it-and-fade-after-the-limiter.html</loc>
-    <lastmod>2026-10-30</lastmod>
+    <lastmod>2026-11-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <image:image>
@@ -293,7 +313,7 @@
   </url>
   <url>
     <loc>https://myaiplug.github.io/coproducer-web/blog/normalize-on-export-turn-it-off-for-mastering.html</loc>
-    <lastmod>2026-10-30</lastmod>
+    <lastmod>2026-11-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <image:image>
@@ -333,7 +353,7 @@
   </url>
     <url>
     <loc>https://myaiplug.github.io/coproducer-web/blog/tune-808-to-the-key-of-your-song.html</loc>
-    <lastmod>2026-11-09</lastmod>
+    <lastmod>2026-11-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <image:image>
@@ -523,7 +543,7 @@
   </url>
   <url>
     <loc>https://myaiplug.github.io/coproducer-web/blog/resampling-vs-pitch-shift-vs-tempo.html</loc>
-    <lastmod>2026-11-10</lastmod>
+    <lastmod>2026-11-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <image:image>
@@ -663,7 +683,7 @@
   </url>
   <url>
     <loc>https://myaiplug.github.io/coproducer-web/blog/sampling-from-separated-stems-workflow.html</loc>
-    <lastmod>2026-11-10</lastmod>
+    <lastmod>2026-11-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <image:image>
@@ -843,7 +863,7 @@
   </url>
   <url>
     <loc>https://myaiplug.github.io/coproducer-web/blog/quiet-masters-and-noise-floor.html</loc>
-    <lastmod>2026-11-10</lastmod>
+    <lastmod>2026-11-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.75</priority>
     <image:image>
@@ -863,7 +883,7 @@
   </url>
   <url>
     <loc>https://myaiplug.github.io/coproducer-web/blog/sample-rate-and-bit-depth-for-delivery.html</loc>
-    <lastmod>2026-08-21</lastmod>
+    <lastmod>2026-11-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.75</priority>
     <image:image>
@@ -991,7 +1011,7 @@
   </url>
   <url>
     <loc>https://myaiplug.github.io/coproducer-web/blog/topics/true-peak-limiting-and-delivery.html</loc>
-    <lastmod>2026-11-04</lastmod>
+    <lastmod>2026-11-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -1003,7 +1023,7 @@
   </url>
   <url>
     <loc>https://myaiplug.github.io/coproducer-web/blog/topics/432-hz-pitch-and-tempo.html</loc>
-    <lastmod>2026-11-10</lastmod>
+    <lastmod>2026-11-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>

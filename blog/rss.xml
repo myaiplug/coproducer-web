@@ -6,7 +6,23 @@
     <atom:link href="https://myaiplug.github.io/coproducer-web/blog/rss.xml" rel="self" type="application/rss+xml"/>
     <description>Answer-first essays on loudness, true peak, repair, stems, ScrewAI, and local .bat workflows.</description>
     <language>en-us</language>
-    <lastBuildDate>Tue, 10 Nov 2026 16:00:00 GMT</lastBuildDate>
+    <lastBuildDate>Mon, 16 Nov 2026 15:00:00 GMT</lastBuildDate>
+    <item>
+      <title>Exporting to 16-bit? Dither the last bounce, and only that one</title>
+      <link>https://myaiplug.github.io/coproducer-web/blog/dither-when-exporting-16-bit-only-the-last-bounce.html</link>
+      <guid isPermaLink="true">https://myaiplug.github.io/coproducer-web/blog/dither-when-exporting-16-bit-only-the-last-bounce.html</guid>
+      <pubDate>Mon, 16 Nov 2026 15:00:00 GMT</pubDate>
+      <description>Do you need dither when exporting? Yes for the final 16-bit file, once. We measured truncation vs TPDF dither on a quiet tone and a fade, plus 24-bit and double dither, with the script.</description>
+      <enclosure url="https://myaiplug.github.io/coproducer-web/blog/img/essays/dither-when-exporting-16-bit-only-the-last-bounce.jpg?v=shd" type="image/jpeg" length="190775"/>
+    </item>
+    <item>
+      <title>What key is this sample in? Treat the key detector as a shortlist</title>
+      <link>https://myaiplug.github.io/coproducer-web/blog/what-key-is-this-sample-treat-the-detector-as-a-shortlist.html</link>
+      <guid isPermaLink="true">https://myaiplug.github.io/coproducer-web/blog/what-key-is-this-sample-treat-the-detector-as-a-shortlist.html</guid>
+      <pubDate>Mon, 16 Nov 2026 15:00:00 GMT</pubDate>
+      <description>How to find the key of a sample: why key detectors mix up relative major and minor, get pulled by overtones, and miss slowed samples tuned between keys. Measured with a small detector, script included.</description>
+      <enclosure url="https://myaiplug.github.io/coproducer-web/blog/img/essays/what-key-is-this-sample-treat-the-detector-as-a-shortlist.jpg?v=shd" type="image/jpeg" length="262206"/>
+    </item>
     <item>
       <title>Mix sounds muddy? It’s the low-mid pile-up, not one bad track</title>
       <link>https://myaiplug.github.io/coproducer-web/blog/mix-sounds-muddy-find-the-low-mid-pileup.html</link>

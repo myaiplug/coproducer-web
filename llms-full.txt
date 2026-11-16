@@ -1,6 +1,6 @@
 # CoProducer and Lacquer — full text for assistants
 Base: https://myaiplug.github.io/coproducer-web/
-Updated: 2026-11-15
+Updated: 2026-11-16
 Essays: full plain-text bodies, in journal order
 Summary index: https://myaiplug.github.io/coproducer-web/llms.txt
 
@@ -28,6 +28,217 @@ Summary index: https://myaiplug.github.io/coproducer-web/llms.txt
 - Booth / journal comments on Lacquer pages are real reader notes posted through a public comment form (no seeded or sample comments). Notes with links are held for review before they appear.
 
 # Lacquer essays
+
+## Exporting to 16-bit? Dither the last bounce, and only that one
+URL: https://myaiplug.github.io/coproducer-web/blog/dither-when-exporting-16-bit-only-the-last-bounce.html
+Section: Mastering · 16 November 2026 · 6 min
+Summary: Do you need dither when exporting? Yes for the final 16-bit file, once. We measured truncation vs TPDF dither on a quiet tone and a fade, plus 24-bit and double dither, with the script.
+
+Dither when you turn a mix into a 16-bit file, once, as the very last step, and skip it for 24-bit and 32-bit float bounces. In our test a quiet tone cut to 16 bits without dither picked up a harmonic only 30.8 dB under it, the grainy buzz you hear at the end of fades. With dither that harmonic dropped to 56.2 dB under the tone, traded for a steady hiss at −96.3 dBFS. Dithering a second time raised that hiss 3.0 dB.
+You finish the master, go to export a 16-bit WAV for the distributor or the CD plant, and the export window has a checkbox: dither. Sometimes a dropdown with three kinds of noise shaping under it. Most people either always tick it or never do, and both habits are half right.
+
+### What dither actually fixes
+A 16-bit file can only store 65,536 levels. Your session works in floating point with far more than that. When the export rounds every sample to the nearest level, the rounding error on quiet material isn’t random. It follows the waveform, so it turns into distortion locked to the music: extra harmonics, a fizzy grain on a reverb tail, a fade that gets crunchy right before it disappears.
+Dither adds a tiny bit of noise before the rounding, about one step either way, so the error stops following the music and becomes plain, steady hiss. We wrote dither_check.py to put numbers on it. It makes a 997 Hz tone, rounds it to 16 bits with and without TPDF dither (the flat kind almost every DAW offers) and to 24 bits, then reads the tone and its loudest harmonic off a spectrum.
+# Truncation vs TPDF dither when a float mix becomes a 16-bit file. Synthetic tones, fixed seed.
+import numpy as np
+fs = 44100; rng = np.random.default_rng(16)
+t = np.arange(fs * 4) / fs
+db = lambda x: 20 * np.log10(max(x, 1e-12))
+rms = lambda x: np.sqrt(np.mean(x ** 2))
+
+def to_int(x, bits, dither):
+    q = 2.0 ** (bits - 1)
+    d = (rng.random(x.size) - rng.random(x.size)) if dither else 0.0   # TPDF, +/-1 LSB
+    return np.round(x * q + d) / q
+
+def harmonics(y, f0):
+    w = np.hanning(y.size); Y = np.abs(np.fft.rfft(y * w)) * 2 / w.sum()
+    f = np.fft.rfftfreq(y.size, 1 / fs)
+    lvl = lambda fr: db(Y[np.argmin(abs(f - fr))])
+    return lvl(f0), max(lvl(k * f0) for k in range(2, 10))
+
+f0 = 997.0
+print("1) A quiet 997 Hz tone at -80 dBFS, like the end of a fade or a reverb tail")
+x = 10 ** (-80 / 20) * np.sin(2 * np.pi * f0 * t)
+for name, bits, dith in [("16-bit, no dither", 16, False), ("16-bit, TPDF dither", 16, True), ("24-bit, no dither", 24, False)]:
+    y = to_int(x, bits, dith); err = y - x
+    fund, harm = harmonics(y, f0)
+    print(f"   {name:20s} error {db(rms(err)):7.1f} dBFS RMS | tone {fund:6.1f} dBFS | loudest harmonic {harm:6.1f} dBFS ({harm - fund:+.1f} dB vs tone)")
+
+print("2) A 4 s fade from -50 to -110 dBFS, 16-bit: what's left of the tone in each second")
+env = 10 ** (np.linspace(-50, -110, t.size) / 20)
+x = env * np.sin(2 * np.pi * f0 * t)
+for name, dith in [("no dither", False), ("TPDF dither", True)]:
+    y = to_int(x, 16, dith); row = []
+    for s in range(4):
+        seg = y[s * fs:(s + 1) * fs]; fund, harm = harmonics(seg, f0)
+        row.append(f"{fund:6.1f}/{harm - fund:+5.1f}" if np.any(seg) else "  silent   ")
+    print(f"   {name:12s} tone dBFS / worst harmonic vs tone, seconds 1-4: " + " | ".join(row))
+print(f"   (the clean tone itself averages {', '.join(f'{-50 - 15*s - 7.5:.1f}' for s in range(4))} dBFS in those seconds)")
+print("3) Dithering twice (dithered to 16-bit, nudged 0.01 dB, dithered to 16-bit again)")
+x = 10 ** (-80 / 20) * np.sin(2 * np.pi * f0 * t)
+once = to_int(x, 16, True); twice = to_int(once * 0.999, 16, True)
+print(f"   once  noise {db(rms(once - x)):.1f} dBFS RMS")
+print(f"   twice noise {db(rms(twice - x * 0.999)):.1f} dBFS RMS ({db(rms(twice - x*0.999)) - db(rms(once - x)):+.1f} dB)")
+
+print("4) Same thing on a loud song section, peak -1 dBFS (997 Hz tone at -4 dBFS RMS)")
+x = 10 ** (-1 / 20) * np.sin(2 * np.pi * f0 * t)
+for name, dith in [("no dither", False), ("TPDF dither", True)]:
+    y = to_int(x, 16, dith); fund, harm = harmonics(y, f0)
+    print(f"   {name:12s} loudest harmonic {harm - fund:+.1f} dB vs tone | error {db(rms(y - x)):.1f} dBFS RMS")
+$ python3 dither_check.py
+1) A quiet 997 Hz tone at -80 dBFS, like the end of a fade or a reverb tail
+   16-bit, no dither    error  -101.8 dBFS RMS | tone  -80.2 dBFS | loudest harmonic -110.9 dBFS (-30.8 dB vs tone)
+   16-bit, TPDF dither  error   -96.3 dBFS RMS | tone  -80.0 dBFS | loudest harmonic -136.2 dBFS (-56.2 dB vs tone)
+   24-bit, no dither    error  -149.3 dBFS RMS | tone  -80.0 dBFS | loudest harmonic -183.2 dBFS (-103.2 dB vs tone)
+2) A 4 s fade from -50 to -110 dBFS, 16-bit: what's left of the tone in each second
+   no dither    tone dBFS / worst harmonic vs tone, seconds 1-4:  -57.1/-81.3 |  -72.1/-77.1 |  -87.0/-24.0 | -147.3/ -1.2
+   TPDF dither  tone dBFS / worst harmonic vs tone, seconds 1-4:  -57.1/-76.0 |  -72.1/-61.7 |  -87.0/-45.1 | -102.3/-29.8
+   (the clean tone itself averages -57.5, -72.5, -87.5, -102.5 dBFS in those seconds)
+3) Dithering twice (dithered to 16-bit, nudged 0.01 dB, dithered to 16-bit again)
+   once  noise -96.3 dBFS RMS
+   twice noise -93.3 dBFS RMS (+3.0 dB)
+4) Same thing on a loud song section, peak -1 dBFS (997 Hz tone at -4 dBFS RMS)
+   no dither    loudest harmonic -134.0 dB vs tone | error -101.1 dBFS RMS
+   TPDF dither  loudest harmonic -135.9 dB vs tone | error -96.3 dBFS RMS
+
+### Reading the numbers
+On quiet material, rounding without dither is distortion. At −80 dBFS, about where a reverb tail or the last seconds of a fade live, the undithered 16-bit tone grew a harmonic only 30.8 dB under it. With dither the worst harmonic fell to 56.2 dB under the tone. The total error actually got louder, from −101.8 to −96.3 dBFS, because dither is noise. You’re trading a buzz that tracks the music for a hiss that doesn’t, and ears forgive hiss much more easily.
+Fades show it best. Over the four-second fade, the first two seconds look about the same either way. In the third second, around −87 dBFS, the undithered version had a harmonic just 24.0 dB under the tone, against 45.1 dB with dither. By the fourth second the undithered tone was basically gone, −147.3 dBFS, while the dithered one was still there at −102.3 dBFS, right where the clean fade put it (−102.5). Dither lets a fade keep fading below the last bit instead of falling off a step.
+24-bit makes the question moot. Rounding to 24 bits left an error at −149.3 dBFS, far below the noise of any room, mic or converter. Dither on a 24-bit bounce won’t hurt, but you won’t hear it do anything either.
+On loud material it barely matters. With the tone peaking at −1 dBFS, the undithered harmonic sat 134.0 dB under it. The rounding error is still there, just buried under the music. That’s why people who never dither get away with it on a loud hook and then hear grit on the outro.
+Dither once. Dithering to 16 bits, nudging the gain a hair and dithering again put the hiss at −93.3 dBFS, 3.0 dB up. Every extra 16-bit pass stacks more noise. So keep the session, the mix bounce and the master at 24-bit or 32-bit float, and let dither happen only on the final 16-bit file.
+
+### What to do in your session
+1. Bounce mixes and stems at 24-bit or 32-bit float. No dither needed, nothing to undo later.
+2. Leave dither off on anything that will be processed again: a mix going to mastering, stems going to a mixer, a file headed into another plugin chain.
+3. On the final 16-bit export, turn dither on. Plain TPDF is a safe default. Noise-shaped options push the hiss toward the top octave where it’s harder to hear; they’re fine on a true final file, just not on one that will be processed again.
+4. Make sure it happens once. If your limiter has a dither switch and your export window does too, pick one. Both on is the extra 3 dB of hiss above.
+5. Don’t dither a 32-bit float file. Float isn’t a fixed grid of steps, so there’s nothing for dither to smooth out.
+Want to hear it instead of taking our word for it? Export just the outro both ways, bring the monitor level up more than usual (carefully, and back down before you play anything else) and listen to the last couple of seconds. Then load both files into CoProducer’s A/B and flip between them. The difference lives right at the very end.
+Note: Streaming services re-encode whatever you upload, and the encoder adds its own changes on top. Dither still matters when the 16-bit file is your master, because that file is the one that gets archived, pressed or sold as a download.
+Q: Do I need dither when exporting to 16-bit?
+A: Yes, once, on the final export. Without it a quiet tone in our test picked up a harmonic 30.8 dB under it. With TPDF dither that dropped to 56.2 dB under.
+Q: Should I dither when exporting to 24-bit?
+A: You can, but you won’t hear it. Our 24-bit rounding error sat at −149.3 dBFS with no dither at all.
+Q: What happens if you dither twice?
+A: The hiss adds up. A second 16-bit dither pass raised the noise floor 3.0 dB in our test, from −96.3 to −93.3 dBFS.
+Q: Should I dither a 32-bit float file?
+A: No. Float isn’t a fixed grid of steps, so there’s no rounding for dither to smooth out.
+Q: Which type of dither should I use?
+A: Plain TPDF is a safe default for a final 16-bit file. Noise-shaped dither moves the hiss up where it’s harder to hear; use it only on files that won’t be processed again.
+
+---
+
+## What key is this sample in? Treat the key detector as a shortlist
+URL: https://myaiplug.github.io/coproducer-web/blog/what-key-is-this-sample-treat-the-detector-as-a-shortlist.html
+Section: Sampling · 16 November 2026 · 6 min
+Summary: How to find the key of a sample: why key detectors mix up relative major and minor, get pulled by overtones, and miss slowed samples tuned between keys. Measured with a small detector, script included.
+
+To find the key of a sample, use a key detector for a shortlist, then decide by ear which note the loop keeps coming home to, and check whether it’s tuned between keys. In our test a detector called an Am–F–C–G loop C major and ranked A minor seventh for an Am–Dm–Em–Am loop. A loop slowed to 90% came out 18 cents sharp of the A# major the detector named, so an 808 tuned straight to A# would sit slightly flat under it.
+You chop a loop, it sounds great, and now it needs an 808 and maybe some keys. So you drop it into a key detector, it says C major, you program a bass line in C, and something feels off. Not wrong exactly. Just not home.
+Key detectors are useful. They’re also guessing, and they guess wrong in a few predictable ways. Once you know those ways, the detector becomes a fast shortlist instead of a final answer.
+
+### How a key detector decides
+Most detectors do some version of the same thing. They add up how much energy lands on each of the twelve note names across the sample, compare that pattern with a template for every major and minor key, and pick the best match. We built a small one in key_check.py using the classic Krumhansl–Kessler key profiles, and fed it loops made of plain harmonic tones so we know exactly what’s in them. It also measures how many cents the notes sit off the standard A440 grid.
+# Find the key of a sample: pitch-class energy + Krumhansl-Kessler key profiles. Synthetic loop, fixed seed.
+import numpy as np
+fs = 44100; NAMES = "C C# D D# E F F# G G# A A# B".split()
+MAJ = np.array([6.35, 2.23, 3.48, 2.33, 4.38, 4.09, 2.52, 5.19, 2.39, 3.66, 2.29, 2.88])
+MIN = np.array([6.33, 2.68, 3.52, 5.38, 2.60, 3.53, 2.54, 4.75, 3.98, 2.69, 3.34, 3.17])
+hz = lambda m: 440 * 2 ** ((m - 69) / 12)
+
+def note(m, dur, amp=1.0):
+    t = np.arange(int(fs * dur)) / fs
+    tone = sum(np.sin(2 * np.pi * hz(m) * k * t) / k for k in range(1, 6))
+    return amp * tone * np.minimum(1, t / 0.01) * np.exp(-t * 1.5)
+
+def loop(chords, bass, sec=1.0):
+    out = []
+    for ch, b in zip(chords, bass):
+        seg = sum(note(m, sec, 0.3) for m in ch) + note(b, sec, 0.5)
+        out.append(seg)
+    return np.concatenate(out)
+
+def chroma(y):
+    Y = np.abs(np.fft.rfft(y * np.hanning(y.size))) ** 2
+    f = np.fft.rfftfreq(y.size, 1 / fs); keep = (f > 50) & (f < 2000)
+    pc = np.round(12 * np.log2(f[keep] / 440) + 69).astype(int) % 12
+    c = np.bincount(pc, weights=Y[keep], minlength=12)
+    return c / c.max()
+
+def keys(c, n=3):
+    sc = []
+    for r in range(12):
+        sc.append((np.corrcoef(c, np.roll(MAJ, r))[0, 1], f"{NAMES[r]} major"))
+        sc.append((np.corrcoef(c, np.roll(MIN, r))[0, 1], f"{NAMES[r]} minor"))
+    return sorted(sc, reverse=True)[:n]
+
+def cents_off(y):
+    Y = np.abs(np.fft.rfft(y * np.hanning(y.size))) ** 2
+    f = np.fft.rfftfreq(y.size, 1 / fs); keep = (f > 50) & (f < 2000) & (Y > Y.max() * 1e-3)
+    d = 2 * np.pi * (12 * np.log2(f[keep] / 440) % 1)            # position between semitones
+    ang = np.angle(np.sum(Y[keep] * np.exp(1j * d)))
+    return 100 * ang / (2 * np.pi)                                  # cents sharp (+) or flat (-) of A440 tuning
+
+def show(label, y, want=None):
+    print(f"   {label}: " + " | ".join(f"{k} {s:.3f}" for s, k in keys(chroma(y))))
+    if want:
+        allk = [k for _, k in keys(chroma(y), 24)]
+        print(f"   {want} ranks #{allk.index(want) + 1} of 24")
+
+Am, F, C, G = [57, 60, 64], [57, 60, 65], [55, 60, 64], [55, 59, 62]
+print("1) Am-F-C-G loop, bass on each chord root (A2 F2 C3 G2)")
+x = loop([Am, F, C, G], [45, 41, 48, 43]); show("whole loop", x, "A minor")
+print(f"   tuning offset from A440 grid: {cents_off(x):+.0f} cents")
+Dm, Em = [57, 62, 65], [55, 59, 64]
+print("2) Am-Dm-Em-Am loop, bass A2 D3 E2 A2 (a loop that keeps coming home to A)")
+show("whole loop", loop([Am, Dm, Em, Am], [45, 50, 40, 45]), "A minor")
+print("3) Loop 1 slowed for a chopped-and-screwed flip")
+for speed in (0.9, 0.8):
+    idx = np.arange(0, x.size - 1, speed); y = np.interp(idx, np.arange(x.size), x)
+    print(f"   {speed:.0%} speed = {12*np.log2(speed):+.2f} semitones")
+    show(f"{speed:.0%} speed", y)
+    print(f"   tuning offset from A440 grid: {cents_off(y):+.0f} cents")
+$ python3 key_check.py
+1) Am-F-C-G loop, bass on each chord root (A2 F2 C3 G2)
+   whole loop: C major 0.908 | F major 0.657 | C minor 0.654
+   A minor ranks #4 of 24
+   tuning offset from A440 grid: +0 cents
+2) Am-Dm-Em-Am loop, bass A2 D3 E2 A2 (a loop that keeps coming home to A)
+   whole loop: E minor 0.684 | A major 0.567 | D major 0.549
+   A minor ranks #7 of 24
+3) Loop 1 slowed for a chopped-and-screwed flip
+   90% speed = -1.82 semitones
+   90% speed: A# major 0.907 | D# major 0.656 | A# minor 0.653
+   tuning offset from A440 grid: +18 cents
+   80% speed = -3.86 semitones
+   80% speed: G# major 0.907 | C# major 0.656 | G# minor 0.654
+   tuning offset from A440 grid: +14 cents
+
+### Reading the numbers
+Relative major and minor look almost the same. The Am–F–C–G loop came back C major with a score of 0.908. A minor, which uses the exact same seven notes, ranked fourth. Plenty of people would call that progression A minor because it starts on A. The detector can’t hear where a loop starts or lands, it just counts notes. For picking 808 notes that’s mostly harmless, since the notes are shared. For knowing where the bass should resolve, it’s the whole question.
+Overtones can pull it the wrong way. The Am–Dm–Em–Am loop keeps coming home to A, and the detector still said E minor, with A minor seventh of 24. Every bass and chord note carries overtones, and the third harmonic of an A is an E. Stack enough of them and the detector starts hearing the fifth as home.
+Slowed samples sit between keys. At 90% speed the loop dropped 1.82 semitones, not two. The detector snapped to the nearest key, A# major, but the notes were 18 cents sharp of it. At 80% speed it was 3.86 semitones down and 14 cents sharp of G# major. A detector that only names keys will never tell you that part. Tune an 808 straight to A# under the 90% loop and every long note sits 18 cents flat against the sample, which reads as a slow wobble rather than a wrong note.
+
+### A quicker way to be sure
+1. Run the detector and keep its top two or three answers, especially any relative major and minor pair.
+2. Loop the sample and hum or play the note that feels like the end of a sentence. Try it against the last bar. The one that sounds finished is your root.
+3. Check the tuning. If the sample came off a record that was sped up or slowed down, or you changed its speed yourself, find how many cents off it is and tune your instruments by that amount instead of rounding to the nearest key.
+4. Hold one long 808 note on the root under the loop. If it beats or wobbles against the sample, nudge the fine tune until it stops.
+When the loop is busy, the home note is easier to hear with the drums and vocals out of the way. Pull the sample apart with StemSplit and listen to the bass or keys stem on its own; the root is usually obvious once it isn’t buried. Then go back to the full loop.
+Note: Write the key and the cents offset in your session notes. When you come back next month to add a bridge, you won’t have to work it out again.
+Q: How do I find the key of a sample?
+A: Use a key detector for a shortlist, then pick the note the loop resolves to by ear. In our test the detector put the right key fourth for one loop and seventh for another.
+Q: Why does my key detector say major when the sample sounds minor?
+A: Relative major and minor share all seven notes, so a note-counting detector often can’t tell them apart. Our Am–F–C–G loop came back C major.
+Q: Why does my 808 sound out of tune even in the right key?
+A: The sample may sit between keys. Our loop slowed to 90% was 18 cents sharp of the A# major the detector reported, so an 808 on A# would beat against it.
+Q: How much does slowing a sample change its key?
+A: Speed and pitch move together: semitones = 12 × log2(speed). 90% speed is −1.82 semitones and 80% is −3.86, so a slowed sample is rarely in a clean key.
+
+---
 
 ## Mix sounds muddy? It’s the low-mid pile-up, not one bad track
 URL: https://myaiplug.github.io/coproducer-web/blog/mix-sounds-muddy-find-the-low-mid-pileup.html

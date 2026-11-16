@@ -58,6 +58,7 @@ TOPICS = [
             "fade-out-sounds-abrupt-curve-it-and-fade-after-the-limiter",
             "saturator-sounds-harsh-turn-on-oversampling",
             "limiter-distorts-the-bass-slow-the-release",
+            "dither-when-exporting-16-bit-only-the-last-bounce",
         ],
     },
     {
@@ -112,6 +113,7 @@ TOPICS = [
             "halftime-still-needs-a-legal-peak", "when-to-slow-the-bounce",
             "sample-plays-at-wrong-pitch-sample-rate-mismatch",
             "sample-drifts-off-the-grid-find-its-real-bpm",
+            "what-key-is-this-sample-treat-the-detector-as-a-shortlist",
         ],
     },
     {
