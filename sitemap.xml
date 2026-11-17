@@ -33,7 +33,7 @@
   </url>
   <url>
     <loc>https://myaiplug.github.io/coproducer-web/blog/index.html</loc>
-    <lastmod>2026-11-16</lastmod>
+    <lastmod>2026-11-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
     <image:image>
@@ -132,6 +132,26 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://myaiplug.github.io/coproducer-web/blog/vocal-volume-all-over-the-place-clip-gain-before-the-compressor.html</loc>
+    <lastmod>2026-11-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://myaiplug.github.io/coproducer-web/blog/img/essays/vocal-volume-all-over-the-place-clip-gain-before-the-compressor.jpg?v=shd</image:loc>
+      <image:title>Vocal volume all over the place? Clip-gain the phrases before the compressor</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://myaiplug.github.io/coproducer-web/blog/pitched-vocal-sounds-like-a-chipmunk-fix-the-formants.html</loc>
+    <lastmod>2026-11-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://myaiplug.github.io/coproducer-web/blog/img/essays/pitched-vocal-sounds-like-a-chipmunk-fix-the-formants.jpg?v=shd</image:loc>
+      <image:title>Pitched-up vocal sounds like a chipmunk? It’s the formants, not the pitch</image:title>
+    </image:image>
+  </url>
+  <url>
     <loc>https://myaiplug.github.io/coproducer-web/blog/dither-when-exporting-16-bit-only-the-last-bounce.html</loc>
     <lastmod>2026-11-16</lastmod>
     <changefreq>monthly</changefreq>
@@ -143,7 +163,7 @@
   </url>
   <url>
     <loc>https://myaiplug.github.io/coproducer-web/blog/what-key-is-this-sample-treat-the-detector-as-a-shortlist.html</loc>
-    <lastmod>2026-11-16</lastmod>
+    <lastmod>2026-11-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <image:image>
@@ -173,7 +193,7 @@
   </url>
   <url>
     <loc>https://myaiplug.github.io/coproducer-web/blog/autotune-sounds-robotic-slow-the-retune-speed.html</loc>
-    <lastmod>2026-11-09</lastmod>
+    <lastmod>2026-11-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <image:image>
@@ -343,7 +363,7 @@
   </url>
   <url>
     <loc>https://myaiplug.github.io/coproducer-web/blog/compressor-kills-the-punch-slow-the-attack.html</loc>
-    <lastmod>2026-10-30</lastmod>
+    <lastmod>2026-11-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <image:image>
@@ -383,7 +403,7 @@
   </url>
       <url>
     <loc>https://myaiplug.github.io/coproducer-web/blog/vocal-breaths-turn-them-down-dont-cut-them.html</loc>
-    <lastmod>2026-11-09</lastmod>
+    <lastmod>2026-11-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <image:image>
@@ -543,7 +563,7 @@
   </url>
   <url>
     <loc>https://myaiplug.github.io/coproducer-web/blog/resampling-vs-pitch-shift-vs-tempo.html</loc>
-    <lastmod>2026-11-16</lastmod>
+    <lastmod>2026-11-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <image:image>
@@ -683,7 +703,7 @@
   </url>
   <url>
     <loc>https://myaiplug.github.io/coproducer-web/blog/sampling-from-separated-stems-workflow.html</loc>
-    <lastmod>2026-11-16</lastmod>
+    <lastmod>2026-11-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <image:image>
@@ -773,7 +793,7 @@
   </url>
   <url>
     <loc>https://myaiplug.github.io/coproducer-web/blog/how-loud-should-the-vocal-sit.html</loc>
-    <lastmod>2026-11-09</lastmod>
+    <lastmod>2026-11-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.75</priority>
     <image:image>
@@ -783,7 +803,7 @@
   </url>
   <url>
     <loc>https://myaiplug.github.io/coproducer-web/blog/harsh-esses-get-louder-after-mastering.html</loc>
-    <lastmod>2026-10-06</lastmod>
+    <lastmod>2026-11-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.75</priority>
     <image:image>
@@ -1017,13 +1037,13 @@
   </url>
   <url>
     <loc>https://myaiplug.github.io/coproducer-web/blog/topics/low-end-and-mix-dynamics.html</loc>
-    <lastmod>2026-11-10</lastmod>
+    <lastmod>2026-11-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://myaiplug.github.io/coproducer-web/blog/topics/432-hz-pitch-and-tempo.html</loc>
-    <lastmod>2026-11-16</lastmod>
+    <lastmod>2026-11-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>

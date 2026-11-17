@@ -1,6 +1,6 @@
 # CoProducer and Lacquer — full text for assistants
 Base: https://myaiplug.github.io/coproducer-web/
-Updated: 2026-11-16
+Updated: 2026-11-17
 Essays: full plain-text bodies, in journal order
 Summary index: https://myaiplug.github.io/coproducer-web/llms.txt
 
@@ -28,6 +28,240 @@ Summary index: https://myaiplug.github.io/coproducer-web/llms.txt
 - Booth / journal comments on Lacquer pages are real reader notes posted through a public comment form (no seeded or sample comments). Notes with links are held for review before they appear.
 
 # Lacquer essays
+
+## Vocal volume all over the place? Clip-gain the phrases before the compressor
+URL: https://myaiplug.github.io/coproducer-web/blog/vocal-volume-all-over-the-place-clip-gain-before-the-compressor.html
+Section: Mixing · 17 November 2026 · 6 min
+Summary: Why a compressor can’t even out a vocal that jumps between quiet and belted lines, and how clip gain fixes it first. Measured on an uneven take with one compressor, script included.
+
+If a vocal is quiet in some lines and loud in others, even out the phrases with clip gain or volume automation first, then let the compressor handle the small stuff. A compressor only reacts to what crosses its threshold, so it squashes the loud lines and ignores the quiet ones. In our test a take with a 21 dB gap between its loudest and quietest phrase still had an 8.6 dB gap after a 4:1 compressor. With clip-gain rides first, the same compressor left a 0.1 dB gap and worked the same 5 dB on every line.
+You sing the verse close to the mic, back off on the second line, belt the hook, then mumble an ad-lib at the end. Totally normal take. Then you slap a compressor on it, turn the threshold down until the hook stops jumping out, and the verse still disappears under the beat. So you push the compressor harder, and now the hook sounds flattened and the breaths come up.
+That’s not a bad compressor. It’s the wrong tool for that job.
+
+### Why the compressor can’t fix it alone
+A compressor turns down whatever goes over its threshold, by an amount set by its ratio. Anything under the threshold passes through untouched. So if one line is way louder than another, the loud line gets most of the work and the quiet line gets none, and the gap only shrinks by part of the difference. We tested it in vocal_ride_check.py: four sung-style phrases at very different levels, each word wobbling ±3 dB, through the same plain compressor with and without clip gain first.
+# One compressor on an uneven vocal take, with and without clip-gain rides first. Synthetic "vocal", fixed seed.
+import numpy as np
+fs = 48000; rng = np.random.default_rng(17)
+db = lambda x: 20 * np.log10(max(x, 1e-12))
+rms = lambda x: np.sqrt(np.mean(x ** 2))
+
+def phrase(f0, dur, level_db):
+    """A sung-ish line: harmonic tone with vibrato, eight syllables (each +/-3 dB), breathy noise."""
+    t = np.arange(int(fs * dur)) / fs
+    f = f0 * (1 + 0.006 * np.sin(2 * np.pi * 5.5 * t))
+    ph = 2 * np.pi * np.cumsum(f) / fs
+    x = sum(np.sin(k * ph) / k for k in range(1, 12)) + 0.02 * rng.standard_normal(t.size)
+    syl = np.clip(np.sin(np.pi * (t * 8 / dur) % np.pi), 0, 1) ** 0.6   # eight swells
+    word = 10 ** (rng.uniform(-3, 3, 8) / 20)                             # words vary +/-3 dB
+    x = x * syl * word[np.minimum((t * 8 / dur).astype(int), 7)]
+    return x / rms(x) * 10 ** (level_db / 20)
+
+# Four phrases as recorded: steady, a quiet tail-off, one belted line, a mumbled ad-lib
+take = [("verse line 1", 220, -20), ("verse line 2 (backs off the mic)", 196, -29),
+        ("hook line (belted)", 262, -11), ("ad-lib (mumbled)", 175, -32)]
+gap = np.zeros(int(fs * 0.25))
+parts = [phrase(f, 2.0, lv) for _, f, lv in take]
+
+def compress(x, thr=-24.0, ratio=4.0, att=0.005, rel=0.08):
+    """Feed-forward RMS-ish compressor, hard knee. Returns output and gain reduction (dB, per sample)."""
+    a, r = np.exp(-1 / (att * fs)), np.exp(-1 / (rel * fs))
+    env = 0.0; gr = np.empty(x.size); lvl = np.abs(x)
+    for i, v in enumerate(lvl):
+        env = a * env + (1 - a) * v if v > env else r * env + (1 - r) * v
+        e = db(env); over = max(e - thr, 0.0)
+        gr[i] = over - over / ratio
+    return x * 10 ** (-gr / 20), gr
+
+def report(name, segs):
+    x = np.concatenate([np.concatenate([s, gap]) for s in segs])
+    y, gr = compress(x)
+    if name: print(name)
+    i = 0; lv = []
+    for (label, _, _), s in zip(take, segs):
+        n = s.size; yo = y[i:i + n]; g = gr[i:i + n]
+        lv.append(db(rms(yo)))
+        print(f"   {label:34s} in {db(rms(s)):6.1f} dBFS -> out {lv[-1]:6.1f} dBFS | gain reduction avg {g.mean():4.1f} dB, max {g.max():4.1f} dB")
+        i += n + gap.size
+    print(f"   loudest minus quietest phrase after the compressor: {max(lv) - min(lv):.1f} dB")
+    return lv
+
+print("Compressor: threshold -24 dBFS, 4:1, 5 ms attack, 80 ms release (same settings both runs)\n")
+print("1) Raw take straight into the compressor")
+report("", parts)
+print("\n2) Clip gain first: each phrase turned to -20 dBFS RMS, then the same compressor")
+rides = [-20 - lv for _, _, lv in take]
+print("   clip-gain moves: " + ", ".join(f"{r:+.0f} dB" for r in rides))
+report("", [p * 10 ** (r / 20) for p, r in zip(parts, rides)])
+
+print("\n3) Raw take, compressor pushed to catch the quiet lines (threshold -34 dBFS, 8:1)")
+x = np.concatenate([np.concatenate([s, gap]) for s in parts])
+y, gr = compress(x, thr=-34.0, ratio=8.0)
+i = 0; lv = []
+for (label, _, _), s in zip(take, parts):
+    n = s.size; lv.append(db(rms(y[i:i + n]))); g = gr[i:i + n]
+    print(f"   {label:34s} out {lv[-1]:6.1f} dBFS | gain reduction avg {g.mean():4.1f} dB, max {g.max():4.1f} dB")
+    i += n + gap.size
+print(f"   loudest minus quietest phrase: {max(lv) - min(lv):.1f} dB")
+$ python3 vocal_ride_check.py
+Compressor: threshold -24 dBFS, 4:1, 5 ms attack, 80 ms release (same settings both runs)
+
+1) Raw take straight into the compressor
+   verse line 1                       in  -20.0 dBFS -> out  -25.7 dBFS | gain reduction avg  4.9 dB, max  8.3 dB
+   verse line 2 (backs off the mic)   in  -29.0 dBFS -> out  -29.2 dBFS | gain reduction avg  0.1 dB, max  1.4 dB
+   hook line (belted)                 in  -11.0 dBFS -> out  -23.4 dBFS | gain reduction avg 11.6 dB, max 15.0 dB
+   ad-lib (mumbled)                   in  -32.0 dBFS -> out  -32.0 dBFS | gain reduction avg  0.0 dB, max  0.0 dB
+   loudest minus quietest phrase after the compressor: 8.6 dB
+
+2) Clip gain first: each phrase turned to -20 dBFS RMS, then the same compressor
+   clip-gain moves: +0 dB, +9 dB, -9 dB, +12 dB
+   verse line 1                       in  -20.0 dBFS -> out  -25.7 dBFS | gain reduction avg  4.9 dB, max  8.3 dB
+   verse line 2 (backs off the mic)   in  -20.0 dBFS -> out  -25.6 dBFS | gain reduction avg  5.0 dB, max  8.1 dB
+   hook line (belted)                 in  -20.0 dBFS -> out  -25.7 dBFS | gain reduction avg  4.9 dB, max  8.3 dB
+   ad-lib (mumbled)                   in  -20.0 dBFS -> out  -25.6 dBFS | gain reduction avg  5.1 dB, max  7.6 dB
+   loudest minus quietest phrase after the compressor: 0.1 dB
+
+3) Raw take, compressor pushed to catch the quiet lines (threshold -34 dBFS, 8:1)
+   verse line 1                       out  -35.2 dBFS | gain reduction avg 14.4 dB, max 18.4 dB
+   verse line 2 (backs off the mic)   out  -36.4 dBFS | gain reduction avg  6.8 dB, max 10.4 dB
+   hook line (belted)                 out  -34.0 dBFS | gain reduction avg 22.3 dB, max 26.3 dB
+   ad-lib (mumbled)                   out  -36.8 dBFS | gain reduction avg  4.2 dB, max  7.1 dB
+   loudest minus quietest phrase: 2.7 dB
+
+### Reading the numbers
+Straight in, the compressor only fixed the loud lines. The take went from −11 dBFS on the belted hook to −32 dBFS on the mumbled ad-lib, a 21 dB spread. After the compressor the hook was down to −23.4 dBFS, with 11.6 dB of gain reduction on average and peaks of 15.0 dB. The second verse line got 0.1 dB of compression and the ad-lib got none at all. The gap between loudest and quietest phrase was still 8.6 dB. That’s the verse that keeps sinking under the beat.
+Pushing harder evens it out by crushing the hook. Dropping the threshold to −34 dBFS at 8:1 got the spread down to 2.7 dB, but the hook was now taking 22.3 dB of gain reduction on average, 26.3 dB at the peaks, and even the first verse line was being squeezed 14.4 dB. That’s where vocals start sounding flat, breathy and pumpy, and every consonant and breath between words comes up with them.
+Clip gain first, and the compressor gets an easy job. We turned each phrase to the same level before the compressor: +9 dB on the line that backed off the mic, −9 dB on the hook, +12 dB on the ad-lib. Same compressor, same settings. Every line came out at −25.6 or −25.7 dBFS with about 5 dB of average gain reduction, and the gap between phrases was 0.1 dB. The words inside each line still moved around, which is exactly what you want the compressor smoothing.
+Real takes won’t come out that tidy, since we matched each phrase exactly and by ear you’ll get within a dB or two. That’s still the difference between a compressor working evenly and one that’s either asleep or crushing.
+
+### How to ride a vocal before compressing
+1. Loop the vocal with the beat and listen line by line. Mark the lines that dip under the beat and the ones that jump out.
+2. Split the clip at the start of each problem line and use clip gain (or region gain, or pre-fader volume automation) to bring it in line. Big moves are fine; in our take they were up to 12 dB.
+3. Do words next, only where one word still pokes out or drops away. Small moves, a couple of dB.
+4. Now set the compressor. Aim for a few dB of gain reduction on most lines, not 15 on some and none on others. If one line still needs much more than the rest, go back and ride it.
+5. Do your clip gain before the compressor in the chain. Fader automation after the compressor changes the level you hear, not what the compressor reacts to.
+A quick way to check you got it right: bounce the vocal with and without the rides, put both against the beat, and flip between them in CoProducer’s A/B. Listen for the verse lines. If they sit where the hook sits without the hook sounding squashed, you’re done.
+Note: Ride the de-esser too. If a phrase got turned up 9 dB with clip gain, its esses came up 9 dB as well, so set the de-esser after the rides, not before.
+Q: Should I use clip gain or compression to even out vocals?
+A: Both, in that order. Clip gain fixes big phrase-to-phrase jumps, then the compressor smooths words. In our test the compressor alone left an 8.6 dB gap between phrases; with clip gain first it was 0.1 dB.
+Q: Why is my vocal still quiet in the verse after compression?
+A: The quiet lines probably never reach the threshold. In our test the softest lines got 0.1 dB and 0 dB of gain reduction while the belted hook got 11.6 dB.
+Q: How much gain reduction should a vocal compressor do?
+A: A few dB on most lines is a good place to start. Our ridden take needed about 5 dB on average everywhere. If one section needs 20 dB or more, ride it with clip gain first.
+Q: Does clip gain go before or after the compressor?
+A: Before. Clip gain changes what the compressor hears. Fader automation after the compressor only changes the final level.
+
+---
+
+## Pitched-up vocal sounds like a chipmunk? It’s the formants, not the pitch
+URL: https://myaiplug.github.io/coproducer-web/blog/pitched-vocal-sounds-like-a-chipmunk-fix-the-formants.html
+Section: Sampling · 17 November 2026 · 6 min
+Summary: Why pitch-shifted vocals sound like a chipmunk going up and a monster going down: the formants move with the pitch. We measured where a vowel’s formants land after varispeed, a plain pitch shifter and a formant-kept version, script included.
+
+A pitched-up vocal sounds like a chipmunk because the formants, the resonances of the singer’s throat and mouth that make a voice sound like that person, move up along with the pitch. In our test a 4-semitone shift moved a vowel’s three formants up about 24 to 27% with both varispeed and a plain pitch shifter, and down about 16 to 24% going 4 semitones down. A formant-kept version of the same notes moved them 3% or less. Use a shifter with formant preservation, or shift the formants back on purpose.
+You flip a vocal sample up a few semitones to fit your beat and suddenly it’s a cartoon. Or you slow a hook down for that screwed feel and the singer turns into a giant. The notes are right. The person sounds wrong.
+That’s because two things carry a voice: the note it’s singing and the shape of the throat and mouth singing it. Shift a sample the simple way and you move both.
+
+### What formants are
+When someone sings, their vocal cords make a buzz full of harmonics. Their throat, mouth and nose then boost a few frequency ranges and cut others. Those boosted ranges are the formants. They stay roughly put for a given vowel and a given person, whatever note is sung, and they’re a big part of how you recognize a voice and tell an “ah” from an “ee.”
+Varispeed, the tape or turntable kind of pitch change, scales every frequency by the same ratio, so formants go wherever the pitch goes. Plenty of pitch shifters do the same thing to keep the length the same. A smaller voice has higher formants, so pitched-up formants read as a smaller person: chipmunk. Pitched-down ones read as a bigger person: monster.
+We measured it in formant_check.py. It builds an “ah” vowel with formants at 730, 1090 and 2440 Hz, shifts it 4 semitones each way with resampling and with librosa’s plain pitch shift, and makes a formant-kept version by singing the new note through the same throat, which is the result a formant-preserving shifter aims for. Then it reads the formants back with LPC, the standard speech-analysis method. Our reader comes in a few percent off on the original (766 Hz for the 730 Hz formant), so compare each shift against that original reading.
+# Where a vowel's formants land after pitch shifting: varispeed, a plain pitch shifter, and a formant-kept version.
+# Synthetic "ah" vowel (glottal-style pulse train through three formant resonators), fixed seed.
+import warnings; warnings.filterwarnings("ignore")
+import numpy as np, scipy.signal as sg, librosa
+fs = 16000; rng = np.random.default_rng(17)
+FORMANTS = [(730, 90), (1090, 110), (2440, 170)]           # textbook adult "ah": centre Hz, bandwidth Hz
+
+def vowel(f0, dur=1.5):
+    t = np.arange(int(fs * dur)) / fs
+    ph = 2 * np.pi * np.cumsum(f0 * (1 + 0.005 * np.sin(2 * np.pi * 5 * t))) / fs
+    src = sum(np.sin(k * ph) / k ** 1.2 for k in range(1, int(7000 / f0)))   # bright, falling source
+    src += 0.003 * rng.standard_normal(t.size)
+    y = src
+    for fc, bw in FORMANTS:                                   # cascade of two-pole resonators
+        r = np.exp(-np.pi * bw / fs); th = 2 * np.pi * fc / fs
+        y = sg.lfilter([1 - r], [1, -2 * r * np.cos(th), r * r], y)
+    return y / np.max(np.abs(y)) * 0.5
+
+def formants(y):
+    """First three formants from LPC roots on the middle of the clip."""
+    seg = y[len(y) // 4: 3 * len(y) // 4] * np.hamming(len(y) // 2)
+    seg = sg.lfilter([1, -0.63], [1], seg)                    # pre-emphasis, as speech tools do
+    a = librosa.lpc(seg, order=14)
+    roots = [r for r in np.roots(a) if np.imag(r) > 0]
+    cand = sorted((np.angle(r) * fs / (2 * np.pi), -fs / np.pi * np.log(abs(r))) for r in roots)
+    return [f for f, bw in cand if f > 250 and bw < 500][:3]
+
+def varispeed(y, semis):                                      # tape/turntable style: pitch and speed together
+    return sg.resample(y, int(round(len(y) / 2 ** (semis / 12))))
+
+def show(name, y, ref=None):
+    f = formants(y)
+    line = f"   {name:40s} F1 {f[0]:6.0f} Hz  F2 {f[1]:6.0f} Hz  F3 {f[2]:6.0f} Hz"
+    if ref: line += "  | moved " + " ".join(f"{100 * (a / b - 1):+5.1f}%" for a, b in zip(f, ref))
+    print(line); return f
+
+f0 = 130.0
+print(f"Vowel 'ah' sung at {f0:.0f} Hz; formants built in at " + ", ".join(f"{fc} Hz" for fc, _ in FORMANTS))
+ref = show("original", vowel(f0))
+for semis in (+4, -4):
+    print(f"\n{semis:+d} semitones (pitch ratio {2 ** (semis / 12):.3f})")
+    show("varispeed / resample", varispeed(vowel(f0), semis), ref)
+    show("plain pitch shift (librosa, no formants)", librosa.effects.pitch_shift(vowel(f0), sr=fs, n_steps=semis), ref)
+    show("formants kept (same throat, new note)", vowel(f0 * 2 ** (semis / 12)), ref)
+
+print("\nHow far formants move per shift with varispeed or a plain shifter:")
+for semis in (1, 2, 3, 5, 7, 12, -3, -5, -7):
+    print(f"   {semis:+3d} st -> formants {100 * (2 ** (semis / 12) - 1):+6.1f}%")
+$ python3 formant_check.py
+Vowel 'ah' sung at 130 Hz; formants built in at 730 Hz, 1090 Hz, 2440 Hz
+   original                                 F1    766 Hz  F2   1103 Hz  F3   2456 Hz
+
++4 semitones (pitch ratio 1.260)
+   varispeed / resample                     F1    948 Hz  F2   1384 Hz  F3   3067 Hz  | moved +23.7% +25.5% +24.9%
+   plain pitch shift (librosa, no formants) F1    953 Hz  F2   1364 Hz  F3   3118 Hz  | moved +24.4% +23.7% +27.0%
+   formants kept (same throat, new note)    F1    766 Hz  F2   1125 Hz  F3   2457 Hz  | moved  -0.0%  +2.0%  +0.0%
+
+-4 semitones (pitch ratio 0.794)
+   varispeed / resample                     F1    611 Hz  F2    882 Hz  F3   1978 Hz  | moved -20.2% -20.0% -19.5%
+   plain pitch shift (librosa, no formants) F1    588 Hz  F2    844 Hz  F3   2059 Hz  | moved -23.3% -23.5% -16.1%
+   formants kept (same throat, new note)    F1    747 Hz  F2   1116 Hz  F3   2473 Hz  | moved  -2.6%  +1.2%  +0.7%
+
+How far formants move per shift with varispeed or a plain shifter:
+    +1 st -> formants   +5.9%
+    +2 st -> formants  +12.2%
+    +3 st -> formants  +18.9%
+    +5 st -> formants  +33.5%
+    +7 st -> formants  +49.8%
+   +12 st -> formants +100.0%
+    -3 st -> formants  -15.9%
+    -5 st -> formants  -25.1%
+    -7 st -> formants  -33.3%
+
+### Reading the numbers
+Up 4 semitones, the whole voice moved up a quarter. The pitch ratio for 4 semitones is 1.260, and that’s what happened to the formants: up 23.7 to 25.5% with varispeed and 23.7 to 27.0% with the plain pitch shifter. The plain shifter kept the length but did nothing for the voice. The formant-kept version moved its formants 0.0 to 2.0%, inside our reader’s error.
+Down 4 semitones, everything dropped about a fifth. Varispeed moved the formants down 19.5 to 20.2% and the plain shifter 16.1 to 23.5%. The formant-kept version stayed within 2.6%. That drop is the big, dark, slowed-down character of a screwed vocal, and that’s why it can sound great on purpose and wrong by accident.
+Small shifts are already noticeable. With varispeed or a plain shifter, 1 semitone moves formants 5.9% and 3 semitones moves them 18.9%. At +5 it’s 33.5%, and a full octave doubles them. Down, −3 is −15.9% and −7 is −33.3%. Past two or three semitones most people start hearing a different singer.
+
+### What to do in your session
+1. If the vocal needs to sound like the same person in a new key, use a pitch shifter with formant preservation turned on. Most DAW stock shifters and dedicated vocal tuners have the switch; it’s often labelled formant, preserve formants or similar.
+2. For a big shift, split the difference. Many shifters let you move formants separately. Shift pitch by the full amount and formants by a smaller amount, so the voice changes a little but doesn’t turn into a cartoon.
+3. If you want the chipmunk or the monster, own it. Varispeed is the classic sound for soul chops sped up and screwed hooks slowed down. Pick it on purpose rather than living with it.
+4. Shift the vocal on its own when you can. Formant tools work best on one clean voice; on a full mix they also bend drums and instruments. Pull the vocal out of the sample first, shift it, then put it back over the original or re-pitched beat.
+5. Check the key after. A 4-semitone shift is a ratio of 1.260 either way; the formant setting changes the color, not the note.
+If you’re slowing a whole song down for a screwed version, that deep voice is the point, and that’s the sound ScrewAI is built around. When it’s just a vocal chop that needs to fit a new key and still sound like the singer, separate it first and use a formant-aware shifter on the vocal alone.
+Note: Formant shifting with the pitch left alone is its own trick. Nudging formants down a few percent can make a thin vocal sound fuller, and nudging them up can make a double sound like a different singer.
+Q: Why does my pitched-up vocal sound like a chipmunk?
+A: The formants moved up with the pitch. In our test 4 semitones up moved a vowel’s formants up about 24 to 27% with both varispeed and a plain pitch shifter.
+Q: How do I pitch shift a vocal without the chipmunk sound?
+A: Use a pitch shifter with formant preservation on. Our formant-kept version of the same 4-semitone shift moved the formants 3% or less.
+Q: Why do slowed-down vocals sound so deep?
+A: Slowing a recording lowers formants as well as pitch. Four semitones down moved our vowel’s formants down about 20% with varispeed.
+Q: How many semitones can you shift a vocal before it sounds unnatural?
+A: It depends on the voice, but with plain shifting formants move 5.9% per semitone up and 18.9% at 3 semitones, and past two or three semitones most people hear a different singer.
+
+---
 
 ## Exporting to 16-bit? Dither the last bounce, and only that one
 URL: https://myaiplug.github.io/coproducer-web/blog/dither-when-exporting-16-bit-only-the-last-bounce.html

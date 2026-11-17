@@ -6,7 +6,23 @@
     <atom:link href="https://myaiplug.github.io/coproducer-web/blog/rss.xml" rel="self" type="application/rss+xml"/>
     <description>Answer-first essays on loudness, true peak, repair, stems, ScrewAI, and local .bat workflows.</description>
     <language>en-us</language>
-    <lastBuildDate>Mon, 16 Nov 2026 15:00:00 GMT</lastBuildDate>
+    <lastBuildDate>Tue, 17 Nov 2026 15:00:00 GMT</lastBuildDate>
+    <item>
+      <title>Vocal volume all over the place? Clip-gain the phrases before the compressor</title>
+      <link>https://myaiplug.github.io/coproducer-web/blog/vocal-volume-all-over-the-place-clip-gain-before-the-compressor.html</link>
+      <guid isPermaLink="true">https://myaiplug.github.io/coproducer-web/blog/vocal-volume-all-over-the-place-clip-gain-before-the-compressor.html</guid>
+      <pubDate>Tue, 17 Nov 2026 15:00:00 GMT</pubDate>
+      <description>Why a compressor can’t even out a vocal that jumps between quiet and belted lines, and how clip gain fixes it first. Measured on an uneven take with one compressor, script included.</description>
+      <enclosure url="https://myaiplug.github.io/coproducer-web/blog/img/essays/vocal-volume-all-over-the-place-clip-gain-before-the-compressor.jpg?v=shd" type="image/jpeg" length="290456"/>
+    </item>
+    <item>
+      <title>Pitched-up vocal sounds like a chipmunk? It’s the formants, not the pitch</title>
+      <link>https://myaiplug.github.io/coproducer-web/blog/pitched-vocal-sounds-like-a-chipmunk-fix-the-formants.html</link>
+      <guid isPermaLink="true">https://myaiplug.github.io/coproducer-web/blog/pitched-vocal-sounds-like-a-chipmunk-fix-the-formants.html</guid>
+      <pubDate>Tue, 17 Nov 2026 15:00:00 GMT</pubDate>
+      <description>Why pitch-shifted vocals sound like a chipmunk going up and a monster going down: the formants move with the pitch. We measured where a vowel’s formants land after varispeed, a plain pitch shifter and a formant-kept version, script included.</description>
+      <enclosure url="https://myaiplug.github.io/coproducer-web/blog/img/essays/pitched-vocal-sounds-like-a-chipmunk-fix-the-formants.jpg?v=shd" type="image/jpeg" length="265876"/>
+    </item>
     <item>
       <title>Exporting to 16-bit? Dither the last bounce, and only that one</title>
       <link>https://myaiplug.github.io/coproducer-web/blog/dither-when-exporting-16-bit-only-the-last-bounce.html</link>

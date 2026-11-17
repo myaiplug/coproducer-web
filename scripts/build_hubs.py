@@ -93,6 +93,7 @@ TOPICS = [
             "autotune-sounds-robotic-slow-the-retune-speed",
             "vocal-sounds-thin-high-pass-too-high",
             "mix-sounds-muddy-find-the-low-mid-pileup",
+            "vocal-volume-all-over-the-place-clip-gain-before-the-compressor",
         ],
     },
     {
@@ -114,6 +115,7 @@ TOPICS = [
             "sample-plays-at-wrong-pitch-sample-rate-mismatch",
             "sample-drifts-off-the-grid-find-its-real-bpm",
             "what-key-is-this-sample-treat-the-detector-as-a-shortlist",
+            "pitched-vocal-sounds-like-a-chipmunk-fix-the-formants",
         ],
     },
     {
