@@ -66,7 +66,7 @@ SECTIONS = [
         "essays": [
             ("true-peak-is-what-codecs-clip", "True peak is what codecs clip"),
             ("reencoding-eats-true-peak-headroom", "Why does my master clip after MP3 or AAC?"),
-            ("when-not-to-reach-for-the-limiter", "When not to reach for the limiter"),
+            ("when-not-to-reach-for-the-limiter", "Do you need a limiter on your master? When to skip it"),
             ("saturator-sounds-harsh-turn-on-oversampling", "Saturator making the highs harsh? Turn on oversampling"),
         ],
     },

@@ -2504,7 +2504,7 @@ The 44.1 kHz loop is fine as a file. Its tone measures 440.0 Hz at its own rate.
 6. Check with your ears and a tuner. Put a tuner on a held note or the 808 tail. A whole loop that’s about 147 cents off is a rate problem. A few cents off is just tuning, as in tuning an 808 to the key of your song.
 
 ### The accident is a real effect
-Here’s the funny part. Playing audio slower so the pitch drops with it is the whole sound of a chopped-and-screwed slowdown. A mismatch is that effect without anyone choosing it: 0.91875x and 1.47 semitones down. If you want the drop, make it on purpose, at the amount you like, then do it properly to a fresh file. You can hear what that sounds like in the ScrewAI demo, and when to slow the bounce covers where it belongs in the workflow. Keep the session itself on one clock.
+Here’s the funny part. Playing audio slower so the pitch drops with it is the whole sound of a chopped-and-screwed slowdown. A mismatch is that effect without anyone choosing it: 0.91875x and 1.47 semitones down. If you want the drop, make it on purpose, at the amount you like, then do it properly to a fresh file. You can hear what that sounds like in the ScrewAI demo, and How to make a slowed version of your song: bounce or session? covers where it belongs in the workflow. Keep the session itself on one clock.
 
 ### Genre notes
 - Hip-hop and sampling. Rips, crate digs and old loops come at every rate. Convert to the session rate before you chop, or every chop is 1.47 semitones off the key you set.
@@ -2625,7 +2625,7 @@ Sending it to a mastering engineer? Send the full tail with the extra silence an
 ### Fade-outs, albums and slowed versions
 If the song fades out, draw the fade in the session so the reverb and delay fade with the music. A fade drawn on the bounced file after a hard cut still has the cut in it, just quieter.
 On an album where songs run into each other, the end of one track and the start of the next are a single sequencing decision, and the gap between them has its own traps once the files are encoded. That’s in why gapless albums get gaps after MP3 or AAC.
-Slowing a song down stretches everything, tail included. From the bottom of the arithmetic above, our 3.68-second tail lasts 4.60 seconds at 0.8x and 4.91 seconds at 0.75x. If you trimmed the master tight and then slow it down, there’s no extra silence for that longer tail to ring into. So if you’re slowing a song in the ScrewAI demo, start from the long export and trim after. More on when to slow in when to slow the bounce.
+Slowing a song down stretches everything, tail included. From the bottom of the arithmetic above, our 3.68-second tail lasts 4.60 seconds at 0.8x and 4.91 seconds at 0.75x. If you trimmed the master tight and then slow it down, there’s no extra silence for that longer tail to ring into. So if you’re slowing a song in the ScrewAI demo, start from the long export and trim after. More on when to slow in How to make a slowed version of your song: bounce or session?.
 
 ### Genre notes
 - Ballads, gospel and cinematic. The hall or plate tail is part of the ending. Give slow songs four bars or more: a 4.0-second decay is 1.5 bars at 90 BPM.
@@ -4323,7 +4323,7 @@ mix_24_clipped.wav   CLIPPED: flat tops baked into a fixed-point file
 mix_24_limited.wav   peaks keep landing on one ceiling: limiter or clipper on the mix bus?
 mix_24_headroom.wav  OK to send
 If you’d rather not run Python, CoProducer’s analyze page reads clipped samples, true peak and crest for a bounce right in the browser, without uploading it anywhere. Drop the premaster there before it goes out. A zero in the clipped samples row plus a crest that looks like your mix (not like a master) is a good sign.
-Note: Mastering your own mix? The same rule applies with one person playing both roles. Bounce the premaster clean, take a break, then master the bounce. More on resisting the bus limiter in when not to reach for the limiter.
+Note: Mastering your own mix? The same rule applies with one person playing both roles. Bounce the premaster clean, take a break, then master the bounce. More on resisting the bus limiter in Do you need a limiter on your master? When to skip it.
 Q: Is −6 dB of headroom required for mastering?
 A: No. It’s a convention. What matters is that nothing clips and there’s no limiter on the mix bus. In a 24-bit file, peaking anywhere from about −10 to −3 dBFS gives the engineer the same quality to work with; they set the gain either way.
 Q: Should I normalize my mix before sending it to mastering?
@@ -5227,7 +5227,7 @@ That last column matters. A single fork tells you what one fork was. Forks can b
 ### A standard is a handshake, not a law of music
 This is the bit I'd want you to carry into a session. A=440 earned its place by solving coordination problems: instrument makers building compatible products, broadcasters sending a reproducible tone, touring players arriving without surprises, schools teaching from one starting point. None of that makes 440 artistically superior. It just makes it convenient and shared.
 Which also means nothing stops you from choosing something else. Period ensembles play at 415 because it suits the instruments and repertoire. Plenty of orchestras sit a little above 440. Producers detune samples, synths, and whole masters for character all the time. A 432 alternate of a finished record is part of that same long habit of moving the reference, as long as you're honest that it's a creative choice and not a restoration of some lost universal pitch.
-The working rules are simple. Keep the approved 440 master untouched. Render the alternate from it once, label it clearly, and write down the ratio and method. If you want to understand exactly what that conversion does to a mix, What 432 Hz actually changes in a finished master walks through it, and Resampling, pitch shifting, and tempo change are three different jobs covers why the method changes the runtime. Slowing a record is a close cousin of this, and When to slow the bounce deals with the delivery side of that.
+The working rules are simple. Keep the approved 440 master untouched. Render the alternate from it once, label it clearly, and write down the ratio and method. If you want to understand exactly what that conversion does to a mix, What 432 Hz actually changes in a finished master walks through it, and Resampling, pitch shifting, and tempo change are three different jobs covers why the method changes the runtime. Slowing a record is a close cousin of this, and How to make a slowed version of your song: bounce or session? deals with the delivery side of that.
 Note: If the history leaves you curious how a lower reference actually sounds on a record you own, the reTUNE[432] synced A/B player switches between 440 and 432 at the same musical position, right in your browser, so you can judge it by ear instead of by legend.
 
 ### Sources worth reading
@@ -7978,24 +7978,117 @@ A: Only if a platform will turn it up or down. Creative syrup can sit hotter. De
 
 ---
 
-## When to slow the bounce
+## How to make a slowed version of your song: slow the bounce, or go back to the session?
 URL: https://myaiplug.github.io/coproducer-web/blog/when-to-slow-the-bounce.html
-Section: Workflow · 6 October 2026 · 4 min
-Summary: Slow the print when the record wants weight, not when the mix is unfinished. A halftime desk is for the bounce, then the meter.
+Section: Workflow · 6 October 2026 · 7 min
+Summary: Slow the finished bounce when the mix already works. Go back to the session when the 808 drops out of range or the vocal needs to stay put. Then re-measure.
 
-Slow a finished bounce when you want the weight. Do not slow a mix that still has masking, phase, or a vocal sitting in the wrong chair.
+Make a slowed version from the finished bounce when the mix already works and you want everything to drop together. Go back to the session when slowing breaks something only the session can fix, like an 808 that sinks below what speakers can play or a vocal that has to stay in key. Either way, measure the slowed file again before it ships.
+Slowed versions aren’t a niche thing anymore. The sound grew out of Houston’s chopped and screwed tapes, and the slowed + reverb edits that followed made it a normal part of a release for a lot of artists. So the question usually isn’t whether to make one. It’s where in the process to make it, and how to keep it from quietly falling apart on a phone.
 
-### After the mix, before the upload
-Halftime is a listening decision. Kicks land later. Hats smear. A vocal that was proud can feel late. That is the point, and it is also why you do it on a bounce you already trust.
-If you are still hunting a frequency, stay in the session. If you want the syrup version for a reel, a radio rip, or a late pass, drop the WAV on a local desk and export. HalfScrew keeps that on the machine: drag the song, scan the wave, take the slowed file.
+### Should you slow the finished bounce or the session?
+Most of the time, the bounce. If you like the mix, slowing the stereo file keeps every decision you already made: the balance, the bus glue, the way the vocal sits. That’s also what gives the slowed sound its character. Everything moves down together, the way a tape or turntable does when it runs slow.
+The session wins when slowing exposes a problem you can’t fix in a stereo file. A quick way to decide:
+- Slow the bounce when the mix is finished, you want the classic slower-and-lower sound, and the low end still reads on small speakers after slowing.
+- Go back to the session when the 808 or bass disappears, when the vocal needs to stay in its original key, when the hats turn into mush, or when the mix itself still has masking or phase problems.
+That last point matters more than it sounds. Slowing doesn’t fix a mix. A muddy low-mid or a vocal sitting in the wrong spot is still there at 0.8x, just longer. If you’re still hunting a frequency, stay in the session and finish the mix first.
 
-### Then the boring part
-Duration doubled means a platform loudness number will not match the fast master. Re-measure. Crest usually opens a little. True peak is the one that surprises people.
-Note: The browser desk is HalfScrew. Drop a song, export the slowed WAV, then meter it here if it has to ship.
-Q: Is this a mastering step?
-A: No. It is a creative print. Master the version you will distribute.
-Q: Can I A/B the slow file?
-A: Yes. Keep the original bounce and the export, then flip them in the analyzer preview.
+### What does slowing actually do to a mix you trust?
+It depends on which kind of slowing you use, and that choice is the whole game:
+- Tape-style slowing (varispeed) plays the same samples back slower. Tempo and pitch drop together by the same ratio. At 0.8x the song drops 3.86 semitones; at 0.5x it drops exactly an octave. This is the classic slowed and screwed sound.
+- Time-stretching slows the tempo and keeps the pitch where it was. It’s a different algorithm, it can smear transients, and it sounds less like a record and more like a stretched file. Time stretching and pitch scaling covers the methods if you want the deep version.
+We measured the difference between those modes in detail in resampling vs pitch shift vs tempo change. For a slowed version, what you’ll hear on a tape-style pass is this: kicks land later and rounder, hats get darker and lose their snap, reverb tails stretch out, and a vocal that sat proud can start to feel late and heavy. That’s usually the point. It’s also why you do it on a bounce you already trust, so the only thing that changed is the speed.
+
+### Why does the 808 disappear in the slowed version?
+Because every frequency in the song is divided by the same ratio. Here’s the math on a 45 Hz 808, which is a pretty normal fundamental:
+- at 0.9x it becomes 40.5 Hz,
+- at 0.8x it becomes 36 Hz,
+- at 0.5x (true halftime) it becomes 22.5 Hz.
+At 22.5 Hz you’re near the bottom edge of human hearing and well below what most earbuds and phone speakers reproduce with any real level. The energy is still in the file, and it still uses up headroom, but listeners hear the 808 vanish and the kick turn into a soft thud. If your slowed version sounds thin on a phone even though the meter looks full, this is usually why.
+That’s the clearest sign to go back to the session. There you can pitch the 808 up before the bounce, lean on its harmonics with a little saturation so it reads on small speakers, or simply slow the song less. If you keep the stereo bounce, a gentle high-pass well below the new fundamental takes out the sub rumble nobody can hear and gives the headroom back.
+
+### How much should you slow it?
+There’s no correct number, and anyone who gives you one is guessing about your song. A sensible way to find it:
+1. Start modest, around 0.85x, and listen to the hook first.
+2. Check it on earbuds and a phone speaker, not only on monitors. That’s where the low end gives up first.
+3. Go slower only while the vocal still feels like a person and the drums still feel like a groove.
+4. Write down the exact ratio you used, so you can repeat it for the rest of a project.
+True halftime (0.5x) is a much bigger move than it sounds. A full octave down turns most vocals into something closer to a sound effect. That can be great for an interlude or a screwed tape feel, but it’s rarely what people mean by a slowed version of a single.
+
+### What changes on the meter after you slow it?
+More than you’d guess, and not always in the direction you’d guess. Loudness meters following ITU-R BS.1770 weight frequencies: deep lows count for less than mids. When slowing pushes energy down into the lows, the song can read quieter even though nothing got turned down. True peak can move too, because the waveform between the samples changes shape. The Do slowed songs need re-mastering? Slowed + reverb and true peak walks through why a slowed version can go over the ceiling when the original didn’t.
+So we measured it. The script below takes a finished bounce, makes three slowed versions with FFmpeg’s filters (asetrate and aresample for tape-style slowing, atempo for time-stretching), and prints duration, integrated loudness, true peak, and how much of the energy sits below 30 Hz. You need FFmpeg plus Python with numpy and soundfile.
+#!/usr/bin/env python3
+"""slow_check.py: make slowed versions of a finished bounce and re-measure them.
+Usage: python3 slow_check.py bounce.wav
+Needs FFmpeg on PATH. Writes three files next to the input:
+  *_vari080.wav  varispeed 0.8x (tape-style: slower AND lower; asetrate + aresample)
+  *_vari050.wav  varispeed 0.5x (halftime by resampling: twice as long, one octave down)
+  *_tempo080.wav time-stretch 0.8x (slower, same pitch; FFmpeg atempo)
+Then prints duration, integrated loudness (LUFS) and true peak (dBTP) for each,
+using FFmpeg's ebur128 filter (ITU-R BS.1770), plus the share of energy below 30 Hz
+(where a lot of small speakers and earbuds give up). Needs numpy and soundfile too."""
+import sys, re, math, subprocess
+import numpy as np, soundfile as sf
+from pathlib import Path
+
+def run(args): return subprocess.run(args, capture_output=True, text=True).stderr
+
+def measure(p):
+    err = run(["ffmpeg", "-hide_banner", "-nostats", "-i", str(p), "-af", "ebur128=peak=true", "-f", "null", "-"])
+    I = float(re.findall(r"I:\s+(-?[\d.]+) LUFS", err)[-1])
+    tp = float(re.findall(r"Peak:\s+(-?[\d.]+) dBFS", err)[-1])
+    d = re.search(r"Duration: (\d+):(\d+):([\d.]+)", err).groups()
+    return int(d[0]) * 3600 + int(d[1]) * 60 + float(d[2]), I, tp
+
+def sub30(p):
+    x, fs = sf.read(str(p), always_2d=True); m = x.mean(1)
+    P = np.abs(np.fft.rfft(m)) ** 2; f = np.fft.rfftfreq(len(m), 1 / fs)
+    return 100 * P[f < 30].sum() / P.sum()
+
+src = Path(sys.argv[1]); sr = 48000
+jobs = [("original", None, 1.0, 0.0),
+        ("vari080", f"asetrate={int(sr*0.8)},aresample={sr}", 0.8, 12 * math.log2(0.8)),
+        ("vari050", f"asetrate={int(sr*0.5)},aresample={sr}", 0.5, 12 * math.log2(0.5)),
+        ("tempo080", "atempo=0.8", 0.8, 0.0)]
+print(f"{'version':<10}{'speed':>7}{'pitch':>9}{'length':>9}{'LUFS':>8}{'dBTP':>8}{'<30Hz':>8}")
+base = None
+for name, af, speed, semis in jobs:
+    out = src if af is None else src.with_name(f"{src.stem}_{name}.wav")
+    if af: run(["ffmpeg", "-v", "error", "-y", "-i", str(src), "-af", af, "-c:a", "pcm_f32le", str(out)])
+    dur, I, tp = measure(out)
+    print(f"{name:<10}{speed:>6.2f}x{semis:>+8.2f}st{dur:>8.1f}s{I:>8.1f}{tp:>+8.1f}{sub30(out):>7.1f}%" + ("  <- over -1 dBTP" if tp > -1.0 else ""))
+Here’s what it printed on a synthetic test beat, not a real song: kick, snare, hats, a pad and a sine bass with roots between 41 and 55 Hz, capped at about −1.2 dBTP. The material is generated by make_material.py in the demo folder, so you can reproduce it exactly.
+$ python3 slow_check.py bounce.wav
+version     speed    pitch   length    LUFS    dBTP   <30Hz
+original    1.00x   +0.00st    20.5s   -10.8    -1.2    0.2%
+vari080     0.80x   -3.86st    25.6s   -11.9    -1.2    0.4%
+vari050     0.50x  -12.00st    41.0s   -14.7    -1.2   79.3%
+tempo080    0.80x   +0.00st    25.6s   -11.0    -1.3    1.2%
+Three things stand out:
+- The slowed versions read quieter. 0.8x tape-style came in 1.1 LU under the original, and halftime came in 3.9 LU under. The time-stretched version barely moved (0.2 LU), because its spectrum stayed where it was.
+- Halftime moved most of the energy below 30 Hz. On this beat, 79% of the energy in the halftime file sits under 30 Hz, up from 0.2%. That’s the disappearing 808, measured. It still costs headroom; it just doesn’t sound like anything on a phone.
+- True peak held on this material. It stayed around −1.2 dBTP in every version. That’s this beat, not a rule. Real songs with bright transients, reverb added afterwards, or a loudness push to match the original can and do go over, so measure every slowed file.
+The quieter reading also tempts people into a mistake: pushing the slowed version back up to match the original’s number. Since streaming services normalize playback anyway (the essay on why streaming turns loud masters down explains how), chasing the same LUFS mostly spends headroom. Match by ear, then check that the peak is legal.
+
+### A slowed-version checklist
+1. Finish the mix first. Slowing won’t fix masking, phase or a vocal in the wrong chair.
+2. Pick the mode on purpose: tape-style for the classic sound, time-stretch only when the key has to stay put.
+3. Do the 808 math for your ratio. If the fundamental lands under about 30 Hz, consider going back to the session.
+4. Bounce at full quality and keep the original bounce next to the slowed export for A/B.
+5. Re-measure loudness and true peak on the slowed file, and cap it again if it’s over.
+6. Name it clearly (slowed, 0.85x, date), so the right file reaches the distributor.
+Note: If you want a quick slowed print without opening a DAW, HalfScrew runs in the browser: drop the song, scan the wave, take the slowed file. Then drop the export into the CoProducer analyzer to read its loudness and true peak before it ships.
+Q: Should I slow down the master or the session?
+A: Slow the finished bounce when the mix already works and you want the classic slowed sound, where everything drops in pitch together. Go back to the session when slowing breaks something you can only fix there: an 808 that sinks below what speakers can play, a vocal that needs to stay in its key, or a balance that only worked at the original tempo.
+Q: How much should I slow a song for a slowed version?
+A: There’s no correct number. Start modest, somewhere around 0.85x, and listen on earbuds and a phone speaker before you go further. At 0.8x tape-style slowing the whole song drops almost four semitones; at 0.5x (true halftime) it drops a full octave and the low end can fall out of range.
+Q: Why does my 808 disappear in the slowed version?
+A: Because tape-style slowing lowers every frequency by the same ratio. A 45 Hz 808 becomes 36 Hz at 0.8x and 22.5 Hz at 0.5x, which a lot of earbuds and phone speakers barely reproduce. Either slow it less, or rebuild the low end in the session so it sits higher after slowing.
+Q: Do I need to re-master a slowed version?
+A: Treat it as its own file. Measure loudness and true peak again before you upload, because both can move. In our synthetic example the slowed versions read 1 to 4 LU quieter, while true peak held; your song can go either way, so measure rather than assume.
+Q: Is making a slowed version a mastering step?
+A: No. It’s a creative print of a mix you already trust. Make the version you want to hear, then master or at least check the file you’ll actually distribute.
 
 ---
 
@@ -8994,25 +9087,112 @@ A: There isn’t one official number. As a starting point, we flag hiss or rumbl
 
 ---
 
-## When not to reach for the limiter
+## Do you need a limiter on your master? When to skip it, and what to do instead
 URL: https://myaiplug.github.io/coproducer-web/blog/when-not-to-reach-for-the-limiter.html
-Section: Limiting · 21 August 2026 · 8 min
-Summary: Skip another limiter when clips are already non-zero, LUFS is only slightly hot, or the real problem is arrangement, noise, or a bad edit — not peak height.
+Section: Limiting · 21 August 2026 · 7 min
+Summary: A limiter caps peaks. It can’t un-clip a bounce, fix a crushed master or rescue a bad edit. Here’s how to tell which problem you have before adding another one.
 
-Do not reach for another limiter when clipped samples are already non-zero, when LUFS is only slightly hot, or when the mix problem is arrangement. A limiter can park true peak; it cannot restore flattened transients.
+You only need a limiter on your master when the peaks need catching. If the bounce already sits under your true-peak ceiling with no clipped samples, skip it. If true peak is over but nothing is clipped, one true-peak limiter at the very end does the job. And if the file is already clipped, already crushed, or the real problem is the arrangement, another limiter won’t help. It can cap peaks. It can’t give back the transients that are already gone.
+Reaching for a limiter is a reflex for a lot of us. The master feels a bit small, so a limiter goes on, then the gain goes up, then it sounds louder, and louder sounds better for about thirty seconds. The trouble is that a limiter is a very specific tool. Using it on the wrong problem doesn’t just fail to help. It spends punch you won’t get back.
 
-### Three stops
-If clips exist and you still have the session, fix the clip at the source. If true peak is high and clips are zero, a final true-peak cap is enough. If LUFS is hot and crest is gone, take gain out — more limiting only spends punch the store will not return.
-Crazy Stacy’s public pair cleared 831 clips. BeatGoHard needed the ceiling more than a new mix. Different medicine.
+### Do you actually need a limiter on your master?
+Ask what job you want it to do. A limiter is a compressor with a very high ratio and a fast attack, set to stop the signal from going over a ceiling. That makes it great at exactly one thing: keeping peaks under a limit. Everything else people ask of it, like more energy, a bigger chorus or a mix that finally sounds finished, it does only by turning the loud parts down so you can turn the whole thing up.
+That’s worth less than it used to be. Streaming services normalize playback, so a louder master is turned down to sit near everything else (the essay on why streaming turns loud masters down explains how). Loudness bought with limiting mostly comes back as lost punch.
 
-### What CoProducer projects
-The web analyzer projects post-repair stats from the same plan the desktop app would apply. It does not download a mastered WAV. That honesty keeps you from treating a website form like a mastering house.
-Desktop is where Pedalboard/FFmpeg write the file.
-Note: A/B the public pairs on the homepage, then decide whether your bounce needs a cap, a gain change, or a session recall. Pro is $29 one-time if that is the next step.
-Q: Is a limiter always last?
-A: For delivery true-peak control, yes — after loudness moves. In the mix, stop earlier.
-Q: Can repair un-clip a vocal?
-A: No. It can stop new overs. Flattened peaks stay flattened.
+### What can a limiter fix, and what can’t it?
+It can fix peaks that are too high. That’s it, and it’s plenty when it’s the actual problem.
+It can’t fix:
+- Clipping that already happened. If samples were flattened at full scale somewhere upstream (an overdriven bus, a hot export, a plugin that clipped), the tops of those waveforms are gone. Clipping leaves flat tops and added distortion; a limiter can turn them down, but they stay flat.
+- A master that’s already crushed. When there’s very little gap left between the peaks and the average level, the fix is less gain, not a different limiter.
+- Problems that aren’t about level. An arrangement that never builds, a noisy intro, a click at an edit, a vocal buried under the hook. None of those are peak problems, so a peak tool can’t touch them.
+Keep the difference between crest and loudness in mind too. A song can be loud and still dynamic, or quiet and still flat; the essay on crest factor vs loudness goes into why those are two different numbers.
+
+### How do you tell which problem you have?
+Measure before you add anything. Four numbers sort it out:
+- Integrated loudness (LUFS), the average level over the song.
+- True peak (dBTP), the highest point of the waveform including the parts between samples.
+- Clipped samples, runs of consecutive samples pinned at the same maximum value: flat tops.
+- PLR, peak-to-loudness ratio: true peak minus integrated loudness. It’s a quick crest-factor read. A small number means the peaks have been pushed down close to the average.
+The script below measures all four with FFmpeg’s ebur128 filter (which follows ITU-R BS.1770) plus a little numpy, and then names the cheapest fix. The thresholds in it, −1 dBTP and a PLR under 8 dB, are our starting points, not standards. Move them if your genre or your ears disagree.
+#!/usr/bin/env python3
+"""limiter_check.py: before you add another limiter, see which problem you actually have.
+Usage: python3 limiter_check.py mix.wav [more.wav ...]
+Needs FFmpeg on PATH plus numpy and soundfile (pip install numpy soundfile).
+Reports integrated loudness and true peak (FFmpeg ebur128, ITU-R BS.1770), sample peak,
+clipped samples (runs of 3+ consecutive samples pinned at the file's own peak, i.e. flat tops),
+and PLR (true peak minus loudness, a quick crest-factor read). Then names the cheapest fix.
+The thresholds (-1 dBTP ceiling, PLR under 8 dB = 'crushed') are our starting points, not standards."""
+import sys, re, subprocess
+import numpy as np, soundfile as sf
+
+def ebur(p):
+    err = subprocess.run(["ffmpeg", "-hide_banner", "-nostats", "-i", p, "-af", "ebur128=peak=true",
+                          "-f", "null", "-"], capture_output=True, text=True).stderr
+    return float(re.findall(r"I:\s+(-?[\d.]+) LUFS", err)[-1]), float(re.findall(r"Peak:\s+(-?[\d.]+) dBFS", err)[-1])
+
+def flat_tops(x, tol=1e-6, run=3):
+    pk = np.max(np.abs(x)); n = 0
+    for ch in x.T:
+        hit = np.abs(ch) >= pk - tol
+        edges = np.diff(np.concatenate([[0], hit.astype(int), [0]]))
+        starts, ends = np.where(edges == 1)[0], np.where(edges == -1)[0]
+        n += int(((ends - starts) >= run).astype(int) @ (ends - starts))
+    return n
+
+for p in sys.argv[1:]:
+    x, fs = sf.read(p, always_2d=True)
+    I, tp = ebur(p); sp = 20 * np.log10(np.max(np.abs(x))); clips = flat_tops(x); plr = tp - I
+    if clips: verdict = "clipped upstream: fix it in the session or the bounce; a limiter can't rebuild the tops"
+    elif plr < 8: verdict = "already crushed: take gain out, don't add limiting"
+    elif tp > -1.0: verdict = "peaks only: one true-peak cap at the very end is enough"
+    else: verdict = "fine: no limiter needed for delivery"
+    print(f"{p}\n  LUFS {I:6.1f} | true peak {tp:+5.1f} dBTP | sample peak {sp:+5.1f} dBFS | clipped samples {clips:6d} | PLR {plr:4.1f} dB\n  -> {verdict}")
+Here’s what it printed on four synthetic versions of the same test beat, not real songs: one left with headroom, one driven into a sample-peak limiter, one pushed 6 dB into a hard clip, and one driven 10 dB into the limiter. They’re generated by make_material.py in the demo folder.
+$ python3 limiter_check.py mix_ok.wav mix_hot_tp.wav mix_clipped.wav mix_crushed.wav
+mix_ok.wav
+  LUFS  -14.2 | true peak  -2.6 dBTP | sample peak  -3.0 dBFS | clipped samples      0 | PLR 11.6 dB
+  -> fine: no limiter needed for delivery
+mix_hot_tp.wav
+  LUFS   -8.7 | true peak  +0.7 dBTP | sample peak  -0.1 dBFS | clipped samples      0 | PLR  9.4 dB
+  -> peaks only: one true-peak cap at the very end is enough
+mix_clipped.wav
+  LUFS   -6.3 | true peak  +3.0 dBTP | sample peak  +0.0 dBFS | clipped samples  53816 | PLR  9.3 dB
+  -> clipped upstream: fix it in the session or the bounce; a limiter can't rebuild the tops
+mix_crushed.wav
+  LUFS   -6.5 | true peak  +0.7 dBTP | sample peak  -0.1 dBFS | clipped samples      0 | PLR  7.2 dB
+  -> already crushed: take gain out, don't add limiting
+What the four files are telling you:
+- mix_ok sits at −14.2 LUFS with a −2.6 dBTP true peak and no clips. It needs nothing. Adding a limiter here only changes the sound.
+- mix_hot_tp shows why sample peak lies. The limiter held the samples at −0.1 dBFS, but the true peak is +0.7 dBTP, because the waveform overshoots between samples. Nothing is clipped and the PLR is healthy, so one true-peak limiter at the end, or simply a little less gain, fixes it. The essay on true peak and codecs covers why those in-between overs matter once the file is encoded.
+- mix_clipped has 53,816 clipped samples and a +3.0 dBTP true peak. A limiter could pull the peak under the ceiling, but those flat tops would still be in the file. The honest fix is upstream: find where it clipped and bounce again.
+- mix_crushed has no clips and the same +0.7 dBTP true peak as mix_hot_tp, but it’s 2.2 LU louder with a PLR of only 7.2 dB. The answer here is to take gain out of the limiter that’s already on it, not to stack another one.
+
+### What should you do instead of another limiter?
+Match the fix to the problem:
+1. Clipped samples: if you still have the session, fix it at the source. Pull down the track or bus that clipped, re-export, and measure again.
+2. True peak over, no clips: one final true-peak cap. That’s the only case where a limiter is the right answer.
+3. Loudness only slightly hot: turn it down. A fader move costs nothing.
+4. Already crushed: back off the drive on the limiter you have. If that makes it feel small, the fix is in the mix balance, not in more limiting.
+5. Not a level problem at all: go to the arrangement, the edit or the noise, and leave the master chain alone.
+If you’re torn between a clipper and a limiter for that last bit of peak control, the clipper vs limiter essay measures the trade-off on the same drive.
+
+### Where does the limiter go if you do need one?
+Last, after every move that changes level or tone, including the final loudness adjustment. Anything after it can push peaks back over. Use a true-peak or oversampled mode, since a sample-peak limiter can miss overs between samples, as mix_hot_tp just showed. For a ceiling, Spotify’s loudness guidance recommends staying below −1 dBTP, and below −2 dBTP if your master is louder than −14 LUFS, because louder tracks pick up more distortion when they’re encoded.
+In the mix, stop earlier. A limiter on the master bus while you’re still balancing mostly hides the peaks you need to hear.
+
+### What CoProducer does here
+Crazy Stacy’s public pair cleared 831 clips. BeatGoHard needed the ceiling more than a new mix. Different medicine, which is why the analyzer reports clipped samples and true peak separately instead of one “too loud” flag. The web analyzer projects post-repair stats from the same plan the desktop app would apply; it doesn’t hand you a mastered WAV. Desktop is where Pedalboard and FFmpeg write the file.
+Note: A/B the public pairs on the homepage, then decide whether your bounce needs a cap, a gain change, or a session recall. If Pro is the next step, it’s on the pricing page.
+Q: Do I need a limiter on my master?
+A: Only if your peaks need catching. If the file already sits under your true-peak ceiling (−1 dBTP is a common one) and has no clipped samples, you can deliver it without a limiter. If true peak is over and nothing is clipped, one true-peak limiter at the very end is enough.
+Q: Can a limiter fix clipping?
+A: No. Once samples are flattened at full scale, the original tops of the waveform are gone. A limiter can turn the file down and stop new overs, but the flat tops stay flat. Fix clipping where it happened: in the session, on the track, or on the bus that clipped, then bounce again.
+Q: How do I know if I’m over-limiting?
+A: Listen for drums that stop hitting, a vocal that pumps with the kick, and a chorus that feels no bigger than the verse. On the meter, a small gap between true peak and integrated loudness (PLR) is a hint; we start paying attention below about 8 dB. Taking gain out usually sounds better than any setting change.
+Q: Should the limiter be the last thing in the chain?
+A: For delivery, yes. Put the true-peak cap after anything that changes level or tone, including the final loudness move, so nothing after it can push peaks back over. During mixing, a limiter on the master bus mostly hides problems you’d rather hear.
+Q: What ceiling should I set on my limiter?
+A: Use a true-peak (oversampled) mode and set about −1 dBTP. Spotify recommends staying below −1 dBTP, and below −2 dBTP if your master is louder than −14 LUFS, because louder tracks pick up more distortion when they’re encoded for streaming.
 
 ---
 
@@ -10184,7 +10364,7 @@ You can see it by eye, too. Zoom into the loudest moment of the waveform. A heal
 
 ### When is a one-click mastering pass the right call?
 More often than purists admit. If the triage comes back clean and the mix sounds right on two or three systems, an automatic pass that brings it to a sensible level with a legal peak is a perfectly good master for a lot of releases: demos, beat tapes, socials, a single you need out by Friday. The reason to use a local tool for that is speed and privacy. Your unreleased song stays on your machine, and you can rerun it as often as you like.
-It’s the wrong call when you’re hoping it will fix something you already suspect is wrong. If you’re reaching for the mastering tool because the vocal feels buried, the vocal fader is the faster fix. The essay on when not to reach for the limiter makes the same point from the other side, and splitting stems can help you find which part is causing trouble when you only have the bounce.
+It’s the wrong call when you’re hoping it will fix something you already suspect is wrong. If you’re reaching for the mastering tool because the vocal feels buried, the vocal fader is the faster fix. The essay on Do you need a limiter on your master? When to skip it makes the same point from the other side, and splitting stems can help you find which part is causing trouble when you only have the bounce.
 
 ### What should you check after the master?
 A master is a new render, so check it like one:

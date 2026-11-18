@@ -124,9 +124,9 @@ ESSAY_META = {
         "date": "2026-08-21",
     },
     "when-not-to-reach-for-the-limiter": {
-        "title": "When not to reach for the limiter | Lacquer",
-        "description": "Skip another limiter when clips are already non-zero, LUFS is only slightly hot, or the real problem is arrangement, noise, or a bad edit — not peak height.",
-        "keywords": ["limiter", "mastering", "clipping", "dynamics", "repair"],
+        "title": "Do you need a limiter on your master? When to skip it | Lacquer",
+        "description": "A limiter caps peaks. It can’t un-clip a bounce, fix a crushed master or rescue a bad edit. Here’s how to tell which problem you have before adding another one.",
+        "keywords": ["do I need a limiter on my master", "when to use a limiter", "limiter on master", "too much limiting", "clipped samples", "true peak limiter", "crest factor", "PLR", "mastering"],
         "related": ["what-a-70-to-90-repair-changes", "crest-factor-is-not-loudness", "why-streaming-turns-loud-masters-down"],
         "date": "2026-08-21",
     },
