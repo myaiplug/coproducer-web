@@ -1,0 +1,19 @@
+Kitten TTS 2 Mini English text front end, prepared to run in the browser (Pyodide).
+
+kfront/english.py, kfront/tts_norm.py, kfront/phonemize_v1.py, kfront/phonemize_v2.py and
+kfront/frontend_init.py (= kittenml/kittentts2_tiny/frontend/__init__.py) are copied without
+changes from https://github.com/KittenML/KittenTTS at commit
+d13d8c978a8f17d441977d714b75853ae6bd4423 (kittenml 0.9.7). Copyright KittenML.
+Licensed under the Apache License, Version 2.0 (see LICENSE).
+
+kfront/__init__.py, kfront/bart_np.py and kfront/spacy_stub.py are new (CoProducer, Apache-2.0):
+  * bart_np.py runs the 0.75 M-parameter G2P BART (PeterReid/graphemes_to_phonemes_en_us,
+    Apache-2.0, shipped in the KittenML/kitten-tts-2-mini repository under g2p/) in NumPy.
+    It decoded 510 of 510 test words identically to transformers 4.57 / PyTorch 2.8.
+  * spacy_stub.py replaces spaCy (no Pyodide build) with a rule-based tokeniser and tagger.
+    Against real spaCy en_core_web_sm + misaki, the phoneme output matched on 99.6 % of words
+    (138 of 150 held-out Wikipedia sentences identical; 50 of 50 producer-tag lines identical).
+
+Loaded at runtime from PyPI at pinned versions (SHA-256 checked), not stored here:
+  misaki 0.9.4 (Apache-2.0, hexgrad), addict 2.4.0 (MIT), num2words 0.5.14 (LGPL-2.1, used
+  unmodified as a separate, replaceable library), plus Pyodide 0.26.4 (MPL-2.0) with numpy and regex.
