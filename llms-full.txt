@@ -1,6 +1,6 @@
 # CoProducer and Lacquer — full text for assistants
 Base: https://myaiplug.github.io/coproducer-web/
-Updated: 2026-11-17
+Updated: 2026-11-18
 Essays: full plain-text bodies, in journal order
 Summary index: https://myaiplug.github.io/coproducer-web/llms.txt
 
@@ -28,6 +28,262 @@ Summary index: https://myaiplug.github.io/coproducer-web/llms.txt
 - Booth / journal comments on Lacquer pages are real reader notes posted through a public comment form (no seeded or sample comments). Notes with links are held for review before they appear.
 
 # Lacquer essays
+
+## Slowed version out of key? Pick a speed that lands on a semitone
+URL: https://myaiplug.github.io/coproducer-web/blog/slowed-song-out-of-key-pick-a-speed-on-a-semitone.html
+Section: Tempo · 18 November 2026 · 6 min
+Summary: Why slowing a song to 85% or 80% leaves it between keys, and the exact speeds that land it on a whole semitone. Measured on a test note with tape-style slowing, script included.
+
+If a slowed version has to stay in a real key, pick a speed that lands on a whole semitone, like 84.09% for three semitones down, instead of a round number like 85%. Tape-style slowing drops pitch by the same ratio as tempo, and round speeds land between notes. In our test 85% left the note 18.6 cents sharp of the semitone below it, and 80% left it 13.7 cents sharp. On its own nobody notices. The moment you sing, play or tune anything over the slowed beat, you hear it.
+You slow the beat to 85%, it sounds right, and you open a new session to write over it. You set Auto-Tune to the new key, lay down some keys, and the hook feels a little sour. Nothing is broken. The sample still sounds like itself. The beat just isn’t in that key anymore. It’s sitting somewhere between two keys.
+
+### Why round speeds land between keys
+Tape-style slowing (varispeed) plays the same samples back slower, so the pitch drops by exactly the same ratio as the tempo. Notes are spaced by ratio too: each semitone is a step of about 5.95% in speed. Round percentages almost never line up with those steps. We checked it in key_speed_check.py: an A3 note at 220 Hz, slowed with 4-point Hermite interpolation (the same kind HalfScrew’s HQ mode uses), then read with an FFT peak finder against equal-tempered notes at A = 440 Hz.
+# Where a slowed song's notes land: round speeds vs speeds that land on a whole semitone.
+# Synthetic A3 note (220 Hz + harmonics), slowed tape-style with 4-point Hermite interpolation
+# (the same interpolator HalfScrew's HQ mode uses), then measured with an FFT peak finder.
+import numpy as np
+fs = 48000
+NOTES = ["A", "A#", "B", "C", "C#", "D", "D#", "E", "F", "F#", "G", "G#"]
+
+def tone(f0=220.0, dur=4.0):
+    t = np.arange(int(fs * dur)) / fs
+    return sum(np.sin(2 * np.pi * k * f0 * t) / k for k in range(1, 6)) * 0.2
+
+def hermite_slow(y, speed):                      # varispeed: read the samples back at `speed`
+    pos = np.arange(0, len(y) - 3, speed); i = pos.astype(int); f = pos - i
+    y0, y1, y2, y3 = y[np.maximum(i - 1, 0)], y[i], y[i + 1], y[i + 2]
+    c1 = 0.5 * (y2 - y0); c2 = y0 - 2.5 * y1 + 2 * y2 - 0.5 * y3; c3 = 0.5 * (y3 - y0) + 1.5 * (y1 - y2)
+    return ((c3 * f + c2) * f + c1) * f + y1
+
+def f0_of(y):                                     # strongest peak under 300 Hz, parabolic interpolation
+    n = 1 << 20; w = np.hanning(len(y)); X = np.abs(np.fft.rfft(y * w, n))
+    k = np.argmax(X[: int(300 * n / fs)]); a, b, c = np.log(X[k - 1: k + 2])
+    return (k + 0.5 * (a - c) / (a - 2 * b + c)) * fs / n
+
+def nearest(f):                                   # nearest equal-tempered note at A = 440 Hz
+    semis = 12 * np.log2(f / 440.0); n = int(round(semis))
+    ref = 440.0 * 2 ** (n / 12); return NOTES[n % 12], ref, 100 * (semis - n)
+
+y = tone(); bpm = 140
+print(f"Source: A3 at {f0_of(y):.2f} Hz, song at {bpm} BPM. One semitone = a {100*(2**(1/12)-1):.2f}% change in speed\n")
+print(f"{'speed':>8} {'shift':>9} {'new BPM':>8} {'A3 now':>9} {'nearest':>8} {'off by':>9} {'beats vs in-tune note':>22}")
+rows = [("round", s) for s in (0.95, 0.90, 0.85, 0.80, 0.75, 0.70)] + \
+       [("semitone", 2 ** (-n / 12)) for n in (1, 2, 3, 4, 5, 12)]
+last = None
+for kind, s in rows:
+    if kind != last: print(f"-- {kind} speeds"); last = kind
+    f = f0_of(hermite_slow(y, s)); name, ref, cents = nearest(f)
+    print(f"{100*s:7.2f}% {12*np.log2(s):+7.2f} st {bpm*s:8.2f} {f:7.2f}Hz {name:>8} {cents:+7.1f} c {abs(f-ref):10.2f} per second")
+
+print("\nHalfScrew's TIME and PITCH both play the file back faster or slower (varispeed),")
+print("so the export speed is TIME/100 x 2^(PITCH/12):")
+for t, p in ((100, -3), (100, -2), (80, 0), (89, 0), (85, 0), (90, -1)):
+    r = t / 100 * 2 ** (p / 12)
+    print(f"   TIME {t:3d}%  PITCH {p:+d}  -> speed {100*r:6.2f}%  {12*np.log2(r):+6.2f} st  {(12*np.log2(r)-round(12*np.log2(r)))*100:+6.1f} c from a semitone")
+$ python3 key_speed_check.py
+Source: A3 at 220.00 Hz, song at 140 BPM. One semitone = a 5.95% change in speed
+
+   speed     shift  new BPM    A3 now  nearest    off by  beats vs in-tune note
+-- round speeds
+  95.00%   -0.89 st   133.00  209.00Hz       G#   +11.2 c       1.35 per second
+  90.00%   -1.82 st   126.00  198.00Hz        G   +17.6 c       2.00 per second
+  85.00%   -2.81 st   119.00  187.00Hz       F#   +18.6 c       2.00 per second
+  80.00%   -3.86 st   112.00  176.00Hz        F   +13.7 c       1.39 per second
+  75.00%   -4.98 st   105.00  165.00Hz        E    +2.0 c       0.19 per second
+  70.00%   -6.17 st    98.00  154.00Hz       D#   -17.5 c       1.56 per second
+-- semitone speeds
+  94.39%   -1.00 st   132.14  207.65Hz       G#    +0.0 c       0.00 per second
+  89.09%   -2.00 st   124.73  196.00Hz        G    -0.0 c       0.00 per second
+  84.09%   -3.00 st   117.73  185.00Hz       F#    +0.0 c       0.00 per second
+  79.37%   -4.00 st   111.12  174.61Hz        F    -0.0 c       0.00 per second
+  74.92%   -5.00 st   104.88  164.81Hz        E    +0.0 c       0.00 per second
+  50.00%  -12.00 st    70.00  110.00Hz        A    -0.0 c       0.00 per second
+
+HalfScrew's TIME and PITCH both play the file back faster or slower (varispeed),
+so the export speed is TIME/100 x 2^(PITCH/12):
+   TIME 100%  PITCH -3  -> speed  84.09%   -3.00 st    -0.0 c from a semitone
+   TIME 100%  PITCH -2  -> speed  89.09%   -2.00 st    -0.0 c from a semitone
+   TIME  80%  PITCH +0  -> speed  80.00%   -3.86 st   +13.7 c from a semitone
+   TIME  89%  PITCH +0  -> speed  89.00%   -2.02 st    -1.7 c from a semitone
+   TIME  85%  PITCH +0  -> speed  85.00%   -2.81 st   +18.6 c from a semitone
+   TIME  90%  PITCH -1  -> speed  84.95%   -2.82 st   +17.6 c from a semitone
+
+### Reading the numbers
+Round speeds landed 11 to 19 cents off. 85% and 90% were the worst: 18.6 and 17.6 cents sharp of the nearest note, close to a fifth of a semitone. 80% was 13.7 cents sharp, 95% was 11.2 sharp, and 70% went 17.5 cents flat. 75% happened to land within 2.0 cents, only because it’s almost exactly five semitones down.
+You hear it as beating, not as a wrong note. At 85% the A3 landed at 187 Hz. The in-tune F# right next to it is 185 Hz, so the two fundamentals wobble against each other twice a second, and the harmonics above them wobble faster. That’s the sour, seasick feeling when a fresh keys part or a tuned vocal goes over a beat that was slowed by a round number.
+Semitone speeds landed dead on. 94.39%, 89.09%, 84.09%, 79.37% and 74.92% put the note exactly one to five semitones down, 0.0 cents off, and 50% is exactly an octave. The catch is the tempo: 140 BPM at 84.09% is 117.73 BPM, not a round number.
+
+### When it matters, and when it doesn’t
+- It doesn’t matter for a slowed + reverb version of a finished song that people will just play. Pick the speed by feel.
+- It matters when you write a new verse, hook or instrument over a slowed beat, tune a vocal to a key over it, or layer it with in-tune samples, parts or another song in a blend.
+- It matters most with hard tuning. Auto-Tune set to the new key pulls the voice onto in-tune notes while the beat underneath sits 11 to 19 cents away.
+
+### How to pick the speed
+Semitones down | Speed | 140 BPM becomes
+1 | 94.39% | 132.14
+2 | 89.09% | 124.73
+3 | 84.09% | 117.73
+4 | 79.37% | 111.12
+5 | 74.92% | 104.88
+12 (an octave) | 50.00% | 70.00
+1. Decide by ear how far down you want it, in semitones. Two to four is the usual slowed range. Twelve is true half speed.
+2. Use the matching speed from the table. If your tool wants a ratio, it’s 2 to the power of minus semitones over 12.
+3. Set the new session tempo with its decimals (original BPM × speed), so the grid, the chops and the delays line up.
+4. If you need a round BPM instead, say for a DJ set, keep the round speed and tune the new parts to the slowed beat, not to A440. The script prints how many cents to offset.
+5. Write down the speed you used. The next slowed version on the tape should match it.
+In HalfScrew you don’t have to type decimals. Its PITCH knob moves in whole semitones, and like the TIME knob it’s varispeed, so it slows the track along with the pitch. TIME at 100% with PITCH at −3 exports at 84.09% speed, exactly three semitones down. TIME at 85% exports at 85%, 18.6 cents off. If you’d rather stay on TIME, 89% lands within 1.7 cents of two semitones down. The export filename carries the TIME and PITCH you used, so later you’ll know which version you’ve got.
+Note: Landing on a semitone fixes the key, not the voice. Varispeed moves the formants with the note, so a vocal three semitones down still sounds bigger and darker. That’s the screwed sound. If the singer has to sound like themselves, that’s a formants job, and if the key can’t move at all, that’s a time-stretch job.
+Q: What speed should I slow a song to so it stays in key?
+A: A speed equal to a whole number of semitones: 94.39% (one down), 89.09% (two), 84.09% (three), 79.37% (four), 74.92% (five) or 50% (an octave). In our test each landed 0.0 cents off.
+Q: Is a song slowed to 80% still in key?
+A: Not exactly. 80% is 3.86 semitones down, so the song sits 13.7 cents sharp of four semitones down. Alone it sounds fine; against new in-tune parts it beats.
+Q: What key is my song after slowing it to 85%?
+A: About three semitones down, plus 18.6 cents sharp. Either use 84.09% to land exactly three semitones down, or tune anything you add 18.6 cents sharp.
+Q: What BPM is a slowed song?
+A: The original BPM times the speed. 140 BPM at 84.09% is 117.73 BPM; at 80% it’s 112 BPM.
+
+---
+
+## Slowed + reverb sounds washed out? Time the new tail to the slowed tempo
+URL: https://myaiplug.github.io/coproducer-web/blog/slowed-and-reverb-sounds-washed-out-time-the-tail-to-the-new-tempo.html
+Section: Mixing · 18 November 2026 · 6 min
+Summary: Slowing a bounce stretches the reverb already in it, but in step with the groove. The wash comes from the reverb you add on top. Measured, with decay times for common slowed tempos.
+
+If your slowed + reverb version sounds washed out, the reverb you added on top is still ringing when the next snare lands. Slowing a bounce stretches the reverb already in it by the same ratio as the groove: in our test a 1.2-second tail at 140 BPM became 1.50 seconds at 112 BPM, and had decayed exactly as far, 42.7 dB, by the next snare. A 4-second reverb added after slowing was only 16 dB down by then. Set the new tail from the slowed tempo, not from habit.
+Slowed + reverb needs that big hazy reverb. It’s half the sound. So you slow the song, put a long hall on the whole thing, and the hook sounds gorgeous. Then the verse comes in, the snare turns into a smear, the vocal sits behind a curtain and the hats are just gone.
+Most people blame the slowing for that. Usually it isn’t the slowing.
+
+### What slowing does to the reverb that’s already there
+Varispeed plays the whole bounce slower, so every reverb tail in it gets longer. It also pushes the snares further apart by exactly the same ratio, so the tail and the groove stretch together. We checked it in tail_check.py: a synthetic 1.2-second tail at 140 BPM with the snare on 2 and 4, slowed to 80% with the same Hermite interpolation HalfScrew uses. Then we added new reverbs of different lengths after slowing, and ported HalfScrew’s own reverb impulse from its source to measure it the same way.
+# Slowed + reverb: what slowing does to a reverb that's already in the mix, and how much of a reverb
+# added AFTER slowing is still ringing when the next snare lands. Synthetic signals, fixed seed.
+import numpy as np
+fs = 48000; rng = np.random.default_rng(7)
+
+def ir(rt60, dur=None):                         # exponential noise tail, -60 dB at rt60 seconds
+    n = int(fs * (dur or rt60 * 1.3)); t = np.arange(n) / fs
+    return rng.standard_normal(n) * 10 ** (-3 * t / rt60)
+
+def halfscrew_ir():                              # HalfScrew's reverb impulse (halfscrew-fx.js), ported line by line
+    sr = fs; decay = 3.0; n = int(sr * (decay + 0.25)); pre = int(sr * 0.012); out = np.zeros((2, n))
+    for c in range(2):
+        seed = (0x9e3779b1 ^ ((c * 0x85ebca6b) & 0xffffffff)) & 0xffffffff; lp = 0.0
+        for i in range(n):
+            seed = (seed * 1664525 + 1013904223) & 0xffffffff
+            noise = seed / 2147483648 - 1; t = i / sr
+            k = 0.9 - 0.82 * np.exp(-t * 1.6); lp = lp * k + noise * (1 - k)
+            env = np.exp(-6.9078 * t / decay); ramp = min(1, (i - pre) / (sr * 0.02))
+            out[c, i] = 0 if i < pre else lp * env * max(0, ramp) * 2.2
+    return out.mean(0)
+
+def edc_db(h):                                   # Schroeder energy decay curve, dB re total energy
+    e = np.cumsum((h ** 2)[::-1])[::-1]; return 10 * np.log10(e / e[0] + 1e-30)
+
+def rt60_of(h):                                  # T20 method: fit -5 to -25 dB, extrapolate to -60
+    d = edc_db(h); t = np.arange(len(d)) / fs; m = (d <= -5) & (d >= -25)
+    slope = np.polyfit(t[m], d[m], 1)[0]; return -60 / slope
+
+def level_at(h, sec):
+    v = edc_db(h)[int(sec * fs)]; return v
+
+def show(v): return 'below -60 dB' if v < -60 else f'{v:.1f} dB'
+
+def slow(y, speed):                              # tape-style: time and pitch together, 4-point Hermite (as HalfScrew HQ)
+    pos = np.arange(1, len(y) - 3, speed); i = pos.astype(int); f = pos - i
+    y0, y1, y2, y3 = y[i - 1], y[i], y[i + 1], y[i + 2]
+    c1 = 0.5 * (y2 - y0); c2 = y0 - 2.5 * y1 + 2 * y2 - 0.5 * y3; c3 = 0.5 * (y3 - y0) + 1.5 * (y1 - y2)
+    return ((c3 * f + c2) * f + c1) * f + y1
+
+bpm, speed = 140, 0.8
+gap = 120 / bpm                                   # snare on 2 and 4: one snare every two beats
+print(f"Beat: {bpm} BPM, snare every {gap:.3f} s. Slowed to {100*speed:.0f}%: {bpm*speed:.0f} BPM, snare every {gap/speed:.3f} s\n")
+
+h = ir(1.2, 2.5)
+hs = slow(h, speed)
+print("1) Reverb already in the mix (baked into the bounce), then the whole bounce is slowed")
+print(f"   {'':22}{'decay (RT60)':>13}{'snare gap':>11}{'tail left at next snare':>26}")
+print(f"   {'original':22}{rt60_of(h):11.2f} s{gap:9.3f} s{level_at(h, gap):20.1f} dB")
+print(f"   {'slowed to 80%':22}{rt60_of(hs):11.2f} s{gap/speed:9.3f} s{level_at(hs, gap/speed):20.1f} dB")
+
+print("\n2) New reverb added AFTER slowing (snare every %.3f s)" % (gap / speed))
+print(f"   {'reverb decay':22}{'measured RT60':>13}{'decay / gap':>13}{'tail left at next snare':>25}{'still ringing 2 snares later':>31}")
+for rt in (0.6, 1.0, 1.5, 2.5, 4.0):
+    r = ir(rt, max(3 * gap / speed + 0.1, rt * 1.3))
+    print(f"   {rt:10.1f} s{'':11}{rt60_of(r):11.2f} s{rt/(gap/speed):12.2f}{show(level_at(r, gap/speed)):>22}{show(level_at(r, 2*gap/speed)):>28}")
+hz = halfscrew_ir()
+print(f"   {'HalfScrew reverb':22}{rt60_of(hz):11.2f} s{rt60_of(hz)/(gap/speed):12.2f}{show(level_at(hz, gap/speed)):>22}{show(level_at(hz, 2*gap/speed)):>28}")
+
+print("\n3) Snare gap at common slowed tempos, and the decay that is 30 dB / 60 dB down when the next snare lands")
+print(f"   {'BPM':>5}{'snare gap':>11}{'30 dB down':>12}{'60 dB down':>12}")
+for b in (140, 120, 112, 100, 90, 70):
+    g = 120 / b; r = ir(2 * g, 3 * g)
+    print(f"   {b:5d}{g:9.3f} s{2*g:10.2f} s{g:10.2f} s   (check: a {2*g:.2f} s tail measured {level_at(r, g):.1f} dB at the gap)")
+
+print("\n4) Delays added after slowing: time them to the new tempo")
+for b in (bpm, bpm * speed):
+    q = 60000 / b; print(f"   {b:5.0f} BPM: 1/4 = {q:.0f} ms, 1/8 = {q/2:.0f} ms, dotted 1/8 = {q*0.75:.0f} ms")
+$ python3 tail_check.py
+Beat: 140 BPM, snare every 0.857 s. Slowed to 80%: 112 BPM, snare every 1.071 s
+
+1) Reverb already in the mix (baked into the bounce), then the whole bounce is slowed
+                          decay (RT60)  snare gap   tail left at next snare
+   original                     1.20 s    0.857 s               -42.7 dB
+   slowed to 80%                1.50 s    1.071 s               -42.7 dB
+
+2) New reverb added AFTER slowing (snare every 1.071 s)
+   reverb decay          measured RT60  decay / gap  tail left at next snare   still ringing 2 snares later
+          0.6 s                  0.59 s        0.56          below -60 dB                below -60 dB
+          1.0 s                  1.01 s        0.93          below -60 dB                below -60 dB
+          1.5 s                  1.50 s        1.40              -43.0 dB                below -60 dB
+          2.5 s                  2.50 s        2.33              -25.6 dB                    -51.4 dB
+          4.0 s                  4.01 s        3.73              -16.0 dB                    -32.1 dB
+   HalfScrew reverb             2.29 s        2.14              -27.6 dB                    -51.6 dB
+
+3) Snare gap at common slowed tempos, and the decay that is 30 dB / 60 dB down when the next snare lands
+     BPM  snare gap  30 dB down  60 dB down
+     140    0.857 s      1.71 s      0.86 s   (check: a 1.71 s tail measured -30.2 dB at the gap)
+     120    1.000 s      2.00 s      1.00 s   (check: a 2.00 s tail measured -30.1 dB at the gap)
+     112    1.071 s      2.14 s      1.07 s   (check: a 2.14 s tail measured -30.1 dB at the gap)
+     100    1.200 s      2.40 s      1.20 s   (check: a 2.40 s tail measured -30.2 dB at the gap)
+      90    1.333 s      2.67 s      1.33 s   (check: a 2.67 s tail measured -30.0 dB at the gap)
+      70    1.714 s      3.43 s      1.71 s   (check: a 3.43 s tail measured -30.0 dB at the gap)
+
+4) Delays added after slowing: time them to the new tempo
+     140 BPM: 1/4 = 429 ms, 1/8 = 214 ms, dotted 1/8 = 321 ms
+     112 BPM: 1/4 = 536 ms, 1/8 = 268 ms, dotted 1/8 = 402 ms
+
+### Reading the numbers
+The reverb in the mix stays in proportion. At 80% the 1.2-second decay measured 1.50 seconds, and the gap between snares grew from 0.857 to 1.071 seconds. When the next snare hit, the tail had decayed 42.7 dB in both versions. It’s the same amount of space, just slower. If the original mix had air between hits, the slowed bounce still has it.
+The new reverb is where the wash comes from. Anything you add after slowing only knows the new tempo. At 112 BPM a 1.5-second decay was 43.0 dB down by the next snare, about where the mix’s own reverb sat. A 2.5-second decay was only 25.6 dB down. A 4-second decay was 16.0 dB down and still at −32.1 dB two snares later. That’s tail stacked on tail: every hit is still ringing through the next two.
+Long isn’t wrong. The slowed + reverb sound wants some overlap. The real question is how much. A handy way to think about it is decay divided by the snare gap. In our runs 1.4 sat like the original mix, 2.33 was the hazy sound, and 3.73 was the one where the groove started to dissolve.
+
+### Set the tail from the slowed tempo
+With the snare on 2 and 4, the gap between snares is 120 divided by the BPM, in seconds. A decay as long as that gap is 60 dB down when the next snare lands. Twice the gap is about 30 dB down, which is a good place to start for the hazy sound.
+Slowed BPM | Snare gap | Decay for ~30 dB down | Decay for 60 dB down
+140 | 0.857 s | 1.71 s | 0.86 s
+120 | 1.000 s | 2.00 s | 1.00 s
+112 | 1.071 s | 2.14 s | 1.07 s
+100 | 1.200 s | 2.40 s | 1.20 s
+90 | 1.333 s | 2.67 s | 1.33 s
+70 | 1.714 s | 3.43 s | 1.71 s
+1. Slow first, then add the reverb, so you’re hearing the tail against the groove you’ll release.
+2. Work out the new tempo (original BPM × speed) and the snare gap (120 ÷ new BPM).
+3. Start the decay around twice the gap. Go shorter if the verse is busy or the vocal is dense, and longer on purpose for intros, interludes and outros.
+4. High-pass the reverb so the 808 and kick don’t get tails of their own. The reverb return essay has the filter settings.
+5. Leave room at the end of the file for the last tail to ring out, then check the peak again, since reverb stacks new peaks on top of the slowed mix.
+HalfScrew puts its reverb after the slowdown, so it’s already hitting the slowed groove, and its export adds the reverb’s tail time to the end of the file. The tail itself is fixed: ported from the source, it measured about 2.29 seconds, a decay-to-gap ratio of 2.14 at 112 BPM, right in the hazy range. The reverb amount crossfades dry and wet, so on a busy beat the move is less amount, not a shorter tail. The SLOWED + REVERB strains are a quick starting point if you’d rather tweak from a preset.
+Note: Delays work the same way. Add them after slowing and time them to the new tempo: at 140 BPM an eighth note is 214 ms, at 112 BPM it’s 268 ms. A delay left at the old time drifts off the slowed grid. Delay time from BPM has the full table.
+Q: Should I add reverb before or after slowing a song?
+A: After. Slowing stretches the reverb already in the bounce in step with the groove. The reverb you add after slowing is the part you control, so set it against the tempo you’ll release.
+Q: How long should the reverb be on a slowed song?
+A: Start around twice the gap between snares. At 112 BPM that’s about 2.14 seconds, roughly 30 dB down when the next snare lands. Go shorter for clarity and longer for haze.
+Q: Why does my slowed + reverb version sound muddy?
+A: The added tail is outlasting the space between hits. In our test a 4-second decay at 112 BPM was only 16 dB down at the next snare and still ringing two snares later. Shorten it or turn it down, and high-pass the reverb.
+Q: Does slowing a song make the reverb longer?
+A: Yes, by the same ratio as the tempo. A 1.2-second tail became 1.50 seconds at 80%, but the snares moved apart by the same ratio, so it had decayed the same 42.7 dB by the next hit.
+
+---
 
 ## Vocal volume all over the place? Clip-gain the phrases before the compressor
 URL: https://myaiplug.github.io/coproducer-web/blog/vocal-volume-all-over-the-place-clip-gain-before-the-compressor.html

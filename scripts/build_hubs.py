@@ -94,6 +94,7 @@ TOPICS = [
             "vocal-sounds-thin-high-pass-too-high",
             "mix-sounds-muddy-find-the-low-mid-pileup",
             "vocal-volume-all-over-the-place-clip-gain-before-the-compressor",
+            "slowed-and-reverb-sounds-washed-out-time-the-tail-to-the-new-tempo",
         ],
     },
     {
@@ -116,6 +117,7 @@ TOPICS = [
             "sample-drifts-off-the-grid-find-its-real-bpm",
             "what-key-is-this-sample-treat-the-detector-as-a-shortlist",
             "pitched-vocal-sounds-like-a-chipmunk-fix-the-formants",
+            "slowed-song-out-of-key-pick-a-speed-on-a-semitone",
         ],
     },
     {

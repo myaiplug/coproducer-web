@@ -6,7 +6,23 @@
     <atom:link href="https://myaiplug.github.io/coproducer-web/blog/rss.xml" rel="self" type="application/rss+xml"/>
     <description>Answer-first essays on loudness, true peak, repair, stems, ScrewAI, and local .bat workflows.</description>
     <language>en-us</language>
-    <lastBuildDate>Tue, 17 Nov 2026 15:00:00 GMT</lastBuildDate>
+    <lastBuildDate>Wed, 18 Nov 2026 15:00:00 GMT</lastBuildDate>
+    <item>
+      <title>Slowed version out of key? Pick a speed that lands on a semitone</title>
+      <link>https://myaiplug.github.io/coproducer-web/blog/slowed-song-out-of-key-pick-a-speed-on-a-semitone.html</link>
+      <guid isPermaLink="true">https://myaiplug.github.io/coproducer-web/blog/slowed-song-out-of-key-pick-a-speed-on-a-semitone.html</guid>
+      <pubDate>Wed, 18 Nov 2026 15:00:00 GMT</pubDate>
+      <description>Why slowing a song to 85% or 80% leaves it between keys, and the exact speeds that land it on a whole semitone. Measured on a test note with tape-style slowing, script included.</description>
+      <enclosure url="https://myaiplug.github.io/coproducer-web/blog/img/essays/slowed-song-out-of-key-pick-a-speed-on-a-semitone.jpg?v=shd" type="image/jpeg" length="304040"/>
+    </item>
+    <item>
+      <title>Slowed + reverb sounds washed out? Time the new tail to the slowed tempo</title>
+      <link>https://myaiplug.github.io/coproducer-web/blog/slowed-and-reverb-sounds-washed-out-time-the-tail-to-the-new-tempo.html</link>
+      <guid isPermaLink="true">https://myaiplug.github.io/coproducer-web/blog/slowed-and-reverb-sounds-washed-out-time-the-tail-to-the-new-tempo.html</guid>
+      <pubDate>Wed, 18 Nov 2026 15:00:00 GMT</pubDate>
+      <description>Slowing a bounce stretches the reverb already in it, but in step with the groove. The wash comes from the reverb you add on top. Measured, with decay times for common slowed tempos.</description>
+      <enclosure url="https://myaiplug.github.io/coproducer-web/blog/img/essays/slowed-and-reverb-sounds-washed-out-time-the-tail-to-the-new-tempo.jpg?v=shd" type="image/jpeg" length="197246"/>
+    </item>
     <item>
       <title>Vocal volume all over the place? Clip-gain the phrases before the compressor</title>
       <link>https://myaiplug.github.io/coproducer-web/blog/vocal-volume-all-over-the-place-clip-gain-before-the-compressor.html</link>

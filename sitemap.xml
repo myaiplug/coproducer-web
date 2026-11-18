@@ -33,7 +33,7 @@
   </url>
   <url>
     <loc>https://myaiplug.github.io/coproducer-web/blog/index.html</loc>
-    <lastmod>2026-11-17</lastmod>
+    <lastmod>2026-11-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
     <image:image>
@@ -132,6 +132,26 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://myaiplug.github.io/coproducer-web/blog/slowed-song-out-of-key-pick-a-speed-on-a-semitone.html</loc>
+    <lastmod>2026-11-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://myaiplug.github.io/coproducer-web/blog/img/essays/slowed-song-out-of-key-pick-a-speed-on-a-semitone.jpg?v=shd</image:loc>
+      <image:title>Slowed version out of key? Pick a speed that lands on a semitone</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://myaiplug.github.io/coproducer-web/blog/slowed-and-reverb-sounds-washed-out-time-the-tail-to-the-new-tempo.html</loc>
+    <lastmod>2026-11-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://myaiplug.github.io/coproducer-web/blog/img/essays/slowed-and-reverb-sounds-washed-out-time-the-tail-to-the-new-tempo.jpg?v=shd</image:loc>
+      <image:title>Slowed + reverb sounds washed out? Time the new tail to the slowed tempo</image:title>
+    </image:image>
+  </url>
+  <url>
     <loc>https://myaiplug.github.io/coproducer-web/blog/vocal-volume-all-over-the-place-clip-gain-before-the-compressor.html</loc>
     <lastmod>2026-11-17</lastmod>
     <changefreq>monthly</changefreq>
@@ -143,7 +163,7 @@
   </url>
   <url>
     <loc>https://myaiplug.github.io/coproducer-web/blog/pitched-vocal-sounds-like-a-chipmunk-fix-the-formants.html</loc>
-    <lastmod>2026-11-17</lastmod>
+    <lastmod>2026-11-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <image:image>
@@ -373,7 +393,7 @@
   </url>
     <url>
     <loc>https://myaiplug.github.io/coproducer-web/blog/tune-808-to-the-key-of-your-song.html</loc>
-    <lastmod>2026-11-16</lastmod>
+    <lastmod>2026-11-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <image:image>
@@ -413,7 +433,7 @@
   </url>
       <url>
     <loc>https://myaiplug.github.io/coproducer-web/blog/delay-time-from-bpm-sync-your-throws.html</loc>
-    <lastmod>2026-11-10</lastmod>
+    <lastmod>2026-11-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <image:image>
@@ -453,7 +473,7 @@
   </url>
   <url>
     <loc>https://myaiplug.github.io/coproducer-web/blog/reverb-makes-the-mix-muddy-filter-the-return.html</loc>
-    <lastmod>2026-11-10</lastmod>
+    <lastmod>2026-11-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <image:image>
@@ -563,7 +583,7 @@
   </url>
   <url>
     <loc>https://myaiplug.github.io/coproducer-web/blog/resampling-vs-pitch-shift-vs-tempo.html</loc>
-    <lastmod>2026-11-17</lastmod>
+    <lastmod>2026-11-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <image:image>
@@ -763,7 +783,7 @@
   </url>
   <url>
     <loc>https://myaiplug.github.io/coproducer-web/blog/when-to-slow-the-bounce.html</loc>
-    <lastmod>2026-11-17</lastmod>
+    <lastmod>2026-11-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <image:image>
@@ -963,7 +983,7 @@
   </url>
   <url>
     <loc>https://myaiplug.github.io/coproducer-web/blog/screw-tempo-still-needs-a-legal-peak.html</loc>
-    <lastmod>2026-11-04</lastmod>
+    <lastmod>2026-11-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.75</priority>
     <image:image>
@@ -1037,13 +1057,13 @@
   </url>
   <url>
     <loc>https://myaiplug.github.io/coproducer-web/blog/topics/low-end-and-mix-dynamics.html</loc>
-    <lastmod>2026-11-17</lastmod>
+    <lastmod>2026-11-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://myaiplug.github.io/coproducer-web/blog/topics/432-hz-pitch-and-tempo.html</loc>
-    <lastmod>2026-11-17</lastmod>
+    <lastmod>2026-11-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
