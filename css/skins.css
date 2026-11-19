@@ -1,0 +1,365 @@
+/* CoProducer color skins. Tokens live on :root / html[data-skin]. Switcher is in js/skins.js. */
+@import url("https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,700;0,800;0,900;1,700;1,800;1,900&display=swap");
+
+:root,
+html[data-skin="violet"] {
+  --bg: #050308;
+  --text: #f7f2fa;
+  --p: #a839ff;
+  --m: #e84cff;
+  --line: rgba(194, 111, 255, 0.2);
+  --muted: #a79daf;
+  --green: #c9ff4d;
+  --red: #ff6b6b;
+  --surface: #0b0712;
+  --nav-bg: rgba(5, 3, 8, 0.9);
+  --btn-border: #9d3cdb;
+  --btn-from: #9632d6;
+  --btn-to: #58148a;
+  --btn-glow: rgba(174, 54, 255, 0.22);
+  --btn-text: #ffffff;
+  --motion-1: rgba(129, 36, 255, 0.18);
+  --motion-2: rgba(224, 52, 255, 0.08);
+  --grid-line: rgba(165, 89, 255, 0.035);
+  --card-from: #140a1c;
+  --card-to: #08060b;
+  --display-font: "Barlow Condensed", sans-serif;
+  --display-style: normal;
+  --brand-style: italic;
+  --mark-hi: #f8e9ff;
+  --mark-mid: #d56bff;
+  --mark-lo: #6a1d9a;
+  --mark-wave: #e84cff;
+  --mark-wave-hi: #7c3aed;
+  --theme-rgb: 232, 76, 255;
+}
+
+html[data-skin="chrome"] {
+  --bg: #07080b;
+  --text: #f3f5f8;
+  --p: #d5dbe6;
+  --m: #3b82f6;
+  --line: rgba(180, 200, 230, 0.18);
+  --muted: #9aa3b2;
+  --green: #c9ff4d;
+  --red: #ff8a8a;
+  --surface: #10141c;
+  --nav-bg: rgba(7, 8, 11, 0.92);
+  --btn-border: #93c5fd;
+  --btn-from: #4b5563;
+  --btn-to: #1f2937;
+  --btn-glow: rgba(59, 130, 246, 0.28);
+  --btn-text: #f8fafc;
+  --motion-1: rgba(59, 130, 246, 0.16);
+  --motion-2: rgba(148, 163, 184, 0.08);
+  --grid-line: rgba(148, 163, 184, 0.05);
+  --card-from: #141821;
+  --card-to: #08090c;
+  --display-font: "Exo 2", sans-serif;
+  --display-style: italic;
+  --brand-style: italic;
+  --mark-hi: #f7f8fb;
+  --mark-mid: #c5c9d1;
+  --mark-lo: #6a7080;
+  --mark-wave: #1e6cff;
+  --mark-wave-hi: #5aa0ff;
+  --theme-rgb: 30, 108, 255;
+}
+
+html[data-skin="gold"] {
+  --bg: #0a0906;
+  --text: #f8f3e6;
+  --p: #f3d789;
+  --m: #e6c56a;
+  --line: rgba(230, 197, 106, 0.22);
+  --muted: #b8ad93;
+  --green: #d7ffb8;
+  --red: #ff8a8a;
+  --surface: #14110a;
+  --nav-bg: rgba(10, 9, 6, 0.92);
+  --btn-border: #e6c56a;
+  --btn-from: #c5a24a;
+  --btn-to: #6b4e14;
+  --btn-glow: rgba(230, 197, 106, 0.28);
+  --btn-text: #140f05;
+  --motion-1: rgba(230, 197, 106, 0.16);
+  --motion-2: rgba(180, 130, 40, 0.08);
+  --grid-line: rgba(230, 197, 106, 0.05);
+  --card-from: #18140c;
+  --card-to: #0a0906;
+  --display-font: "Barlow Condensed", sans-serif;
+  --display-style: normal;
+  --brand-style: italic;
+  --mark-hi: #fff6d1;
+  --mark-mid: #e0b84e;
+  --mark-lo: #8a6a1a;
+  --mark-wave: #f0c14b;
+  --mark-wave-hi: #ffe08a;
+  --theme-rgb: 230, 197, 106;
+}
+
+html[data-skin="ice"] {
+  --bg: #061015;
+  --text: #eefbff;
+  --p: #9af0ff;
+  --m: #5ee4ff;
+  --line: rgba(94, 228, 255, 0.22);
+  --muted: #8eb4be;
+  --green: #c9ff4d;
+  --red: #ff8a8a;
+  --surface: #0a1a20;
+  --nav-bg: rgba(6, 16, 21, 0.92);
+  --btn-border: #67e8f9;
+  --btn-from: #155e75;
+  --btn-to: #083344;
+  --btn-glow: rgba(94, 228, 255, 0.28);
+  --btn-text: #f0fdff;
+  --motion-1: rgba(94, 228, 255, 0.16);
+  --motion-2: rgba(14, 116, 144, 0.12);
+  --grid-line: rgba(94, 228, 255, 0.05);
+  --card-from: #0c1c22;
+  --card-to: #061015;
+  --display-font: "Barlow Condensed", sans-serif;
+  --display-style: normal;
+  --brand-style: italic;
+  --mark-hi: #f0fdff;
+  --mark-mid: #9ad7e6;
+  --mark-lo: #3d6d7a;
+  --mark-wave: #22d3ee;
+  --mark-wave-hi: #a5f3fc;
+  --theme-rgb: 94, 228, 255;
+}
+
+html[data-skin="crimson"] {
+  --bg: #0c0608;
+  --text: #fff2f4;
+  --p: #ff7a8a;
+  --m: #ff4d6d;
+  --line: rgba(255, 77, 109, 0.22);
+  --muted: #c4a0a6;
+  --green: #d7ffb8;
+  --red: #ff8a8a;
+  --surface: #160a0d;
+  --nav-bg: rgba(12, 6, 8, 0.92);
+  --btn-border: #ff4d6d;
+  --btn-from: #c81e3a;
+  --btn-to: #6b1020;
+  --btn-glow: rgba(255, 77, 109, 0.28);
+  --btn-text: #fff7f8;
+  --motion-1: rgba(255, 77, 109, 0.16);
+  --motion-2: rgba(140, 20, 40, 0.12);
+  --grid-line: rgba(255, 77, 109, 0.05);
+  --card-from: #1a0c10;
+  --card-to: #0c0608;
+  --display-font: "Barlow Condensed", sans-serif;
+  --display-style: normal;
+  --brand-style: italic;
+  --mark-hi: #ffe4e8;
+  --mark-mid: #e85a6c;
+  --mark-lo: #7a1f2c;
+  --mark-wave: #ff3b5c;
+  --mark-wave-hi: #ff8a9c;
+  --theme-rgb: 255, 77, 109;
+}
+
+html[data-skin="emerald"] {
+  --bg: #050c09;
+  --text: #eefbf4;
+  --p: #6ee7b7;
+  --m: #34d399;
+  --line: rgba(52, 211, 153, 0.22);
+  --muted: #93b5a6;
+  --green: #c9ff4d;
+  --red: #ff8a8a;
+  --surface: #0a1611;
+  --nav-bg: rgba(5, 12, 9, 0.92);
+  --btn-border: #34d399;
+  --btn-from: #0f766e;
+  --btn-to: #064e3b;
+  --btn-glow: rgba(52, 211, 153, 0.28);
+  --btn-text: #f0fdf6;
+  --motion-1: rgba(52, 211, 153, 0.16);
+  --motion-2: rgba(6, 78, 59, 0.14);
+  --grid-line: rgba(52, 211, 153, 0.05);
+  --card-from: #0c1813;
+  --card-to: #050c09;
+  --display-font: "Barlow Condensed", sans-serif;
+  --display-style: normal;
+  --brand-style: italic;
+  --mark-hi: #e8fff5;
+  --mark-mid: #4ade80;
+  --mark-lo: #166534;
+  --mark-wave: #10b981;
+  --mark-wave-hi: #6ee7b7;
+  --theme-rgb: 52, 211, 153;
+}
+
+/* Apply tokens to common UI. Later page rules may hard-code families; skin typography uses higher specificity. */
+html { background: var(--bg); }
+body {
+  background: var(--bg);
+  color: var(--text);
+}
+nav,
+.site-nav,
+.cp-nav,
+header.site-nav,
+.lq-bar,
+.blog header,
+header.nav-wrap {
+  background: var(--nav-bg);
+  border-color: var(--line);
+}
+.brand,
+.site-brand,
+.cp-nav .brand {
+  font-family: var(--display-font);
+  font-style: var(--brand-style);
+}
+.brand i,
+.site-brand i,
+.cp-nav .brand i { color: var(--m); }
+.links a:hover,
+.site-links a:hover,
+.site-links a.is-on,
+.cp-nav .links a:hover,
+.cp-nav .links a.on,
+.nav a:hover { color: var(--m); }
+.cta, .btn, .site-cta, .cp-nav .cta {
+  border-color: var(--btn-border);
+  background: linear-gradient(var(--btn-from), var(--btn-to));
+  box-shadow: 0 0 28px var(--btn-glow);
+  color: var(--btn-text);
+}
+.btn.alt {
+  background: transparent;
+  border-color: var(--line);
+  box-shadow: none;
+  color: var(--text);
+}
+.eyebrow, .site-kicker { color: var(--m); border-color: var(--line); }
+h1 span, .site-page h1 span { color: var(--p); }
+.hero-mark {
+  background:
+    radial-gradient(ellipse 72% 58% at 50% 46%, rgba(var(--theme-rgb), 0.2), transparent 68%),
+    linear-gradient(145deg, var(--card-from), var(--card-to));
+  border-color: var(--line);
+  box-shadow: 0 30px 80px rgba(var(--theme-rgb), 0.2);
+}
+.hero-mark svg {
+  width: min(100%, 560px);
+  height: auto;
+  display: block;
+  overflow: visible;
+  filter: drop-shadow(0 12px 28px rgba(0, 0, 0, 0.45));
+}
+@media (max-width: 900px) {
+  .hero-mark svg { width: min(100%, 340px); }
+}
+
+html[data-skin="chrome"] h1,
+html[data-skin="chrome"] h2,
+html[data-skin="chrome"] h3,
+html[data-skin="chrome"] .brand,
+html[data-skin="chrome"] .site-brand,
+html[data-skin="chrome"] .site-page h1,
+html[data-skin="chrome"] .site-page h2,
+html[data-skin="chrome"] .cp-nav .brand {
+  font-family: "Exo 2", sans-serif !important;
+  font-style: italic;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  body, nav, .cta, .btn, .hero-mark, .brand, h1 {
+    transition: background-color 200ms ease, color 200ms ease, border-color 200ms ease, box-shadow 200ms ease;
+  }
+}
+
+/* Switcher — reserved 36×36 control, no layout shift */
+.skin-switch {
+  position: relative;
+  flex: 0 0 36px;
+  width: 36px;
+  height: 36px;
+  margin-left: 8px;
+}
+.skin-switch-toggle {
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background:
+    conic-gradient(from 120deg, var(--m), var(--p), var(--mark-wave), var(--m));
+  box-shadow: 0 0 0 2px var(--bg), 0 0 0 3px var(--line);
+  cursor: pointer;
+  color: transparent;
+}
+.skin-switch-toggle:focus-visible {
+  outline: 2px solid var(--m);
+  outline-offset: 3px;
+}
+.skin-menu {
+  position: absolute;
+  top: calc(100% + 10px);
+  right: 0;
+  z-index: 60;
+  min-width: 198px;
+  padding: 10px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--nav-bg);
+  backdrop-filter: blur(18px);
+  box-shadow: 0 18px 48px rgba(0, 0, 0, 0.45);
+}
+.skin-menu[hidden] { display: none; }
+.skin-menu-label {
+  font: 700 9px "JetBrains Mono", monospace;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+  padding: 2px 6px 8px;
+}
+.skin-options {
+  display: grid;
+  gap: 4px;
+}
+.skin-option {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  padding: 8px 8px;
+  border: 0;
+  border-radius: 8px;
+  background: transparent;
+  color: var(--text);
+  font: 700 11px "JetBrains Mono", monospace;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  cursor: pointer;
+  text-align: left;
+}
+.skin-option:hover,
+.skin-option:focus-visible { background: rgba(255, 255, 255, 0.05); }
+.skin-option:focus-visible { outline: 2px solid var(--m); outline-offset: 1px; }
+.skin-option[aria-checked="true"] { background: rgba(var(--theme-rgb), 0.12); color: var(--m); }
+.skin-swatch {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  flex: 0 0 16px;
+  background: var(--swatch);
+}
+
+html[data-skin] #studio-root .rf-root {
+  --rf-accent: var(--m);
+  --rf-accent2: var(--p);
+  --rf-border: var(--line);
+  --rf-text: var(--text);
+  --rf-muted: var(--muted);
+  --rf-bg: var(--surface);
+  --rf-panel: var(--surface);
+  --rf-head: var(--display-font);
+}

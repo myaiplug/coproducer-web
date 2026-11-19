@@ -1,6 +1,8 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-skin="violet">
 <head>
+<script>(function(){try{var a={violet:1,chrome:1,gold:1,ice:1,crimson:1,emerald:1};var q=new URLSearchParams(location.search).get("skin");var s=a[q]?q:localStorage.getItem("coproducer-skin");document.documentElement.setAttribute("data-skin",a[s]?s:"violet");}catch(e){document.documentElement.setAttribute("data-skin","violet");}})();</script>
+
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
 <title>Stem Split in Your Browser | CoProducer</title>
@@ -63,6 +65,7 @@ button[disabled] { opacity:.45; cursor:default; }
 .foot a { color:var(--m); }
 #app { margin-top:22px; }
 </style>
+<link href="css/skins.css" rel="stylesheet"/>
 </head>
 <body>
 <div class="wrap">
@@ -111,5 +114,6 @@ button[disabled] { opacity:.45; cursor:default; }
     });
   }
 </script>
+<script src="js/skins.js" defer></script>
 </body>
 </html>
