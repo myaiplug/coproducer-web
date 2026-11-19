@@ -27,6 +27,7 @@
 <link rel="stylesheet" href="js/roformer-web/rf.css"/>
 <link rel="stylesheet" href="js/stem-studio/studio.css"/>
 <link rel="stylesheet" href="js/stem-studio/coproducer-theme.css"/>
+<link rel="stylesheet" href="js/guide-voice/guide.css"/>
 </head>
 <body>
 <nav class="cp-nav" aria-label="Site">
@@ -65,7 +66,9 @@
   if (!sw.reloading) {
     const { mountStudio } = await import('./js/stem-studio/ui.js');
     const { BRAND_COPRODUCER } = await import('./js/stem-studio/export.js');
-    mountStudio(document.getElementById('studio-root'), { brand: BRAND_COPRODUCER, appName: 'CoProducer Stem Studio' });
+    const api = await mountStudio(document.getElementById('studio-root'), { brand: BRAND_COPRODUCER, appName: 'CoProducer Stem Studio' });
+    try { const { mountGuide } = await import('./js/guide-voice/guide-voice.js'); mountGuide(api); }
+    catch (e) { console.warn('Guide voice unavailable', e); }
   }
 </script>
 <script type="module" src="js/liminal-latest.js"></script>
