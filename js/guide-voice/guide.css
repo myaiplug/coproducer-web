@@ -1,0 +1,8 @@
+.guide-card{padding:.8rem 1.2rem}
+.guide-card>h2.guide-h{font-size:.95rem;margin-bottom:.5rem}
+.guide-row{display:flex;flex-wrap:wrap;gap:.6rem;align-items:center;margin:.35rem 0}
+.guide-opt{display:inline-flex;gap:.35rem;align-items:center;font-size:.8rem}
+.guide-opt input[type=range]{width:7rem}
+.guide-text{flex:1;min-width:14rem;background:var(--bg,#0b1020);color:inherit;border:1px solid var(--border);border-radius:8px;padding:.35rem .6rem;font:inherit;font-size:.8rem}
+.guide-caption{min-height:1.2em;font-style:italic}
+.guide-credit{font-size:.7rem;margin-top:.4rem}

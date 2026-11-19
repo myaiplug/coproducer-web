@@ -81,3 +81,15 @@ Spoken producer tags and guide lines, made on the visitor's device. No model wei
   (dB of `mix - sum(stems)` relative to the mix) are used in `fidelity.js`, which is an independent implementation.
 * **TramEFX stem-separator** (MIT) and **Stavion-Colquitt/nussl modernized fork** (MIT) — reviewed for model
   lineup and SDR benchmarking ideas. Nothing from either is included in this repository or shipped.
+
+## Stem Studio guide voice (`js/guide-voice/`)
+
+Spoken tips and voice-command confirmations in Stem Studio. Voice: Inflect Mini v3, "hope".
+
+| Component | Source | Version / commit | License | Location |
+| --- | --- | --- | --- | --- |
+| Pre-rendered guide clips (64 MP3s, 48 kb/s mono, rendered on a CPU with Inflect's own runtime by `tools/inflect-export/render_clips.py`) | https://huggingface.co/owensong/Inflect-Mini-v3 | `0490aee` | Model code and weights Apache-2.0, Owen Song (`LICENSING.md`, `core/LICENSE_SCOPE.json`). Derived from Kokoro (Apache-2.0, hexgrad) and StyleTTS 2 (MIT, Yinghao Aaron Li). No voice or likeness rights are granted by the license; the "hope" voice is a model preset, not a named person | `js/guide-voice/clips/` |
+| Inflect Mini v3 ONNX graphs (`text_w16.onnx`, `decode_w16.onnx`) and voice tables, exported by `tools/inflect-export` (weights stored float16) | same | `0490aee` | Apache-2.0 (redistribution allowed with the license and notice). Live engine only, runtime download from `INFLECT_ONNX_BASE`, SHA-256 checked; off until a host is configured | not in repo |
+| Inflect phoneme vocab (`inflect_meta.json`: vocab, voice names, frame limit, extracted from the model config) | same | `0490aee` | Apache-2.0 | `js/guide-voice/inflect_meta.json` |
+| Text front end for the live engine: the Kitten/misaki front end, CMUdict lexicon and G2P BART listed above (Voice Tags), reused with Inflect's vocab. Inflect's own CLI falls back to espeak-ng (GPL-3.0) for unknown words; that path is **not** used here | see Voice Tags rows | | Apache-2.0 / MIT / BSD; num2words LGPL-2.1 (separate, unmodified runtime download) | see above |
+| Inflect export, rendering and ONNX check scripts (new) | this repository | | Apache-2.0 (adapts Inflect Mini v3 module code, Apache-2.0) | `tools/inflect-export/` |

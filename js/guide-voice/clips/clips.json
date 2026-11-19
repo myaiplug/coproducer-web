@@ -1,0 +1,390 @@
+{
+ "voice": "hope",
+ "model": "owensong/Inflect-Mini-v3@0490aee6a9c66f9375b48287a2c5e5788afd00cc",
+ "clips": {
+  "tip:welcome": {
+   "file": "tip-welcome.mp3",
+   "text": "Welcome to Stem Studio. Drop a song in step one to split it, or import stems you already have.",
+   "seconds": 6.42,
+   "sha256": "2a50538136b45cbd4d9f597ec097a0f536be91c334cce395ed0fc847c0d010c6"
+  },
+  "tip:split": {
+   "file": "tip-split.mp3",
+   "text": "Pick the stems you want, then press Split. Everything runs on your own computer, and nothing is uploaded.",
+   "seconds": 6.88,
+   "sha256": "6a10142ff836dd8eed6900ffd8e3120749b742205c077717d25b7fd76de38795"
+  },
+  "tip:lanes": {
+   "file": "tip-lanes.mp3",
+   "text": "Each stem gets its own lane. Use M to mute it, S to solo it, and the slider to set its level.",
+   "seconds": 6.5,
+   "sha256": "c785f3eeffc990656dd05a23755a5b6a59588403a6c51b6fd5d7f451323bbfac"
+  },
+  "tip:fx": {
+   "file": "tip-fx.mp3",
+   "text": "Click a stem to open its effects. Start from a preset, then switch modules on and off to hear the difference.",
+   "seconds": 6.62,
+   "sha256": "f8fff21e4f67b854adaa79e0312c1299393b6b62c5a59ca80bd56ee3d77671fb"
+  },
+  "tip:ab": {
+   "file": "tip-ab.mp3",
+   "text": "Press A B to bypass every effect at once, so you can compare before and after at the same loudness.",
+   "seconds": 6.2,
+   "sha256": "5a1f781f749264190eb5f5c19a551ad0efcc22fe3fb371d46094478b35426cbc"
+  },
+  "tip:clean": {
+   "file": "tip-clean.mp3",
+   "text": "The Clean tab scans a stem for separation artifacts and repairs them without touching the original.",
+   "seconds": 6.38,
+   "sha256": "6ccf9803134fd8e4692eed4cf88109306630a9402e87616580e6fe3a8a75d5fa"
+  },
+  "tip:drums": {
+   "file": "tip-drums.mp3",
+   "text": "The Drums tab breaks the drum stem into kick, snare, toms, hi hat and cymbals.",
+   "seconds": 5.6,
+   "sha256": "63fd1acb9a3c7c99e51a7692c8c4ca90132f4156fe80b24c0ae77cb1285eba15"
+  },
+  "tip:vocals": {
+   "file": "tip-vocals.mp3",
+   "text": "The Vocals tab splits the lead singer from the backing vocals.",
+   "seconds": 3.77,
+   "sha256": "becae027bee95eb222bb4118a617d99e5ffd100a1ddcb64f4244997a841214e9"
+  },
+  "tip:loudness": {
+   "file": "tip-loudness.mp3",
+   "text": "Measure the mix to see its loudness and true peak before you export.",
+   "seconds": 4.3,
+   "sha256": "296c01bb5eb095fdfc6695b39d9af7199ab660a7c37aeea4e0cd8a3cb8741aeb"
+  },
+  "tip:export": {
+   "file": "tip-export.mp3",
+   "text": "When it sounds right, press Render and export to save every stem and the mix.",
+   "seconds": 5.08,
+   "sha256": "05b95e15b66284a23a00624c2f7b422505d21245e8b1ccd28c9f2db56e844f2f"
+  },
+  "tip:voice": {
+   "file": "tip-voice.mp3",
+   "text": "Voice commands are off until you switch them on. Hold the mic button, say a command, then let go.",
+   "seconds": 6.47,
+   "sha256": "99cce2585b450e0c6426ae2493d410b17ca62f745a08c7b1a8d3191d20991da3"
+  },
+  "tip:voice_examples": {
+   "file": "tip-voice-examples.mp3",
+   "text": "Try: drop the bass, mute vocals, solo drums, unsolo, play, stop, or export.",
+   "seconds": 6.35,
+   "sha256": "2ce6373e01c51e12c7050a684384294cfde3c016843715a5ccb56f74f06ae25d"
+  },
+  "mute:vocals": {
+   "file": "mute-vocals.mp3",
+   "text": "Muted the vocals.",
+   "seconds": 1.62,
+   "sha256": "1f12477b6875483936517cd72b0a2a2b967551d6ad750ae7075ee4468f0c49c3"
+  },
+  "unmute:vocals": {
+   "file": "unmute-vocals.mp3",
+   "text": "The vocals are back.",
+   "seconds": 1.57,
+   "sha256": "3157454084f58873a0866492c49c230bc7cbe7f1831393ec7376f95a066376f9"
+  },
+  "solo:vocals": {
+   "file": "solo-vocals.mp3",
+   "text": "Soloed the vocals.",
+   "seconds": 1.6,
+   "sha256": "98c594ebf4686c058c25b25f08e8a18c670464bfcccce5ad87204cac50a3ea81"
+  },
+  "missing:vocals": {
+   "file": "missing-vocals.mp3",
+   "text": "This session has no vocals stem.",
+   "seconds": 2.52,
+   "sha256": "1a137c62fdad8dd71166c69983f00a511b547e245ab1c7dff9cb3b20fc305108"
+  },
+  "mute:drums": {
+   "file": "mute-drums.mp3",
+   "text": "Muted the drums.",
+   "seconds": 1.57,
+   "sha256": "721c83122c4e6a41de21c8ee570b5f861a4277f13c8d5eaed71da82bd7774569"
+  },
+  "unmute:drums": {
+   "file": "unmute-drums.mp3",
+   "text": "The drums are back.",
+   "seconds": 1.52,
+   "sha256": "7ea33049f6794a26da3e8e26740303c3d64df3e57fce9a963c07717a144c13df"
+  },
+  "solo:drums": {
+   "file": "solo-drums.mp3",
+   "text": "Soloed the drums.",
+   "seconds": 1.57,
+   "sha256": "8c8c29d2e41308cd7b9d9ab0f0acb47e099d5e7a08d85ff93db313ac4f9a8509"
+  },
+  "missing:drums": {
+   "file": "missing-drums.mp3",
+   "text": "This session has no drums stem.",
+   "seconds": 2.42,
+   "sha256": "bad39bcd320ef909a40d7ca99bc5bb80c19566df7c033f233653c7bd58d8e97d"
+  },
+  "mute:bass": {
+   "file": "mute-bass.mp3",
+   "text": "Muted the bass.",
+   "seconds": 1.55,
+   "sha256": "73af212b9607afc8c29fe1bc00fc64e714d64c5114926514bbef969821ae6f4c"
+  },
+  "unmute:bass": {
+   "file": "unmute-bass.mp3",
+   "text": "The bass is back.",
+   "seconds": 1.5,
+   "sha256": "f065e1871079ee3af64c9eb074f41afbe5a239703062aa74ca4ad37a4e4779b7"
+  },
+  "solo:bass": {
+   "file": "solo-bass.mp3",
+   "text": "Soloed the bass.",
+   "seconds": 1.57,
+   "sha256": "3351694ecfd3b50e44ad143628bd2220bdf93794ab037525ae7c30e09b2ca8e0"
+  },
+  "missing:bass": {
+   "file": "missing-bass.mp3",
+   "text": "This session has no bass stem.",
+   "seconds": 2.38,
+   "sha256": "6386b4be2e9980b014242048a4683e418ab44bd86d601c06ee14162a552886e9"
+  },
+  "mute:other": {
+   "file": "mute-other.mp3",
+   "text": "Muted the other stem.",
+   "seconds": 1.82,
+   "sha256": "9005a28d06ed5ee0eeb1b30dd342782efa5dd952360e977462a921778cc03c40"
+  },
+  "unmute:other": {
+   "file": "unmute-other.mp3",
+   "text": "The other stem is back.",
+   "seconds": 1.8,
+   "sha256": "56b4ec2b142e41ab7196c455e7ba7ce3b76be003a285a380e45f6d5ab0460152"
+  },
+  "solo:other": {
+   "file": "solo-other.mp3",
+   "text": "Soloed the other stem.",
+   "seconds": 1.82,
+   "sha256": "9a084fb97481cd2f4252c6972e5589612525febf4d1cded4afd8d5be5b55f7f1"
+  },
+  "missing:other": {
+   "file": "missing-other.mp3",
+   "text": "This session has no other stem stem.",
+   "seconds": 2.62,
+   "sha256": "7f69fbd39cfdc5f924179921203d18fd4cd5cf59c8f9f288030c340fef7b6114"
+  },
+  "mute:guitar": {
+   "file": "mute-guitar.mp3",
+   "text": "Muted the guitar.",
+   "seconds": 1.52,
+   "sha256": "68e079e349a1f5bc39a632fb3b3648d625913f7fd161575bcf2299fd1776e5b7"
+  },
+  "unmute:guitar": {
+   "file": "unmute-guitar.mp3",
+   "text": "The guitar is back.",
+   "seconds": 1.55,
+   "sha256": "f119a54c33894ec415408c81b2b75d9ac9fa3d789884e7b6f62ee5e9f4c78411"
+  },
+  "solo:guitar": {
+   "file": "solo-guitar.mp3",
+   "text": "Soloed the guitar.",
+   "seconds": 1.43,
+   "sha256": "2977890c9f4f5d1168c37aadf5a61d4a069f6169ef20770e073e3ad26b716361"
+  },
+  "missing:guitar": {
+   "file": "missing-guitar.mp3",
+   "text": "This session has no guitar stem.",
+   "seconds": 2.42,
+   "sha256": "5da8d8d8b8f33ba1ad2deb2c7796f24c74cee45d5b1c1262bc45857df518116a"
+  },
+  "mute:piano": {
+   "file": "mute-piano.mp3",
+   "text": "Muted the piano.",
+   "seconds": 1.62,
+   "sha256": "3ec9a7f7c31505b249db35ed1a3f7e590d7e32061a36a9b362669a782cd0f1ce"
+  },
+  "unmute:piano": {
+   "file": "unmute-piano.mp3",
+   "text": "The piano is back.",
+   "seconds": 1.68,
+   "sha256": "f4868624e177408a6cffa80b7219a0b767afc599a8471896aaf4eb55c1cb5499"
+  },
+  "solo:piano": {
+   "file": "solo-piano.mp3",
+   "text": "Soloed the piano.",
+   "seconds": 1.65,
+   "sha256": "92cfb2de4f40a6ae03832c195d59f69e95e2dd4c5b0eda07d5a81430056d40ab"
+  },
+  "missing:piano": {
+   "file": "missing-piano.mp3",
+   "text": "This session has no piano stem.",
+   "seconds": 2.45,
+   "sha256": "703b23cb08e59cb58cad3c6ee17b5b7ad3468dd3d7b0dabdf08a459de37d6907"
+  },
+  "mute:lead": {
+   "file": "mute-lead.mp3",
+   "text": "Muted the lead vocal.",
+   "seconds": 1.7,
+   "sha256": "2eef8eaa6dc26953942a649ce08fc67e3eb0faa6acd57f4dccc4e82aff2a6bde"
+  },
+  "unmute:lead": {
+   "file": "unmute-lead.mp3",
+   "text": "The lead vocal is back.",
+   "seconds": 1.77,
+   "sha256": "4fdae104f1698370248d22455a946e68d569ffaf53c52efdbbdcbb2c56c199f7"
+  },
+  "solo:lead": {
+   "file": "solo-lead.mp3",
+   "text": "Soloed the lead vocal.",
+   "seconds": 1.77,
+   "sha256": "bee06c0ff4927c1754d649f82094aa493b4f8080ee3ca892d3401a72b0ceec4d"
+  },
+  "missing:lead": {
+   "file": "missing-lead.mp3",
+   "text": "This session has no lead vocal stem.",
+   "seconds": 2.67,
+   "sha256": "eaa39b4d73b82a122558bf889ca388c5d07ecd7e25cf0858f61367dc090673a1"
+  },
+  "mute:backing": {
+   "file": "mute-backing.mp3",
+   "text": "Muted the backing vocals.",
+   "seconds": 2.02,
+   "sha256": "6208631425d0d8545a225162acb1d21999328a9b3c70b6eb605164829ebb4d81"
+  },
+  "unmute:backing": {
+   "file": "unmute-backing.mp3",
+   "text": "The backing vocals are back.",
+   "seconds": 1.98,
+   "sha256": "0e475305d3070cc49417ecf9860c01e993bcb57b213a92a09b7332fd36ff912b"
+  },
+  "solo:backing": {
+   "file": "solo-backing.mp3",
+   "text": "Soloed the backing vocals.",
+   "seconds": 2.05,
+   "sha256": "6a7942fcfc28b6d9d80bf4db476712fd2da068bda15c0b682b8c658d771c5ba2"
+  },
+  "missing:backing": {
+   "file": "missing-backing.mp3",
+   "text": "This session has no backing vocals stem.",
+   "seconds": 2.9,
+   "sha256": "4ce9a5ebc96a579ea908ce9c6bb401cf44e0154ff6dbe989ed4be461970c7f7f"
+  },
+  "mute:kick": {
+   "file": "mute-kick.mp3",
+   "text": "Muted the kick.",
+   "seconds": 1.35,
+   "sha256": "9d03d2d08145de2545fe02ba5ba77045c7474ce1d1c6b1b19ad7b15bad9a6f4d"
+  },
+  "unmute:kick": {
+   "file": "unmute-kick.mp3",
+   "text": "The kick is back.",
+   "seconds": 1.38,
+   "sha256": "35259b75afb1e9555cebb3ff2c6871379c809e7d59c198f1e097586c6fddeb11"
+  },
+  "solo:kick": {
+   "file": "solo-kick.mp3",
+   "text": "Soloed the kick.",
+   "seconds": 1.35,
+   "sha256": "79627c0517d5dfde6985bf7aeb85a37e45f76de129a9e2b6ac43e7fabacb1b72"
+  },
+  "missing:kick": {
+   "file": "missing-kick.mp3",
+   "text": "This session has no kick stem.",
+   "seconds": 2.3,
+   "sha256": "24e37fa9dc80069b62d1f7638e79f3acd0cc95927e41c6ec7b4c3361b4db7f19"
+  },
+  "mute:snare": {
+   "file": "mute-snare.mp3",
+   "text": "Muted the snare.",
+   "seconds": 1.5,
+   "sha256": "85ab682a0a1dfc65521aa85e9633c7273c67b15efe5a30be6871c706247e5160"
+  },
+  "unmute:snare": {
+   "file": "unmute-snare.mp3",
+   "text": "The snare is back.",
+   "seconds": 1.65,
+   "sha256": "ebb9a0e184588b5302e713a3909da2be71db9e7698305d15408f49800dd01e7e"
+  },
+  "solo:snare": {
+   "file": "solo-snare.mp3",
+   "text": "Soloed the snare.",
+   "seconds": 1.5,
+   "sha256": "b1d7bc26e6af20d57032317bd54df253c1b8e6725cca7a4ebe3126ff723c0fa9"
+  },
+  "missing:snare": {
+   "file": "missing-snare.mp3",
+   "text": "This session has no snare stem.",
+   "seconds": 2.35,
+   "sha256": "39f379c59451ff42e134094000d588f740f154a3d3a1e8092ce6def80643b44a"
+  },
+  "mute:hats": {
+   "file": "mute-hats.mp3",
+   "text": "Muted the hi hats.",
+   "seconds": 1.68,
+   "sha256": "b186f02806fb275c7751c90f315d9c625200f39fef9cdc40ad1c096a68f143bc"
+  },
+  "unmute:hats": {
+   "file": "unmute-hats.mp3",
+   "text": "The hi hats are back.",
+   "seconds": 1.7,
+   "sha256": "073bf79b631bf9b322477538c771e113808bd7235da5ef40bda6ccfa7e0386cc"
+  },
+  "solo:hats": {
+   "file": "solo-hats.mp3",
+   "text": "Soloed the hi hats.",
+   "seconds": 1.75,
+   "sha256": "89edc466ae7e3e5b1e744bd35e40cd62c587770604b37498d5261de52a822379"
+  },
+  "missing:hats": {
+   "file": "missing-hats.mp3",
+   "text": "This session has no hi hats stem.",
+   "seconds": 2.55,
+   "sha256": "df02e7d190eb4564fae2095232db5a1118e0a0c746257abcf42adf7e1e88da23"
+  },
+  "play": {
+   "file": "play.mp3",
+   "text": "Playing.",
+   "seconds": 0.93,
+   "sha256": "cb191c292c006c503fef064a3883354ca9f69ed48a3bffc9eb243763779a75dd"
+  },
+  "pause": {
+   "file": "pause.mp3",
+   "text": "Paused.",
+   "seconds": 0.88,
+   "sha256": "ac1456f946c2eeb0b8d4a85a22c71be7542837b925179521370661db6789754b"
+  },
+  "stop": {
+   "file": "stop.mp3",
+   "text": "Stopped.",
+   "seconds": 0.68,
+   "sha256": "739048b93d1aefae728065526b95169932449871921e98c416782ac1ce4e7985"
+  },
+  "export": {
+   "file": "export.mp3",
+   "text": "Rendering your export.",
+   "seconds": 1.75,
+   "sha256": "d0a1ee0fa45c3509563d7117a38ab0b47371d1c03ee5d99d3f21f6de49d54076"
+  },
+  "unsolo": {
+   "file": "unsolo.mp3",
+   "text": "Solo cleared.",
+   "seconds": 1.38,
+   "sha256": "1a71a71f6d800536245110314b845c4604e647fc3982aa46cbecfaeda40755ff"
+  },
+  "unmute_all": {
+   "file": "unmute-all.mp3",
+   "text": "Everything is unmuted.",
+   "seconds": 1.85,
+   "sha256": "4902ef56dbbb937e170f944dd14a0142620ec41f2fa632b6fcdc249533675e0c"
+  },
+  "no_stems": {
+   "file": "no-stems.mp3",
+   "text": "Load some stems first.",
+   "seconds": 1.77,
+   "sha256": "550d4b6a0d3b2df00da9f3984416717dc17e3a612d1cd7603ba1e16297026778"
+  },
+  "not_understood": {
+   "file": "not-understood.mp3",
+   "text": "Sorry, I didn't catch that.",
+   "seconds": 2.08,
+   "sha256": "02b7e3306191a656903b9304e1d86ae846b947cb9d6dadeb7115b597501aeeb6"
+  }
+ }
+}

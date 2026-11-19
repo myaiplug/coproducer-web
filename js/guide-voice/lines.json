@@ -1,0 +1,107 @@
+{
+ "voice": "hope",
+ "tips": [
+  {
+   "id": "welcome",
+   "text": "Welcome to Stem Studio. Drop a song in step one to split it, or import stems you already have."
+  },
+  {
+   "id": "split",
+   "text": "Pick the stems you want, then press Split. Everything runs on your own computer, and nothing is uploaded."
+  },
+  {
+   "id": "lanes",
+   "text": "Each stem gets its own lane. Use M to mute it, S to solo it, and the slider to set its level."
+  },
+  {
+   "id": "fx",
+   "text": "Click a stem to open its effects. Start from a preset, then switch modules on and off to hear the difference."
+  },
+  {
+   "id": "ab",
+   "text": "Press A B to bypass every effect at once, so you can compare before and after at the same loudness."
+  },
+  {
+   "id": "clean",
+   "text": "The Clean tab scans a stem for separation artifacts and repairs them without touching the original."
+  },
+  {
+   "id": "drums",
+   "text": "The Drums tab breaks the drum stem into kick, snare, toms, hi hat and cymbals."
+  },
+  {
+   "id": "vocals",
+   "text": "The Vocals tab splits the lead singer from the backing vocals."
+  },
+  {
+   "id": "loudness",
+   "text": "Measure the mix to see its loudness and true peak before you export."
+  },
+  {
+   "id": "export",
+   "text": "When it sounds right, press Render and export to save every stem and the mix."
+  },
+  {
+   "id": "voice",
+   "text": "Voice commands are off until you switch them on. Hold the mic button, say a command, then let go."
+  },
+  {
+   "id": "voice_examples",
+   "text": "Try: drop the bass, mute vocals, solo drums, unsolo, play, stop, or export."
+  }
+ ],
+ "confirm": {
+  "mute:vocals": "Muted the vocals.",
+  "unmute:vocals": "The vocals are back.",
+  "solo:vocals": "Soloed the vocals.",
+  "missing:vocals": "This session has no vocals stem.",
+  "mute:drums": "Muted the drums.",
+  "unmute:drums": "The drums are back.",
+  "solo:drums": "Soloed the drums.",
+  "missing:drums": "This session has no drums stem.",
+  "mute:bass": "Muted the bass.",
+  "unmute:bass": "The bass is back.",
+  "solo:bass": "Soloed the bass.",
+  "missing:bass": "This session has no bass stem.",
+  "mute:other": "Muted the other stem.",
+  "unmute:other": "The other stem is back.",
+  "solo:other": "Soloed the other stem.",
+  "missing:other": "This session has no other stem stem.",
+  "mute:guitar": "Muted the guitar.",
+  "unmute:guitar": "The guitar is back.",
+  "solo:guitar": "Soloed the guitar.",
+  "missing:guitar": "This session has no guitar stem.",
+  "mute:piano": "Muted the piano.",
+  "unmute:piano": "The piano is back.",
+  "solo:piano": "Soloed the piano.",
+  "missing:piano": "This session has no piano stem.",
+  "mute:lead": "Muted the lead vocal.",
+  "unmute:lead": "The lead vocal is back.",
+  "solo:lead": "Soloed the lead vocal.",
+  "missing:lead": "This session has no lead vocal stem.",
+  "mute:backing": "Muted the backing vocals.",
+  "unmute:backing": "The backing vocals are back.",
+  "solo:backing": "Soloed the backing vocals.",
+  "missing:backing": "This session has no backing vocals stem.",
+  "mute:kick": "Muted the kick.",
+  "unmute:kick": "The kick is back.",
+  "solo:kick": "Soloed the kick.",
+  "missing:kick": "This session has no kick stem.",
+  "mute:snare": "Muted the snare.",
+  "unmute:snare": "The snare is back.",
+  "solo:snare": "Soloed the snare.",
+  "missing:snare": "This session has no snare stem.",
+  "mute:hats": "Muted the hi hats.",
+  "unmute:hats": "The hi hats are back.",
+  "solo:hats": "Soloed the hi hats.",
+  "missing:hats": "This session has no hi hats stem.",
+  "play": "Playing.",
+  "pause": "Paused.",
+  "stop": "Stopped.",
+  "export": "Rendering your export.",
+  "unsolo": "Solo cleared.",
+  "unmute_all": "Everything is unmuted.",
+  "no_stems": "Load some stems first.",
+  "not_understood": "Sorry, I didn't catch that."
+ }
+}
