@@ -93,3 +93,13 @@ Spoken tips and voice-command confirmations in Stem Studio. Voice: Inflect Mini 
 | Inflect phoneme vocab (`inflect_meta.json`: vocab, voice names, frame limit, extracted from the model config) | same | `0490aee` | Apache-2.0 | `js/guide-voice/inflect_meta.json` |
 | Text front end for the live engine: the Kitten/misaki front end, CMUdict lexicon and G2P BART listed above (Voice Tags), reused with Inflect's vocab. Inflect's own CLI falls back to espeak-ng (GPL-3.0) for unknown words; that path is **not** used here | see Voice Tags rows | | Apache-2.0 / MIT / BSD; num2words LGPL-2.1 (separate, unmodified runtime download) | see above |
 | Inflect export, rendering and ONNX check scripts (new) | this repository | | Apache-2.0 (adapts Inflect Mini v3 module code, Apache-2.0) | `tools/inflect-export/` |
+
+## Stem Studio voice commands (`js/voice-commands/`)
+
+Opt-in, push-to-talk speech commands ("drop the bass", "solo drums", "play", "export"…), recognised on the device.
+
+| Component | Source | Version / commit | License | Location |
+| --- | --- | --- | --- | --- |
+| Earlybird-29M weights (`earlybird.safetensors`, 4/8-bit packed; runtime download from Hugging Face, SHA-256 checked, unpacked in the browser) | https://huggingface.co/sahilmahendrakar/Earlybird-29M | `b24d6bd`, sha256 `ef56c731…95be2` | MIT (code and weights). Base model Moonshine streaming tiny (MIT, Useful Sensors). Training data per the model card: LibriSpeech (CC BY 4.0) and People's Speech (CC-BY / CC-BY-SA) | not in repo |
+| Earlybird ONNX graph structure (`encoder_graph.onnx`, `decoder_graph.onnx`: no large weights; a few small tensors such as norms and position tables), weight maps, tokenizer vocab and command token ids, made by `tools/earlybird-export` | same | `b24d6bd` | MIT | `js/voice-commands/model/` |
+| Unpacker (`unpack.js`), recogniser, grammar and export scripts (new; the unpacking and model maths follow `earlybird.py`, MIT) | this repository | | Apache-2.0 (adapts MIT code, MIT notice kept in `js/voice-commands/NOTICE.md`) | `js/voice-commands/`, `tools/earlybird-export/` |
