@@ -21,5 +21,6 @@ EB_SAMPLES=samples python eval_ort.py out/encoder.onnx out/decoder.onnx   # accu
   see the test) and passes the buffers to ONNX Runtime Web as `externalData`. No model weights are re-hosted.
 * Recognition: greedy transcript, then the 8 grammar phrases nearest by edit distance are rescored by the model
   (sum of log-probs of the phrase + end token, with and without a full stop); the best is accepted if its log-prob is
-  within 12 of the free transcript's or its edit distance is ≤ 0.3. The thresholds were picked on synthetic TTS speech;
-  see the PR for the numbers and their limits.
+  within 8 of the free transcript's (4 for one-word phrases) or its edit distance is ≤ 0.15; empty transcripts are
+  rejected. The thresholds were tuned on a speaker-disjoint split of real recorded voices (the first ones, picked on
+  TTS, false-accepted 9–28% of real non-command words); see `REAL_VOICES.md` for data, licences and results.

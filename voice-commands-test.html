@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Voice command self-test | CoProducer Stem Studio</title>
+<meta name="robots" content="noindex"/>
+<link rel="icon" href="favicon.ico" sizes="48x48"/>
+<link rel="stylesheet" href="js/stem-studio/studio.css"/>
+<link rel="stylesheet" href="js/stem-studio/coproducer-theme.css"/>
+<link rel="stylesheet" href="js/guide-voice/guide.css"/>
+<style>
+  .wrap{max-width:980px;margin:0 auto;padding:1.2rem}
+  table.vt{width:100%;border-collapse:collapse;font-size:.85rem}
+  table.vt td,table.vt th{border-bottom:1px solid var(--border);padding:.45rem .4rem;text-align:left;vertical-align:middle}
+  .pass{color:#22c55e;font-weight:700}.fail{color:#f43f5e;font-weight:700}.pend{color:var(--muted)}
+  #vt-sum{font-size:1rem;font-weight:700}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Voice command <span>self-test</span></h1>
+  <p class="muted">Check how well Stem Studio's voice commands understand <b>your</b> voice and microphone. For each row, hold <b>Record</b> (or hold <b>V</b> with the row selected) and say the phrase, then let go. Nothing is uploaded: the recogniser (Earlybird-29M, MIT) runs in this tab. The model downloads once (about 17 MB). Rows marked “not a command” should be <i>rejected</i>.</p>
+  <div class="card">
+    <div class="bar guide-row">
+      <label class="guide-opt">Background: <select id="vt-bg"><option value="quiet">quiet room</option><option value="music">music playing</option><option value="noisy">noisy room</option></select></label>
+      <label class="guide-opt">Repeats per phrase: <select id="vt-rep"><option>1</option><option selected>2</option><option>3</option></select></label>
+      <button class="btn sm" type="button" id="vt-dl">Download results (JSON)</button>
+      <span class="muted vc-status" id="vt-st" role="status">Loading the model…</span>
+    </div>
+    <p id="vt-sum" aria-live="polite"></p>
+    <table class="vt"><thead><tr><th>Say</th><th>Expected</th><th></th><th>Heard</th><th>Result</th><th></th></tr></thead><tbody id="vt-rows"></tbody></table>
+  </div>
+  <p class="muted"><a href="stem-studio.html">← Back to Stem Studio</a></p>
+</div>
+<script type="module">
+  import { VoiceCommands } from './js/voice-commands/voice-commands.js';
+  import { SELF_TEST, judge } from './js/voice-commands/self-test.js';
+  const vc = new VoiceCommands(), $ = (s) => document.querySelector(s), rows = $('#vt-rows'), st = $('#vt-st');
+  const results = []; let selected = 0, busy = false;
+  vc.addEventListener('status', (e) => { const d = e.detail; st.textContent = d.progress != null ? `${d.text} ${Math.round(d.progress * 100)}%` : d.text; });
+  const rep = () => +$('#vt-rep').value;
+  const tr = SELF_TEST.map((t, i) => {
+    const r = document.createElement('tr'); r.tabIndex = 0; r.dataset.i = i;
+    r.innerHTML = `<td><b>${t.say}</b></td><td class="muted">${t.want ? t.want.join(' ') : 'not a command'}</td><td><button class="btn sm pri" type="button">🎙 Record</button></td><td class="heard pend">–</td><td class="res pend">–</td><td><button class="btn sm play" type="button" disabled>▶</button></td>`;
+    const b = r.querySelector('.pri'); b.disabled = true;
+    b.addEventListener('pointerdown', (e) => { e.preventDefault(); selected = i; press(); }); b.addEventListener('pointerup', release); b.addEventListener('pointercancel', release);
+    r.addEventListener('focus', () => { selected = i; });
+    rows.append(r); return r;
+  });
+  function summary() {
+    const last = new Map(); for (const r of results) (last.get(r.i) || last.set(r.i, []).get(r.i)).push(r);
+    const cmd = results.filter((r) => SELF_TEST[r.i].want), neg = results.filter((r) => !SELF_TEST[r.i].want);
+    const ok = cmd.filter((r) => r.pass).length, fa = neg.filter((r) => !r.pass).length;
+    $('#vt-sum').textContent = results.length ? `Commands: ${ok}/${cmd.length} right · Not-a-command: ${fa}/${neg.length} wrongly accepted · ${last.size}/${SELF_TEST.length} phrases tried` : '';
+  }
+  async function press() { if (busy) return; busy = true; tr[selected].querySelector('.pri').classList.add('on'); st.textContent = 'Listening… release when done.'; try { await vc.start(); } catch (e) { busy = false; st.textContent = `Microphone: ${e.message || e}`; } }
+  async function release() {
+    if (!busy) return; const i = selected, row = tr[i]; row.querySelector('.pri').classList.remove('on'); st.textContent = 'Thinking…';
+    try {
+      const r = await vc.stop(); if (!r) return;
+      const audio = vc.lastAudio, j = judge(SELF_TEST[i], r.command);
+      results.push({ i, say: SELF_TEST[i].say, want: SELF_TEST[i].want, heard: r.text, got: r.command && [r.command.action, r.command.stem], pass: j.pass, why: j.why, ms: Math.round(r.ms), lp: r.lp, cands: r.cands, bg: $('#vt-bg').value, secs: +(audio.length / 16000).toFixed(2), at: new Date().toISOString() });
+      row.querySelector('.heard').textContent = r.text ? `“${r.text}” → ${r.command ? r.command.action + (r.command.stem ? ' ' + r.command.stem : '') : 'rejected'}` : '(nothing heard)';
+      row.querySelector('.heard').className = 'heard';
+      const mine = results.filter((x) => x.i === i), res = row.querySelector('.res'); res.className = 'res ' + (j.pass ? 'pass' : 'fail');
+      res.textContent = `${j.pass ? 'PASS' : 'FAIL'} (${mine.filter((x) => x.pass).length}/${mine.length})${j.pass ? '' : ' · ' + j.why}`;
+      const pb = row.querySelector('.play'); pb.disabled = false; pb.onclick = () => { const c = new AudioContext({ sampleRate: 16000 }), bf = c.createBuffer(1, audio.length, 16000); bf.copyToChannel(audio, 0); const s = c.createBufferSource(); s.buffer = bf; s.connect(c.destination); s.start(); s.onended = () => c.close(); };
+      st.textContent = `Ready. (${Math.round(r.ms)} ms)`;
+      if (mine.length >= rep() && i + 1 < tr.length) { selected = i + 1; tr[selected].focus(); }
+      summary();
+    } catch (e) { st.textContent = `Failed: ${e.message || e}`; } finally { busy = false; }
+  }
+  const typing = () => /^(SELECT|TEXTAREA)$/.test(document.activeElement?.tagName || '');
+  document.addEventListener('keydown', (e) => { if (e.code === 'KeyV' && !e.repeat && !typing()) { e.preventDefault(); press(); } });
+  document.addEventListener('keyup', (e) => { if (e.code === 'KeyV') release(); });
+  $('#vt-dl').onclick = () => { const a = document.createElement('a'); a.href = URL.createObjectURL(new Blob([JSON.stringify({ ua: navigator.userAgent, results }, null, 1)], { type: 'application/json' })); a.download = 'voice-command-self-test.json'; a.click(); };
+  try { await vc.load(); tr.forEach((r) => { r.querySelector('.pri').disabled = false; }); st.textContent = 'Ready. Hold Record (or V) and say the phrase.'; tr[0].focus(); }
+  catch (e) { st.textContent = `Could not load the model: ${e.message || e}`; }
+  window.__selfTest = { vc, results, SELF_TEST };
+</script>
+</body>
+</html>

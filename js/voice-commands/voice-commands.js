@@ -100,7 +100,7 @@ export function mountVoiceCommands(api, { root = document.getElementById('studio
       el('label', { class: 'guide-opt' }, on, ' Use my microphone for commands'),
       el('label', { class: 'guide-opt' }, speak, ' Speak confirmations'), talk, st),
     heard,
-    el('p', { class: 'muted guide-credit', text: `Say: “drop the bass”, “mute vocals”, “solo drums”, “unsolo”, “unmute all”, “play”, “pause”, “stop”, “export”. The mic is on only while you hold the button; speech is recognised on this device and never uploaded. About 17 MB the first time. Model: Earlybird-29M, ${EARLYBIRD_LICENSE}.` }));
+    el('p', { class: 'muted guide-credit', text: `Say: “drop the bass”, “mute vocals”, “solo drums”, “unsolo”, “unmute all”, “play”, “pause”, “stop”, “export”. The mic is on only while you hold the button; speech is recognised on this device and never uploaded. About 17 MB the first time. Model: Earlybird-29M, ${EARLYBIRD_LICENSE}. ` }, el('a', { href: 'voice-commands-test.html', text: 'Test it with your own voice →' })));
   const after = root.querySelector('.guide-card'), studio = root.querySelector('section.card[aria-labelledby="h-st"]');
   root.insertBefore(card, after ? after.nextSibling : studio || null);
   if (p.on) enable();
