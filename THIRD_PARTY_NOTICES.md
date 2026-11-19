@@ -45,8 +45,23 @@ Full notice with SHA-256 digests, citations and license texts: `js/roformer-web/
 | lamejs 1.2.1 (`js/stem-studio/vendor/lamejs`, unmodified) | LGPL-3.0 | lazy-loaded only for MP3 export; delete the folder to drop it |
 | DrumSep v2 drum separator (HDemucs; fine-tune of inagoy/drumsep), 10 s-window fp16 browser build, 168,050,967 B, sha256 `b05779ea…32839a` | MIT | **training-data provenance not independently verified**; not in repo and not hosted yet (see `docs/stem-studio-drums.md`) |
 | onnxruntime-web, fflate | MIT | reused from `js/roformer-web/vendor` |
+| DrumSep HT-RoFormer (Sucial), 6 drum stems, optional | **No licence published** (weights and inference code) | **not hosted**: the option stays disabled (`DRUM_HTR_DEFAULT_URL = null` in `js/stem-studio/drums/drum-models.js`) until the author grants permission |
+| Mel-Band RoFormer Karaoke (aufr33 & viperx), ONNX re-export by Acapellas, `b29e3d0`, fp16 460,432,035 B, sha256 `a733bd23…1b3e` | MIT (model card) | Vocals tab (lead / backing). Runtime download, not in repo. The original checkpoint has no stated licence (same caveat as BS-RoFormer-SW) |
 
 Details: `js/stem-studio/NOTICE.md`, `docs/stem-studio-presets.md`, `docs/stem-studio-drums.md`.
+
+## Voice Tags (`voice-tags.html`, `js/voice-tags/`)
+
+Spoken producer tags and guide lines, made on the visitor's device. No model weights are stored in this repository.
+
+| Component | Source | Version / commit | License | Location |
+| --- | --- | --- | --- | --- |
+| ZONOS3 Mini in-browser engine (`servers/web` build: `engine.js`, `worker.js`, `codec-worker.js`, unmodified `vite build` output) | https://github.com/Zyphra/ZONOS3-Mini | `96d9e0e` | MIT, Copyright (c) 2026 Zyphra, Inc. Upstream NOTICE lists MIT / Apache-2.0 / Unicode-3.0 components | `js/voice-tags/vendor/zonos3-web/` (LICENSE, NOTICE, licenses/ alongside) |
+| ZONOS3 Mini weights (`web/` shards, runtime download, cached in Cache Storage) | https://huggingface.co/Zyphra/ZONOS3-Mini | `d2d142a` | Apache-2.0 | not in repo |
+| tiny-voca ONNX + config + phonemizer data (runtime download, SHA-256 checked) | https://huggingface.co/n4ze3m/tiny-voca | `eac048b`, model sha256 `fe6d9187…ae46` | Apache-2.0 (model, code). Dictionary from CMUdict (BSD-style, `phonemizer/LICENSE.cmudict`) | not in repo |
+| tiny-voca text helpers and worker logic (adapted) | https://github.com/n4ze3m/tiny-voca (`web/public/worker.js`) | main | Apache-2.0. Modified: ES modules, SHA-256 checks, vendored ORT | `js/voice-tags/text.js`, `js/voice-tags/tinyvoca-worker.js` |
+| dizione 0.1.0 phonemizer (Python source, zipped for Pyodide) | https://pypi.org/project/dizione/ | 0.1.0 | Apache-2.0, Muhammed Nazeem | `js/voice-tags/vendor/dizione/` (LICENSE alongside) |
+| Pyodide (runs dizione) | https://pyodide.org | 0.26.4, loaded from jsDelivr, not bundled | MPL-2.0 | CDN |
 
 ## Stem fidelity (residual stem, null test)
 
