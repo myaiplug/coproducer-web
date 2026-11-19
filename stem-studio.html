@@ -69,6 +69,8 @@
     const api = await mountStudio(document.getElementById('studio-root'), { brand: BRAND_COPRODUCER, appName: 'CoProducer Stem Studio' });
     try { const { mountGuide } = await import('./js/guide-voice/guide-voice.js'); mountGuide(api); }
     catch (e) { console.warn('Guide voice unavailable', e); }
+    try { const { mountVoiceCommands } = await import('./js/voice-commands/voice-commands.js'); mountVoiceCommands(api); }
+    catch (e) { console.warn('Voice commands unavailable', e); }
   }
 </script>
 <script type="module" src="js/liminal-latest.js"></script>

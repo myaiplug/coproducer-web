@@ -6,3 +6,6 @@
 .guide-text{flex:1;min-width:14rem;background:var(--bg,#0b1020);color:inherit;border:1px solid var(--border);border-radius:8px;padding:.35rem .6rem;font:inherit;font-size:.8rem}
 .guide-caption{min-height:1.2em;font-style:italic}
 .guide-credit{font-size:.7rem;margin-top:.4rem}
+.vc-talk{touch-action:none;user-select:none}
+.vc-talk.on{box-shadow:0 0 0 3px #f43f5e;background:#f43f5e}
+.vc-heard{min-height:1.2em;font-size:.85rem;margin:.3rem 0 0}
