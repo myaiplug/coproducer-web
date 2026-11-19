@@ -64,7 +64,7 @@ async function recognise({ id, audio }) {
     cands.push({ score: best, dist, i });
   }
   cands.sort((a, b) => b.score - a.score);
-  const command = decide(cands, lp, G.phrases, DECISION);
+  const command = decide(cands, lp, G.phrases, DECISION, text);
   postMessage({ type: 'result', id, text, lp, command, ms: performance.now() - t0, cands: cands.slice(0, 3).map((c) => ({ ...c, text: G.phrases[c.i].text })) });
 }
 

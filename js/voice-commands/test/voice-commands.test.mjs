@@ -6,7 +6,7 @@ import { halfToFloat, parseSafetensors, unpackTensor, buildExternal } from '../u
 import { lev, norm, nearest, decide, detok, logSoftmaxRow } from '../grammar.js';
 import { applyCommand, targets } from '../actions.js';
 import { resample } from '../audio-in.js';
-import { EARLYBIRD_WEIGHTS, EARLYBIRD_HF_COMMIT, EXTERNAL_SHA256 } from '../models.js';
+import { EARLYBIRD_WEIGHTS, EARLYBIRD_HF_COMMIT, EXTERNAL_SHA256, DECISION } from '../models.js';
 
 const M = new URL('../model/', import.meta.url);
 const G = JSON.parse(fs.readFileSync(new URL('commands.json', M)));
@@ -61,13 +61,21 @@ test('grammar: edit distance, nearest phrases, detokenise', () => {
   assert.equal(detok(f, VOC), 'Solo the drums.');
 });
 
-test('decide: accept on log-prob gap or edit distance, else reject', () => {
-  const ph = [{ text: 'stop', action: 'stop', stem: null }];
-  assert.equal(decide([{ score: -5, dist: 0.9, i: 0 }], -3, ph).action, 'stop');     // gap -2 >= -12
-  assert.equal(decide([{ score: -30, dist: 0.2, i: 0 }], -3, ph).action, 'stop');    // close text
-  assert.equal(decide([{ score: -30, dist: 0.6, i: 0 }], -3, ph), null);
+test('decide: accept on log-prob gap or edit distance, tighter for one-word phrases, never on silence', () => {
+  const ph = [{ text: 'stop', action: 'stop', stem: null }, { text: 'mute the bass', action: 'mute', stem: 'bass' }];
+  assert.equal(decide([{ score: -5, dist: 0.9, i: 0 }], -3, ph).action, 'stop');      // gap -2 >= -4
+  assert.equal(decide([{ score: -8, dist: 0.9, i: 0 }], -3, ph), null);               // gap -5 < -4 (one word)
+  assert.equal(decide([{ score: -8, dist: 0.9, i: 1 }], -3, ph).action, 'mute');      // gap -5 >= -8 (three words)
+  assert.equal(decide([{ score: -12, dist: 0.9, i: 1 }], -3, ph), null);
+  assert.equal(decide([{ score: -30, dist: 0.1, i: 0 }], -3, ph).action, 'stop');     // transcript is the phrase
+  assert.equal(decide([{ score: -30, dist: 0.2, i: 0 }], -3, ph), null);
+  assert.equal(decide([{ score: -1, dist: 0.0, i: 0 }], -1, ph, undefined, ''), null); // empty transcript
   assert.equal(decide([], 0, ph), null);
   const r = logSoftmaxRow(Float32Array.from([1, 2, 3]), 0, 3); assert.ok(Math.abs(Math.exp(r(0)) + Math.exp(r(1)) + Math.exp(r(2)) - 1) < 1e-9);
+});
+
+test('decision thresholds are the held-out-tuned ones', () => {
+  assert.deepEqual(DECISION, { topK: 8, margin: 8, marginSingleWord: 4, maxDist: 0.15 });
 });
 
 function fakeEngine(kinds) {
@@ -105,4 +113,14 @@ test('resample 48k -> 16k keeps a 1 kHz tone and its level', () => {
   const y = resample(x, 48000, 16000); assert.equal(y.length, 16000);
   let e = 0, p = 0; for (let i = 100; i < 15900; i++) { const r = 0.5 * Math.sin(2 * Math.PI * 1000 * i / 16000); e += (y[i] - r) ** 2; p += r * r; }
   assert.ok(10 * Math.log10(p / e) > 40, 'SNR');
+});
+
+test('self-test page phrases: every expected command is in the grammar', async () => {
+  const { SELF_TEST, judge } = await import('../self-test.js');
+  const have = new Set(G.phrases.map((p) => `${p.action}|${p.stem}`));
+  for (const t of SELF_TEST) if (t.want) assert.ok(have.has(`${t.want[0]}|${t.want[1]}`), t.say);
+  assert.equal(judge({ want: ['mute', 'bass'] }, { action: 'mute', stem: 'bass' }).pass, true);
+  assert.equal(judge({ want: ['mute', 'bass'] }, null).pass, false);
+  assert.equal(judge({ want: null }, { action: 'stop', stem: null }).pass, false);
+  assert.equal(judge({ want: null }, null).pass, true);
 });

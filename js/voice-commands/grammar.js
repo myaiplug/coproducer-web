@@ -27,10 +27,18 @@ export function logSoftmaxRow(x, off, V) {
   const l = m + Math.log(s); return (j) => x[off + j] - l;
 }
 
-/** cands: [{score, dist, i}] best first. Returns the phrase or null. */
-export function decide(cands, transcriptLp, phrases, { margin = 12, maxDist = 0.3 } = {}) {
+/**
+ * cands: [{score, dist, i}] best first; transcriptLp = log-prob of the free (greedy) transcript.
+ * Accept the best phrase if the transcript is (almost) that phrase (dist <= maxDist), or if the phrase's log-prob is
+ * within `margin` of the transcript's; one-word phrases ("play", "stop", ...) get the tighter `marginSingleWord`,
+ * because short real words ("up", "dog", "drop") otherwise slide onto them. An empty transcript is never a command.
+ * Thresholds were tuned on a held-out "tune" split of real human recordings (tools/earlybird-export/REAL_VOICES.md).
+ */
+export function decide(cands, transcriptLp, phrases, { margin = 8, marginSingleWord = 4, maxDist = 0.15 } = {}, transcript = null) {
   if (!cands.length) return null;
-  const c = cands[0];
-  if (c.score < transcriptLp - margin && c.dist > maxDist) return null;
-  return { ...phrases[c.i], score: c.score, dist: c.dist, gap: c.score - transcriptLp };
+  if (transcript !== null && !norm(transcript)) return null;
+  const c = cands[0], p = phrases[c.i], gap = c.score - transcriptLp;
+  const m = p.text.trim().split(/\s+/).length === 1 ? marginSingleWord : margin;
+  if (c.dist > maxDist && gap < -m) return null;
+  return { ...p, score: c.score, dist: c.dist, gap };
 }

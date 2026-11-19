@@ -19,6 +19,7 @@ export const EXTERNAL_SHA256 = {
 export const MODEL_BASE = new URL('./model/', import.meta.url).href;
 export const SAMPLE_RATE = 16000;
 export const MIN_SECONDS = 0.24, MAX_SECONDS = 6;
-// Decision rule (tools/earlybird-export/eval_ort.py): accept the best grammar phrase if its log-prob is within
-// MARGIN of the free transcript's, or the transcript is within MAX_DIST (normalised edit distance) of it.
-export const DECISION = { topK: 8, margin: 12, maxDist: 0.3 };
+// Decision rule (js/voice-commands/grammar.js decide). Re-tuned on real human speech (held-out split; see
+// tools/earlybird-export/REAL_VOICES.md). The first version (margin 12 / maxDist 0.3, picked on TTS speech) accepted
+// 9% of random real single words and 27% of bare "mute" / "solo" / "bass" as commands.
+export const DECISION = { topK: 8, margin: 8, marginSingleWord: 4, maxDist: 0.15 };
