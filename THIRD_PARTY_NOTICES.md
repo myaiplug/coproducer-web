@@ -61,7 +61,18 @@ Spoken producer tags and guide lines, made on the visitor's device. No model wei
 | tiny-voca ONNX + config + phonemizer data (runtime download, SHA-256 checked) | https://huggingface.co/n4ze3m/tiny-voca | `eac048b`, model sha256 `fe6d9187…ae46` | Apache-2.0 (model, code). Dictionary from CMUdict (BSD-style, `phonemizer/LICENSE.cmudict`) | not in repo |
 | tiny-voca text helpers and worker logic (adapted) | https://github.com/n4ze3m/tiny-voca (`web/public/worker.js`) | main | Apache-2.0. Modified: ES modules, SHA-256 checks, vendored ORT | `js/voice-tags/text.js`, `js/voice-tags/tinyvoca-worker.js` |
 | dizione 0.1.0 phonemizer (Python source, zipped for Pyodide) | https://pypi.org/project/dizione/ | 0.1.0 | Apache-2.0, Muhammed Nazeem | `js/voice-tags/vendor/dizione/` (LICENSE alongside) |
-| Pyodide (runs dizione) | https://pyodide.org | 0.26.4, loaded from jsDelivr, not bundled | MPL-2.0 | CDN |
+| Pyodide (runs dizione and the Kitten front end) | https://pyodide.org | 0.26.4, loaded from jsDelivr, not bundled, with its numpy, regex and micropip packages | MPL-2.0 (Pyodide), BSD-3-Clause (numpy), Apache-2.0 (regex), MPL-2.0 (micropip) | CDN |
+| Kitten TTS 2 Mini int8 ONNX, voices, vocab, CMUdict lexicon and G2P BART (runtime download, SHA-256 checked) | https://huggingface.co/KittenML/kitten-tts-2-mini | `c01797c`, model sha256 `fa821c1c…42d2` | Apache-2.0 (model card). Training data not disclosed. The ONNX file is patched in memory (one Cast from float64 to float32) so ONNX Runtime Web can run it | not in repo |
+| Kitten English front end (`english.py`, `tts_norm.py`, `phonemize_v1.py`, `phonemize_v2.py`, `frontend/__init__.py`, unmodified) | https://github.com/KittenML/KittenTTS | `d13d8c9` (kittenml 0.9.7) | Apache-2.0, KittenML | `js/voice-tags/vendor/kitten-frontend/` (LICENSE, NOTICE alongside) |
+| Kitten front-end glue: NumPy BART, rule-based spaCy stand-in (new) | this repository | | Apache-2.0 | `js/voice-tags/vendor/kitten-frontend/kfront/{__init__,bart_np,spacy_stub}.py` |
+| misaki 0.9.4 (English lexicon G2P, includes the us_gold / us_silver dictionaries) | https://pypi.org/project/misaki/ | 0.9.4 wheel, sha256 `90e2eeb1…a15a`, runtime download | Apache-2.0, hexgrad | not in repo |
+| addict 2.4.0 | https://pypi.org/project/addict/ | wheel, runtime download | MIT | not in repo |
+| num2words 0.5.14 (number words for misaki and tts_norm) | https://pypi.org/project/num2words/ | wheel, runtime download, used unmodified as a separate library | LGPL-2.1 | not in repo |
+| VoxMel code (voice cloning, only through the local `tools/voxmel-server`, downloaded by the user) | https://github.com/VoxDance-Lab/VoxMel | `1b0bc1c` | Apache-2.0 (LICENSE; `setup.py` says MIT) | not in repo |
+| VoxMel-0.3B / 0.6B weights (downloaded by the user's server) | https://huggingface.co/VoxDance-Lab | `8a9b893` / `6450fc4` | Apache-2.0 (model cards). **Trained on Emilia, which is CC BY-NC 4.0 (non-commercial)**; not hosted or bundled by CoProducer | not in repo |
+| Vocos mel 24 kHz (VoxMel's vocoder, downloaded by the user's server) | https://huggingface.co/charactr/vocos-mel-24khz | `0feb3fd` | MIT | not in repo |
+| openai-whisper (reference-clip transcription in the user's server) | https://github.com/openai/whisper | 20250625 | MIT (code and weights) | not in repo |
+| `tools/voxmel-server/server.py` (new) | this repository | | Apache-2.0 | `tools/voxmel-server/` |
 
 ## Stem fidelity (residual stem, null test)
 

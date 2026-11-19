@@ -49,3 +49,14 @@ export async function sha256Hex(bytes) {
   const h = new Uint8Array(await crypto.subtle.digest('SHA-256', bytes));
   return Array.from(h, (b) => b.toString(16).padStart(2, '0')).join('');
 }
+/** Mix an AudioBuffer-like {numberOfChannels, getChannelData()} to mono, keeping at most maxS seconds. */
+export function toMono(buf, maxS = 30) {
+  const n = Math.min(buf.length, Math.round(maxS * buf.sampleRate)), out = new Float32Array(n);
+  for (let c = 0; c < buf.numberOfChannels; c++) { const d = buf.getChannelData(c); for (let i = 0; i < n; i++) out[i] += d[i] / buf.numberOfChannels; }
+  return out;
+}
+/** Uint8Array -> base64 (chunked, safe for large arrays). */
+export function bytesToBase64(u8) {
+  let s = ''; for (let i = 0; i < u8.length; i += 0x8000) s += String.fromCharCode.apply(null, u8.subarray(i, i + 0x8000));
+  return btoa(s);
+}

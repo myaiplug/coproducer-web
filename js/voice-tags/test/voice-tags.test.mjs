@@ -2,8 +2,9 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import { sentences, finished, fit } from '../text.js';
-import { encodeWav, decodeWav, normalizePeak, trimSilence, limitPeak, sha256Hex } from '../audio.js';
-import { TINYVOCA_FILES, ZONOS3_MODELS_BASE, ZONOS3_HF_COMMIT, TINYVOCA_HF_COMMIT, ENGINES } from '../models.js';
+import { encodeWav, decodeWav, normalizePeak, trimSilence, limitPeak, sha256Hex, toMono, bytesToBase64 } from '../audio.js';
+import { TINYVOCA_FILES, ZONOS3_MODELS_BASE, ZONOS3_HF_COMMIT, TINYVOCA_HF_COMMIT, ENGINES, KITTEN_FILES, KITTEN_HF_COMMIT, KITTEN_WHEELS, KITTEN_FRONTEND_FILES, KITTEN_VOICES, VOXMEL_GIT_COMMIT, VOXMEL_LOCAL_DEFAULT } from '../models.js';
+import { tokens, trimChunk } from '../kitten-worker.js';
 
 test('sentences: splits on marks, keeps titles and initials together', () => {
   assert.deepEqual(sentences('Produced by Beez. Turn it up!'), ['Produced by Beez.', 'Turn it up!']);
@@ -43,7 +44,7 @@ test('models are pinned to immutable Hugging Face commits with SHA-256', () => {
   assert.equal(ZONOS3_HF_COMMIT.length, 40); assert.ok(ZONOS3_MODELS_BASE.includes(`/resolve/${ZONOS3_HF_COMMIT}/web/`));
   assert.equal(TINYVOCA_HF_COMMIT.length, 40);
   for (const f of [TINYVOCA_FILES.model, TINYVOCA_FILES.config, ...Object.values(TINYVOCA_FILES.phonemizer)]) { assert.ok(f.url.includes(`/resolve/${TINYVOCA_HF_COMMIT}/`)); assert.match(f.sha256, /^[0-9a-f]{64}$/); }
-  assert.ok(ENGINES.every((e) => /MIT|Apache/.test(e.license)));
+  assert.ok(ENGINES.every((e) => /MIT|Apache/.test(e.license)));  // only permissive engines are hosted by the page
 });
 
 test('vendored code ships with its licence files', () => {
@@ -51,4 +52,45 @@ test('vendored code ships with its licence files', () => {
   for (const f of ['zonos3-web/LICENSE', 'zonos3-web/NOTICE', 'zonos3-web/engine.js', 'zonos3-web/worker.js', 'zonos3-web/codec-worker.js', 'dizione/LICENSE', 'dizione/dizione-0.1.0.zip']) assert.ok(fs.existsSync(new URL(f, v)), f);
   assert.match(fs.readFileSync(new URL('zonos3-web/LICENSE', v), 'utf8'), /MIT License/);
   assert.match(fs.readFileSync(new URL('dizione/LICENSE', v), 'utf8'), /Apache License/);
+});
+
+test('Kitten: files pinned to one Hugging Face commit with SHA-256 and sizes; wheels pinned too', () => {
+  assert.equal(KITTEN_HF_COMMIT.length, 40);
+  for (const [p, f] of Object.entries(KITTEN_FILES)) { assert.ok(f.url.endsWith(`/resolve/${KITTEN_HF_COMMIT}/${p}`), p); assert.match(f.sha256, /^[0-9a-f]{64}$/); assert.ok(f.bytes > 0); }
+  for (const w of KITTEN_WHEELS) { assert.ok(w.url.startsWith('https://files.pythonhosted.org/') && w.url.endsWith(w.name)); assert.match(w.sha256, /^[0-9a-f]{64}$/); }
+  assert.equal(KITTEN_VOICES.length, 11); assert.ok(KITTEN_VOICES.some((v) => v.id === 'eleanor'));
+  assert.ok(ENGINES.some((e) => e.id === 'kitten'));
+  assert.equal(VOXMEL_GIT_COMMIT.length, 40); assert.match(VOXMEL_LOCAL_DEFAULT, /^http:\/\/127\.0\.0\.1:\d+$/);
+});
+
+test('Kitten: vendored front end is present with its licence and notice', () => {
+  const v = new URL('../vendor/kitten-frontend/', import.meta.url);
+  for (const f of KITTEN_FRONTEND_FILES) assert.ok(fs.existsSync(new URL('kfront/' + f, v)), f);
+  assert.match(fs.readFileSync(new URL('LICENSE', v), 'utf8'), /Apache License/);
+  assert.match(fs.readFileSync(new URL('NOTICE', v), 'utf8'), /d13d8c978a8f17d441977d714b75853ae6bd4423/);
+});
+
+test('Kitten: tokens() matches KittenTTS2Tiny._tokens (pad, end token 10, brackets -> comma)', () => {
+  const vocab = { ',': 3, 'a': 43, 'b': 44, ' ': 16 };
+  assert.deepEqual(tokens('a (b)', vocab), [0, 43, 16, 3, 44, 3, 10, 0]);
+  assert.deepEqual(tokens('aZ', vocab), [0, 43, 10, 0]);
+});
+
+test('Kitten: trimChunk() matches the Python trimming and fades', () => {
+  const wav = Float32Array.from({ length: 4800 }, (_, i) => Math.sin(i * 0.01) * 1.2), dur = [3n, 2n, 1n, 2n];
+  // reference values from kittenml/kittentts2_tiny/model.py _chunk on the same input
+  const ref = { true: [4200, [0.0, 0.00252, 0.840336, 1.0, -0.042017, 0]], false: [3000, [0, -0.024894, 0.423698, 1.0, -0.042017, 0]] };
+  for (const keep of [true, false]) {
+    const w = trimChunk(wav, dur, keep), [n, vals] = ref[keep];
+    assert.equal(w.length, n);
+    const got = [w[0], w[5], w[100], w[Math.floor(n / 2)], w[n - 6], w[n - 1]];
+    got.forEach((g, i) => assert.ok(Math.abs(g - vals[i]) < 2e-5, `${keep} ${i}: ${g} vs ${vals[i]}`));
+  }
+});
+
+test('VoxMel helpers: mono mixdown with a length cap, base64 of large buffers', () => {
+  const buf = { numberOfChannels: 2, sampleRate: 10, length: 50, getChannelData: (c) => new Float32Array(50).fill(c ? 1 : 0) };
+  const m = toMono(buf, 3); assert.equal(m.length, 30); assert.ok(m.every((x) => x === 0.5));
+  const big = new Uint8Array(100000).map((_, i) => i & 255);
+  assert.deepEqual(Uint8Array.from(Buffer.from(bytesToBase64(big), 'base64')), big);
 });
