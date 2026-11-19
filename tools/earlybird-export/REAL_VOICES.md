@@ -76,6 +76,8 @@ Clean test, per word (new rule):
 | spliced "mute …" | 41/84 |
 | spliced "solo …" | 41/56 |
 
+The test numbers were computed by replaying the logged candidate scores through the new rule. Every third test clip (1,401) was then re-run in the browser with the shipped code: all 1,401 decisions matched the replay exactly.
+
 On the TTS set from the PR, the new rule scores 203/210 correct (was 210/210), with 0/80 false accepts.
 
 **What it means:**
