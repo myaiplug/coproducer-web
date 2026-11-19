@@ -45,7 +45,7 @@ nav{position:sticky;top:0;z-index:20;background:rgba(5,3,8,.9);backdrop-filter:b
 .cta:hover,.btn:hover{opacity:0.95;}
 
 .hero{min-height:760px;display:flex;align-items:center;border-bottom:1px solid var(--line); width:100%; justify-content:center;}
-.hero-grid{display:grid;grid-template-columns:.78fr 1.22fr;gap:40px;align-items:center;width:100%;}
+.hero-grid{display:grid;grid-template-columns:.92fr 1.08fr;gap:48px;align-items:center;width:100%;}
 .eyebrow{font:700 9px 'JetBrains Mono';text-transform:uppercase;letter-spacing:.12em;padding:7px 9px;border:1px solid var(--line);display:inline-block; background:rgba(168,57,255,0.08); color:var(--m);}
 h1{font:900 clamp(64px,7vw,120px)/.74 'Barlow Condensed';letter-spacing:-.045em;text-transform:uppercase;margin:22px 0}
 h1 span{display:block;color:var(--p)}
@@ -55,7 +55,34 @@ h1 span{display:block;color:var(--p)}
 .buttons{display:flex;gap:15px;align-items:center}
 .btn.alt{background:transparent;border-color:var(--line);box-shadow:none; color:var(--text);}
 :where(img[width][height]){height:auto}
-.hero-art img{width:100%;border-radius:12px;border:1px solid var(--line);box-shadow:0 30px 80px rgba(168,57,255,.25)}
+.hero-art{display:flex;align-items:center;justify-content:center;}
+.hero-mark{
+  width:100%;
+  min-height:340px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:56px 40px;
+  border-radius:16px;
+  border:1px solid var(--line);
+  background:
+    radial-gradient(ellipse 72% 58% at 50% 46%, rgba(168,57,255,.2), transparent 68%),
+    linear-gradient(145deg,#140a1c,#08060b 62%);
+  box-shadow:0 30px 80px rgba(168,57,255,.2);
+}
+.hero-mark img{width:min(100%,560px);height:auto;display:block;border:0;border-radius:0;box-shadow:none;filter:drop-shadow(0 12px 28px rgba(0,0,0,.45));}
+.hero-price{margin:14px 0 0;font:700 11px 'JetBrains Mono',monospace;color:#827989;}
+.buttons{flex-wrap:wrap;}
+@media (max-width: 900px) {
+  .links{display:none;}
+  .hero{min-height:0;padding:28px 0 32px;}
+  .hero-grid{grid-template-columns:1fr;gap:22px;}
+  .hero-art{order:-1;}
+  .hero-mark{min-height:0;padding:28px 22px;}
+  .hero-mark img{width:min(100%,340px);}
+  .buttons{flex-direction:column;align-items:stretch;}
+  .buttons .btn{text-align:center;width:100%;}
+}
 
 .rail-wrap{border-bottom:1px solid var(--line); width:100%; display:flex; justify-content:center; background:rgba(5,3,8,0.5);}
 .rail{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); width:100%; max-width:1320px; margin:0 auto;}
@@ -426,9 +453,15 @@ footer { width: 100%; display: flex; justify-content: center; border-top: 1px so
 <a class="btn" href="#analyzeHome">Analyze your track</a>
 <a class="btn alt" href="#browserSplit">Split stems in the browser</a>
 </div>
+<p class="hero-price">Pro is $29 one-time</p>
 </div>
 <div class="hero-art">
-<img alt="CoProducer dashboard with circular mix score and analysis modules" src="assets/screens/screen-02.png" srcset="assets/screens/w/screen-02-480.webp 480w, assets/screens/w/screen-02-960.webp 960w, assets/screens/w/screen-02-1600.webp 1600w" sizes="(max-width: 900px) 100vw, 50vw" width="2337" height="1304" fetchpriority="high" decoding="async"/>
+<div class="hero-mark">
+<picture>
+<source type="image/webp" srcset="assets/brand/coproducer-wordmark.webp"/>
+<img alt="CoProducer" src="assets/brand/coproducer-wordmark.png" width="1161" height="207" fetchpriority="high" decoding="async"/>
+</picture>
+</div>
 </div>
 </div>
 </div>
