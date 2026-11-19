@@ -1,6 +1,6 @@
 # VoxMel runtime requirements, copied from VoxDance-Lab/VoxMel@1b0bc1cc63155b0197825178e896b63f7c0c554c requirements.txt
 # (install PyTorch first, see README.md). openai-whisper (MIT) transcribes reference clips.
-transformers==4.41.1
+transformers==5.10.1
 huggingface-hub>=0.23.0,<1.0
 torchdiffeq==0.2.5
 datasets==2.20.0
