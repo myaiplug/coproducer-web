@@ -6,7 +6,23 @@
     <atom:link href="https://myaiplug.github.io/coproducer-web/blog/rss.xml" rel="self" type="application/rss+xml"/>
     <description>Answer-first essays on loudness, true peak, repair, stems, ScrewAI, and local .bat workflows.</description>
     <language>en-us</language>
-    <lastBuildDate>Wed, 18 Nov 2026 15:00:00 GMT</lastBuildDate>
+    <lastBuildDate>Mon, 23 Nov 2026 15:00:00 GMT</lastBuildDate>
+    <item>
+      <title>Screwed vocals hard to understand? EQ after you slow, not before</title>
+      <link>https://myaiplug.github.io/coproducer-web/blog/screwed-vocals-hard-to-understand-eq-after-you-slow.html</link>
+      <guid isPermaLink="true">https://myaiplug.github.io/coproducer-web/blog/screwed-vocals-hard-to-understand-eq-after-you-slow.html</guid>
+      <pubDate>Mon, 23 Nov 2026 15:00:00 GMT</pubDate>
+      <description>Slowing a vocal moves every frequency down by the speed, so the body piles up and the bite slides out of place. Measured at 90, 85 and 80%, with where a presence boost really lands.</description>
+      <enclosure url="https://myaiplug.github.io/coproducer-web/blog/img/essays/screwed-vocals-hard-to-understand-eq-after-you-slow.jpg?v=shd" type="image/jpeg" length="317362"/>
+    </item>
+    <item>
+      <title>Tape wobble on a slowed beat: how much before it sounds out of tune?</title>
+      <link>https://myaiplug.github.io/coproducer-web/blog/slowed-beat-wobble-how-much-before-it-sounds-out-of-tune.html</link>
+      <guid isPermaLink="true">https://myaiplug.github.io/coproducer-web/blog/slowed-beat-wobble-how-much-before-it-sounds-out-of-tune.html</guid>
+      <pubDate>Mon, 23 Nov 2026 15:00:00 GMT</pubDate>
+      <description>A slow pitch wobble is half the tape sound, until someone sings or plays over it. Measured: how far each WOW setting moves the pitch and the groove, and where wobble stacks on an off-key speed.</description>
+      <enclosure url="https://myaiplug.github.io/coproducer-web/blog/img/essays/slowed-beat-wobble-how-much-before-it-sounds-out-of-tune.jpg?v=shd" type="image/jpeg" length="177876"/>
+    </item>
     <item>
       <title>Slowed version out of key? Pick a speed that lands on a semitone</title>
       <link>https://myaiplug.github.io/coproducer-web/blog/slowed-song-out-of-key-pick-a-speed-on-a-semitone.html</link>

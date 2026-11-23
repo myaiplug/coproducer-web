@@ -1,6 +1,6 @@
 # CoProducer and Lacquer — full text for assistants
 Base: https://myaiplug.github.io/coproducer-web/
-Updated: 2026-11-18
+Updated: 2026-11-23
 Essays: full plain-text bodies, in journal order
 Summary index: https://myaiplug.github.io/coproducer-web/llms.txt
 
@@ -28,6 +28,280 @@ Summary index: https://myaiplug.github.io/coproducer-web/llms.txt
 - Booth / journal comments on Lacquer pages are real reader notes posted through a public comment form (no seeded or sample comments). Notes with links are held for review before they appear.
 
 # Lacquer essays
+
+## Screwed vocals hard to understand? EQ after you slow, not before
+URL: https://myaiplug.github.io/coproducer-web/blog/screwed-vocals-hard-to-understand-eq-after-you-slow.html
+Section: Vocals · 23 November 2026 · 6 min
+Summary: Slowing a vocal moves every frequency down by the speed, so the body piles up and the bite slides out of place. Measured at 90, 85 and 80%, with where a presence boost really lands.
+
+A screwed vocal gets hard to understand because slowing moves every frequency down by the same ratio as the speed. At 80%, bite that sat at 5 kHz lands at 4 kHz, and low end that sat above the body slides into it. In our test, slowing a vocal to 80% put 5.6 dB more of its energy into 150 to 500 Hz and took 3.0 dB out of 8 to 12 kHz. So EQ after you slow, not before: a 3 kHz presence boost made before slowing ended up at 2.4 kHz.
+The beat slows down beautifully. Everything gets heavy and syrupy, the 808 turns into a slab, and then the verse comes in and you can’t make out half the words. The voice is there. It’s big and dark and it sounds great on the hook. It just stopped talking clearly.
+That’s not a mix mistake. Every part of the voice moved down, the part that makes words included. So the fix lives after the slowdown, at the new frequencies, not at the old ones.
+
+### What slowing does to a voice
+Tape-style slowing (varispeed) plays the samples back slower, so every frequency in the vocal drops by the speed: at 80%, 3 kHz becomes 2.4 kHz and 5 kHz becomes 4 kHz. The formants go down too, which is why a screwed singer sounds like a giant. The formants essay covers that side. This one is about the words.
+We checked it in vocal_eq_check.py: a synthetic sung line around 180 Hz with four formants and short consonant bursts, slowed to 90, 85 and 80% with 4-point Hermite interpolation (what HalfScrew’s HQ mode uses). Then we measured how much of the vocal’s energy sat in each band, and tried the same presence boost before and after slowing.
+# Screwed vocal clarity: where the "words" band goes when a vocal is slowed tape-style,
+# and whether a presence boost works better before or after slowing. Synthetic vowel + consonants, fixed seed.
+import numpy as np
+from scipy.signal import lfilter, butter, sosfilt
+fs = 48000; rng = np.random.default_rng(11)
+
+def vowel(dur=4.0, formants=((700, 90), (1200, 110), (2600, 160), (3400, 200))):
+    t = np.arange(int(fs * dur)) / fs; y = np.zeros_like(t)
+    f0 = 180 * 2 ** ((3 * np.sin(2 * np.pi * 0.5 * t) + 0.3 * np.sin(2 * np.pi * 5.5 * t)) / 12)   # sung line: +-3 semitones + vibrato
+    ph = 2 * np.pi * np.cumsum(f0) / fs
+    for k in range(1, 60):
+        f = k * f0
+        g = sum(1 / (1 + ((f - F) / B) ** 2) for F, B in formants) + 0.02     # formant envelope follows the moving harmonic
+        y += np.where(f < 12000, g / k ** 0.5, 0) * np.sin(k * ph + rng.uniform(0, 2 * np.pi))
+    return y / np.max(np.abs(y))
+
+def consonants(dur=4.0):                          # "s" / "t" bursts, 3-12 kHz noise, 6 per second
+    n = int(fs * dur); y = np.zeros(n); sos = butter(4, [3000, 12000], 'bandpass', fs=fs, output='sos')
+    for s in np.arange(0.05, dur - 0.1, 1 / 6):
+        L = int(fs * 0.06); i = int(s * fs); y[i:i + L] += rng.standard_normal(L) * np.hanning(L)
+    return sosfilt(sos, y)
+
+def peaking(y, f, gain_db, q=1.0):                # RBJ cookbook bell (same family HalfScrew's 8-band EQ uses)
+    A = 10 ** (gain_db / 40); w = 2 * np.pi * f / fs; al = np.sin(w) / (2 * q)
+    b = [1 + al * A, -2 * np.cos(w), 1 - al * A]; a = [1 + al / A, -2 * np.cos(w), 1 - al / A]
+    return lfilter(np.array(b) / a[0], np.array(a) / a[0], y)
+
+def slow(y, speed):                               # tape-style: time and pitch together, 4-point Hermite (HalfScrew HQ)
+    pos = np.arange(1, len(y) - 3, speed); i = pos.astype(int); f = pos - i
+    y0, y1, y2, y3 = y[i - 1], y[i], y[i + 1], y[i + 2]
+    c1 = 0.5 * (y2 - y0); c2 = y0 - 2.5 * y1 + 2 * y2 - 0.5 * y3; c3 = 0.5 * (y3 - y0) + 1.5 * (y1 - y2)
+    return ((c3 * f + c2) * f + c1) * f + y1
+
+def spectrum(y):
+    Y = np.abs(np.fft.rfft(y * np.hanning(len(y)))) ** 2; fr = np.fft.rfftfreq(len(y), 1 / fs); return fr, Y
+
+BANDS = [("body 150-500 Hz", 150, 500), ("words 2-4 kHz", 2000, 4000), ("bite 4-8 kHz", 4000, 8000), ("air 8-12 kHz", 8000, 12000)]
+def band_db(y):                                   # share of total energy in each band, dB
+    fr, Y = spectrum(y); tot = Y[(fr > 60) & (fr < 16000)].sum()
+    return [10 * np.log10(Y[(fr >= lo) & (fr < hi)].sum() / tot) for _, lo, hi in BANDS]
+
+def centroid(y, lo=2000, hi=12000):                # 'top-end centre': energy-weighted mean frequency, 2-12 kHz
+    fr, Y = spectrum(y); m = (fr >= lo) & (fr < hi); return (fr[m] * Y[m]).sum() / Y[m].sum()
+
+v = vowel() + 0.35 * consonants(); v /= np.max(np.abs(v))
+print("Synthetic vocal: sung line around 180 Hz, formants at 700 / 1200 / 2600 / 3400 Hz, consonant bursts 3-12 kHz\n")
+print("1) Where the energy sits (share of the vocal's total energy, dB; closer to 0 = more of it)")
+print(f"   {'':16}" + "".join(f"{b[0]:>21}" for b in BANDS) + f"{'top-end centre':>19}")
+rows = {}
+for name, sp in (("original", 1.0), ("slowed to 90%", 0.90), ("slowed to 85%", 0.85), ("slowed to 80%", 0.80)):
+    y = v if sp == 1 else slow(v, sp); rows[sp] = band_db(y)
+    print(f"   {name:16}" + "".join(f"{x:19.1f} dB" for x in rows[sp]) + f"{centroid(y):15.0f} Hz")
+d = [b - a for a, b in zip(rows[1.0], rows[0.80])]
+print("   change at 80%  " + "".join(f"{x:+19.1f} dB" for x in d))
+print("   formant at 2600 Hz lands at %.0f Hz at 80%%; 3400 Hz lands at %.0f Hz" % (2600 * 0.8, 3400 * 0.8))
+
+print("\n2) Same +4 dB bell at 3 kHz (Q 1.0), applied before slowing vs after slowing to 80%")
+base = slow(v, 0.8); fr, Yb = spectrum(base)
+def boost_centre(y):                              # where the boost actually ended up: peak of (EQ'd / plain) spectrum
+    _, Y = spectrum(y); r = 10 * np.log10(np.convolve(Y, np.ones(400), 'same') / np.convolve(Yb, np.ones(400), 'same'))
+    m = (fr > 500) & (fr < 10000); return fr[m][np.argmax(r[m])], r[m].max()
+pre = slow(peaking(v, 3000, 4), 0.8); post = peaking(base, 3000, 4)
+for name, y in (("EQ before slowing", pre), ("EQ after slowing", post)):
+    c, g = boost_centre(y); b = band_db(y)
+    print(f"   {name:18} boost centred at {c:5.0f} Hz (+{g:.1f} dB)   bite 4-8 kHz {b[2]:6.1f} dB   top-end centre {centroid(y):5.0f} Hz")
+print(f"   (plain 80% slow:   bite 4-8 kHz {rows[0.80][2]:6.1f} dB   top-end centre {centroid(base):5.0f} Hz; original bite {rows[1.0][2]:.1f} dB, centre {centroid(v):.0f} Hz)")
+shelf = peaking(base, 5000, 4, 0.7)
+print(f"   +4 dB at 5 kHz (Q 0.7) after slowing: bite 4-8 kHz {band_db(shelf)[2]:6.1f} dB   top-end centre {centroid(shelf):5.0f} Hz")
+
+print("\n3) Where a frequency in the original ends up after slowing")
+print(f"   {'original':>10}" + "".join(f"{s:>9.0%}" for s in (0.9, 0.85, 0.8, 0.75)))
+for f in (300, 1000, 3000, 5000, 8000):
+    print(f"   {f:8} Hz" + "".join(f"{f * s:9.0f}" for s in (0.9, 0.85, 0.8, 0.75)))
+
+print("\n4) A clarity move after slowing to 80%: -3 dB at 300 Hz (Q 1.0) and +3 dB at 5 kHz (Q 0.7), vs the original")
+fix = peaking(peaking(base, 300, -3, 1.0), 5000, 3, 0.7)
+print(f"   {'':22}" + "".join(f"{b[0]:>21}" for b in BANDS) + f"{'top-end centre':>19}")
+for name, y in (("original", v), ("slowed to 80%", base), ("slowed 80% + fix", fix)):
+    print(f"   {name:22}" + "".join(f"{x:19.1f} dB" for x in band_db(y)) + f"{centroid(y):15.0f} Hz")
+$ python3 vocal_eq_check.py
+Synthetic vocal: sung line around 180 Hz, formants at 700 / 1200 / 2600 / 3400 Hz, consonant bursts 3-12 kHz
+
+1) Where the energy sits (share of the vocal's total energy, dB; closer to 0 = more of it)
+                         body 150-500 Hz        words 2-4 kHz         bite 4-8 kHz         air 8-12 kHz     top-end centre
+   original                      -16.6 dB               -4.6 dB              -15.7 dB              -16.7 dB           3549 Hz
+   slowed to 90%                 -15.8 dB               -4.6 dB              -15.5 dB              -17.7 dB           3228 Hz
+   slowed to 85%                 -14.5 dB               -4.7 dB              -15.3 dB              -18.5 dB           3074 Hz
+   slowed to 80%                 -11.0 dB               -5.0 dB              -15.1 dB              -19.6 dB           2967 Hz
+   change at 80%                 +5.6 dB               -0.4 dB               +0.6 dB               -3.0 dB
+   formant at 2600 Hz lands at 2080 Hz at 80%; 3400 Hz lands at 2720 Hz
+
+2) Same +4 dB bell at 3 kHz (Q 1.0), applied before slowing vs after slowing to 80%
+   EQ before slowing  boost centred at  2399 Hz (+4.0 dB)   bite 4-8 kHz  -16.2 dB   top-end centre  2709 Hz
+   EQ after slowing   boost centred at  3008 Hz (+4.0 dB)   bite 4-8 kHz  -15.3 dB   top-end centre  2806 Hz
+   (plain 80% slow:   bite 4-8 kHz  -15.1 dB   top-end centre  2967 Hz; original bite -15.7 dB, centre 3549 Hz)
+   +4 dB at 5 kHz (Q 0.7) after slowing: bite 4-8 kHz  -12.5 dB   top-end centre  3114 Hz
+
+3) Where a frequency in the original ends up after slowing
+     original      90%      85%      80%      75%
+        300 Hz      270      255      240      225
+       1000 Hz      900      850      800      750
+       3000 Hz     2700     2550     2400     2250
+       5000 Hz     4500     4250     4000     3750
+       8000 Hz     7200     6800     6400     6000
+
+4) A clarity move after slowing to 80%: -3 dB at 300 Hz (Q 1.0) and +3 dB at 5 kHz (Q 0.7), vs the original
+                               body 150-500 Hz        words 2-4 kHz         bite 4-8 kHz         air 8-12 kHz     top-end centre
+   original                            -16.6 dB               -4.6 dB              -15.7 dB              -16.7 dB           3549 Hz
+   slowed to 80%                       -11.0 dB               -5.0 dB              -15.1 dB              -19.6 dB           2967 Hz
+   slowed 80% + fix                    -13.0 dB               -4.0 dB              -12.7 dB              -18.4 dB           3081 Hz
+
+### Reading the numbers
+The body piles up. At 80%, the 150 to 500 Hz band went from −16.6 to −11.0 dB of the vocal’s total, 5.6 dB more. Harmonics that used to sit above the body moved down into it. At 90% it was only 0.8 dB more, at 85% 2.1 dB. That’s the boxy, chesty part of a screwed vocal, and it’s also where the 808’s upper harmonics and the low-mid of the beat live.
+The air drops out. 8 to 12 kHz lost 3.0 dB at 80%, and the energy-weighted centre of everything above 2 kHz fell from 3549 to 2967 Hz. The 2 to 4 kHz band barely changed in level, −4.6 to −5.0 dB, but what’s in it changed: the old 2.5 to 5 kHz content now sits there, and the part that used to be in it moved lower. The words aren’t gone. They’re just sitting on top of a thicker body, with less edge on the consonants.
+EQ before slowing moves with the voice. A +4 dB bell at 3 kHz put on before slowing ended up centred at 2399 Hz. Put on after, it stayed at 3008 Hz. If you EQ the bounce and then slow it, every move you made slides down by the speed. A presence boost turns into a honk, and a de-mud cut at 300 Hz ends up at 240.
+A small move after slowing gets most of it back. −3 dB at 300 Hz and +3 dB at 5 kHz, both after the slowdown, brought the body back down to −13.0 dB and the bite up from −15.1 to −12.7 dB, with the top-end centre back up to 3081 Hz. It isn’t the original voice, and it shouldn’t be. It’s the screwed voice, with the words back in front.
+
+### How to keep the words
+1. Slow first, then EQ, so you’re hearing the voice you’ll release. If you have to EQ the vocal before slowing, multiply the frequency by the speed to see where it’ll land.
+2. Listen to the verse, not the hook. Hooks are usually repeated and known, so they read even when they’re dark. Verses are where words get lost.
+3. Take a little body out first. A gentle cut in the 200 to 400 Hz range on the slowed vocal or the slowed mix often does more than any boost. The low-mid pileup essay has the way to find the exact spot.
+4. Then add bite at the new frequencies, around 4 to 6 kHz, a few dB and broad. Small moves. The darkness is the point of the sound.
+5. If the vocal is fighting the beat in 2 to 4 kHz, cut the beat there instead of pushing the voice. Vocal buried in the beat shows why.
+6. If it’s a stems session, you can slow the vocal and the beat separately and EQ only the vocal. On a stereo bounce, the move hits the whole mix, so go gentler.
+Original frequency | At 90% | At 85% | At 80% | At 75%
+300 Hz | 270 | 255 | 240 | 225
+1000 Hz | 900 | 850 | 800 | 750
+3000 Hz | 2700 | 2550 | 2400 | 2250
+5000 Hz | 4500 | 4250 | 4000 | 3750
+8000 Hz | 7200 | 6800 | 6400 | 6000
+In HalfScrew the 8-band EQ already sits after the slowdown in the chain, so its bands work on the slowed voice. Bell 3 starts at 3200 Hz and Bell 4 at 7500 Hz, and the Vocal Presence EQ preset is a sensible place to start: it trims 220 Hz and lifts around 3 and 5.5 kHz. Some of the strains darken the top on purpose. The CLASSIC HOUSTON ones pull the 2.5 kHz high shelf down 2 to 4 dB, so if the words vanish on one of those, that shelf is the first thing to check.
+If you’re still deciding how slow, ScrewAI renders several strains from one file in a single batch (17 flavors in the drag-and-drop .bat version, 60+ in the app). Line up two or three speeds of the same verse and listen for the one where the words still read. That’s usually a better first move than EQ-ing the slowest one until it talks.
+Note: Don’t chase the original. A screwed vocal is supposed to be darker and heavier than the record. The goal is that you can follow the words on a phone speaker, not that it sounds like it was never slowed.
+Q: Why do slowed vocals sound muffled?
+A: Slowing moves every frequency down by the speed. At 80% the 5 kHz bite lands at 4 kHz and harmonics slide into the body. In our test the 150 to 500 Hz band rose 5.6 dB and 8 to 12 kHz dropped 3.0 dB.
+Q: Should I EQ a vocal before or after slowing it?
+A: After. EQ made before slowing moves down with the voice: a 3 kHz boost before slowing to 80% ended up centred at 2399 Hz in our test. After slowing it stayed at 3008 Hz.
+Q: How do I make a screwed vocal clearer?
+A: Slow first, then take a little out around 200 to 400 Hz and add a few dB of broad bite around 4 to 6 kHz. In our test −3 dB at 300 Hz and +3 dB at 5 kHz after slowing pulled the body back 2 dB and lifted the bite 2.4 dB.
+Q: Where does 3 kHz end up after slowing a song?
+A: At the original frequency times the speed: 2700 Hz at 90%, 2550 Hz at 85%, 2400 Hz at 80% and 2250 Hz at 75%.
+
+---
+
+## Tape wobble on a slowed beat: how much before it sounds out of tune?
+URL: https://myaiplug.github.io/coproducer-web/blog/slowed-beat-wobble-how-much-before-it-sounds-out-of-tune.html
+Section: Tempo · 23 November 2026 · 6 min
+Summary: A slow pitch wobble is half the tape sound, until someone sings or plays over it. Measured: how far each WOW setting moves the pitch and the groove, and where wobble stacks on an off-key speed.
+
+Tape wobble pulls the pitch of a slowed beat up and down around the note, so the question isn’t whether it’s out of tune but how far and how often. In HalfScrew’s WOW, measured on a rendered tone, the default 25% swung the pitch ±11.2 cents and spent 31% of the time more than 10 cents off. 50% swung ±22.5 cents, and 100% swung ±45 cents, nearly half a semitone. On its own that’s character. Under a tuned vocal or a fresh keys part, it’s the part that drifts.
+You slow the beat, add a little tape wobble, and it finally sounds like an old cassette left in a hot car. Perfect. Then the artist records over it with Auto-Tune on, or you add a clean piano, and every few seconds the two of them seem to disagree. The beat is fine. The new part is fine. They just aren’t sitting on the same pitch at the same time.
+
+### What wobble actually does
+Wow is a slow change in playback speed, the way a worn tape or a warped record speeds up and slows down. Since it’s speed, it moves pitch and timing together: the note bends sharp, then flat, and the groove leans a little early, then a little late. We ported HalfScrew’s resampler from its source into wow_check.py, rendered an A3 tone slowed to 80% at each WOW setting, and tracked the pitch sample by sample against the steady slowed note. Then we listed the strains that use WOW, with how far their speed already sits from a whole semitone.
+# Tape wobble on a slowed beat: how far HalfScrew's WOW knob moves pitch and timing, measured on a rendered tone.
+# The resampler is ported from halfscrew.js resample() (v=44): wobble = sin(2*pi*0.35*t) * (WOW/100) * 0.45 semitones,
+# applied to the read speed, 4-point Hermite interpolation (HQ on).
+import numpy as np
+from scipy.signal import hilbert
+fs = 48000
+
+def hermite(y0, y1, y2, y3, f):
+    c1 = 0.5 * (y2 - y0); c2 = y0 - 2.5 * y1 + 2 * y2 - 0.5 * y3; c3 = 0.5 * (y3 - y0) + 1.5 * (y1 - y2)
+    return ((c3 * f + c2) * f + c1) * f + y1
+
+def halfscrew_resample(a, ratio, wow):            # wow = knob / 100
+    n_out = int(np.ceil(len(a) / ratio)) - 4; i = np.arange(n_out)
+    wobble = np.sin(i / fs * 2 * np.pi * 0.35) * wow * 0.45            # semitones
+    step = ratio * 2 ** (wobble / 12)
+    pos = np.concatenate([[0.0], np.cumsum(step)[:-1]])
+    keep = pos < len(a) - 3; pos = pos[keep]; i0 = np.floor(pos).astype(int); f = pos - i0
+    g = lambda k: a[np.clip(k, 0, len(a) - 1)]
+    return hermite(g(i0 - 1), g(i0), g(i0 + 1), g(i0 + 2), f), pos
+
+def pitch_track(y):                               # instantaneous frequency from the analytic signal
+    ph = np.unwrap(np.angle(hilbert(y))); fi = np.diff(ph) * fs / (2 * np.pi)
+    k = int(0.02 * fs); fi = np.convolve(fi, np.ones(k) / k, 'valid'); return fi[fs // 2: -fs // 2]
+
+tone = np.sin(2 * np.pi * 220 * np.arange(int(fs * 14)) / fs)   # A3, 14 s of source
+ratio = 0.80
+flat, pos0 = halfscrew_resample(tone, ratio, 0.0)
+f_ref = np.median(pitch_track(flat))
+print(f"A3 (220 Hz) slowed to {ratio:.0%} with HalfScrew's resampler: steady note {f_ref:.1f} Hz")
+print(f"WOW rate 0.35 Hz: one full wobble every {1/0.35:.2f} s = {112/60/0.35:.2f} beats at 112 BPM, {90/60/0.35:.2f} beats at 90 BPM\n")
+print(f"   {'WOW':>5}{'peak drift':>13}{'time >5 c off':>16}{'time >10 c off':>17}{'beat vs in-tune part':>23}{'groove drift':>15}")
+for w in (0, 10, 25, 35, 50, 80, 100):
+    y, pos = halfscrew_resample(tone, ratio, w / 100)
+    c = 1200 * np.log2(pitch_track(y) / f_ref)
+    n = min(len(pos), len(pos0)); drift_ms = np.max(np.abs(pos[:n] - pos0[:n])) / ratio / fs * 1000
+    beat = f_ref * (2 ** (np.max(np.abs(c)) / 1200) - 1)
+    print(f"   {w:4d}%{np.max(np.abs(c)):9.1f} cents{100*np.mean(np.abs(c) > 5):13.0f}%{100*np.mean(np.abs(c) > 10):14.0f}%{beat:17.1f} Hz max{drift_ms:11.1f} ms")
+
+print("\nHalfScrew strains and presets that use WOW (TIME, PITCH, WOW from halfscrew-fx.js / halfscrew.js v=44)")
+print(f"   {'strain':22}{'TIME':>6}{'PITCH':>7}{'WOW':>5}{'wobble peak':>14}{'speed off nearest semitone':>29}{'worst case':>13}")
+S = [("Tussy Pour", 78, 0, 10), ("Hi-Tekk Purp Dreamz", 88, 0, 20), ("Midnight Wockk", 92, 0, 6), ("Dusty Qualli", 94, 0, 15),
+     ("Roxx Grape Rain", 90, 0, 12), ("Basement Barr", 96, 0, 20), ("Triss Light", 92, 1, 5), ("3AM Triss", 97, 0, 10),
+     ("Wobbly Wockk", 96, 0, 35), ("Sea-Sick Hi-Tekk", 94, 0, 80), ("Old Roxx", 93, 0, 50), ("Tuss Lite", 98, 0, 20),
+     ("Akorne Melt", 88, 0, 100), ("POTION (preset)", 100, -2, 40), ("DEEP (preset)", 70, -4, 60), ("default knob", 100, 0, 25)]
+for name, t, p, w in S:
+    semis = 12 * np.log2(t / 100) + p; off = 100 * (semis - round(semis)); wob = 45 * w / 100
+    print(f"   {name:22}{t:5d}%{p:+6d}{w:5d}{wob:10.1f} c{off:+24.1f} c{abs(off) + wob:11.1f} c")
+$ python3 wow_check.py
+A3 (220 Hz) slowed to 80% with HalfScrew's resampler: steady note 176.0 Hz
+WOW rate 0.35 Hz: one full wobble every 2.86 s = 5.33 beats at 112 BPM, 4.29 beats at 90 BPM
+
+     WOW   peak drift   time >5 c off   time >10 c off   beat vs in-tune part   groove drift
+      0%      0.0 cents            0%             0%              0.0 Hz max        0.0 ms
+     10%      4.5 cents            0%             0%              0.5 Hz max        2.4 ms
+     25%     11.2 cents           72%            31%              1.1 Hz max        6.1 ms
+     35%     15.7 cents           80%            57%              1.6 Hz max        8.6 ms
+     50%     22.5 cents           86%            72%              2.3 Hz max       12.5 ms
+     80%     36.0 cents           92%            83%              3.7 Hz max       20.6 ms
+    100%     45.0 cents           93%            86%              4.6 Hz max       26.3 ms
+
+HalfScrew strains and presets that use WOW (TIME, PITCH, WOW from halfscrew-fx.js / halfscrew.js v=44)
+   strain                  TIME  PITCH  WOW   wobble peak   speed off nearest semitone   worst case
+   Tussy Pour               78%    +0   10       4.5 c                   -30.1 c       34.6 c
+   Hi-Tekk Purp Dreamz      88%    +0   20       9.0 c                   -21.3 c       30.3 c
+   Midnight Wockk           92%    +0    6       2.7 c                   -44.4 c       47.1 c
+   Dusty Qualli             94%    +0   15       6.8 c                    -7.1 c       13.9 c
+   Roxx Grape Rain          90%    +0   12       5.4 c                   +17.6 c       23.0 c
+   Basement Barr            96%    +0   20       9.0 c                   +29.3 c       38.3 c
+   Triss Light              92%    +1    5       2.2 c                   -44.4 c       46.6 c
+   3AM Triss                97%    +0   10       4.5 c                   +47.3 c       51.8 c
+   Wobbly Wockk             96%    +0   35      15.8 c                   +29.3 c       45.1 c
+   Sea-Sick Hi-Tekk         94%    +0   80      36.0 c                    -7.1 c       43.1 c
+   Old Roxx                 93%    +0   50      22.5 c                   -25.6 c       48.1 c
+   Tuss Lite                98%    +0   20       9.0 c                   -35.0 c       44.0 c
+   Akorne Melt              88%    +0  100      45.0 c                   -21.3 c       66.3 c
+   POTION (preset)         100%    -2   40      18.0 c                    +0.0 c       18.0 c
+   DEEP (preset)            70%    -4   60      27.0 c                   -17.5 c       44.5 c
+   default knob            100%    +0   25      11.2 c                    +0.0 c       11.2 c
+
+### Reading the numbers
+Each 10% of WOW is about 4.5 cents. The wobble peaks at 0.45 semitones times the knob, so 25% is ±11.2 cents, 50% is ±22.5 and 100% is ±45. The pitch we tracked on the rendered tone matched that formula.
+It’s not just the peaks. At 25% the pitch was more than 10 cents off 31% of the time. At 50% that rose to 72%, and at 80% to 83%. A wobble spends most of its cycle away from the note, so a higher setting isn’t an occasional bend, it’s most of the song.
+Against an in-tune part, you hear it as slow beating. Our A3 slowed to 176 Hz. At WOW 25% it drifted up to 1.1 Hz away from an in-tune copy at the peaks; at 100%, 4.6 Hz. That’s a slow throb that comes and goes with the wobble, once every 2.86 seconds.
+The groove moves too. Speed changes shift time, so the slowed beat drifted up to 6.1 ms off its straight grid at 25%, 12.5 ms at 50% and 26.3 ms at 100%. You won’t notice it on the beat alone. You can notice it when you lay new, quantized drums on top of a heavily wobbled bounce.
+It isn’t synced to the song. One full wobble every 2.86 seconds is 5.33 beats at 112 BPM and 4.29 at 90. It drifts across the bar instead of landing in the same place every loop, which is part of why it sounds like tape and not like an effect.
+
+### When wobble stacks on the speed
+The strain table is the part worth a second look. A speed that isn’t a whole number of semitones already leaves the beat between keys (that’s this essay), and wobble swings on top of that offset. Dusty Qualli sits 7.1 cents off a semitone with ±6.8 cents of wobble, 13.9 at worst. Akorne Melt sits 21.3 cents off with WOW at 100, so at the peak it’s 66.3 cents away from the nearest note. The POTION preset gets around it: PITCH −2 lands exactly on a semitone, so its 18.0 cents of wobble swing around a real note.
+
+### How much to use
+- Just releasing a slowed version? Use as much as sounds good. Nobody is tuning against it, and the drift is the vibe.
+- Someone will sing or play over it? Give them a bounce with WOW at 0 to write and record on, and add the wobble to the final. Hard-tuned vocals are the least forgiving, since Auto-Tune holds the voice steady while the beat moves.
+- Want wobble and a tuned part together? Pick a speed on a semitone first, then keep WOW low. WOW 10% swung only ±4.5 cents around the note in our render.
+- Layering new drums? Keep heavy wobble off the stem you’re drumming to, or put the wobble on after the drums are in, so both move together.
+- Using it as a moment? A heavy setting on an intro, a breakdown or an outro reads as a choice. All song long, it reads as a warped tape.
+HalfScrew opens with WOW at 25%, so if you load a track, slow it and export without touching that knob, you already have ±11.2 cents of wobble baked in. Turn WOW to 0 for the writing bounce. Its PITCH knob moves in whole semitones, so TIME at 100% with PITCH set where you want lands on a real note, and the wobble swings around that. The export filename carries the w value next to t and p, so the bounce you hand off tells you how much wobble is in it. The TAPE WARBLE strains are the heavy end, from Tuss Lite at 20 up to Akorne Melt at 100.
+Note: Wobble and vibrato on a vocal are different jobs. A singer’s vibrato swings around the note on purpose and on their own breath. Tape wobble moves the whole beat under them. When the two fight, the fix is usually less wobble on the beat, not more tuning on the voice. And if it’s the retune itself that sounds robotic, that’s a retune speed job.
+Q: Does tape wobble make a beat out of tune?
+A: It moves it in and out of tune. In our render HalfScrew’s default WOW 25% swung the pitch ±11.2 cents and was more than 10 cents off 31% of the time. At 100% it swung ±45 cents.
+Q: How much wow is too much on a slowed beat?
+A: On its own, whatever sounds good. Under a tuned vocal or a new instrument, keep it low: WOW 10% stayed within ±4.5 cents, while 50% spent 72% of the time more than 10 cents off.
+Q: Does wow and flutter change the timing?
+A: Yes, a little, because it changes speed. The slowed beat drifted up to 6.1 ms off its grid at WOW 25% and 26.3 ms at 100%.
+Q: Should I record vocals over a beat with tape wobble?
+A: Record over a version with the wobble off, then put the wobble on the final mix. That keeps a tuned vocal from fighting a beat that keeps moving.
+
+---
 
 ## Slowed version out of key? Pick a speed that lands on a semitone
 URL: https://myaiplug.github.io/coproducer-web/blog/slowed-song-out-of-key-pick-a-speed-on-a-semitone.html
