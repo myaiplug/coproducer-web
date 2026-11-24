@@ -59,6 +59,7 @@ TOPICS = [
             "saturator-sounds-harsh-turn-on-oversampling",
             "limiter-distorts-the-bass-slow-the-release",
             "dither-when-exporting-16-bit-only-the-last-bounce",
+            "releasing-a-slowed-version-title-isrc-bpm-and-key",
         ],
     },
     {
@@ -120,6 +121,7 @@ TOPICS = [
             "pitched-vocal-sounds-like-a-chipmunk-fix-the-formants",
             "slowed-song-out-of-key-pick-a-speed-on-a-semitone",
             "slowed-beat-wobble-how-much-before-it-sounds-out-of-tune",
+            "halftime-vs-half-speed-why-your-beat-dropped-an-octave",
         ],
     },
     {

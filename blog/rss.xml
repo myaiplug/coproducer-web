@@ -6,7 +6,23 @@
     <atom:link href="https://myaiplug.github.io/coproducer-web/blog/rss.xml" rel="self" type="application/rss+xml"/>
     <description>Answer-first essays on loudness, true peak, repair, stems, ScrewAI, and local .bat workflows.</description>
     <language>en-us</language>
-    <lastBuildDate>Mon, 23 Nov 2026 15:00:00 GMT</lastBuildDate>
+    <lastBuildDate>Tue, 24 Nov 2026 15:00:00 GMT</lastBuildDate>
+    <item>
+      <title>Halftime vs half speed: why your halftime beat dropped an octave</title>
+      <link>https://myaiplug.github.io/coproducer-web/blog/halftime-vs-half-speed-why-your-beat-dropped-an-octave.html</link>
+      <guid isPermaLink="true">https://myaiplug.github.io/coproducer-web/blog/halftime-vs-half-speed-why-your-beat-dropped-an-octave.html</guid>
+      <pubDate>Tue, 24 Nov 2026 15:00:00 GMT</pubDate>
+      <description>Halftime and half speed both put the snare once a bar, but only one of them drops the whole beat an octave. Measured on a 140 BPM beat: snare, hats, 808 and loop length, side by side.</description>
+      <enclosure url="https://myaiplug.github.io/coproducer-web/blog/img/essays/halftime-vs-half-speed-why-your-beat-dropped-an-octave.jpg?v=shd" type="image/jpeg" length="210396"/>
+    </item>
+    <item>
+      <title>Releasing a slowed version? Give it its own title, ISRC, BPM and key</title>
+      <link>https://myaiplug.github.io/coproducer-web/blog/releasing-a-slowed-version-title-isrc-bpm-and-key.html</link>
+      <guid isPermaLink="true">https://myaiplug.github.io/coproducer-web/blog/releasing-a-slowed-version-title-isrc-bpm-and-key.html</guid>
+      <pubDate>Tue, 24 Nov 2026 15:00:00 GMT</pubDate>
+      <description>A slowed version is a new recording of the same song, and almost nothing on the original’s label copy still fits it. A delivery sheet worked out at six speeds: BPM, length, key and file names.</description>
+      <enclosure url="https://myaiplug.github.io/coproducer-web/blog/img/essays/releasing-a-slowed-version-title-isrc-bpm-and-key.jpg?v=shd" type="image/jpeg" length="190111"/>
+    </item>
     <item>
       <title>Screwed vocals hard to understand? EQ after you slow, not before</title>
       <link>https://myaiplug.github.io/coproducer-web/blog/screwed-vocals-hard-to-understand-eq-after-you-slow.html</link>

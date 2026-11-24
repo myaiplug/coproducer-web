@@ -1,6 +1,6 @@
 # CoProducer and Lacquer — full text for assistants
 Base: https://myaiplug.github.io/coproducer-web/
-Updated: 2026-11-23
+Updated: 2026-11-24
 Essays: full plain-text bodies, in journal order
 Summary index: https://myaiplug.github.io/coproducer-web/llms.txt
 
@@ -28,6 +28,240 @@ Summary index: https://myaiplug.github.io/coproducer-web/llms.txt
 - Booth / journal comments on Lacquer pages are real reader notes posted through a public comment form (no seeded or sample comments). Notes with links are held for review before they appear.
 
 # Lacquer essays
+
+## Halftime vs half speed: why your halftime beat dropped an octave
+URL: https://myaiplug.github.io/coproducer-web/blog/halftime-vs-half-speed-why-your-beat-dropped-an-octave.html
+Section: Tempo · 24 November 2026 · 6 min
+Summary: Halftime and half speed both put the snare once a bar, but only one of them drops the whole beat an octave. Measured on a 140 BPM beat: snare, hats, 808 and loop length, side by side.
+
+Halftime and half speed both put the snare once a bar, but only half speed drops the whole beat an octave. Halftime is a drum pattern: the tempo stays, the snare moves to beat 3, and the hats, 808 and vocal keep their pitch. Half speed is tape-style slowing at 50%: in our test a 140 BPM beat ran twice as long, its 49 Hz 808 fell to 24.5 Hz, and the 16th-note hats slowed into 8ths. Same heavy pulse, very different record.
+Somebody asks for a halftime version. You slow the beat to 50%, it sounds enormous for about four bars, and then you notice the hats have gone soft, the vocal sounds like a movie monster and the 808 is something you feel more than hear. That might be exactly what you wanted. It might also not be what they meant.
+People use the word for two different moves. One is a way of programming drums. The other is a speed change. They share a feel, which is why they get mixed up, and they share almost nothing else.
+
+### Two things with one name
+Halftime keeps the song at its tempo and changes the drums. The snare that used to land on 2 and 4 lands once a bar, on 3, and the kick usually opens up with it. The grid is still 140. Everything melodic stays where it was.
+Half speed plays the whole file at 50%, the way a turntable or tape does. Tempo and pitch drop together, so every sound goes down exactly an octave and every bar lasts twice as long. That’s the screwed version of the idea, and it’s what a TIME knob at 50% does.
+To see the difference in numbers, we built a two-bar beat at 140 BPM in halftime_check.py: a kick, a G1 808 at 49 Hz with a little drive so it has harmonics, a snare on 2 and 4, and 16th hats. Then we made it two ways. Halftime: the same sounds reprogrammed at 140 with the snare on 3. Half speed: the original run through HalfScrew’s resampler, ported from its source, at 50%. Each drum was rendered on its own so we could measure it cleanly.
+# Halftime vs half speed: what each one does to a 140 BPM beat, measured on rendered stems.
+# Half speed = HalfScrew's resampler ported from halfscrew.js resample() (v=44), ratio 0.5, WOW 0, 4-point Hermite (HQ).
+# Halftime = the same sounds reprogrammed at the same 140 BPM: snare once a bar on beat 3, kick thinned, hats untouched.
+import numpy as np
+from scipy.signal import butter, sosfilt
+fs = 48000; rng = np.random.default_rng(7)
+BPM = 140; beat = 60 / BPM; bars = 2; L = int(round(bars * 4 * beat * fs))
+
+def hermite(y0, y1, y2, y3, f):
+    c1 = 0.5 * (y2 - y0); c2 = y0 - 2.5 * y1 + 2 * y2 - 0.5 * y3; c3 = 0.5 * (y3 - y0) + 1.5 * (y1 - y2)
+    return ((c3 * f + c2) * f + c1) * f + y1
+def halfscrew_resample(a, ratio):
+    n = int(np.ceil(len(a) / ratio)); pos = np.arange(n) * ratio; i0 = np.floor(pos).astype(int); f = pos - i0
+    g = lambda k: np.where((k >= 0) & (k < len(a)), a[np.clip(k, 0, len(a) - 1)], 0.0)
+    return hermite(g(i0 - 1), g(i0), g(i0 + 1), g(i0 + 2), f)
+
+t = lambda sec: np.arange(int(sec * fs)) / fs
+def place(hits, sound):
+    y = np.zeros(L)
+    for b in hits:
+        i = int(round(b * beat * fs)); seg = sound[: L - i]; y[i:i + len(seg)] += seg
+    return y
+hp = lambda x, fc: sosfilt(butter(4, fc, 'highpass', fs=fs, output='sos'), x)
+kick = np.sin(2 * np.pi * np.cumsum(49 + 120 * np.exp(-t(0.25) * 30)) / fs) * np.exp(-t(0.25) * 12)
+sub808 = np.tanh(2.5 * np.sin(2 * np.pi * 49 * t(1.6))) * np.exp(-t(1.6) * 1.5)   # G1 808, driven so it has harmonics
+snare = (0.6 * np.sin(2 * np.pi * 200 * t(0.2)) + hp(rng.standard_normal(int(0.2 * fs)), 1500) * 0.5) * np.exp(-t(0.2) * 22)
+hat = sosfilt(butter(4, [6000, 12000], 'bandpass', fs=fs, output='sos'), rng.standard_normal(int(0.05 * fs))) * np.exp(-t(0.05) * 90) * 0.4
+
+grid16 = [i / 4 for i in range(bars * 16)]
+orig = {"kick": place([0, 2.5, 4, 6.5], kick), "808": place([0, 4], sub808),
+        "snare": place([1, 3, 5, 7], snare), "hats": place(grid16, hat)}
+halftime = {"kick": place([0, 4], kick), "808": place([0, 4], sub808),
+            "snare": place([2, 6], snare), "hats": place(grid16, hat)}
+halfspeed = {k: halfscrew_resample(v, 0.5) for k, v in orig.items()}
+
+def onsets(y):
+    k = int(0.005 * fs); env = np.sqrt(np.convolve(y ** 2, np.ones(k) / k, 'same'))
+    above = env > 0.25 * env.max(); idx = np.flatnonzero(above[1:] & ~above[:-1]) + 1
+    keep = [idx[0]]
+    for i in idx[1:]:
+        if i - keep[-1] > 0.06 * fs: keep.append(i)
+    return np.array(keep) / fs
+def spacing(y): o = onsets(y); return np.median(np.diff(o))
+def centroid(y):
+    S = np.abs(np.fft.rfft(y)) ** 2; f = np.fft.rfftfreq(len(y), 1 / fs); return (S * f).sum() / S.sum()
+def peak_hz(y):
+    S = np.abs(np.fft.rfft(y * np.hanning(len(y)))); f = np.fft.rfftfreq(len(y), 1 / fs); m = f > 15; return f[m][np.argmax(S[m])]
+def below(y, fc):
+    S = np.abs(np.fft.rfft(y)) ** 2; f = np.fft.rfftfreq(len(y), 1 / fs); return 100 * S[f < fc].sum() / S.sum()
+
+print(f"Source: {bars}-bar beat at {BPM} BPM ({L/fs:.3f} s): kick, G1 808 (49 Hz), snare on 2 and 4, 16th hats\n")
+print(f"{'':26}{'original':>12}{'halftime':>12}{'half speed':>12}")
+rows = [("loop length (s)", lambda d: f"{len(d['hats'])/fs:.3f}"),
+        ("snare to snare (s)", lambda d: f"{spacing(d['snare']):.3f}"),
+        ("hat to hat (s)", lambda d: f"{spacing(d['hats']):.3f}"),
+        ("808 note (Hz)", lambda d: f"{peak_hz(d['808']):.1f}"),
+        ("808 energy below 30 Hz (%)", lambda d: f"{below(d['808'], 30):.0f}"),
+        ("808 energy above 100 Hz (%)", lambda d: f"{below(d['808'], 1e9) - below(d['808'], 100):.1f}"),
+        ("snare body (Hz)", lambda d: f"{peak_hz(sosfilt(butter(4, 1000, 'lowpass', fs=fs, output='sos'), d['snare'])):.0f}"),
+        ("hat centre (Hz)", lambda d: f"{centroid(d['hats']):.0f}")]
+for name, fn in rows:
+    print(f"{name:26}{fn(orig):>12}{fn(halftime):>12}{fn(halfspeed):>12}")
+hs_len = len(halfspeed['hats']) / fs
+print(f"\nhalf-speed loop = {hs_len / (4 * beat):.2f} bars at {BPM} BPM, so it still lands on the original grid")
+print(f"felt pulse (one snare per bar at {BPM} BPM) = {BPM/2:.0f} BPM for halftime and half speed")
+
+print("\nHalfScrew CLUB HALFTIME strains (TIME, PITCH from halfscrew-fx.js v=44); export speed = TIME/100 x 2^(PITCH/12)")
+print(f"   {'strain':18}{'TIME':>6}{'PITCH':>7}{'speed':>8}{'semitones':>11}{'140 BPM ->':>12}{'49 Hz 808 ->':>14}")
+for name, tm, p in [("Half Pint Ackt", 50, 0), ("Full Pint Barr", 50, -2), ("Warehouse Roxx", 60, -1), ("Ackt Right", 65, 1), ("¾ Cup Qualli", 75, 0)]:
+    r = tm / 100 * 2 ** (p / 12)
+    print(f"   {name:18}{tm:5d}%{p:+7d}{r:8.3f}{12*np.log2(r):+11.2f}{140*r:9.1f} BPM{49*r:10.1f} Hz")
+$ python3 halftime_check.py
+Source: 2-bar beat at 140 BPM (3.429 s): kick, G1 808 (49 Hz), snare on 2 and 4, 16th hats
+
+                              original    halftime  half speed
+loop length (s)                  3.429       3.429       6.857
+snare to snare (s)               0.857       1.714       1.714
+hat to hat (s)                   0.107       0.107       0.214
+808 note (Hz)                     49.0        49.0        24.5
+808 energy below 30 Hz (%)           1           1          95
+808 energy above 100 Hz (%)         4.5         4.5         0.4
+snare body (Hz)                    200         200         100
+hat centre (Hz)                   9161        9161        4563
+
+half-speed loop = 4.00 bars at 140 BPM, so it still lands on the original grid
+felt pulse (one snare per bar at 140 BPM) = 70 BPM for halftime and half speed
+
+HalfScrew CLUB HALFTIME strains (TIME, PITCH from halfscrew-fx.js v=44); export speed = TIME/100 x 2^(PITCH/12)
+   strain              TIME  PITCH   speed  semitones  140 BPM ->  49 Hz 808 ->
+   Half Pint Ackt       50%     +0   0.500     -12.00     70.0 BPM      24.5 Hz
+   Full Pint Barr       50%     -2   0.445     -14.00     62.4 BPM      21.8 Hz
+   Warehouse Roxx       60%     -1   0.566      -9.84     79.3 BPM      27.7 Hz
+   Ackt Right           65%     +1   0.689      -6.46     96.4 BPM      33.7 Hz
+   ¾ Cup Qualli         75%     +0   0.750      -4.98    105.0 BPM      36.8 Hz
+
+### Reading the numbers
+The snare is why they get confused. Snare to snare was 1.714 seconds in both versions, twice the 0.857 of the original. Your body hears one snare a bar either way, so both feel like 70. That’s the whole overlap.
+The hats are where they split. In halftime, the hats still ticked every 0.107 seconds, real 16ths at 140, so the beat keeps its motion while the snare drags. At half speed they ticked every 0.214 seconds, 8ths at 140, and their centre dropped from 9161 to 4563 Hz. The top of the beat goes from shimmer to shuffle. If a halftime beat feels lazy instead of heavy, check the hats first.
+The 808 changes jobs. Halftime left it at 49 Hz. Half speed put it at 24.5 Hz, with 95% of its energy below 30 Hz, and the part above 100 Hz, the harmonics a phone speaker actually plays, fell from 4.5% to 0.4%. The low end is still in the file. It just moved somewhere most speakers can’t follow, which is the phone speaker problem taken all the way.
+The snare turns into a thud. Its body went from 200 Hz to 100 Hz. That’s a lot of the classic screwed weight, and it’s also why a half-speed snare can sit right on top of the kick.
+Half speed still lands on the grid. The two bars became exactly 4.00 bars at 140 BPM. So a half-speed piece of audio drops into a 140 session without stretching. That’s useful, and it’s the trick in the list below.
+
+### Which one you want
+- A heavy drop in a trap beat? Halftime. Move the snare to 3, thin the kick, keep the hats moving and the 808 tuned. The song stays in key and on tempo, and any tempo-synced delays stay right because the project BPM never changed.
+- A screwed tape, an interlude, a slowed version of the whole record? Half speed, or something gentler. 50% is the extreme end. Most slowed versions live much higher, and this essay covers how to pick.
+- Both at once. Program halftime drums at the original tempo, then lay a half-speed copy of a melody, pad or vocal chop under them. Because half speed doubles the length exactly, a one-bar loop becomes two bars and stays locked to the grid, just an octave lower.
+- Halftime feel, original pitch, the whole bounce? That’s a time-stretch to 50%, not varispeed. It keeps the pitch and smears the transients. Three different jobs has the trade-offs.
+- A vocal at half speed drops an octave with its formants, so it reads as a character, not a singer. Great for a tag or an outro, hard work for a verse.
+
+### The club halftime strains, decoded
+In HalfScrew, the CLUB HALFTIME family is half speed in the tape sense, plus a few in-between speeds. Half Pint Ackt is TIME 50 with no pitch change: exactly an octave, 140 BPM to 70. Full Pint Barr adds PITCH −2 on top, so the export speed is 0.445 and the drop is 14 semitones. A 49 Hz 808 lands at 21.8 Hz there. Warehouse Roxx, Ackt Right and ¾ Cup Qualli sit at 79.3, 96.4 and 105.0 BPM from a 140 beat, and the table in the output shows how far each drops in semitones. ¾ Cup Qualli comes out 2 cents from a whole semitone, while Ackt Right lands between keys, which is the out-of-key speed problem if anyone sings over it. None of these reprogram your drums. If you want halftime with the hats intact, that part happens in your session.
+Note: When someone asks for a halftime version, ask one question back: should it be lower? If yes, it’s half speed or a slowed version. If it should stay in key and keep the same BPM, it’s halftime, and it’s a drum edit.
+Q: Is halftime the same as half speed?
+A: No. Halftime keeps the tempo and moves the snare to once a bar. Half speed plays the whole file at 50%, so it lasts twice as long and every sound drops an octave. In our test both put 1.714 s between snares at 140 BPM, but only half speed moved the 808 from 49 to 24.5 Hz.
+Q: What BPM is a halftime beat?
+A: The project stays at its tempo, 140 stays 140, but with one snare a bar it feels like half of it, 70. That’s why tempo-synced delays and the grid still work in halftime.
+Q: Why does my 808 disappear when I play a beat at half speed?
+A: Half speed halves every frequency. In our test a 49 Hz 808 fell to 24.5 Hz with 95% of its energy below 30 Hz, and the harmonics above 100 Hz that phone speakers play dropped from 4.5% to 0.4% of its energy.
+Q: How do I get a halftime feel without changing the pitch?
+A: Reprogram the drums at the same tempo with the snare on 3, or time-stretch the bounce to 50%. Tape-style slowing always moves pitch with tempo.
+
+---
+
+## Releasing a slowed version? Give it its own title, ISRC, BPM and key
+URL: https://myaiplug.github.io/coproducer-web/blog/releasing-a-slowed-version-title-isrc-bpm-and-key.html
+Section: Delivery · 24 November 2026 · 6 min
+Summary: A slowed version is a new recording of the same song, and almost nothing on the original’s label copy still fits it. A delivery sheet worked out at six speeds: BPM, length, key and file names.
+
+A slowed version is a new recording of the same song, so it ships with its own title, its own ISRC and its own BPM, key and length, and none of them match the original. In our delivery sheet, a 3:24 song at 140 BPM in F minor slowed to 80% became 112 BPM and 4:15, and its key landed 14 cents above C# minor rather than on any key. Write those numbers down when you export, not when the upload form asks.
+The slowed version is done. You picked the speed, you slowed the bounce, it sounds like a late drive home. Then the distributor form opens, and every field still has the original’s answers in it: same BPM, same key, same length, same code. Click through and the store thinks it’s the same track, or worse, your notes do.
+Tape-style slowing moves tempo, pitch and length together by one number, the speed. So the label copy for a slowed version isn’t a guess. It’s arithmetic you can do once, at export, while you still remember what you did.
+
+### What changes when you slow it
+We wrote delivery_sheet.py to do that arithmetic for a made-up song, 3:24 at 140 BPM in F minor, at six real HalfScrew settings: four strains and two presets, with each one’s TIME, PITCH and effects taken from the tool’s source. It works out the speed, the semitone drop, the new BPM, the new length with and without the effect tail the export adds, how much longer the file got, and where the key lands. Then it prints the file names each tool would give you.
+# Delivery sheet for a slowed version: what changes on the label copy when you slow a song.
+# Speeds, strain settings, reverb/delay tails and the export filename pattern come from HalfScrew v=44
+# (halfscrew-fx.js STRAINS + tailSeconds(); halfscrew.js export name). Example song: 3:24, 140 BPM, F minor.
+import math
+NOTES = ["C", "C#", "D", "Eb", "E", "F", "F#", "G", "Ab", "A", "Bb", "B"]
+song = dict(file="night-drive.wav", title="Night Drive", seconds=204.0, bpm=140, key=("F", "minor"))
+
+def mmss(s): s = round(s); return f"{s // 60}:{s % 60:02d}"
+def key_after(semis):
+    root = NOTES.index(song["key"][0]); near = round(semis); cents = round((semis - near) * 100)
+    name = f"{NOTES[(root + near) % 12]} {song['key'][1]}"
+    return name if cents == 0 else f"{name} {cents:+d} c"
+def hs_name(base, t, p, w, mix=100, fx=True):   # halfscrew.js: base-HalfScrew-t..-p..-w..-mix..(-fx).wav
+    return f"{base}-HalfScrew-t{t}-p{p}-w{w}-mix{mix}" + ("-fx" if fx else "") + ".wav"
+
+# (label, TIME, PITCH, WOW, reverb, delay): strain values from halfscrew-fx.js; presets from halfscrew.js
+rows = [("Half Triss", 89, 0, 0, 0, 0), ("Holy Tuss", 85, 0, 0, 55, 0), ("Wockk Classic", 80, 0, 0, 0, 0),
+        ("Echo Ackt", 90, -1, 0, 28, 30), ("POTION preset", 100, -2, 40, 0, 0), ("DEEP preset", 70, -4, 60, 0, 0)]
+print(f"Original: {song['title']}, {mmss(song['seconds'])}, {song['bpm']} BPM, {song['key'][0]} {song['key'][1]}\n")
+print(f"{'setting':15}{'speed':>7}{'semis':>8}{'BPM':>7}{'length':>8}{'+ FX tail':>11}{'longer by':>11}  {'key':16}")
+for name, t, p, w, rev, dl in rows:
+    r = t / 100 * 2 ** (p / 12); semis = 12 * math.log2(r)
+    tail = 3.0 if rev > 1 else (2.5 if dl > 1 else 0.0)        # tailSeconds(): reverb 3 s, delay 2.5 s
+    body = song["seconds"] / r
+    print(f"{name:15}{r:7.3f}{semis:+8.2f}{song['bpm'] * r:7.1f}{mmss(body):>8}{mmss(body + tail):>11}{round(body + tail - song['seconds']):>9} s  {key_after(semis):16}")
+r10 = song["seconds"] / (song["seconds"] + 10)
+print(f"\nSpeed-only change stays under 10 s longer only above {r10:.3f} ({song['bpm'] * r10:.1f} BPM) for this {mmss(song['seconds'])} song")
+print("\nExport filenames (HalfScrew), so the bounce tells you what it is:")
+for name, t, p, w, rev, dl in rows[:3]:  # strains load EQ, so the export carries -fx
+    print(f"  {name:15} {hs_name('night-drive', t, p, w)}")
+print("\nScrewAI names renders <file>_<Strain_Name>.<ext> (renderer.js): the strain, not the speed.")
+print("Read the speed back from the lengths: speed = original length / slowed length (no FX tail on the clock).")
+for fname, length in [("night-drive_Slow_Burn.wav", "4:22"), ("night-drive_Mildly_Slowed.wav", "3:52")]:
+    m, s_ = map(int, length.split(":")); r = song["seconds"] / (m * 60 + s_)
+    print(f"  {fname:31} runs {length} -> speed {r:.3f}, {song['bpm'] * r:.1f} BPM, {12 * math.log2(r):+.2f} semitones, {key_after(12 * math.log2(r))}")
+$ python3 delivery_sheet.py
+Original: Night Drive, 3:24, 140 BPM, F minor
+
+setting          speed   semis    BPM  length  + FX tail  longer by  key             
+Half Triss       0.890   -2.02  124.6    3:49       3:49       25 s  Eb minor -2 c   
+Holy Tuss        0.850   -2.81  119.0    4:00       4:03       39 s  D minor +19 c   
+Wockk Classic    0.800   -3.86  112.0    4:15       4:15       51 s  C# minor +14 c  
+Echo Ackt        0.849   -2.82  118.9    4:00       4:03       39 s  D minor +18 c   
+POTION preset    0.891   -2.00  124.7    3:49       3:49       25 s  Eb minor        
+DEEP preset      0.556  -10.17   77.8    6:07       6:07      163 s  G minor -17 c   
+
+Speed-only change stays under 10 s longer only above 0.953 (133.5 BPM) for this 3:24 song
+
+Export filenames (HalfScrew), so the bounce tells you what it is:
+  Half Triss      night-drive-HalfScrew-t89-p0-w0-mix100-fx.wav
+  Holy Tuss       night-drive-HalfScrew-t85-p0-w0-mix100-fx.wav
+  Wockk Classic   night-drive-HalfScrew-t80-p0-w0-mix100-fx.wav
+
+ScrewAI names renders <file>_<Strain_Name>.<ext> (renderer.js): the strain, not the speed.
+Read the speed back from the lengths: speed = original length / slowed length (no FX tail on the clock).
+  night-drive_Slow_Burn.wav       runs 4:22 -> speed 0.779, 109.0 BPM, -4.33 semitones, C# minor -33 c
+  night-drive_Mildly_Slowed.wav   runs 3:52 -> speed 0.879, 123.1 BPM, -2.23 semitones, Eb minor -23 c
+
+### Reading the sheet
+BPM is the old BPM times the speed. 140 at 80% is 112.0. At the DEEP preset, 77.8. If you list beats or tag files for DJs, this is the number they’ll match against, so it should be the slowed one.
+Length is the old length divided by the speed, plus the tail. Wockk Classic took 3:24 to 4:15. Holy Tuss has reverb on, and HalfScrew’s export lets the reverb ring 3 seconds past the end, so 4:00 became 4:03. Check that the ending rings out the way you want before it ships. This essay covers cut-off tails.
+The key only lands on a key at whole-semitone speeds. The POTION preset drops exactly 2.00 semitones, so F minor becomes Eb minor, clean. Half Triss is 2 cents off the same key, close enough to call it Eb minor. Wockk Classic sits 14 cents above C# minor, Holy Tuss 19 above D minor, and DEEP 17 below G minor. For a key tag, write the nearest key, and keep the cents in your own notes. If anyone will sing or play over it, pick a speed on a semitone first.
+It’s a lot longer than you’d think. Even the gentlest setting here made the song 25 seconds longer, and Wockk Classic 51. That matters for the code, below.
+
+### The release checklist
+1. Title. Keep the main title identical and mark the version: Night Drive (Slowed), or (Slowed + Reverb). If your distributor has a version field, put it there, so the slowed one groups with the original instead of looking like a new song.
+2. ISRC. Give it its own. An ISRC identifies a recording, not a song. The IFPI rule we covered in the 432 Hz alternate master essay says a speed-only change gets a new code once the length changes by 10 seconds or more. For this 3:24 song, anything slower than 0.953, about 133.5 BPM, crosses that line, so every slowed version on the sheet does. Distributors have their own rules on top, so confirm with yours. The songwriting underneath is the same song, so the writers and splits normally carry over.
+3. BPM, key and length from the sheet, not from the original’s metadata.
+4. Peaks. Slowing changes the peaks, and reverb adds new ones. Measure the slowed file, not the original master. Measure the peak again has the details.
+5. Format. Deliver it to the same spec as the original. Sample rate and bit depth covers the boring, important part.
+6. Clean version. If the original has one, slow the clean too, at the same speed, so the two still line up. That’s its own track and its own code as well. The clean version essay has the rest.
+
+### Let the file name do the remembering
+HalfScrew writes its settings into the export name: t for TIME, p for PITCH, w for WOW, then the dry/wet mix, and -fx when the EQ or effects are in the render. So night-drive-HalfScrew-t80-p0-w0-mix100-fx.wav already tells you it’s 80% with no pitch shift and no wobble, and the BPM and key follow from that.
+ScrewAI is built for making a batch: pick a file, select several strains, render them in one go (17 flavors in the drag-and-drop .bat version, 60+ in the app). Its files are named after the strain, like night-drive_Slow_Burn.wav, which is great for auditioning and says nothing about speed. Before you upload the one you picked, read the speed back from the lengths, original length divided by slowed length. A render that runs 4:22 from a 3:24 song is at 0.779, so about 109 BPM and a key 33 cents below C# minor. Seconds are rounded, so treat that as within a BPM or so.
+Note: Keep one line per version in your project notes: Night Drive (Slowed) · 0.80 · 112 BPM · C# minor +14 c · 4:15 · its own ISRC. It takes a moment at export and saves you working it all out again when the playlist pitch form asks.
+Q: Does a slowed version of a song need a new ISRC?
+A: Usually, yes. An ISRC identifies a recording, and the IFPI rule we’ve covered says a speed-only change needs a new code once the length changes by 10 seconds or more. A 3:24 song crosses that at any speed below 0.953. Distributors have their own rules, so confirm with yours.
+Q: What BPM do I put for a slowed version?
+A: The original BPM times the speed. A 140 BPM song at 80% is 112.0 BPM, at 89% it’s 124.6, and at the DEEP preset’s 0.556 it’s 77.8.
+Q: What key is my slowed song in?
+A: Drop the key by 12 × log2(speed) semitones. Only whole-semitone speeds land on a key: F minor at 89.1% is Eb minor, but at 80% it sits 14 cents above C# minor. Use the nearest key for tags.
+Q: How long will my slowed version be?
+A: The original length divided by the speed, plus any effect tail. A 3:24 song at 80% runs 4:15, and at 85% with reverb it runs 4:03 including HalfScrew’s 3-second reverb tail.
+
+---
 
 ## Screwed vocals hard to understand? EQ after you slow, not before
 URL: https://myaiplug.github.io/coproducer-web/blog/screwed-vocals-hard-to-understand-eq-after-you-slow.html
