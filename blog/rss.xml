@@ -6,7 +6,23 @@
     <atom:link href="https://myaiplug.github.io/coproducer-web/blog/rss.xml" rel="self" type="application/rss+xml"/>
     <description>Answer-first essays on loudness, true peak, repair, stems, ScrewAI, and local .bat workflows.</description>
     <language>en-us</language>
-    <lastBuildDate>Tue, 24 Nov 2026 15:00:00 GMT</lastBuildDate>
+    <lastBuildDate>Wed, 25 Nov 2026 15:00:00 GMT</lastBuildDate>
+    <item>
+      <title>Chopping a slowed beat? Cut on the new BPM, not the old one</title>
+      <link>https://myaiplug.github.io/coproducer-web/blog/chopping-a-slowed-beat-cut-on-the-new-bpm.html</link>
+      <guid isPermaLink="true">https://myaiplug.github.io/coproducer-web/blog/chopping-a-slowed-beat-cut-on-the-new-bpm.html</guid>
+      <pubDate>Wed, 25 Nov 2026 15:00:00 GMT</pubDate>
+      <description>Slowing a beat moves its grid, so every chop gets longer by the same factor. Measured on a 140 BPM beat slowed to 112: chop lengths, how far an old-grid repeat lands off, clicks, and session tempo with decimals.</description>
+      <enclosure url="https://myaiplug.github.io/coproducer-web/blog/img/essays/chopping-a-slowed-beat-cut-on-the-new-bpm.jpg?v=shd" type="image/jpeg" length="144087"/>
+    </item>
+    <item>
+      <title>How slow should a slowed song be? Compare the same bars, level-matched</title>
+      <link>https://myaiplug.github.io/coproducer-web/blog/how-slow-should-a-slowed-song-be-compare-them-level-matched.html</link>
+      <guid isPermaLink="true">https://myaiplug.github.io/coproducer-web/blog/how-slow-should-a-slowed-song-be-compare-them-level-matched.html</guid>
+      <pubDate>Wed, 25 Nov 2026 15:00:00 GMT</pubDate>
+      <description>There’s no right speed for a slowed version, so render a few and pick by ear. A blind, level-matched audition, measured on five HalfScrew settings: where the hook moves, why seconds aren’t bars, and how much quieter slower renders read.</description>
+      <enclosure url="https://myaiplug.github.io/coproducer-web/blog/img/essays/how-slow-should-a-slowed-song-be-compare-them-level-matched.jpg?v=shd" type="image/jpeg" length="162592"/>
+    </item>
     <item>
       <title>Halftime vs half speed: why your halftime beat dropped an octave</title>
       <link>https://myaiplug.github.io/coproducer-web/blog/halftime-vs-half-speed-why-your-beat-dropped-an-octave.html</link>

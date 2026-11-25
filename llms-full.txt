@@ -1,6 +1,6 @@
 # CoProducer and Lacquer — full text for assistants
 Base: https://myaiplug.github.io/coproducer-web/
-Updated: 2026-11-24
+Updated: 2026-11-25
 Essays: full plain-text bodies, in journal order
 Summary index: https://myaiplug.github.io/coproducer-web/llms.txt
 
@@ -28,6 +28,280 @@ Summary index: https://myaiplug.github.io/coproducer-web/llms.txt
 - Booth / journal comments on Lacquer pages are real reader notes posted through a public comment form (no seeded or sample comments). Notes with links are held for review before they appear.
 
 # Lacquer essays
+
+## Chopping a slowed beat? Cut on the new BPM, not the old one
+URL: https://myaiplug.github.io/coproducer-web/blog/chopping-a-slowed-beat-cut-on-the-new-bpm.html
+Section: Tempo · 25 November 2026 · 6 min
+Summary: Slowing a beat moves its grid, so every chop gets longer by the same factor. Measured on a 140 BPM beat slowed to 112: chop lengths, how far an old-grid repeat lands off, clicks, and session tempo with decimals.
+
+Chop a slowed beat on the slowed tempo’s grid: the new BPM is the old BPM times the speed, and every chop gets longer by the same factor. In our test a 140 BPM beat at HalfScrew’s TIME 80 became 112 BPM, so a half-bar chop grew from 857.1 to 1071.4 ms. Cut at the old length, the repeat came back 214.4 ms early, more than a 16th note.
+You slowed the beat, it sounds right, and now you want the move that makes it chopped and not just slowed: back the phrase up and play it again. The session is still at 140 from when you made the beat, snap is on, you cut half a bar, duplicate it, and the repeat stumbles in like it missed a step.
+Nothing is wrong with your ears or your cut. The chop in chopped and screwed is a repeat, a phrase, a beat or a word played twice, and a repeat only works if it lands where the next bar starts. Slowing moved where that is.
+
+### The new grid is one multiplication
+Tape-style slowing stretches time by the same factor it lowers pitch. Multiply the BPM by the speed and divide every note length by it. In HalfScrew, TIME 80 with PITCH at 0 is a speed of 0.8. Add a PITCH move and the export speed becomes TIME/100 × 2^(PITCH/12), so the tempo changes with it.
+To put numbers on it, we wrote chop_grid.py. It prints chop lengths at a few TIME settings, then builds a four-bar beat at 140 BPM with a sustained note underneath, so cuts land mid-wave the way they do in real music. It slows the beat at TIME 80 with HalfScrew’s resampler, ported from its source, WOW at 0. Then it makes the classic repeat, the first half bar played twice before the record carries on, cut once on the old grid and once on the new one, with and without a 5 ms fade.
+# Chopping a slowed beat: chop lengths at the slowed BPM, and what happens if you cut on the old grid.
+# Slowing = HalfScrew's resampler ported from halfscrew.js resample() (v=44): 4-point Hermite (HQ), WOW 0.
+import numpy as np
+from scipy.signal import butter, sosfilt
+fs = 48000; rng = np.random.default_rng(11)
+BPM = 140; beat = 60 / BPM
+
+def hermite(y0, y1, y2, y3, f):
+    c1 = 0.5 * (y2 - y0); c2 = y0 - 2.5 * y1 + 2 * y2 - 0.5 * y3; c3 = 0.5 * (y3 - y0) + 1.5 * (y1 - y2)
+    return ((c3 * f + c2) * f + c1) * f + y1
+def halfscrew_resample(a, ratio):
+    n = int(np.ceil(len(a) / ratio)); pos = np.arange(n) * ratio; i0 = np.floor(pos).astype(int); f = pos - i0
+    g = lambda k: np.where((k >= 0) & (k < len(a)), a[np.clip(k, 0, len(a) - 1)], 0.0)
+    return hermite(g(i0 - 1), g(i0), g(i0 + 1), g(i0 + 2), f)
+
+# 1) chop lengths
+print("Chop lengths (ms) at 140 BPM and at HalfScrew TIME settings (PITCH 0, so speed = TIME/100)")
+print(f"   {'TIME':>5}{'BPM':>7}{'1/16':>9}{'1/8':>9}{'beat':>9}{'1/2 bar':>9}{'bar':>9}{'beat @48k (samples)':>22}")
+for tm in (100, 90, 80, 70, 50):
+    bpm = BPM * tm / 100; b = 60 / bpm
+    print(f"   {tm:4d}%{bpm:7.1f}{b/4*1000:9.1f}{b/2*1000:9.1f}{b*1000:9.1f}{2*b*1000:9.1f}{4*b*1000:9.1f}{b*fs:22.2f}")
+
+# 2) a 4-bar beat at 140, slowed to TIME 80 (112 BPM)
+bars = 4; L = int(round(bars * 4 * beat * fs))
+t = lambda sec: np.arange(int(sec * fs)) / fs
+def place(hits, sound, n=L, bt=beat):
+    y = np.zeros(n)
+    for b in hits:
+        i = int(round(b * bt * fs)); seg = sound[: n - i]; y[i:i + len(seg)] += seg
+    return y
+hp = lambda x, fc: sosfilt(butter(4, fc, 'highpass', fs=fs, output='sos'), x)
+kick = np.sin(2 * np.pi * np.cumsum(49 + 120 * np.exp(-t(0.25) * 30)) / fs) * np.exp(-t(0.25) * 12)
+snare = (0.6 * np.sin(2 * np.pi * 200 * t(0.2)) + hp(rng.standard_normal(int(0.2 * fs)), 1500) * 0.5) * np.exp(-t(0.2) * 22)
+hat = sosfilt(butter(4, [6000, 12000], 'bandpass', fs=fs, output='sos'), rng.standard_normal(int(0.05 * fs))) * np.exp(-t(0.05) * 90) * 0.4
+pad = 0.15 * np.sin(2 * np.pi * 220 * np.arange(L) / fs)          # a sustained note, so cuts land mid-wave
+kicks = [b * 4 + o for b in range(bars) for o in (0, 2.5)]; snares = [b * 4 + o for b in range(bars) for o in (1, 3)]
+kick_trk = place(kicks, kick)                                     # kept as its own stem so we can track the kicks
+src = kick_trk + place(snares, snare) + place([i / 2 for i in range(bars * 8)], hat) + pad
+speed = 0.80; slow = halfscrew_resample(src, speed); slow_k = halfscrew_resample(kick_trk, speed); nb = 60 / (BPM * speed)
+print(f"\nSource: {bars}-bar beat at {BPM} BPM ({len(src)/fs:.3f} s). Slowed at TIME 80: {len(slow)/fs:.3f} s = {len(slow)/fs/(4*nb):.3f} bars at {BPM*speed:.0f} BPM")
+
+def onsets(y):
+    k = int(0.003 * fs); env = np.sqrt(np.convolve(y ** 2, np.ones(k) / k, 'same'))
+    above = env > 0.5 * env.max(); idx = np.flatnonzero(above & ~np.concatenate([[False], above[:-1]]))
+    keep = [idx[0]]
+    for i in idx[1:]:
+        if i - keep[-1] > 0.15 * fs: keep.append(i)
+    return np.array(keep) / fs
+def fade(seg, ms):
+    n = int(ms / 1000 * fs); seg = seg.copy()
+    if n: r = np.linspace(0, 1, n); seg[:n] *= r; seg[-n:] *= r[::-1]
+    return seg
+def screw_repeat(y, chop_len, fade_ms):
+    # classic chop: play the first half bar twice, then let the record carry on from where the repeat started
+    n = int(round(chop_len * fs)); c = fade(y[:n], fade_ms)
+    return np.concatenate([c, c, fade(y, fade_ms)])
+def grid_error(k, b):
+    ks = onsets(k)                                                             # onsets on the kick stem, same edit applied
+    err = (ks - np.round(ks / (b / 2)) * (b / 2)) * 1000                     # vs nearest 8th on the given grid
+    return ks, np.abs(err).max()
+def splice_jump(y, at):
+    i = int(round(at * fs)); return np.abs(np.diff(y[i - 2:i + 2])).max()
+
+print("\nHalf-bar repeat on the slowed file: play the first half bar twice, then carry on (112 BPM grid: half bar = 1071.4 ms)")
+print(f"   {'':26}{'chop (ms)':>10}{'fade':>6}{'repeat lands (ms)':>19}{'early by':>10}{'jump at splice':>16}")
+for label, chop in (("cut on the old 140 grid", 2 * beat), ("cut on the new 112 grid", 2 * nb)):
+    for fms in (0, 5):
+        out = screw_repeat(slow, chop, fms); ks = onsets(screw_repeat(slow_k, chop, fms))
+        land = ks[ks > 0.1][0] * 1000                     # first kick after the start = the repeated downbeat
+        print(f"   {label:26}{chop*1000:10.1f}{fms:4d}ms{land:19.1f}{2*nb*1000 - land:10.1f}{splice_jump(out, chop):16.3f}")
+print(f"   (unedited slowed file: typical sample-to-sample step in the music {np.median(np.abs(np.diff(slow))):.3f})")
+print(f"   one 16th at 112 BPM = {nb/4*1000:.1f} ms")
+
+# 3) chop at 140 then slow, vs slow then chop at 112
+a = halfscrew_resample(screw_repeat(kick_trk, 2 * beat, 5), speed)
+b = screw_repeat(slow_k, 2 * nb, 5)
+oa, ob = onsets(a), onsets(b)
+print(f"\nChop at 140 then slow  vs  slow then chop at 112: lengths {len(a)/fs:.3f} s / {len(b)/fs:.3f} s, "
+      f"{len(oa)} / {len(ob)} kicks, largest difference in kick position {np.abs(oa - ob).max()*1000:.2f} ms")
+
+# 4) session tempo with decimals: POTION preset (TIME 100, PITCH -2)
+r = 1.0 * 2 ** (-2 / 12); bpm = BPM * r
+print(f"\nPOTION preset (TIME 100, PITCH -2): speed {r:.4f}, {BPM} BPM -> {bpm:.2f} BPM")
+for sess in (round(bpm), round(bpm, 1), round(bpm, 2)):
+    for nbars in (4, 16):
+        drift = abs(nbars * 4 * 60 / sess - nbars * 4 * 60 / bpm) * 1000
+        print(f"   session at {sess:<7} after {nbars:2d} bars the grid is {drift:6.1f} ms off the audio")
+$ python3 chop_grid.py
+Chop lengths (ms) at 140 BPM and at HalfScrew TIME settings (PITCH 0, so speed = TIME/100)
+    TIME    BPM     1/16      1/8     beat  1/2 bar      bar   beat @48k (samples)
+    100%  140.0    107.1    214.3    428.6    857.1   1714.3              20571.43
+     90%  126.0    119.0    238.1    476.2    952.4   1904.8              22857.14
+     80%  112.0    133.9    267.9    535.7   1071.4   2142.9              25714.29
+     70%   98.0    153.1    306.1    612.2   1224.5   2449.0              29387.76
+     50%   70.0    214.3    428.6    857.1   1714.3   3428.6              41142.86
+
+Source: 4-bar beat at 140 BPM (6.857 s). Slowed at TIME 80: 8.571 s = 4.000 bars at 112 BPM
+
+Half-bar repeat on the slowed file: play the first half bar twice, then carry on (112 BPM grid: half bar = 1071.4 ms)
+                              chop (ms)  fade  repeat lands (ms)  early by  jump at splice
+   cut on the old 140 grid        857.1   0ms              857.0     214.4           0.132
+   cut on the old 140 grid        857.1   5ms              860.7     210.8           0.001
+   cut on the new 112 grid       1071.4   0ms             1071.3       0.1           0.080
+   cut on the new 112 grid       1071.4   5ms             1075.0      -3.5           0.000
+   (unedited slowed file: typical sample-to-sample step in the music 0.003)
+   one 16th at 112 BPM = 133.9 ms
+
+Chop at 140 then slow  vs  slow then chop at 112: lengths 10.714 s / 10.714 s, 10 / 10 kicks, largest difference in kick position 0.42 ms
+
+POTION preset (TIME 100, PITCH -2): speed 0.8909, 140 BPM -> 124.73 BPM
+   session at 125     after  4 bars the grid is   16.9 ms off the audio
+   session at 125     after 16 bars the grid is   67.5 ms off the audio
+   session at 124.7   after  4 bars the grid is    1.6 ms off the audio
+   session at 124.7   after 16 bars the grid is    6.4 ms off the audio
+   session at 124.73  after  4 bars the grid is    0.3 ms off the audio
+   session at 124.73  after 16 bars the grid is    1.0 ms off the audio
+
+### Reading the numbers
+Everything got longer by the same factor. At 112 BPM a beat is 535.7 ms instead of 428.6, a half bar 1071.4 instead of 857.1, a bar 2142.9 instead of 1714.3. The four slowed bars were exactly 4.000 bars at 112. Nothing about the beat is off the grid. It’s on a different grid.
+The old grid cuts short. A half-bar chop at the 140 length is 857.1 ms. On the slowed file the repeat landed at 857.0 ms, when the bar line was at 1071.4, so it came back 214.4 ms early. That’s more than a 16th at 112, which is 133.9 ms, and it means the repeat lops off the end of the phrase and pulls everything after it early. Cut at the new length, the repeat landed at 1071.3 ms, 0.1 ms off.
+Every cut needs a fade. Without one, the splice jumped by 0.132 and 0.080, against a typical step of 0.003 between neighbouring samples in the music. A jump like that is a click. A 5 ms fade took it to 0.001 and 0.000. The fade-in made our onset reading 3.5 ms later, because it softens the very start of the kick under the cut. If a chop that starts on a kick loses its snap, shorten the fade-in on that one cut. Clicks at your edit points has the full story on fades.
+Chopping first and slowing after gives you the same thing. We also cut the repeat at 140 and slowed the result. Both versions came out 10.714 s long, with the same 10 kicks, the largest difference in position 0.42 ms. So if your chops are already in the original session, at a nice round tempo, chop there and slow the bounce. The grid scales with it.
+Decimals matter. HalfScrew’s POTION preset is TIME 100 with PITCH −2, a speed of 0.8909, which takes 140 to 124.73 BPM. Set the session to 125 and the grid was 16.9 ms off the audio after 4 bars and 67.5 ms after 16. At 124.73 it was 1.0 ms after 16. That’s the same rounding problem as a sample drifting off the grid, just one you made yourself.
+
+### A chop session that stays on the grid
+1. Work out the new tempo. Old BPM times the speed. HalfScrew writes t and p into the export name, so night-drive-HalfScrew-t80-p0-w0-mix100.wav is 0.8, and 140 becomes 112.
+2. Set the session to that tempo, decimals included. Your DAW’s grid handles 124.73 fine. A beat at 112 is 25714.29 samples at 48 kHz, so let the grid place the cuts rather than typing sample counts.
+3. Chop a dry, steady file. WOW loads at 25 in HalfScrew and moves the timing a little as well as the pitch, which the wobble essay measured. Set it to 0 for the file you chop, and leave reverb off so you aren’t cutting a tail mid-ring. Add the wobble and the space after the chops are in. Time the tail to the new tempo when you do.
+4. Cut in musical lengths, a beat, half a bar, a bar, at the new tempo, with a short fade on every cut.
+5. Or chop at the original tempo and slow afterwards. Same result, easier numbers.
+Note: Write the slowed BPM at the top of the session before you make the first cut. Every chop length follows from that one number.
+Q: How do I find the BPM of a slowed beat?
+A: Multiply the original BPM by the speed. A 140 BPM beat at 80% is 112. HalfScrew’s POTION preset (TIME 100, PITCH −2) is a speed of 0.8909, so 140 becomes 124.73.
+Q: How long is a chop at the slowed tempo?
+A: Divide the original length by the speed, or work it out from the new BPM. At 112 BPM a beat is 535.7 ms, half a bar 1071.4 ms and a bar 2142.9 ms.
+Q: Should I chop before or after slowing?
+A: Either works, as long as the grid moves with the speed. In our test, chopping at 140 and then slowing put every kick within 0.42 ms of slowing first and chopping at 112.
+Q: Why do my chops click?
+A: The cut lands mid-wave, so the audio jumps. In our test a bare splice jumped by 0.132 against a typical step of 0.003; a 5 ms fade brought it to 0.001.
+
+---
+
+## How slow should a slowed song be? Compare the same bars, level-matched
+URL: https://myaiplug.github.io/coproducer-web/blog/how-slow-should-a-slowed-song-be-compare-them-level-matched.html
+Section: Listening · 25 November 2026 · 6 min
+Summary: There’s no right speed for a slowed version, so render a few and pick by ear. A blind, level-matched audition, measured on five HalfScrew settings: where the hook moves, why seconds aren’t bars, and how much quieter slower renders read.
+
+There’s no right speed for a slowed version, so render a few and pick by ear, but compare the same bars at the same loudness. In our test the hook of a 140 BPM beat moved from 27.43 s to 39.18 s at TIME 70, ten seconds held 5.83 bars of the original but only 4.08 of the slowest render, and the slowed renders read up to 1.2 LU quieter before we matched them.
+Four exports in a folder: 95, 85, 80, 70. You click between them in the file browser, each one starts at 0:00, and after a few rounds you pick one. Maybe it was the best speed. Maybe it was the one you heard last, or the one that happened to be loudest, or the only one where you got to the hook before you clicked away.
+How far to slow is a taste call, and this essay covers how to think about it. This one is about making the comparison fair, so the speed you pick is the one you actually liked.
+
+### Render the batch from one bounce
+Start from the same file and change one thing. In HalfScrew, keep WOW and the effects the same and move only TIME, and PITCH if you want it, then export each. The settings end up in the file names, so you know which is which later.
+ScrewAI renders several strains from one file in a single batch (17 flavors in the drag-and-drop .bat version, 60+ in the app; the free browser demo does one strain at a time). Strains differ in EQ and effects as well as speed, so a strain batch is a flavor comparison, not a pure speed one. That’s fine, just know which question you’re asking. If a winner is named after the strain, read the speed back from its length before you write the BPM down.
+
+### What makes the comparison unfair
+We wrote audition_reel.py to measure it. It builds a 32-bar beat at 140 BPM with a hook from bar 17, bounces it with peaks at −1 dBFS, and renders five HalfScrew settings with the tool’s resampler, WOW 0 and no effects. Then it measures each render and builds a blind audition: the same 8 hook bars from every version, turned down to the same loudness, in shuffled order, with the key printed separately.
+# Picking a slowed speed: render a batch from one bounce, then compare the same 8 bars at the same loudness.
+# Slowing = HalfScrew's resampler ported from halfscrew.js resample() (v=44): 4-point Hermite (HQ), WOW 0, no FX.
+# Loudness = ITU-R BS.1770 integrated LUFS via pyloudnorm.
+import numpy as np, soundfile as sf, pyloudnorm as pyln
+from scipy.signal import butter, sosfilt
+fs = 48000; rng = np.random.default_rng(5)
+BPM = 140; beat = 60 / BPM; bars = 32; L = int(round(bars * 4 * beat * fs)); HOOK_BAR = 17
+
+def hermite(y0, y1, y2, y3, f):
+    c1 = 0.5 * (y2 - y0); c2 = y0 - 2.5 * y1 + 2 * y2 - 0.5 * y3; c3 = 0.5 * (y3 - y0) + 1.5 * (y1 - y2)
+    return ((c3 * f + c2) * f + c1) * f + y1
+def halfscrew_resample(a, ratio):
+    n = int(np.ceil(len(a) / ratio)); pos = np.arange(n) * ratio; i0 = np.floor(pos).astype(int); f = pos - i0
+    g = lambda k: np.where((k >= 0) & (k < len(a)), a[np.clip(k, 0, len(a) - 1)], 0.0)
+    return hermite(g(i0 - 1), g(i0), g(i0 + 1), g(i0 + 2), f)
+
+t = lambda sec: np.arange(int(sec * fs)) / fs
+def place(hits, sound):
+    y = np.zeros(L)
+    for b in hits:
+        i = int(round(b * beat * fs)); seg = sound[: L - i]; y[i:i + len(seg)] += seg
+    return y
+hp = lambda x, fc: sosfilt(butter(4, fc, 'highpass', fs=fs, output='sos'), x)
+kick = np.sin(2 * np.pi * np.cumsum(49 + 120 * np.exp(-t(0.25) * 30)) / fs) * np.exp(-t(0.25) * 12)
+sub808 = np.tanh(2.5 * np.sin(2 * np.pi * 49 * t(1.6))) * np.exp(-t(1.6) * 1.5) * 0.6
+snare = (0.6 * np.sin(2 * np.pi * 200 * t(0.2)) + hp(rng.standard_normal(int(0.2 * fs)), 1500) * 0.5) * np.exp(-t(0.2) * 22)
+hat = sosfilt(butter(4, [6000, 12000], 'bandpass', fs=fs, output='sos'), rng.standard_normal(int(0.05 * fs))) * np.exp(-t(0.05) * 90) * 0.3
+def note(hz, sec): return 0.12 * sum(np.sin(2 * np.pi * hz * k * t(sec)) / k for k in (1, 2, 3)) * np.exp(-t(sec) * 3)
+mix = (place([b * 4 + o for b in range(bars) for o in (0, 2.5)], kick) + place([b * 4 for b in range(bars)], sub808)
+       + place([b * 4 + o for b in range(bars) for o in (1, 3)], snare) + place([i / 2 for i in range(bars * 8)], hat))
+hook = sum(place([b * 4 + i for b in range(HOOK_BAR - 1, bars)], note(hz, 0.4)) for i, hz in enumerate((349.2, 415.3, 523.3, 466.2)))
+mix = mix + hook
+mix *= 10 ** (-1 / 20) / np.abs(mix).max()                        # bounce peaks at -1 dBFS
+meter = pyln.Meter(fs)
+hook_t = (HOOK_BAR - 1) * 4 * beat
+print(f"Bounce: {bars} bars at {BPM} BPM, {len(mix)/fs:.1f} s, hook starts bar {HOOK_BAR} at {hook_t:.2f} s, {meter.integrated_loudness(mix):.1f} LUFS\n")
+
+SETTINGS = [("TIME 95", 95, 0), ("TIME 100 PITCH -2", 100, -2), ("TIME 85", 85, 0), ("TIME 80", 80, 0), ("TIME 70", 70, 0)]
+renders = {"original": (1.0, mix)}
+for name, tm, p in SETTINGS:
+    r = tm / 100 * 2 ** (p / 12); renders[name] = (r, halfscrew_resample(mix, r))
+
+print(f"{'render':20}{'speed':>7}{'BPM':>7}{'length':>8}{'hook at':>9}{'8 bars':>8}{'10 s =':>9}{'LUFS':>7}")
+lufs = {}
+for name, (r, y) in renders.items():
+    lufs[name] = meter.integrated_loudness(y)
+    print(f"{name:20}{r:7.3f}{BPM*r:7.1f}{len(y)/fs:7.1f}s{hook_t/r:8.2f}s{8*4*beat/r:7.2f}s{10/(4*beat/r):6.2f} bars{lufs[name]:7.1f}")
+
+quiet = min(lufs.values())
+print(f"\nLevel match: turn each clip down to the quietest render ({quiet:.1f} LUFS), so nothing gets boosted into clipping")
+order = list(renders); rng2 = np.random.default_rng(2026); rng2.shuffle(order)
+reel, key = [], []
+gap = np.zeros(int(1.0 * fs))
+for i, name in enumerate(order):
+    r, y = renders[name]; a = int(round(hook_t / r * fs)); b = a + int(round(8 * 4 * beat / r * fs))
+    g = quiet - lufs[name]; clip = y[a:b] * 10 ** (g / 20)
+    n = int(0.005 * fs); clip[:n] *= np.linspace(0, 1, n); clip[-n:] *= np.linspace(1, 0, n)
+    reel += [clip, gap]; key.append(f"   clip {chr(65+i)} = {name:20} gain {g:+.1f} dB, clip LUFS after match {meter.integrated_loudness(clip):.1f}")
+sf.write("audition_reel.wav", np.concatenate(reel), fs, subtype="PCM_24")
+print("Blind order (audition_reel.wav, 1 s gap between clips). Key, for after you've picked:")
+print("\n".join(key))
+$ python3 audition_reel.py
+Bounce: 32 bars at 140 BPM, 54.9 s, hook starts bar 17 at 27.43 s, -20.4 LUFS
+
+render                speed    BPM  length  hook at  8 bars   10 s =   LUFS
+original              1.000  140.0   54.9s   27.43s  13.71s  5.83 bars  -20.4
+TIME 95               0.950  133.0   57.7s   28.87s  14.44s  5.54 bars  -20.7
+TIME 100 PITCH -2     0.891  124.7   61.6s   30.79s  15.39s  5.20 bars  -20.9
+TIME 85               0.850  119.0   64.5s   32.27s  16.13s  4.96 bars  -21.0
+TIME 80               0.800  112.0   68.6s   34.29s  17.14s  4.67 bars  -21.2
+TIME 70               0.700   98.0   78.4s   39.18s  19.59s  4.08 bars  -21.6
+
+Level match: turn each clip down to the quietest render (-21.6 LUFS), so nothing gets boosted into clipping
+Blind order (audition_reel.wav, 1 s gap between clips). Key, for after you've picked:
+   clip A = original             gain -1.3 dB, clip LUFS after match -21.5
+   clip B = TIME 95              gain -0.9 dB, clip LUFS after match -21.5
+   clip C = TIME 70              gain +0.0 dB, clip LUFS after match -21.5
+   clip D = TIME 85              gain -0.6 dB, clip LUFS after match -21.6
+   clip E = TIME 80              gain -0.4 dB, clip LUFS after match -21.6
+   clip F = TIME 100 PITCH -2    gain -0.7 dB, clip LUFS after match -21.5
+
+### Reading the numbers
+The hook moves. In the original it starts at 27.43 s. At TIME 95 it’s at 28.87, at TIME 80 at 34.29, at TIME 70 at 39.18. Jump every file to the same timestamp and you’re comparing different parts of the song. The hook in any render is at the original time divided by the speed.
+Seconds aren’t bars. Ten seconds of the original is 5.83 bars. Ten seconds of the TIME 70 render is 4.08. If you audition by the clock, the slow version always gets less music, so it can sound emptier for a reason that has nothing to do with the speed. Eight bars is 13.71 s in the original and 19.59 s at TIME 70. Compare bars.
+The slower ones read quieter. Nobody touched a fader, but the renders went from −20.4 LUFS for the original to −21.6 at TIME 70. Loudness meters count deep lows for less than the mids, and slowing pushes energy down, the same effect measure the peak again describes. In an A/B, whatever is a little louder tends to sound better, which this essay gets into. So the script turns each clip down to the quietest render, from −1.3 dB for the original to 0.0 for TIME 70. Turning down means nothing gets pushed into clipping, and the clips landed within 0.1 LU of each other, −21.5 to −21.6.
+Order matters too. The reel plays the clips in a shuffled order and keeps the key out of sight until you’ve picked. The original is in there as well. Sometimes the honest answer is that the gentlest setting doesn’t change enough to be worth a release.
+
+### How to run the audition
+1. Render four to six versions from one bounce, the batch above, changing only the speed if speed is the question.
+2. Cut the same 8 bars from each. Start at the hook time divided by the speed, and make the clip 8 bars at the new BPM long.
+3. Match loudness by turning down. Any integrated LUFS meter works, your DAW’s or the analyzer on this site. Bring every clip down to the quietest.
+4. Listen blind, at one level, on your monitors and on a phone. Pick before you look at the key.
+5. Then go back to the full render of the winner. Measure its true peak, and if anyone will sing over it, check it lands on a semitone.
+Note: Level-matching is for choosing, not for shipping. Don’t release the turned-down audition clip. Measure and finish the winning render on its own.
+Q: How slow should a slowed song be?
+A: There’s no single number. Render a few speeds from the same bounce and compare them blind and level-matched. Our five settings ran from a speed of 0.95 to 0.70, which took a 140 BPM beat to between 133.0 and 98.0 BPM.
+Q: Why does my slowed version sound quieter?
+A: Loudness meters weight deep lows less than mids, and slowing moves energy down. In our test the original read −20.4 LUFS and the TIME 70 render −21.6, with no gain change.
+Q: How do I compare slowed versions fairly?
+A: Compare the same bars, not the same seconds, at matched loudness, in a blind order. Turn the louder clips down to the quietest one instead of boosting.
+Q: Where is the hook in my slowed version?
+A: At the original time divided by the speed. A hook at 27.43 s lands at 34.29 s at a speed of 0.80 and at 39.18 s at 0.70.
+
+---
 
 ## Halftime vs half speed: why your halftime beat dropped an octave
 URL: https://myaiplug.github.io/coproducer-web/blog/halftime-vs-half-speed-why-your-beat-dropped-an-octave.html

@@ -33,7 +33,7 @@
   </url>
   <url>
     <loc>https://myaiplug.github.io/coproducer-web/blog/index.html</loc>
-    <lastmod>2026-11-24</lastmod>
+    <lastmod>2026-11-25</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
     <image:image>
@@ -132,8 +132,28 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://myaiplug.github.io/coproducer-web/blog/chopping-a-slowed-beat-cut-on-the-new-bpm.html</loc>
+    <lastmod>2026-11-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://myaiplug.github.io/coproducer-web/blog/img/essays/chopping-a-slowed-beat-cut-on-the-new-bpm.jpg?v=shd</image:loc>
+      <image:title>Chopping a slowed beat? Cut on the new BPM, not the old one</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://myaiplug.github.io/coproducer-web/blog/how-slow-should-a-slowed-song-be-compare-them-level-matched.html</loc>
+    <lastmod>2026-11-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://myaiplug.github.io/coproducer-web/blog/img/essays/how-slow-should-a-slowed-song-be-compare-them-level-matched.jpg?v=shd</image:loc>
+      <image:title>How slow should a slowed song be? Compare the same bars, level-matched</image:title>
+    </image:image>
+  </url>
+  <url>
     <loc>https://myaiplug.github.io/coproducer-web/blog/halftime-vs-half-speed-why-your-beat-dropped-an-octave.html</loc>
-    <lastmod>2026-11-24</lastmod>
+    <lastmod>2026-11-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <image:image>
@@ -143,7 +163,7 @@
   </url>
   <url>
     <loc>https://myaiplug.github.io/coproducer-web/blog/releasing-a-slowed-version-title-isrc-bpm-and-key.html</loc>
-    <lastmod>2026-11-24</lastmod>
+    <lastmod>2026-11-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <image:image>
@@ -163,7 +183,7 @@
   </url>
   <url>
     <loc>https://myaiplug.github.io/coproducer-web/blog/slowed-beat-wobble-how-much-before-it-sounds-out-of-tune.html</loc>
-    <lastmod>2026-11-24</lastmod>
+    <lastmod>2026-11-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <image:image>
@@ -183,7 +203,7 @@
   </url>
   <url>
     <loc>https://myaiplug.github.io/coproducer-web/blog/slowed-and-reverb-sounds-washed-out-time-the-tail-to-the-new-tempo.html</loc>
-    <lastmod>2026-11-23</lastmod>
+    <lastmod>2026-11-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <image:image>
@@ -243,7 +263,7 @@
   </url>
   <url>
     <loc>https://myaiplug.github.io/coproducer-web/blog/sample-drifts-off-the-grid-find-its-real-bpm.html</loc>
-    <lastmod>2026-11-16</lastmod>
+    <lastmod>2026-11-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <image:image>
@@ -483,7 +503,7 @@
   </url>
       <url>
     <loc>https://myaiplug.github.io/coproducer-web/blog/clicks-at-edit-points-fade-every-cut.html</loc>
-    <lastmod>2026-10-21</lastmod>
+    <lastmod>2026-11-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <image:image>
@@ -503,7 +523,7 @@
   </url>
       <url>
     <loc>https://myaiplug.github.io/coproducer-web/blog/mix-sounds-better-louder-pick-one-monitor-level.html</loc>
-    <lastmod>2026-10-20</lastmod>
+    <lastmod>2026-11-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <image:image>
@@ -823,7 +843,7 @@
   </url>
   <url>
     <loc>https://myaiplug.github.io/coproducer-web/blog/when-to-slow-the-bounce.html</loc>
-    <lastmod>2026-11-24</lastmod>
+    <lastmod>2026-11-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <image:image>
@@ -1023,7 +1043,7 @@
   </url>
   <url>
     <loc>https://myaiplug.github.io/coproducer-web/blog/screw-tempo-still-needs-a-legal-peak.html</loc>
-    <lastmod>2026-11-24</lastmod>
+    <lastmod>2026-11-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.75</priority>
     <image:image>
@@ -1085,7 +1105,7 @@
   </url>
   <url>
     <loc>https://myaiplug.github.io/coproducer-web/blog/topics/loudness-and-lufs.html</loc>
-    <lastmod>2026-10-30</lastmod>
+    <lastmod>2026-11-25</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -1103,7 +1123,7 @@
   </url>
   <url>
     <loc>https://myaiplug.github.io/coproducer-web/blog/topics/432-hz-pitch-and-tempo.html</loc>
-    <lastmod>2026-11-24</lastmod>
+    <lastmod>2026-11-25</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>

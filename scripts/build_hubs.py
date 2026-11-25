@@ -33,6 +33,7 @@ TOPICS = [
             "crest-factor-is-not-loudness", "quiet-masters-and-noise-floor", "album-consistency-in-one-meter",
             "vertical-video-is-a-loudness-trap",
             "mix-sounds-better-louder-pick-one-monitor-level",
+            "how-slow-should-a-slowed-song-be-compare-them-level-matched",
         ],
     },
     {
@@ -122,6 +123,7 @@ TOPICS = [
             "slowed-song-out-of-key-pick-a-speed-on-a-semitone",
             "slowed-beat-wobble-how-much-before-it-sounds-out-of-tune",
             "halftime-vs-half-speed-why-your-beat-dropped-an-octave",
+            "chopping-a-slowed-beat-cut-on-the-new-bpm",
         ],
     },
     {
