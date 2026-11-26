@@ -6,7 +6,23 @@
     <atom:link href="https://myaiplug.github.io/coproducer-web/blog/rss.xml" rel="self" type="application/rss+xml"/>
     <description>Answer-first essays on loudness, true peak, repair, stems, ScrewAI, and local .bat workflows.</description>
     <language>en-us</language>
-    <lastBuildDate>Wed, 25 Nov 2026 15:00:00 GMT</lastBuildDate>
+    <lastBuildDate>Thu, 26 Nov 2026 15:00:00 GMT</lastBuildDate>
+    <item>
+      <title>Does your slowed + reverb hold up in mono? Check the chorus first</title>
+      <link>https://myaiplug.github.io/coproducer-web/blog/slowed-and-reverb-in-mono-check-the-chorus-first.html</link>
+      <guid isPermaLink="true">https://myaiplug.github.io/coproducer-web/blog/slowed-and-reverb-in-mono-check-the-chorus-first.html</guid>
+      <pubDate>Thu, 26 Nov 2026 15:00:00 GMT</pubDate>
+      <description>Slowing a beat doesn’t change how it folds to mono. The effects after it do. Measured on HalfScrew’s varispeed, reverb and chorus: correlation, mono loss, how much drier the reverb gets, and how hard the chorus flutters.</description>
+      <enclosure url="https://myaiplug.github.io/coproducer-web/blog/img/essays/slowed-and-reverb-in-mono-check-the-chorus-first.jpg?v=shd" type="image/jpeg" length="99095"/>
+    </item>
+    <item>
+      <title>Making a slowed outro? Switch to the slowed version on a bar line</title>
+      <link>https://myaiplug.github.io/coproducer-web/blog/slowed-outro-switch-to-the-slowed-version-on-a-bar-line.html</link>
+      <guid isPermaLink="true">https://myaiplug.github.io/coproducer-web/blog/slowed-outro-switch-to-the-slowed-version-on-a-bar-line.html</guid>
+      <pubDate>Thu, 26 Nov 2026 15:00:00 GMT</pubDate>
+      <description>A slowed outro or screwed intro is a switch between two renders of the same bounce. Measured at three HalfScrew speeds: where the switch bar lands, what cutting at the same timestamp does, how long the crossfade can be, and what a tempo ramp changes.</description>
+      <enclosure url="https://myaiplug.github.io/coproducer-web/blog/img/essays/slowed-outro-switch-to-the-slowed-version-on-a-bar-line.jpg?v=shd" type="image/jpeg" length="116001"/>
+    </item>
     <item>
       <title>Chopping a slowed beat? Cut on the new BPM, not the old one</title>
       <link>https://myaiplug.github.io/coproducer-web/blog/chopping-a-slowed-beat-cut-on-the-new-bpm.html</link>

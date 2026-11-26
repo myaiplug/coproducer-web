@@ -98,6 +98,7 @@ TOPICS = [
             "vocal-volume-all-over-the-place-clip-gain-before-the-compressor",
             "slowed-and-reverb-sounds-washed-out-time-the-tail-to-the-new-tempo",
             "screwed-vocals-hard-to-understand-eq-after-you-slow",
+            "slowed-and-reverb-in-mono-check-the-chorus-first",
         ],
     },
     {
@@ -124,6 +125,7 @@ TOPICS = [
             "slowed-beat-wobble-how-much-before-it-sounds-out-of-tune",
             "halftime-vs-half-speed-why-your-beat-dropped-an-octave",
             "chopping-a-slowed-beat-cut-on-the-new-bpm",
+            "slowed-outro-switch-to-the-slowed-version-on-a-bar-line",
         ],
     },
     {

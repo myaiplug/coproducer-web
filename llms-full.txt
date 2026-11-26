@@ -1,6 +1,6 @@
 # CoProducer and Lacquer — full text for assistants
 Base: https://myaiplug.github.io/coproducer-web/
-Updated: 2026-11-25
+Updated: 2026-11-26
 Essays: full plain-text bodies, in journal order
 Summary index: https://myaiplug.github.io/coproducer-web/llms.txt
 
@@ -28,6 +28,335 @@ Summary index: https://myaiplug.github.io/coproducer-web/llms.txt
 - Booth / journal comments on Lacquer pages are real reader notes posted through a public comment form (no seeded or sample comments). Notes with links are held for review before they appear.
 
 # Lacquer essays
+
+## Does your slowed + reverb hold up in mono? Check the chorus first
+URL: https://myaiplug.github.io/coproducer-web/blog/slowed-and-reverb-in-mono-check-the-chorus-first.html
+Section: Stereo · 26 November 2026 · 6 min
+Summary: Slowing a beat doesn’t change how it folds to mono. The effects after it do. Measured on HalfScrew’s varispeed, reverb and chorus: correlation, mono loss, how much drier the reverb gets, and how hard the chorus flutters.
+
+Slowing a beat doesn’t change how it folds to mono. The effects you add after it do. In our test a beat at HalfScrew’s TIME 80 kept the same 0.995 correlation as the original. Its reverb lost 3.46 dB in mono against the dry centre, so the mono version just sounds drier. CHORUS at 100 dropped the correlation to 0.109 and made a steady 500 Hz note swing 32.9 dB in the mono fold.
+Headphones, it’s the whole mood: slow, wide, a big hall behind everything. Then it plays off a phone, or one Bluetooth speaker on a shelf, and something’s off. Drier than you remember, or worse, a seasick flutter in the melody that wasn’t there before.
+The usual suspect is the slowdown, but slowing isn’t what changes in mono. Varispeed does the same thing to both sides. What changes is the reverb and the chorus you put on after it.
+
+### What the reverb and chorus do to the two sides
+HalfScrew runs varispeed first, then EQ, reverb, delay, chorus and drive, then a true-peak limiter. The reverb is a fixed 3 s hall built from two different noise bursts, one per side, so its left and right have little in common. The chorus delays each side by about 8.5 ms and sweeps that delay up and down by 3.5 ms at 1.5 Hz, the two sides moving in opposite directions. Each effect knob is a dry/wet crossfade, and both turned on start at 30. The limiter turns both sides down together, so it doesn’t change the balance between them.
+We wrote mono_check.py to put numbers on it. It ports the varispeed, the reverb and the chorus from HalfScrew’s source with the EQ flat and WOW at 0, builds an 8-bar beat at 140 BPM with the kick, 808, snare and lead in the middle, and measures three things: how alike the two sides are (correlation), how much level the mix loses when it’s folded to mono, and how much a steady note’s level swings with the chorus on.
+# Slowed + reverb in mono: what HalfScrew's varispeed, REVERB and CHORUS do to a mono fold-down.
+# Ported from halfscrew.js resample() and halfscrew-fx.js (v=44): 4-point Hermite varispeed (HQ, WOW 0),
+# REVERB = convolver with the tool's 2-channel 3 s IR (L->L, R->R, Web Audio normalize), CHORUS = two 8.5 ms
+# delays swept +-3.5 ms by a 1.5 Hz sine, opposite sign per side. Each FX amount is a dry/wet crossfade. EQ flat.
+import numpy as np
+from scipy.signal import butter, sosfilt, fftconvolve
+fs = 48000; rng = np.random.default_rng(26); BPM = 140; beat = 60 / BPM
+
+def hermite(y0, y1, y2, y3, f):
+    c1 = 0.5 * (y2 - y0); c2 = y0 - 2.5 * y1 + 2 * y2 - 0.5 * y3; c3 = 0.5 * (y3 - y0) + 1.5 * (y1 - y2)
+    return ((c3 * f + c2) * f + c1) * f + y1
+def varispeed(a, ratio):
+    n = int(np.ceil(len(a) / ratio)); pos = np.arange(n) * ratio; i0 = np.floor(pos).astype(int); f = pos - i0
+    g = lambda k: np.where((k >= 0) & (k < len(a)), a[np.clip(k, 0, len(a) - 1)], 0.0)
+    return hermite(g(i0 - 1), g(i0), g(i0 + 1), g(i0 + 2), f)
+
+def reverb_ir():                                   # halfscrew-fx.js reverbIR(), same LCG seeds and envelope
+    L = int(fs * 3.25); ir = np.zeros((2, L)); pre = int(fs * 0.012)
+    for c in range(2):
+        seed = (0x9e3779b1 ^ ((c * 0x85ebca6b) & 0xffffffff)) & 0xffffffff; lp = 0.0
+        for i in range(L):
+            seed = (seed * 1664525 + 1013904223) & 0xffffffff; noise = seed / 2147483648 - 1; t = i / fs
+            k = 0.9 - 0.82 * np.exp(-t * 1.6); lp = lp * k + noise * (1 - k)
+            ir[c, i] = 0 if i < pre else lp * np.exp(-6.9078 * t / 3) * max(0, min(1, (i - pre) / (fs * 0.02))) * 2.2
+    p = max(np.sqrt((ir ** 2).sum() / ir.size), 0.000125)       # Web Audio ConvolverNode normalize = true
+    return ir * (1 / p) * 0.00125 * (44100 / fs)
+IR = reverb_ir()
+
+def chorus(x):                                     # x: (2, n). Per side: delay = 8.5 ms +- 3.5 ms, 1.5 Hz sine
+    n = x.shape[1]; t = np.arange(n) / fs; out = np.zeros_like(x)
+    for c, sgn in ((0, 1), (1, -1)):
+        d = (0.0085 + sgn * 0.0035 * np.sin(2 * np.pi * 1.5 * t)) * fs
+        pos = np.arange(n) - d; i0 = np.floor(pos).astype(int); f = pos - i0
+        g = lambda k: np.where(k >= 0, x[c][np.clip(k, 0, n - 1)], 0.0)
+        out[c] = g(i0) * (1 - f) + g(i0 + 1) * f
+    return out
+
+def halfscrew(x, time=100, rev=0, cho=0):
+    y = np.array([varispeed(ch, time / 100) for ch in x])
+    if rev:
+        y = np.pad(y, ((0, 0), (0, 3 * fs)))                   # export adds a 3 s tail when REVERB is on
+        wet = np.array([fftconvolve(y[c], IR[c])[: y.shape[1]] for c in range(2)])
+        y = (1 - rev / 100) * y + rev / 100 * wet
+    if cho: y = (1 - cho / 100) * y + cho / 100 * chorus(y)
+    return y
+
+# an 8-bar beat at 140: kick, 808, snare, a sung-style lead in the middle; hats a little left/right; one wide pad
+n = int(8 * 4 * beat * fs); T = lambda s: np.arange(int(s * fs)) / fs
+def place(hits, snd, bt=beat):
+    y = np.zeros(n)
+    for b in hits:
+        i = int(round(b * bt * fs)); s = snd[: n - i]; y[i:i + len(s)] += s
+    return y
+kick = np.sin(2 * np.pi * np.cumsum(55 + 110 * np.exp(-T(.25) * 30)) / fs) * np.exp(-T(.25) * 12)
+b808 = np.tanh(1.5 * np.sin(2 * np.pi * 49 * T(1.2))) * np.exp(-T(1.2) * 2.2) * .7
+snare = (.5 * np.sin(2 * np.pi * 190 * T(.2)) + sosfilt(butter(4, 1500, 'hp', fs=fs, output='sos'), rng.standard_normal(int(.2 * fs))) * .4) * np.exp(-T(.2) * 20)
+hat = sosfilt(butter(4, [6000, 12000], 'bp', fs=fs, output='sos'), rng.standard_normal(int(.05 * fs))) * np.exp(-T(.05) * 90) * .35
+tt = np.arange(n) / fs; f0 = 220 * 2 ** (np.round(2 * np.sin(2 * np.pi * tt / (4 * beat))) / 12)
+lead = sum(np.sin(2 * np.pi * k * np.cumsum(f0 * (1 + .004 * np.sin(2 * np.pi * 5.5 * tt))) / fs) / k ** 1.3 for k in range(1, 12)) * .12
+pad = [sosfilt(butter(2, [300, 2500], 'bp', fs=fs, output='sos'), rng.standard_normal(n)) * .05 for _ in range(2)]   # different noise per side = wide
+mid = place([b * 4 for b in range(8)] + [b * 4 + 2.5 for b in range(8)], kick) + place([b * 4 for b in range(0, 8, 2)], b808) \
+      + place([b * 4 + o for b in range(8) for o in (1, 3)], snare) + lead
+hl, hr = place([i / 2 for i in range(64)], hat * 1.2), place([i / 2 for i in range(64)], hat * .8)
+mix = np.array([mid + hl + pad[0], mid + hr + pad[1]]); mix *= 10 ** (-1 / 20) / np.abs(mix).max()
+
+def corr(y): return np.corrcoef(y[0], y[1])[0, 1]
+def mono_loss(y):                                   # level of the mono fold (L+R)/2 vs the stereo average
+    m = (y[0] + y[1]) / 2; return 10 * np.log10(np.mean(m ** 2) / np.mean((y[0] ** 2 + y[1] ** 2) / 2))
+
+print(f"Test mix: 8 bars at 140 BPM, 48 kHz stereo, kick/808/snare/lead centred, hats slightly L/R, one wide pad")
+print("\n1) Correlation and mono fold-down (1 = identical sides, 0 = unrelated; mono loss: level of (L+R)/2 vs stereo)")
+print(f"   {'setting':38}{'corr':>7}{'mono loss':>11}")
+rows = [("Original (no slowing)", dict()), ("TIME 80, no FX", dict(time=80)),
+        ("TIME 80 + REVERB 30 (default on)", dict(time=80, rev=30)), ("TIME 80 + REVERB 55 (Holy Tuss amount)", dict(time=80, rev=55)),
+        ("TIME 80 + CHORUS 30 (default on)", dict(time=80, cho=30)), ("TIME 80 + CHORUS 100", dict(time=80, cho=100)),
+        ("TIME 88 + REVERB 40 + CHORUS 18", dict(time=88, rev=40, cho=18))]
+for name, kw in rows:
+    y = halfscrew(mix, **kw); print(f"   {name:38}{corr(y):7.3f}{mono_loss(y):8.2f} dB")
+
+# 2) the reverb on its own: a centred (mono) source through the wet path only
+src = np.array([mid, mid]) / np.abs(mid).max() * .5
+wet = halfscrew(src, time=80, rev=100)
+print(f"\n2) Reverb return alone, centred source, TIME 80, REVERB 100 (wet only): corr {corr(wet):.3f}, "
+      f"mono loss {mono_loss(wet):.2f} dB (the dry centre loses {mono_loss(varispeed(mid,.8)[None].repeat(2,0)):.2f} dB)")
+
+# 3) chorus flutter: steady centred sine tones; Hilbert envelope over 4 s, 5th-95th percentile swing in dB
+from scipy.signal import hilbert
+def swing(sig):
+    e = 20 * np.log10(np.abs(hilbert(sig))[fs:-fs // 2] + 1e-12); lo, hi = np.percentile(e, [5, 95]); return hi - lo
+tt5 = np.arange(5 * fs) / fs
+print("\n3) Chorus flutter: level swing of a steady centred tone (5th-95th percentile over 4 s)")
+print(f"   {'tone':>9}{'setting':>14}{'left speaker':>14}{'mono fold':>11}")
+for f in (39.2, 500, 2000):
+    tone = .3 * np.sin(2 * np.pi * f * tt5)
+    for c in (0, 30, 100):
+        y = halfscrew(np.array([tone, tone]), cho=c)
+        print(f"   {f:7.1f}Hz{('CHORUS ' + str(c)) if c else 'no chorus':>14}{swing(y[0]):11.1f} dB{swing((y[0] + y[1]) / 2):8.1f} dB")
+print("   (39.2 Hz = an 808 on G1, 49 Hz, slowed to TIME 80)")
+d = 2 * 0.0035
+print(f"\n   Chorus sides differ by up to {d*1000:.1f} ms, so the mono fold's first notch sweeps down to {1/(2*d):.1f} Hz at the 1.5 Hz rate")
+$ python3 mono_check.py
+Test mix: 8 bars at 140 BPM, 48 kHz stereo, kick/808/snare/lead centred, hats slightly L/R, one wide pad
+
+1) Correlation and mono fold-down (1 = identical sides, 0 = unrelated; mono loss: level of (L+R)/2 vs stereo)
+   setting                                  corr  mono loss
+   Original (no slowing)                   0.995   -0.01 dB
+   TIME 80, no FX                          0.995   -0.01 dB
+   TIME 80 + REVERB 30 (default on)        0.927   -0.16 dB
+   TIME 80 + REVERB 55 (Holy Tuss amount)  0.628   -0.90 dB
+   TIME 80 + CHORUS 30 (default on)        0.840   -0.36 dB
+   TIME 80 + CHORUS 100                    0.109   -2.56 dB
+   TIME 88 + REVERB 40 + CHORUS 18         0.781   -0.51 dB
+
+2) Reverb return alone, centred source, TIME 80, REVERB 100 (wet only): corr -0.099, mono loss -3.46 dB (the dry centre loses 0.00 dB)
+
+3) Chorus flutter: level swing of a steady centred tone (5th-95th percentile over 4 s)
+        tone       setting  left speaker  mono fold
+      39.2Hz     no chorus        0.0 dB     0.0 dB
+      39.2Hz     CHORUS 30        6.3 dB     0.2 dB
+      39.2Hz    CHORUS 100        0.0 dB     3.7 dB
+     500.0Hz     no chorus        0.0 dB     0.0 dB
+     500.0Hz     CHORUS 30        7.9 dB     0.7 dB
+     500.0Hz    CHORUS 100        0.0 dB    32.9 dB
+    2000.0Hz     no chorus        0.0 dB     0.0 dB
+    2000.0Hz     CHORUS 30        7.7 dB     7.8 dB
+    2000.0Hz    CHORUS 100        0.1 dB    21.5 dB
+   (39.2 Hz = an 808 on G1, 49 Hz, slowed to TIME 80)
+
+   Chorus sides differ by up to 7.0 ms, so the mono fold's first notch sweeps down to 71.4 Hz at the 1.5 Hz rate
+
+### Reading the numbers
+Slowing didn’t move the needle. The original and the TIME 80 version both read 0.995 and lost 0.01 dB in mono. If your slowed version folds to mono badly, the slowdown isn’t the reason.
+Reverb makes the mono version drier, not broken. REVERB at 30 took the correlation to 0.927, and at 55, Holy Tuss’s amount, to 0.628, with 0.90 dB lost in mono. The wet signal on its own read −0.099, which means unrelated rather than fighting. In mono it lost 3.46 dB while the dry centre lost nothing, so the reverb sits about 3.5 dB further back on a phone than on headphones. On a washed-out slowed + reverb mix that can even help. If the space is the song, check it in mono before you decide the amount.
+The chorus is where it gets strange. At 100 the correlation fell to 0.109 and the mix lost 2.56 dB in mono. Each speaker on its own held a steady note steady, within 0.1 dB, because a single delayed copy only bends pitch. Folded to mono, the two sides’ copies interfere: they’re up to 7.0 ms apart, so a notch sweeps through the spectrum as low as 71.4 Hz, and a 500 Hz note swung 32.9 dB, a 2 kHz note 21.5 dB. That’s the underwater flutter.
+At the default 30, the flutter moves into each speaker. Mixing 70% dry with 30% moving copy makes them beat against each other, so a 500 Hz note swung 7.9 dB in the left speaker but only 0.7 dB in mono, where the opposite sweeps partly cancel out. The chorus works on the whole mix, 808 included, and a 39.2 Hz 808 note, a G1 slowed to TIME 80, swung 6.3 dB in each speaker. If your slowed 808 throbs on headphones, look at the chorus before the compressor.
+
+### A mono check for a slowed version
+1. Fold to mono once before you export. Your DAW’s mono button or a utility plugin on the master. Listen to the hook, not the intro.
+2. If it flutters in mono, pull the chorus down first. At 100 the mono fold swung by tens of dB. Set it by ear with mono on, then switch back.
+3. If the 808 throbs, keep the chorus off it. Slow the 808 and the melody as separate stems with the same TIME, PITCH and WOW, chorus only the melody, and they still line up, because the same settings move every file the same way from its first sample.
+4. If mono sounds too dry, that’s the reverb losing about 3.5 dB. Decide whether the stereo version is too wet before you add more. Timing the tail to the new tempo often fixes the wash without touching the amount.
+5. Read the correlation. The analyzer on this site shows it, and how to read a phase correlation meter explains the scale. CoProducer flags readings under about 0.2, which our CHORUS 100 render would have tripped.
+6. Then play it off a phone. The phone-speaker check covers what happens to the low end there.
+Note: Mono doesn’t show you the slowdown. It shows you the effects. When the slowed version sounds wrong on one speaker, turn the effects down one at a time before you touch the speed.
+Q: Does slowing a song make it less mono compatible?
+A: Not by itself. Varispeed does the same thing to both sides. In our test the original and a TIME 80 version both read 0.995 correlation and lost 0.01 dB in mono.
+Q: Why does my slowed and reverb sound dry in mono?
+A: The reverb’s left and right sides are mostly unrelated, so they add up quieter than the centred dry signal. In our test the reverb lost 3.46 dB in mono while the dry centre lost nothing.
+Q: Is chorus bad for mono?
+A: Heavy chorus can be. At CHORUS 100 a steady 500 Hz note swung 32.9 dB in the mono fold. At 30 it swung only 0.7 dB in mono, but 7.9 dB in each speaker.
+Q: What phase correlation is safe for a slowed version?
+A: Near +1 is fully mono safe and around 0 is wide but usually fine. CoProducer flags readings under about 0.2. Our CHORUS 100 render read 0.109.
+
+---
+
+## Making a slowed outro? Switch to the slowed version on a bar line
+URL: https://myaiplug.github.io/coproducer-web/blog/slowed-outro-switch-to-the-slowed-version-on-a-bar-line.html
+Section: Tempo · 26 November 2026 · 6 min
+Summary: A slowed outro or screwed intro is a switch between two renders of the same bounce. Measured at three HalfScrew speeds: where the switch bar lands, what cutting at the same timestamp does, how long the crossfade can be, and what a tempo ramp changes.
+
+To make a slowed outro, render a slowed version of the same bounce and switch to it on a bar line. The bar you switch on sits at its original time divided by the speed. In our test bar 25 of a 140 BPM beat was at 41.143 s in the original and 51.429 s in HalfScrew’s TIME 80 render. Cutting both files at 41.143 s landed 0.8 of a beat past bar 20’s downbeat instead.
+The last chorus ends, and you want the record to sink: same beat, same vocal, suddenly slower and lower, like the tape got tired. You drop the slowed render on the track under the original, split both at the bar line, and the slowed side comes in somewhere in the middle of a phrase, a few bars back, half a beat off.
+The idea is right. The cut point is wrong. A slowed render runs on a longer clock, so the same bar is later in that file.
+
+### Two renders, one bounce
+Start from the exact bounce the original plays from, so the two files differ only in speed. In HalfScrew, set TIME, and PITCH if you want, and turn WOW to 0 for this one. WOW loads at 25 and nudges the timing as well as the pitch, which the wobble essay measured, and a switch needs both files on a straight clock. You can add wobble to the outro section afterwards.
+If the slowed version is a ScrewAI strain, the file name tells you the flavor, not the speed. Divide the original’s length by the render’s to get it, as the release essay shows, and check the first kick after the switch by ear.
+We wrote outro_switch.py to measure the switch. It builds a 32-bar beat at 140 BPM, slows it with HalfScrew’s resampler ported from the tool’s source, switches to the slowed render on the downbeat of bar 25 with different crossfades, and tries a tape-style ramp for comparison.
+# A screwed outro: play the original, then switch to a slowed render of the same bounce on a bar line.
+# Slowed render = HalfScrew's resampler ported from halfscrew.js resample() (v=44): 4-point Hermite (HQ), WOW 0.
+# The ramp in part 4 is NOT a HalfScrew feature (its TIME is one fixed setting); it's what a DAW tempo ramp does.
+import numpy as np
+from scipy.signal import butter, sosfilt
+fs = 48000; rng = np.random.default_rng(1126); BPM = 140; beat = 60 / BPM; bar = 4 * beat
+
+def hermite(y0, y1, y2, y3, f):
+    c1 = 0.5 * (y2 - y0); c2 = y0 - 2.5 * y1 + 2 * y2 - 0.5 * y3; c3 = 0.5 * (y3 - y0) + 1.5 * (y1 - y2)
+    return ((c3 * f + c2) * f + c1) * f + y1
+def read_at(a, pos):
+    i0 = np.floor(pos).astype(int); f = pos - i0
+    g = lambda k: np.where((k >= 0) & (k < len(a)), a[np.clip(k, 0, len(a) - 1)], 0.0)
+    return hermite(g(i0 - 1), g(i0), g(i0 + 1), g(i0 + 2), f)
+def varispeed(a, ratio): return read_at(a, np.arange(int(np.ceil(len(a) / ratio))) * ratio)
+
+# 32-bar beat at 140: kick, snare, hats, a sustained chord (so splices land mid-wave)
+BARS = 32; n = int(round(BARS * bar * fs)); T = lambda s: np.arange(int(s * fs)) / fs
+def place(hits, snd):
+    y = np.zeros(n)
+    for b in hits:
+        i = int(round(b * beat * fs)); s = snd[: n - i]; y[i:i + len(s)] += s
+    return y
+kick = np.sin(2 * np.pi * np.cumsum(55 + 110 * np.exp(-T(.25) * 30)) / fs) * np.exp(-T(.25) * 12)
+snare = (.5 * np.sin(2 * np.pi * 190 * T(.2)) + sosfilt(butter(4, 1500, 'hp', fs=fs, output='sos'), rng.standard_normal(int(.2 * fs))) * .4) * np.exp(-T(.2) * 20)
+hat = sosfilt(butter(4, [6000, 12000], 'bp', fs=fs, output='sos'), rng.standard_normal(int(.05 * fs))) * np.exp(-T(.05) * 90) * .3
+kicks = [b * 4 + o for b in range(BARS) for o in (0, 2.5)]
+chord = sum(.06 * np.sin(2 * np.pi * f * np.arange(n) / fs) for f in (220, 261.63, 329.63))
+kick_trk = place(kicks, kick)
+song = kick_trk + place([b * 4 + o for b in range(BARS) for o in (1, 3)], snare) + place([i / 2 for i in range(BARS * 8)], hat) + chord
+
+def onsets(y, thr=.5):
+    k = int(.003 * fs); env = np.sqrt(np.convolve(y ** 2, np.ones(k) / k, 'same'))
+    above = env > thr * env.max(); idx = np.flatnonzero(above & ~np.r_[False, above[:-1]])
+    keep = [idx[0]]
+    for i in idx[1:]:
+        if i - keep[-1] > .15 * fs: keep.append(i)
+    return np.array(keep) / fs
+
+SW = 24                                            # switch on the downbeat of bar 25 (start of the last 8 bars)
+t0 = SW * bar
+print(f"Song: {BARS} bars at {BPM} BPM = {n/fs:.2f} s. Switch to the slowed render at bar {SW+1}, {t0:.3f} s into the original.")
+
+print("\n1) Where the switch lands in each slowed render (same bounce, WOW 0)")
+print(f"   {'setting':28}{'speed':>8}{'semitones':>10}{'new BPM':>9}{'bar 25 in render':>18}{'last 8 bars':>13}{'song length':>13}")
+for name, tm, p in (("TIME 80", 80, 0), ("POTION (TIME 100, PITCH -2)", 100, -2), ("TIME 70", 70, 0)):
+    s = tm / 100 * 2 ** (p / 12)
+    print(f"   {name:28}{s:8.4f}{12*np.log2(s):10.2f}{BPM*s:9.2f}{t0/s:16.3f} s{8*bar/s:11.2f} s{t0 + (n/fs - t0)/s:11.2f} s")
+print(f"   original: last 8 bars {8*bar:.2f} s, song {n/fs:.2f} s")
+
+s = .8; slow = varispeed(song, s); slow_k = varispeed(kick_trk, s); nb = beat / s
+def switch(a, b, ta, tb, xf_ms):
+    """a up to ta, then b from tb on; equal-power crossfade of xf_ms centred on the switch."""
+    ia, ib = int(round(ta * fs)), int(round(tb * fs)); h = int(xf_ms / 1000 * fs / 2)
+    if h == 0: return np.r_[a[:ia], b[ib:]], ia
+    r = np.linspace(0, np.pi / 2, 2 * h); fo, fi = np.cos(r), np.sin(r)
+    mid = a[ia - h:ia + h] * fo + b[ib - h:ib + h] * fi
+    return np.r_[a[:ia - h], mid, b[ib + h:]], ia
+
+print("\n2) Cutting the slowed render at the same timestamp vs at the same bar")
+wrong = t0 / bar * s                               # bar position you land on in the slowed render at t0 seconds
+print(f"   Same timestamp ({t0:.3f} s in both files): you land at bar {wrong + 1:.2f} of the slowed render, "
+      f"{(wrong - np.floor(wrong)) * 4:.2f} beats past a downbeat ({(wrong - np.floor(wrong)) * bar / s * 1000:.1f} ms) and {SW - wrong:.1f} bars back in the song")
+print(f"   Same bar: cut the slowed render at {t0:.3f} / {s} = {t0/s:.3f} s, on its own bar-25 downbeat")
+
+print("\n3) The splice itself (switch on the bar, TIME 80): crossfade length vs hits that play out of step")
+orig_hits = sorted(set([b * beat for b in kicks] + [(b * 4 + o) * beat for b in range(BARS) for o in (1, 3)] + [i / 2 * beat for i in range(BARS * 8)]))
+slow_hits = [t / s for t in orig_hits]               # same hits, on the slowed render's clock, lined up at t0
+print(f"   {'crossfade':>16}{'hits inside the fade, out of step':>36}")
+for label, ms in (("none", 0), ("10 ms", 10), ("100 ms", 100), ("300 ms", 300), ("1 bar at 140", bar * 1000), ("2 bars at 140", 2 * bar * 1000)):
+    h = ms / 2000; inside = lambda ts, off: [t - off for t in ts if abs(t - off) < h - .002 and abs(t - off) > .005]
+    a_ = inside(orig_hits, t0); b_ = inside(slow_hits, t0 / s)
+    print(f"   {label:>16}{len(a_):26d} old + {len(b_)} new")
+print(f"   (drum hits sit on 8ths: {beat/2*1000:.1f} ms apart at 140, {nb/2*1000:.1f} ms at 112; both versions share the bar-25 downbeat)")
+ko, _ = switch(kick_trk, slow_k, t0, t0 / s, 10); ks = onsets(ko, .3); ks = ks[ks > t0 - .01][:4]
+print(f"   kicks after a 10 ms switch: {', '.join(f'{(k - t0)*1000:.1f}' for k in ks)} ms after the bar line "
+      f"(112 BPM grid: 0, {2.5*nb*1000:.1f}, {4*nb*1000:.1f}, {6.5*nb*1000:.1f})")
+
+print("\n4) A tape-style ramp instead of a switch (DAW tempo ramp, not a HalfScrew control): speed glides 1.0 -> 0.8")
+for rb in (1, 2, 4):
+    # speed falls linearly with source position over rb bars of the original, then holds at 0.8
+    x0, L = t0 * fs, rb * bar * fs; pos = [0.0]; p = 0.0
+    cut = int(round(t0 * fs)); seg_pos = []
+    p = float(cut)
+    while p < n:
+        seg_pos.append(p); v = 1 - .2 * min(max((p - x0) / L, 0), 1); p += v
+    seg_pos = np.array(seg_pos)
+    ramp_k = np.r_[kick_trk[:cut], read_at(kick_trk, seg_pos)]
+    ramp_dur = np.searchsorted(seg_pos, x0 + L) / fs
+    ks = onsets(ramp_k, .3); after = ks[ks > t0 + ramp_dur - .01]
+    print(f"   ramp over {rb} bar(s) of the original: plays for {ramp_dur:.3f} s (at 140: {rb*bar:.3f} s, at a straight 0.8: {rb*bar/.8:.3f} s); "
+          f"first downbeat after it at {t0 + ramp_dur:.3f} s, kick spacing after it {np.diff(after[:3]).min()*1000:.1f}/{np.diff(after[:3]).max()*1000:.1f} ms")
+print(f"   112 BPM grid after the ramp: beat {nb*1000:.1f} ms, kicks on 1 and the and-of-3 sit {2.5*nb*1000:.1f} / {1.5*nb*1000:.1f} ms apart")
+$ python3 outro_switch.py
+Song: 32 bars at 140 BPM = 54.86 s. Switch to the slowed render at bar 25, 41.143 s into the original.
+
+1) Where the switch lands in each slowed render (same bounce, WOW 0)
+   setting                        speed semitones  new BPM  bar 25 in render  last 8 bars  song length
+   TIME 80                       0.8000     -3.86   112.00          51.429 s      17.14 s      58.29 s
+   POTION (TIME 100, PITCH -2)   0.8909     -2.00   124.73          46.181 s      15.39 s      56.54 s
+   TIME 70                       0.7000     -6.17    98.00          58.776 s      19.59 s      60.73 s
+   original: last 8 bars 13.71 s, song 54.86 s
+
+2) Cutting the slowed render at the same timestamp vs at the same bar
+   Same timestamp (41.143 s in both files): you land at bar 20.20 of the slowed render, 0.80 beats past a downbeat (428.6 ms) and 4.8 bars back in the song
+   Same bar: cut the slowed render at 41.143 / 0.8 = 51.429 s, on its own bar-25 downbeat
+
+3) The splice itself (switch on the bar, TIME 80): crossfade length vs hits that play out of step
+          crossfade   hits inside the fade, out of step
+               none                         0 old + 0 new
+              10 ms                         0 old + 0 new
+             100 ms                         0 old + 0 new
+             300 ms                         0 old + 0 new
+       1 bar at 140                         6 old + 6 new
+      2 bars at 140                        14 old + 12 new
+   (drum hits sit on 8ths: 214.3 ms apart at 140, 267.9 ms at 112; both versions share the bar-25 downbeat)
+   kicks after a 10 ms switch: -0.7, 1338.9, 2142.5, 3481.8 ms after the bar line (112 BPM grid: 0, 1339.3, 2142.9, 3482.1)
+
+4) A tape-style ramp instead of a switch (DAW tempo ramp, not a HalfScrew control): speed glides 1.0 -> 0.8
+   ramp over 1 bar(s) of the original: plays for 1.913 s (at 140: 1.714 s, at a straight 0.8: 2.143 s); first downbeat after it at 43.056 s, kick spacing after it 803.6/1339.3 ms
+   ramp over 2 bar(s) of the original: plays for 3.825 s (at 140: 3.429 s, at a straight 0.8: 4.286 s); first downbeat after it at 44.968 s, kick spacing after it 803.6/1339.3 ms
+   ramp over 4 bar(s) of the original: plays for 7.651 s (at 140: 6.857 s, at a straight 0.8: 8.571 s); first downbeat after it at 48.794 s, kick spacing after it 803.6/1339.3 ms
+   112 BPM grid after the ramp: beat 535.7 ms, kicks on 1 and the and-of-3 sit 1339.3 / 803.6 ms apart
+
+### Reading the numbers
+The switch bar is the original time divided by the speed. Bar 25 is at 41.143 s in the original. At TIME 80 it’s at 51.429 s, at POTION (TIME 100, PITCH −2) at 46.181 s, at TIME 70 at 58.776 s. The last 8 bars stretch from 13.71 s to 17.14 s at TIME 80, so the whole song runs 58.29 s instead of 54.86.
+Same timestamp is the classic mistake. Split both files at 41.143 s and you land at bar 20.20 of the slowed render: 0.80 of a beat, 428.6 ms, past a downbeat, and 4.8 bars back in the song. It sounds like a skip, because it is one.
+Keep the crossfade short. The drums hit on 8ths, 214.3 ms apart at 140 and 267.9 ms at 112, and both versions share the bar-25 downbeat. Any fade up to 300 ms had no hits from either version playing out of step. A one-bar fade at 140 had 6 old and 6 new hits overlapping, two bars 14 and 12. A long fade also plays two keys at once, and TIME 80 is −3.86 semitones, between keys. After a 10 ms switch the kicks landed at −0.7, 1338.9, 2142.5 and 3481.8 ms past the bar line, right on the 112 BPM grid.
+A ramp is a different move. HalfScrew’s TIME is one setting per export, so a glide comes from a tempo or varispeed ramp in your DAW. With the speed falling in a straight line from 1.0 to 0.8 over one bar of the original, that bar took 1.913 s, between the 1.714 s it takes at 140 and the 2.143 s at 112. After it, the kicks held the 112 BPM spacing, 803.6 and 1339.3 ms. The ramped audio is on its own clock, though, so keep playing from it rather than cutting back into the render.
+The key matters if the outro has to sit next to something. POTION is exactly −2.00 semitones, a whole step down. TIME 80 isn’t on a semitone, which only matters if anything follows the outro or a long fade overlaps the two. Picking a speed on a semitone covers that.
+
+### A slowed outro in five moves
+1. Pick the switch bar and write down its time in the original. A section start works best: the last chorus, the bridge, the final 8.
+2. Divide by the speed to find the same bar in the slowed render. HalfScrew writes t and p into the export name, so t80-p0 is 0.8 and t100-p-2 is 0.8909.
+3. Split the slowed render there, line it up under the original’s bar line, and fade over 10 to 30 ms, centred on the downbeat.
+4. Change the session tempo at that bar, 140 to 112 here, decimals included for speeds like POTION’s 124.73, so anything you add after the switch lands on the new grid. Chopping a slowed beat has the grid math.
+5. For a screwed intro, run it backwards. Start in the slowed render and switch to the original at bar k, which sits at the original time of bar k divided by the speed in the slowed file.
+Note: Write two numbers on the session before you cut: the bar you switch on and the speed. The cut point in the slowed file is one division.
+Q: How do I make a slowed outro?
+A: Render a slowed version of the same bounce, then switch to it on a bar line with a short crossfade. In the slowed file, that bar sits at its original time divided by the speed.
+Q: Where do I cut the slowed version?
+A: At the original time divided by the speed. Bar 25 of a 140 BPM beat is at 41.143 s, so in a TIME 80 render it’s at 51.429 s and in a POTION render (TIME 100, PITCH −2) at 46.181 s.
+Q: How long should the crossfade be?
+A: Short. In our test any fade up to 300 ms had no drum hits playing out of step. A one-bar fade had 6 from each version overlapping.
+Q: Can I make a screwed intro the same way?
+A: Yes. Start in the slowed render and switch to the original on a bar line. The bar is at its original time divided by the speed in the slowed file.
+
+---
 
 ## Chopping a slowed beat? Cut on the new BPM, not the old one
 URL: https://myaiplug.github.io/coproducer-web/blog/chopping-a-slowed-beat-cut-on-the-new-bpm.html
